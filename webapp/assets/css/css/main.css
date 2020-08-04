@@ -1,0 +1,115 @@
+#kfc{
+  border: 1px solid red;
+  width: 1200px;
+  position: relative;
+}
+header{
+  display: block;
+  padding-top: 30px;
+  padding-left: 30px;
+  height: 100px;
+}
+h1{
+  position: absolute;
+}
+h1 a{
+  display: block;
+  color: transparent;
+  width: 250px;
+  height: 150px;
+  background: url(../images/kfclogo.png) no-repeat;
+  background-size: contain;
+}
+
+.spot{
+  position: absolute;
+  right: 15px;
+  top: 75px;
+}
+
+.spot ul li{
+  display: inline-block;
+}
+
+#category{
+  font-size: 0;
+  position: relative;
+}
+#category ul li{
+  position: relative;
+  display: inline-block;
+  width: 199px;
+  height: 194px;
+  margin-right: 1px;
+}
+
+#category ul li p{
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  bottom: 20px;
+  display: block;
+  font-size: 20px;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.categoryImg{
+  background-image: url(../images/icon1.png);
+  background-size: 150px 150px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 199px;
+  height: 194px;
+}
+
+.menuSection{
+  height: 1200px;
+  font-size: 0;
+}
+
+.menu{
+  width: 400px;
+  height: 400px;
+  display: inline-block;
+  position: relative;
+}
+
+.menuImg{
+  background-image: url(../images/icon1.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 300px 300px;
+  width: 400px;
+  height: 400px;
+}
+
+.menuContent{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu p{
+  font-size: 15px;
+}
+
+.categoryColorRed{
+  background-color: rgb(204,55,46);
+}
+
+.categoryColorRed{
+  background-color: rgb(204,55,46);
+}
+
+.categoryColorWhite{
+  background-color: rgb(170, 203, 195);
+}
+
+.hide{
+  position: absolute;
+  left: -1000px;
+}
