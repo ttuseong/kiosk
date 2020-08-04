@@ -18,29 +18,32 @@
 <body>
 	<div class="container">
 		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#qwe">착한점심</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#asd">추천메뉴</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#zxc">햄버거</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#zxc">디저트/치킨</a></li>
+			<li class="nav-item"><a class="nav-link active"
+				data-toggle="tab" href="#qwe">착한점심</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#asd">추천메뉴</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#zxc">햄버거</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#zxc">디저트/치킨</a></li>
 		</ul>
-		<div class="tab-content">
-			<div class="tab-pane fade show active" id="qwe">
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">착한항우세트</div>
-					<div class="col-md-6" style="height: 200px;">착한AZ버거세트</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">착한DOUBLEX2세트</div>
-					<div class="col-md-6" style="height: 200px;">착한핫크리스피세트</div>
-				</div>
-				
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">착한데리세트</div>
-					<div class="col-md-6"></div>
-				</div>
-				
-				<div class="tab-pane fade" id="asd">
+		<div class="tab-pane fade show active" id="qwe">
+			<div class="row">
+				<div class="col-md-6" style="height: 200px;">착한항우세트</div>
+				<div class="col-md-6" style="height: 200px;">착한AZ버거세트</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6" style="height: 200px;">착한DOUBLEX2세트</div>
+				<div class="col-md-6" style="height: 200px;">착한핫크리스피세트</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-6" style="height: 200px;">착한데리세트</div>
+				<div class="col-md-6"></div>
+			</div>
+
+			<div class="tab-pane fade" id="asd">
 				<p>Nunc vitae turpis id nibh sodales commodo et non augue. Proin
 					fringilla ex nunc. Integer tincidunt risus ut facilisis tristique.</p>
 			</div>
@@ -50,6 +53,5 @@
 					commodo consectetur faucibus. Aenean eget ultricies justo.</p>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
