@@ -1,0 +1,377 @@
+#kfc{
+  border: 1px solid red;
+  width: 1200px;
+  position: relative;
+}
+header{
+  display: block;
+  padding-top: 30px;
+  padding-left: 30px;
+  height: 100px;
+}
+h1{
+  position: absolute;
+}
+h1 a{
+  display: block;
+  color: transparent;
+  width: 250px;
+  height: 150px;
+  background: url(../images/kfclogo.png) no-repeat;
+  background-size: contain;
+}
+
+.spot{
+  position: absolute;
+  right: 15px;
+  top: 75px;
+}
+
+.spot ul li{
+  display: inline-block;
+  margin-left: 10px;
+}
+
+#category{
+  font-size: 0;
+  position: relative;
+}
+#category ul li{
+  position: relative;
+  display: inline-block;
+  width: 199px;
+  height: 194px;
+  margin-right: 1px;
+}
+
+#category ul li p{
+  position: absolute;
+  width: 150px;
+  text-align: center;
+  bottom: 20px;
+  display: block;
+  font-size: 20px;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
+
+}
+
+.categoryColorRed{
+  background-color: rgb(204,55,46);
+}
+
+.categoryColorWhite{
+  background-color: rgb(170, 203, 195);
+}
+
+.currentSelect{
+  background-color: white;
+}
+
+.categoryImg{
+  background-image: url(../images/icon1.png);
+  background-size: 150px 150px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 199px;
+  height: 194px;
+}
+
+#menuSection{
+  height: 1200px;
+  font-size: 0;
+}
+
+.menu{
+  width: 400px;
+  height: 400px;
+  display: inline-block;
+  position: relative;
+}
+
+.menuImg{
+  background-image: url(../images/icon1.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 300px 300px;
+  width: 400px;
+  height: 400px;
+}
+
+.menuContent{
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu p{
+  font-size: 15px;
+  text-align: center;
+  line-height: 30px;
+}
+
+#pagecontainer *{
+  display: inline-block;
+}
+
+#pagecontainer{
+  position: relative;
+  padding: 5px 15px;
+}
+
+.btnPage{
+  width: 150px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: rgb(218, 58, 44);
+  border-color: rgb(218, 58, 44);
+}
+
+#pageCircleGroup{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pageCircle{
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  border-radius: 100%;
+  margin: 0 5px 0 5px;
+  background-color: rgb(179,206,207);
+}
+
+.pageActive{
+  background-color: rgb(205,119,141);
+}
+
+#btnRight{
+  position: absolute;
+  right: 15px;
+}
+
+/*메뉴 테이블*/
+
+#tableSize{
+  height: 160px;
+  overflow: hidden;
+}
+
+#menuTable thead th{
+  padding: 10px 0px 10px 0px;
+  border-bottom: 2px solid white;
+  background-color: rgb(184, 213, 218);
+}
+
+#menuTable thead th:nth-child(1){
+  width: 600px;
+}
+
+#menuTable thead th:nth-child(2){
+  width: 250px;
+}
+
+#menuTable thead th:nth-child(3){
+  width: 250px;
+}
+
+#menuTable thead th:nth-child(4){
+  width: 100px;
+}
+
+#menuTable tbody tr:first-child td:last-child{
+  position: relative;
+}
+
+#menuTable tbody tr:first-child td:last-child #iconGroup div p{
+  color: transparent;
+}
+
+#menuTable tbody tr:first-child td:last-child #iconGroup div{
+  position: absolute;
+  background-color: rgb(184, 211, 211);
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  font-size: 30px;
+  font-weight: normal;
+  text-align: center;
+}
+
+#menuTable tbody td:nth-child(1) p{
+  text-align:left;
+}
+
+.textarea{
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.textarea p:first-child{
+  font-size: 19px;
+}
+
+.textarea p:last-child{
+  color: rgb(141, 170, 173);
+  font-size: 12.2px;
+}
+
+#menuTable tbody td:nth-child(2) .count *{
+  display: inline-block;
+  margin: 0 5px 0 5px;
+}
+
+#menuTable tbody td:nth-child(2){
+  position: relative;
+}
+
+.count{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.icon-minus, .icon-plus{
+  color:white;
+}
+
+.icon-minus{
+  background-color: grey;
+}
+
+.icon-plus{
+  background-color: rgb(218, 58, 44);
+}
+
+.iconCombination{
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+#menuTable tbody td:nth-child(3){
+  position: relative;
+}
+
+.price *{
+  display: inline-block;
+}
+
+.pricePos{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform:translate(-50%, -50%);
+}
+
+.icon-cancel{
+  width: 20px;
+  height: 20px;
+  background-color: rgb(96, 128, 131);
+  color: white;
+}
+
+.icon-up-open-big{
+  top: 10.8px;
+}
+
+.icon-down-open-big{
+  line-height: 38.5px;
+  bottom: 10.8px;
+}
+
+#menuTable tbody{
+  background-color: rgb(184, 213, 218);
+}
+
+#menuTable tbody tr{
+  height: 31.2px;
+}
+
+/*주문*/
+
+#ordercontainer {
+  padding: 10px 10px 10px 10px;
+}
+
+#orderLeft, #orderRigth{
+  display: inline-block;
+}
+
+.orderCount{
+  position: relative;
+  background-color: rgb(184, 213, 218);
+  width: 180px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.orderCount:nth-child(1){
+  margin-bottom: 5px;
+}
+
+.string{
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.number{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.orderCount p{
+  display: inline-block;
+}
+
+#ordercontainer{
+  position: relative;
+}
+
+#orderRigth div{
+  position: absolute;
+  display: inline-block;
+  width: 200px;
+  height: 125px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 40px;
+  line-height: 130px;
+}
+
+#orderRigth div:nth-child(1){
+  top: 10px;
+  right: 410px;
+  background-color: rgb(105,132,137);
+  color: white;
+}
+
+#orderRigth div:nth-child(2){
+  top: 10px;
+  right: 205px;
+  background-color: rgb(221, 144, 89);
+  color: white;
+}
+
+#orderRigth div:nth-child(3){
+  top: 10px;
+  right: 0;
+  background-color: rgb(218, 58, 44);
+  color: white;
+}
+
+.hide{
+  position: absolute;
+  left: -1000px;
+}
