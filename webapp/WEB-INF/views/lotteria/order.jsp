@@ -8,111 +8,112 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- css -->
-<link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css">
+<link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/lotteria/order.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
-<script type="text/javascript"
-	src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript"
-	src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/kiosk/assets/js/lotteria/order.js"></script>
 
 <title>키오스크-롯데리아</title>
 </head>
 <body>
 	<!-- 헤더 -->
-	<jsp:include page="/WEB-INF/views/includes/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
-	
+
 	<div class="container">
-		<ul class="nav nav-tabs">
-			<li class="nav-item"><a class="nav-link active"
-				data-toggle="tab" href="#lunch">착한점심</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#recommend">추천메뉴</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#hamburger">햄버거</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#dessert">디저트/치킨</a></li>
-		</ul>
-		<div class="tab-content">
-			<div class="tab-pane fade show active" id="lunch">
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">착한항우세트</div>
-					<div class="col-md-6" style="height: 200px;">착한AZ버거세트</div>
+		<div id="wrapper">
+			<!--탭 메뉴 영역 -->
+			<ul class="tabs">
+				<li><a href="#tab1">착한점심</a></li>
+				<li><a href="#tab2">추천메뉴</a></li>
+				<li><a href="#tab3">햄버거</a></li>
+				<li><a href="#tab4">디저트/치킨</a></li>
+			</ul>
+	
+			<!--탭 콘텐츠 영역 -->
+			<div class="tab_container">
+	
+				<div id="tab1" class="tab_content">
+					<!--Content-->
+					<table>
+					<colgroup>
+						<col width="50%">
+						<col width="50%">
+					</colgroup>
+						<tr>
+							<td class="menu">
+								<div style="width:40%; float:left;"> 
+								<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
+								</div>
+								<div style="width:60%;float:left; margin-top: 75px;">
+									<div>
+									착한AZ버거세트
+									</div>
+									<div>
+									7,500
+									</div>
+								</div>
+							</td>
+							<td class="menu">
+								<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="30%">
+								착한AZ버거세트<br>
+								7,500
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="menu">
+								<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="30%">
+								착한DOUBLEX2세트<br>
+								6,800
+							</td>
+							<td class="menu">
+								<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="30%">
+								착한핫크리스피세트<br>
+								6,000
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="menu">
+								<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="30%">
+								착한데리세트<br>
+								4,000
+							</td>
+							<td class="menu">
+								
+							</td>
+						</tr>
+					</table>	
 				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">착한DOUBLEX2세트</div>
-					<div class="col-md-6" style="height: 200px;">착한핫크리스피세트</div>
+	
+				<div id="tab2" class="tab_content">
+					<!--Content-->
+					<h1>tab2영역</h1>
+					내용 내용 내용 내용 내용 내용
 				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">착한데리세트</div>
-					<div class="col-md-6"></div>
+				
+				<div id="tab3" class="tab_content">
+					<!--Content-->
+					<h1>tab2영역</h1>
+					내용 내용 내용 내용 내용 내용
 				</div>
+				
+				<div id="tab4" class="tab_content">
+					<!--Content-->
+					<h1>tab2영역</h1>
+					내용 내용 내용 내용 내용 내용
+				</div>
+	
 			</div>
-
-			<div class="tab-pane fade" id="recommend">
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">폴더버거 핫치킨</div>
-					<div class="col-md-6" style="height: 200px;">폴더버거 비프</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">레몬에이드L</div>
-					<div class="col-md-6" style="height: 200px;">아이스티</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">롯데리아찐氷</div>
-					<div class="col-md-6" style="height: 200px;">만렙세트 (폴더버거비프)</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">만렙세트 (폴더버거핫치킨)</div>
-					<div class="col-md-6" style="height: 200px;"></div>
-				</div>
-			</div>
-
-			<div class="tab-pane fade" id="hamburger">
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">폴더버거 핫치킨</div>
-					<div class="col-md-6" style="height: 200px;">폴더버거 비프</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">한우불고기</div>
-					<div class="col-md-6" style="height: 200px;">AZ버거</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">모짜렐라라인더버거 베이컨</div>
-					<div class="col-md-6" style="height: 200px;">와규 에디션Ⅱ</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">빅불</div>
-					<div class="col-md-6" style="height: 200px;">리아미라클버거</div>
-				</div>
-			</div>
-
-			<div class="tab-pane fade" id="hamburger">
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">치즈인더에그</div>
-					<div class="col-md-6" style="height: 200px;">포테이토</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">포테이토(L)</div>
-					<div class="col-md-6" style="height: 200px;">양념감자</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">치즈스틱</div>
-					<div class="col-md-6" style="height: 200px;">롱치즈스틱</div>
-				</div>
-				<div class="row">
-					<div class="col-md-6" style="height: 200px;">오징어링</div>
-					<div class="col-md-6" style="height: 200px;">쉑쉑치킨</div>
-				</div>
-			</div>
-
-
+	
 		</div>
 	</div>
 	<!-- 풋터 -->
-	<jsp:include page="/WEB-INF/views/includes/footer.jsp"/>
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->
 </body>
 </html>
