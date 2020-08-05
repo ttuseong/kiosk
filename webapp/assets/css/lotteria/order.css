@@ -55,4 +55,8 @@
        padding: 20px;
        font-size: 1.2em;
    }
-  
+   .menu{width: 50%;float: left;height: 250px;}
+   .menu-img{width:45%; float: left;}
+   .menu-text{width: 55%; float: left;padding-top: 80px;font-size:30px;}
+   .menu-price{color:red;}
+   .order-price{color:red; text-align:right;}

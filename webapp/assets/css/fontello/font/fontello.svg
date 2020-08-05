@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2020 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="wheelchair" unicode="&#xf193;" d="M571 188l57-114q-33-100-117-162t-190-62q-87 0-161 43t-117 117-43 161q0 101 58 185t154 117l9-73q-68-30-109-92t-41-137q0-103 74-176t176-74q71 0 130 37t92 98 28 132z m306-56l32-64-143-71q-7-4-16-4-22 0-32 19l-133 267h-264q-13 0-23 9t-12 22l-54 435q-1 10 4 24 7 28 31 46t54 17q37 0 64-26t26-63q0-39-29-66t-67-23l20-161h236v-72h-227l9-71h254q23 0 32-19l127-254z" horiz-adv-x="928.6" />
+</font>
+</defs>
+</svg>
