@@ -1,5 +1,4 @@
 #kfc{
-  border: 1px solid red;
   width: 1200px;
   position: relative;
 }
@@ -30,6 +29,12 @@ h1 a{
 .spot ul li{
   display: inline-block;
   margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid rgb(170, 203, 195);
+}
+
+.spot ul li:first-child{
+  border: none;
 }
 
 #category{
@@ -78,6 +83,8 @@ h1 a{
   height: 194px;
 }
 
+/* 메뉴 영역 */
+
 #menuSection{
   height: 1200px;
   font-size: 0;
@@ -112,13 +119,15 @@ h1 a{
   line-height: 30px;
 }
 
+/* 페이징 영역 */
+
 #pagecontainer *{
   display: inline-block;
 }
 
 #pagecontainer{
   position: relative;
-  padding: 5px 15px;
+  padding: 5px 10px;
 }
 
 .btnPage{
@@ -151,7 +160,7 @@ h1 a{
 
 #btnRight{
   position: absolute;
-  right: 15px;
+  right: 10px;
 }
 
 /*메뉴 테이블*/
@@ -159,12 +168,14 @@ h1 a{
 #tableSize{
   height: 160px;
   overflow: hidden;
+  padding: 0 10px 0 10px;
 }
 
 #menuTable thead th{
   padding: 10px 0px 10px 0px;
   border-bottom: 2px solid white;
   background-color: rgb(184, 213, 218);
+  font-weight: bold;
 }
 
 #menuTable thead th:nth-child(1){
@@ -187,22 +198,6 @@ h1 a{
   position: relative;
 }
 
-#menuTable tbody tr:first-child td:last-child #iconGroup div p{
-  color: transparent;
-}
-
-#menuTable tbody tr:first-child td:last-child #iconGroup div{
-  position: absolute;
-  background-color: rgb(184, 211, 211);
-  border-radius: 100%;
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
-  font-size: 30px;
-  font-weight: normal;
-  text-align: center;
-}
-
 #menuTable tbody td:nth-child(1) p{
   text-align:left;
 }
@@ -222,8 +217,10 @@ h1 a{
   font-size: 12.2px;
 }
 
-#menuTable tbody td:nth-child(2) .count *{
-  display: inline-block;
+.count *{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   margin: 0 5px 0 5px;
 }
 
@@ -260,8 +257,10 @@ h1 a{
   position: relative;
 }
 
-.price *{
-  display: inline-block;
+.pricePos *{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pricePos{
@@ -276,6 +275,21 @@ h1 a{
   height: 20px;
   background-color: rgb(96, 128, 131);
   color: white;
+}
+
+#scrollGroup div p{
+  color: transparent;
+}
+
+#scrollGroup div{
+  position: absolute;
+  background-color: rgb(184, 211, 211);
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  font-size: 30px;
+  text-align: center;
 }
 
 .icon-up-open-big{
@@ -308,7 +322,7 @@ h1 a{
 .orderCount{
   position: relative;
   background-color: rgb(184, 213, 218);
-  width: 180px;
+  width: 450px;
   height: 60px;
   border-radius: 5px;
 }
@@ -341,32 +355,37 @@ h1 a{
 
 #orderRigth div{
   position: absolute;
-  display: inline-block;
-  width: 200px;
-  height: 125px;
+  display: inline-flex;
   border-radius: 5px;
+  font-size: 45px;
   text-align: center;
-  font-size: 40px;
-  line-height: 130px;
+  justify-content: center;
+  align-items: center;
 }
 
-#orderRigth div:nth-child(1){
+#allCancelBtn{
+  width: 130px;
+  height: 125px;
   top: 10px;
-  right: 410px;
+  right: 560px;
   background-color: rgb(105,132,137);
   color: white;
 }
 
-#orderRigth div:nth-child(2){
+#cuponBtn{
+  width: 250px;
+  height: 125px;
   top: 10px;
-  right: 205px;
+  right: 285px;
   background-color: rgb(221, 144, 89);
   color: white;
 }
 
-#orderRigth div:nth-child(3){
+#orderBtn{
+  width: 250px;
+  height: 125px;
   top: 10px;
-  right: 0;
+  right: 10px;
   background-color: rgb(218, 58, 44);
   color: white;
 }
