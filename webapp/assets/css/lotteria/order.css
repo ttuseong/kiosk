@@ -60,3 +60,33 @@
    .menu-text{width: 55%; float: left;padding-top: 80px;font-size:30px;}
    .menu-price{color:red;}
    .order-price{color:red; text-align:right;}
+   
+   
+/* 모달 */
+.modal-content {
+	width: 800px;
+	height: 900px;
+}
+.modal-header {
+	border:none;
+    min-height: 16.42857143px;
+    padding: 15px;
+    border-top: 10px solid red;
+    text-align: center;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: xx-large;
+    margin: 0;
+    line-height: 1.42857143;
+}
+
+.modal-content {
+	border-radius: 0px;
+}
+
+.img-responsive {
+	width: 150px;
+	height: 150px;
+}

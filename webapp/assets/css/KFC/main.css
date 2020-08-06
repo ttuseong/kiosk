@@ -394,3 +394,17 @@ h1 a{
   position: absolute;
   left: -1000px;
 }
+
+/* 모달 */
+.modal-header {
+    min-height: 16.42857143px;
+    padding: 15px;
+    border-top: 5px solid red;
+    text-align: center;
+}
+
+.modal-title {
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.42857143;
+}
