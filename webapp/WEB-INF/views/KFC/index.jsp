@@ -1,11 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/fontello/css/fontello.css">
+    
+    <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/fontello/css/fontello.css">
   </head>
   <body>
     <div id="kfc">
@@ -180,15 +184,15 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        	<h4 class="modal-title" id="myModalLabel">모달 제목</h4> 
+	        	<h4 class="modal-title" id="myModalLabel">모달 제목</h4>
 	      </div>
-	      <div class="modal-body"> 
+	      <div class="modal-body">
 	      	<div class="menu-container">
-	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p> 
-                <p class="menuName">메뉴이름</p> 
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p>
+                <p class="menuName">메뉴이름</p>
                 <p class="menuPrice">메뉴 가격</p>
             </div>
-          </div> 
+          </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 	        <button type="button" class="btn btn-danger">완료</button>
@@ -196,16 +200,16 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-	
-	
+
+
     </div>
   </body>
-  
+
 <!-- 모달 테스트
 <script type="text/javascript"> 	$(document).ready(function(){
-		$("#modalName").modal();	
+		$("#modalName").modal();
 	});
-	
-	
+
+
 </script> -->
 </html>
