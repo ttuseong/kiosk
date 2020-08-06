@@ -9,6 +9,7 @@
     <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/modal.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/fontello/css/fontello.css">
   	
   	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -184,11 +185,11 @@
 
 	<!-- 추천메뉴 모달 -->
 	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
-	<div class="modal" id="modalName">
+	<div class="modal" id="recommend">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        	<h4 class="modal-title" id="myModalLabel">모달 제목</h4>
+	        	<h4 class="modal-title" id="myModalLabel">이런 메뉴 어떠세요?</h4>
 	      </div>
 	      <div class="modal-body">
 	      	<div class="menu-container">
@@ -198,8 +199,8 @@
             </div>
           </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-danger">완료</button>
+	        <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btnComplete">완료</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
@@ -268,13 +269,87 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	
+	<!-- 나의 주문 리스트 모달 -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="MyOrderListModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        	<h4 class="modal-title">나의 주문 리스트</h4> 
+	      </div>
+	      <div class="modal-body"> 
+	      	<div class="orderlist-container">
+	      		<div class="orderlist-header">
+	      			<div class="orderlist-menu">
+      					<p>메뉴</p>
+      				</div>
+      				<div class="orderlist-cnt">
+      					<p>수량</p>
+      				</div>
+      				<div class="orderlist-price">
+      					<p>가격</p>
+      				</div>
+	      		</div>
+	      		
+	      		<div class="orderlist-body">
+	      			<table class="orderList">
+		      			<tr>
+			      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 </td>
+			      			<td id="orderlist-menuCnt"> 2 </td>
+			      			<td id="orderlist-menuPrice"> 7,000 </td>
+			      		</tr>
+	      			</table>
+      			</div>
+	      		
+	      		<div class="orderlist-footer">
+	      			<div class="orderlist-sum"> <!-- 합계 -->
+	      				<div class="order-total">
+	      					<p>합계</p>
+	      				</div>
+	      				<div class="order-totalMenu">
+	      					<p>9</p>
+	      				</div>
+	      				<div class="order-totalPrice">
+	      					<p>15,100</p>
+	      				</div>
+	      			</div>
+	      			
+	      			<div class="orderlist-discount"> <!-- 할인 -->
+	      				<div class="order-discount">
+	      					<p>할인</p>
+	      				</div>
+	      				<div class="order-discountedPrice">
+	      					<p>0</p>
+	      				</div>
+	      			</div>
+	      			
+	      			<div class="orderlist-total"> <!-- 총 결제 금액 -->
+	      				<div class="order-total">
+	      					<p>총 결제 금액</p>
+	      				</div>
+	      				<div class="order-totalPrice">
+	      					<p>15,100</p>
+	      				</div>
+	      			</div>
+	      		</div>
+	      		
+     		</div>
+          </div> 
+	      <div class="modal-footer">
+	        <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btnComplete">결제</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
     </div>
   </body>
 
 
 <script type="text/javascript"> 	
 $(document).ready(function(){
-		$("#paySelect").modal();
+		$("#recommend").modal();
 	});
 
 
