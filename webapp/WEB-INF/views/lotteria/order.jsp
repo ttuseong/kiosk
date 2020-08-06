@@ -155,34 +155,7 @@
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->
-	
-	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
-	<div class="modal" id="modalName">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        	<h4 class="modal-title" id="myModalLabel">모달 제목</h4> 
-	      </div>
-	      <div class="modal-body"> 
-                <p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p> 
-                <p>메뉴이름</p> 
-                <p>메뉴 가격</p> 
-          </div> 
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-danger">완료</button>
-	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
 
 </body>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#modalName").modal();	
-	});
-	
-	
-</script>
 </html>

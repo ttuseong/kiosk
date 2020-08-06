@@ -396,15 +396,59 @@ h1 a{
 }
 
 /* 모달 */
-.modal-header {
-    min-height: 16.42857143px;
-    padding: 15px;
-    border-top: 5px solid red;
+.modal-content { /* 모달 전체 */
+	border-radius: 0px;
+	width: 750px;
+	height: 900px;
+}
+.modal-header { /* 모달 헤더 */
+	height: 15%;
+	/* border: none; */
+    padding: 50px;
+    border-top: 10px solid red;
     text-align: center;
 }
 
-.modal-title {
+.modal-title { /* 모달 제목의 폰트 */
     font-weight: bold;
-    margin: 0;
-    line-height: 1.42857143;
+    font-size: xx-large;
+}
+
+.img-responsive { /* 이미지 크기 */
+	width: 150px;
+	height: 150px;
+}
+
+.modal-body { /* 모달 바디 */
+	height: 65%;
+	padding: 40px;
+}
+
+.menu-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+	width: 150px;
+	height: 230px;
+	border: 1px solid black;
+}
+
+.menuName{ /* 메뉴 이름 */
+	text-align: center;
+}
+
+.menuPrice{ /* 메뉴 가격 */
+	color: red;
+	text-align: center;
+}
+
+.modal-footer {  /* 메뉴 푸터 */
+	/* border: none; */
+	height: 15%;
+	padding: 50px;
+	text-align: center;
+}
+
+.btn {  /* 취소, 완료 버튼 */
+	width: 220px;
+	height: 60px;
+	font-size: large;
+    font-weight: bold;
 }
