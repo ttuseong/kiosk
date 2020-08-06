@@ -35,6 +35,12 @@
       "css": "cancel",
       "code": 59396,
       "src": "entypo"
+    },
+    {
+      "uid": "3d8cc269fdad8a4cda55a20542a84e5c",
+      "css": "credit-card",
+      "code": 59397,
+      "src": "fontawesome"
     }
   ]
 }

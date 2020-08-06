@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/fontello/css/fontello.css">
+  	
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+  	
   </head>
   <body>
     <div id="kfc">
@@ -200,16 +204,79 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
-
+	
+	<!-- 결제수단 모달 -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="paySelect">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        	<h4 class="modal-title" id="myModalLabel">결제 수단을 선택해 주세요</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div id="select-container">
+	      		<div id="selectCardGroup">
+	      			<div id="credit">
+	      				<div class="icon-credit-card"></div>
+	      				<p>신용카드</p>	
+	      			</div>
+	      			<div id="prepaidcard">
+	      				<div class="icon-credit-card"></div>
+	      				<p>KFC 선불카드</p>
+	      			</div>
+	      		</div>
+	      		<div id="selectPayCode">
+	      			<div class="payCodeContianer">
+	      				<div class="icon-credit-card"></div>
+	      				<p>카카오 페이</p>
+	      			</div>
+	      			<div class="payCodeContianer">
+	      				<div class="icon-credit-card"></div>
+	      				<p>제로페이</p>
+	      			</div>
+	      			<div class="payCodeContianer">
+	      				<div class="icon-credit-card"></div>
+	      				<p>OK 캐쉬백</p>
+	      			</div>
+	      			<div class="payCodeContianer">
+	      				<div class="icon-credit-card"></div>
+	      				<p>BC 페이북 QR</p>
+	      			</div>
+	      			<div class="payCodeContianer">
+	      				<div class="icon-credit-card"></div>
+	      				<p>누구냐 넌</p>
+	      			</div>
+	      			<div class="payCodeContianer">
+	      				
+	      			</div>
+	      		</div>
+            </div>
+            <div id="paySelectCount">
+            	<div id="paySelectContainer">
+            		<div class="icon-up-open-big paySelectUp">
+            			<p>up</p>
+            		</div>
+            		<div class="icon-down-open-big paySelectDown">
+            			<p>down</p>
+            		</div>
+            	</div>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">이전</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
     </div>
   </body>
 
-<!-- 모달 테스트
-<script type="text/javascript"> 	$(document).ready(function(){
-		$("#modalName").modal();
+
+<script type="text/javascript"> 	
+$(document).ready(function(){
+		$("#paySelect").modal();
 	});
 
 
-</script> -->
+</script> 
 </html>

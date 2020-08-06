@@ -59,7 +59,6 @@ h1 a{
   color: white;
   left: 50%;
   transform: translateX(-50%);
-
 }
 
 .categoryColorRed{
@@ -204,7 +203,7 @@ h1 a{
 }
 
 .textarea{
-  display: table;
+  display: 	;
   margin: 0 auto;
   text-align: center;
 }
@@ -406,7 +405,7 @@ h1 a{
 .modal-content { /* 모달 전체 */
 	border-radius: 0px;
 	width: 750px;
-	height: 900px;
+	min-height: 900px;
 }
 .modal-header { /* 모달 헤더 */
 	height: 15%;
@@ -459,3 +458,122 @@ h1 a{
 	font-size: large;
     font-weight: bold;
 }
+
+#select-container{
+	height: 510px;
+	overflow: hidden;
+}
+
+#selectCardGroup div * {
+	display: inline-block;
+	color:white;
+}
+
+#credit, #prepaidcard{
+	position:relative;
+	margin: 5px auto;
+	width:600px;
+	height: 120px;
+	background-color:rgb(218, 58, 44);
+	border: 1px solid rgb(218, 58, 44);
+	border-radius: 5px;
+} 
+	
+#selectCardGroup div div{
+	font-size: 60px;
+	position: absolute;
+	top: 50%;
+	left: 15%;
+	transform: translate(-50%, -50%);
+}
+
+#selectCardGroup div p{
+	font-size: 40px;
+}
+
+#selectCardGroup #credit p{
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translate(-50%, -50%);
+}
+
+#selectCardGroup #prepaidcard p{
+	position: absolute;
+	top: 50%;
+	right: -15%;
+	transform: translate(-50%, -50%);
+}
+
+#selectPayCode{
+	text-align: center;
+}
+
+#selectPayCode *{
+	display:inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.payCodeContianer{
+	width: 300px;
+	height: 80px;
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-top: 20px;
+	position: relative;
+}
+
+.payCodeContianer div{
+	position: absolute;
+	top:50%;
+	left: 20%;
+	transform: translate(-50%, -50%);
+	border: 1px solid black;
+	border-radius: 100%;
+	width: 40px;
+	height: 40px;
+}
+
+.payCodeContianer p{
+	position: absolute;
+	top: 50%;
+	right: 10%;
+	transform: translateY(-50%);	
+}
+
+#paySelectCount{
+	position: relative;
+}
+
+#paySelectContainer{
+	height: 100px;
+}
+
+#paySelectContainer div{
+	position:absolute;
+	display: inline-flex;
+  	align-items: center;
+	width: 50px;
+	height: 50px;
+	font-size:40px;
+	border: 1px solid black;
+	border-radius: 100%;
+}
+
+.paySelectUp{
+	top: 50%;
+	left: 40%;
+	transform:translateY(-50%);
+}
+
+.paySelectDown{
+	top: 50%;
+	right: 40%;
+	transform:translateY(-50%);
+}
+
+#paySelectContainer div p{
+	color: transparent;
+}
+
