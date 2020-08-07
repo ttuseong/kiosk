@@ -1,64 +1,154 @@
 @charset "UTF-8";
-   ul.tabs {
-       margin: 0;
-       padding: 0;
-       float: left;
-       list-style: none;
-       height: 50px; /*--Set height of tabs--*/
-       width: 100%;
-       background-color: #FFEBCD;
-       border-bottom: 1px solid white;
-   }
-   ul.tabs li {
-       float: left;
-       margin: 0;
-       padding: 0;
-       height: 50px; /*--Subtract 1px from the height of the unordered list--*/
-       line-height: 50px; /*--Vertically aligns the text within the tab--*/
-       border-left: none;
-       margin-bottom: -1px; /*--Pull the list item down 1px--*/
-       overflow: hidden;
-       position: relative;
-       background: #FFEBCD;
-       border-radius: 10px 10px 0 0;
-   }
-   ul.tabs li a {
-       text-decoration: none;
-       color: #000;
-       display: block;
-       font-size: 1.2em;
-       padding: 0 20px;
-       /*--Gives the bevel look with a 1px white border inside the list item--*/
-       outline: none;
-   }
-   ul.tabs li a:hover {
-       background: #ccc;
-   }
-   html ul.tabs li.active, html ul.tabs li.active a:hover  {
-        /*--Makes sure that the active tab does not listen to the hover properties--*/
-       background: #fff;
-       /*--Makes the active tab look like it's connected with its content--*/
-       border-bottom: 1px solid #fff; 
-   }
 
-   /*Tab Conent CSS*/
-   .tab_container {
-       border: 1px solid white;
-       border-top: none;
-       overflow: hidden;
-       clear: both;
-       float: left; 
-       width: 100%;
-       background: #fff;
-   }
-   .tab_content {
-       padding: 20px;
-       font-size: 1.2em;
-   }
-   .menu{width: 50%;float: left;height: 250px;}
-   .menu-img{width:45%; float: left;}
-   .menu-text{width: 55%; float: left;padding-top: 80px;font-size:30px;}
-   .menu-price{color:red;}
-   .order-price{color:red; text-align:right;}
-   
-   
+ul.tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 50px; /*--Set height of tabs--*/
+	width: 100%;
+	background-color: #FFEBCD;
+	border-bottom: 1px solid white;
+}
+
+ul.tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	/*--Subtract 1px from the height of the unordered list--*/
+	line-height: 50px; /*--Vertically aligns the text within the tab--*/
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #FFEBCD;
+	border-radius: 10px 10px 0 0;
+}
+
+ul.tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	/*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+}
+
+html ul.tabs li.active, html ul.tabs li.active a:hover {
+	/*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #fff;
+	/*--Makes the active tab look like it's connected with its content--*/
+	border-bottom: 1px solid #fff;
+}
+
+/*Tab Conent CSS*/
+.tab_container {
+	border: 1px solid white;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left;
+	width: 100%;
+	background: #fff;
+}
+
+.tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
+
+.menu {
+	width: 50%;
+	float: left;
+	height: 250px;
+}
+
+.menu-img {
+	width: 45%;
+	float: left;
+}
+
+.menu-text {
+	width: 55%;
+	float: left;
+	padding-top: 80px;
+	font-size: 30px;
+}
+
+.menu-price {
+	color: red;
+}
+
+.order-price {
+	color: red;
+	text-align: right;
+}
+
+#viewModelContent {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 10px 0px 0px 0px
+}
+ul.modal-tabs {
+	margin: 0;
+	padding: 0;
+	float: left;
+	list-style: none;
+	height: 50px; /*--Set height of tabs--*/
+	width: 100%;
+	background-color: #E5E4E2;
+	border-bottom: 1px solid white;
+}
+
+ul.modal-tabs li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	height: 50px;
+	/*--Subtract 1px from the height of the unordered list--*/
+	line-height: 50px; /*--Vertically aligns the text within the tab--*/
+	border-left: none;
+	margin-bottom: -1px; /*--Pull the list item down 1px--*/
+	overflow: hidden;
+	position: relative;
+	background: #E5E4E2;
+	border-radius: 10px 10px 0 0;
+}
+
+ul.modal-tabs li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+	font-size: 1.2em;
+	padding: 0 20px;
+	/*--Gives the bevel look with a 1px white border inside the list item--*/
+	outline: none;
+}
+
+html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
+	/*--Makes sure that the active tab does not listen to the hover properties--*/
+	background: #fff;
+	/*--Makes the active tab look like it's connected with its content--*/
+	border-bottom: 1px solid #fff;
+}
+
+/*Tab Conent CSS*/
+.modal-tab_container {
+	border: 1px solid white;
+	border-top: none;
+	overflow: hidden;
+	clear: both;
+	float: left;
+	width: 100%;
+	background: #fff;
+}
+
+.modal-tab_content {
+	padding: 20px;
+	font-size: 1.2em;
+}
+.modal-header{background-color: #82CAFA;}
+.modal-body{padding:0px;}
+.modal-footer{padding:0px;text-align:center;height:80px;}
