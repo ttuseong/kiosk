@@ -146,10 +146,15 @@
 			
 			
 		</table>	
-		<div class="row">
-		  <div class="col-md-4 icon-wheelchair" stlye="font-size:100px;"></div>
-		  <div class="col-md-4">.col-md-4</div>
-		  <div class="col-md-4">.col-md-4</div>
+		<div class="row" style="height:60px;">
+		  <div class="col-md-4" style="height:100%;">
+		  	<div style="border:1px solid black; height:100%;width: 60px;float: left;"></div>
+		  	<div style="border:1px solid black; height:100%;width: 60px;float: left;"></div>
+		  	<div style="border:1px solid black; height:100%;width: 60px;float: left;"></div>
+		  	<div style="border:1px solid black; height:100%;width: 60px;float: left;"></div>
+		  </div>
+		  <div class="col-md-4" style="height:100%;text-align: center;margin-top: 10px;"><button type="button" style="height:80%; width:80%;font-size: 20px;border-radius: 12px;">취소하기</button></div>
+		  <div class="col-md-4" style="height:100%;text-align: center;margin-top: 10px;"><button type="button"style="height:80%; width:80%;font-size: 20px; background-color: #F9A7B0;border-radius: 12px;">결제하기</button></div>
 		</div>
 	</div>
 	<!-- 풋터 -->
