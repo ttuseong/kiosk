@@ -236,7 +236,6 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
 					<h4 class="modal-title">세트_디저트</h4>
 				</div>
 				<div class="modal-body" style="height: 800px;">
@@ -310,7 +309,7 @@
 							<li>잔여수량: 0</li>
 						</ul>
 					</div>
-					<div style="width:33%;height:100%;float: left;"><button type="button" style="width:80%; height:75%;margin-top: 7px;border-radius: 10px;background-color: white;font-size: 20px;">취소하기</button></div>
+					<div style="width:33%;height:100%;float: left;"><button type="button" data-dismiss="modal" style="width:80%; height:75%;margin-top: 7px;border-radius: 10px;background-color: white;font-size: 20px;">취소하기</button></div>
 					<div style="width:33%;height:100%;float: left;"><button type="button"style="width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#93FFE8;font-size: 20px;">선택완료</button></div>
 				</div>
 			</div>
