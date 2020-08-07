@@ -111,13 +111,20 @@
 	      		</div>
 	      		
 	      		<div class="orderlist-body">
-	      			<table class="orderList">
-		      			<tr>
-			      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 </td>
-			      			<td id="orderlist-menuCnt"> 2 </td>
-			      			<td id="orderlist-menuPrice"> 7,000 </td>
-			      		</tr>
-	      			</table>
+	      			<div class="orderList-tableDiv">
+	      				<table class="orderList-table">
+			      			<tr>
+				      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 </td>
+				      			<td id="orderlist-menuCnt"> 2 </td>
+				      			<td id="orderlist-menuPrice"> 7,000 </td>
+				      		</tr>
+		      			</table>
+	      			</div>
+	      			
+	      			<div class="orderList-pagingBtn">
+		      			<div class="icon-up-open-big" id="orderList-pagingUp"><!-- up 화살표 --></div>
+		      			<div class="icon-down-open-big" id="orderList-pagingDown"><!-- down 화살표 --></div>
+	      			</div>
       			</div>
 	      		
 	      		<div class="orderlist-footer">

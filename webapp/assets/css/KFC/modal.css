@@ -138,6 +138,11 @@
     font-size: 17px;
 }
 
+.orderList-tableDiv {
+	min-height: 520px;
+	background-color: black;
+}
+
 /* 메뉴 이름 */
 #orderlist-menuName{
 	width: 275px;
@@ -148,13 +153,36 @@
 #orderlist-menuCnt{
 	width: 150px;
 	text-align: center;
-	
 }
 
 /* 메뉴 가격 */
 #orderlist-menuPrice{
 	width: 175px;
 	text-align: right;
+}
+
+.orderList-pagingBtn {
+	position: relative;
+  	display: inline-block;
+}
+
+/* UP/DOWN 화살표 */
+#orderList-pagingUp{
+	position: absolute;
+	top:50%;
+	transform: translateY(50%);
+	left: 40%;
+	color: #c0c0c0;
+	font-size: 40px;
+}
+
+#orderList-pagingDown{
+	position: absolute;
+	top:50%;
+	/* transform: translateY(50%); */
+	right: 40%;
+	color: #c0c0c0;
+	font-size: 40px;
 }
 
 /* 주문목록 푸터 */
@@ -268,5 +296,4 @@
 	background-color: #ffdcd5;
     color: red;
 }
-
 
