@@ -11,10 +11,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/modal.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/fontello/css/fontello.css">
+
   	
   	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
   	
+
+  <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
+
   </head>
   <body>
     <div id="kfc">
@@ -182,17 +187,123 @@
           </div>
         </div>
       </section>
+
       
 	<!-- 모달 -->
 	<jsp:include page="/WEB-INF/views/includes/modal/modalKFC.jsp" />
 	<!-- 모달 -->
+
+	<!-- 추천메뉴 모달 -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="modalName">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        	<h4 class="modal-title" id="myModalLabel">모달 제목</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="menu-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p>
+                <p class="menuName">메뉴이름</p>
+                <p class="menuPrice">메뉴 가격</p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-danger">완료</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
+	
+	<!-- 식사장소 모달(지민) -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="kfcplace">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        	<h4 class="modal-title" id="choicePlaceLabel">식사 장소를 선택해주세요</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="place-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive2"></p>
+                <p class="placeHereKr">매장<br>식사</p>
+                <p class="placeHereEng">EAT IN</p>
+                <p class="multiProvide">다회용 다다 제공</p>
+            </div>
+            <div class="place-container2">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive3"></p>
+                <p class="toGoKr">포장<br>주문</p>
+                <p class="toGoEng">TO GO</p>
+                <p class="throwawayProvide">일회용 다다 제공</p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-before" data-dismiss="modal">이전</button>
+	        
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
+	<!-- 햄버거 박스 사이드 모달(지민) -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="hamburgerBoxSide">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive4"></p>
+	        	<h4 class="modal-title" id="hamburgerBoxlLabel">징거더블다운박스</h4>
+	        	<p class=hamburgerBoxContent>메뉴이름박스내용+사이드변경+음료변경+치킨변경</p>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive5"></p>
+                <p class="sideName">메뉴이름</p>
+                
+            </div>
+            <div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive6"></p>
+                <p class="sideName2">메뉴이름</p>
+            </div>
+             <div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive7"></p>
+                <p class="sideName3">메뉴이름</p>
+            </div>
+             <div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive8"></p>
+                <p class="sideName4">메뉴이름</p>
+            </div>
+             <div id="btnGroup">
+            	<button class="changeButton1">버거세트&nbsp;추가</button>
+            	<button class="changeButton2">사이드&nbsp;추가</button>
+            	<button class="changeButton3">음료&nbsp;변경</button>
+            	<button class="changeButton4">치킨&nbsp;변경</button>
+            </div>
+
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-danger">완료</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
     </div>
   </body>
 
 
 <script type="text/javascript"> 	
 $(document).ready(function(){
-		$("#MyOrderListModal").modal();
+
+
+		$("#hamburgerBoxSide").modal();
+
 	});
 
 
