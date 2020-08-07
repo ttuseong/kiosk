@@ -25,6 +25,12 @@
 	<!-- 헤더 -->
 
 	<div class="container">
+		<div style="height: 400px;">
+			<div style="width:400px;float: left;"><img src="${pageContext.request.contextPath}/assets/images/icon1.png"width="100%"></div>
+			<div style="width:50%;height:100%; border:1px solid balck;float: left;"><h2>사이다</h2><br><h4>톡톡 쏘는 청량감이 느껴지는 음료</h4></div>
+			<div style="width:auto;"><button type="button" style="background-color: red;margin: 20px;color: white;border-radius: 5px;">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button></div>	
+		</div>
+		
 		<div id="wrapper">
 			<!--탭 메뉴 영역 -->
 			<ul class="tabs">
