@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+s.a:after {
+        content: "";
+        display: block;
+        width: 60px;
+        border-bottom: 1px solid #bcbcbc;
+        margin: 20px 0px;
+      }

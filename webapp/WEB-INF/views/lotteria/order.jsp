@@ -8,18 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- css -->
-<link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet"
-	type="text/css">
-<link href="/kiosk/assets/css/lotteria/order.css" rel="stylesheet"
-	type="text/css">
-<link href="/kiosk/assets/css/fontello/css/fontello.css"
-	rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/lotteria/order.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/fontello/css/fontello.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
-<script type="text/javascript"
-	src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript"
-	src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="/kiosk/assets/js/lotteria/order.js"></script>
 
 <title>키오스크-롯데리아</title>
@@ -32,19 +27,15 @@
 	<div class="container">
 		<div style="height: 400px;">
 			<div style="width: 400px; float: left;">
-				<img
-					src="${pageContext.request.contextPath}/assets/images/icon1.png"
-					width="100%">
+				<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="100%">
 			</div>
-			<div
-				style="width: 50%; height: 100%; border: 1px solid balck; float: left;">
+			<div style="width: 50%; height: 100%; border: 1px solid balck; float: left;">
 				<h2>사이다</h2>
 				<br>
 				<h4>톡톡 쏘는 청량감이 느껴지는 음료</h4>
 			</div>
 			<div style="width: auto;">
-				<button type="button"
-					style="background-color: red; margin: 20px; color: white; border-radius: 5px;">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button>
+				<button type="button" style="background-color: red; margin: 20px; color: white; border-radius: 5px;">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button>
 			</div>
 		</div>
 
@@ -64,9 +55,7 @@
 					<!--Content-->
 					<div class="menu" data-no="21">
 						<div class="menu-img">
-							<img
-								src="${pageContext.request.contextPath}/assets/images/icon1.png"
-								width=" 100%">
+							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
 						</div>
 						<div class="menu-text">
 							<div>착한한우세트</div>
@@ -75,9 +64,7 @@
 					</div>
 					<div class="menu" data-no="21">
 						<div class="menu-img">
-							<img
-								src="${pageContext.request.contextPath}/assets/images/icon1.png"
-								width=" 100%">
+							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
 						</div>
 						<div class="menu-text">
 							<div>착한AZ버거세트</div>
@@ -86,9 +73,7 @@
 					</div>
 					<div class="menu" data-no="21">
 						<div class="menu-img">
-							<img
-								src="${pageContext.request.contextPath}/assets/images/icon1.png"
-								width=" 100%">
+							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
 						</div>
 						<div class="menu-text">
 							<div>착한DOUBLEX2세트</div>
@@ -97,9 +82,7 @@
 					</div>
 					<div class="menu" data-no="21">
 						<div class="menu-img">
-							<img
-								src="${pageContext.request.contextPath}/assets/images/icon1.png"
-								width=" 100%">
+							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
 						</div>
 						<div class="menu-text">
 							<div>착한핫크리스피세트</div>
@@ -108,9 +91,7 @@
 					</div>
 					<div class="menu" data-no="21">
 						<div class="menu-img">
-							<img
-								src="${pageContext.request.contextPath}/assets/images/icon1.png"
-								width=" 100%">
+							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
 						</div>
 						<div class="menu-text">
 							<div>착한데리세트</div>
@@ -142,15 +123,13 @@
 			</div>
 
 		</div>
-		<table
-			style="width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;">
+		<table style="width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;">
 			<colgroup>
 				<col width="33%">
 				<col width="33%">
 				<col width="33%">
 			</colgroup>
-			<tr
-				style="height: 50px; background-color: #F0FFFF; text-align: center; padding-top: 12px; font-size: 20px;">
+			<tr style="height: 50px; background-color: #F0FFFF; text-align: center; padding-top: 12px; font-size: 20px;">
 				<td>총주문내역</td>
 				<td>2 개</td>
 				<td style="text-align: right; color: red;">13,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -197,24 +176,16 @@
 		</table>
 		<div class="row" style="height: 60px;">
 			<div class="col-md-4" style="height: 100%;">
-				<div
-					style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div
-					style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div
-					style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div
-					style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
 			</div>
-			<div class="col-md-4"
-				style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button"
-					style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;">취소하기</button>
+			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
+				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;">취소하기</button>
 			</div>
-			<div class="col-md-4"
-				style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button"
-					style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;">결제하기</button>
+			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
+				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;">결제하기</button>
 			</div>
 		</div>
 	</div>
