@@ -70,16 +70,11 @@
 	      			</div>
 	      		</div>
             </div>
-            <div id="paySelectCount">
-            	<div id="paySelectContainer">
-            		<div class="icon-up-open-big paySelectUp">
-            			<p>up</p>
-            		</div>
-            		<div class="icon-down-open-big paySelectDown">
-            			<p>down</p>
-            		</div>
-            	</div>
-            </div>
+            
+            <!-- 위, 아래 이동 화살표 -->
+			<jsp:include page="/WEB-INF/views/includes/modal/updownArrow.jsp" />
+			<!-- 위, 아래 이동 화살표 -->
+            
           </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btnCancle" data-dismiss="modal">이전</button>
@@ -168,3 +163,143 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
+	
+	<!-- 식사장소 모달(지민) -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="kfcplace">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        	<h4 class="modal-title" id="choicePlaceLabel">식사 장소를 선택해주세요</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="place-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive2"></p>
+                <p class="placeHereKr">매장<br>식사</p>
+                <p class="placeHereEng">EAT IN</p>
+                <p class="multiProvide">다회용 다다 제공</p>
+            </div>
+            <div class="place-container2">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive3"></p>
+                <p class="toGoKr">포장<br>주문</p>
+                <p class="toGoEng">TO GO</p>
+                <p class="throwawayProvide">일회용 다다 제공</p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-before" data-dismiss="modal">이전</button>
+	        
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- 햄버거 박스 사이드 모달(지민) -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="hamburgerBoxSide">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive4"></p>
+	        	<h4 class="modal-title" id="hamburgerBoxlLabel">징거더블다운박스</h4>
+	        	<p class=hamburgerBoxContent>메뉴이름박스내용+사이드변경+음료변경+치킨변경</p>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive5"></p>
+                <p class="sideName">메뉴이름</p>
+                
+            </div>
+            <div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive6"></p>
+                <p class="sideName2">메뉴이름</p>
+            </div>
+             <div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive7"></p>
+                <p class="sideName3">메뉴이름</p>
+            </div>
+             <div class="boxsize-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive8"></p>
+                <p class="sideName4">메뉴이름</p>
+            </div>
+             <div id="btnGroup">
+            	<button class="changeButton1">버거세트&nbsp;추가</button>
+            	<button class="changeButton2">사이드&nbsp;추가</button>
+            	<button class="changeButton3">음료&nbsp;변경</button>
+            	<button class="changeButton4">치킨&nbsp;변경</button>
+            </div>
+
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btn-danger">완료</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- 박스/세트/단품 선택 모달 -->
+	<div class="modal" id="selectMode">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header" id="selectModeHeader">
+		        	<div id="selectModeContainer">
+		        		<div id="buggerText">
+		        			<h1>징거더블다운맥스</h1>
+		        			<p>오직 치킨 통살구이로만 구성된 리얼 치킨버거  </p>
+		        		</div>
+		        		<img alt="버거 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+		        	</div>
+		      </div>
+		      <div class="modal-body"> 
+		      	<div class="selectModeBodyContainer">
+		      		<div class="icon-check selectModeCheckBox"><p>채크박스</p></div>
+		      		<div class="selectModeBodyContent">
+		      			<h2 class="selectModeName">징거더블다운박스</h2>
+		      			<div class="selectModeCompose">
+		      				<p >구성</p>
+		      			</div>
+		      			<p class="selectModeMenuGroup">징거버거더블다운맥스 + 사이드변경 + 음료 변경 + 치킨 변경</p>
+		      			<p class="selectModePrice">9,600</p>
+		      		</div>
+		      		<img alt="" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+	            </div>
+	            
+	            <div class="selectModeBodyContainer">
+		      		<div class="icon-check selectModeCheckBox"><p>채크박스</p></div>
+		      		<div class="selectModeBodyContent">
+		      			<h2 class="selectModeName">징거더블다운맥스세트</h2>
+		      			<div class="selectModeCompose">
+		      				<p >구성</p>
+		      			</div>
+		      			<p class="selectModeMenuGroup">징거버거더블다운맥스 + 사이드변경 + 음료 변경</p>
+		      			<p class="selectModePrice">8,500</p>
+		      		</div>
+		      		<img alt="" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+	            </div>
+	            
+	            <div class="selectModeBodyContainer">
+		      		<div class="icon-check selectModeCheckBox"><p>채크박스</p></div>
+		      		<div class="selectModeBodyContent">
+		      			<h2 class="selectModeName">징거더블다운맥스</h2>
+		      			<div class="selectModeCompose">
+		      				<p >구성</p>
+		      			</div>
+		      			<p class="selectModeMenuGroup">징거버거더블다운맥스</p>
+		      			<p class="selectModePrice">6,600</p>
+		      		</div>
+		      		<img alt="" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+	            </div>
+	            
+	            <!-- 위, 아래 이동 화살표 -->
+				<jsp:include page="/WEB-INF/views/includes/modal/updownArrow.jsp" />
+				<!-- 위, 아래 이동 화살표 -->
+	          </div> 
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-danger">완료</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- 박스/세트/단품 선택 모달 -->

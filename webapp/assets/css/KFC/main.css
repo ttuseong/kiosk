@@ -8,10 +8,10 @@ header{
   padding-left: 30px;
   height: 150px;
 }
-h1{
+header h1{
   position: absolute;
 }
-h1 a{
+header h1 a{
   display: block;
   color: transparent;
   width: 250px;
@@ -203,6 +203,7 @@ h1 a{
 }
 
 .textarea{
+  display: 	;
   margin: 0 auto;
   text-align: center;
 }
@@ -458,7 +459,6 @@ h1 a{
     font-weight: bold;
 }
 
-
 #select-container{
 	height: 510px;
 	overflow: hidden;
@@ -577,242 +577,112 @@ h1 a{
 	color: transparent;
 }
 
+/* 박스/세트/단품 선택 모달 */
 
-/* 모달 -식사장소*/
-.modal-content { /* 모달 전체 */
-	border-radius: 0px;
-	width: 750px;
-	height: 900px;
-}
-.modal-header { /* 모달 헤더 */
-	height: 15%;
-	/* border: none; */
-    padding: 50px;
-    border-top: 10px solid red;
-    text-align: center;
+/* 헤더 설정 */
+#selectModeContainer div{
+	float: left;
+	width: 500px;
 }
 
-.modal-title { /* 모달 제목의 폰트 */
-    font-weight: bold;
-    font-size: xx-large;
+#selectModeContainer img{
+	width: 148px;
+	height: 148px;
 }
 
-
-.img-responsive2 { /* 이미지 크기, 가운데 고정 */
-	display:block;
-	margin-left: auto;
-  	margin-right: auto;
-	width: 200px;
-	height: 200px;
+#selectModeContainer h1{
+	text-align: left;
+	font-size: 30px;
+	border-bottom: 2px solid red;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
 }
 
-.modal-body { /* 모달 바디 */
-	height: 65%;
-	padding: 40px;
-}
-
-.place-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-	float:left;
-	width: 314px;
-	height: 503px;
-	background-color: rgb(204,55,46);
-	border-radius: 10px;
-}
-
-.placeHereKr{ /* 매장식사 한국어 */
-	
-	text-align: center;
-	font-size: 50px;
-	color:white;
-}
-
-.placeHereEng{ /* 매장식사 영어*/
-	padding-top:20px;
-	padding-bottom:10px;
-	text-align:center;
-	color:white;
-}
-.multiProvide{ /* 다회용 제공 */
-	color: red;
-	text-align: center;
-	color:white;
-}
-
-.img-responsive3 { /* 이미지 크기, 가운데 고정 */
-	display:block;
-	margin-left: auto;
-  	margin-right: auto;
-	width: 180px;
-	height: 180px;
-}
-
-.place-container2 { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-	float:right;
-	width: 314px;
-	height: 503px;
-	background-color: rgb(204,55,46);
-	border-radius: 10px;	
-}
-
-.toGoKr{ /* 포장주문 */
-	
-	text-align: center;
-	font-size: 50px;
-	color:white;
-}
-.toGoEng{ /* 포장주문 영어*/
-	padding-top:20px;
-	padding-bottom:60px;
-	text-align:center;
-	color:white;
-}
-
-.throwawayProvide{ /* 일회용 제공 */
-		
-	text-align: center;
-	color:white;
+#selectModeContainer p{
+	text-align: left;
 }
 
 
-.modal-footer {  /* 메뉴 푸터 */
-	/* border: none; */
-	height: 15%;
-	padding: 50px;
-	text-align: center;
+/* 바디 설정 */
+.selectModeBodyContainer{
+	height:160px;
+	border-bottom: 1px dashed rgb(178,208,208);
+	margin-bottom: 30px;
+	position: relative;
+}
+.selectModeBodyContainer div{
+	float: left;
 }
 
-.btn {  /* 이전 버튼 */
-	width: 220px;
-	height: 60px;
-	font-size: large;
-    font-weight: bold;
+.selectModeBodyContainer img{
+	width: 148px;
+	height: 148px;
 }
 
-/* 모달 - 햄버거 박스 사이드 */
-
-.modal-content { /* 모달 전체 */
-	border-radius: 0px;
-	width: 750px;
-	height: 900px;
-}
-.modal-header { /* 모달 헤더 */
-	height: 25%;
-	/* border: none; */
-    padding: 50px;
-    border-top: 10px solid red;
-    text-align: center;
-}
-
-.modal-title { /* 모달 제목의 폰트 */
-	width : 470px;
-    font-weight: bold;
-    font-size: xx-large;
+.selectModeCheckBox{
+	width:58px;
+	height:58px;
+	font-size: 70px;
+	border: 5px solid rgb(178,208,208);
+	border-radius: 100%;
+	font-weight: normal;
+	color: rgb(178,208,208);
+	display: inline-flex;
+ 	justify-content: space-between;
+  	align-items: flex-end;
+  	margin-right: 20px;
+  	position:absolute;
+  	top: 50%;
+  	left: 0;
+  	transform: translateY(-50%);
 }
 
-.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
-	padding-top:10px;
-	width : 580px;
-	height : 20px;
-	font-size: middle;
+.selectModeCheckBox p {
+	color: transparent;
 }
 
-.img-responsive4 { /* 이미지 크기 */
-	float:left;
-	width: 200px;
-	height: 200px;
+.selectModeBodyContent > *{
+	width: 410px;
+	position: absolute;
+	left: 15%;
 }
 
-.modal-body { /* 모달 바디 */
-	height: 60%;
-	padding: 40px;
+.selectModeBodyContainer img{
+	position: absolute;
+	right: 0;
 }
 
-.boxsize-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+.selectModeBodyContent * {
+	text-align: left;
+}
+
+.selectModeBodyContent h2{
+	font-size: 30px;
+	font-weight: bold;
+	top: 20%;
+	transform: translateY(-50%);
+}
+
+.selectModeCompose{
+	top: 35%;
+}
+
+.selectModeMenuGroup{
+	bottom: 35%;
+	transform: translateY(50%);
+}
+
+.selectModeCompose P{
 	display:inline-block;
-	width: 158px;
-	height: 230px;
-	border: 1px solid black;
+	border: 1px solid red;
+	color: white;
+	background-color: red;
+	border-radius: 5px;
+	padding: 5px 15px 5px 15px;
 }
 
-.img-responsive5 { /* 이미지 크기 */
-	width: 156px;
-	height: 100px;
-}
-
-.sideName{ /* 메뉴 이름 */
-	text-align: center;
-}
-
-.img-responsive6 { /* 이미지 크기 */
-	width: 156px;
-	height: 100px;
-}
-
-.sideName2{ /* 메뉴 이름 */
-	text-align: center;
-}
-
-.img-responsive7 { /* 이미지 크기 */
-	width: 156px;
-	height: 100px;
-}
-
-.sideName3{ /* 메뉴 이름 */
-	text-align: center;
-}
-
-
-
-.img-responsive8 { /* 이미지 크기 */
-	width: 156px;
-	height: 100px;
-}
-
-.sideName4{ /* 메뉴 이름 */
-	text-align: center;
-}
-
-.changeButton1{ /* 추가버튼 */
-	width: 158px;
-	height: 50px;
+.selectModePrice{
+	color: red;
 	font-size: 20px;
-	padding:5px;
+	bottom: 10%;
 }
-
-.changeButton2{ /* 추가버튼 */
-	width: 158px;
-	height: 50px;
-	font-size: 20px;
-	padding:5px;
-}
-
-.changeButton3{ /* 추가버튼 */
-	width: 158px;
-	height: 50px;
-	font-size: 20px;
-	padding:5px;
-}
-
-.changeButton4{ /* 추가버튼 */
-	width: 158px;
-	height: 50px;
-	font-size: 20px;
-	padding:5px;
-}
-
-
-
-.modal-footer {  /* 메뉴 푸터 */
-	/* border: none; */
-	height: 15%;
-	padding: 50px;
-	text-align: center;
-}
-
-.btn {  /* 취소, 완료 버튼 */
-	width: 220px;
-	height: 60px;
-	font-size: large;
-    font-weight: bold;
-}
-
