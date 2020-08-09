@@ -203,7 +203,7 @@ header h1 a{
 }
 
 .textarea{
-  display: 	;
+  display: 	table;
   margin: 0 auto;
   text-align: center;
 }
@@ -685,4 +685,66 @@ header h1 a{
 	color: red;
 	font-size: 20px;
 	bottom: 10%;
+}
+
+/* 결제 내역 모달 */
+#paymentDetailsContent{
+	min-height: 0;	
+}
+
+#paymentDetailsHeader{
+	position: relative;
+}
+#paymentDetailsHeader > div, p{
+	display: inline-block;
+}
+
+#paymentDetailsHeader > div > p{
+	color: transparent;
+}
+
+#paymentDetailsHeader > div{
+	font-size: 70px;
+	position: absolute;
+	left: 30%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#paymentDetailsHeader > p{
+	font-size: 30px;
+	font-weight: bold;
+	position: absolute;
+	top: 50%;
+	right: 40%;
+	transform: translateY(-50%);
+}
+
+#paymentDetailsBody{
+	min-height: 300px;
+}
+
+#paymentDetailsBody > div{
+	height: 90px;
+	border: 1px solid black;
+	position: relative;
+}
+
+#paymentDetailsDes{
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+	font-size: 30px;
+	font-weight: bold;
+}
+
+#paymentDetailsMoney{
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	font-size: 30px;
+	font-weight: bold;
+	color: red;
 }

@@ -217,6 +217,31 @@
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		
+		<!-- 추천메뉴 모달 -->
+		<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+		<div class="modal" id="paymentDetails">
+		  <div class="modal-dialog">
+		    <div class="modal-content" id="paymentDetailsContent">
+		      <div class="modal-header" id="paymentDetailsHeader">
+		        	<div class="icon-credit-card">
+		        		<p>아이콘</p>
+		        	</div>
+		        	<p>신용카드</p>
+		      </div>
+		      <div class="modal-body" id="paymentDetailsBody">
+		      	<div>
+		      		<p id="paymentDetailsDes">결제 금액</p>
+		      		<p id="paymentDetailsMoney">5,800</p>
+		      	</div>
+	          </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-danger">완료</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
 		
     </div>
   </body>
@@ -228,6 +253,8 @@ $(document).ready(function(){
 
 
 	$("#selectMode").modal();
+	$("#paymentDetails").modal();
+
 
 });
 
