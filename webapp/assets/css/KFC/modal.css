@@ -1,302 +1,553 @@
-/* 모달 공통사항 */
-
-/* 모달 전체 */
-.modal-content { 
-	border-radius: 0px;
-	width: 750px;
-	min-height: 1050px;
+/* 모달 -식사장소*/
+.modal-content { /* 모달 전체 */
+   border-radius: 0px;
+   width: 750px;
+   height: 900px;
 }
-
-/* 모달 헤더 */
-.modal-header { 
-	min-height: 155px;
-	border: none;
-    padding-top: 50px;
+.modal-header { /* 모달 헤더 */
+   height: 15%;
+   /* border: none; */
+    padding: 50px;
     border-top: 10px solid red;
     text-align: center;
 }
 
-/* 모달 제목의 폰트 */
-.modal-title { 
+.modal-title { /* 모달 제목의 폰트 */
     font-weight: bold;
     font-size: xx-large;
 }
 
-.modal-body { 
-	min-height: 785px;
-	padding: 40px;
-	text-align: center;
+
+.img-responsive2 { /* 이미지 크기, 가운데 고정 */
+   display:block;
+   margin-left: auto;
+     margin-right: auto;
+   width: 200px;
+   height: 200px;
+}
+
+.modal-body { /* 모달 바디 */
+   height: 65%;
+   padding: 40px;
+}
+
+.place-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+   float:left;
+   width: 314px;
+   height: 503px;
+   background-color: rgb(204,55,46);
+   border-radius: 10px;
+}
+
+.placeHereKr{ /* 매장식사 한국어 */
+   
+   text-align: center;
+   font-size: 50px;
+   color:white;
+}
+
+.placeHereEng{ /* 매장식사 영어*/
+   padding-top:20px;
+   padding-bottom:10px;
+   text-align:center;
+   color:white;
+}
+.multiProvide{ /* 다회용 제공 */
+   color: red;
+   text-align: center;
+   color:white;
+}
+
+.img-responsive3 { /* 이미지 크기, 가운데 고정 */
+   display:block;
+   margin-left: auto;
+     margin-right: auto;
+   width: 180px;
+   height: 180px;
+}
+
+.place-container2 { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+   float:right;
+   width: 314px;
+   height: 503px;
+   background-color: rgb(204,55,46);
+   border-radius: 10px;   
+}
+
+.toGoKr{ /* 포장주문 */
+   
+   text-align: center;
+   font-size: 50px;
+   color:white;
+}
+.toGoEng{ /* 포장주문 영어*/
+   padding-top:20px;
+   padding-bottom:60px;
+   text-align:center;
+   color:white;
+}
+
+.throwawayProvide{ /* 일회용 제공 */
+      
+   text-align: center;
+   color:white;
+}
+
+
+.modal-footer {  /* 메뉴 푸터 */
+   /* border: none; */
+   height: 15%;
+   padding: 50px;
+   text-align: center;
+}
+
+.btn {  /* 이전 버튼 */
+   width: 220px;
+   height: 60px;
+   font-size: large;
+    font-weight: bold;
+}
+
+/* 모달 - 햄버거 박스 사이드 */
+
+.modal-content { /* 모달 전체 */
+   border-radius: 0px;
+   width: 750px;
+   height: 900px;
+}
+.modal-header { /* 모달 헤더 */
+   height: 25%;
+   /* border: none; */
+    padding: 50px;
+    border-top: 10px solid red;
+    text-align: center;
+}
+
+.modal-title { /* 모달 제목의 폰트 */
+   width : 470px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
+   padding-top:10px;
+   width : 580px;
+   height : 20px;
+   font-size: middle;
+}
+
+.img-responsive4 { /* 이미지 크기 */
+   float:left;
+   width: 200px;
+   height: 200px;
+}
+
+.modal-body { /* 모달 바디 */
+   height: 60%;
+   padding: 40px;
+}
+
+.boxsize-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+   display:inline-block;
+   width: 158px;
+   height: 230px;
+   border: 1px solid black;
+}
+
+.img-responsive5 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+#hamburgerSideName { /* 메뉴 이름 */
+   text-align: center;
+}
+
+.img-responsive6 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive7 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive8 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+.changeButton1{ /* 추가버튼 */
+   width: 158px;
+   height: 50px;
+   font-size: 20px;
+   padding:5px;
+}
+
+.changeButton2{ /* 추가버튼 */
+   width: 158px;
+   height: 50px;
+   font-size: 20px;
+   padding:5px;
+}
+
+.changeButton3{ /* 추가버튼 */
+   width: 158px;
+   height: 50px;
+   font-size: 20px;
+   padding:5px;
+}
+
+.changeButton4{ /* 추가버튼 */
+   width: 158px;
+   height: 50px;
+   font-size: 20px;
+   padding:5px;
+}
+
+.modal-footer {  /* 메뉴 푸터 */
+   /* border: none; */
+   height: 15%;
+   padding: 50px;
+   text-align: center;
+}
+
+.btn {  /* 취소, 완료 버튼 */
+   width: 220px;
+   height: 60px;
+   font-size: large;
+    font-weight: bold;
+}
+
+/* 사이드 변경	*/
+
+.modal-content { /* 모달 전체 */
+   border-radius: 0px;
+   width: 750px;
+   height: 900px;
+}
+.modal-header { /* 모달 헤더 */
+   height: 25%;
+   /* border: none; */
+    padding: 50px;
+    border-top: 10px solid red;
+    text-align: center;
+}
+
+.modal-title { /* 모달 제목의 폰트 */
+   width : 470px;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
+   padding-top:10px;
+   width : 580px;
+   height : 20px;
+   font-size: middle;
+}
+
+#sideText {
 	
-}
-
-/* 모달 푸터 */
-.modal-footer {  
-	border: none;
-	height: 160px;
-	padding: 50px;
-	text-align: center;
-}
-
-/* 취소, 완료 버튼 */
-.modal-footer > .btn { 
-	width: 220px;
-	height: 60px;
-	font-size: large;
-    font-weight: bold;
-}   
-
-/* 취소 버튼 */
-.btnCancle {
-	background-color: lightgray;
-	color: white;
-}
-
-/* 완료 버튼 */
-.btnComplete {
-	background-color: red;
-	color: white;
-}
-
-/* ----- 추천메뉴 모달 ----- */
-.img-responsive { /* 이미지 크기 */
-	width: 150px;
-	height: 150px;
-}
-
-.menu-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-	width: 150px;
-	height: 200px;
-	border: 1px solid black;
-}
-
-.menuName{ /* 메뉴 이름 */
-	text-align: center;
-}
-
-.menuPrice{ /* 메뉴 가격 */
-	color: red;
-	text-align: center;
-}
-
-/* ----- 나의 주문 리스트 모달 ----- */
-/* 주문목록 헤더 */	
-#MyOrderListModal .modal-body {
-	padding: 0px;
-}
-
-.orderlist-header{
-	font-size: 0px;
-}
-
-.orderlist-header div{
-	position: relative;
-	height: 40px;
-	margin: auto;
-  	display: inline-block;
-	color: white;
-    font-weight: bold;
-    font-size: 18px;
-	background-color: red;
-}
-
-.orderlist-header div p{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-}
-
-/* 메뉴 */
-.orderlist-menu {
-	width: 300px;
-}
-
-/* 수량 */
-.orderlist-cnt {
-	width: 150px;
-}
-
-/* 가격 */
-.orderlist-price {
-	width: 200px;
-}
-
-/* 주문목록 바디 - 주문 리스트 출력 부분 */
-.orderlist-body {
-	width: 650px;
-	min-height: 600px;
-	margin: auto;
-	padding-top: 10px;
-	background-color: #fff5f4;
-}
-
-/* 주문 리스트 */
-.orderlist-body table{
-	width: 600px;
-	margin: auto;
-    font-weight: bold;
-    font-size: 17px;
-}
-
-.orderList-tableDiv {
-	min-height: 520px;
-	background-color: black;
-}
-
-/* 메뉴 이름 */
-#orderlist-menuName{
-	width: 275px;
-	text-align: left;
-}
-
-/* 메뉴 수량 */
-#orderlist-menuCnt{
-	width: 150px;
-	text-align: center;
-}
-
-/* 메뉴 가격 */
-#orderlist-menuPrice{
-	width: 175px;
-	text-align: right;
-}
-
-.orderList-pagingBtn {
-	position: relative;
-  	display: inline-block;
-}
-
-/* UP/DOWN 화살표 */
-#orderList-pagingUp{
-	position: absolute;
-	top:50%;
-	transform: translateY(50%);
-	left: 40%;
-	color: #c0c0c0;
-	font-size: 40px;
-}
-
-#orderList-pagingDown{
-	position: absolute;
-	top:50%;
-	/* transform: translateY(50%); */
-	right: 40%;
-	color: #c0c0c0;
-	font-size: 40px;
-}
-
-/* 주문목록 푸터 */
-.orderlist-footer {
-}
-
-/* div 간의 공백 제거를 위한 font-size 조정 */
-.orderlist-footer div{
-	font-size: 0px;
-}
-
-/* orderlist-footer > div > div 설정 */
-.orderlist-footer div div{
-	position: relative;
-	height: 40px;	
-  	display: inline-block;
-  	margin-top: 5px;
 	font-weight: bold;
-	background-color: #fff5f4;
+	font-size: xx-large;
+	text-align: center;
+	padding-bottom:20px;
 }
 
-/* 합계 div 설정 */
-.orderlist-sum div p{
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-    font-size: 17px;
+.img-responsive4 { /* 이미지 크기 */
+   float:left;
+   width: 200px;
+   height: 200px;
 }
 
-.orderlist-sum div:nth-child(1) p{
-	left: 7%;
+.modal-body { /* 모달 바디 */
+   height: 60%;
+   padding: 40px;
 }
 
-.orderlist-sum div:nth-child(2) p{
-	left: 50%;
-	right: 50%;
+#sidebox { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+   display:inline-block;
+   width: 200px;
+   height: 203px;
+   border: 1px solid black;
+   margin-right: 8.5px;
+   margin-left: 8.5px;
+   
 }
 
-.orderlist-sum div:nth-child(3) p{
-	right: 10%;
+#sideName{ /* 메뉴 이름 */
+   text-align: center;
+   color: red;
+   position: relative;
+   top: 40%;
 }
 
-/* 할인 div 설정 */
-.orderlist-discount div p{
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-    font-size: 17px;
+.img-responsive9 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+   }
+
+
+.img-responsive10 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
 }
 
-.orderlist-discount div:first-child p{
-	left: 5%;
+
+.img-responsive11 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
 }
 
-.orderlist-discount div:last-child p{
-	right: 10%;
+
+.img-responsive12 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
 }
 
-/* 총 결제금액 div 설정 */
-.orderlist-total div p {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-    font-size: 20px;
+.img-responsive13 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
 }
 
-.orderlist-total div:first-child p{
-	left: 5%;
+
+.img-responsive14 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
 }
 
-.orderlist-total div:last-child p{
-	right: 10%;
+
+
+.modal-footer {  /* 메뉴 푸터 */
+   /* border: none; */
+   height: 15%;
+   padding: 50px;
+   text-align: center;
 }
 
-/* 합계 */
-.orderlist-sum > .order-total {
-	width: 300px;
+.btn {  /* 선택 버튼 */
+   width: 220px;
+   height: 60px;
+   font-size: large;
+    font-weight: bold;
 }
 
-/* 수량 */
-.order-totalMenu {
-	width: 150px;
+/* 음료 변경  */
+
+.modal-content { /* 모달 전체 */
+   border-radius: 0px;
+   width: 750px;
+   height: 900px;
+}
+.modal-header { /* 모달 헤더 */
+   height: 25%;
+   /* border: none; */
+    padding: 50px;
+    border-top: 10px solid red;
+    text-align: center;
 }
 
-/* 합계 금액 */
-.orderlist-sum > .order-totalPrice {
-	width: 200px;
+.modal-title { /* 모달 제목의 폰트 */
+   width : 470px;
+    font-weight: bold;
+    font-size: xx-large;
 }
 
-/* 할인 */
-.order-discount {
-	width: 400px;
+.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
+   padding-top:10px;
+   width : 580px;
+   height : 20px;
+   font-size: middle;
 }
 
-/* 할인 한 금액 */
-.order-discountedPrice {
-	width: 250px;
+#drinkText {
+	
+	font-weight: bold;
+	font-size: xx-large;
+	text-align: center;
+	padding-bottom:20px;
 }
 
-/* 총 결제 금액 */
-.orderlist-total > .order-total {
-	width: 400px;
-	height: 50px;
-	background-color: #ffdcd5;
+.img-responsive4 { /* 이미지 크기 */
+   float:left;
+   width: 200px;
+   height: 200px;
 }
 
-/* 결제 할 금액 */
-.orderlist-total > .order-totalPrice {
-	width: 250px;
-	height: 50px;
-	background-color: #ffdcd5;
-    color: red;
+.modal-body { /* 모달 바디 */
+   height: 60%;
+   padding: 40px;
 }
 
+#sidebox { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+   display:inline-block;
+   width: 200px;
+   height: 203px;
+   border: 1px solid black;
+   margin-right: 8.5px;
+   margin-left: 8.5px;
+   
+}
+
+#sideName{ /* 메뉴 이름 */
+   text-align: center;
+   color: red;
+   position: relative;
+   top: 40%;
+}
+
+.img-responsive15 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+   }
+
+
+.img-responsive16 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive17 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive18 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+.img-responsive19 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive20 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.modal-footer {  /* 메뉴 푸터 */
+   /* border: none; */
+   height: 15%;
+   padding: 50px;
+   text-align: center;
+}
+
+.btn {  /* 선택 버튼 */
+   width: 220px;
+   height: 60px;
+   font-size: large;
+    font-weight: bold;
+}
+
+/* 치킨 변경*/
+.modal-content { /* 모달 전체 */
+   border-radius: 0px;
+   width: 750px;
+   height: 900px;
+}
+.modal-header { /* 모달 헤더 */
+   height: 25%;
+   /* border: none; */
+    padding: 50px;
+    border-top: 10px solid red;
+    text-align: center;
+}
+
+.modal-title { /* 모달 제목의 폰트 */
+}
+
+.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
+}
+
+#chickenText {
+	
+	font-weight: bold;
+	font-size: xx-large;
+	text-align: center;
+	padding-bottom:20px;
+}
+
+.img-responsive4 { /* 이미지 크기 */
+   float:left;
+   width: 200px;
+   height: 200px;
+}
+
+.modal-body { /* 모달 바디 */
+   height: 60%;
+   padding: 40px;
+}
+
+#sidebox { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+   display:inline-block;
+   width: 200px;
+   height: 203px;
+   border: 1px solid black;
+   margin-right: 8.5px;
+   margin-left: 8.5px;
+   
+}
+
+#sideName{ /* 메뉴 이름 */
+   text-align: center;
+   color: red;
+   position: relative;
+   top: 40%;
+}
+
+.img-responsive21 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+   }
+
+
+.img-responsive22 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive23 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive24 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+.img-responsive25 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.img-responsive26 { /* 이미지 크기 */
+   width: 156px;
+   height: 100px;
+}
+
+
+.modal-footer {  /* 메뉴 푸터 */
+   /* border: none; */
+   height: 15%;
+   padding: 50px;
+   text-align: center;
+}
+
+<<<<<<< Updated upstream
 /* 버거에 치즈와 베이컨 추가 모달 */
 
 /* 헤더 부분 */
@@ -331,3 +582,11 @@
 .bugerToppinglist > .count{
 	top: 110%;
 }
+=======
+.btn {  /* 선택 버튼 */
+   width: 220px;
+   height: 60px;
+   font-size: large;
+    font-weight: bold;
+}
+>>>>>>> Stashed changes

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
 <!-- 추천메뉴 모달 -->
 	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
 	<div class="modal" id="recommend">
@@ -195,7 +195,7 @@
 	</div><!-- /.modal -->
 	
 	<!-- 햄버거 박스 사이드 모달(지민) -->
-	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+
 	<div class="modal" id="hamburgerBoxSide">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -207,20 +207,20 @@
 	      <div class="modal-body">
 	      	<div class="boxsize-container">
 	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive5"></p>
-                <p class="sideName">메뉴이름</p>
+                <p id="hamburgerSideName">메뉴이름</p>
                 
             </div>
             <div class="boxsize-container">
 	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive6"></p>
-                <p class="sideName2">메뉴이름</p>
+                <p id="hamburgerSideName">메뉴이름</p>
             </div>
              <div class="boxsize-container">
 	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive7"></p>
-                <p class="sideName3">메뉴이름</p>
+                <p id="hamburgerSideName">메뉴이름</p>
             </div>
              <div class="boxsize-container">
 	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive8"></p>
-                <p class="sideName4">메뉴이름</p>
+                <p id="hamburgerSideName">메뉴이름</p>
             </div>
              <div id="btnGroup">
             	<button class="changeButton1">버거세트&nbsp;추가</button>
@@ -304,6 +304,7 @@
 		</div><!-- /.modal -->
 		<!-- 박스/세트/단품 선택 모달 -->
 		
+<<<<<<< Updated upstream
 		<!-- 결제 내역 모달 -->
 		<div class="modal" id="paymentDetails">
 		  <div class="modal-dialog">
@@ -327,3 +328,147 @@
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+=======
+		
+	<!-- 사이드 변경 모달 -->
+	<div class="modal" id="sideChange">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive4"></p>
+	        	<h4 class="modal-title" id="hamburgerBoxlLabel">징거더블다운박스</h4>
+	        	<p class=hamburgerBoxContent>메뉴이름박스내용+사이드변경+음료변경+치킨변경</p>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="sideTitle">
+	      		<p id="sideText">사이드 변경</p>
+	      	</div>
+	      	<div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/side/FrenchFries(M).png" class="img-responsive9"></p>
+                <p id="sideName">후렌치후라이(M)</p>
+            </div>
+            <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/side/TenderTteokbokki(best).png" class="img-responsive10"></p>
+                <p id="sideName">텐더떡볶이교환</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/side/AllShekitCheese.jpg" class="img-responsive11"></p>
+                <p id="sideName">올쉐킷치즈</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/side/FrenchFries(L).png" class="img-responsive12"></p>
+                <p id="sideName">후렌치후라이(L)</p>
+            </div>
+            <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/side/Chickennuggets4.png" class="img-responsive13"></p>
+                <p id="sideName">치킨너겟(4조각)</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/side/LongCheeseStick.png" class="img-responsive14"></p>
+                <p id="sideName">롱치즈스틱</p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger">선택</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- 음료 변경 모달 -->
+	<div class="modal" id="drinkChange">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive4"></p>
+	        	<h4 class="modal-title" id="hamburgerBoxlLabel">징거더블다운박스</h4>
+	        	<p class=hamburgerBoxContent>메뉴이름박스내용+사이드변경+음료변경+치킨변경</p>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="sideTitle">
+	      		<p id="drinkText">음료 변경</p>
+	      	</div>
+	      	<div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/drinkSide/coke(M).png" class="img-responsive15"></p>
+                <p id="sideName">콜라(M)</p>
+            </div>
+            <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/drinkSide/beer425ml.png" class="img-responsive16"></p>
+                <p id="sideName">맥주425ml</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/drinkSide/americano(L).png" class="img-responsive17"></p>
+                <p id="sideName">아메리카노(L)</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/drinkSide/iceAmericano(L).png" class="img-responsive18"></p>
+                <p id="sideName">아이스아메리카노(L)</p>
+            </div>
+            <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/drinkSide/americano(M).png" class="img-responsive19"></p>
+                <p id="sideName">아메리카노(M)</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/drinkSide/iceAmericano(M).png" class="img-responsive20"></p>
+                <p id="sideName">아이스아메리카노(M)</p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger">선택</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	<!-- 치킨 변경 모달 -->
+	<div class="modal" id="chickenChange">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<div class="changeModal-hamburger">
+	      		<img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive4">
+	      	</div>
+	      	<div >
+	        	<p class="modal-title" id="hamburgerBoxlLabel">징거더블다운박스</p>
+	        	<p class="hamburgerBoxContent">메뉴이름박스내용+사이드변경+음료변경+치킨변경</p>
+	       </div>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="sideTitle">
+	      		<p id="chickenText">치킨 변경</p>
+	      	</div>
+	      	<div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/chickenSide/hotCrispy.jpg" class="img-responsive21"></p>
+                <p id="sideName">핫크리스피치킨(1조각)</p>
+            </div>
+            <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/chickenSide/GotsoyBlackLabelChicken.png" class="img-responsive22"></p>
+                <p id="sideName">갓쏘이블랙라벨(1조각)</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/chickenSide/Godscentedblacklabel.png" class="img-responsive23"></p>
+                <p id="sideName">갓양념블랙라벨(1조각)</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/chickenSide/blacklabel.jpg" class="img-responsive24"></p>
+                <p id="sideName">블랙라벨(1조각)</p>
+            </div>
+            <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/chickenSide/Godscentedchicken.png" class="img-responsive25"></p>
+                <p id="sideName">갓양념(1조각)</p>
+            </div>
+             <div class="boxsize-container" id="sidebox">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/chickenSide/originalChicken.png" class="img-responsive26"></p>
+                <p id="sideName">오리지널(1조각)</p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger">선택</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->	
+		
+
+
+>>>>>>> Stashed changes

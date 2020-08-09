@@ -242,6 +242,10 @@ $(document).ready(function(){
 
 	$("#bugerTopping").modal();
 
+<<<<<<< Updated upstream
+=======
+	$("#chickenChange").modal();
+>>>>>>> Stashed changes
 
 });
 
