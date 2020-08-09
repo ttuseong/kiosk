@@ -185,7 +185,7 @@
 				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;">취소하기</button>
 			</div>
 			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;">결제하기</button>
+				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'" >결제하기</button>
 			</div>
 		</div>
 	</div>

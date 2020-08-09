@@ -22,4 +22,8 @@ public class LotteriaController {
 		return "/lotteria/order";
 	}
 
+	@RequestMapping("/orderList")
+	public String orderList() {
+		return "/lotteria/orderList";
+	}
 }
