@@ -196,51 +196,40 @@
 
 		<!-- 추천메뉴 모달 -->
 		<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
-		<div class="modal" id="modalName">
+		<div class="modal" id="bugerTopping">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
-		      <div class="modal-header">
+		      <div class="modal-header" id="bugerToppingHeader">
 		        	<h4 class="modal-title" id="myModalLabel">모달 제목</h4>
 		      </div>
 		      <div class="modal-body">
-		      	<div class="menu-container">
-		      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p>
-	                <p class="menuName">메뉴이름</p>
-	                <p class="menuPrice">메뉴 가격</p>
+		      	<div id="bugerToppingContiner">
+		      		<h5>버거재료 추가</h5>
+		      		<div class="bugerToppinglist">
+		      			<img alt="치즈 추가" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+		      			<h6>치즈추가</h6>
+		      			<p>+300</p>
+		      			
+		                <jsp:include page="/WEB-INF/views/includes/modal/countBtn.jsp" />
+		                
+		      		</div>
+		      		<div class="bugerToppinglist">
+		      			<img alt="베이컨 추가" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+		      			<h6>베이컨추가</h6>
+		      			<p>+400</p>
+		                <jsp:include page="/WEB-INF/views/includes/modal/countBtn.jsp" />
+		      		</div>
+		      		
 	            </div>
 	          </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 		        <button type="button" class="btn btn-danger">완료</button>
 		      </div>
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		
-		<!-- 추천메뉴 모달 -->
-		<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
-		<div class="modal" id="paymentDetails">
-		  <div class="modal-dialog">
-		    <div class="modal-content" id="paymentDetailsContent">
-		      <div class="modal-header" id="paymentDetailsHeader">
-		        	<div class="icon-credit-card">
-		        		<p>아이콘</p>
-		        	</div>
-		        	<p>신용카드</p>
-		      </div>
-		      <div class="modal-body" id="paymentDetailsBody">
-		      	<div>
-		      		<p id="paymentDetailsDes">결제 금액</p>
-		      		<p id="paymentDetailsMoney">5,800</p>
-		      	</div>
-	          </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-		        <button type="button" class="btn btn-danger">완료</button>
-		      </div>
-		    </div><!-- /.modal-content -->
-		  </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+		
 		
 		
     </div>
@@ -251,9 +240,7 @@
 <script type="text/javascript"> 	
 $(document).ready(function(){
 
-
-	$("#selectMode").modal();
-	$("#paymentDetails").modal();
+	$("#bugerTopping").modal();
 
 
 });

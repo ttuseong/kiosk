@@ -303,3 +303,27 @@
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		<!-- 박스/세트/단품 선택 모달 -->
+		
+		<!-- 결제 내역 모달 -->
+		<div class="modal" id="paymentDetails">
+		  <div class="modal-dialog">
+		    <div class="modal-content" id="paymentDetailsContent">
+		      <div class="modal-header" id="paymentDetailsHeader">
+		        	<div class="icon-credit-card">
+		        		<p>아이콘</p>
+		        	</div>
+		        	<p>신용카드</p>
+		      </div>
+		      <div class="modal-body" id="paymentDetailsBody">
+		      	<div>
+		      		<p id="paymentDetailsDes">결제 금액</p>
+		      		<p id="paymentDetailsMoney">5,800</p>
+		      	</div>
+	          </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+		        <button type="button" class="btn btn-danger">완료</button>
+		      </div>
+		    </div><!-- /.modal-content -->
+		  </div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
