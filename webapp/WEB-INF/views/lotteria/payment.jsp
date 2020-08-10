@@ -25,19 +25,19 @@
 	
 	<div class="container">
 
-		<div style="background-color: pink;text-align: center; font-size: 40px;">원하시는 결제방법을 선택해주세요</div>
+		<div class="color-pink">원하시는 결제방법을 선택해주세요</div>
 		
-		<div class="row" style="border-bottom:0.5px solid gray;padding: 40px 0 40px 0;">
+		<div class="row border-bottom">
 			<a href="${pageContext.request.contextPath}/lotteria/order">
 				<div class="col-md-6">
 					<div>
-						<img src="${pageContext.request.contextPath}/assets/images/card.jpg" width="100%;height:30%;">
+						<img src="${pageContext.request.contextPath}/assets/images/card.jpg" width="100%">
 					</div>
 				</div>
 
 				<div class="col-md-6">
-					<p style="font-size: 40px; color: pink;">카드</p>
-					<p style="font-size: 20px;">
+					<p class="font-colorPink">카드</p>
+					<p class="font-size20px">
 						신용/체크카드<br> 모바일금액권<br> 간편결제<br> 
 						(L.pay, 삼성페이, LG페이,
 						알리페이, 카카오페이, PAYCO)
@@ -46,8 +46,8 @@
 			</a>
 		</div>
 
-		<div class="row" style="padding: 20px 0 20px 0;text-align: center;">
-			<div class="col-md-6" style="border-right: 0.5px solid gray;">
+		<div class="row padding20px">
+			<div class="col-md-6 border-right">
 				<a href="${pageContext.request.contextPath}/lotteria/order">
 					<div>
 						<img src="${pageContext.request.contextPath}/assets/images/pay.jpg">
@@ -55,7 +55,7 @@
 					
 					<div>
 						<br>
-						<p style="color:green; font-size:40px;">디지털쿠폰/교환권</p>
+						<p class="green-40px">디지털쿠폰/교환권</p>
 						<p style="font-size: 20px;">롯데리아제품교환권(지류)<br>모바일제품교환권<br>(스마트쿠폰)</p>
 					</div>
 				</a>
