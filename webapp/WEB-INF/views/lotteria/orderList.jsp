@@ -128,9 +128,6 @@
 						<td>0</td>
 					</tr>
 				</table>
-<<<<<<< HEAD
-=======
-				
 				<div class="outside-div">
 					<div class="insid-div_left">결제할금액</div>
 					<div class="insid-div_right">8,400</div>
@@ -152,13 +149,10 @@
 						<div></div>
 					</div>
 				</div>
-				
-				
->>>>>>> 2dc3c62... 페이먼트페이지 오른쪽 테이블 작성중
 			</div>
 			
 			<div class="col-md-6">
-				<div style="border:2px solid red;">
+				<div style="border:2px solid red;padding: 5px;">
 					<div class="subtitle">Step 1 포장을 선택하세요.</div>
 					
 					<div  class="img-inline_block" style="border-right: 1px solid gray; width:49%;" >
@@ -174,9 +168,19 @@
 					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg"width="100%" style="height:100%;"></div>
 					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg"width="100%" style="height:100%;"></div>
 					
+					<div class="subtitle">Step 3 결제를 선택하세요.</div>
+					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg"width="100%" style="height:100%;"></div>
+					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg"width="100%" style="height:100%;"></div>
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		
+		
+		
+		
 		<div class="row" style="height: 60px;">
 			<div class="col-md-4" style="height: 100%;">
 				<div class="icon-wheelchair helpIcon"><p>장애인</p></div>

@@ -186,3 +186,79 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalFooter-btn2{width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#93FFE8;font-size: 20px;}
 .modal-height800px{height: 800px;}
 
+/* 세트로 드시겠어요? 모달 */
+
+#modalName-align{
+	top: 40%;
+	transform:translateY(-50%);
+}
+
+#modalName-content {
+	position: relative;
+	border: solid 8px white;
+	border-radius: 10px;
+}
+
+#modalName-header {position: relative;}
+#modalName-headerTitle {
+	font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+}
+
+/* 취소버튼 */
+.modalName-closeBtnDiv {
+    height: 35px;
+    width: 35px;
+    border-radius: 7px;
+	border: solid 2px #24a3f7;
+    background-color: #82CAFA;
+	position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+.modalName-closeBtn {	
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	font-size: 35px;
+	color: #24a3f7;
+}
+/* 단품, 세트 선택  */
+#modalName-body {
+	position: relative;
+	height: 200px;
+    background-color: #f1f9fe;
+}
+
+.modalName-container {	
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modalName-container div {
+	text-align: center;
+	display: inline-block;
+}
+
+/* 이미지 */
+.modalName-container img {width: 90px;}
+
+/* 폰트 */
+.modalName-container div p {
+	font-size: 20px;
+	font-weight: bold;
+}
+#modalName-Price {color: red;}
+.modalName-select {
+    border: solid 2px #ffa33c;
+    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    padding: 6px;
+    margin: 0px 10px 15px 10px;
+}
+.modalName-container {height: 160px;}

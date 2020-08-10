@@ -223,9 +223,7 @@
 						<div id="modal-tab1" class="modal-tab_content">
 							<!--Content-->
 							<div class="modal-float">
-								<div>
-									<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
-								</div>
+								<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
 								<div class="modal-center">
 									포테이토
 									<p class="modal-red">0</p>
@@ -290,6 +288,45 @@
 	</div>
 	<!-- 토핑모달 -->
 
+
+	<!-- 세트로 드시겠어요? 모달 -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="modalName">
+		<div class="modal-dialog" id="modalName-align">
+			<div class="modal-content" id="modalName-content">
+				<div class="modal-header" id="modalName-header">
+					<h4 class="modal-title" id="modalName-headerTitle">세트로 드시겠어요?</h4>
+					<div class="modalName-closeBtnDiv">
+						<!-- 취소버튼 -->
+						<div class="icon-cancel modalName-closeBtn" data-dismiss="modal"></div>
+					</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body" id="modalName-body">
+					<div class="modalName-container">
+						<div class="modalName-onlyBurger">
+							<div class="modalName-select" id="modalName-onlyBurger">
+								<p> <img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-onlyBurgerImg"> </p>
+								<p>버거만</p>
+							</div>
+							<p id="modalName-Price">5,800</p>
+						</div>
+						<div class="modalName-setMenu">
+							<div class="modalName-select" id="modalName-setMenu">
+								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-setMenuImg"></p>
+								<p>세트</p>
+							</div>
+							<p id="modalName-Price">7,600</p>
+						</div>
+					</div>
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
 
 
