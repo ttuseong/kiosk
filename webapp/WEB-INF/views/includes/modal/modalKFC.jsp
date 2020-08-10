@@ -108,8 +108,8 @@
 	      		<div class="orderlist-body">
 	      			<div class="orderList-tableDiv">
 	      				<table class="orderList-table">
-			      			<tr>
-				      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 </td>
+      						<tr id="orderList-tr">
+				      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 <c:out value="${i}" /></td>
 				      			<td id="orderlist-menuCnt"> 2 </td>
 				      			<td id="orderlist-menuPrice"> 7,000 </td>
 				      		</tr>
@@ -304,7 +304,6 @@
 		</div><!-- /.modal -->
 		<!-- 박스/세트/단품 선택 모달 -->
 		
-<<<<<<< Updated upstream
 		<!-- 결제 내역 모달 -->
 		<div class="modal" id="paymentDetails">
 		  <div class="modal-dialog">
@@ -328,7 +327,6 @@
 		    </div><!-- /.modal-content -->
 		  </div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
-=======
 		
 	<!-- 사이드 변경 모달 -->
 	<div class="modal" id="sideChange">
@@ -468,7 +466,6 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->	
-		
-
-
->>>>>>> Stashed changes
+	
+	
+	
