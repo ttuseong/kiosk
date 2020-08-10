@@ -25,8 +25,8 @@
 	<!-- 헤더 -->
 
 	<div class="container">
-		<div class="height400">
-			<div class="width400">
+		<div class="height300">
+			<div class="width350">
 				<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="100%">
 			</div>
 			<div class="width50">
@@ -174,17 +174,26 @@
 
 
 		</table>
-		<div class="row height60">
+		
+		<div class="row height60" >
 			<div class="col-md-4 height100">
-				<div class="border-width60px"></div>
-				<div class="border-width60px"></div>
-				<div class="border-width60px"></div>
-				<div class="border-width60px"></div>
+				<div class="icon-wheelchair helpIcon">
+					<p>장애인</p>
+				</div>
+				<div class="icon-search helpIcon">
+					<p>돋보기</p>
+				</div>
+				<div class="icon-volume-high helpIcon">
+					<p>직원호출</p>
+				</div>
+				<div class="icon-left-small helpIcon">
+					<p>이전</p>
+				</div>
 			</div>
-			<div class="col-md-4 margin-top10px">
-				<button type="button" class="btn-fontSize20px">취소하기</button>
+			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
+				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;">취소하기</button>
 			</div>
-			<div class="col-md-4 margin-top10px">
+			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
 				<button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'" >결제하기</button>
 			</div>
 		</div>
@@ -330,8 +339,8 @@
 	
 </body>
 <script type="text/javascript">
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 		$("#modalName").modal();
-	});
+	}); */
 </script>
 </html>

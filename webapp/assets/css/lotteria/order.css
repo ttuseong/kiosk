@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
-.height400{height: 400px;}
-.width400{width: 400px; float: left;}
+.height300{height: 300px;}
+.width350{width: 350px; float: left;}
 .width50{width: 50%; height: 100%; float: left;}
 .btn-red{background-color: red; margin: 20px; color: white; border-radius: 5px;}
 .width-auto{width: auto;}
@@ -264,3 +264,25 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
     margin: 0px 10px 15px 10px;
 }
 .modalName-container {height: 160px;}
+
+.helpIcon {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 100%;
+	font-size: 25px;
+	display: inline-flex;
+  	justify-content: center;
+  	align-items: center;
+  	position: relative;
+  	margin: 10px 20px 10px 10px;
+}
+
+.helpIcon > p{
+	width:60px;
+	text-align:center;
+	font-size: 15px;
+	position: absolute;
+	bottom: -95%;
+}

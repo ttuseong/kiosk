@@ -17,7 +17,27 @@ body a:hover{none}
 .margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
 .btn-border_radius12px{width:85%; height:55px;border-radius: 12px;font-size: 20px;}
 
+.helpIcon {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 100%;
+	font-size: 25px;
+	display: inline-flex;
+  	justify-content: center;
+  	align-items: center;
+  	position: relative;
+  	margin: 10px 20px 10px 10px;
+}
 
+.helpIcon > p{
+	width:60px;
+	text-align:center;
+	font-size: 15px;
+	position: absolute;
+	bottom: -95%;
+}
 
 
 
