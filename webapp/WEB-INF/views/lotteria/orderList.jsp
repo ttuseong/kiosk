@@ -26,7 +26,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<table class="border-height400px" frame=hsides>
+				<table class="border-height400px" frame="hsides">
 					<colgroup>
 						<col width="auto">
 						<col width="20%">
@@ -93,11 +93,42 @@
 						</tr>
 					</tbody>
 				</table>
+				
+				
+				<!-- 페이징 -->
+				<div>
+				<페이징처리 할 부분	>	
+				</div>
+				<!-- 페이징 -->
+				
+				<table class="table-border" frame="hsides">
+					<tr>
+						<td>주문금액</td>
+						<td>8,400</td>
+					</tr>
+					
+					<tr>
+						<td>할인금액</td>
+						<td>0</td>
+					</tr>
+					
+					<tr>
+						<td>결제할금액</td>
+						<td>8,400</td>
+					</tr>
+					
+					<tr>
+						<td>결제한금액</td>
+						<td>0</td>
+					</tr>
+					
+				</table>
+				
+				
+				
 			</div>
 			
-			<!-- 페이징 -->
 			
-			<!-- 페이징 -->
 			
 			<div class="col-md-6">
 				
