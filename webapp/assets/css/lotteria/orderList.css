@@ -9,3 +9,26 @@
 
 .table-border{border:1px solid gray; width:100%;}
 .table-border tr{border:1px solid gray; }
+
+
+.helpIcon {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	border: 1px solid black;
+	border-radius: 100%;
+	font-size: 25px;
+	display: inline-flex;
+  	justify-content: center;
+  	align-items: center;
+  	position: relative;
+  	margin-left: 10px;
+}
+
+.helpIcon > p{
+	width:60px;
+	text-align:center;
+	font-size: 15px;
+	position: absolute;
+	bottom: -75%;
+}

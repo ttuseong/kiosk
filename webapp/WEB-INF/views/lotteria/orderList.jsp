@@ -22,7 +22,6 @@
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
-	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
@@ -123,12 +122,7 @@
 					</tr>
 					
 				</table>
-				
-				
-				
 			</div>
-			
-			
 			
 			<div class="col-md-6">
 				
@@ -136,10 +130,10 @@
 		</div>
 		<div class="row" style="height: 60px;">
 			<div class="col-md-4" style="height: 100%;">
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+				<div class="icon-wheelchair helpIcon"><p>장애인</p></div>
+				<div class="icon-search helpIcon"><p>돋보기</p></div>
+				<div class="icon-volume-high helpIcon"><p>직원호출</p></div>
+				<div class="icon-left-small helpIcon"><p>이전</p></div>
 			</div>
 			<div class="col-md-4"
 				style="height: 100%; text-align: center; margin-top: 10px;">
