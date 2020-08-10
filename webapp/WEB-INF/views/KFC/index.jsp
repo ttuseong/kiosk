@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/main.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/modal.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/fontello/css/fontello.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/extrafontello/fontello/css/fontello.css">
 
   	
   	<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -240,12 +241,9 @@
 <script type="text/javascript"> 	
 $(document).ready(function(){
 
-	$("#bugerTopping").modal();
 
-<<<<<<< Updated upstream
-=======
-	$("#chickenChange").modal();
->>>>>>> Stashed changes
+	$("#hamburgerBoxSideMenu").modal();
+
 
 });
 

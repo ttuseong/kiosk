@@ -108,485 +108,153 @@
     font-weight: bold;
 }
 
-/* 모달 - 햄버거 박스 사이드 */
 
-.modal-content { /* 모달 전체 */
-   border-radius: 0px;
-   width: 750px;
-   height: 900px;
-}
-.modal-header { /* 모달 헤더 */
-   height: 25%;
-   /* border: none; */
-    padding: 50px;
-    border-top: 10px solid red;
-    text-align: center;
-}
-
-.modal-title { /* 모달 제목의 폰트 */
-   width : 470px;
-    font-weight: bold;
-    font-size: xx-large;
-}
-
-.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
-   padding-top:10px;
-   width : 580px;
-   height : 20px;
-   font-size: middle;
-}
-
-.img-responsive4 { /* 이미지 크기 */
-   float:left;
-   width: 200px;
-   height: 200px;
-}
-
-.modal-body { /* 모달 바디 */
-   height: 60%;
-   padding: 40px;
-}
-
-.boxsize-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-   display:inline-block;
-   width: 158px;
-   height: 230px;
-   border: 1px solid black;
-}
-
-.img-responsive5 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-#hamburgerSideName { /* 메뉴 이름 */
-   text-align: center;
-}
-
-.img-responsive6 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive7 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive8 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-.changeButton1{ /* 추가버튼 */
-   width: 158px;
-   height: 50px;
-   font-size: 20px;
-   padding:5px;
-}
-
-.changeButton2{ /* 추가버튼 */
-   width: 158px;
-   height: 50px;
-   font-size: 20px;
-   padding:5px;
-}
-
-.changeButton3{ /* 추가버튼 */
-   width: 158px;
-   height: 50px;
-   font-size: 20px;
-   padding:5px;
-}
-
-.changeButton4{ /* 추가버튼 */
-   width: 158px;
-   height: 50px;
-   font-size: 20px;
-   padding:5px;
-}
-
-.modal-footer {  /* 메뉴 푸터 */
-   /* border: none; */
-   height: 15%;
-   padding: 50px;
-   text-align: center;
-}
-
-.btn {  /* 취소, 완료 버튼 */
-   width: 220px;
-   height: 60px;
-   font-size: large;
-    font-weight: bold;
-}
-
-/* 사이드 변경	*/
-
-.modal-content { /* 모달 전체 */
-   border-radius: 0px;
-   width: 750px;
-   height: 900px;
-}
-.modal-header { /* 모달 헤더 */
-   height: 25%;
-   /* border: none; */
-    padding: 50px;
-    border-top: 10px solid red;
-    text-align: center;
-}
-
-.modal-title { /* 모달 제목의 폰트 */
-   width : 470px;
-    font-weight: bold;
-    font-size: xx-large;
-}
-
-.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
-   padding-top:10px;
-   width : 580px;
-   height : 20px;
-   font-size: middle;
-}
-
-#sideText {
-	
-	font-weight: bold;
-	font-size: xx-large;
-	text-align: center;
-	padding-bottom:20px;
-}
-
-.img-responsive4 { /* 이미지 크기 */
-   float:left;
-   width: 200px;
-   height: 200px;
-}
-
-.modal-body { /* 모달 바디 */
-   height: 60%;
-   padding: 40px;
-}
-
-#sidebox { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-   display:inline-block;
-   width: 200px;
-   height: 203px;
-   border: 1px solid black;
-   margin-right: 8.5px;
-   margin-left: 8.5px;
-   
-}
-
-#sideName{ /* 메뉴 이름 */
-   text-align: center;
-   color: red;
-   position: relative;
-   top: 40%;
-}
-
-.img-responsive9 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-   }
-
-
-.img-responsive10 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive11 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive12 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-.img-responsive13 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive14 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-
-.modal-footer {  /* 메뉴 푸터 */
-   /* border: none; */
-   height: 15%;
-   padding: 50px;
-   text-align: center;
-}
-
-.btn {  /* 선택 버튼 */
-   width: 220px;
-   height: 60px;
-   font-size: large;
-    font-weight: bold;
-}
-
-/* 음료 변경  */
-
-.modal-content { /* 모달 전체 */
-   border-radius: 0px;
-   width: 750px;
-   height: 900px;
-}
-.modal-header { /* 모달 헤더 */
-   height: 25%;
-   /* border: none; */
-    padding: 50px;
-    border-top: 10px solid red;
-    text-align: center;
-}
-
-.modal-title { /* 모달 제목의 폰트 */
-   width : 470px;
-    font-weight: bold;
-    font-size: xx-large;
-}
-
-.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
-   padding-top:10px;
-   width : 580px;
-   height : 20px;
-   font-size: middle;
-}
-
-#drinkText {
-	
-	font-weight: bold;
-	font-size: xx-large;
-	text-align: center;
-	padding-bottom:20px;
-}
-
-.img-responsive4 { /* 이미지 크기 */
-   float:left;
-   width: 200px;
-   height: 200px;
-}
-
-.modal-body { /* 모달 바디 */
-   height: 60%;
-   padding: 40px;
-}
-
-#sidebox { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-   display:inline-block;
-   width: 200px;
-   height: 203px;
-   border: 1px solid black;
-   margin-right: 8.5px;
-   margin-left: 8.5px;
-   
-}
-
-#sideName{ /* 메뉴 이름 */
-   text-align: center;
-   color: red;
-   position: relative;
-   top: 40%;
-}
-
-.img-responsive15 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-   }
-
-
-.img-responsive16 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive17 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive18 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-.img-responsive19 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive20 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.modal-footer {  /* 메뉴 푸터 */
-   /* border: none; */
-   height: 15%;
-   padding: 50px;
-   text-align: center;
-}
-
-.btn {  /* 선택 버튼 */
-   width: 220px;
-   height: 60px;
-   font-size: large;
-    font-weight: bold;
-}
-
-/* 치킨 변경*/
-.modal-content { /* 모달 전체 */
-   border-radius: 0px;
-   width: 750px;
-   height: 900px;
-}
-.modal-header { /* 모달 헤더 */
-   height: 25%;
-   /* border: none; */
-    padding: 50px;
-    border-top: 10px solid red;
-    text-align: center;
-}
-
-.modal-title { /* 모달 제목의 폰트 */
-}
-
-.hamburgerBoxContent{ /* 햄버거박스 컨텐츠*/
-}
-
-#chickenText {
-	
-	font-weight: bold;
-	font-size: xx-large;
-	text-align: center;
-	padding-bottom:20px;
-}
-
-.img-responsive4 { /* 이미지 크기 */
-   float:left;
-   width: 200px;
-   height: 200px;
-}
-
-.modal-body { /* 모달 바디 */
-   height: 60%;
-   padding: 40px;
-}
-
-#sidebox { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
-   display:inline-block;
-   width: 200px;
-   height: 203px;
-   border: 1px solid black;
-   margin-right: 8.5px;
-   margin-left: 8.5px;
-   
-}
-
-#sideName{ /* 메뉴 이름 */
-   text-align: center;
-   color: red;
-   position: relative;
-   top: 40%;
-}
-
-.img-responsive21 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-   }
-
-
-.img-responsive22 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive23 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive24 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-.img-responsive25 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.img-responsive26 { /* 이미지 크기 */
-   width: 156px;
-   height: 100px;
-}
-
-
-.modal-footer {  /* 메뉴 푸터 */
-   /* border: none; */
-   height: 15%;
-   padding: 50px;
-   text-align: center;
-}
-
-<<<<<<< Updated upstream
-/* 버거에 치즈와 베이컨 추가 모달 */
-
-/* 헤더 부분 */
+/* 햄버거박스 사이드 메뉴 */
 
-/* 바디부분 */
-#bugerToppingContiner h5{
-	font-size: 30px;
-	font-weight: bold;
-	margin-bottom: 30px;
+/* 모달 전체 */
+#hamburgerBoxContent {
+	border-radius: 0px;
+	width: 750px;
+	min-height: 1050px;
 }
 
-.bugerToppinglist{
-	display: inline-block;
+/* 모달 헤더 */
+#hamburgerBoxHeader {
 	position:relative;
-	margin: 0 15px 0 15px;
+	min-height: 200px;
+	border: none;
+	padding-top: 50px;
+	border-top: 10px solid red;
+	border-bottom: 2px dashed gray;
+	text-align: left;
 }
 
-.bugerToppinglist > img{
-	width: 250px;
-	height: 250px;
+#hamburgerBoxImg img{
+	float: left
 }
 
-.bugerToppinglist h6{
+#hamburgerBoxCount{
+	position: relative;
+	left: -20%;
+	top: 15px;
+}
+
+#hamburgerBoxMoney{
+	position: absolute;
+	right: 10%;
+	top:62%;
+}
+
+#hamburgerBoxMoney > div, #hamburgerBoxMoney > p{
+	display: inline-block;
+}
+
+#hamburgerBoxMoney > div{
+	width:25px;
+	height:25px;
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+	border-radius: 100%;
+	display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hamburgerBoxMoney > div > p{
+	position: absolute;
+	left: -1000000000px;
+}
+
+
+
+.img-hamburgerBoxFix { /* 이미지 크기, 가운데 고정 */
+   display:block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 150px;
+   height: 100px;
+}
+
+/* 모달 제목의 폰트 */
+
+#hamburgerBoxBody {
+	min-height: 690px;
+	padding: 40px;
+	text-align: center;
+}
+
+#menuSet {
+	display: inline-block;
+	margin:5px;
+	width: 150px;
+	height: 200px;
+}
+
+#menuSet > div p{
+	display: block;
+}
+
+.img-responsive {
+	display:inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+	height: 180px;
+}
+
+#hamburgerBoxButton {
+   position: absolute;
+   top: 120%;
+   transform:translateX(-50%);	
+   width: 150px;
+   height: 50px;
+   font-size: 20px;
+   font-weight:bold;
+   background-color:red;
+   color:white;
+   border: 1px solid transparent;
+   border-radius: 4px;
+	
+}
+
+#hamburgerBoxBody{
+	position: relative;
+}
+
+#hamburgerBoxBodyContainer{
+	position: absolute;
+	top: 30%;
+	transform:translateY(-30%);
+}
+
+/* 모달 푸터 */
+#hamburgerSideFooter {
+	min-height:110px;
+	border: none;
+	height: 160px;
+	padding: 50px;
+	text-align: center;
+}
+
+/* 취소, 완료 버튼 */
+.modal-footer > .btn {
+	width: 220px;
+	height: 60px;
+	font-size: large;
 	font-weight: bold;
-	margin: 30px 0 30px 0;
 }
 
-.bugerToppinglist > p{
-	color: red;
+/* 취소 버튼 */
+.btnCancle {
+	background-color: lightgray;
+	color: white;
 }
 
-.bugerToppinglist > .count{
-	top: 110%;
+/* 완료 버튼 */
+.btnComplete {
+	background-color: red;
+	color: white;
 }
-=======
-.btn {  /* 선택 버튼 */
-   width: 220px;
-   height: 60px;
-   font-size: large;
-    font-weight: bold;
-}
->>>>>>> Stashed changes
+
+
