@@ -25,17 +25,17 @@
 	<!-- 헤더 -->
 
 	<div class="container">
-		<div style="height: 400px;">
-			<div style="width: 400px; float: left;">
+		<div class="height400">
+			<div class="width400">
 				<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="100%">
 			</div>
-			<div style="width: 50%; height: 100%; border: 1px solid balck; float: left;">
+			<div class="width50">
 				<h2>사이다</h2>
 				<br>
 				<h4>톡톡 쏘는 청량감이 느껴지는 음료</h4>
 			</div>
-			<div style="width: auto;">
-				<button type="button" style="background-color: red; margin: 20px; color: white; border-radius: 5px;">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button>
+			<div class="width-auto">
+				<button type="button" class="btn-red">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button>
 			</div>
 		</div>
 
@@ -123,16 +123,16 @@
 			</div>
 
 		</div>
-		<table style="width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;">
+		<table class="table-center">
 			<colgroup>
 				<col width="33%">
 				<col width="33%">
 				<col width="33%">
 			</colgroup>
-			<tr style="height: 50px; background-color: #F0FFFF; text-align: center; padding-top: 12px; font-size: 20px;">
+			<tr class="tr-center">
 				<td>총주문내역</td>
 				<td>2 개</td>
-				<td style="text-align: right; color: red;">13,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+				<td class="td-red">13,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			</tr>
 
 			<tr>
@@ -174,18 +174,18 @@
 
 
 		</table>
-		<div class="row" style="height: 60px;">
-			<div class="col-md-4" style="height: 100%;">
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+		<div class="row height60">
+			<div class="col-md-4 height100">
+				<div class="border-width60px"></div>
+				<div class="border-width60px"></div>
+				<div class="border-width60px"></div>
+				<div class="border-width60px"></div>
 			</div>
-			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;">취소하기</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn-fontSize20px">취소하기</button>
 			</div>
-			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'" >결제하기</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'" >결제하기</button>
 			</div>
 		</div>
 	</div>
@@ -209,7 +209,7 @@
 				<div class="modal-header">
 					<h4 class="modal-title">세트_디저트</h4>
 				</div>
-				<div class="modal-body" style="height: 800px;">
+				<div class="modal-body modal-height800px">
 
 					<!--탭 메뉴 영역 -->
 					<ul class="modal-tabs">
@@ -222,43 +222,41 @@
 
 						<div id="modal-tab1" class="modal-tab_content">
 							<!--Content-->
-							<div style="float: left;">
-								<div>
-									<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
-								</div>
-								<div style="text-align: center;">
+							<div class="modal-float">
+								<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
+								<div class="modal-center">
 									포테이토
-									<p style="color: red;">0</p>
+									<p class="modal-red">0</p>
 								</div>
 							</div>
 
-							<div style="float: left;">
+							<div class="modal-float">
 								<div>
 									<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
 								</div>
-								<div style="text-align: center;">
+								<div class="modal-center">
 									양념감자
-									<p style="color: red;">500</p>
+									<p class="modal-red">500</p>
 								</div>
 							</div>
 
-							<div style="float: left;">
+							<div class="modal-float">
 								<div>
 									<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
 								</div>
-								<div style="text-align: center;">
+								<div class="modal-center">
 									치즈스틱
-									<p style="color: red;">500</p>
+									<p class="modal-red">500</p>
 								</div>
 							</div>
 
-							<div style="float: left;">
+							<div class="modal-float">
 								<div>
 									<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
 								</div>
-								<div style="text-align: center;">
+								<div class="modal-center">
 									오지어링
-									<p style="color: red;">700</p>
+									<p class="modal-red">700</p>
 								</div>
 							</div>
 						</div>
@@ -274,14 +272,14 @@
 
 				</div>
 				<div class="modal-footer">
-					<div style="width:33%;height:100%;float: left;padding-top: 7px;">
-						<ul style="background-color: #FFEBCD; width: 80%; margin-left: 40px; height: 80%; padding-top: 8px;">
+					<div class="modalFooter-float">
+						<ul class="modalfooter-color">
 							<li>선택수량: 2</li>
 							<li>잔여수량: 0</li>
 						</ul>
 					</div>
-					<div style="width:33%;height:100%;float: left;"><button type="button" data-dismiss="modal" style="width:80%; height:75%;margin-top: 7px;border-radius: 10px;background-color: white;font-size: 20px;">취소하기</button></div>
-					<div style="width:33%;height:100%;float: left;"><button type="button"style="width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#93FFE8;font-size: 20px;">선택완료</button></div>
+					<div class="modalFooter-width33"><button type="button" data-dismiss="modal" class="modalFooter-btn1">취소하기</button></div>
+					<div class="modalFooter-width33"><button type="button"class="modalFooter-btn2">선택완료</button></div>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -290,6 +288,45 @@
 	</div>
 	<!-- 토핑모달 -->
 
+
+	<!-- 세트로 드시겠어요? 모달 -->
+	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="modalName">
+		<div class="modal-dialog" id="modalName-align">
+			<div class="modal-content" id="modalName-content">
+				<div class="modal-header" id="modalName-header">
+					<h4 class="modal-title" id="modalName-headerTitle">세트로 드시겠어요?</h4>
+					<div class="modalName-closeBtnDiv">
+						<!-- 취소버튼 -->
+						<div class="icon-cancel modalName-closeBtn" data-dismiss="modal"></div>
+					</div>
+				</div>
+				<!-- modal-header -->
+				<div class="modal-body" id="modalName-body">
+					<div class="modalName-container">
+						<div class="modalName-onlyBurger">
+							<div class="modalName-select" id="modalName-onlyBurger">
+								<p> <img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-onlyBurgerImg"> </p>
+								<p>버거만</p>
+							</div>
+							<p id="modalName-Price">5,800</p>
+						</div>
+						<div class="modalName-setMenu">
+							<div class="modalName-select" id="modalName-setMenu">
+								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-setMenuImg"></p>
+								<p>세트</p>
+							</div>
+							<p id="modalName-Price">7,600</p>
+						</div>
+					</div>
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 
 
 

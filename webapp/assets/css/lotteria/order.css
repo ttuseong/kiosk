@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+.height400{height: 400px;}
+.width400{width: 400px; float: left;}
+.width50{width: 50%; height: 100%; float: left;}
+.btn-red{background-color: red; margin: 20px; color: white; border-radius: 5px;}
+.width-auto{width: auto;}
+
 ul.tabs {
 	margin: 0;
 	padding: 0;
@@ -81,16 +87,23 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 	color: red;
 }
 
-.order-price {
-	color: red;
-	text-align: right;
-}
+.table-center{width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;}
+.tr-center{height: 50px; background-color: #F0FFFF; text-align: center; padding-top: 12px; font-size: 20px;}
+.td-red{text-align: right; color: red;}
+.height60{height: 60px;}
+.height100{height: 100%;}
+.border-width60px{border: 1px solid black; height: 100%; width: 60px; float: left;}
+.margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
+.btn-fontSize20px{height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;}
+.btn-backColor{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}
 
+/* 모달 */
 #viewModelContent {
 	font-size: 14px;
 	font-weight: bold;
 	margin: 10px 0px 0px 0px
 }
+
 ul.modal-tabs {
 	margin: 0;
 	padding: 0;
@@ -149,6 +162,103 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 	padding: 20px;
 	font-size: 1.2em;
 }
-.modal-header{background-color: #82CAFA;}
-.modal-body{padding:0px;}
-.modal-footer{padding:0px;text-align:center;height:80px;}
+
+.modal-header {
+	background-color: #82CAFA;
+}
+
+.modal-body {
+	padding: 0px;
+}
+
+.modal-footer {
+	padding: 0px;
+	text-align: center;
+	height: 80px;
+}
+.modal-float{float: left;}
+.modal-center{text-align: center;}
+.modal-red{color: red;}
+.modalFooter-float{width:33%;height:100%;float: left;padding-top: 7px;}
+.modalfooter-color{background-color: #FFEBCD; width: 80%; margin-left: 40px; height: 80%; padding-top: 8px;}
+.modalFooter-width33{width:33%;height:100%;float: left;}
+.modalFooter-btn1{width:80%; height:75%;margin-top: 7px;border-radius: 10px;background-color: white;font-size: 20px;}
+.modalFooter-btn2{width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#93FFE8;font-size: 20px;}
+.modal-height800px{height: 800px;}
+
+/* 세트로 드시겠어요? 모달 */
+
+#modalName-align{
+	top: 40%;
+	transform:translateY(-50%);
+}
+
+#modalName-content {
+	position: relative;
+	border: solid 8px white;
+	border-radius: 10px;
+}
+
+#modalName-header {position: relative;}
+#modalName-headerTitle {
+	font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+}
+
+/* 취소버튼 */
+.modalName-closeBtnDiv {
+    height: 35px;
+    width: 35px;
+    border-radius: 7px;
+	border: solid 2px #24a3f7;
+    background-color: #82CAFA;
+	position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+}
+.modalName-closeBtn {	
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	font-size: 35px;
+	color: #24a3f7;
+}
+/* 단품, 세트 선택  */
+#modalName-body {
+	position: relative;
+	height: 200px;
+    background-color: #f1f9fe;
+}
+
+.modalName-container {	
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.modalName-container div {
+	text-align: center;
+	display: inline-block;
+}
+
+/* 이미지 */
+.modalName-container img {width: 90px;}
+
+/* 폰트 */
+.modalName-container div p {
+	font-size: 20px;
+	font-weight: bold;
+}
+#modalName-Price {color: red;}
+.modalName-select {
+    border: solid 2px #ffa33c;
+    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    padding: 6px;
+    margin: 0px 10px 15px 10px;
+}
+.modalName-container {height: 160px;}

@@ -20,7 +20,7 @@ $(document).ready(function() {
 	$(".menu").on("click",function(){
 		var no = $(this).data("no");
 		console.log(no);
-		$("#topping").modal();
+		$("#modalName").modal();
 	});
 	
 

@@ -1,4 +1,44 @@
 @charset "UTF-8";
 
-a { text-decoration: none; }
-a:hover{none;}
+body a{ text-decoration: none; }
+body a:hover{none}
+
+.color-pink{background-color: pink;text-align: center; font-size: 40px;}
+.border-bottom{border-bottom:0.5px solid gray;padding: 40px 0 40px 0;}
+.font-colorPink{font-size: 40px; color: pink;}
+.font-size20px{font-size: 20px;}
+.padding20px{padding: 20px 0 20px 0;text-align: center;}
+.border-right{border-right: 0.5px solid gray;}
+.green-40px{color:green; font-size:40px;}
+.blue-40px{color:blue;font-size:40px;}
+.height60px{height: 60px;}
+.height100{height: 100%;}
+.border-width60px{border: 1px solid black; height: 100%; width: 60px; float: left;}
+.margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
+.btn-border_radius12px{width:85%; height:55px;border-radius: 12px;font-size: 20px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
