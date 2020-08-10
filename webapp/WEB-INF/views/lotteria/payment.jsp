@@ -56,7 +56,7 @@
 					<div>
 						<br>
 						<p class="green-40px">디지털쿠폰/교환권</p>
-						<p style="font-size: 20px;">롯데리아제품교환권(지류)<br>모바일제품교환권<br>(스마트쿠폰)</p>
+						<p class="font-size20px">롯데리아제품교환권(지류)<br>모바일제품교환권<br>(스마트쿠폰)</p>
 					</div>
 				</a>
 			</div>
@@ -69,22 +69,22 @@
 					
 					<div>
 						<br>
-						<p style="color:blue;font-size:40px;">현금</p>
-						<p style="font-size: 20px;">주문은 여기서 하시고 결제는 카운터에서 해주세요</p>
+						<p class="blue-40px">현금</p>
+						<p class="font-size20px">주문은 여기서 하시고 결제는 카운터에서 해주세요</p>
 					</div>
 				</a>
 			</div>
 		</div>
 		
-		<div class="row" style="height: 60px;">
-			<div class="col-md-6" style="height: 100%;">
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
-				<div style="border: 1px solid black; height: 100%; width: 60px; float: left;"></div>
+		<div class="row height60px">
+			<div class="col-md-6 height100" >
+				<div class="border-width60px"></div>
+				<div class="border-width60px"></div>
+				<div class="border-width60px"></div>
+				<div class="border-width60px"></div>
 			</div>
-			<div class="col-md-6" style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="width:85%; height:55px;border-radius: 12px;font-size: 20px;"> 할인행사안내</button>
+			<div class="col-md-6 margin-top10px">
+				<button type="button" class="btn-border_radius12px"> 할인행사안내</button>
 			</div>
 		</div>
 		

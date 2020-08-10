@@ -10,12 +10,12 @@ body a:hover{none}
 .padding20px{padding: 20px 0 20px 0;text-align: center;}
 .border-right{border-right: 0.5px solid gray;}
 .green-40px{color:green; font-size:40px;}
-
-
-
-
-
-
+.blue-40px{color:blue;font-size:40px;}
+.height60px{height: 60px;}
+.height100{height: 100%;}
+.border-width60px{border: 1px solid black; height: 100%; width: 60px; float: left;}
+.margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
+.btn-border_radius12px{width:85%; height:55px;border-radius: 12px;font-size: 20px;}
 
 
 
