@@ -9,7 +9,7 @@
 
 <!-- css -->
 <link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="/kiosk/assets/css/lotteria/order.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/lotteria/orderList.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/fontello/css/fontello.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
@@ -26,69 +26,78 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<table style="width:100%; border:1px solid black;">
+				<table class="border-height400px" frame=hsides>
+					<colgroup>
+						<col width="auto">
+						<col width="20%">
+						<col width="30%">
+					</colgroup>
 					<thead>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<th>제품</th>
+							<th>수량</th>
+							<th>가격</th>
 						</tr>
 					</thead>
 					
 					<tbody>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>레몬에이드L</td>
+							<td class="center">3</td>
+							<td class="right">8,400</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 						<tr>
-							<td>제품</td>
-							<td>수량</td>
-							<td>가격</td>
+							<td>&nbsp;</td>
+							<td class="center">&nbsp;</td>
+							<td class="right">&nbsp;</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
+			
+			<!-- 페이징 -->
+			
+			<!-- 페이징 -->
 			
 			<div class="col-md-6">
 				
@@ -111,7 +120,7 @@
 					onclick="location.href='${pageContext.request.contextPath}/lotteria/order'">추가주문</button>
 			</div>
 		</div>
-
+	</div>
 		<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->
