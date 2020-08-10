@@ -96,11 +96,28 @@
 				
 				<!-- 페이징 -->
 				<div>
-				<페이징처리 할 부분	>	
+
+					<section id="pageSection">
+						<div id="pagecontainer">
+							<button id="btnLeft" class="btnPage" type="button">이전</button>
+							<ul id="pageCircleGroup">
+								<li><div class="pageCircle pageActive">1</div></li>
+								<li><div class="pageCircle">1</div></li>
+								<li><div class="pageCircle">1</div></li>
+							</ul>
+							<button id="btnRight" class="btnPage" type="button">다음</button>
+						</div>
+					</section>
+
+
 				</div>
 				<!-- 페이징 -->
 				
 				<table class="table-border" frame="hsides">
+					<colgroup>
+						<col width="auto">
+						<col width="30%">
+					</colgroup>
 					<tr>
 						<td>주문금액</td>
 						<td>8,400</td>
@@ -110,22 +127,54 @@
 						<td>할인금액</td>
 						<td>0</td>
 					</tr>
-					
-					<tr>
-						<td>결제할금액</td>
-						<td>8,400</td>
-					</tr>
-					
-					<tr>
-						<td>결제한금액</td>
-						<td>0</td>
-					</tr>
-					
 				</table>
+<<<<<<< HEAD
+=======
+				
+				<div class="outside-div">
+					<div class="insid-div_left">결제할금액</div>
+					<div class="insid-div_right">8,400</div>
+				</div>
+				
+				<div class="outside-div2">
+					<div class="insid-div_left2">결제한금액</div>
+					<div class="insid-div_right2">0</div>
+				</div>
+				
+				<div class="outside-div height100px">
+					<div class="outside-div3">
+						<div class="insid-div_left3">결제종류</div>
+						<div class="insid-div_right3">금액</div>
+					</div>
+
+					<div>
+						<div></div>
+						<div></div>
+					</div>
+				</div>
+				
+				
+>>>>>>> 2dc3c62... 페이먼트페이지 오른쪽 테이블 작성중
 			</div>
 			
 			<div class="col-md-6">
-				
+				<div style="border:2px solid red;">
+					<div class="subtitle">Step 1 포장을 선택하세요.</div>
+					
+					<div  class="img-inline_block" style="border-right: 1px solid gray; width:49%;" >
+						<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
+					</div>
+					
+					<div class="img-inline_block" style="width:49%;">
+						<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
+					</div>
+					
+					<div class="subtitle">Step 2 할인/적립을 선택하세요.</div>
+					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/discaount.jpg"width="100%" style="height:100%;"></div>
+					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg"width="100%" style="height:100%;"></div>
+					<div class="img-inline_block img-3size"><img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg"width="100%" style="height:100%;"></div>
+					
+				</div>
 			</div>
 		</div>
 		<div class="row" style="height: 60px;">
