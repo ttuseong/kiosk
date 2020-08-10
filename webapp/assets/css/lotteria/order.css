@@ -186,8 +186,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalFooter-btn2{width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#93FFE8;font-size: 20px;}
 .modal-height800px{height: 800px;}
 
-/* 세트로 드시겠어요? 모달 */
-
+/* 단품, 세트 선택 모달 */
 #modalName-align{
 	top: 40%;
 	transform:translateY(-50%);
@@ -195,11 +194,15 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 
 #modalName-content {
 	position: relative;
-	border: solid 8px white;
+	border: solid 8px rgba(255, 255, 255, 0.5);
 	border-radius: 10px;
 }
 
-#modalName-header {position: relative;}
+#modalName-header {
+	position: relative;
+    background-color: #d7f9fd;
+    border: none;
+}
 #modalName-headerTitle {
 	font-weight: bold;
     font-size: 25px;
@@ -212,7 +215,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
     width: 35px;
     border-radius: 7px;
 	border: solid 2px #24a3f7;
-    background-color: #82CAFA;
+    background-color: #d7f9fd;
 	position: absolute;
     top: 50%;
     right: 15px;
@@ -230,7 +233,6 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 #modalName-body {
 	position: relative;
 	height: 200px;
-    background-color: #f1f9fe;
 }
 
 .modalName-container {	

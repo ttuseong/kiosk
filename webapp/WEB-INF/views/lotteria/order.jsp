@@ -289,7 +289,7 @@
 	<!-- 토핑모달 -->
 
 
-	<!-- 세트로 드시겠어요? 모달 -->
+	<!-- 단품, 세트 선택 모달 -->
 	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
 	<div class="modal" id="modalName">
 		<div class="modal-dialog" id="modalName-align">
@@ -327,9 +327,11 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-
-
-
+	
 </body>
-
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#modalName").modal();
+	});
+</script>
 </html>

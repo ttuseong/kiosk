@@ -64,3 +64,69 @@
 .img-inline_block{display: inline-block;}
 .img-3size{width:32.5%;height: 200px;}
 
+
+
+/* 결제 취소, 결제 완료, 카드 승인 취소 모달 */
+#orderListMsgModal-align{
+	top: 40%;
+	transform:translateY(-50%);
+}
+
+#orderListMsgModal-content {
+	position: relative;
+	border: solid 8px rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+}
+
+/* modal-header */
+#orderListMsgModal-header {
+	position: relative;
+    background-color: #ecfef4;
+    border: none;
+}
+
+#orderListMsgModal-headerTitle {
+	font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+}
+
+/* modal-body  */
+#orderListMsgModal-body {
+	height: 150px;
+}
+
+/* 폰트 */
+#orderListMsgModal-body p {
+	font-size: 22px;
+}
+
+/* modal-footer  */
+#orderListMsgModal-footer {
+	position: relative;
+	height: 120px;
+	border: none;
+}
+
+/* 버튼 */
+#orderListMsgModal-footer button {
+	width: 134px; /* 수정 필요 */
+	height: 55px;
+	border: solid 1px #cdcccd;
+	border-radius: 10px;
+	display: inline-block;
+    margin: 0px 5px 0px 5px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.orderListMsgModal-btnCancle {
+	background-color: white;
+}
+
+.orderListMsgModal-btnContainer {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
