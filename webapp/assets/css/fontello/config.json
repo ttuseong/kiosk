@@ -7,6 +7,12 @@
   "ascent": 850,
   "glyphs": [
     {
+      "uid": "82f0dc5149d842219e45000bebd683fb",
+      "css": "won",
+      "code": 61785,
+      "src": "fontawesome"
+    },
+    {
       "uid": "44e04715aecbca7f266a17d5a7863c68",
       "css": "plus",
       "code": 59392,
@@ -31,10 +37,10 @@
       "src": "entypo"
     },
     {
-      "uid": "c709da589c923ba3c2ad48d9fc563e93",
+      "uid": "5211af474d3a9848f67f945e2ccaf143",
       "css": "cancel",
       "code": 59396,
-      "src": "entypo"
+      "src": "fontawesome"
     },
     {
       "uid": "3d8cc269fdad8a4cda55a20542a84e5c",
@@ -43,15 +49,9 @@
       "src": "fontawesome"
     },
     {
-      "uid": "14017aae737730faeda4a6fd8fb3a5f0",
-      "css": "check",
+      "uid": "12f4ece88e46abd864e40b35e05b11cd",
+      "css": "ok",
       "code": 59398,
-      "src": "entypo"
-    },
-    {
-      "uid": "8a67014b864fb93503348593979ddce3",
-      "css": "wheelchair",
-      "code": 61843,
       "src": "fontawesome"
     },
     {
@@ -73,9 +73,9 @@
       "src": "typicons"
     },
     {
-      "uid": "4c1ef492f1d2c39a2250ae457cee2a6e",
-      "css": "instagram",
-      "code": 61805,
+      "uid": "8a67014b864fb93503348593979ddce3",
+      "css": "wheelchair",
+      "code": 61843,
       "src": "fontawesome"
     }
   ]
