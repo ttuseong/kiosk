@@ -20,7 +20,14 @@
 
   </head>
   <body>
+  
+  <!-- 헤더 -->
+	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
+	<!-- 헤더 -->
     <div id="kfc">
+    
+    
+	
       <header>
         <h1><a href="#">KFC</a></h1>
         <nav class="spot">
@@ -231,6 +238,10 @@
 		
 		
     </div>
+    
+    <!-- 풋터 -->
+		<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+		<!-- 풋터 -->
   </body>
 
 	
