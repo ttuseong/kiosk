@@ -300,9 +300,10 @@
 
 	<!-- 단품, 세트 선택 모달 -->
 	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
-	<div class="modal" id="modalName">
+	<div class="modal" id="setAndSingle">
 		<div class="modal-dialog" id="modalName-align">
 			<div class="modal-content" id="modalName-content">
+				
 				<div class="modal-header" id="modalName-header">
 					<h4 class="modal-title" id="modalName-headerTitle">세트로 드시겠어요?</h4>
 					<div class="modalName-closeBtnDiv">
@@ -311,15 +312,18 @@
 					</div>
 				</div>
 				<!-- modal-header -->
+				
 				<div class="modal-body" id="modalName-body">
 					<div class="modalName-container">
 						<div class="modalName-onlyBurger">
-							<div class="modalName-select" id="modalName-onlyBurger">
+						
+							<div class="modalName-select" id="modalName-onlyBurger"data-dismiss="modal">
 								<p> <img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-onlyBurgerImg"> </p>
 								<p>버거만</p>
 							</div>
 							<p id="modalName-Price">5,800</p>
 						</div>
+						
 						<div class="modalName-setMenu">
 							<div class="modalName-select" id="modalName-setMenu">
 								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-setMenuImg"></p>

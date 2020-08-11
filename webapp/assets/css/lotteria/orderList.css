@@ -6,9 +6,9 @@
 .fontSize50px{font-size: 40px;}
 
 .border-height420px{width:100%; border-top:0.5px solid #E5E4E2;border-bottom:0.5px solid #E5E4E2;height: 420px;}
-.border-height400px tr {border:0.5px solid #E5E4E2;font-size: 20px;}
-.border-height400px thead{background-color: #E5E4E2; height:500px;}
-.border-height400px th{font-size: 25px;text-align: center;}
+.border-height420px tr {border:0.5px solid #E5E4E2;font-size: 20px;}
+.border-height420px thead{background-color: #E5E4E2; height:500px;}
+.border-height420px th{font-size: 25px;text-align: center;}
 .center{text-align: center;}
 .right{text-align: right;}
 
@@ -58,6 +58,7 @@
 .insid-div_right3{font-size: 20px;display: inline-block;width: 49%;text-align: right;}
 .height100px{height: 100px;}
 .height100{height: 100%;}
+.height99{height: 99%;}
 
 .subtitle{height: 60px;font-size: 18px;background-color: #990012;border-top: #D1D0CE;border-bottom: #D1D0CE;padding:18px 0 0 15px;color:white;}
 
