@@ -36,13 +36,12 @@
 <div class="adminPage-body">
 	<div class="adminPage-Container">
 		<div class="adminPage-adminContent">
+		
 			<div class="menuInfo-menuInfoContainer">
 				<div class="menuInfo-menuCateAndImg"> <!-- 드롭다운 및 이미지 관리 -->
-				
 					<!-- 드롭다운 -->
-					<div class="menuInfo-cateDropdown">
-						<button class="btn btn-default dropdown-toggle" type="button"
-							id="menuInfo-cateDropdown" data-toggle="dropdown" aria-expanded="true">
+					<div class="dropdown">
+					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 							카테고리를 선택하세요. <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu"
@@ -56,7 +55,7 @@
 					
 					<img src="#" class="img-rounded">
 					
-					<input id="menuInfo-menuImg" type="file"/>
+					<input id="menuInfo-menuImgInput" type="file"/>
 				</div>
 			
 				<div class="adminPage-btnContainer menuInfo-btnAndInfo">  <!-- 메뉴 버튼 및 정보 관리 -->
@@ -82,7 +81,7 @@
 					<div class="adminPage-Content menuInfo-menuInfo">		
 					</div>
 				</div>
-			</div>
+			</div> <!-- menuInfo-menuInfoContainer -->
 
 			<!-- 토핑 -->
 			<div class="adminPage-Content menuInfo-topingInfo"></div>

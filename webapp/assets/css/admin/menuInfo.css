@@ -5,12 +5,14 @@
 	margin-bottom: 30px;
 }
 
+/* 메뉴 정보 */
 .menuInfo-menuInfo {	
 	width: 600px !important;
 	min-height: 250px !important;
 	background: #fafceb;
 }
 
+/* 토핑 정보 */
 .menuInfo-topingInfo {	
 	width: 1100px;
 	min-height: 700px !important;
@@ -21,6 +23,7 @@
 	text-align: center;
 }
 
+/* 완료 및 삭제 버튼 */
 .menuInfo-submitBtnContainer button{
 	margin: 0 10px 0 10px !important;
 }
@@ -29,17 +32,29 @@
 	background-color: #fbe700!important;
 }
 
-#menuInfo-cateDropdown {
+.menuInfo-menuCateAndImg {
+	display: inline-block;
+}
+
+.menuInfo-btnAndInfo {
+	display: inline-block;
+}
+
+/* 드롭다운 */
+.menuInfo-menuCateAndImg > .dropdown > .btn, .dropdown-menu{
 	width: 200px;
 }
 
+/* 이미지 */
 .menuInfo-menuCateAndImg img {
 	width: 200px;
 	height: 200px;
 	margin: 15px 0 15px 0;
 }
 
-#menuInfo-menuImg {
+/* 파일 업로드 인풋 */
+#menuInfo-menuImgInput {
 	width: 200px;
 	height: 50px;
 }
+
