@@ -36,27 +36,52 @@
 <div class="adminPage-body">
 	<div class="adminPage-Container">
 		<div class="adminPage-adminContent">
-			<div class="adminPage-btnContainer menuInfo-btnAndInfo">
-				<!-- 메뉴정보 버튼 -->
-				<a href="${pageContext.request.contextPath}/admin/menuInfo">
-					<button type="button" class="btn btnMenuInfo adminActive"
-						id="menuInfo-btnMenuInfo">메뉴정보</button>
-				</a>
-
-				<!-- 카테고리 버튼 -->
-				<a href="${pageContext.request.contextPath}/admin/menuCate">
-					<button type="button" class="btn btnMenuCate"
-						id="menuInfo-btnMenuCate">카테고리</button>
-				</a>
-
-				<!-- 통계 버튼 -->
-				<a href="${pageContext.request.contextPath}/admin/menuStats">
-					<button type="button" class="btn btnMenuStats"
-						id="menuInfo-btnMenuStats">통계</button>
-				</a>
-
-				<!-- 메뉴이름, 가격, 칼로리, 설명 등 -->
-				<div class="adminPage-Content menuInfo-menuInfo"></div>
+			<div class="menuInfo-menuInfoContainer">
+				<div class="menuInfo-menuCateAndImg"> <!-- 드롭다운 및 이미지 관리 -->
+				
+					<!-- 드롭다운 -->
+					<div class="menuInfo-cateDropdown">
+						<button class="btn btn-default dropdown-toggle" type="button"
+							id="menuInfo-cateDropdown" data-toggle="dropdown" aria-expanded="true">
+							카테고리를 선택하세요. <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu"
+							aria-labelledby="dropdownMenu1">
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">햄버거</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">음료</a></li>
+						</ul>
+					</div> <!-- 드롭다운 -->
+					
+					<img src="#" class="img-rounded">
+					
+					<input id="menuInfo-menuImg" type="file"/>
+				</div>
+			
+				<div class="adminPage-btnContainer menuInfo-btnAndInfo">  <!-- 메뉴 버튼 및 정보 관리 -->
+					<!-- 메뉴정보 버튼 -->
+					<a href="${pageContext.request.contextPath}/admin/menuInfo">
+						<button type="button" class="btn btnMenuInfo adminActive"
+							id="menuInfo-btnMenuInfo">메뉴정보</button>
+					</a>
+	
+					<!-- 카테고리 버튼 -->
+					<a href="${pageContext.request.contextPath}/admin/menuCate">
+						<button type="button" class="btn btnMenuCate"
+							id="menuInfo-btnMenuCate">카테고리</button>
+					</a>
+	
+					<!-- 통계 버튼 -->
+					<a href="${pageContext.request.contextPath}/admin/menuStats">
+						<button type="button" class="btn btnMenuStats"
+							id="menuInfo-btnMenuStats">통계</button>
+					</a>
+	
+					<!-- 메뉴이름, 가격, 칼로리, 설명 등 -->
+					<div class="adminPage-Content menuInfo-menuInfo">		
+					</div>
+				</div>
 			</div>
 
 			<!-- 토핑 -->
