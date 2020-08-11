@@ -1,7 +1,12 @@
 @charset "UTF-8";
 
+.width800height1200{width:800px;height:1200;}
+
 body a{ text-decoration: none; }
 body a:hover{ text-decoration: none; }
+
+.contents-header{border:8px solid #990012;height:250px;text-align: center;}
+.fontSize40px{font-size: 40px;}
 
 .color-pink{background-color: pink;text-align: center; font-size: 40px;}
 .border-bottom{border-bottom:0.5px solid gray;padding: 40px 0 40px 0;}

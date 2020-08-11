@@ -15,6 +15,7 @@
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript" src="/kiosk/assets/js/lotteria/orderList.js"></script>
 
 <title>키오스크-롯데리아</title>
 </head>
@@ -23,13 +24,13 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
 	
-	<div class="container">
-		<div style="border:8px solid #990012;height:300px;text-align: center;">
-			<p style="font-size: 50px;">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
+	<div class="container width800height1200">
+		<div class="contents-header">
+			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<table class="border-height400px" frame="hsides">
+				<table class="border-height420px" frame="hsides">
 					<colgroup>
 						<col width="auto">
 						<col width="20%">
@@ -156,43 +157,57 @@
 			</div>
 
 			<div class="col-md-6">
-				<div style="border: 2px solid red; padding: 5px;">
-					<div class="subtitle">Step 1 포장을 선택하세요.</div>
-
-					<div class="img-inline_block" style="border-right: 1px solid gray; width: 49%;">
-						<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
-					</div>
-
-					<div class="img-inline_block" style="width: 49%;">
-						<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
-					</div>
-
-					<div class="subtitle">Step 2 할인/적립을 선택하세요.</div>
-					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" style="height: 100%;">
-					</div>
-					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" style="height: 100%;">
-					</div>
-					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" style="height: 100%;">
-					</div>
-
-					<div class="subtitle">Step 3 결제를 선택하세요.</div>
-					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" style="height: 100%;">
-					</div>
-					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" style="height: 100%;">
-					</div>
-					<div class="img-inline_block img-vertical">
-						<div class="img-2size">
-							<img src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" style="height: 100%;">
+				<div class="border-red">
+					<!-- 포장을선택 -->
+					<div id="selectPackage">
+						<div class="subtitle">Step 1 포장을 선택하세요.</div>
+	
+						<div class="img-inline_block border-right">
+							<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
 						</div>
-						<div class="img-2size">
-							<img src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" style="height: 100%;">
+	
+						<div class="img-inline_block width49">
+							<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
 						</div>
 					</div>
+					<!-- 포장을선택 -->
+					
+					<!-- 적립을 선택 -->
+					<div id="discount">
+						<div class="subtitle">Step 2 할인/적립을 선택하세요.</div>
+						<div class="img-inline_block img-3size">
+							<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" class="height100">
+						</div>
+						<div class="img-inline_block img-3size">
+							<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" class="height100">
+						</div>
+						<div class="img-inline_block img-3size">
+							<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" class="height100">
+						</div>
+					</div>
+					<!-- 적립을 선택 -->
+					
+					<!-- 결제를 선택 -->
+					<div id="payment">	
+						<div class="subtitle">Step 3 결제를 선택하세요.</div>
+						<div class="img-inline_block img-3size">
+							<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" class="height100">
+						</div>
+						<div class="img-inline_block img-3size">
+							<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" class="height100">
+						</div>
+						<div class="img-inline_block img-vertical">
+							<div class="img-2size">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" class="height99">
+							</div>
+							<div class="img-2size">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" class="height99">
+							</div>
+						</div>
+					</div>
+					<!-- 결제를 선택 -->
+					
+					
 				</div>
 			</div>
 		</div>
@@ -204,7 +219,7 @@
 
 
 		<div class="row" style="height: 60px;">
-			<div class="col-md-4" style="height: 100%;">
+			<div class="col-md-4 height100">
 				<div class="icon-wheelchair helpIcon">
 					<p>장애인</p>
 				</div>
@@ -218,13 +233,11 @@
 					<p>이전</p>
 				</div>
 			</div>
-			<div class="col-md-4"
-				style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'" >취소하기</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn1" id="cancel">취소하기</button>
 			</div>
-			<div class="col-md-4"
-				style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'">추가주문</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn2" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'">추가주문</button>
 			</div>
 		</div>
 	</div>
@@ -249,8 +262,8 @@
 
 				<div class="modal-footer" id="orderListMsgModal-footer">
 					<div class="orderListMsgModal-btnContainer">
-						<button type="button" class="btn orderListMsgModal-btnComplete">예</button>
-						<button type="button" class="btn orderListMsgModal-btnCancle">아니오</button>
+						<button type="button" class="btn orderListMsgModal-btnComplete" id="cancelDouble-check">예</button>
+						<button type="button" class="btn orderListMsgModal-btnCancle"data-dismiss="modal">아니오</button>
 					</div>
 				</div>
 				<!-- modal-footer -->
@@ -277,7 +290,7 @@
 
 				<div class="modal-footer" id="orderListMsgModal-footer">
 					<div class="orderListMsgModal-btnContainer">
-						<button type="button" class="btn orderListMsgModal-btnComplete">확인</button>
+						<button type="button" class="btn orderListMsgModal-btnComplete" id="ok">확인</button>
 					</div>
 				</div>
 				<!-- modal-footer -->
@@ -317,10 +330,6 @@
 	<!-- /.modal -->
 
 </body>
-<script type="text/javascript">
-	/* $(document).ready(function() {
-		$("#modalName03").modal();
-	}); */
-</script>
+
 
 </html>
