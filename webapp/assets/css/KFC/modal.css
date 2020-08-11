@@ -482,13 +482,14 @@
 
 /* 버거에 치즈와 베이컨 추가 모달 */
 
- 
-
-/* 헤더 부분 */
-
- 
-
 /* 바디부분 */
+#bugerToppingBody{
+	position: relative;
+}
+
+#bugerToppingContiner{
+	margin-top: 25%;
+}
 
 #bugerToppingContiner h5{
 
@@ -561,7 +562,7 @@
 }
 
 /* 모달 헤더 */
-#hamburgerBoxHeader {
+.hamburgerBoxHeader {
 	position:relative;
 	min-height: 200px;
 	border: none;
@@ -571,7 +572,7 @@
 	text-align: left;
 }
 
-#hamburgerBoxImg img{
+#hamburgerBoxSideContiner img{
 	float: left
 }
 
