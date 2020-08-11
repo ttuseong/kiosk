@@ -19,7 +19,7 @@ public class AdminController {
 		return "/admin/menuCate";
 	}
 
-	// 통
+	// 통계
 	@RequestMapping("/menuStats")
 	public String menuStats() {
 		return "/admin/menuStats";
