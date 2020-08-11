@@ -12,7 +12,7 @@
 <link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/main/main.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/admin/admin.css" rel="stylesheet" type="text/css">
-<link href="/kiosk/assets/css/admin/menuInfo.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/admin/menuStats.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/fontello/css/fontello.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
