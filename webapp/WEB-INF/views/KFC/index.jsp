@@ -246,7 +246,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("#MyOrderListModal").modal();
+		$("#placeSelect").modal();
 	});
 </script>
 

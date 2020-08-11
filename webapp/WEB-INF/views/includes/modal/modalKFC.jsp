@@ -31,6 +31,44 @@
 </div>
 <!-- /.modal -->
 
+<!-- 장소 선택 모달 -->
+<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+<div class="modal" id="placeSelect">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">식사 장소를 선택해주세요</h4>
+			</div>
+			<div class="modal-body">
+				<div class="placeSelectBodyContiner">
+					<div class="placeSelectBodyContentContiner">
+						<div class="placeSelectBodyContent">
+							<img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<h5>매장식사</h5>
+							<p>EAT IN</p>
+						</div>
+						<p>다회용 용기 제공</p>
+					</div>
+					<div class="placeSelectBodyContentContiner">
+						<div class="placeSelectBodyContent">
+							<img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<h5>매장식사</h5>
+							<p>TO GO</p>
+						</div>
+						<p>다회용 용기 제공</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <!-- 결제수단 모달 -->
 <!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
 <div class="modal" id="paySelect">
