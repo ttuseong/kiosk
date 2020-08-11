@@ -30,6 +30,7 @@ a {
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 .adminPage-body {
@@ -37,20 +38,16 @@ a {
 }
 
 .adminPage-Container {
-	position: relative;
 	width: 1200px;
 	min-height: 900px;
 	border-radius: 20px;
 	background: rgba(255, 255, 255, 0.8);
 	margin: auto;
+    padding: 50px;
 }
 
 .adminPage-adminContent {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-    font-size: 0px;
+    font-size: 0px; 
 }
 
 /* 메뉴 버튼 */

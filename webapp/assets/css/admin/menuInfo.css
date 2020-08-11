@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
-.menuIfo-header {
-	
+.menuInfo-btnAndInfo {	
+	width: 600px;
+	margin-bottom: 30px;
+}
+
+.menuInfo-menuInfo {	
+	width: 600px !important;
+	min-height: 250px !important;
+	background: #fafceb;
+}
+
+.menuInfo-topingInfo {	
+	width: 1100px;
+	min-height: 700px !important;
+}
+
+.menuInfo-submitBtnContainer {
+	margin-top: 50px;
 }

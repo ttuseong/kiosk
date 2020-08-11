@@ -41,7 +41,7 @@
 				
 				<!-- 통계 버튼 -->
 				<a href="${pageContext.request.contextPath}/admin/menuStats">
-					<button type="button" class="btn btnMenuStats">메뉴정보</button>
+					<button type="button" class="btn btnMenuStats">통계</button>
 				</a>
 				
 	
