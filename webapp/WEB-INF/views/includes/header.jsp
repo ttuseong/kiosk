@@ -5,7 +5,7 @@
 
 <div class="row bgColor">
 	<div class="col-md-4">
-		<div class="mainLogo"><a href="#">로고자리</a></div>
+		<div class="mainLogo"><a href="${pageContext.request.contextPath}/">로고자리</a></div>
 	</div>
 	<div class="col-md-4">
 		<div class="d1">
