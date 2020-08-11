@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+body {
+	background-color: #52a37b;	
+}
+
+.adminPage-header {
+	width: 1200px;
+	height: 100px;
+	background-color: lavender;
+	font-size: 0px;
+}
+
+#adminPage-header {
+	text-align: right;
+	margin: 25px;
+}
+
+#adminPage-header a{
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.adminPage-body {
+	min-height: 950px;
+	background-color: lightblue;
+}
+
+.adminPage-footer {
+	height: 130px;
+	background-color: lightyellow;
+}
