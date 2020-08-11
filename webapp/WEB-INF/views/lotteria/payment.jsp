@@ -24,9 +24,9 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
 	
-	<div class="container">
+	<div class="container width800height1200">
 		<div class="contents-header">
-			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
+			<p class="fontSize40px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
 		</div>
 		
 		<div class="color-pink">원하시는 결제방법을 선택해주세요</div>
@@ -54,7 +54,7 @@
 			<div class="col-md-6 border-right">
 				<a href="${pageContext.request.contextPath}/lotteria/order">
 					<div>
-						<img src="${pageContext.request.contextPath}/assets/images/pay.jpg">
+						<img src="${pageContext.request.contextPath}/assets/images/pay.jpg" style="height: 300px;">
 					</div>
 					
 					<div>
@@ -67,8 +67,8 @@
 			
 			<div class="col-md-6">
 				<a href="${pageContext.request.contextPath}/lotteria/order">
-					<div>
-						<img src="${pageContext.request.contextPath}/assets/images/cash.jpg">
+					<div style="width:100%;">
+						<img src="${pageContext.request.contextPath}/assets/images/cash.jpg" width="100%">
 					</div>
 					
 					<div>

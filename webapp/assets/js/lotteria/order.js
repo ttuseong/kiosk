@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	/*페이지 탭*/
 	//When page loads...
 	$(".tab_content").hide(); //Hide all content
 	$("ul.tabs li:first").addClass("active").show(); //Activate first tab
@@ -20,10 +20,10 @@ $(document).ready(function() {
 	$(".menu").on("click",function(){
 		var no = $(this).data("no");
 		console.log(no);
-		$("#modalName").modal();
+		$("#topping").modal();
 	});
 	
-
+	/*모달 탭*/
 	//When page loads...
 	$(".modal-tab_content").hide(); //Hide all content
 	$("ul.modal-tabs li:first").addClass("active").show(); //Activate first tab

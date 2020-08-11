@@ -9,6 +9,7 @@
 
 <!-- css -->
 <link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/lotteria/index.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -20,7 +21,7 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
 	
-	<div class="container">
+	<div class="container width800height1200">
 		<a href="${pageContext.request.contextPath}/lotteria/payment"><img src="${pageContext.request.contextPath}/assets/images/lotteria_main.png" width="100%"></a>
 	</div>
 	

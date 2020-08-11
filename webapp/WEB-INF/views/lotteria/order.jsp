@@ -24,9 +24,9 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
 
-	<div class="container">
-		<div class="height300">
-			<div class="width350">
+	<div class="container width800height1200">
+		<div class="height250">
+			<div class="width300">
 				<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="100%">
 			</div>
 			<div class="width50">
@@ -35,7 +35,7 @@
 				<h4>톡톡 쏘는 청량감이 느껴지는 음료</h4>
 			</div>
 			<div class="width-auto">
-				<button type="button" class="btn-red">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button>
+				<!-- <button type="button" class="btn-red">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button> -->
 			</div>
 		</div>
 

@@ -23,13 +23,13 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
 	
-	<div class="container">
+	<div class="container width800height1200">
 		<div class="contents-header">
 			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<table class="border-height400px" frame="hsides">
+				<table class="border-height420px" frame="hsides">
 					<colgroup>
 						<col width="auto">
 						<col width="20%">

@@ -1,7 +1,9 @@
 @charset "UTF-8";
 
-.height300{height: 300px;}
-.width350{width: 350px; float: left;}
+.width800height1200{width:800px;height:1200;}
+
+.height250{height: 250px;}
+.width300{width: 300px; float: left;}
 .width50{width: 50%; height: 100%; float: left;}
 .btn-red{background-color: red; margin: 20px; color: white; border-radius: 5px;}
 .width-auto{width: auto;}
@@ -63,7 +65,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 .tab_content {padding: 20px;font-size: 1.2em;}
 .menu {width: 50%;float: left;height: 250px;}
 .menu-img {width: 45%;float: left;}
-.menu-text {width: 55%;float: left;padding-top: 80px;font-size: 30px;}
+.menu-text {width: 55%;float: left;padding-top: 28.5px;font-size: 25px;}
 .menu-price {color: red;}
 
 .table-center{width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;}
@@ -170,7 +172,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
   	justify-content: center;
   	align-items: center;
   	position: relative;
-  	margin: 10px 20px 10px 10px;
+  	margin: 10px 5px 10px 10px;
 }
 
 .helpIcon > p{
