@@ -190,10 +190,10 @@
 					<p>이전</p>
 				</div>
 			</div>
-			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;"onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">취소하기</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn-radius12px" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">취소하기</button>
 			</div>
-			<div class="col-md-4" style="height: 100%; text-align: center; margin-top: 10px;">
+			<div class="col-md-4 margin-top10px">
 				<button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'" >결제하기</button>
 			</div>
 		</div>
@@ -338,9 +338,4 @@
 	<!-- /.modal -->
 	
 </body>
-<script type="text/javascript">
-	/* $(document).ready(function() {
-		$("#modalName").modal();
-	}); */
-</script>
 </html>

@@ -60,32 +60,11 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 	background: #fff;
 }
 
-.tab_content {
-	padding: 20px;
-	font-size: 1.2em;
-}
-
-.menu {
-	width: 50%;
-	float: left;
-	height: 250px;
-}
-
-.menu-img {
-	width: 45%;
-	float: left;
-}
-
-.menu-text {
-	width: 55%;
-	float: left;
-	padding-top: 80px;
-	font-size: 30px;
-}
-
-.menu-price {
-	color: red;
-}
+.tab_content {padding: 20px;font-size: 1.2em;}
+.menu {width: 50%;float: left;height: 250px;}
+.menu-img {width: 45%;float: left;}
+.menu-text {width: 55%;float: left;padding-top: 80px;font-size: 30px;}
+.menu-price {color: red;}
 
 .table-center{width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;}
 .tr-center{height: 50px; background-color: #F0FFFF; text-align: center; padding-top: 12px; font-size: 20px;}
@@ -95,15 +74,9 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 .border-width60px{border: 1px solid black; height: 100%; width: 60px; float: left;}
 .margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
 .btn-fontSize20px{height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;}
-.btn-backColor{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}
 
 /* 모달 */
-#viewModelContent {
-	font-size: 14px;
-	font-weight: bold;
-	margin: 10px 0px 0px 0px
-}
-
+#viewModelContent {font-size: 14px;font-weight: bold;margin: 10px 0px 0px 0px}
 ul.modal-tabs {
 	margin: 0;
 	padding: 0;
@@ -148,34 +121,11 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 }
 
 /*Tab Conent CSS*/
-.modal-tab_container {
-	border: 1px solid white;
-	border-top: none;
-	overflow: hidden;
-	clear: both;
-	float: left;
-	width: 100%;
-	background: #fff;
-}
-
-.modal-tab_content {
-	padding: 20px;
-	font-size: 1.2em;
-}
-
-.modal-header {
-	background-color: #82CAFA;
-}
-
-.modal-body {
-	padding: 0px;
-}
-
-.modal-footer {
-	padding: 0px;
-	text-align: center;
-	height: 80px;
-}
+.modal-tab_container {border: 1px solid white;border-top: none;overflow: hidden;clear: both;float: left;width: 100%;background: #fff;}
+.modal-tab_content {padding: 20px;font-size: 1.2em;}
+.modal-header {background-color: #82CAFA;}
+.modal-body {padding: 0px;}
+.modal-footer {padding: 0px;text-align: center; height: 80px;}
 .modal-float{float: left;}
 .modal-center{text-align: center;}
 .modal-red{color: red;}
@@ -187,82 +137,26 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modal-height800px{height: 800px;}
 
 /* 단품, 세트 선택 모달 */
-#modalName-align{
-	top: 40%;
-	transform:translateY(-50%);
-}
-
-#modalName-content {
-	position: relative;
-	border: solid 8px rgba(255, 255, 255, 0.5);
-	border-radius: 10px;
-}
-
-#modalName-header {
-	position: relative;
-    background-color: #d7f9fd;
-    border: none;
-}
-#modalName-headerTitle {
-	font-weight: bold;
-    font-size: 25px;
-    text-align: center;
-}
+#modalName-align{top: 40%;transform:translateY(-50%);}
+#modalName-content {position: relative;border: solid 8px rgba(255, 255, 255, 0.5);border-radius: 10px;}
+#modalName-header {position: relative;background-color: #d7f9fd;border: none;}
+#modalName-headerTitle {font-weight: bold;font-size: 25px;text-align: center;}
 
 /* 취소버튼 */
-.modalName-closeBtnDiv {
-    height: 35px;
-    width: 35px;
-    border-radius: 7px;
-	border: solid 2px #24a3f7;
-    background-color: #d7f9fd;
-	position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-}
-.modalName-closeBtn {	
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-	font-size: 35px;
-	color: #24a3f7;
-}
+.modalName-closeBtnDiv {height: 35px;width: 35px;border-radius: 7px;border: solid 2px #24a3f7;background-color: #d7f9fd;position: absolute;top: 50%;right: 15px;transform: translateY(-50%);}
+.modalName-closeBtn {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 35px;color: #24a3f7;}
 /* 단품, 세트 선택  */
-#modalName-body {
-	position: relative;
-	height: 200px;
-}
-
-.modalName-container {	
-	position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.modalName-container div {
-	text-align: center;
-	display: inline-block;
-}
+#modalName-body {position: relative;height: 200px;}
+.modalName-container {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
+.modalName-container div {text-align: center;display: inline-block;}
 
 /* 이미지 */
 .modalName-container img {width: 90px;}
 
 /* 폰트 */
-.modalName-container div p {
-	font-size: 20px;
-	font-weight: bold;
-}
+.modalName-container div p {font-size: 20px;font-weight: bold;}
 #modalName-Price {color: red;}
-.modalName-select {
-    border: solid 2px #ffa33c;
-    border-radius: 10px;
-    width: 120px;
-    height: 120px;
-    padding: 6px;
-    margin: 0px 10px 15px 10px;
-}
+.modalName-select {border: solid 2px #ffa33c;border-radius: 10px;width: 120px;height: 120px;padding: 6px;margin: 0px 10px 15px 10px;}
 .modalName-container {height: 160px;}
 
 .helpIcon {
@@ -286,3 +180,8 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 	position: absolute;
 	bottom: -95%;
 }
+
+/* 내용 하단 이모티콘 */
+.margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
+.btn-radius12px{height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;}
+.btn-backColor{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}

@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+.contents-header{border:8px solid #990012;height:300px;text-align: center;}
+.fontSize50px{font-size: 50px;}
+
 .border-height400px{width:100%; border-top:0.5px solid #E5E4E2;border-bottom:0.5px solid #E5E4E2;height: 500px;}
 .border-height400px tr {border:0.5px solid #E5E4E2;font-size: 20px;}
 .border-height400px thead{background-color: #E5E4E2; height:500px;}
@@ -24,14 +27,7 @@
   	position: relative;
   	margin: 10px 20px 10px 10px;
 }
-
-.helpIcon > p{
-	width:60px;
-	text-align:center;
-	font-size: 15px;
-	position: absolute;
-	bottom: -95%;
-}
+.helpIcon > p{width:60px;text-align:center;font-size: 15px;position: absolute;bottom: -95%;}
 
 .table-border {border-top:0.5px solid #E5E4E2; width:100%;border-bottom:1px solid #E5E4E2;}
 .table-border tr {border:0.5px solid #E5E4E2;font-size: 20px;}
@@ -59,6 +55,7 @@
 .insid-div_left3{font-size: 20px;display: inline-block;width: 50%;}
 .insid-div_right3{font-size: 20px;display: inline-block;width: 49%;text-align: right;}
 .height100px{height: 100px;}
+.height100{height: 100%;}
 
 .subtitle{height: 60px;font-size: 18px;background-color: #990012;border-top: #D1D0CE;border-bottom: #D1D0CE;padding:18px 0 0 15px;color:white;}
 
@@ -67,50 +64,28 @@
 .img-2size{height:100px;}
 .img-vertical{vertical-align: middle;width: 32%;}
 
-
-
+.border-right{border-right: 1px solid gray; width: 49%;}
+.border-red{border: 2px solid red; padding: 5px;}
+.width49{width: 49%;}
 
 /* 결제 취소, 결제 완료, 카드 승인 취소 모달 */
-#orderListMsgModal-align{
-	top: 40%;
-	transform:translateY(-50%);
-}
+#orderListMsgModal-align{top: 40%;transform:translateY(-50%);}
 
-#orderListMsgModal-content {
-	position: relative;
-	border: solid 8px rgba(255, 255, 255, 0.5);
-	border-radius: 10px;
-}
+#orderListMsgModal-content {position: relative;border: solid 8px rgba(255, 255, 255, 0.5);border-radius: 10px;}
 
 /* modal-header */
-#orderListMsgModal-header {
-	position: relative;
-    background-color: #ecfef4;
-    border: none;
-}
+#orderListMsgModal-header {position: relative;background-color: #ecfef4;border: none;}
 
-#orderListMsgModal-headerTitle {
-	font-weight: bold;
-    font-size: 25px;
-    text-align: center;
-}
+#orderListMsgModal-headerTitle {font-weight: bold;font-size: 25px;text-align: center;}
 
 /* modal-body  */
-#orderListMsgModal-body {
-	height: 150px;
-}
+#orderListMsgModal-body {height: 150px;}
 
 /* 폰트 */
-#orderListMsgModal-body p {
-	font-size: 22px;
-}
+#orderListMsgModal-body p {font-size: 22px;}
 
 /* modal-footer  */
-#orderListMsgModal-footer {
-	position: relative;
-	height: 120px;
-	border: none;
-}
+#orderListMsgModal-footer {position: relative;height: 120px;border: none;}
 
 /* 버튼 */
 #orderListMsgModal-footer button {
@@ -124,13 +99,11 @@
 	font-weight: bold;
 }
 
-.orderListMsgModal-btnCancle {
-	background-color: white;
-}
+.orderListMsgModal-btnCancle {background-color: white;}
 
-.orderListMsgModal-btnContainer {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-}
+.orderListMsgModal-btnContainer {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
+
+/* 하단의 이모티콘 */
+.margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
+.btn1{height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;}
+.btn2{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}

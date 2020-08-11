@@ -24,8 +24,8 @@
 	<!-- 헤더 -->
 	
 	<div class="container">
-		<div style="border:8px solid #990012;height:300px;text-align: center;">
-			<p style="font-size: 50px;">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
+		<div class="contents-header">
+			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
@@ -156,41 +156,41 @@
 			</div>
 
 			<div class="col-md-6">
-				<div style="border: 2px solid red; padding: 5px;">
+				<div class="border-red">
 					<div class="subtitle">Step 1 포장을 선택하세요.</div>
 
-					<div class="img-inline_block" style="border-right: 1px solid gray; width: 49%;">
+					<div class="img-inline_block border-right">
 						<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
 					</div>
 
-					<div class="img-inline_block" style="width: 49%;">
+					<div class="img-inline_block width49;">
 						<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
 					</div>
 
 					<div class="subtitle">Step 2 할인/적립을 선택하세요.</div>
 					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" style="height: 100%;">
+						<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" class="height100">
 					</div>
 					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" style="height: 100%;">
+						<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" class="height100">
 					</div>
 					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" style="height: 100%;">
+						<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" class="height100">
 					</div>
 
 					<div class="subtitle">Step 3 결제를 선택하세요.</div>
 					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" style="height: 100%;">
+						<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" class="height100">
 					</div>
 					<div class="img-inline_block img-3size">
-						<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" style="height: 100%;">
+						<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" class="height100">
 					</div>
 					<div class="img-inline_block img-vertical">
 						<div class="img-2size">
-							<img src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" style="height: 100%;">
+							<img src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" class="height100">
 						</div>
 						<div class="img-2size">
-							<img src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" style="height: 100%;">
+							<img src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" class="height100">
 						</div>
 					</div>
 				</div>
@@ -204,7 +204,7 @@
 
 
 		<div class="row" style="height: 60px;">
-			<div class="col-md-4" style="height: 100%;">
+			<div class="col-md-4 height100">
 				<div class="icon-wheelchair helpIcon">
 					<p>장애인</p>
 				</div>
@@ -218,13 +218,11 @@
 					<p>이전</p>
 				</div>
 			</div>
-			<div class="col-md-4"
-				style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'" >취소하기</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn1" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'" >취소하기</button>
 			</div>
-			<div class="col-md-4"
-				style="height: 100%; text-align: center; margin-top: 10px;">
-				<button type="button" style="height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'">추가주문</button>
+			<div class="col-md-4 margin-top10px">
+				<button type="button" class="btn2" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'">추가주문</button>
 			</div>
 		</div>
 	</div>
@@ -317,10 +315,6 @@
 	<!-- /.modal -->
 
 </body>
-<script type="text/javascript">
-	/* $(document).ready(function() {
-		$("#modalName03").modal();
-	}); */
-</script>
+
 
 </html>

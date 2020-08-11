@@ -25,8 +25,8 @@
 	<!-- 헤더 -->
 	
 	<div class="container">
-		<div style="border:8px solid #990012;height:300px;text-align: center;">
-			<p style="font-size: 50px;">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
+		<div class="contents-header">
+			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
 		</div>
 		
 		<div class="color-pink">원하시는 결제방법을 선택해주세요</div>
