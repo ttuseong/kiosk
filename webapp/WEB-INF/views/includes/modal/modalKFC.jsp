@@ -31,6 +31,44 @@
 </div>
 <!-- /.modal -->
 
+<!-- 장소 선택 모달 -->
+<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+<div class="modal" id="placeSelect">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">식사 장소를 선택해주세요</h4>
+			</div>
+			<div class="modal-body">
+				<div class="placeSelectBodyContiner">
+					<div class="placeSelectBodyContentContiner">
+						<div class="placeSelectBodyContent">
+							<img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<h5>매장식사</h5>
+							<p>EAT IN</p>
+						</div>
+						<p>다회용 용기 제공</p>
+					</div>
+					<div class="placeSelectBodyContentContiner">
+						<div class="placeSelectBodyContent">
+							<img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<h5>매장식사</h5>
+							<p>TO GO</p>
+						</div>
+						<p>다회용 용기 제공</p>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <!-- 결제수단 모달 -->
 <!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
 <div class="modal" id="paySelect">
@@ -215,7 +253,6 @@
 							class="img-responsive">
 						<div>
 							<p class="menuName">메뉴이름</p>
-							<p class="menuPrice">메뉴가격</p>
 						</div>
 						<button type="button" id="hamburgerBoxButton">버거재료 추가</button>
 					</div>
@@ -259,6 +296,87 @@
 </div>
 <!-- /.modal -->
 
+
+<!-- 사이드 변경 모달 -->
+<div class="modal" id="sideChange">
+	<div class="modal-dialog">
+		<div class="modal-content" id="hamburgerBoxContent">
+			<div class="modal-header hamburgerBoxHeader" id="hamburgerBoxHeader">
+				<jsp:include page="/WEB-INF/views/includes/modal/hamburgerBoxHeader.jsp" />
+			</div>
+			<div class="modal-body" id="hamburgerBox-SideChangeBody">
+				<div class="icon-left-open-big" id="hamburgerBox-SideChangeBodyLeftBtn"></div>
+				<div class="icon-right-open-big" id="hamburgerBox-SideChangeBodyRightBtn"></div>
+				<div id="sideChangeTitle">
+						<p>사이드 변경</p>
+				</div>
+				<div id="sideChangeContainer">
+					<div class="menu-container" id="menuSetSecond">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">후렌치후라이(M)</p>
+							<p class="menuPrice" id="menuPriceBlank">-</p>
+						</div>
+					</div>
+					<div class="menu-container" id="menuSetSecond">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">텐더떡볶이교환</p>
+							<p class="menuPrice">+ 1,000</p>
+						</div>
+					</div>
+					<div class="menu-container" id="menuSetSecond">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">올쉐킷치즈</p>
+							<p class="menuPrice">+ 800</p>
+						</div>
+					</div>
+					<div class="menu-container" id="menuSetSecond">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">메뉴이름</p>
+							<p class="menuPrice">메뉴가격</p>
+						</div>
+					</div>
+					<div class="menu-container" id="menuSetSecond">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">메뉴이름</p>
+							<p class="menuPrice">메뉴가격</p>
+						</div>
+					</div>
+					<div class="menu-container" id="menuSetSecond">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">메뉴이름</p>
+							<p class="menuPrice">메뉴가격</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer" id="hamburgerSideFooter">
+				<button type="button" class="btn btnComplete">선택</button>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <!-- 버거 토핑 모달 -->
 <div class="modal" id="bugerTopping">
 	<div class="modal-dialog">
@@ -274,9 +392,7 @@
 							src="${pageContext.request.contextPath}/assets/images/icon1.png">
 						<h6>치즈추가</h6>
 						<p>+300</p>
-
 						<jsp:include page="/WEB-INF/views/includes/modal/countBtn.jsp" />
-
 					</div>
 					<div class="bugerToppinglist">
 						<img alt="베이컨 추가"
@@ -379,83 +495,4 @@
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
 
-<!-- 나의 주문 리스트 모달 -->
-	<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
-	<div class="modal" id="MyOrderListModal">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        	<h4 class="modal-title">나의 주문 리스트</h4> 
-	      </div>
-	      <div class="modal-body"> 
-	      	<div class="orderlist-container">
-	      		<div class="orderlist-header">
-	      			<div class="orderlist-menu">
-      					<p>메뉴</p>
-      				</div>
-      				<div class="orderlist-cnt">
-      					<p>수량</p>
-      				</div>
-      				<div class="orderlist-price">
-      					<p>가격</p>
-      				</div>
-	      		</div>
-	      		
-	      		<div class="orderlist-body">
-	      			<div class="orderList-tableDiv">
-	      				<table class="orderList-table">
-			      			<tr>
-				      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 </td>
-				      			<td id="orderlist-menuCnt"> 2 </td>
-				      			<td id="orderlist-menuPrice"> 7,000 </td>
-				      		</tr>
-		      			</table>
-	      			</div>
-	      			
-	      			<div class="orderList-pagingBtn">
-		      			<div class="icon-up-open-big" id="orderList-pagingUp"><!-- up 화살표 --></div>
-		      			<div class="icon-down-open-big" id="orderList-pagingDown"><!-- down 화살표 --></div>
-	      			</div>
-      			</div>
-	      		
-	      		<div class="orderlist-footer">
-	      			<div class="orderlist-sum"> <!-- 합계 -->
-	      				<div class="order-total">
-	      					<p>합계</p>
-	      				</div>
-	      				<div class="order-totalMenu">
-	      					<p>9</p>
-	      				</div>
-	      				<div class="order-totalPrice">
-	      					<p>15,100</p>
-	      				</div>
-	      			</div>
-	      			
-	      			<div class="orderlist-discount"> <!-- 할인 -->
-	      				<div class="order-discount">
-	      					<p>할인</p>
-	      				</div>
-	      				<div class="order-discountedPrice">
-	      					<p>0</p>
-	      				</div>
-	      			</div>
-	      			
-	      			<div class="orderlist-total"> <!-- 총 결제 금액 -->
-	      				<div class="order-total">
-	      					<p>총 결제 금액</p>
-	      				</div>
-	      				<div class="order-totalPrice">
-	      					<p>15,100</p>
-	      				</div>
-	      			</div>
-	      		</div>
-	      		
-     		</div>
-          </div> 
-	      <div class="modal-footer">
-	        <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btnComplete">결제</button>
-	      </div>
-	    </div><!-- /.modal-content -->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+

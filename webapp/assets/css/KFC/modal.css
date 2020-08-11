@@ -697,6 +697,110 @@
 	color: white;
 }
 
+/* 사이	드 변경  */
+
+#hamburgerBox-SideChangeBody {
+	min-height: 690px;
+	padding: 50px 100px 100px 100px;
+	text-align: center;
+	position: relative;
+}
+
+#hamburgerBox-SideChangeBodyLeftBtn{
+	font-size: 30px;
+	position: absolute;
+	top: 50%;
+	left: 5%;
+	transform:translateY(-50%);
+	border: 1px solid gray;
+	height: 120px;
+	display: inline-flex;
+	align-items: center;
+	border-radius: 5px;
+	background-color: gray;
+	color: white;
+}
+
+#hamburgerBox-SideChangeBodyRightBtn{
+	font-size: 30px;
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	transform:translateY(-50%);
+	border: 1px solid gray;
+	height: 120px;
+	display: inline-flex;
+	align-items: center;
+	border-radius: 5px;
+	background-color: red;
+	color: white;
+}
+
+#sideChangeContainer {
+	position: absolute;
+	top: 30%;
+	transform: translate(-45px, -90px);
+}
+
+#sideChangeTitle {
+	font-weight: bold;
+    font-size: xx-large;
+    text-align:center;
+}
+
+#menuSetSecond {
+	display: inline-block;
+	margin:17px;
+	width: 150px;
+	height: 220px;
+}
+
+#menuPriceBlank{
+	color: white;
+}
+
+#menuSetSecond > div p{
+	display: block;
+}
+
+/* 장소 선택 모달 */
+
+.placeSelectBodyContentContiner{
+	position:relative;
+	width: 250px;
+	height: 700px;
+	display: inline-block;
+	background-color: red;
+	margin: 0 5px;
+}
+
+.placeSelectBodyContent{
+	position:absolute;
+	top:40%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	width: 150px;
+	border-bottom: 1px dashed black;
+	padding-bottom: 60px;
+}
+
+.placeSelectBodyContent > img{
+	width: 100px;
+	height: 100px;
+}
+
+.placeSelectBodyContentContiner > div > h5{
+	font-size: 60px;
+	margin: 30px 0;
+}
 
 
- 
+.placeSelectBodyContentContiner > p{
+	position: absolute;
+	bottom: 20%;
+	left: 50%;
+	transform:translateX(-50%);
+
+}
+
+
