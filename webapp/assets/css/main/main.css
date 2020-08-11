@@ -1,7 +1,7 @@
 @charset "UTF-8";
 body{margin: 0;}
 
-.bgColor{background: #A3D0C3;}
+.bgColor{background: #52a37b;}
 .mainLogo{
 	margin-left: 270px;
     margin-top: 15px;}
@@ -49,6 +49,7 @@ body{margin: 0;}
 }
 #footer{
 	text-align:center;
-	background:#A3D0C3;
+	background:#52a37b;
 	padding: 50px;
+	color: white;
 }

@@ -31,12 +31,12 @@
 			<div class="adminPage-adminContent">
 				<!-- 메뉴정보 버튼 -->
 				<a href="${pageContext.request.contextPath}/admin/menuInfo">
-					<button type="button" class="btn btnMenuInfo adminActive">메뉴정보</button>
+					<button type="button" class="btn btnMenuInfo">메뉴정보</button>
 				</a>
 				
 				<!-- 카테고리 버튼 -->
 				<a href="${pageContext.request.contextPath}/admin/menuCate">
-					<button type="button" class="btn btnMenuCate">카테고리</button>
+					<button type="button" class="btn btnMenuCatea adminActive">카테고리</button>
 				</a>
 				
 				<!-- 통계 버튼 -->

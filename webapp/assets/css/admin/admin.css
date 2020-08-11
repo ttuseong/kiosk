@@ -1,19 +1,29 @@
 @charset "UTF-8";
 
 body {
-	background-color: #52a37b;	
+	background-color: #52a37b;
+	text-align: center:	
+}
+
+a {
+	text-decoration: none;
+	color: black;
 }
 
 .adminPage-header {
+	position: relative;
 	width: 1200px;
 	height: 100px;
-	background-color: lavender;
 	font-size: 0px;
+	margin: auto;
 }
 
 #adminPage-header {
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
 	text-align: right;
-	margin: 25px;
 }
 
 #adminPage-header a{
@@ -23,11 +33,49 @@ body {
 }
 
 .adminPage-body {
-	min-height: 950px;
-	background-color: lightblue;
+	min-height: 900px;
+}
+
+.adminPage-Container {
+	position: relative;
+	width: 1200px;
+	min-height: 900px;
+	border-radius: 20px;
+	background: rgba(255, 255, 255, 0.8);
+	margin: auto;
+}
+
+.adminPage-adminContent {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    font-size: 0px;
+}
+
+/* 메뉴 버튼 */
+.adminPage-adminContent button{
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	background: white;
+	margin: auto;
+	border-radius: 5px;
+}
+
+/* 선택 된 버튼 */
+.adminActive {
+	background: #fafceb!important;
+	font-weight: bold;
+}
+
+.adminPage-Content {	
+	width: 1100px;
+	min-height: 750px;
+	background: #fafceb;
+	margin: auto;
 }
 
 .adminPage-footer {
 	height: 130px;
-	background-color: lightyellow;
 }
