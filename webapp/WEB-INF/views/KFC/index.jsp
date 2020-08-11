@@ -34,10 +34,7 @@
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
 	<div id="kfc">
-
-
-
-		<header>
+		<section id="FKCHeader">
 			<h1>
 				<a href="#">KFC</a>
 			</h1>
@@ -49,23 +46,36 @@
 					<li>language</li>
 				</ul>
 			</nav>
-		</header>
+		</section>
 
 		<section id="categorySection">
 			<nav id="category">
 				<ul>
-					<li class="categoryColorRed"><div class="categoryImg"></div>
-						<p>매장행사</p></li>
-					<li class="categoryColorRed"><div class="categoryImg"></div>
-						<p>신메뉴</p></li>
-					<li class="categoryColorWhite"><div class="categoryImg"></div>
-						<p>치킨</p></li>
-					<li class="currentSelect"><div class="categoryImg"></div>
-						<p>버거/세트/박스</p></li>
-					<li class="categoryColorWhite"><div class="categoryImg"></div>
-						<p>사이드</p></li>
-					<li class="categoryColorWhite"><div class="categoryImg"></div>
-						<p>음료</p></li>
+					<li class="categoryColorRed">
+						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<p>매장행사</p>
+					</li>
+					<li class="categoryColorRed">
+						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<p>신메뉴</p>
+					</li>
+					<li class="categoryColorWhite">
+						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<p>치킨</p>
+					</li>
+					<li class="categoryColorWhite currentSelect">
+						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<p>버거/세트/박스</p>
+					</li>
+					<li class="categoryColorWhite">
+						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<p>사이드</p>
+					</li>
+					<li class="categoryColorWhite">
+						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<p>음료</p>
+					</li>
+					
 				</ul>
 			</nav>
 		</section>
@@ -73,35 +83,49 @@
 			<nav>
 				<ul>
 					<li class="menu">
-						<div class="menuImg"></div>
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 						<div class="menuContent">
 							<p>징거버거</p>
 							<p>5600원</p>
 						</div>
 					</li>
 					<li class="menu">
-						<div class="menuImg"></div>
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 						<div class="menuContent">
 							<p>징거버거</p>
 							<p>5600원</p>
 						</div>
 					</li>
 					<li class="menu">
-						<div class="menuImg"></div>
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 						<div class="menuContent">
 							<p>징거버거</p>
 							<p>5600원</p>
 						</div>
 					</li>
 					<li class="menu">
-						<div class="menuImg"></div>
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 						<div class="menuContent">
 							<p>징거버거</p>
 							<p>5600원</p>
 						</div>
 					</li>
 					<li class="menu">
-						<div class="menuImg"></div>
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<div class="menuContent">
+							<p>징거버거</p>
+							<p>5600원</p>
+						</div>
+					</li>
+					<li class="menu">
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+						<div class="menuContent">
+							<p>징거버거</p>
+							<p>5600원</p>
+						</div>
+					</li>
+					<li class="menu">
+						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 						<div class="menuContent">
 							<p>징거버거</p>
 							<p>5600원</p>
@@ -221,11 +245,9 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#hamburgerBoxSideMenu").modal();
-		$("#bugerTopping").modal();
+	$(document).ready(function(){
+		$("#MyOrderListModal").modal();
 	});
 </script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/KFC/modal.js"></script>
 </html>

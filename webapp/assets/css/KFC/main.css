@@ -1,17 +1,22 @@
+body{
+	height:1200px;
+}
+
 #kfc{
-  width: 1200px;
+  margin: 0 auto;
+  width: 800px;
   position: relative;
 }
-header{
+#FKCHeader{
   display: block;
   padding-top: 30px;
   padding-left: 30px;
   height: 150px;
 }
-header h1{
+#FKCHeader h1{
   position: absolute;
 }
-header h1 a{
+#FKCHeader h1 a{
   display: block;
   color: transparent;
   width: 250px;
@@ -44,29 +49,37 @@ header h1 a{
 #category ul li{
   position: relative;
   display: inline-block;
-  width: 199px;
-  height: 194px;
-  margin-right: 1px;
+  width: 128.5px;
+  height: 128.5px;
+  margin-right: 5px;
+}
+
+#category ul li:last-child{
+	margin-right:0;
 }
 
 #category ul li p{
   position: absolute;
   width: 150px;
   text-align: center;
-  bottom: 20px;
+  bottom: 10px;
   display: block;
   font-size: 20px;
-  color: white;
   left: 50%;
   transform: translateX(-50%);
 }
 
 .categoryColorRed{
   background-color: rgb(204,55,46);
+  color: white;
 }
 
 .categoryColorWhite{
   background-color: rgb(170, 203, 195);
+}
+
+.categoryColorWhite > p{
+	color: red;	
 }
 
 .currentSelect{
@@ -74,45 +87,51 @@ header h1 a{
 }
 
 .categoryImg{
-  background-image: url(../../images/icon1.png);
-  background-size: 150px 150px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: 199px;
-  height: 194px;
+  position:absolute;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  transform:translateX(-50%);
+  top: 10px;
 }
 
 /* 메뉴 영역 */
 
 #menuSection{
-  height: 1200px;
+  height: 358px;
   font-size: 0;
+  margin: 5px 0 5px 0;
 }
 
 .menu{
-  width: 400px;
-  height: 400px;
+  text-align:center;
+  width: 265px;
+  height: 121.5px;
   display: inline-block;
   position: relative;
 }
 
 .menuImg{
-  background-image: url(../../images/icon1.png);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 300px 300px;
-  width: 400px;
-  height: 400px;
+  width: 70px;
+  height: 70px;
 }
 
-.menuContent{
+.menuContent > P{
   position: absolute;
-  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 }
 
+.menuContent > P:first-child{
+	bottom: 20%;
+}
+
+.menuContent > P:last-child{
+	bottom: 5%;
+}
+
 .menu p{
+  display:block;
   font-size: 15px;
   text-align: center;
   line-height: 30px;
@@ -229,6 +248,7 @@ header h1 a{
 }
 
 .count{
+  width:100px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -328,7 +348,7 @@ header h1 a{
 .orderCount{
   position: relative;
   background-color: rgb(184, 213, 218);
-  width: 450px;
+  width: 250px;
   height: 60px;
   border-radius: 5px;
 }
@@ -373,22 +393,22 @@ header h1 a{
   width: 130px;
   height: 125px;
   top: 10px;
-  right: 560px;
+  right: 390px;
   background-color: rgb(105,132,137);
   color: white;
 }
 
 #cuponBtn{
-  width: 250px;
+  width: 180px;
   height: 125px;
   top: 10px;
-  right: 285px;
+  right: 200px;
   background-color: rgb(221, 144, 89);
   color: white;
 }
 
 #orderBtn{
-  width: 250px;
+  width: 180px;
   height: 125px;
   top: 10px;
   right: 10px;
