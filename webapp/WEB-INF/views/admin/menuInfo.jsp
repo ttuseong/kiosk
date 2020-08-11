@@ -36,7 +36,7 @@
 <div class="adminPage-body">
 	<div class="adminPage-Container">
 		<div class="adminPage-adminContent">
-			<div class="menuInfo-btnAndInfo">
+			<div class="adminPage-btnContainer menuInfo-btnAndInfo">
 				<!-- 메뉴정보 버튼 -->
 				<a href="${pageContext.request.contextPath}/admin/menuInfo">
 					<button type="button" class="btn btnMenuInfo adminActive"
@@ -62,7 +62,7 @@
 			<!-- 토핑 -->
 			<div class="adminPage-Content menuInfo-topingInfo"></div>
 			
-			<div class="menuInfo-submitBtnContainer">
+			<div class="adminPage-btnContainer menuInfo-submitBtnContainer">
 				<!-- 삭제 버튼 -->
 				<a href="#">
 					<button type="button" class="btn btnMenuInfoDel"

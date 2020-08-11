@@ -18,4 +18,13 @@
 
 .menuInfo-submitBtnContainer {
 	margin-top: 50px;
+	text-align: center;
+}
+
+.menuInfo-submitBtnContainer button{
+	margin: 0 10px 0 10px !important;
+}
+
+.btnMenuInfoComplete {
+	background-color: #fbe700!important;
 }
