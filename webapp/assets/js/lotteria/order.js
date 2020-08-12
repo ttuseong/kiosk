@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	
+	
 	$(".menu").on("click",function(){
 		var no = $(this).data("no");
 		console.log(no);
@@ -48,5 +49,4 @@ $(document).ready(function() {
 	$("#modalName-onlyBurger").on("click", function(){
 		$("#modalName-body").modal('hide');
 	})
-
 });

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,10 +44,14 @@
 		<div id="wrapper">
 			<!--탭 메뉴 영역 -->
 			<ul class="tabs">
-				<li><a href="#tab1">착한점심</a></li>
+				<!-- <li><a href="#tab1">착한점심</a></li>
 				<li><a href="#tab2">추천메뉴</a></li>
 				<li><a href="#tab3">햄버거</a></li>
-				<li><a href="#tab4">디저트/치킨</a></li>
+				<li><a href="#tab4">디저트/치킨</a></li> -->
+				
+				<c:forEach items="${categoryList}" var="vo" varStatus="i">
+					<li><a href="#tab${status.count}">${ vo.categoryName}</a></li>
+				</c:forEach>
 			</ul>
 
 			<!--탭 콘텐츠 영역 -->
@@ -62,6 +68,7 @@
 							<div class="menu-price">7,900</div>
 						</div>
 					</div>
+					
 					<div class="menu" data-no="21">
 						<div class="menu-img">
 							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
@@ -98,27 +105,34 @@
 							<div class="menu-price">4,000</div>
 						</div>
 					</div>
-
-
 				</div>
 
-				<div id="tab2" class="tab_content">
-					<!--Content-->
+
+
+
+
+
+
+
+
+
+<!-- 				<div id="tab2" class="tab_content">
+					Content
 					<h1>tab2영역</h1>
 					내용 내용 내용 내용 내용 내용
 				</div>
 
 				<div id="tab3" class="tab_content">
-					<!--Content-->
+					Content
 					<h1>tab2영역</h1>
 					내용 내용 내용 내용 내용 내용
 				</div>
 
 				<div id="tab4" class="tab_content">
-					<!--Content-->
+					Content
 					<h1>tab2영역</h1>
 					내용 내용 내용 내용 내용 내용
-				</div>
+				</div> -->
 
 			</div>
 
