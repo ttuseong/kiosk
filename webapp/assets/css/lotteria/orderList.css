@@ -110,3 +110,13 @@
 .margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
 .btn1{height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;}
 .btn2{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}
+
+/* 선택관련 css */
+
+.selectDisable{
+	opacity: 0.3;
+}
+
+.selectOption{
+	opacity: 1;
+}

@@ -161,49 +161,55 @@
 					<!-- 포장을선택 -->
 					<div id="selectPackage">
 						<div class="subtitle">Step 1 포장을 선택하세요.</div>
-	
-						<div class="img-inline_block border-right">
-							<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
+						
+						<div>
+							<div class="img-inline_block border-right">
+								<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
+							</div>
+		
+							<div class="img-inline_block width49">
+								<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
+							</div>
+							
 						</div>
-	
-						<div class="img-inline_block width49">
-							<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
-						</div>
-					</div>
+											</div>
 					<!-- 포장을선택 -->
 					
 					<!-- 적립을 선택 -->
-					<div id="discount">
+					<div id="discount" class="selectDisable">
 						<div class="subtitle">Step 2 할인/적립을 선택하세요.</div>
-						<div class="img-inline_block img-3size">
-							<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" class="height100">
-						</div>
-						<div class="img-inline_block img-3size">
-							<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" class="height100">
-						</div>
-						<div class="img-inline_block img-3size">
-							<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" class="height100">
+						
+						<div>
+							<div class="img-inline_block img-3size selectOptiong">
+								<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" class="height100">
+							</div>
+							<div class="img-inline_block img-3size">
+								<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" class="height100">
+							</div>
+							<div class="img-inline_block img-3size">
+								<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" class="height100">
+							</div>
 						</div>
 					</div>
 					<!-- 적립을 선택 -->
 					
 					<!-- 결제를 선택 -->
-					<div id="payment">	
+					<div id="payment" class="selectDisable">	
 						<div class="subtitle">Step 3 결제를 선택하세요.</div>
-						<div class="img-inline_block img-3size">
-							<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" class="height100">
-						</div>
-						<div class="img-inline_block img-3size">
-							<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" class="height100">
-						</div>
-						<div class="img-inline_block img-vertical">
-							<div class="img-2size">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" class="height99">
+						
+						<div>
+							<div class="img-inline_block img-3size">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" class="height100">
 							</div>
-							<div class="img-2size">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" class="height99">
+							<div class="img-inline_block img-3size">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" class="height100">
+							</div>
+							<div class="img-inline_block img-vertical">
+								<img class="img-2size" src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" class="height99">
+								<img class="img-2size" src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" class="height99">
 							</div>
 						</div>
+						
 					</div>
 					<!-- 결제를 선택 -->
 					
