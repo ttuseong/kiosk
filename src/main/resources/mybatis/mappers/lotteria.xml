@@ -4,9 +4,35 @@
 <mapper namespace="lotteria">
 	<select id="categoryList" resultType="com.javaex.vo.LotteriaVo">
 		<![CDATA[
-			select categoryNo, categoryName from category where storeNo=2
+			select categoryNo, categoryName from category where storeNo=2 order by categoryNo asc
 		]]>
-
+	</select>
+	
+	<select id="firstCategoryNo" resultType="int">
+		<![CDATA[
+			select min(categoryNo) from category where storeNo=2
+		]]>
+	</select>
+	
+	<select id="list" resultType="com.javaex.vo.LotteriaVo" parameterType="int">
+		<![CDATA[
+			 SELECT      
+                c.categoryNo categoryNo,
+				c.categoryName categoryName,
+				sm.setName setName,
+				sm.setPrice setPrice,
+				sm.setDesc setDesc,
+				sm.setImg setImg,
+				sm.setNo setNo
+			FROM
+				store s,
+				category c,
+				setMenu sm
+			where s.storeNo = 2
+			and s.storeNo = c.storeNo
+			and c.categoryNo = sm.categoryNo
+            and c.categoryNo = #{categoryNo}
+		]]>
 	</select>
 
 </mapper>

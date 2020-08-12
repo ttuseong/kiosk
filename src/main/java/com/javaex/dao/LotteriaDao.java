@@ -17,5 +17,13 @@ public class LotteriaDao {
 	public List<LotteriaVo> categoryList(){
 		return sqlSession.selectList("lotteria.categoryList");
 	}
+
+	public int firstCategoryNo() {
+		return sqlSession.selectOne("lotteria.firstCategoryNo");
+	}
+	
+	public List<LotteriaVo> list(int categoryNo){
+		return sqlSession.selectList("lotteria.list", categoryNo);
+	}
 	
 }

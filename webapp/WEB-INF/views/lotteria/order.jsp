@@ -44,21 +44,18 @@
 		<div id="wrapper">
 			<!--탭 메뉴 영역 -->
 			<ul class="tabs">
-				<!-- <li><a href="#tab1">착한점심</a></li>
-				<li><a href="#tab2">추천메뉴</a></li>
-				<li><a href="#tab3">햄버거</a></li>
-				<li><a href="#tab4">디저트/치킨</a></li> -->
 				
 				<c:forEach items="${categoryList}" var="vo" varStatus="i">
-					<li><a href="#tab${status.count}">${ vo.categoryName}</a></li>
+					<li><a href="#tab${i.count}">${ vo.categoryName}</a></li>
 				</c:forEach>
 			</ul>
 
 			<!--탭 콘텐츠 영역 -->
-			<div class="tab_container">
+			<div class="tab_container" id="tab_menu">
 
-				<div id="tab1" class="tab_content">
+<%-- 				<div id="tab1" class="tab_content">
 					<!--Content-->
+					
 					<div class="menu" data-no="21">
 						<div class="menu-img">
 							<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width=" 100%">
@@ -108,15 +105,7 @@
 				</div>
 
 
-
-
-
-
-
-
-
-
-<!-- 				<div id="tab2" class="tab_content">
+ 				<div id="tab2" class="tab_content">
 					Content
 					<h1>tab2영역</h1>
 					내용 내용 내용 내용 내용 내용
@@ -132,7 +121,7 @@
 					Content
 					<h1>tab2영역</h1>
 					내용 내용 내용 내용 내용 내용
-				</div> -->
+				</div> --%>
 
 			</div>
 
@@ -354,6 +343,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	
+</div>	
 </body>
+
 </html>

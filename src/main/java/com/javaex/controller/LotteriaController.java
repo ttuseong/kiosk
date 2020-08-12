@@ -30,7 +30,6 @@ public class LotteriaController {
 	@RequestMapping("/order")
 	public String order(Model model) {
 		List<LotteriaVo> list = lotteriaService.categoryList();
-		System.out.println(list.toString());
 		model.addAttribute("categoryList", list);
 		return "/lotteria/order";
 	}

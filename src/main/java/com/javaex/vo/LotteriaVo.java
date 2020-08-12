@@ -8,9 +8,10 @@ public class LotteriaVo {
 	private int setPrice;
 	private String setDesc;
 	private String setImg;
+	private int setNo;
 	
 	public LotteriaVo() {}
-	public LotteriaVo(int categoryNo, String categoryName, String setName, int setPrice, String setDesc, String setImg) {
+	public LotteriaVo(int categoryNo, String categoryName, String setName, int setPrice, String setDesc, String setImg, int setNo) {
 		super();
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
@@ -18,6 +19,7 @@ public class LotteriaVo {
 		this.setPrice = setPrice;
 		this.setDesc = setDesc;
 		this.setImg = setImg;
+		this.setNo = setNo;
 	}
 	
 	public int getCategoryNo() {
@@ -56,10 +58,17 @@ public class LotteriaVo {
 	public void setSetImg(String setImg) {
 		this.setImg = setImg;
 	}
-
+	public int getSetNo() {
+		return setNo;
+	}
+	public void setSetNo(int setNo) {
+		this.setNo = setNo;
+	}
 	@Override
 	public String toString() {
 		return "LotteriaVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", setName=" + setName
-				+ ", setPrice=" + setPrice + ", setDesc=" + setDesc + ", setImg=" + setImg + "]";
+				+ ", setPrice=" + setPrice + ", setDesc=" + setDesc + ", setImg=" + setImg + ", setNo=" + setNo + "]";
 	}
+	
+	
 }

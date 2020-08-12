@@ -17,4 +17,8 @@ public class LotteriaService {
 	public List<LotteriaVo> categoryList(){
 		return lotteriaDao.categoryList();
 	}
+	
+	public List<LotteriaVo> list(){
+		return lotteriaDao.list(lotteriaDao.firstCategoryNo());
+	}
 }
