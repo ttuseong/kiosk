@@ -1,15 +1,13 @@
 @charset "UTF-8";
 
-.menuInfo-btnAndInfo {	
-	width: 600px;
+.menuInfo-menuInfoContainer {
 	margin-bottom: 30px;
 }
 
 /* 메뉴 정보 */
 .menuInfo-menuInfo {	
-	width: 600px !important;
+	width: 870px !important;
 	min-height: 250px !important;
-	background: #fafceb;
 }
 
 /* 토핑 정보 */
@@ -32,21 +30,27 @@
 	background-color: #fbe700!important;
 }
 
-.menuInfo-menuCateAndImg {
+.menuInfo-menuCateAndImgContainer {
+    width: 200px;
 	display: inline-block;
+	background-color: red;
+	margin-right: 25px;
+	vertical-align: top;
 }
 
-.menuInfo-btnAndInfo {
+.menuInfo-btnAndInfoContainer {
 	display: inline-block;
+	background-color: blue;
+	vertical-align: top;
 }
 
 /* 드롭다운 */
-.menuInfo-menuCateAndImg > .dropdown > .btn, .dropdown-menu{
+.menuInfo-menuCateAndImgContainer > .dropdown > .btn, .dropdown-menu{
 	width: 200px;
 }
 
 /* 이미지 */
-.menuInfo-menuCateAndImg img {
+.menuInfo-menuCateAndImgContainer img {
 	width: 200px;
 	height: 200px;
 	margin: 15px 0 15px 0;
@@ -54,7 +58,36 @@
 
 /* 파일 업로드 인풋 */
 #menuInfo-menuImgInput {
-	width: 200px;
-	height: 50px;
+	width: 175px;
+    margin: auto;
 }
 
+.cateIcon {
+	position: relative;
+	min-width: 130px;
+	height: 35px;
+	border-radius: 20px;
+	background-color: #52a37b;
+	display: table-cell;
+	margin: 15px;
+	padding: 0 50px;
+	color: white;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.menuCate-cateName {
+	display:inline-block;
+	vertical-align: middle;
+}
+
+.menuCate-cateDel {	
+	font-size: 20px;
+	color: red;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+	
+}
