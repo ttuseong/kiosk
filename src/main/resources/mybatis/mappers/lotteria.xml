@@ -8,12 +8,6 @@
 		]]>
 	</select>
 	
-	<select id="firstCategoryNo" resultType="int">
-		<![CDATA[
-			select min(categoryNo) from category where storeNo=2
-		]]>
-	</select>
-	
 	<select id="list" resultType="com.javaex.vo.LotteriaVo" parameterType="int">
 		<![CDATA[
 			 SELECT      
@@ -34,5 +28,21 @@
             and c.categoryNo = #{categoryNo}
 		]]>
 	</select>
-
+	
+	<select id="menuList" resultType="com.javaex.vo.LotteriaVo">
+	<![CDATA[
+		select sm.setNo setNo, 
+			   sm.categoryNo categoryNo, 
+			   sm.setName setName, 
+			   sm.setPrice setPrice, 
+			   sm.setImg setImg, 
+			   sm.setDesc setDesc, 
+			   c.storeNo storeNo 
+		from setMenu sm, 
+			 category c 
+		where sm.categoryNo= c.categoryNo 
+		and c.storeNo=2
+	]]>
+	</select>
+	
 </mapper>

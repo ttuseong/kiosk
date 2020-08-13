@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,14 +20,13 @@ public class ApiLotteriaController {
 	
 	@ResponseBody
 	@RequestMapping("/list")
-	public List<LotteriaVo> list(){
+	public List<LotteriaVo> list(@RequestBody LotteriaVo lotteriaVo){
 		System.out.println("api list Controller");
+		List<LotteriaVo> list = lotteriaService.list(lotteriaVo);
 		
-		List<LotteriaVo> list = lotteriaService.list();
-		
-		for(LotteriaVo vo: list) {
+		/*for(LotteriaVo vo: list) {
 			System.out.println(vo.toString());
-		}
+		}*/
 		
 		return list;
 	}
