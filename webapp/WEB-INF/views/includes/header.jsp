@@ -1,22 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link href="${pageContext.request.contextPath }/assets/css/main/main.css" rel="stylesheet" type="text/css">
-
-<div class="row bgColor">
-	<div class="col-md-4">
-		<div class="mainLogo"><a href="${pageContext.request.contextPath}/">로고자리</a></div>
-	</div>
-	<div class="col-md-4">
-		<div class="d1">
-			<form>
-				<input type="text" placeholder="검색어 입력">
-				<button type="submit"></button>
-			</form>
+<link href="${pageContext.request.contextPath }/assets/css/main/index.css" rel="stylesheet" type="text/css">
+	<div class="main-headerContainer">
+		<div class="main-mainLogo">
+			<a href="#">
+				<img src="${pageContext.request.contextPath}/assets/images/icon1.png">
+			</a>
 		</div>
-
-	</div>
-	<div class="col-md-4">
-		<div class="login"><a href="#">관리자로그인</a></div>
+		
+		<div class="main-headerSearchInputAndBtn">
+			<input type="text" class="main-headerSearchInput" value="검색">
+			<button type="submit" class="btn main-headerSearchBtn"></button>
+		</div>
+		
+		<div class="main-headerAdminLogin">
+			<p>관리자로그인</p>
+		</div>
 	</div>
 </div>

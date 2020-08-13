@@ -38,7 +38,7 @@
 		<div class="adminPage-adminContent">
 		
 			<div class="menuInfo-menuInfoContainer">
-				<div class="menuInfo-menuCateAndImg"> <!-- 드롭다운 및 이미지 관리 -->
+				<div class="menuInfo-menuCateAndImgContainer"> <!-- 드롭다운 및 이미지 관리 -->
 					<!-- 드롭다운 -->
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -56,35 +56,52 @@
 					<img src="#" class="img-rounded">
 					
 					<input id="menuInfo-menuImgInput" type="file"/>
-				</div>
-			
-				<div class="adminPage-btnContainer menuInfo-btnAndInfo">  <!-- 메뉴 버튼 및 정보 관리 -->
-					<!-- 메뉴정보 버튼 -->
-					<a href="${pageContext.request.contextPath}/admin/menuInfo">
-						<button type="button" class="btn btnMenuInfo adminActive"
-							id="menuInfo-btnMenuInfo">메뉴정보</button>
-					</a>
-	
-					<!-- 카테고리 버튼 -->
-					<a href="${pageContext.request.contextPath}/admin/menuCate">
-						<button type="button" class="btn btnMenuCate"
-							id="menuInfo-btnMenuCate">카테고리</button>
-					</a>
-	
-					<!-- 통계 버튼 -->
-					<a href="${pageContext.request.contextPath}/admin/menuStats">
-						<button type="button" class="btn btnMenuStats"
-							id="menuInfo-btnMenuStats">통계</button>
-					</a>
-	
+				</div><!-- menuInfo-menuCateAndImg -->
+				
+				<div class="menuInfo-btnAndInfoContainer"> <!-- 버튼과 메뉴정보를 담는 켄터이너 -->
+					<div class="adminPage-btnContainer">  <!-- 메뉴 버튼 css -->
+						<!-- 메뉴정보 버튼 -->
+						<a href="${pageContext.request.contextPath}/admin/menuInfo">
+							<button type="button" class="btn btnMenuInfo adminActive"
+								id="menuInfo-btnMenuInfo">메뉴정보</button>
+						</a>
+		
+						<!-- 카테고리 버튼 -->
+						<a href="${pageContext.request.contextPath}/admin/menuCate">
+							<button type="button" class="btn btnMenuCate"
+								id="menuInfo-btnMenuCate">카테고리</button>
+						</a>
+		
+						<!-- 통계버튼 -->
+						<a href="${pageContext.request.contextPath}/admin/menuStats">
+							<button type="button" class="btn btnMenuStats"
+								id="menuInfo-btnMenuStats">통계</button>
+						</a>
+					</div>
+					
 					<!-- 메뉴이름, 가격, 칼로리, 설명 등 -->
 					<div class="adminPage-Content menuInfo-menuInfo">		
+						
 					</div>
 				</div>
 			</div> <!-- menuInfo-menuInfoContainer -->
 
 			<!-- 토핑 -->
-			<div class="adminPage-Content menuInfo-topingInfo"></div>
+			<div class="adminPage-Content menuInfo-topingInfo">	
+				<p>알랄랄</p>
+				<div class="cateIcon">
+					<div class="menuCate-cateName">단품/세트/박스단품/세트/박스</div>
+					<div class="icon-cancel menuCate-cateDel"></div>
+				</div>
+				<div class="cateIcon">
+					<div class="menuCate-cateName">음료</div>
+					<div class="icon-cancel menuCate-cateDel"></div>
+				</div>
+				<div class="cateIcon">
+					<div class="menuCate-cateName">디저트</div>
+					<div class="icon-cancel menuCate-cateDel"></div>
+				</div>
+			</div>
 			
 			<div class="adminPage-btnContainer menuInfo-submitBtnContainer">
 				<!-- 삭제 버튼 -->
@@ -99,9 +116,10 @@
 						id="btnMenuInfoComplete">완료</button>
 				</a>
 			</div>
-		</div>
-	</div>
-</div>
+			
+		</div> <!-- adminPage-adminContent -->
+	</div> <!-- adminPage-Container -->
+</div> <!-- adminPage-body -->
 
 <!-- 풋터 -->
 <div class="adminPage-footer">
