@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.width800height1200{width:800px;height:1200;}
+.width800height1200{width:800px;height:1200;background-color: white;}
 
 body a{ text-decoration: none; }
 body a:hover{ text-decoration: none; }
