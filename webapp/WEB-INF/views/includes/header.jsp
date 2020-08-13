@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link href="${pageContext.request.contextPath }/assets/css/main/index.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/extrafontello/fontello/css/fontello.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fontello/css/fontello.css">
 	
 	<div class="main-headerContainer">	
 			<div class="main-mainLogo">
@@ -12,7 +12,7 @@
 			
 			<div class="main-headerSearchInputAndBtn">
 				<input type="text" class="main-headerSearchInput" value="검색">
-				<button type="submit" class="btn main-headerSearchBtn"><i class="icon-search-1"></i></button>
+				<button type="submit" class="btn main-headerSearchBtn icon-search" id="main-headerSearch"></button>
 			</div>
 			
 			<div class="main-headerAdminLogin">

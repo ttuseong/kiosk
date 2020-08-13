@@ -9,5 +9,7 @@
 .icon-search:before { content: '\e807'; } /* '' */
 .icon-volume-high:before { content: '\e808'; } /* '' */
 .icon-left-small:before { content: '\e809'; } /* '' */
+.icon-cancel-1:before { content: '\e80a'; } /* '' */
+.icon-search-1:before { content: '\e80b'; } /* '' */
 .icon-won:before { content: '\f159'; } /* '' */
 .icon-wheelchair:before { content: '\f193'; } /* '' */

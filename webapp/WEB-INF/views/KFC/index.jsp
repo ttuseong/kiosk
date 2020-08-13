@@ -188,20 +188,5 @@
 </body>
 
 
-<<<<<<< HEAD
-
-<script type="text/javascript">
-/* 
-	$(document).ready(function(){
-		$("#hamburgerBoxSideMenu").modal();
-	}); */
-</script>
-
-=======
-<%-- 
-<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/main.js"></script>
- --%>
->>>>>>> 6268f70... KFC 메인 페이지 디비 연동 및 페이징
-
 
 </html>

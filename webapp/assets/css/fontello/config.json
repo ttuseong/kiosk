@@ -77,6 +77,18 @@
       "css": "wheelchair",
       "code": 61843,
       "src": "fontawesome"
+    },
+    {
+      "uid": "8da3ac534210aae9c0f0e13804c1df97",
+      "css": "cancel-1",
+      "code": 59402,
+      "src": "websymbols"
+    },
+    {
+      "uid": "7222571caa5c15f83dcfd447c58d68d9",
+      "css": "search-1",
+      "code": 59403,
+      "src": "entypo"
     }
   ]
 }
