@@ -235,10 +235,10 @@
 
 
 <script type="text/javascript">
-
+/* 
 	$(document).ready(function(){
 		$("#hamburgerBoxSideMenu").modal();
-	});
+	}); */
 </script>
 
 

@@ -2,7 +2,8 @@
 
 body {
 	background-color: #f5f5f6;
-	text-align: center:	
+	text-align: center;
+	min-width:800px;
 }
 
 a:link { color: black; text-decoration: none;}
@@ -10,10 +11,10 @@ a:visited { color: black; text-decoration: none;}
 a:hover { color: black; text-decoration: none;}
 
 .main-headerContainer {
+	position:relative;
 	width: 100%;
 	min-height: 65px;
 	margin-bottom: 20px;
-	padding: 20px;
 	background-color: white;
 	border-bottom: solid 3px #1CC88A;
 	box-shadow: 0 0 15px 5px #dfe0e5;
@@ -22,12 +23,27 @@ a:hover { color: black; text-decoration: none;}
 .main-headerContainer div {
 	display: inline-block;	
 }
+.main-mainLogo {
+	position:absolute;
+	top: 50%;
+	left: 3%;
+	transform:translateY(-50%);	
+}
+
+
+.main-headerCombine div	{
+	position: relative;
+}
 
 .main-mainLogo img {
 	height: 40px;
 }
 
 .main-headerSearchInputAndBtn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .main-headerSearchInput {	
@@ -47,11 +63,34 @@ a:hover { color: black; text-decoration: none;}
 	border-radius: 0 5px 5px 0;
 }
 
+.icon-search-1 {
+  width: 20px;
+  height: 20px;
+  background-color: #1CC88A;
+  color: white;
+}
+
 .main-headerAdminLogin{
+	position: absolute;
+	top: 50%;
+	right: 3%;
+	transform: translateY(-50%);
 	font-weight: bold;
 	color: #1CC88A;
 	font-size: 18px;
+	
 }
 
 /* ---------------------------------------------- */
+
+.main-footerContainer {
+	width: 100%;
+	min-height: 80px;
+	margin-top: 20px;
+	padding: 20px;
+	background-color: white;
+	border-top: solid 3px #1CC88A;
+	box-shadow: -15px 0 15px 0 #dfe0e5;
+	text-align: center;
+}
 
