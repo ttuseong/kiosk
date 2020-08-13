@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kfc">
+	<select id="selectCateList" resultType="com.javaex.vo.KFCCategoryVo">
+		<![CDATA[
+			SELECT
+			    c.categoryNo,
+			    c.categoryName,
+			    c.publicYN,
+			    c.isSet
+			FROM
+			    store s,
+			    category c
+			where
+			    s.storeName = 'KFC'
+			and
+			    s.storeno = c.storeno
+			order by c.categoryno asc
+		]]>
+	</select>
+	<select id="selectMenuList" resultType="com.javaex.vo.KFCMenuVo" parameterType="com.javaex.vo.KFCPageVo">
+		<![CDATA[
+			SELECT
+			    rn,
+			    menuNo,
+			    menuName,
+			    menuDesc,
+			    menuPrice,
+			    menuImg
+			FROM
+			    (SELECT
+			            rownum rn,
+			            menuNo,
+			            menuName,
+			            menuDesc,
+			            menuPrice,
+			            menuImg
+			        FROM
+			            (SELECT
+			                    menuNo,
+			                    menuName,
+			                    menuDesc,
+			                    menuPrice,
+			                    menuImg
+			                FROM
+			                    menu
+			                where
+			                    categoryNo = #{categoryNo}))
+			where
+			    rn >= #{startPoint}
+			and
+			    rn <= #{endPoint}
+		]]>
+	</select>
+	
+	<select id="selectCountMenu" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT
+			    count(menuNo)
+			FROM
+			    menu
+			where
+			    categoryNo = #{categoruNo}
+		]]>
+	</select>
+</mapper>

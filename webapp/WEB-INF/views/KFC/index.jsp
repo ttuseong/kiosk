@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="utf-8">
 <title></title>
@@ -41,99 +41,54 @@
 		<section id="categorySection">
 			<nav id="category">
 				<ul>
-					<li class="categoryColorRed">
-						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<p>매장행사</p>
+				<c:forEach items="${map.cateList }" var="cateVo">
+					<c:choose>
+						<c:when test="${cateVo.isSet==1 }">
+							<li class="categoryColorRed">
+						</c:when>
+						<c:otherwise>
+							<li class="categoryColorWhite">
+						</c:otherwise>
+					</c:choose>
+						<a href="${pageContext.request.contextPath}/KFC/index?categoryNo=${cateVo.categoryNo}">
+							<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<p>${cateVo.categoryName }</p>
+						</a>
 					</li>
-					<li class="categoryColorRed">
-						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<p>신메뉴</p>
-					</li>
-					<li class="categoryColorWhite">
-						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<p>치킨</p>
-					</li>
-					<li class="categoryColorWhite currentSelect">
-						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<p>버거/세트/박스</p>
-					</li>
-					<li class="categoryColorWhite">
-						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<p>사이드</p>
-					</li>
-					<li class="categoryColorWhite">
-						<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<p>음료</p>
-					</li>
-					
+				</c:forEach>
 				</ul>
 			</nav>
 		</section>
 		<section id="menuSection">
 			<nav>
 				<ul>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
-					<li class="menu">
-						<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<div class="menuContent">
-							<p>징거버거</p>
-							<p>5600원</p>
-						</div>
-					</li>
+					<c:forEach items="${map.menuList}" var="menuVo">
+						<li class="menu">
+							<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<div class="menuContent">
+								<p>${menuVo.menuName}</p>
+								<p>${menuVo.menuPrice}</p>
+							</div>
+						</li>
+					</c:forEach>
 				</ul>
 			</nav>
 		</section>
 
 		<section id="pageSection">
 			<div id="pagecontainer">
-				<button id="btnLeft" class="btnPage" type="button">이전</button>
+				<a id="btnLeft" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage - 1}">이전</a>
 				<ul id="pageCircleGroup">
-					<li><div class="pageCircle pageActive">1</div></li>
-					<li><div class="pageCircle">1</div></li>
-					<li><div class="pageCircle">1</div></li>
+					<c:forEach var="current" begin="1" end="${map.menuMaxCount }">
+						<li><div class="pageCircle 
+						<c:if test="${map.currentPage == current }">
+							pageActive
+						</c:if>
+						
+						">${current}</div></li>
+					</c:forEach>
 				</ul>
-				<button id="btnRight" class="btnPage" type="button">다음</button>
+				<a id="btnRight" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage + 1}">다음</a>
 			</div>
 		</section>
 
@@ -233,6 +188,7 @@
 </body>
 
 
+<<<<<<< HEAD
 
 <script type="text/javascript">
 /* 
@@ -241,6 +197,11 @@
 	}); */
 </script>
 
+=======
+<%-- 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/main.js"></script>
+ --%>
+>>>>>>> 6268f70... KFC 메인 페이지 디비 연동 및 페이징
 
 
 </html>

@@ -3,6 +3,7 @@ body{
 }
 
 #kfc{
+  background-color:white;
   margin: 0 auto;
   width: 800px;
   position: relative;
@@ -46,12 +47,19 @@ body{
   font-size: 0;
   position: relative;
 }
+
+
 #category ul li{
   position: relative;
   display: inline-block;
   width: 128.5px;
   height: 128.5px;
   margin-right: 5px;
+}
+
+#category ul li > a{
+	display: block;
+	height: 128.5px;
 }
 
 #category ul li:last-child{
