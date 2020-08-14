@@ -18,16 +18,4 @@ public class ApiLotteriaController {
 	@Autowired
 	LotteriaService lotteriaService;
 	
-	@ResponseBody
-	@RequestMapping("/list")
-	public List<LotteriaVo> list(@RequestBody LotteriaVo lotteriaVo){
-		System.out.println("api list Controller");
-		List<LotteriaVo> list = lotteriaService.list(lotteriaVo);
-		
-		/*for(LotteriaVo vo: list) {
-			System.out.println(vo.toString());
-		}*/
-		
-		return list;
-	}
 }

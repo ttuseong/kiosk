@@ -18,12 +18,12 @@ public class LotteriaDao {
 		return sqlSession.selectList("lotteria.categoryList");
 	}
 
-	public List<LotteriaVo> list(int categoryNo){
-		return sqlSession.selectList("lotteria.list", categoryNo);
-	}
-	
 	public List<LotteriaVo> menuList(){
 		return sqlSession.selectList("lotteria.menuList");
+	}
+	
+	public List<LotteriaVo> cateNo4(){
+		return sqlSession.selectList("lotteria.cateNo4");
 	}
 	
 }

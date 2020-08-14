@@ -18,11 +18,11 @@ public class LotteriaService {
 		return lotteriaDao.categoryList();
 	}
 	
-	public List<LotteriaVo> list(LotteriaVo lotteriaVo){
-		return lotteriaDao.list(lotteriaVo.getCategoryNo());
-	}
-	
 	public List<LotteriaVo> menuList(){
 		return lotteriaDao.menuList();
+	}
+	
+	public List<LotteriaVo> cateNo4(){
+		return lotteriaDao.cateNo4();
 	}
 }

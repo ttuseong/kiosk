@@ -67,12 +67,27 @@
 							</div>
 							</c:if>
 						</c:forEach>
+						
+						<c:if test="${vo.categoryNo eq 4}">
+							<c:forEach items="${cateNo4Menu }" var="cateNo4">
+
+								<div class="menu">
+									<div class="menu-img">
+										<img src="${pageContext.request.contextPath}/upload/${cateNo4.menuImg }" width=" 100%">
+									</div>
+									<div class="menu-text">
+										<div>${cateNo4.menuName}</div>
+										<div class="menu-price">${cateNo4.menuPrice}</div>
+									</div>
+								</div>
+							</c:forEach>
+  						</c:if>
+
 					</div>
 				</c:forEach>
-				<!--Content-->
-
-
 			</div>
+				<!--Content-->
+			
 			<table class="table-center">
 				<colgroup>
 					<col width="33%">
@@ -148,11 +163,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- 풋터 -->
-		<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
-		<!-- 풋터 -->
-
-
 
 
 
@@ -299,6 +309,10 @@
 		</div>
 		<!-- /.modal -->
 	</div>
+	
+	<!-- 풋터 -->
+	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
+	<!-- 풋터 -->
 </body>
 
 </html>
