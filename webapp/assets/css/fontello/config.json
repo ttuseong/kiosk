@@ -49,12 +49,6 @@
       "src": "fontawesome"
     },
     {
-      "uid": "12f4ece88e46abd864e40b35e05b11cd",
-      "css": "ok",
-      "code": 59398,
-      "src": "fontawesome"
-    },
-    {
       "uid": "9dd9e835aebe1060ba7190ad2b2ed951",
       "css": "search",
       "code": 59399,
@@ -88,6 +82,12 @@
       "uid": "7222571caa5c15f83dcfd447c58d68d9",
       "css": "search-1",
       "code": 59403,
+      "src": "entypo"
+    },
+    {
+      "uid": "14017aae737730faeda4a6fd8fb3a5f0",
+      "css": "check",
+      "code": 59404,
       "src": "entypo"
     }
   ]

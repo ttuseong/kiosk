@@ -136,60 +136,59 @@
 			<div class="modal-header" id="selectModeHeader">
 				<div id="selectModeContainer">
 					<div id="buggerText">
-						<h1>징거더블다운맥스</h1>
-						<p>오직 치킨 통살구이로만 구성된 리얼 치킨버거</p>
+						<h1 id="selectModeMainName"></h1>
+						<p id="selectModeMainDesc"></p>
 					</div>
-					<img alt="버거 이미지"
+					<img id="selectModeMainImg" alt="버거 이미지"
 						src="${pageContext.request.contextPath}/assets/images/icon1.png">
 				</div>
 			</div>
 			<div class="modal-body">
-				<div class="selectModeBodyContainer">
+				<div class="selectModeBodyContainer" data-mode="1">
 					<div class="icon-check selectModeCheckBox">
 						<p>채크박스</p>
 					</div>
 					<div class="selectModeBodyContent">
-						<h2 class="selectModeName">징거더블다운박스</h2>
+						<h2 class="selectModeName" id="selectModeBoxName"></h2>
 						<div class="selectModeCompose">
 							<p>구성</p>
 						</div>
-						<p class="selectModeMenuGroup">징거버거더블다운맥스 + 사이드변경 + 음료 변경 + 치킨
-							변경</p>
-						<p class="selectModePrice">9,600</p>
+						<p class="selectModeMenuGroup" id="selectModeBoxConfig"></p>
+						<p class="selectModePrice" id="selectModeBoxPrice"></p>
 					</div>
-					<img alt=""
+					<img id="selectModeBoxImg" alt=""
 						src="${pageContext.request.contextPath}/assets/images/icon1.png">
 				</div>
 
-				<div class="selectModeBodyContainer">
+				<div class="selectModeBodyContainer" data-mode="2">
 					<div class="icon-check selectModeCheckBox">
 						<p>채크박스</p>
 					</div>
 					<div class="selectModeBodyContent">
-						<h2 class="selectModeName">징거더블다운맥스세트</h2>
+						<h2 class="selectModeName" id="selectModeSetName"></h2>
 						<div class="selectModeCompose">
 							<p>구성</p>
 						</div>
-						<p class="selectModeMenuGroup">징거버거더블다운맥스 + 사이드변경 + 음료 변경</p>
-						<p class="selectModePrice">8,500</p>
+						<p class="selectModeMenuGroup" id="selectModeSetConfig"></p>
+						<p class="selectModePrice" id="selectModeSetPrice"></p>
 					</div>
-					<img alt=""
+					<img id="selectModeSetImg" alt=""
 						src="${pageContext.request.contextPath}/assets/images/icon1.png">
 				</div>
 
-				<div class="selectModeBodyContainer">
+				<div class="selectModeBodyContainer" data-mode="3">
 					<div class="icon-check selectModeCheckBox">
 						<p>채크박스</p>
 					</div>
 					<div class="selectModeBodyContent">
-						<h2 class="selectModeName">징거더블다운맥스</h2>
+						<h2 class="selectModeName" id="selectModeNomalName"></h2>
 						<div class="selectModeCompose">
 							<p>구성</p>
 						</div>
-						<p class="selectModeMenuGroup">징거버거더블다운맥스</p>
-						<p class="selectModePrice">6,600</p>
+						<p class="selectModeMenuGroup" id="selectModeNomalCongig"></p>
+						<p class="selectModePrice" id="selectModeNomalPrice"></p>
 					</div>
-					<img alt=""
+					<img id="selectModeNomalImg" alt=""
 						src="${pageContext.request.contextPath}/assets/images/icon1.png">
 				</div>
 
@@ -199,7 +198,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btn-danger">완료</button>
+				<button type="button" class="btn btn-danger" id="selectedModecompleted">완료</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->

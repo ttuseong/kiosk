@@ -39,10 +39,13 @@ public class KFCService {
 		
 		int menuMaxCount = (int)Math.ceil((menuCount(kfcPageVo.getCategoryNo())/9.0));
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		map.put("currentPage", kfcPageVo.getCurrentPage());
 		map.put("menuMaxCount", menuMaxCount);
 		map.put("cateList", cateList);
 		map.put("menuList", menuList);
+		map.put("categoryNo", kfcPageVo.getCategoryNo());
+		
 		return map;
 	}
 
@@ -52,5 +55,9 @@ public class KFCService {
 	
 	public int menuCount(int categoruNo) {
 		return kfcDao.selectCountMenu(categoruNo);
+	}
+	
+	public KFCMenuVo selectMenu(int menuNo) {
+		return kfcDao.selectMenu(menuNo);
 	}
 }

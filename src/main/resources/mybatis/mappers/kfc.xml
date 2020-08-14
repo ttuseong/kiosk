@@ -64,4 +64,18 @@
 			    categoryNo = #{categoruNo}
 		]]>
 	</select>
+	<select id="selectMenu" resultType="com.javaex.vo.KFCMenuVo" parameterType="int">
+		<![CDATA[
+			SELECT
+				menuNo,
+			    menuName,
+			    menuDesc,
+			    menuPrice,
+			    menuImg
+			FROM
+			    menu
+			where
+			    menuNo=#{menuNo}
+		]]>
+	</select>
 </mapper>

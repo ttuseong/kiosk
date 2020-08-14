@@ -27,4 +27,8 @@ public class KFCDao {
 	public int selectCountMenu(int categoruNo) {
 		return sqlSession.selectOne("kfc.selectCountMenu", categoruNo);
 	}
+	
+	public KFCMenuVo selectMenu(int menuNo) {
+		return sqlSession.selectOne("kfc.selectMenu", menuNo);
+	}
 }

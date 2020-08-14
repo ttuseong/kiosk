@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/reset.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/main.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/KFC/modal.css">
-
+<link href="${pageContext.request.contextPath }/assets/css/main/index.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/fontello/css/fontello.css">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -63,7 +63,7 @@
 			<nav>
 				<ul>
 					<c:forEach items="${map.menuList}" var="menuVo">
-						<li class="menu">
+						<li class="menu" data-no="${menuVo.menuNo }">
 							<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 							<div class="menuContent">
 								<p>${menuVo.menuName}</p>
@@ -77,7 +77,7 @@
 
 		<section id="pageSection">
 			<div id="pagecontainer">
-				<a id="btnLeft" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage - 1}">이전</a>
+				<a id="btnLeft" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage - 1}&categoryNo=${map.categoryNo}">이전</a>
 				<ul id="pageCircleGroup">
 					<c:forEach var="current" begin="1" end="${map.menuMaxCount }">
 						<li><div class="pageCircle 
@@ -88,10 +88,10 @@
 						">${current}</div></li>
 					</c:forEach>
 				</ul>
-				<a id="btnRight" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage + 1}">다음</a>
+				<a id="btnRight" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage + 1}&categoryNo=${map.categoryNo}">다음</a>
 			</div>
 		</section>
-
+		
 		<section id="menuTableSection">
 			<div id="tableSize">
 				<table id="menuTable">
@@ -170,7 +170,7 @@
 				<div id="orderRigth">
 					<div id="allCancelBtn">전체취소</div>
 					<div id="cuponBtn">쿠폰</div>
-					<div id="orderBtn">주문</div>
+					<div id="orderBtn">주문</div>	
 				</div>
 			</div>
 		</section>
@@ -187,6 +187,12 @@
 	<!-- 풋터 -->
 </body>
 
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/main.js"></script>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#hamburgerBoxSideMenu").modal();
+	});
+</script>
 
 </html>
