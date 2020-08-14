@@ -1,93 +1,30 @@
 @charset "UTF-8";
 
-.menuInfo-menuInfoContainer {
-	margin-bottom: 30px;
-}
-
-/* 메뉴 정보 */
-.menuInfo-menuInfo {	
-	width: 870px !important;
-	min-height: 250px !important;
-}
-
-/* 토핑 정보 */
-.menuInfo-topingInfo {	
-	width: 1100px;
-	min-height: 700px !important;
-}
-
-.menuInfo-submitBtnContainer {
-	margin-top: 50px;
-	text-align: center;
-}
-
-/* 완료 및 삭제 버튼 */
-.menuInfo-submitBtnContainer button{
-	margin: 0 10px 0 10px !important;
-}
-
-.btnMenuInfoComplete {
-	background-color: #fbe700!important;
-}
-
-.menuInfo-menuCateAndImgContainer {
-    width: 200px;
-	display: inline-block;
-	background-color: red;
-	margin-right: 25px;
-	vertical-align: top;
-}
-
-.menuInfo-btnAndInfoContainer {
-	display: inline-block;
-	background-color: blue;
-	vertical-align: top;
-}
-
-/* 드롭다운 */
-.menuInfo-menuCateAndImgContainer > .dropdown > .btn, .dropdown-menu{
-	width: 200px;
-}
-
-/* 이미지 */
-.menuInfo-menuCateAndImgContainer img {
-	width: 200px;
-	height: 200px;
-	margin: 15px 0 15px 0;
-}
-
-/* 파일 업로드 인풋 */
-#menuInfo-menuImgInput {
-	width: 175px;
-    margin: auto;
-}
-
-.cateIcon {
+.manuInfo-menuInfoTitle {
 	position: relative;
-	min-width: 130px;
-	height: 35px;
-	border-radius: 20px;
-	background-color: #52a37b;
-	display: table-cell;
-	margin: 15px;
-	padding: 0 50px;
-	color: white;
-	text-align: center;
-	vertical-align: middle;
-}
-
-.menuCate-cateName {
-	display:inline-block;
-	vertical-align: middle;
-}
-
-.menuCate-cateDel {	
-	font-size: 20px;
-	color: red;
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
 	
+	height: 50px;
+	background-color: #f7f7fa;
+	border-radius: 5px 5px 0 0;
+	border-bottom: solid 1px #e9eaec;
+	color: #1CC88A;
+	font-size: 18px;
+}
+
+.manuInfo-menuInfoTitle > span {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+	
+.manuInfo-menuInfoContent {
+	min-height: 350px;
+	background-color: white;
+	border-radius: 0 0 5px 5px;
+}
+
+.manuInfo-contentContainer {
+    box-shadow: 1px 1px 25px 5px #dfe0e5;
+	border-radius: 5px;
 }
