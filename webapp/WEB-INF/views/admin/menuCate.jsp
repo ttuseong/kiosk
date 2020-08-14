@@ -8,8 +8,6 @@
 
 <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath }/assets/css/admin/menuCate.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath }/assets/css/admin/menuInfo.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/fontello/css/fontello.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/extrafontello/fontello/css/fontello.css">
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -48,22 +46,7 @@
 	</aside>
 	
 	<section class="adminPage-section">
-		<div class="adminPage-adminPageBody">
-			<div class="manuInfo-contentContainer">
-				<div class="manuInfo-menuInfoTitle bold">
-					<span>카테고리 정보</span>
-				</div>
-				
-				<div class="manuInfo-menuInfoContent manuCate-menuCateContent"> <!-- 내용 -->
-					
-					
-				</div>
-			</div>
-		</div>
-	
-		<!-- 푸터 -->
-		<jsp:include page="/WEB-INF/views/includes/adminFooter.jsp" />
-		<!-- 푸터 -->
+		<!-- 내용 -->
 	</section>
 </body>
 </html>

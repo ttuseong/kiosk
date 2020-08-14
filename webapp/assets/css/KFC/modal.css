@@ -623,6 +623,7 @@
 	text-align: center;
 }
 
+
 #menuSet {
 	display: inline-block;
 	margin:5px;
@@ -657,14 +658,17 @@
 	
 }
 
-#hamburgerBoxBody{
+.hamburgerBoxBody {
 	position: relative;
 }
 
 #hamburgerBoxBodyContainer{
 	position: absolute;
-	top: 30%;
-	transform:translateY(-30%);
+	top: 40%;
+	left:50%;
+	transform:translate(-50%, -40%);
+	text-align:center;
+	width: 800px;
 }
 
 /* 모달 푸터 */

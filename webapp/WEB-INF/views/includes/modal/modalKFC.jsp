@@ -244,7 +244,7 @@
 			<div class="modal-header hamburgerBoxHeader">
 				<jsp:include page="/WEB-INF/views/includes/modal/hamburgerBoxHeader.jsp" />
 			</div>
-			<div class="modal-body" id="hamburgerBoxBody">
+			<div class="modal-body hamburgerBoxBody">
 				<div id="hamburgerBoxBodyContainer">
 					<div class="menu-container" id="menuSet">
 						<img
@@ -260,29 +260,11 @@
 							src="${pageContext.request.contextPath}/assets/images/icon1.png"
 							class="img-responsive">
 						<div>
-							<p class="menuName">메뉴인데</p>
+							<p class="menuName">메뉴이름</p>
 						</div>
 						<button type="button" id="hamburgerBoxButton">버거재료 추가</button>
 					</div>
-					<div class="menu-container" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">유재학</p>
-						</div>
-						<button type="button" id="hamburgerBoxButton">버거재료 추가</button>
-					</div>
-					<div class="menu-container" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">재학버거</p>
-						</div>
-						<button type="button" id="hamburgerBoxButton">버거재료 추가</button>
-					</div>
-				</div>
+				</div>	
 			</div>
 			<div class="modal-footer" id="hamburgerSideFooter">
 				<button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
