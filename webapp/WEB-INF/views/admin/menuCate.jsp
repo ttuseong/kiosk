@@ -29,7 +29,7 @@
 		</div>
 		
 		<div class="adminPage-manuInfoBtn bold">
-			<div class="icon-right-open" id="menuInfoBtn-iconLeft"></div>
+			<div class="icon-right-open" id="menuInfoBtn-iconChoose"></div>
 			<a href="${pageContext.request.contextPath}/admin/menuCate">
 				<span>카테고리</span>
 			</a>
