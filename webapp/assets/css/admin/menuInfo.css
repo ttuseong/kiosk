@@ -22,7 +22,7 @@
 	min-height: 350px;
 	background-color: white;
 	border-radius: 0 0 5px 5px;
-    padding: 40px 115px;
+    padding: 40px 100px;
 }
 
 .manuInfo-menuInfoContent > div {
@@ -64,7 +64,7 @@
 /* 메뉴 기본 정보 */
 .menuInfo-basicInfoContainer {
 	width: 600px;
-	margin: 47px 0 0 30px;	
+	margin: 47px 0 0 55px;	
 }
 
 .menuInfo-basicInfoContainer > div {
