@@ -48,7 +48,6 @@
 			<div class="manuInfo-menuInfoContent"> <!-- 내용 -->
 			
 				<div class="menuInfo-menuCateAndImg"> <!-- 드롭다운 및 이미지 관리 -->
-
 					<div class="dropdown">
 					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 							카테고리를 선택하세요. <span class="caret"></span>
@@ -63,7 +62,30 @@
 					</div>
 
 					<img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="menuInfo-menuImg img-rounded">
-					<input id="menuInfo-menuImgInput" type="file"/>
+					<input id="menuInfo-menuImgInput" type="file" style="margin: auto;"/>
+				</div>
+				
+				<div class="menuInfo-basicInfoContainer">
+					
+					<!-- 기본 메뉴 정보 -->
+					<div class="menuInfo-basicInfo">
+						<p>메뉴이름</p> <input type="text" style="width: 150px;" value="메뉴이름" onfocus="this.value=''">
+						<p>가격</p> <input type="text" value="가격" onfocus="this.value=''">
+						<p>칼로리</p> <input type="text" value="칼로리" onfocus="this.value=''">
+					</div>
+					
+					<!-- 메뉴 참고사항 -->
+					<div class="menuInfo-menuDetails">
+						<p style="margin-right:10px;">참고사항</p>
+						<p class="normal">프로모션</p> <input type="checkbox">
+						<p class="normal">추천메뉴</p> <input type="checkbox">
+						<p class="normal">신메뉴</p> <input type="checkbox">
+					</div>
+					
+					<!-- 메뉴 설명 -->
+					<div class="menuInfo-menuDescription">
+						<p>메뉴설명</p> <textarea onfocus="this.value=''">메뉴 설명</textarea>
+					</div>
 				</div>
 				
 			</div>

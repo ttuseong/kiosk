@@ -12,7 +12,7 @@
 			</div>
 			
 			<div class="main-headerSearchInputAndBtn">
-				<input type="text" class="main-headerSearchInput" value="검색">
+				<input type="text" class="main-headerSearchInput" value="검색" onfocus="this.value=''">
 				<button type="submit" class="btn main-headerSearchBtn icon-search" id="main-headerSearch"></button>
 			</div>
 		

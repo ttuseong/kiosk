@@ -22,15 +22,88 @@
 	min-height: 350px;
 	background-color: white;
 	border-radius: 0 0 5px 5px;
+    padding: 40px 115px;
+}
+
+.manuInfo-menuInfoContent > div {
+	display: inline-block;
+	vertical-align: top;
 }
 
 .manuInfo-contentContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    
+    width: 90%;
     box-shadow: 1px 1px 25px 5px #dfe0e5;
-	border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* 카테고리 드롭다운, 이미지, 이미지업로드 인풋 */
+.menuInfo-menuCateAndImg {
+	width: 210px;
+	/* background-color: black; */
+	text-align: center;
+}
+
+.dropdown > button, li {
+	width: 208px;
+	text-align: center;
 }
 
 .menuInfo-menuImg {
 	width: 200px;
-	height: 200px;
-	margin: 15px 0 15px 0;
+	margin: 20px 0 20px 0;
+}
+
+#menuInfo-menuImgInput {
+	width: 170px;
+}
+
+/* 메뉴 기본 정보 */
+.menuInfo-basicInfoContainer {
+	width: 600px;
+	margin: 47px 0 0 30px;	
+}
+
+.menuInfo-basicInfoContainer > div {
+	margin: 10px 0 10px;
+	
+}
+
+.menuInfo-basicInfoContainer div > p, input {
+	display: inline-block;
+}
+
+.menuInfo-basicInfoContainer div > input {
+	color: gray;
+}
+
+.menuInfo-basicInfoContainer div > p {
+	font-weight: 750;
+	/* color: #1CC88A; */
+}
+
+.menuInfo-basicInfo > input {
+	width: 120px;
+	margin: 0 15px 0 10px;
+}
+
+.menuInfo-menuDetails > input {
+	width: 15px;
+	margin: 0 15px 0 5px;
+	vertical-align: middle;
+}
+
+.menuInfo-menuDescription > p {
+	float: left;	
+}
+
+.menuInfo-menuDescription > textarea {
+	width: 520px;
+	max-width: 520px;
+	height: 70px;
+	margin-left: 15px;
+	color: gray;
 }
