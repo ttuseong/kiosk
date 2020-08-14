@@ -6,6 +6,7 @@ body {
 	min-width: 1440px;
 	font-family: 'NanumSquare', sans-serif;
 	background-color: #f3f3f5;
+	min-width:1100px;
 }
 
 a:link { color: black; text-decoration: none;}
@@ -64,6 +65,7 @@ a:hover { color: black; text-decoration: none;}
 	transform: translate(-50%, -50%);
 }
 
+
 .main-headerSearchInput {	
 	width: 300px;
 	height: 40px;
@@ -120,6 +122,7 @@ a:hover { color: black; text-decoration: none;}
     min-height: 800px;
     float: left;
     padding: 30px;
+    min-width:250px;
 }
 
 .adminPage-manuInfoBtn span{
@@ -137,8 +140,19 @@ a:hover { color: black; text-decoration: none;}
 .adminPage-manuInfoBtn span {
 	position: absolute;
 	top: 50%;
-	left: 50%;
+	left: 40%;
 	transform: translate(-50%, -50%);
+}
+
+#menuInfoSpan-Stats {
+	position: absolute;
+	top: 50%;
+	left: 33%;
+	transform: translate(-50%, -50%);
+}
+
+.textAlign {
+	text-align: left!important;
 }
 
 /* section */
@@ -150,3 +164,28 @@ a:hover { color: black; text-decoration: none;}
 	padding: 40px;
 	box-shadow: 0 0 15px 5px #dfe0e5 inset;
 }
+
+#manuInfoBtn-iconRight {
+	position:absolute;
+	top: 20px;
+	left: 0;
+	color: #16a874;
+	float: right;
+	font-size:20px;
+}
+
+
+#menuInfoBtn-iconLeft {
+	position:absolute;
+	top: 20px;
+	right: 5px;
+	color: white;
+	float: left;
+	font-size:20px;
+}
+
+
+
+
+
+

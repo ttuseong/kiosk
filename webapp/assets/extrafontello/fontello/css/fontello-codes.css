@@ -1,2 +1,5 @@
 
-.icon-search-1:before { content: '\e802'; } /* '' */
+.icon-right-open:before { content: '\e800'; } /* '' */
+.icon-cog:before { content: '\e804'; } /* '' */
+.icon-list:before { content: '\e805'; } /* '' */
+.icon-chart-area:before { content: '\f1fe'; } /* '' */
