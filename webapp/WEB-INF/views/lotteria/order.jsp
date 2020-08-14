@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
@@ -58,26 +57,26 @@
 							<c:if test="${vo.categoryNo eq menu.categoryNo }">
 							<div class="menu">
 								<div class="menu-img">
-									<img src="${pageContext.request.contextPath}/upload/${menu.setImg }"width=" 100%">
+									<img src="${pageContext.request.contextPath}/upload/${menu.menuImg }"width=" 100%">
 								</div>
 								<div class="menu-text">
-									<div>${menu.setName}</div>
-									<div class="menu-price">${menu.setPrice}</div>
+									<div>${menu.menuName}</div>
+									<div class="menu-price">${menu.menuPrice}</div>
 								</div>
 							</div>
 							</c:if>
 						</c:forEach>
 						
 						<c:if test="${vo.categoryNo eq 4}">
-							<c:forEach items="${cateNo4Menu }" var="cateNo4">
+							<c:forEach items="${cateNo4SetMenu }" var="cateNo4">
 
 								<div class="menu">
 									<div class="menu-img">
-										<img src="${pageContext.request.contextPath}/upload/${cateNo4.menuImg }" width=" 100%">
+										<img src="${pageContext.request.contextPath}/upload/${cateNo4.setImg }" width=" 100%">
 									</div>
 									<div class="menu-text">
-										<div>${cateNo4.menuName}</div>
-										<div class="menu-price">${cateNo4.menuPrice}</div>
+										<div>${cateNo4.setName}</div>
+										<div class="menu-price">${cateNo4.setPrice}</div>
 									</div>
 								</div>
 							</c:forEach>

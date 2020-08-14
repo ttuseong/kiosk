@@ -11,23 +11,31 @@
 	
 	<select id="menuList" resultType="com.javaex.vo.LotteriaVo">
 	<![CDATA[
-		select sm.setNo setNo, 
-			   sm.categoryNo categoryNo, 
-			   sm.setName setName, 
-			   sm.setPrice setPrice, 
-			   sm.setImg setImg, 
-			   sm.setDesc setDesc, 
-			   c.storeNo storeNo 
-		from setMenu sm, 
-			 category c 
-		where sm.categoryNo= c.categoryNo 
+		select menuNo, 
+			   m.categoryNo categoryNo, 
+			   menuName, 
+			   menuDesc, 
+			   menuPrice, 
+			   menuImg, 
+			   isSpecial 
+		from menu m , 
+			 category c  
+		where m.categoryNo = c.categoryNo 
 		and c.storeNo=2
 	]]>
 	</select>
 		
-	<select id="cateNo4" resultType="com.javaex.vo.LotteriaVo">
+	<select id="cateNo4setMenu" resultType="com.javaex.vo.LotteriaVo">
 		<![CDATA[
-			select menuNo, categoryNo, menuName, menuDesc, menuPrice, menuImg, isSpecial from Menu where categoryNo = 4 and isSpecial=1
+			select setNo, 
+				   categoryNo, 
+				   setName, 
+				   setPrice, 
+				   setImg, 
+				   setDesc, 
+				   isSpecial 
+			from setmenu 
+			where categoryNo=4
 		]]>
 	</select>
 	

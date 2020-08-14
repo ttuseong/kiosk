@@ -22,7 +22,7 @@ public class LotteriaService {
 		return lotteriaDao.menuList();
 	}
 	
-	public List<LotteriaVo> cateNo4(){
-		return lotteriaDao.cateNo4();
+	public List<LotteriaVo> cateNo4setMenu(){
+		return lotteriaDao.cateNo4setMenu();
 	}
 }

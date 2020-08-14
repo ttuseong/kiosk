@@ -22,8 +22,8 @@ public class LotteriaDao {
 		return sqlSession.selectList("lotteria.menuList");
 	}
 	
-	public List<LotteriaVo> cateNo4(){
-		return sqlSession.selectList("lotteria.cateNo4");
+	public List<LotteriaVo> cateNo4setMenu(){
+		return sqlSession.selectList("lotteria.cateNo4setMenu");
 	}
 	
 }

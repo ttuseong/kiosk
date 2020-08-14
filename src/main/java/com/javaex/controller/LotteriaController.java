@@ -33,15 +33,15 @@ public class LotteriaController {
 	public String order(Model model) {
 		List<LotteriaVo> categoryList = lotteriaService.categoryList();
 		List<LotteriaVo> menuList=lotteriaService.menuList();
-		List<LotteriaVo> cateNo4 = lotteriaService.cateNo4();
+		List<LotteriaVo> cateNo4setMenu = lotteriaService.cateNo4setMenu();
 		
-		for(LotteriaVo vo: cateNo4) {
+		for(LotteriaVo vo: menuList) {
 			System.out.println(vo.toString());
 		}
 
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("menuList", menuList);
-		model.addAttribute("cateNo4Menu", cateNo4);
+		model.addAttribute("cateNo4SetMenu", cateNo4setMenu);
 		
 		return "/lotteria/order";
 	}
