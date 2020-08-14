@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
@@ -31,7 +31,7 @@
 				<imgsrc="${pageContext.request.contextPath}/assets/images/icon1.png" width="100%">
 			</div>
 			<div class="width50">
-				<h2>사이다</h2>
+				<h2>사이다氷</h2>
 				<br>
 				<h4>톡톡 쏘는 청량감이 느껴지는 음료</h4>
 			</div>
