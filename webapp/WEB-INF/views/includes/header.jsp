@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <link href="${pageContext.request.contextPath }/assets/css/main/index.css" rel="stylesheet" type="text/css">
-<<<<<<< HEAD
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fontello/css/fontello.css">
 	
 	<div class="main-headerContainer">	
@@ -16,24 +15,6 @@
 				<input type="text" class="main-headerSearchInput" value="검색">
 				<button type="submit" class="btn main-headerSearchBtn icon-search" id="main-headerSearch"></button>
 			</div>
-			
-			<div class="main-headerAdminLogin">
-				<p>관리자로그인</p>
-			</div>
-	</div>
-=======
-	
-	<div class="main-headerContainer">
-		<div class="main-mainLogo">
-			<a href="#">
-				<img src="${pageContext.request.contextPath}/assets/images/icon1.png">
-			</a>
-		</div>
-		
-		<div class="main-headerSearchInputAndBtn">
-			<input type="text" class="main-headerSearchInput" value="검색">
-			<button type="submit" class="btn main-headerSearchBtn"></button>
-		</div>
 		
 		<div class="main-headerAdminLogin">
 			<!-- 관리자가 로그인 하지 않은 경우 -->
@@ -45,5 +26,4 @@
 			-->
 		</div>
 	</div>
-	
->>>>>>> 관리자페이지 - 메뉴정보 수정
+

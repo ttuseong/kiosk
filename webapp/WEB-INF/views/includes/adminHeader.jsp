@@ -5,7 +5,7 @@
 
 <link href="${pageContext.request.contextPath }/assets/css/main/index.css" rel="stylesheet" type="text/css">
 	
-	<div class="main-headerContainer">
+	<div class="main-headerContainer admin-headerContainer">
 		<div class="main-mainLogo">
 			<a href="#">
 				<img src="${pageContext.request.contextPath}/assets/images/icon1.png">
