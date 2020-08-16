@@ -2,7 +2,8 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 
 //메뉴의 고유 번호
 var menuNo;
-// 단품/세트/박스 중 어떤 것을 선택했는지(3. 박스, 2. 세트, 1. 단품)
+
+// 단품/세트/박스 중 어떤 것을 선택했는지(4. 박스, 3. 세트, 1. 단품)
 // 메뉴 하나로 3개의 이미지도 가져와야함
 // menuImg+1+확장자 -> 이미지
 var selectedMode = 0;
@@ -73,6 +74,8 @@ $(".selectModeBodyContainer").on("click", function(){
 	burgerPrice = clickMode.children(".selectModeBodyContent").children(".selectModePrice").text();
 	
 	selectedMode = clickMode.data("mode");
+	
+	console.log(selectedMode);
 });
 
 
@@ -81,12 +84,8 @@ $("#selectedModecompleted").on("click", function(){
 	
 	$("#selectMode").modal("hide");
 	
-	console.log(burgerName);
-	console.log(burgerConfig);
-	console.log(burgerPrice);
-	console.log(burgerImg);
 	hamburgerBoxSideMenuInputDefault();
-	
+	addBurgerBoxBody();
 	$("#hamburgerBoxSideMenu").modal();
 })
 
@@ -98,4 +97,54 @@ function hamburgerBoxSideMenuInputDefault(){
 	$("#burgerBoxCount").children("p").text(burgerCount);
 	$("#burgerBoxPrice").text(burgerPrice*burgerCount);
 }
+
+function addBurgerBoxBody(){
+	for(var i = 0; i < selectedMode;i++){
+		addBurgerBoxContents(i)
+	}
+}
+
+function addBurgerBoxContents(i){
+	var str = "";
+	var imgUrl;
+	var menuName;
+	var btnName;
+	
+	console.log(i);
+	
+	switch(i){
+		case 0:
+			menuName="추가 없음";
+			btnName="버거재료 추가"
+			break;
+		case 1:
+			menuName="후렌치후라이(M)";
+			btnName="사이드 변경"
+			break;
+		case 2:
+			menuName="콜라(M)";
+			btnName="음료 변경";
+			break;
+		case 3:
+			menuName="핫크리스피치킨 1조각";
+			btnName="치킨 변경";
+			break;
+		default:
+			console.log("잘못된 값이 addBurgerBoxContents 함수에 들어왔습니다")
+	}
+	
+	str += ' <div class="menu-container" id="menuSet">';
+	str += ' 	<img';
+	str += ' 		src= ' + url + '/assets/images/icon1.png';
+	str += ' 		class="img-responsive">';
+	str += ' 	<div>';
+	str += ' 		<p class="menuName">' + menuName + '</p>';
+	str += '	</div>';
+	str += '	<button type="button" id="hamburgerBoxButton">' + btnName + '</button>';
+	str += ' </div>';
+
+	$("#hamburgerBoxBodyContainer").append(str);
+}
+
+
 

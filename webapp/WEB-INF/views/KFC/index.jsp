@@ -189,10 +189,7 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/main.js"></script>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#hamburgerBoxSideMenu").modal();
-	});
+<script type="text/javascript">	
 </script>
 
 </html>

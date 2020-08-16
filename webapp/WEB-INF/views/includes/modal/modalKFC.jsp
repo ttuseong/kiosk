@@ -144,7 +144,7 @@
 				</div>
 			</div>
 			<div class="modal-body">
-				<div class="selectModeBodyContainer" data-mode="1">
+				<div class="selectModeBodyContainer" data-mode="4">
 					<div class="icon-check selectModeCheckBox">
 						<p>채크박스</p>
 					</div>
@@ -160,7 +160,7 @@
 						src="${pageContext.request.contextPath}/assets/images/icon1.png">
 				</div>
 
-				<div class="selectModeBodyContainer" data-mode="2">
+				<div class="selectModeBodyContainer" data-mode="3">
 					<div class="icon-check selectModeCheckBox">
 						<p>채크박스</p>
 					</div>
@@ -176,7 +176,7 @@
 						src="${pageContext.request.contextPath}/assets/images/icon1.png">
 				</div>
 
-				<div class="selectModeBodyContainer" data-mode="3">
+				<div class="selectModeBodyContainer" data-mode="1">
 					<div class="icon-check selectModeCheckBox">
 						<p>채크박스</p>
 					</div>
@@ -246,24 +246,6 @@
 			</div>
 			<div class="modal-body hamburgerBoxBody">
 				<div id="hamburgerBoxBodyContainer">
-					<div class="menu-container" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">메뉴이름</p>
-						</div>
-						<button type="button" id="hamburgerBoxButton">버거재료 추가</button>
-					</div>
-					<div class="menu-container" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">메뉴이름</p>
-						</div>
-						<button type="button" id="hamburgerBoxButton">버거재료 추가</button>
-					</div>
 				</div>	
 			</div>
 			<div class="modal-footer" id="hamburgerSideFooter">
