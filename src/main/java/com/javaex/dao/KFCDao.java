@@ -6,9 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.javaex.vo.KFCCategoryVo;
-import com.javaex.vo.KFCMenuVo;
-import com.javaex.vo.KFCPageVo;
+import com.javaex.vo.CategoryVo;
+import com.javaex.vo.MenuVo;
+import com.javaex.vo.PageVo;
+import com.javaex.vo.ToppingVo;
 
 
 @Repository
@@ -16,11 +17,11 @@ public class KFCDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<KFCCategoryVo> selectCateList() {
+	public List<CategoryVo> selectCateList() {
 		return sqlSession.selectList("kfc.selectCateList");
 	}
 	
-	public List<KFCMenuVo> selectMenuList(KFCPageVo kfcPageVo){
+	public List<MenuVo> selectMenuList(PageVo kfcPageVo){
 		return sqlSession.selectList("kfc.selectMenuList", kfcPageVo);
 	}
 	
@@ -28,7 +29,15 @@ public class KFCDao {
 		return sqlSession.selectOne("kfc.selectCountMenu", categoruNo);
 	}
 	
-	public KFCMenuVo selectMenu(int menuNo) {
+	public MenuVo selectMenu(int menuNo) {
 		return sqlSession.selectOne("kfc.selectMenu", menuNo);
+	}
+	
+	public List<ToppingVo> selectToppingList(){
+		return sqlSession.selectList("kfc.selectToppingList");
+	}
+	
+	public List<ToppingVo> selectToppingbasicInfo(){
+		return sqlSession.selectList("kfc.selectToppingbasicInfo");
 	}
 }

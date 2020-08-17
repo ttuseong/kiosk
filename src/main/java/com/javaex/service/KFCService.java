@@ -8,56 +8,67 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.KFCDao;
-import com.javaex.vo.KFCCategoryVo;
-import com.javaex.vo.KFCMenuVo;
-import com.javaex.vo.KFCPageVo;
+import com.javaex.vo.CategoryVo;
+import com.javaex.vo.MenuVo;
+import com.javaex.vo.PageVo;
+import com.javaex.vo.ToppingVo;
 
 @Service
 public class KFCService {
 	@Autowired
 	KFCDao kfcDao;
 	
-	public Map<String, Object> cateList(KFCPageVo kfcPageVo) {
-		List<KFCCategoryVo> cateList = kfcDao.selectCateList();
+	public Map<String, Object> cateList(PageVo pageVo) {
+		List<CategoryVo> cateList = kfcDao.selectCateList();
 		
 		
-		if(kfcPageVo.getCategoryNo() == 0) {
-			kfcPageVo.setCategoryNo(cateList.get(0).getCategoryNo());
+		if(pageVo.getCategoryNo() == 0) {
+			pageVo.setCategoryNo(cateList.get(0).getCategoryNo());
 		}
 		
-		if(kfcPageVo.getCurrentPage() == 0) {
-			kfcPageVo.setCurrentPage(1);
+		if(pageVo.getCurrentPage() == 0) {
+			pageVo.setCurrentPage(1);
 		}
 		
-		kfcPageVo.setStartPoint((kfcPageVo.getCurrentPage()-1)*9+1);
-		kfcPageVo.setEndPoint(kfcPageVo.getStartPoint()+8);
+		pageVo.setStartPoint((pageVo.getCurrentPage()-1)*9+1);
+		pageVo.setEndPoint(pageVo.getStartPoint()+8);
 		
-		List<KFCMenuVo> menuList = menuList(kfcPageVo);
+		List<MenuVo> menuList = menuList(pageVo);
 		
-		System.out.println(kfcPageVo.toString());
+		System.out.println(pageVo.toString());
 		
 		
-		int menuMaxCount = (int)Math.ceil((menuCount(kfcPageVo.getCategoryNo())/9.0));
+		int menuMaxCount = (int)Math.ceil((menuCount(pageVo.getCategoryNo())/9.0));
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("currentPage", kfcPageVo.getCurrentPage());
+		map.put("currentPage", pageVo.getCurrentPage());
 		map.put("menuMaxCount", menuMaxCount);
 		map.put("cateList", cateList);
 		map.put("menuList", menuList);
-		map.put("categoryNo", kfcPageVo.getCategoryNo());
+		map.put("categoryNo", pageVo.getCategoryNo());
 		
 		return map;
 	}
 
-	public List<KFCMenuVo> menuList(KFCPageVo kfcPageVo) {
-		return kfcDao.selectMenuList(kfcPageVo);
+	public List<MenuVo> menuList(PageVo pageVo) {
+		return kfcDao.selectMenuList(pageVo);
 	}
 	
 	public int menuCount(int categoruNo) {
 		return kfcDao.selectCountMenu(categoruNo);
 	}
 	
-	public KFCMenuVo selectMenu(int menuNo) {
+	public MenuVo selectMenu(int menuNo) {
 		return kfcDao.selectMenu(menuNo);
+	}
+	
+	public List<ToppingVo> selectToppingList(){
+		
+		return kfcDao.selectToppingList();
+		
+	}
+	
+	public List<ToppingVo> intiTopping() {
+		return kfcDao.selectToppingbasicInfo();
 	}
 }

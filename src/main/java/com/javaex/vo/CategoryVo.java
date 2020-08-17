@@ -1,14 +1,14 @@
 package com.javaex.vo;
 
-public class KFCCategoryVo {
+public class CategoryVo {
 	private int categoryNo;
 	private String categoryName;
 	private int publicYN;
 	private int isSet;
 	
-	public KFCCategoryVo() {}
+	public CategoryVo() {}
 	
-	public KFCCategoryVo(int categoryNo, String categoryName, int publicYN, int isSet) {
+	public CategoryVo(int categoryNo, String categoryName, int publicYN, int isSet) {
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
 		this.publicYN = publicYN;

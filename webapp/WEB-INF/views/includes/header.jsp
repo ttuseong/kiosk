@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <link href="${pageContext.request.contextPath }/assets/css/main/index.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/fontello/css/fontello.css">	
+
 	<div class="main-headerContainer">	
 			<div class="main-mainLogo">
 				<a href="#">

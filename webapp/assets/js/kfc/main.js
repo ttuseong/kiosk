@@ -15,6 +15,47 @@ var burgerCount = 1;
 var burgerPrice=0;
 var burgerImg;
 
+var toppingArr;
+var sideArr = [0,0,0];
+var totalPrice=0;
+
+$(document).ready(function(){
+	inittoppingArr();
+});
+
+/*토핑의 no, pricem, count*/
+function inittoppingArr(){
+	$.ajax({
+		url : url+"/KFC/initTopping",		
+		type : "post",
+		success : function(toppingList){
+			toppingArr = new Array(toppingList.length);
+			for(var i = 0; i < toppingArr.length; i++){
+				toppingArr[i] = new Array();
+				toppingArr[i].push(toppingList[i].toppingNo);
+				toppingArr[i].push(toppingList[i].toppingPrice);
+				toppingArr[i].push(0);
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
+
+/*토핑 및 버거 수에 따른 금액 합산*/
+function computeAllPrice(){
+	totalPrice = Number(burgerPrice);
+	for(var i=0; i<toppingArr.length; i++){
+		totalPrice += (toppingArr[i][1]*toppingArr[i][2]);
+	}
+	for(var i=0; i<sideArr.length;i++){
+		totalPrice+=sideArr[i];
+	}
+
+	totalPrice *= burgerCount;
+
+}
 
 //메뉴 클릭 이벤트 처리
 $(".menu").on("click", function(){
@@ -67,15 +108,11 @@ $(".selectModeBodyContainer").on("click", function(){
 	clickMode.siblings().children(".selectModeCheckBox").removeAttr("id", "selectedMode");
 	clickMode.children(".selectModeCheckBox").attr("id", "selectedMode");
 	
-	console.log();
-	
 	burgerName = clickMode.children(".selectModeBodyContent").children(".selectModeName").text();
 	burgerConfig = clickMode.children(".selectModeBodyContent").children(".selectModeMenuGroup").text();
 	burgerPrice = clickMode.children(".selectModeBodyContent").children(".selectModePrice").text();
 	
 	selectedMode = clickMode.data("mode");
-	
-	console.log(selectedMode);
 });
 
 
@@ -83,21 +120,21 @@ $(".selectModeBodyContainer").on("click", function(){
 $("#selectedModecompleted").on("click", function(){
 	
 	$("#selectMode").modal("hide");
-	
+	computeAllPrice();
 	hamburgerBoxSideMenuInputDefault();
 	addBurgerBoxBody();
 	$("#hamburgerBoxSideMenu").modal();
 })
 
-//기본 값 설정
+// hamburgerBoxHeader 기본 값 설정
 function hamburgerBoxSideMenuInputDefault(){
-	$("#hamburgerBoxSideMenu").find(".count").attr("id", "burgerBoxCount");
-	$("#hamburgerBoxLabel").text(burgerName);
-	$("#burgerBoxDesc").text(burgerConfig);
-	$("#burgerBoxCount").children("p").text(burgerCount);
-	$("#burgerBoxPrice").text(burgerPrice*burgerCount);
+	$(".hamburgerBoxLabel").text(burgerName);
+	$(".burgerBoxDesc").text(burgerConfig);
+	$(".count").children("p").text(burgerCount);
+	$(".burgerBoxPrice").text(totalPrice);
 }
 
+//햄버거 박스 사이드 메뉴 모달
 function addBurgerBoxBody(){
 	for(var i = 0; i < selectedMode;i++){
 		addBurgerBoxContents(i)
@@ -105,46 +142,116 @@ function addBurgerBoxBody(){
 }
 
 function addBurgerBoxContents(i){
-	var str = "";
-	var imgUrl;
-	var menuName;
-	var btnName;
-	
-	console.log(i);
-	
-	switch(i){
-		case 0:
-			menuName="추가 없음";
-			btnName="버거재료 추가"
-			break;
-		case 1:
-			menuName="후렌치후라이(M)";
-			btnName="사이드 변경"
-			break;
-		case 2:
-			menuName="콜라(M)";
-			btnName="음료 변경";
-			break;
-		case 3:
-			menuName="핫크리스피치킨 1조각";
-			btnName="치킨 변경";
-			break;
-		default:
-			console.log("잘못된 값이 addBurgerBoxContents 함수에 들어왔습니다")
-	}
-	
-	str += ' <div class="menu-container" id="menuSet">';
-	str += ' 	<img';
-	str += ' 		src= ' + url + '/assets/images/icon1.png';
-	str += ' 		class="img-responsive">';
-	str += ' 	<div>';
-	str += ' 		<p class="menuName">' + menuName + '</p>';
-	str += '	</div>';
-	str += '	<button type="button" id="hamburgerBoxButton">' + btnName + '</button>';
-	str += ' </div>';
+	$("#hamburgerBoxBodyContainer").children().eq(i).removeClass('hidden');
 
-	$("#hamburgerBoxBodyContainer").append(str);
 }
 
+// 모달 교체 시점2-1 토핑을 변경할 경우
+$(".hamburgerBoxButton").on("click", function(){
+	var thisBtn = $(this);
+	no = thisBtn.data("no");
+	
+	$("#hamburgerBoxSideMenu").modal("hide");
+	hamburgerBoxSideMenuInputDefault();
+	switch(no){
+		case 1:
+			burgerToppingList();	
+			$("#bugerTopping").modal();
+			break;
+		case 2:
+			$("#sideChange").modal();
+		case 3:
+			$("#sideChange").modal();
+		case 4:
+			$("#sideChange").modal();
+		default:
+	}
+});
 
+/*토핑 추가*/
+function burgerToppingList(){
+	$.ajax({
+		url : url+"/KFC/selectTopping",		
+		type : "post",
+		success : function(toppingList){
+			for(var i = 0; i < toppingList.length; i++){
+				addBurgerToppingContent(toppingList[i]);	
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
 
+function addBurgerToppingContent(toppingVo){
+	var str = "";
+	str += ' <div class="bugerToppinglist" id="cheeseTopping">';
+	str += ' 	<img alt="' + toppingVo.toppingName + '추가 이미지' + '"';
+	str += ' 	src="' + url + '/assets/images/icon1.png">';					
+	str += '	<h6>' + toppingVo.toppingName + '추가' + '</h6>';						
+	str += '	<p>' + '+' + toppingVo.toppingPrice +  '</p>';					
+	str += '	<div class="count">';		
+	str += '		<div class="icon-minus iconCombination"></div>';
+	str += '		<p data-toppingNo='+ toppingVo.toppingNo +'>0</p>';
+	str += '		<div class="icon-plus iconCombination"></div>';
+	str += '	</div>';	
+	str += ' </div>';
+
+	$("#bugerToppingContiner").append(str);
+}
+
+/*클릭을 통한 가격 증가 이벤트*/
+$(".icon-plus").on("click", function(){
+	var thisBtn = $(this);
+	burgerCount++;
+	computeAllPrice();
+	thisBtn.prev().text(burgerCount);
+	$(".burgerBoxPrice").text(totalPrice);
+});
+
+$(".icon-minus").on("click", function(){
+	var thisBtn = $(this);
+	if(burgerCount == 1){
+		return;
+	}
+	
+	burgerCount--;
+	computeAllPrice();
+	thisBtn.next().text(burgerCount);
+	$(".burgerBoxPrice").text(totalPrice);
+});
+
+$("#bugerToppingContiner").on("click", ".icon-minus",function(){
+	var thisBtn = $(this);
+	var toppingNo = thisBtn.next().data("toppingno");
+	console.log(toppingNo);
+	
+	for(var i=0; i<toppingArr.length;i++){
+		if(toppingArr[i][0] == toppingNo){
+			if(toppingArr[i][2]==0)
+				return;
+			
+			thisBtn.next().text(--toppingArr[i][2]);
+			break;
+		}
+	}
+	$(".burgerBoxPrice").text(totalPrice);
+	
+});
+
+$("#bugerToppingContiner").on("click", ".icon-plus",function(){
+	var thisBtn = $(this);
+	var toppingNo = thisBtn.prev().data("toppingno");
+	console.log(toppingNo);
+	
+	for(var i=0; i<toppingArr.length;i++){
+		if(toppingArr[i][0] == toppingNo){
+			
+			thisBtn.prev().text(++toppingArr[i][2]);
+			break;
+		}
+	}
+	computeAllPrice();
+	$(".burgerBoxPrice").text(totalPrice);
+});

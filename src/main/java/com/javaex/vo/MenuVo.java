@@ -1,15 +1,15 @@
 package com.javaex.vo;
 
-public class KFCMenuVo {
+public class MenuVo {
 	private int menuNo;
 	private String menuName;
 	private String menuDesc;
 	private int menuPrice;
 	private String menuImg;
 	
-	public KFCMenuVo() {}
+	public MenuVo() {}
 	
-	public KFCMenuVo(int menuNo, String menuName, String menuDesc, int menuPrice, String menuImg) {
+	public MenuVo(int menuNo, String menuName, String menuDesc, int menuPrice, String menuImg) {
 		super();
 		this.menuNo = menuNo;
 		this.menuName = menuName;

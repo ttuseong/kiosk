@@ -146,7 +146,7 @@
 			<div class="modal-body">
 				<div class="selectModeBodyContainer" data-mode="4">
 					<div class="icon-check selectModeCheckBox">
-						<p>채크박스</p>
+						<p class="hidden">채크박스</p>
 					</div>
 					<div class="selectModeBodyContent">
 						<h2 class="selectModeName" id="selectModeBoxName"></h2>
@@ -162,7 +162,7 @@
 
 				<div class="selectModeBodyContainer" data-mode="3">
 					<div class="icon-check selectModeCheckBox">
-						<p>채크박스</p>
+						<p class="hidden">채크박스</p>
 					</div>
 					<div class="selectModeBodyContent">
 						<h2 class="selectModeName" id="selectModeSetName"></h2>
@@ -178,7 +178,7 @@
 
 				<div class="selectModeBodyContainer" data-mode="1">
 					<div class="icon-check selectModeCheckBox">
-						<p>채크박스</p>
+						<p class="hidden">채크박스</p>
 					</div>
 					<div class="selectModeBodyContent">
 						<h2 class="selectModeName" id="selectModeNomalName"></h2>
@@ -246,6 +246,42 @@
 			</div>
 			<div class="modal-body hamburgerBoxBody">
 				<div id="hamburgerBoxBodyContainer">
+					<div class="menu-container hidden" id="menuSet">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">추가 없음</p>
+						</div>
+						<button type="button" class="hamburgerBoxButton" data-no="1">버거재료 추가</button>
+					</div>
+					<div class="menu-container hidden" id="menuSet">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">후렌치후라(M)</p>
+						</div>
+						<button type="button" class="hamburgerBoxButton" data-no="2">사이드 변경</button>
+					</div>
+					<div class="menu-container hidden" id="menuSet">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">콜라(M)</p>
+						</div>
+						<button type="button" class="hamburgerBoxButton" data-no="3">음료 변경</button>
+					</div>
+					<div class="menu-container hidden" id="menuSet">
+						<img
+							src="${pageContext.request.contextPath}/assets/images/icon1.png"
+							class="img-responsive">
+						<div>
+							<p class="menuName">핫크리스피치킨 1조각</p>
+						</div>
+						<button type="button" class="hamburgerBoxButton" data-no="4">치킨 변경</button>
+					</div>
 				</div>	
 			</div>
 			<div class="modal-footer" id="hamburgerSideFooter">
@@ -345,30 +381,15 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header hamburgerBoxHeader" id="bugerToppingHeader">
-				<jsp:include page="/WEB-INF/views/includes/modal/hamburgerBoxHeader.jsp" />
+				<jsp:include page="/WEB-INF/views/includes/modal/hamburgerBoxHeader.jsp"/>
 			</div>
 			<div class="modal-body" id="bugerToppingBody">
 				<div id="bugerToppingContiner">
 					<h5>버거재료 추가</h5>
-					<div class="bugerToppinglist">
-						<img alt="치즈 추가"
-							src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<h6>치즈추가</h6>
-						<p>+300</p>
-						<jsp:include page="/WEB-INF/views/includes/modal/countBtn.jsp" />
-					</div>
-					<div class="bugerToppinglist">
-						<img alt="베이컨 추가"
-							src="${pageContext.request.contextPath}/assets/images/icon1.png">
-						<h6>베이컨추가</h6>
-						<p>+400</p>
-						<jsp:include page="/WEB-INF/views/includes/modal/countBtn.jsp" />
-					</div>
-
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-danger">완료</button>
+				<button type="button" class="btn btn-danger" id="bugerToppingCompleted">완료</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->

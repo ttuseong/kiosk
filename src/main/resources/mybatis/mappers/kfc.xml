@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kfc">
-	<select id="selectCateList" resultType="com.javaex.vo.KFCCategoryVo">
+	<select id="selectCateList" resultType="com.javaex.vo.CategoryVo">
 		<![CDATA[
 			SELECT
 			    c.categoryNo,
@@ -19,7 +19,7 @@
 			order by c.categoryno asc
 		]]>
 	</select>
-	<select id="selectMenuList" resultType="com.javaex.vo.KFCMenuVo" parameterType="com.javaex.vo.KFCPageVo">
+	<select id="selectMenuList" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.PageVo">
 		<![CDATA[
 			SELECT
 			    rn,
@@ -64,7 +64,7 @@
 			    categoryNo = #{categoruNo}
 		]]>
 	</select>
-	<select id="selectMenu" resultType="com.javaex.vo.KFCMenuVo" parameterType="int">
+	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
 				menuNo,
@@ -76,6 +76,30 @@
 			    menu
 			where
 			    menuNo=#{menuNo}
+		]]>
+	</select>
+	<select id="selectToppingList" resultType="com.javaex.vo.ToppingVo">
+		<![CDATA[
+			SELECT
+				toppingNo,
+			    toppingname,
+			    toppingprice,
+			    toppingimg
+			FROM
+			    topping
+			where
+			    storeNo=1
+		]]>
+	</select>
+	<select id="selectToppingbasicInfo" resultType="com.javaex.vo.ToppingVo">
+		<![CDATA[
+			SELECT
+			    toppingNo,
+    			toppingPrice
+			FROM
+			    topping
+			where
+			    storeNo=1
 		]]>
 	</select>
 </mapper>

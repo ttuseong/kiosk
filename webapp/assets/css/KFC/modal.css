@@ -113,6 +113,12 @@
 
 }
 
+/* 숨김 효과 */
+.hidden{
+	position: absolute;
+	left: -1000000px;
+}
+
  
 
 /* ----- 추천메뉴 모달 ----- */
@@ -599,7 +605,7 @@
 	color: white;
 	border-radius: 100%;
 	display: inline-flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
 }
 
@@ -643,7 +649,7 @@
 	height: 180px;
 }
 
-#hamburgerBoxButton {
+.hamburgerBoxButton {
    position: absolute;
    top: 120%;
    transform:translateX(-50%);	

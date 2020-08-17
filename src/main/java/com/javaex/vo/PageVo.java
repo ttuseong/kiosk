@@ -1,14 +1,14 @@
 package com.javaex.vo;
 
-public class KFCPageVo {
+public class PageVo {
 	private int categoryNo;
 	private int currentPage;
 	private int startPoint;
 	private int endPoint;
 	
-	public KFCPageVo() {}
+	public PageVo() {}
 
-	public KFCPageVo(int categoryNo, int currentPage, int startPoint, int endPoint) {
+	public PageVo(int categoryNo, int currentPage, int startPoint, int endPoint) {
 		super();
 		this.categoryNo = categoryNo;
 		this.currentPage = currentPage;
