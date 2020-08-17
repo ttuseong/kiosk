@@ -236,6 +236,7 @@ $("#bugerToppingContiner").on("click", ".icon-minus",function(){
 			break;
 		}
 	}
+	computeAllPrice();
 	$(".burgerBoxPrice").text(totalPrice);
 	
 });
