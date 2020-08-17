@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+tr > th:nth-child(3), th:nth-child(4), th:nth-child(5){
+	width: 150px!important;
+	text-align:center!important;
+}
+
+tbody > tr > td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+	width: 150px!important;
+	text-align:center!important;
+}
+
+tbody > tr > td:nth-child(2) > a {
+	color:#858796!important;
+	text-decoration: none;
+}
+
+.adminCate-addCateForm {
+    width: 300px!important;
+    border-radius: 5px!important;
+    background-color: #f1f2f5!important;
+}
+
+.input-group > p {
+	margin: auto;
+    margin-right: 20px;
+}

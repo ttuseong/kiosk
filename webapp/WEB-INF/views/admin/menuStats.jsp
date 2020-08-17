@@ -31,7 +31,7 @@
 			<div class="icon-cog" id="manuInfoBtn-iconRight"></div>
 		</div>
 		
-		<div class="adminPage-manuInfoBtn bold">
+		<div class="adminPage-manuInfoBtn">
 			<div class="icon-right-open" id="menuInfoBtn-iconLeft"></div>
 			<a href="${pageContext.request.contextPath}/admin/menuCate">
 				<span>카테고리</span>
@@ -39,7 +39,7 @@
 			<div class="icon-list" id="manuInfoBtn-iconRight"></div>
 		</div>
 		
-		<div class="adminPage-manuInfoBtn" style="border-bottom: none;">
+		<div class="adminPage-manuInfoBtn bold" style="border-bottom: none;">
 			<div class="icon-right-open" id="menuInfoBtn-iconChoose"></div>
 			<a href="${pageContext.request.contextPath}/admin/menuStats">
 				<span id="menuInfoSpan-Stats">통계</span>

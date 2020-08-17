@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdminController {
 
 	// 메뉴정보
-	@RequestMapping("/menuInfo")
-	public String menuInfo() {
-		return "/admin/menuInfo";
+	@RequestMapping("/adminMenu")
+	public String adminMenu() {
+		return "/admin/adminMenu";
 	}
 	
 	// 카테고리
-	@RequestMapping("/menuCate")
-	public String menuCate() {
-		return "/admin/menuCate";
+	@RequestMapping("/adminCate")
+	public String adminCate() {
+		return "/admin/adminCate";
 	}
 
 	// 통계
-	@RequestMapping("/menuStats")
-	public String menuStats() {
-		return "/admin/menuStats";
+	@RequestMapping("/adminStats")
+	public String adminStats() {
+		return "/admin/adminStats";
 	}
 }
