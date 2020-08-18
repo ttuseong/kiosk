@@ -22,35 +22,15 @@
 	<select id="selectMenuList" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.PageVo">
 		<![CDATA[
 			SELECT
-			    rn,
-			    menuNo,
+				menuNo,
 			    menuName,
 			    menuDesc,
 			    menuPrice,
 			    menuImg
 			FROM
-			    (SELECT
-			            rownum rn,
-			            menuNo,
-			            menuName,
-			            menuDesc,
-			            menuPrice,
-			            menuImg
-			        FROM
-			            (SELECT
-			                    menuNo,
-			                    menuName,
-			                    menuDesc,
-			                    menuPrice,
-			                    menuImg
-			                FROM
-			                    menu
-			                where
-			                    categoryNo = #{categoryNo}))
+			    menu
 			where
-			    rn >= #{startPoint}
-			and
-			    rn <= #{endPoint}
+			    categoryNo = #{categoryNo}
 		]]>
 	</select>
 	

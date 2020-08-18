@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,24 +62,34 @@
 			</nav>
 		</section>
 		<section id="menuSection">
-			<nav>
-				<ul>
-					<c:forEach items="${map.menuList}" var="menuVo">
-						<li class="menu" data-no="${menuVo.menuNo }">
-							<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-							<div class="menuContent">
-								<p>${menuVo.menuName}</p>
-								<p>${menuVo.menuPrice}</p>
-							</div>
-						</li>
+			<nav id="menuSectionContainer">
+				<div id="menuSectionContent">
+					<c:set var="loop_flag" value="false"></c:set>
+					<c:forEach begin="1" end="${((fn:length(map.menuList))/9)+(1-(((fn:length(map.menuList))/9)%1))%1}" var="i">
+						<div>
+							<c:forEach begin="1" end="9" var="j">
+								<c:if test="${((i-1)*9+j-1) == fn:length(map.menuList)}">
+									<c:set var="loop_flag" value="true"></c:set>
+								</c:if>
+								<c:if test="${not loop_flag }">
+									<div class="menu" data-no="${map.menuList[(i-1)*9+j-1].menuNo }">
+										<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+										<div class="menuContent">
+											<p>${map.menuList[(i-1)*9+j-1].menuName}</p>
+											<p>${map.menuList[(i-1)*9+j-1].menuPrice}</p>
+										</div>
+									</div>
+								</c:if>
+							</c:forEach>
+						</div>						
 					</c:forEach>
-				</ul>
+				</div>
 			</nav>
 		</section>
 
 		<section id="pageSection">
 			<div id="pagecontainer">
-				<a id="btnLeft" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage - 1}&categoryNo=${map.categoryNo}">이전</a>
+				<button id="btnLeft" class="btnPage">이전</button>
 				<ul id="pageCircleGroup">
 					<c:forEach var="current" begin="1" end="${map.menuMaxCount }">
 						<li><div class="pageCircle 
@@ -88,7 +100,7 @@
 						">${current}</div></li>
 					</c:forEach>
 				</ul>
-				<a id="btnRight" class="btnPage" href="${pageContext.request.contextPath}/KFC/index?currentPage=${map.currentPage + 1}&categoryNo=${map.categoryNo}">다음</a>
+				<button id="btnRight" class="btnPage btnActive">다음</button>
 			</div>
 		</section>
 		
@@ -188,7 +200,7 @@
 </body>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/main.js"></script>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/modal.js"></script>
 <script type="text/javascript">	
 </script>
 
