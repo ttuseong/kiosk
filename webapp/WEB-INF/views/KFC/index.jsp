@@ -201,7 +201,18 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/main.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/modal.js"></script>
+
+
+
+
 <script type="text/javascript">	
+$(document).ready(function(){
+	$("#selectMode").modal();
+});
+
+$('.recommend-hidden').on("click", function(){
+	$('.recommend-hidden').hide();
+});
 </script>
 
 </html>
