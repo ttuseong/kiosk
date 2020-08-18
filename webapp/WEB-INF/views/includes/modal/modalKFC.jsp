@@ -18,6 +18,7 @@
 					</p>
 					<p class="menuName">메뉴이름</p>
 					<p class="menuPrice">메뉴 가격</p>
+					<div class="icon-check recommend-hidden" id="recommend-check"></div>
 				</div>
 			</div>
 			<div class="modal-footer">
