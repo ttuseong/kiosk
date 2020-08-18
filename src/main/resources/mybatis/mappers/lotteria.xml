@@ -39,4 +39,11 @@
 		]]>
 	</select>
 	
+	<!-- 세트메뉴가 있는지 없는지 있다면 몇개가 있는지 카운트해줌 -->
+	<select id="setOrSingle" resultType="int" parameterType="int">
+		<![CDATA[
+			select count(*) from useMenu where menuNo=#{menuNo}
+		]]>
+	</select>
+	
 </mapper>

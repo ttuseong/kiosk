@@ -3,9 +3,11 @@ var url= window.location.pathname.substring(0,window.location.pathname.indexOf("
 $(document).ready(function() {
 
 	$(".menu").on("click",function(){
-		var no = $(this).data("no");
-		console.log(no);
-		$("#setAndSingle").modal();
+		
+		var menuNo = $(this).data("menuno");
+		
+		setOrSingle(menuNo);
+		
 	});
 	
 	
@@ -53,4 +55,26 @@ $(document).ready(function() {
 });	
 
 
+function setOrSingle(menuNo){
+	$.ajax({
+		url : url+"/api/setOrSingle",		
+		type : "post",  	
+		dataType : "json", 
+		contentType : "application/json",
+		data : JSON.stringify(menuNo),
+		success : function(count){
+			
+			if(count <= 0){
+				console.log("셋트아님");
+				$("#menuNameText").text("클릭했삼?");
+			}else{
+				$("#setAndSingle").modal();
+			}
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
 	

@@ -25,4 +25,8 @@ public class LotteriaService {
 	public List<LotteriaVo> cateNo4setMenu(){
 		return lotteriaDao.cateNo4setMenu();
 	}
+	
+	public int setOrSingle(int menuNo) {
+		return lotteriaDao.setOrSingle(menuNo);
+	}
 }

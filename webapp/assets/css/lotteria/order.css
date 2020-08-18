@@ -2,11 +2,12 @@
 
 .width800height1200{width:800px;height:1200;background-color: white;}
 
-.height250{height: 250px;}
 .width300{width: 300px; float: left;}
 .width50{width: 50%; height: 100%; float: left;}
 .btn-red{background-color: red; margin: 20px; color: white; border-radius: 5px;}
 .width-auto{width: auto;}
+.fontSize50px{font-size: 40px;}
+.contents-header{border:8px solid #990012;height:250px;text-align: center;}
 
 ul.tabs {
 	margin: 0;

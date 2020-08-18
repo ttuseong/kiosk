@@ -35,10 +35,6 @@ public class LotteriaController {
 		List<LotteriaVo> menuList=lotteriaService.menuList();
 		List<LotteriaVo> cateNo4setMenu = lotteriaService.cateNo4setMenu();
 		
-		for(LotteriaVo vo: menuList) {
-			System.out.println(vo.toString());
-		}
-
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("menuList", menuList);
 		model.addAttribute("cateNo4SetMenu", cateNo4setMenu);

@@ -26,18 +26,8 @@
 	<!-- 헤더 -->
 
 	<div class="container width800height1200">
-		<div class="height250">
-			<div class="width300">
-				<imgsrc="${pageContext.request.contextPath}/assets/images/icon1.png" width="100%">
-			</div>
-			<div class="width50">
-				<h2>사이다氷</h2>
-				<br>
-				<h4>톡톡 쏘는 청량감이 느껴지는 음료</h4>
-			</div>
-			<div class="width-auto">
-				<!-- <button type="button" class="btn-red">&nbsp;&nbsp;영양성분&nbsp;&nbsp;</button> -->
-			</div>
+		<div class="contents-header">
+			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
 		</div>
 
 		<div id="wrapper">
@@ -55,7 +45,7 @@
 
 						<c:forEach items="${menuList }" var="menu" >
 							<c:if test="${vo.categoryNo eq menu.categoryNo }">
-							<div class="menu">
+							<div class="menu" data-menuno="${menu.menuNo }">
 								<div class="menu-img">
 									<img src="${pageContext.request.contextPath}/upload/${menu.menuImg }"width=" 100%">
 								</div>
@@ -70,7 +60,7 @@
 						<c:if test="${vo.categoryNo eq 4}">
 							<c:forEach items="${cateNo4SetMenu }" var="cateNo4">
 
-								<div class="menu">
+								<div class="menu" data-menuno="0">
 									<div class="menu-img">
 										<img src="${pageContext.request.contextPath}/upload/${cateNo4.setImg }" width=" 100%">
 									</div>
@@ -95,12 +85,12 @@
 				</colgroup>
 				<tr class="tr-center">
 					<td>총주문내역</td>
-					<td>2 개</td>
-					<td class="td-red">13,000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>0 개</td>
+					<td class="td-red">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				</tr>
 
 				<tr>
-					<td>치즈인더에그</td>
+					<td class="menuNameText" >치즈인더에그</td>
 					<td>1</td>
 					<td>
 						<div class="row">
@@ -112,19 +102,18 @@
 					</td>
 				</tr>
 
-				<tr>
-					<td>1인혼닭</td>
-					<td>1</td>
-					<td>
-						<div class="row">
-							<div class="col-md-6">10,000</div>
-							<div class="col-md-6">
-								<button type="button">삭제</button>
-							</div>
-						</div>
-					</td>
-				</tr>
 
+
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+				</tr>
 				<tr>
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
@@ -313,5 +302,4 @@
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->
 </body>
-
 </html>

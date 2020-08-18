@@ -26,4 +26,8 @@ public class LotteriaDao {
 		return sqlSession.selectList("lotteria.cateNo4setMenu");
 	}
 	
+	public int setOrSingle(int menuNo) {
+		return sqlSession.selectOne("lotteria.setOrSingle", menuNo);
+	}
+	
 }
