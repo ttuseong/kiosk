@@ -95,6 +95,7 @@
 		<![CDATA[
 			SELECT
 			    toppingNo,
+			    toppingname,
     			toppingPrice
 			FROM
 			    topping

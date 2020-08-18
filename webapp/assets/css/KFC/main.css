@@ -460,7 +460,6 @@ body{
 .menu-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
 	width: 150px;
 	height: 230px;
-	border: 1px solid black;
 }
 
 .menuName{ /* 메뉴 이름 */

@@ -251,7 +251,7 @@
 							src="${pageContext.request.contextPath}/assets/images/icon1.png"
 							class="img-responsive">
 						<div>
-							<p class="menuName">추가 없음</p>
+							<p class="menuName" id="selectedBurgurTopping">추가 없음</p>
 						</div>
 						<button type="button" class="hamburgerBoxButton" data-no="1">버거재료 추가</button>
 					</div>
@@ -260,7 +260,7 @@
 							src="${pageContext.request.contextPath}/assets/images/icon1.png"
 							class="img-responsive">
 						<div>
-							<p class="menuName">후렌치후라(M)</p>
+							<p class="menuName" id="selectedSide">후렌치후라(M)</p>
 						</div>
 						<button type="button" class="hamburgerBoxButton" data-no="2">사이드 변경</button>
 					</div>
@@ -269,7 +269,7 @@
 							src="${pageContext.request.contextPath}/assets/images/icon1.png"
 							class="img-responsive">
 						<div>
-							<p class="menuName">콜라(M)</p>
+							<p class="menuName" id="selecedDrinking">콜라(M)</p>
 						</div>
 						<button type="button" class="hamburgerBoxButton" data-no="3">음료 변경</button>
 					</div>
@@ -278,7 +278,7 @@
 							src="${pageContext.request.contextPath}/assets/images/icon1.png"
 							class="img-responsive">
 						<div>
-							<p class="menuName">핫크리스피치킨 1조각</p>
+							<p class="menuName" id="selectedChicken">핫크리스피치킨 1조각</p>
 						</div>
 						<button type="button" class="hamburgerBoxButton" data-no="4">치킨 변경</button>
 					</div>

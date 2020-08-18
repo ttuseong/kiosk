@@ -33,9 +33,11 @@ function inittoppingArr(){
 			for(var i = 0; i < toppingArr.length; i++){
 				toppingArr[i] = new Array();
 				toppingArr[i].push(toppingList[i].toppingNo);
+				toppingArr[i].push(toppingList[i].toppingName);
 				toppingArr[i].push(toppingList[i].toppingPrice);
 				toppingArr[i].push(0);
 			}
+			console.log(toppingArr);
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -47,7 +49,7 @@ function inittoppingArr(){
 function computeAllPrice(){
 	totalPrice = Number(burgerPrice);
 	for(var i=0; i<toppingArr.length; i++){
-		totalPrice += (toppingArr[i][1]*toppingArr[i][2]);
+		totalPrice += (toppingArr[i][2]*toppingArr[i][3]);
 	}
 	for(var i=0; i<sideArr.length;i++){
 		totalPrice+=sideArr[i];
@@ -201,6 +203,32 @@ function addBurgerToppingContent(toppingVo){
 	$("#bugerToppingContiner").append(str);
 }
 
+/*버거 토핑에서 완료를 눌러서 햄버거 박스 사이드 모달로 이동 */
+$("#bugerToppingCompleted").on("click", function(){
+	var str="";
+	var arr=[];
+	for(var i=0; i<toppingArr.length; i++){
+		if(toppingArr[i][3] != 0){
+			arr.push(toppingArr[i][1] + " " +toppingArr[i][3]+"개");
+		}
+	}
+	
+	if(arr.length == 0){
+		return;
+	}
+	
+	for(var i=0; i<arr.length; i++){
+		str+=arr[i];
+		if(i != arr.length-1){
+			str+="<br>";
+		}
+	}
+	
+	$("#selectedBurgurTopping").html(str);
+	$("#bugerTopping").modal("hide");
+	$("#hamburgerBoxSideMenu").modal();
+});
+
 /*클릭을 통한 가격 증가 이벤트*/
 $(".icon-plus").on("click", function(){
 	var thisBtn = $(this);
@@ -229,10 +257,10 @@ $("#bugerToppingContiner").on("click", ".icon-minus",function(){
 	
 	for(var i=0; i<toppingArr.length;i++){
 		if(toppingArr[i][0] == toppingNo){
-			if(toppingArr[i][2]==0)
+			if(toppingArr[i][3]==0)
 				return;
 			
-			thisBtn.next().text(--toppingArr[i][2]);
+			thisBtn.next().text(--toppingArr[i][3]);
 			break;
 		}
 	}
@@ -249,10 +277,11 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 	for(var i=0; i<toppingArr.length;i++){
 		if(toppingArr[i][0] == toppingNo){
 			
-			thisBtn.prev().text(++toppingArr[i][2]);
+			thisBtn.prev().text(++toppingArr[i][3]);
 			break;
 		}
 	}
 	computeAllPrice();
 	$(".burgerBoxPrice").text(totalPrice);
 });
+
