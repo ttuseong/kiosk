@@ -16,7 +16,7 @@ tbody > tr > td:nth-child(2) > a {
 }
 
 .adminCate-addCateForm {
-    width: 300px!important;
+    min-width: 300px!important;
     border-radius: 5px!important;
     background-color: #f1f2f5!important;
 }
@@ -24,4 +24,16 @@ tbody > tr > td:nth-child(2) > a {
 .input-group > p {
 	margin: auto;
     margin-right: 20px;
+}
+
+.form-groupAndBtn {
+	display: inherit;
+    align-items: center;
+    margin: auto;
+}	
+
+@media (min-width:576px) and (max-width:944px) {
+	.form-group, .btn-icon-split{
+		margin-top: 20px;
+	}
 }

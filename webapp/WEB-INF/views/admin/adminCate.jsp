@@ -102,28 +102,42 @@
 						</div>
 						<div class="card-body">
 							<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-					            <div class="input-group">
-					            	<p>카테고리</p>
-									<input type="text" class="form-control adminCate-addCateForm border-0 small" placeholder="카테고리를 입력하세요." aria-label="addCate" aria-describedby="basic-addon2">
-									
-									<div class="form-group">
-				                      <div class="custom-control custom-checkbox" style="padding-left: 3rem!important;">
-				                        <input type="radio" class="custom-control-input" id="cate-public" name="cate-openStatus" value="" checked>
-				                        <label class="custom-control-label" for="cate-public">공개</label>
-				                      </div>
-				                      
-				                      
-				                      <div class="custom-control custom-checkbox" style="padding-left:3rem!important;">
-				                        <input type="radio" class="custom-control-input" id="cate-private" name="cate-openStatus" value="">
-				                        <label class="custom-control-label" for="cate-private" style="margin-right: 20px;">비공개</label>
-				                      </div>
-				                    </div>             
-					            	
-									<a href="#" class="btn btn-success btn-icon-split" style="height: 38px!important;">
-					                    <span class="text">확인</span>
-				                   </a>
-					            </div>
-					          </form>
+								<div class="input-group">
+									<p>카테고리</p>
+									<input type="text"
+										class="form-control adminCate-addCateForm border-0 small"
+										placeholder="카테고리를 입력하세요." aria-label="addCate"
+										aria-describedby="basic-addon2">
+										
+									<div class="form-groupAndBtn">	
+										<div class="form-group">
+											<div class="custom-control custom-checkbox "
+												style="padding-left: 3rem !important;">
+												<input type="radio" class="custom-control-input"
+													id="cate-public" name="cate-openStatus" value="" checked>
+												<label class="custom-control-label" for="cate-public">공개</label>
+											</div>
+	
+	
+											<div class="custom-control custom-checkbox"
+												style="padding-left: 3rem !important;">
+												<input type="radio" class="custom-control-input"
+													id="cate-private" name="cate-openStatus" value=""> <label
+													class="custom-control-label" for="cate-private"
+													style="margin-right: 20px;">비공개</label>
+											</div>
+										</div>
+										<!-- End of form-group -->
+										
+										<div class="adminCate-submitBtn">
+											<a href="#" class="btn btn-success btn-icon-split"
+												style="height: 38px !important;"> <span class="text">확인</span>
+											</a>
+										</div>
+									</div>
+								</div>
+
+							</form>
 						</div>
 					</div>
 
