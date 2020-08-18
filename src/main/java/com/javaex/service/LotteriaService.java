@@ -29,4 +29,12 @@ public class LotteriaService {
 	public int setOrSingle(int menuNo) {
 		return lotteriaDao.setOrSingle(menuNo);
 	}
+	
+	public List<LotteriaVo>selectMenu(int menuNo){
+		return lotteriaDao.selectMenu(menuNo);
+	}
+	
+	public List<LotteriaVo> dessertAndDrink(){
+		return lotteriaDao.dessertAndDrink();
+	}
 }

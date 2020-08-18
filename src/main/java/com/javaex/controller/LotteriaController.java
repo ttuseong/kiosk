@@ -1,16 +1,11 @@
 package com.javaex.controller;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.LotteriaService;
-import com.javaex.vo.LotteriaVo;
 
 @Controller
 @RequestMapping("/lotteria")
@@ -31,13 +26,11 @@ public class LotteriaController {
 	
 	@RequestMapping("/order")
 	public String order(Model model) {
-		List<LotteriaVo> categoryList = lotteriaService.categoryList();
-		List<LotteriaVo> menuList=lotteriaService.menuList();
-		List<LotteriaVo> cateNo4setMenu = lotteriaService.cateNo4setMenu();
 		
-		model.addAttribute("categoryList", categoryList);
-		model.addAttribute("menuList", menuList);
-		model.addAttribute("cateNo4SetMenu", cateNo4setMenu);
+		model.addAttribute("categoryList", lotteriaService.categoryList());
+		model.addAttribute("menuList", lotteriaService.menuList());
+		model.addAttribute("cateNo4SetMenu", lotteriaService.cateNo4setMenu());
+		model.addAttribute("setList",lotteriaService.dessertAndDrink());
 		
 		return "/lotteria/order";
 	}
@@ -46,4 +39,5 @@ public class LotteriaController {
 	public String orderList() {
 		return "/lotteria/orderList";
 	}
+	
 }

@@ -1,14 +1,39 @@
 var url= window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
+var i = 1;
 
 $(document).ready(function() {
 
+    var thisMenu;
+
+
+	//메뉴 클릭
 	$(".menu").on("click",function(){
-		
+		thisMenu = $(this);
 		var menuNo = $(this).data("menuno");
+		var menuName = $(this).children().eq(1).children().eq(0).text();
+		var menuPrice = $(this).children().eq(1).children().eq(1).text();
 		
-		setOrSingle(menuNo);
+		setOrSingle(menuNo, menuName,menuPrice);
 		
-	});
+	});	
+	
+	
+
+	/*세트제품이 있지만 단품을 클릭했을 경우*/
+	$("#modalName-onlyBurger").on("click", function(){
+		$("#modalName-body").modal('hide');
+		
+		var menuName = thisMenu.children().eq(1).children().eq(0).text();
+		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
+		
+		$(".menuNameText"+i).text(menuName);
+		$(".menuNumber"+i).text("1");
+		$(".menuPrice"+i).text(menuPrice);
+		
+		i+=1;
+	})
+	
+	
 	
 	
 	/*페이지 탭*/
@@ -43,19 +68,24 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	
+	/*세트클릭했을경우*/
 	$("#modalName-setMenu").on("click", function(){
 		$("#setAndSingle").modal('hide');
 		$("#topping").modal();
+		
 	});
 	
-	$("#modalName-onlyBurger").on("click", function(){
-		$("#modalName-body").modal('hide');
-	})
+	
+	
 });	
 
 
-function setOrSingle(menuNo){
+
+
+
+
+function setOrSingle(menuNo, menuName, menuPrice){
+	/*세트제품이 있는지 확인*/
 	$.ajax({
 		url : url+"/api/setOrSingle",		
 		type : "post",  	
@@ -63,12 +93,37 @@ function setOrSingle(menuNo){
 		contentType : "application/json",
 		data : JSON.stringify(menuNo),
 		success : function(count){
-			
 			if(count <= 0){
-				console.log("셋트아님");
-				$("#menuNameText").text("클릭했삼?");
+				/*단품제품일경우*/
+				$(".menuNameText"+i).text(menuName);
+				$(".menuNumber"+i).text("1");
+				$(".menuPrice"+i).text(menuPrice);
+				
+				i+=1;
+				
 			}else{
-				$("#setAndSingle").modal();
+
+				/*셋트제품이 있을경우*/
+				$.ajax({
+					url : url+"/api/selectMenu",		
+					type : "post",
+					contentType : "application/json",
+					data : JSON.stringify(menuNo),
+					dataType : "json",
+					success : function(selectMenu){
+						console.log(selectMenu)
+						console.log(i);
+						$("#modalName-setPrice").text(selectMenu[0].setPrice);
+						$("#modalName-singlePrice").text(menuPrice);
+						
+						
+						$("#setAndSingle").modal();
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				}); 
+				
 			}
 			
 		},
@@ -77,4 +132,5 @@ function setOrSingle(menuNo){
 		}
 	});
 }
-	
+
+

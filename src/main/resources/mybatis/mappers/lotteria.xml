@@ -5,7 +5,13 @@
 
 	<select id="categoryList" resultType="com.javaex.vo.LotteriaVo">
 		<![CDATA[
-			select categoryNo, categoryName from category where storeNo=2 order by categoryNo asc
+			select categoryNo, 
+				   categoryName 
+			from category 
+			where storeNo=2 
+			and categoryNo !=28 
+			and categoryNo !=29 
+			order by categoryNo asc
 		]]>
 	</select>
 	
@@ -22,6 +28,8 @@
 			 category c  
 		where m.categoryNo = c.categoryNo 
 		and c.storeNo=2
+        and c.categoryNo!=28
+        and c.categoryNo!=29
 	]]>
 	</select>
 		
@@ -43,6 +51,36 @@
 	<select id="setOrSingle" resultType="int" parameterType="int">
 		<![CDATA[
 			select count(*) from useMenu where menuNo=#{menuNo}
+		]]>
+	</select>
+	
+	<!-- 메뉴넘버를 이용해서 세트메뉴의 데이터를 가져옴 -->
+	<select id="selectMenu" resultType="com.javaex.vo.LotteriaVo" parameterType="int">
+		<![CDATA[
+			select sm.setNo, 
+				   sm.setName, 
+				   sm.setprice, 
+				   sm.setImg, 
+				   sm.setDesc 
+			from useMenu um, 
+				 setMenu sm 
+			where um.setNo = sm.setNo 
+			and menuNo=#{menuNo}
+		]]>
+	</select>
+	
+	<select id="dessertAndDrink" resultType="com.javaex.vo.LotteriaVo">
+		<![CDATA[
+			select menuNo, 
+				   categoryNo, 
+				   menuName, 
+				   menuDesc, 
+				   menuPrice, 
+				   menuImg, 
+				   isSpecial 
+			from menu 
+			where categoryNo=28 
+			or categoryNo=29
 		]]>
 	</select>
 	

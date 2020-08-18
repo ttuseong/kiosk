@@ -50,7 +50,7 @@
 									<img src="${pageContext.request.contextPath}/upload/${menu.menuImg }"width=" 100%">
 								</div>
 								<div class="menu-text">
-									<div>${menu.menuName}</div>
+									<div class="menuName">${menu.menuName}</div>
 									<div class="menu-price">${menu.menuPrice}</div>
 								</div>
 							</div>
@@ -89,41 +89,19 @@
 					<td class="td-red">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 				</tr>
 
+				<c:forEach var="i" begin="1" end="5">
 				<tr>
-					<td class="menuNameText" >치즈인더에그</td>
-					<td>1</td>
+					<td class="menuNameText${i }">&nbsp;</td>
+					<td class="menuNumber${i }">&nbsp;</td>
 					<td>
 						<div class="row">
-							<div class="col-md-6">3,000</div>
+							<div class="col-md-6 menuPrice${i }"></div>
 							<div class="col-md-6">
-								<button type="button">삭제</button>
 							</div>
 						</div>
 					</td>
 				</tr>
-
-
-
-				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
+				</c:forEach>
 
 
 			</table>
@@ -177,51 +155,30 @@
 
 							<div id="modal-tab1" class="modal-tab_content">
 								<!--Content-->
+								<c:forEach items="${setList }" var="set" >
+								<c:if test="${set.categoryNo eq 28 }">
 								<div class="modal-float">
-									<div>
-										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
-									</div>
-									<div class="modal-center">
-										포테이토
-										<p class="modal-red">0</p>
+									<div class="width130px">
+										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
+										<div class="modal-center width130px">${set.menuName }<p class="modal-red">${set.menuPrice }</p></div>
 									</div>
 								</div>
-
-								<div class="modal-float">
-									<div>
-										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
-									</div>
-									<div class="modal-center">
-										양념감자
-										<p class="modal-red">500</p>
-									</div>
-								</div>
-
-								<div class="modal-float">
-									<div>
-										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
-									</div>
-									<div class="modal-center">
-										치즈스틱
-										<p class="modal-red">500</p>
-									</div>
-								</div>
-
-								<div class="modal-float">
-									<div>
-										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px">
-									</div>
-									<div class="modal-center">
-										오지어링
-										<p class="modal-red">700</p>
-									</div>
-								</div>
+								</c:if>
+								</c:forEach>
 							</div>
 
 							<div id="modal-tab2" class="modal-tab_content">
 								<!--Content-->
-								<h1>tab2영역</h1>
-								내용 내용 내용 내용 내용 내용
+								<c:forEach items="${setList }" var="set" >
+								<c:if test="${set.categoryNo eq 29 }">
+								<div class="modal-float">
+									<div class="width130px">
+										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
+										<div class="modal-center width130px">${set.menuName }<p class="modal-red">${set.menuPrice }</p></div>
+									</div>
+								</div>
+								</c:if>
+								</c:forEach>
 							</div>
 
 
@@ -275,7 +232,7 @@
 									</p>
 									<p>버거만</p>
 								</div>
-								<p id="modalName-Price">5,800</p>
+								<p id="modalName-singlePrice"></p>
 							</div>
 
 							<div class="modalName-setMenu">
@@ -285,7 +242,7 @@
 									</p>
 									<p>세트</p>
 								</div>
-								<p id="modalName-Price">7,600</p>
+								<p id="modalName-setPrice"></p>
 							</div>
 						</div>
 					</div>
