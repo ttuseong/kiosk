@@ -1,5 +1,19 @@
 @charset "UTF-8";
 
+a{
+	text-decoration:none!important;	
+}
+
+.adminMenu-basicInfoDropdown > ul > li {
+	width: 190px;
+	text-align: center;
+	font-size: 16px!important;	
+}
+
+.adminMenu-basicInfoDropdown > button{
+	border: solid 1px #b4b4b4!important;
+}
+
 .manuInfo-menuInfoTitle {
 	position: relative;
 	
@@ -45,11 +59,8 @@
 	width: 210px;
 	/* background-color: black; */
 	text-align: center;
-}
-
-.dropdown > button, li {
-	width: 208px;
-	text-align: center;
+	display: inline-block;
+    vertical-align: middle;
 }
 
 .menuInfo-menuImg {
@@ -58,18 +69,19 @@
 }
 
 #menuInfo-menuImgInput {
-	width: 170px;
+	width: 190px;
 }
 
 /* 메뉴 기본 정보 */
 .menuInfo-basicInfoContainer {
-	width: 600px;
-	margin: 47px 0 0 55px;	
+	display: inline-block;
+    vertical-align: middle;
+    margin-left: 44px;
 }
 
 .menuInfo-basicInfoContainer > div {
 	margin: 10px 0 10px;
-	
+   	text-align: left;
 }
 
 .menuInfo-basicInfoContainer div > p, input {
@@ -106,4 +118,43 @@
 	height: 70px;
 	margin-left: 15px;
 	color: gray;
+}
+
+.adminMenu-basicInfo {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.adminCate-calorie > input {
+	margin: 0 15px 0 10px!important;
+	width: 120px!important;
+}
+
+@media (max-width:1200px) {
+	.adminMenu-basicInfo {
+	    padding: 50px 20px;
+	}
+	
+	.menuInfo-basicInfoContainer {
+    	margin: 40px 44px 0px 44px;
+	}
+}
+
+@media (max-width:1012px) {
+	.adminCate-calorie {
+		display: block!important;
+	}
+	
+	.adminCate-calorie > input {
+	    margin: 0 15px 0 24px!important;
+	    width: 150px!important;
+	}
+	
+	.menuInfo-menuDescription > textarea {
+    	width: 330px!important;
+	}
+	
+	.menuInfo-basicInfoContainer {
+	    width: 425px!important;
+	}
 }

@@ -28,18 +28,11 @@
 
 <!-- 기타 css 및 부트스트랩 -->
 <link
-	href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.css"
-	rel="stylesheet" type="text/css">
-<link
 	href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css"
 	rel="stylesheet" type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/extrafontello/fontello/css/fontello.css">
-
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.js"></script>
+<link
+	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
+	rel="stylesheet" type="text/css">
 
 </head>
 
@@ -107,10 +100,10 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">기본 정보</h6>
 						</div>
-						<div class="card-body">
+						<div class="card-body adminMenu-basicInfo">
 							<div class="menuInfo-menuCateAndImg">
 								<!-- 드롭다운 및 이미지 관리 -->
-								<div class="dropdown">
+								<div class="dropdown adminMenu-basicInfoDropdown">
 									<button class="btn btn-default dropdown-toggle" type="button"
 										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 										카테고리를 선택하세요. <span class="caret"></span>
@@ -135,12 +128,15 @@
 								<!-- 기본 메뉴 정보 -->
 								<div class="menuInfo-basicInfo">
 									<p>메뉴이름</p>
-									<input type="text" style="width: 150px;" value="메뉴이름"
-										onfocus="this.value=''">
+									<input type="text" style="width: 150px;" placeholder="메뉴이름">
 									<p>가격</p>
-									<input type="text" value="가격" onfocus="this.value=''">
-									<p>칼로리</p>
-									<input type="text" value="칼로리" onfocus="this.value=''">
+									<input type="text" placeholder="가격">
+									
+									<div style="display: inline-block!important;" class="adminCate-calorie">
+										<p>칼로리</p>
+										<input type="text" placeholder="칼로리">
+									</div>
+									
 								</div>
 
 								<!-- 메뉴 참고사항 -->
@@ -157,7 +153,7 @@
 								<!-- 메뉴 설명 -->
 								<div class="menuInfo-menuDescription">
 									<p>메뉴설명</p>
-									<textarea onfocus="this.value=''">메뉴 설명</textarea>
+									<textarea placeholder="메뉴 설명"></textarea>
 								</div>
 							</div>
 						</div>

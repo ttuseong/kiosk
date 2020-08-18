@@ -26,7 +26,7 @@
 	href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css"
 	rel="stylesheet">
 <link
-	href="${pageContext.request.contextPath}/assets/css/admin/table.css"
+	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
 	rel="stylesheet">
 
 <!-- Custom styles for this page -->
