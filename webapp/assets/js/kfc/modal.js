@@ -292,21 +292,6 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 	$(".burgerBoxPrice").text(totalPrice);
 });
 
-/* 추천 메뉴 모달 */
-$('.menu-container').on("click", function(){
-	var thisMenuContainer = $(this);
-	var target = thisMenuContainer.children(".icon-check");
-	
-	if(target.hasClass("recommend-check")){
-		target.addClass("recommend-hidden");
-		target.removeClass("recommend-check")
-	}
-	else{
-		target.addClass("recommend-check");
-		target.removeClass("recommend-hidden")
-	}
-});
-
 /*사이드 변경 선택*/
 function sideChange(changeNo){
 	$.ajax({
@@ -320,4 +305,60 @@ function sideChange(changeNo){
 			console.error(status + " : " + error);
 		}
 	});
+}
+
+/* 추천 메뉴 모달 */
+$('#recommend-body').on("click", ".recommendation",function(){
+	var thisMenuContainer = $(this);
+	var target = thisMenuContainer.children(".icon-check");
+	
+	if(target.hasClass("recommend-check")){
+		target.addClass("recommend-hidden");
+		target.removeClass("recommend-check")
+	}
+	else{
+		target.addClass("recommend-check");
+		target.removeClass("recommend-hidden")
+	}
+});
+
+/*주문버튼-->장소선택 모달-->추천 메뉴 모달*/
+$("#orderBtn").on("click", function(){
+	$("#placeSelect").modal();
+});
+
+$(".placeSelectBodyContentContiner").on("click", function(){
+	$("#placeSelect").modal("hide");
+	$.ajax({
+		url : url+"/KFC/recommenDationMenu",		
+		type : "post",
+		success : function(mList){
+			$("#recommend-body").empty();
+			for(var i=0; i< mList.length; i++){
+				addRecommenDationMenu(mList[i]);
+			}
+			$("#recommend").modal();
+
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+
+});
+
+function addRecommenDationMenu(menuVo){
+	var str = "";
+	str += ' <div class="menu-container recommendation">';
+	str += ' 	<div class="recommend-imgAndPtag">';
+	str += ' 	<img';
+	str += ' 	src="' + url + '/assets/images/icon1.png"';
+	str += '	class="img-responsive">';
+	str += '	<p class="menuName">' + '+' + menuVo.menuName +  '</p><br>';
+	str += '	<p class="menuPrice">' + '+' + menuVo.menuPrice +  '</p>';
+	str += '	</div>';						
+	str += '	<div class="icon-check recommend-hidden"></div>';		
+	str += ' </div>';	
+	
+	$("#recommend-body").append(str);
 }

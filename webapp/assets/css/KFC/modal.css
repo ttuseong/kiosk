@@ -51,8 +51,6 @@
 
 	text-align: center;
 
-	
-
 }
 
  
@@ -137,25 +135,23 @@
 	width: 150px;
 
 	height: 200px;
-
+	
+	display: inline-block;
+	
+	margin: 15px 32.5px 15px 32.5px;
+	
 
 }
 
- 
-
-.menuName{ /* 메뉴 이름 */
-
+.recommend-imgAndPtag{ /*메뉴 이미지와 p태그*/
 	text-align: center;
+} 
 
-}
 
- 
 
 .menuPrice{ /* 메뉴 가격 */
 
 	color: red;
-
-	text-align: center;
 
 }
 
@@ -172,6 +168,10 @@
 	transform: translate(-50%, -60%) rotate(15deg);
 	font-size: 200px;
 	color: red;
+}
+
+#recommend-body { 
+	text-align: left;
 }
 
  

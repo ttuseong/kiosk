@@ -54,6 +54,7 @@ public class KFCController {
 		return kfcService.intiTopping();
 	}
 	
+
 //	@ResponseBody
 //	@RequestMapping("/sideChange")
 //	public String sideChange(@RequestParam("changeNo") int changeNo){
@@ -63,4 +64,14 @@ public class KFCController {
 //		
 //		return "";
 //	}
+
+	@ResponseBody
+	@RequestMapping("/recommenDationMenu")
+	public List<MenuVo> recommenDationMenu() {
+		List<MenuVo> mList = kfcService.recommenDationMenuList();
+		System.out.println(mList.toString());
+		return mList;
+	}
+	
+
 }

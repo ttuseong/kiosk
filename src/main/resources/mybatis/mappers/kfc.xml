@@ -102,4 +102,24 @@
 			    storeNo=1
 		]]>
 	</select>
+	
+	<select id="selectRecommenDationMenuList" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			select  m.menuimg,
+        			m.menuname,
+        			m.menuprice
+			from
+    				menu m,
+    				store s,
+    				category c
+			where 
+					s.storename='KFC'
+			and 
+    				s.storeno=c.storeno
+			and
+    				c.categoryno=m.categoryno
+			and
+    				m.isspecial=1
+		]]>
+	</select>
 </mapper>

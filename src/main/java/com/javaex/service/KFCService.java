@@ -77,12 +77,10 @@ public class KFCService {
 	public List<ToppingVo> intiTopping() {
 		return kfcDao.selectToppingbasicInfo();
 	}
-	
 	public void changeMenu(){
 		
 		
 	}
-	
 	public List<MenuVo> changeSide(){
 		return kfcDao.selectSideList();
 	}
@@ -93,5 +91,10 @@ public class KFCService {
 	
 	public List<MenuVo> changeChicken(){
 		return kfcDao.selectChickenList();
+	}
+	
+	public List<MenuVo> recommenDationMenuList() {
+		
+		return kfcDao.selectRecommenDationMenuList();
 	}
 }

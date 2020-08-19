@@ -45,6 +45,7 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectToppingbasicInfo");
 	}
 	
+
 	public List<MenuVo> selectSideList(){
 		return sqlSession.selectList("");
 	}
@@ -55,5 +56,9 @@ public class KFCDao {
 	
 	public List<MenuVo> selectChickenList(){
 		return sqlSession.selectList("");
+	}
+	public List<MenuVo> selectRecommenDationMenuList() {
+		return sqlSession.selectList("kfc.selectRecommenDationMenuList");
+
 	}
 }

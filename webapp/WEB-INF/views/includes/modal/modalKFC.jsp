@@ -9,16 +9,9 @@
 			<div class="modal-header">
 				<h4 class="modal-title" id="myModalLabel">이런 메뉴 어떠세요?</h4>
 			</div>
-			<div class="modal-body">
-				<div class="menu-container">
-					<div>
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-					</div>
-					<p class="menuName">메뉴이름</p>
-					<p class="menuPrice">메뉴 가격</p>
-					<div class="icon-check recommend-check"></div>
+			<div class="modal-body" id="recommend-body">
+			
+
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -53,7 +46,7 @@
 					<div class="placeSelectBodyContentContiner">
 						<div class="placeSelectBodyContent">
 							<img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-							<h5>매장식사</h5>
+							<h5>포장주문</h5>
 							<p>TO GO</p>
 						</div>
 						<p>다회용 용기 제공</p>
