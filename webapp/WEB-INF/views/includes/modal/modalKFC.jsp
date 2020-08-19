@@ -11,14 +11,14 @@
 			</div>
 			<div class="modal-body">
 				<div class="menu-container">
-					<p>
+					<div>
 						<img
 							src="${pageContext.request.contextPath}/assets/images/icon1.png"
 							class="img-responsive">
-					</p>
+					</div>
 					<p class="menuName">메뉴이름</p>
 					<p class="menuPrice">메뉴 가격</p>
-					<div class="icon-check recommend-hidden" id="recommend-check"></div>
+					<div class="icon-check recommend-check"></div>
 				</div>
 			</div>
 			<div class="modal-footer">

@@ -207,12 +207,10 @@
 
 <script type="text/javascript">	
 $(document).ready(function(){
-	$("#selectMode").modal();
+	$("#recommend").modal();
 });
 
-$('.recommend-hidden').on("click", function(){
-	$('.recommend-hidden').hide();
-});
+
 </script>
 
 </html>

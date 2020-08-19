@@ -285,3 +285,18 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 	$(".burgerBoxPrice").text(totalPrice);
 });
 
+/* 추천 메뉴 모달 */
+$('.menu-container').on("click", function(){
+	var thisMenuContainer = $(this);
+	var target = thisMenuContainer.children(".icon-check");
+	
+	if(target.hasClass("recommend-check")){
+		target.addClass("recommend-hidden");
+		target.removeClass("recommend-check")
+	}
+	else{
+		target.addClass("recommend-check");
+		target.removeClass("recommend-hidden")
+	}
+});
+
