@@ -7,6 +7,10 @@ $(document).ready(function(){
 	console.log(size);
 	
 	$("#menuSectionContent").width(size);
+	
+	if(endPoint > 1){
+		$("#btnRight").addClass("btnActive");
+	}
 });
 
 $("#btnRight").on("click", function(){

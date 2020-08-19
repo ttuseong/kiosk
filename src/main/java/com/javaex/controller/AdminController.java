@@ -13,6 +13,12 @@ public class AdminController {
 		return "/admin/adminMenu";
 	}
 	
+	// 메뉴정보
+	@RequestMapping("/adminToping")
+	public String adminToping() {
+		return "/admin/adminToping";
+	}
+	
 	// 카테고리
 	@RequestMapping("/adminCate")
 	public String adminCate() {

@@ -6,16 +6,17 @@ public class MenuVo {
 	private String menuDesc;
 	private int menuPrice;
 	private String menuImg;
+	private int isSet;
 	
 	public MenuVo() {}
 	
-	public MenuVo(int menuNo, String menuName, String menuDesc, int menuPrice, String menuImg) {
-		super();
+	public MenuVo(int menuNo, String menuName, String menuDesc, int menuPrice, String menuImg, int isSet) {
 		this.menuNo = menuNo;
 		this.menuName = menuName;
 		this.menuDesc = menuDesc;
 		this.menuPrice = menuPrice;
 		this.menuImg = menuImg;
+		this.isSet = isSet;
 	}
 
 	public int getMenuNo() {
@@ -57,10 +58,21 @@ public class MenuVo {
 	public void setMenuImg(String menuImg) {
 		this.menuImg = menuImg;
 	}
+	
+
+	public int getIsSet() {
+		return isSet;
+	}
+
+	public void setIsSet(int isSet) {
+		this.isSet = isSet;
+	}
 
 	@Override
 	public String toString() {
-		return "KFCMenuVo [menuNo=" + menuNo + ", menuName=" + menuName + ", menuDesc=" + menuDesc + ", menuPrice="
-				+ menuPrice + ", menuImg=" + menuImg + "]";
+		return "MenuVo [menuNo=" + menuNo + ", menuName=" + menuName + ", menuDesc=" + menuDesc + ", menuPrice="
+				+ menuPrice + ", menuImg=" + menuImg + ", isSet=" + isSet + "]";
 	}
+
+	
 }

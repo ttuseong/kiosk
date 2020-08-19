@@ -13,7 +13,7 @@
 		</div>
 	
 		<div class="main-headerAdminLogin">
-			<a href="${pageContext.request.contextPath}/admin/menuInfo">관리자페이지</a>
+			<a href="${pageContext.request.contextPath}/admin/adminMenu">관리자페이지</a>
 			<a href="#">로그아웃</a>
 		</div>
 	</div>

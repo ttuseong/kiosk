@@ -1,6 +1,8 @@
 package com.javaex.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,8 +60,12 @@ public class KFCService {
 		return kfcDao.selectCountMenu(categoruNo);
 	}
 	
-	public MenuVo selectMenu(int menuNo) {
-		return kfcDao.selectMenu(menuNo);
+	public List<MenuVo> selectMenu(int menuNo) {
+		List<MenuVo> list = kfcDao.selectSetMenus(menuNo);
+		
+		list.add(kfcDao.selectMenu(menuNo));
+
+		return list;
 	}
 	
 	public List<ToppingVo> selectToppingList(){
@@ -70,5 +76,22 @@ public class KFCService {
 	
 	public List<ToppingVo> intiTopping() {
 		return kfcDao.selectToppingbasicInfo();
+	}
+	
+	public void changeMenu(){
+		
+		
+	}
+	
+	public List<MenuVo> changeSide(){
+		return kfcDao.selectSideList();
+	}
+	
+	public List<MenuVo> changeDrinking(){
+		return kfcDao.selectDrinkingList();
+	}
+	
+	public List<MenuVo> changeChicken(){
+		return kfcDao.selectChickenList();
 	}
 }

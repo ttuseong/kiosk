@@ -165,7 +165,7 @@
 }
 
 
-#recommend-check { /* 메뉴 체크*/
+.recommend-check { /* 메뉴 체크*/
 	position:absolute;
 	left: 50%;
 	top: 60%;

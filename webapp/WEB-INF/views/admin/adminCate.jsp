@@ -38,6 +38,10 @@
 
 <body id="page-top">
 
+	<!-- 관리자페이지 헤더 -->
+		<jsp:include page="/WEB-INF/views/includes/adminHeader.jsp" />
+	<!-- 관리자페이지 헤더 -->
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -58,17 +62,22 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item"><a class="nav-link" href="adminMenu"> <i
-					class="fas fa-fw fa-cog"></i> <span>Menu Info</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="adminMenu">
+					<i class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
+			</a></li>
+			
+			<!-- Nav Item - Menu Info -->
+			<li class="nav-item"><a class="nav-link" href="adminToping">
+					<i class="fas fa-fw fa-hamburger"></i> <span>토핑 정보</span>
+			</a></li>
 
 			<!-- Nav Item - Category -->
-			<li class="nav-item active"><a class="nav-link" href="adminCate">
-					<i class="fas fa-fw fa-table"></i> <span>Category</span>
-			</a></li>
+			<li class="nav-item active"><a class="nav-link" href="adminCate"> <i
+					class="fas fa-fw fa-folder"></i> <span>키오스크 카테고리</span></a></li>
 
 			<!-- Nav Item - Stats -->
 			<li class="nav-item"><a class="nav-link" href="adminStats">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Stats</span>
+					<i class="fas fa-fw fa-chart-area"></i> <span>통계</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -188,13 +197,37 @@
 										<tr>
 											<td>03</td>
 											<td><a href="#">햄버거</a></td>
-											<td>공개</td>
 											<td></td>
+											<td>비공개</td>
 											<td><a href="#">X</a></td>
 										</tr>
 
 										<tr>
 											<td>04</td>
+											<td><a href="#">세트</a></td>
+											<td></td>
+											<td>비공개</td>
+											<td><a href="#">X</a></td>
+										</tr>
+										
+										<tr>
+											<td>05</td>
+											<td><a href="#">박스</a></td>
+											<td></td>
+											<td>비공개</td>
+											<td><a href="#">X</a></td>
+										</tr>
+										
+										<tr>
+											<td>06</td>
+											<td><a href="#">단품/세트/박스</a></td>
+											<td>공개</td>
+											<td></td>
+											<td><a href="#">X</a></td>
+										</tr>
+										
+										<tr>
+											<td>07</td>
 											<td><a href="#">빙수</a></td>
 											<td></td>
 											<td>비공개</td>
@@ -202,7 +235,7 @@
 										</tr>
 
 										<tr>
-											<td>05</td>
+											<td>08</td>
 											<td><a href="#">치킨</a></td>
 											<td>공개</td>
 											<td></td>
@@ -240,29 +273,6 @@
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-success" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script

@@ -72,7 +72,7 @@
 									<c:set var="loop_flag" value="true"></c:set>
 								</c:if>
 								<c:if test="${not loop_flag }">
-									<div class="menu" data-no="${map.menuList[(i-1)*9+j-1].menuNo }">
+									<div class="menu" data-no="${map.menuList[(i-1)*9+j-1].menuNo}" data-status="${map.menuList[(i-1)*9+j-1].isSet}">
 										<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 										<div class="menuContent">
 											<p>${map.menuList[(i-1)*9+j-1].menuName}</p>
@@ -100,7 +100,7 @@
 						">${current}</div></li>
 					</c:forEach>
 				</ul>
-				<button id="btnRight" class="btnPage btnActive">다음</button>
+				<button id="btnRight" class="btnPage">다음</button>
 			</div>
 		</section>
 		
@@ -207,12 +207,10 @@
 
 <script type="text/javascript">	
 $(document).ready(function(){
-	$("#selectMode").modal();
+	$("#recommend").modal();
 });
 
-$('.recommend-hidden').on("click", function(){
-	$('.recommend-hidden').hide();
-});
+
 </script>
 
 </html>
