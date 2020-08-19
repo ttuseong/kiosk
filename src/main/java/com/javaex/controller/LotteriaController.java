@@ -30,7 +30,8 @@ public class LotteriaController {
 		model.addAttribute("categoryList", lotteriaService.categoryList());
 		model.addAttribute("menuList", lotteriaService.menuList());
 		model.addAttribute("cateNo4SetMenu", lotteriaService.cateNo4setMenu());
-		model.addAttribute("setList",lotteriaService.dessertAndDrink());
+		model.addAttribute("dessertMenu",lotteriaService.dessertList());
+		model.addAttribute("drinkMenu", lotteriaService.drinkList());
 		
 		return "/lotteria/order";
 	}

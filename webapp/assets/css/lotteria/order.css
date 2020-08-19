@@ -8,7 +8,7 @@
 .width-auto{width: auto;}
 .fontSize50px{font-size: 40px;}
 .contents-header{border:8px solid #990012;height:250px;text-align: center;}
-.width130px{width:130px;}
+.width130px{width:130px;height:180px;}
 
 ul.tabs {
 	margin: 0;
@@ -72,7 +72,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 
 .table-center{width: 100%; text-align: center; background-color: #FFF8DC; font-size: 15px;}
 .tr-center{height: 50px; background-color: #F0FFFF; text-align: center; padding-top: 12px; font-size: 20px;}
-.td-red{text-align: right; color: red;}
+.td-red{text-align: right; color: red;padding-right: 50px;}
 .height60{height: 60px;}
 .height100{height: 100%;}
 .border-width60px{border: 1px solid black; height: 100%; width: 60px; float: left;}

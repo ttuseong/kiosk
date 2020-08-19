@@ -9,8 +9,7 @@
 				   categoryName 
 			from category 
 			where storeNo=2 
-			and categoryNo !=28 
-			and categoryNo !=29 
+			and publicYN = 1
 			order by categoryNo asc
 		]]>
 	</select>
@@ -28,8 +27,7 @@
 			 category c  
 		where m.categoryNo = c.categoryNo 
 		and c.storeNo=2
-        and c.categoryNo!=28
-        and c.categoryNo!=29
+        and c.publicYn = 1
 	]]>
 	</select>
 		
@@ -69,7 +67,7 @@
 		]]>
 	</select>
 	
-	<select id="dessertAndDrink" resultType="com.javaex.vo.LotteriaVo">
+	<select id="dessertList" resultType="com.javaex.vo.LotteriaVo">
 		<![CDATA[
 			select menuNo, 
 				   categoryNo, 
@@ -80,7 +78,22 @@
 				   isSpecial 
 			from menu 
 			where categoryNo=28 
-			or categoryNo=29
+			order by menuNo asc
+		]]>
+	</select>
+	
+	<select id="drinkList" resultType="com.javaex.vo.LotteriaVo">
+		<![CDATA[
+			select menuNo, 
+				   categoryNo, 
+				   menuName, 
+				   menuDesc, 
+				   menuPrice, 
+				   menuImg, 
+				   isSpecial 
+			from menu 
+			where categoryNo=29 
+			order by menuNo asc
 		]]>
 	</select>
 	

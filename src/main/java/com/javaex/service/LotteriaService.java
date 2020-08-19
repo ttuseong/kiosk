@@ -34,7 +34,11 @@ public class LotteriaService {
 		return lotteriaDao.selectMenu(menuNo);
 	}
 	
-	public List<LotteriaVo> dessertAndDrink(){
-		return lotteriaDao.dessertAndDrink();
+	public List<LotteriaVo> dessertList(){
+		return lotteriaDao.dessertList();
+	}
+	
+	public List<LotteriaVo> drinkList(){
+		return lotteriaDao.drinkList();
 	}
 }

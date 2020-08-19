@@ -85,8 +85,8 @@
 				</colgroup>
 				<tr class="tr-center">
 					<td>총주문내역</td>
-					<td>0 개</td>
-					<td class="td-red">0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td id ="maximum">0 개</td>
+					<td class="td-red" id="resultPrice">0</td>
 				</tr>
 
 				<c:forEach var="i" begin="1" end="5">
@@ -155,29 +155,31 @@
 
 							<div id="modal-tab1" class="modal-tab_content">
 								<!--Content-->
-								<c:forEach items="${setList }" var="set" >
-								<c:if test="${set.categoryNo eq 28 }">
-								<div class="modal-float">
+								<c:forEach items="${dessertMenu }" var="set" varStatus="v">
+								<div class="modal-float set_dessert" data-dessertmenuno="${ set.menuNo}" >
 									<div class="width130px">
 										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
-										<div class="modal-center width130px">${set.menuName }<p class="modal-red">${set.menuPrice }</p></div>
+										<div class="modal-center width130px">
+											<div>${set.menuName }</div>
+											<p class="modal-red">${set.menuPrice }</p>
+										</div>
 									</div>
 								</div>
-								</c:if>
 								</c:forEach>
 							</div>
 
 							<div id="modal-tab2" class="modal-tab_content">
 								<!--Content-->
-								<c:forEach items="${setList }" var="set" >
-								<c:if test="${set.categoryNo eq 29 }">
-								<div class="modal-float">
+								<c:forEach items="${drinkMenu }" var="set" varStatus="v">
+								<div class="modal-float set_drink" data-drinkmenuno="${ set.menuNo}">
 									<div class="width130px">
 										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
-										<div class="modal-center width130px">${set.menuName }<p class="modal-red">${set.menuPrice }</p></div>
+										<div class="modal-center width130px">
+											<div>${set.menuName }</div>
+											<p class="modal-red">${set.menuPrice }</p>
+										</div>
 									</div>
 								</div>
-								</c:if>
 								</c:forEach>
 							</div>
 
@@ -196,7 +198,7 @@
 							<button type="button" data-dismiss="modal" class="modalFooter-btn1">취소하기</button>
 						</div>
 						<div class="modalFooter-width33">
-							<button type="button" class="modalFooter-btn2">선택완료</button>
+							<button type="button" class="modalFooter-btn2" onClick="dessertAndDrink()">선택완료</button>
 						</div>
 					</div>
 				</div>
