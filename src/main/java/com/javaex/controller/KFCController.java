@@ -53,17 +53,6 @@ public class KFCController {
 	public List<ToppingVo> initTopping() {
 		return kfcService.intiTopping();
 	}
-	
-
-//	@ResponseBody
-//	@RequestMapping("/sideChange")
-//	public String sideChange(@RequestParam("changeNo") int changeNo){
-//		System.out.println(changeNo);
-//		
-//		List<MenuVo> list = kfcService.changeMenu();
-//		
-//		return "";
-//	}
 
 	@ResponseBody
 	@RequestMapping("/recommenDationMenu")
@@ -73,5 +62,17 @@ public class KFCController {
 		return mList;
 	}
 	
+
+
+	@ResponseBody
+	@RequestMapping("/sideChange")
+	public List<MenuVo> sideChange(@RequestParam("changeNo") int changeNo){
+		System.out.println(changeNo);
+		
+		List<MenuVo> list = kfcService.changeMenu(changeNo);
+		System.out.println(list.toString());
+		
+		return list;
+	}
 
 }

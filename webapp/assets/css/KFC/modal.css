@@ -741,6 +741,7 @@
 	border-radius: 5px;
 	background-color: gray;
 	color: white;
+	z-index: 2;
 }
 
 #hamburgerBox-SideChangeBodyRightBtn{
@@ -754,14 +755,37 @@
 	display: inline-flex;
 	align-items: center;
 	border-radius: 5px;
-	background-color: red;
+	background-color: gray;
 	color: white;
+	z-index: 2;
+}
+#sideChangeContainer {
+	width: 648px;
+	height: 538px;
+	position: absolute;
+	top: 10%;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: left;
+	overflow: hidden;
+	z-index: 1;
 }
 
-#sideChangeContainer {
-	position: absolute;
-	top: 30%;
-	transform: translate(-45px, -90px);
+#sideChangeContents:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+
+#sideChangeContents{
+	width: 1296px;
+}
+
+#sideChangeContent{
+	float: left;
+	width: 648px;
+	height: 538px;
+	padding: 0 40px;
 }
 
 #sideChangeTitle {
@@ -775,10 +799,6 @@
 	margin:17px;
 	width: 150px;
 	height: 220px;
-}
-
-#menuPriceBlank{
-	color: white;
 }
 
 #menuSetSecond > div p{

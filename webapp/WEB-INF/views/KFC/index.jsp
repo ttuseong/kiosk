@@ -206,9 +206,6 @@
 
 
 <script type="text/javascript">	
-$(document).ready(function(){
-	$("#recommend").modal();
-});
 </script>
 
 

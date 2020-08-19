@@ -46,8 +46,12 @@ public class KFCDao {
 	}
 	
 
-	public List<MenuVo> selectSideList(){
-		return sqlSession.selectList("");
+	public MenuVo selectBasicSide() {
+		return sqlSession.selectOne("kfc.selectBasicSide");
+	}
+	
+	public List<MenuVo> selectAnotherSide(){
+		return sqlSession.selectList("kfc.selectAnotherSide");
 	}
 	
 	public List<MenuVo> selectDrinkingList(){

@@ -304,59 +304,8 @@
 						<p>사이드 변경</p>
 				</div>
 				<div id="sideChangeContainer">
-					<div class="menu-container" id="menuSetSecond">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">후렌치후라이(M)</p>
-							<p class="menuPrice" id="menuPriceBlank">-</p>
-						</div>
-					</div>
-					<div class="menu-container" id="menuSetSecond">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">텐더떡볶이교환</p>
-							<p class="menuPrice">+ 1,000</p>
-						</div>
-					</div>
-					<div class="menu-container" id="menuSetSecond">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">올쉐킷치즈</p>
-							<p class="menuPrice">+ 800</p>
-						</div>
-					</div>
-					<div class="menu-container" id="menuSetSecond">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">메뉴이름</p>
-							<p class="menuPrice">메뉴가격</p>
-						</div>
-					</div>
-					<div class="menu-container" id="menuSetSecond">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">메뉴이름</p>
-							<p class="menuPrice">메뉴가격</p>
-						</div>
-					</div>
-					<div class="menu-container" id="menuSetSecond">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName">메뉴이름</p>
-							<p class="menuPrice">메뉴가격</p>
-						</div>
+					<div id="sideChangeContents">
+					
 					</div>
 				</div>
 			</div>
@@ -472,5 +421,3 @@
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
-

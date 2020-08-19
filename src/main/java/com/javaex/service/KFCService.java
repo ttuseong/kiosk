@@ -77,12 +77,41 @@ public class KFCService {
 	public List<ToppingVo> intiTopping() {
 		return kfcDao.selectToppingbasicInfo();
 	}
-	public void changeMenu(){
+	
+	public List<MenuVo> changeMenu(int changeNo){
+		List<MenuVo> list = null;
+
 		
+		switch(changeNo) {
+		case 2:
+			list = changeSide();
+			break;
+		case 3:
+			list = changeDrinking();
+			break;
+		case 4:
+			list = changeChicken();
+			break;
+		default:
+			System.out.println("KFC_Service changeMenu메소드에 잘못된 입력이 들어왔습니다.");
+		}
 		
+		return list;
 	}
 	public List<MenuVo> changeSide(){
-		return kfcDao.selectSideList();
+		List<MenuVo> list = kfcDao.selectAnotherSide();
+		
+		list.add(selectBasicSide());
+		
+		return list;
+	}
+	
+	public MenuVo selectBasicSide() {
+		return kfcDao.selectBasicSide();
+	}
+	
+	public List<MenuVo> selectAnotherSide(){
+		return kfcDao.selectAnotherSide();
 	}
 	
 	public List<MenuVo> changeDrinking(){

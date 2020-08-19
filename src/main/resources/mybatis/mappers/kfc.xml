@@ -102,7 +102,6 @@
 			    storeNo=1
 		]]>
 	</select>
-	
 	<select id="selectRecommenDationMenuList" resultType="com.javaex.vo.MenuVo">
 		<![CDATA[
 			select  m.menuimg,
@@ -120,6 +119,40 @@
     				c.categoryno=m.categoryno
 			and
     				m.isspecial=1
+		]]>
+	</select>
+
+	<select id="selectBasicSide" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT
+			    menuNo,
+			    menuImg,
+			    menuName,
+			    menuPrice
+			FROM
+			    menu
+			where
+			    categoryNo = 7
+			and
+			    isChange = 1
+			and
+			    menuNo = 203
+		]]>
+	</select>
+	<select id="selectAnotherSide" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT
+			    menuImg,
+			    menuName,
+			    menuPrice
+			FROM
+			    menu
+			where
+			    categoryNo = 7
+			and
+			    isChange = 1
+			and
+    			menuNo != 203
 		]]>
 	</select>
 </mapper>

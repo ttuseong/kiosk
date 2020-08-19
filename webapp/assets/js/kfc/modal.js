@@ -19,6 +19,11 @@ var toppingArr;
 var sideArr = [0,0,0];
 var totalPrice=0;
 
+//sideChange 모달에 적용될 변수들
+var sideChangeCurPoint = 0;
+var sideChangeEndPoint;
+var sideChangeCurPos = 0;
+
 $(document).ready(function(){
 	inittoppingArr();
 });
@@ -171,6 +176,7 @@ $(".hamburgerBoxButton").on("click", function(){
 		case 2:
 		case 3:
 		case 4:
+			$("#sideChangeContents").empty();
 			sideChange(no);
 			$("#sideChange").modal();
 		default:
@@ -299,13 +305,99 @@ function sideChange(changeNo){
 		type : "post",
 		data : {changeNo : changeNo},
 		success : function(sideList){
+<<<<<<< HEAD
 			console.log(sildeList);
+=======
+			addSideMenu(sideList);
+			
+			sideChangeEndPoint = Math.ceil(sideList.length/6.0);
+			console.log(sideChangeEndPoint);
+			if(sideChangeEndPoint>1){
+				$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
+			}
+>>>>>>> 8666346... 사이드 변경 모달 슬라이드 효과 추가
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	});
 }
+
+<<<<<<< HEAD
+=======
+function addSideMenu(sideList){
+	var str = "";
+	var index = 0; 
+	var listLength = sideList.length;
+	console.log("test start" + sideList.length);
+	while(index < listLength){
+		console.log(index);
+		str += ' <div id="sideChangeContent">';
+		for(var j = 0; j < 6; j++){
+			if(index == listLength){
+				break;
+			}
+			
+			var addPrice = sideList[index].menuPrice - 2200;
+			
+			str += ' 	<div class="menu-container" id="menuSetSecond">';
+			str += ' 		<img';
+			str += '			src="'+ url +'/assets/images/' + sideList[index].menuImg + '"';
+			str += ' 			class="img-responsive">';
+			str += '		<div>';
+			str += '			<p class="menuName">' + sideList[index].menuName + '</p>';
+			if(addPrice <= 0){
+				str += '		<p class="menuPrice"></p>';
+			}
+			else{
+				str += '		<p class="menuPrice">' + '+' + addPrice + '</p>';
+			}
+			str += '		</div>';
+			str += '	</div>';
+
+			index++;
+		}
+		str += ' </div>';
+	}
+	
+	$("#sideChangeContents").append(str);
+}
+
+$("#hamburgerBox-SideChangeBodyRightBtn").on("click", function(){
+	console.log("클릭!");
+	if($("#hamburgerBox-SideChangeBodyRightBtn").hasClass("btnActive")){
+		sideChangeCurPoint++;
+		sideChangeCurPos = -1 * sideChangeCurPoint * 648;
+		$("#sideChangeContents").animate({
+			marginLeft : sideChangeCurPos
+		});
+		if(!$("#hamburgerBox-SideChangeBodyLeftBtn").hasClass("btnActive") && sideChangeCurPoint > 0){
+			$("#hamburgerBox-SideChangeBodyLeftBtn").addClass("btnActive");
+		}
+		if(sideChangeCurPoint == sideChangeEndPoint-1){
+			$("#hamburgerBox-SideChangeBodyRightBtn").removeClass("btnActive");
+		}
+	}
+});
+
+$("#hamburgerBox-SideChangeBodyLeftBtn").on("click", function(){
+	
+	if($("#hamburgerBox-SideChangeBodyLeftBtn").hasClass("btnActive")){
+		sideChangeCurPoint--;
+		sideChangeCurPos = -1 * sideChangeCurPoint * 800;
+		$("#sideChangeContents").animate({
+			marginLeft : curPos
+		});
+		if(!$("#hamburgerBox-SideChangeBodyRightBtn").hasClass("btnActive") && sideChangeCurPos < sideChangeEndPoint-1){
+			$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
+		}
+		if(sideChangeCurPos == 0){
+			$("#hamburgerBox-SideChangeBodyLeftBtn").removeClass("btnActive");
+		}
+	}
+	
+});
+
 
 /* 추천 메뉴 모달 */
 $('#recommend-body').on("click", ".recommendation",function(){
@@ -362,3 +454,4 @@ function addRecommenDationMenu(menuVo){
 	
 	$("#recommend-body").append(str);
 }
+
