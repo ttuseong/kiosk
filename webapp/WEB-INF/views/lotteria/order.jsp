@@ -39,7 +39,7 @@
 			</ul>
 
 			<!--탭 콘텐츠 영역 -->
-			<div class="tab_container" id="tab_menu">
+			<div class="tab_container" id="tab_menu"   style="position: relative;">
 				<c:forEach items="${categoryList }" var="vo">
 					<div id="tab${vo.categoryNo }" class="tab_content">
 
@@ -74,6 +74,14 @@
 
 					</div>
 				</c:forEach>
+			<div>
+				<div>
+					<button type="button" style="position: absolute;left: 0%;top: 45%;height: 85px;width: 35px;border-radius: 0 10px 10px 0;border: 0px;color: white;background-color: #B6B6B4;">이전</button>
+				</div>
+				<div>
+					<button type="button"style="position: absolute;right: 0%;top: 45%;height: 85px;width: 35px;border-radius: 10px 0 0 10px;border: 0px;color: white;background-color: #B6B6B4;">다음</button>
+				</div>
+			</div>	
 			</div>
 				<!--Content-->
 			
