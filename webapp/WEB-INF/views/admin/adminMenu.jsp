@@ -38,6 +38,10 @@
 
 <body id="page-top">
 
+	<!-- 관리자페이지 헤더 -->
+	<jsp:include page="/WEB-INF/views/includes/adminHeader.jsp" />
+	<!-- 관리자페이지 헤더 -->
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -58,16 +62,21 @@
 
 			<!-- Nav Item - Menu Info -->
 			<li class="nav-item active"><a class="nav-link" href="adminMenu">
-					<i class="fas fa-fw fa-cog"></i> <span>Menu Info</span>
+					<i class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
+			</a></li>
+			
+			<!-- Nav Item - Menu Info -->
+			<li class="nav-item"><a class="nav-link" href="adminToping">
+					<i class="fas fa-fw fa-hamburger"></i> <span>토핑 정보</span>
 			</a></li>
 
 			<!-- Nav Item - Category -->
 			<li class="nav-item"><a class="nav-link" href="adminCate"> <i
-					class="fas fa-fw fa-table"></i> <span>Category</span></a></li>
+					class="fas fa-fw fa-folder"></i> <span>키오스크 카테고리</span></a></li>
 
 			<!-- Nav Item - Stats -->
 			<li class="nav-item"><a class="nav-link" href="adminStats">
-					<i class="fas fa-fw fa-chart-area"></i> <span>Stats</span>
+					<i class="fas fa-fw fa-chart-area"></i> <span>통계</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -101,47 +110,81 @@
 							<h6 class="m-0 font-weight-bold text-primary">기본 정보</h6>
 						</div>
 						<div class="card-body adminMenu-basicInfo">
-							<div class="menuInfo-menuCateAndImg">
-								<!-- 드롭다운 및 이미지 관리 -->
-								<div class="dropdown adminMenu-basicInfoDropdown">
-									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-										카테고리를 선택하세요. <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu"
-										aria-labelledby="dropdownMenu1">
-										<li role="presentation"><a role="menuitem" tabindex="-1"
-											href="#">햄버거</a></li>
-										<li role="presentation"><a role="menuitem" tabindex="-1"
-											href="#">음료</a></li>
-									</ul>
-								</div>
 
+							<div class="menuInfo-menuCateAndImg">
+								<!-- 메뉴 이미지 -->
 								<img
 									src="${pageContext.request.contextPath}/assets/images/icon1.png"
 									class="menuInfo-menuImg img-rounded"> <input
 									id="menuInfo-menuImgInput" type="file" style="margin: auto;" />
 							</div>
+							<!-- 메뉴 이미지 끝 -->
 
+							<!-- 기본 메뉴 정보 -->
 							<div class="menuInfo-basicInfoContainer">
-
-								<!-- 기본 메뉴 정보 -->
-								<div class="menuInfo-basicInfo">
+									
+									<div class="adminMenu-dropdownContainer"> <!-- 드롭다운 -->
+									
+										<div class="adminMenu-cateDropdown">
+										<!-- 카테고리 드롭다운 -->
+											<p>카테고리</p>
+											<div class="dropdown adminMenu-basicInfoDropdown">
+												<button class="btn btn-default dropdown-toggle" type="button"
+													id="dropdownMenu1" data-toggle="dropdown"
+													aria-expanded="true">
+													카테고리를 선택하세요. <span class="caret"></span>
+												</button>
+												<ul class="dropdown-menu" role="menu"
+													aria-labelledby="dropdownMenu1">
+													<li role="presentation"><a role="menuitem" tabindex="-1"
+														href="#">햄버거</a></li>
+													<li role="presentation"><a role="menuitem" tabindex="-1"
+														href="#">음료</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- 카테고리 드롭다운 끝 -->
+	
+										<!-- 메뉴 드롭다운 -->
+										<div class="adminMenu-menuDropdown">
+											<p>메뉴</p>
+											<div class="dropdown adminMenu-basicInfoDropdown">
+												<button class="btn btn-default dropdown-toggle" type="button"
+													id="dropdownMenu1" data-toggle="dropdown"
+													aria-expanded="true" style="margin-right:0;">
+													메뉴를 선택하세요. <span class="caret"></span>
+												</button>
+												<ul class="dropdown-menu" role="menu"
+													aria-labelledby="dropdownMenu1">
+													<li role="presentation"><a role="menuitem" tabindex="-1"
+														href="#">불고기버거</a></li>
+													<li role="presentation"><a role="menuitem" tabindex="-1"
+														href="#">새우버거</a></li>
+												</ul>
+											</div>
+										</div>
+										<!-- 메뉴 드롭다운 끝 -->
+									</div> <!-- 드롭다운 끝 -->
+									
+									
+								<div class="menuInfo-basicInfo" style="margin-top: 18px!important;">
+								
 									<p>메뉴이름</p>
 									<input type="text" style="width: 150px;" placeholder="메뉴이름">
 									<p>가격</p>
 									<input type="text" placeholder="가격">
-									
-									<div style="display: inline-block!important;" class="adminCate-calorie">
+
+									<div style="display: inline-block !important;"
+										class="adminMenu-calorie">
 										<p>칼로리</p>
 										<input type="text" placeholder="칼로리">
 									</div>
-									
+
 								</div>
 
 								<!-- 메뉴 참고사항 -->
 								<div class="menuInfo-menuDetails">
-									<p style="margin-right: 10px;">참고사항</p>
+									<p style="margin-right: 20px;">참고사항</p>
 									<p class="normal">프로모션</p>
 									<input type="checkbox">
 									<p class="normal">추천메뉴</p>
@@ -158,9 +201,17 @@
 							</div>
 						</div>
 					</div>
+					<!-- 메뉴 기본 정보 끝 -->
+
+					<!-- 기본 정보 추가 버튼 -->
+					<div class="adminMenu-btnContainer"">
+						<a href="#" class="btn btn-success btn-circle"
+							style="margin: auto;"> <i class="fas fa-plus"></i>
+						</a>
+					</div>
 
 					<!-- 토핑 정보 -->
-					<div class="card shadow mb-4">
+					<div class="card shadow mb-4" style="margin-top: 24px">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">토핑 정보</h6>
 						</div>
@@ -168,6 +219,16 @@
 							<!-- 토핑 정보를 넣으세다 -->
 						</div>
 					</div>
+					<!-- 토핑 정보 끝 -->
+
+					<div class="adminMenu-btnContainer">
+						<a href="#" class="btn btn-secondary btn-icon-split"> <span
+							class="text">삭제</span>
+						</a> <a href="#" class="btn btn-success btn-icon-split"> <span
+							class="text">확인</span>
+						</a>
+					</div>
+
 
 				</div>
 				<!-- /.container-fluid -->
@@ -175,27 +236,40 @@
 			</div>
 			<!-- End of Main Content -->
 
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; 5fingers 2020</span>
+					</div>
+				</div>
+			</footer>
+			<!-- End of Footer -->
+
 		</div>
-		<!-- End of Page Wrapper -->
+		<!-- End of Content Wrapper -->
 
-		<!-- Scroll to Top Button-->
-		<a class="scroll-to-top rounded" href="#page-top"> <i
-			class="fas fa-angle-up"></i>
-		</a>
+	</div>
+	<!-- End of Page Wrapper -->
 
-		<!-- Bootstrap core JavaScript-->
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<!-- Scroll to Top Button-->
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
+	</a>
 
-		<!-- Core plugin JavaScript-->
-		<script
-			src="${pageContext.request.contextPath}/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<!-- Bootstrap core JavaScript-->
+	<script
+		src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Custom scripts for all pages-->
-		<script
-			src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
+	<!-- Core plugin JavaScript-->
+	<script
+		src="${pageContext.request.contextPath}/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
 </body>
 
 </html>

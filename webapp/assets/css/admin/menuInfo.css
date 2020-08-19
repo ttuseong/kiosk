@@ -5,7 +5,7 @@ a{
 }
 
 .adminMenu-basicInfoDropdown > ul > li {
-	width: 190px;
+	width: 207px;
 	text-align: center;
 	font-size: 16px!important;	
 }
@@ -54,29 +54,32 @@ a{
     border-radius: 5px;
 }
 
-/* 카테고리 드롭다운, 이미지, 이미지업로드 인풋 */
+/* 이미지, 이미지업로드 인풋 */
 .menuInfo-menuCateAndImg {
-	width: 210px;
+	width: 230px;
 	/* background-color: black; */
 	text-align: center;
 	display: inline-block;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 .menuInfo-menuImg {
-	width: 200px;
-	margin: 20px 0 20px 0;
+    width: 230px;
+    margin-bottom: 25px;
+    border: solid 1px lightgray;
+    border-radius: 10px;
+    padding: 25px;
 }
 
 #menuInfo-menuImgInput {
-	width: 190px;
+	width: 200px;
 }
 
 /* 메뉴 기본 정보 */
 .menuInfo-basicInfoContainer {
 	display: inline-block;
     vertical-align: middle;
-    margin-left: 44px;
+    margin-left: 50px;
 }
 
 .menuInfo-basicInfoContainer > div {
@@ -99,7 +102,7 @@ a{
 
 .menuInfo-basicInfo > input {
 	width: 120px;
-	margin: 0 15px 0 10px;
+    margin: 0 20px 0 20px;
 }
 
 .menuInfo-menuDetails > input {
@@ -113,11 +116,10 @@ a{
 }
 
 .menuInfo-menuDescription > textarea {
-	width: 520px;
-	max-width: 520px;
-	height: 70px;
-	margin-left: 15px;
-	color: gray;
+	width: 556px;
+    height: 70px;
+    margin-left: 25px;
+    color: gray;
 }
 
 .adminMenu-basicInfo {
@@ -125,9 +127,40 @@ a{
     padding: 50px 0;
 }
 
-.adminCate-calorie > input {
-	margin: 0 15px 0 10px!important;
+.adminMenu-calorie > input {
+	margin-left: 20px!important;
 	width: 120px!important;
+}
+
+.adminMenu-btnContainer {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 24px;
+}
+
+.adminMenu-btnContainer > .btn-icon-split {
+	width: 65px!important;
+	height: 38px!important;
+	margin: 0 5px;
+}
+
+/* 드롭다운 */
+.adminMenu-dropdownContainer > div > div {
+	display: inline-block;
+	text-align: center;
+}
+
+.adminMenu-dropdownContainer > div > div > button {
+    width: 241px!important;
+    margin: 0 20px 0 20px;
+}
+
+.menuInfo-basicInfoContainer > .adminMenu-dropdownContainerContainer {
+	margin-bottom: 8px!important;
+}
+
+.adminMenu-dropdownContainer > div{
+	display: inline-block!important;
 }
 
 @media (max-width:1200px) {
@@ -140,21 +173,40 @@ a{
 	}
 }
 
-@media (max-width:1012px) {
-	.adminCate-calorie {
+@media (max-width:1041px) {
+	.menuInfo-basicInfoContainer {
+	    width: 450px!important
+	}
+	
+	.adminMenu-cateDropdown {
+		margin-bottom: 16px;
+	}
+	
+	.adminMenu-menuDropdown > p {
+		width:58.25px;
+		text-align: center;
+	}
+	
+	.adminMenu-dropdownContainer > div > div > button {
+	    width: 346px!important;
+	}
+	
+	.adminMenu-calorie {
 		display: block!important;
 	}
 	
-	.adminCate-calorie > input {
-	    margin: 0 15px 0 24px!important;
+	.adminMenu-calorie > p {
+		width:58.25px;
+		text-align: center;
+	}
+	
+	.adminMenu-calorie > input {
+	    margin-top: 10px!important;
 	    width: 150px!important;
 	}
 	
 	.menuInfo-menuDescription > textarea {
-    	width: 330px!important;
+    	width: 344px!important;
 	}
-	
-	.menuInfo-basicInfoContainer {
-	    width: 425px!important;
-	}
+
 }

@@ -32,7 +32,7 @@ tbody > tr > td:nth-child(2) > a {
     margin: auto;
 }	
 
-@media (min-width:576px) and (max-width:944px) {
+@media (min-width:576px) and (max-width:952px) {
 	.form-group, .btn-icon-split{
 		margin-top: 20px;
 	}
