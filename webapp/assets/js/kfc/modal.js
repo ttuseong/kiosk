@@ -62,9 +62,17 @@ function computeAllPrice(){
 //메뉴 클릭 이벤트 처리
 $(".menu").on("click", function(){
 	var thisMenu = $(this);
-	menuNo = thisMenu.data("no");
+	var status = thisMenu.data("status");
 	
-	selectMenu();
+	if(status == 0){
+		
+	}
+	else{
+		menuNo = thisMenu.data("no");
+	
+		selectMenu();
+	}
+	
 })
 
 
@@ -74,9 +82,9 @@ function selectMenu(){
 		url : url+"/KFC/selectMenu",		
 		type : "post",
 		data : {menuNo : menuNo},
-		success : function(menuVo){
-			OnselectMode(menuVo);
-			burgerImg = menuVo.menuImg;
+		success : function(menuVoList){
+			OnselectMode(menuVoList);
+			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -85,21 +93,21 @@ function selectMenu(){
 }
 
 // 단품/세트/박스 모달을 띄울 때 해당 메뉴에 대한 정보로 리뉴얼하는 함수
-function OnselectMode(menuVo){
-	$("#selectModeMainName").text(menuVo.menuName);
-	$("#selectModeMainDesc").text(menuVo.menuDesc);
+function OnselectMode(menuVoList){
+	$("#selectModeMainName").text(menuVoList[2].menuName);
+	$("#selectModeMainDesc").text(menuVoList[2].menuDesc);
 	
-	$("#selectModeBoxName").text(menuVo.menuName+"박스");
-	$("#selectModeBoxConfig").text(menuVo.menuName + " + 사이드 변경 + 음료 변경 + 치킨 변경")
-	$("#selectModeBoxPrice").text(menuVo.menuPrice+3800);
+	$("#selectModeBoxName").text(menuVoList[0].menuName);
+	$("#selectModeBoxConfig").text(menuVoList[2].menuName + " + 사이드 변경 + 음료 변경 + 치킨 변경")
+	$("#selectModeBoxPrice").text(menuVoList[0].menuPrice);
 	
-	$("#selectModeSetName").text(menuVo.menuName+"세트");
-	$("#selectModeSetConfig").text(menuVo.menuName + " + 사이드 변경 + 음료 변경")
-	$("#selectModeSetPrice").text(menuVo.menuPrice+2300);
+	$("#selectModeSetName").text(menuVoList[1].menuName);
+	$("#selectModeSetConfig").text(menuVoList[2].menuName + " + 사이드 변경 + 음료 변경")
+	$("#selectModeSetPrice").text(menuVoList[1].menuPrice);
 	
-	$("#selectModeNomalName").text(menuVo.menuName);
-	$("#selectModeNomalCongig").text(menuVo.menuName);
-	$("#selectModeNomalPrice").text(menuVo.menuPrice);
+	$("#selectModeNomalName").text(menuVoList[2].menuName);
+	$("#selectModeNomalCongig").text(menuVoList[2].menuName);
+	$("#selectModeNomalPrice").text(menuVoList[2].menuPrice);
 	
 	$("#selectMode").modal();
 }
@@ -161,10 +169,9 @@ $(".hamburgerBoxButton").on("click", function(){
 			$("#bugerTopping").modal();
 			break;
 		case 2:
-			$("#sideChange").modal();
 		case 3:
-			$("#sideChange").modal();
 		case 4:
+			sideChange(no);
 			$("#sideChange").modal();
 		default:
 	}
@@ -300,3 +307,17 @@ $('.menu-container').on("click", function(){
 	}
 });
 
+/*사이드 변경 선택*/
+function sideChange(changeNo){
+	$.ajax({
+		url : url+"/KFC/sideChange",		
+		type : "post",
+		data : {changeNo : changeNo},
+		success : function(sideList){
+			console.log(sildeList);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}

@@ -36,7 +36,7 @@ public class KFCController {
 	
 	@ResponseBody
 	@RequestMapping("/selectMenu")
-	public MenuVo selectMenu(@RequestParam("menuNo") int menuNo) {
+	public List<MenuVo> selectMenu(@RequestParam("menuNo") int menuNo) {
 		System.out.println(menuNo);
 		
 		return kfcService.selectMenu(menuNo);
@@ -54,4 +54,13 @@ public class KFCController {
 		return kfcService.intiTopping();
 	}
 	
+//	@ResponseBody
+//	@RequestMapping("/sideChange")
+//	public String sideChange(@RequestParam("changeNo") int changeNo){
+//		System.out.println(changeNo);
+//		
+//		List<MenuVo> list = kfcService.changeMenu();
+//		
+//		return "";
+//	}
 }

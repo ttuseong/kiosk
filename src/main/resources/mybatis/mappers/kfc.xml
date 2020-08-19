@@ -7,8 +7,7 @@
 			SELECT
 			    c.categoryNo,
 			    c.categoryName,
-			    c.publicYN,
-			    c.isSet
+			    c.publicYN
 			FROM
 			    store s,
 			    category c
@@ -26,7 +25,8 @@
 			    menuName,
 			    menuDesc,
 			    menuPrice,
-			    menuImg
+			    menuImg,
+			    isSet
 			FROM
 			    menu
 			where
@@ -51,11 +51,30 @@
 			    menuName,
 			    menuDesc,
 			    menuPrice,
-			    menuImg
+			    menuImg,
+			    isSet
 			FROM
 			    menu
 			where
 			    menuNo=#{menuNo}
+		]]>
+	</select>
+	<select id="selectSetMenus" resultType="com.javaex.vo.MenuVo" parameterType="int">
+		<![CDATA[
+			SELECT
+			    sm.setname menuName,
+			    sm.setPrice menuPrice,
+			    sm.setimg menuImg
+			FROM
+			    menu m,
+			    usemenu um,
+			    setmenu sm
+			where
+			    m.menuNo = um.menuNo
+			and
+			    um.setNo = sm.setNo
+			and
+			    m.menuNo = #{menuNo}
 		]]>
 	</select>
 	<select id="selectToppingList" resultType="com.javaex.vo.ToppingVo">

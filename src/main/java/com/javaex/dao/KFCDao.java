@@ -33,11 +33,27 @@ public class KFCDao {
 		return sqlSession.selectOne("kfc.selectMenu", menuNo);
 	}
 	
+	public List<MenuVo> selectSetMenus(int menuNo){
+		return sqlSession.selectList("kfc.selectSetMenus", menuNo);
+	}
+	
 	public List<ToppingVo> selectToppingList(){
 		return sqlSession.selectList("kfc.selectToppingList");
 	}
 	
 	public List<ToppingVo> selectToppingbasicInfo(){
 		return sqlSession.selectList("kfc.selectToppingbasicInfo");
+	}
+	
+	public List<MenuVo> selectSideList(){
+		return sqlSession.selectList("");
+	}
+	
+	public List<MenuVo> selectDrinkingList(){
+		return sqlSession.selectList("");
+	}
+	
+	public List<MenuVo> selectChickenList(){
+		return sqlSession.selectList("");
 	}
 }
