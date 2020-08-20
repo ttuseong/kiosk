@@ -13,7 +13,7 @@ public class AdminController {
 		return "/admin/adminMenu";
 	}
 	
-	// 메뉴정보
+	// 토핑정
 	@RequestMapping("/adminToping")
 	public String adminToping() {
 		return "/admin/adminToping";

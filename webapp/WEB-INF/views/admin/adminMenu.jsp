@@ -30,8 +30,9 @@
 <link
 	href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css"
 	rel="stylesheet" type="text/css">
+
 <link
-	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
+	href="${pageContext.request.contextPath}/assets/css/admin/adminModal.css"
 	rel="stylesheet" type="text/css">
 
 </head>
@@ -64,7 +65,7 @@
 			<li class="nav-item active"><a class="nav-link" href="adminMenu">
 					<i class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
 			</a></li>
-			
+
 			<!-- Nav Item - Menu Info -->
 			<li class="nav-item"><a class="nav-link" href="adminToping">
 					<i class="fas fa-fw fa-hamburger"></i> <span>토핑 정보</span>
@@ -122,53 +123,56 @@
 
 							<!-- 기본 메뉴 정보 -->
 							<div class="menuInfo-basicInfoContainer">
-									
-									<div class="adminMenu-dropdownContainer"> <!-- 드롭다운 -->
-									
-										<div class="adminMenu-cateDropdown">
+
+								<div class="adminMenu-dropdownContainer">
+									<!-- 드롭다운 -->
+
+									<div class="adminMenu-cateDropdown">
 										<!-- 카테고리 드롭다운 -->
-											<p>카테고리</p>
-											<div class="dropdown adminMenu-basicInfoDropdown">
-												<button class="btn btn-default dropdown-toggle" type="button"
-													id="dropdownMenu1" data-toggle="dropdown"
-													aria-expanded="true">
-													카테고리를 선택하세요. <span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" role="menu"
-													aria-labelledby="dropdownMenu1">
-													<li role="presentation"><a role="menuitem" tabindex="-1"
-														href="#">햄버거</a></li>
-													<li role="presentation"><a role="menuitem" tabindex="-1"
-														href="#">음료</a></li>
-												</ul>
-											</div>
+										<p>카테고리</p>
+										<div class="dropdown adminMenu-basicInfoDropdown">
+											<button class="btn btn-default dropdown-toggle" type="button"
+												id="dropdownMenu1" data-toggle="dropdown"
+												aria-expanded="true">
+												카테고리를 선택하세요. <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu"
+												aria-labelledby="dropdownMenu1">
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">햄버거</a></li>
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">음료</a></li>
+											</ul>
 										</div>
-										<!-- 카테고리 드롭다운 끝 -->
-	
-										<!-- 메뉴 드롭다운 -->
-										<div class="adminMenu-menuDropdown">
-											<p>메뉴</p>
-											<div class="dropdown adminMenu-basicInfoDropdown">
-												<button class="btn btn-default dropdown-toggle" type="button"
-													id="dropdownMenu1" data-toggle="dropdown"
-													aria-expanded="true" style="margin-right:0;">
-													메뉴를 선택하세요. <span class="caret"></span>
-												</button>
-												<ul class="dropdown-menu" role="menu"
-													aria-labelledby="dropdownMenu1">
-													<li role="presentation"><a role="menuitem" tabindex="-1"
-														href="#">불고기버거</a></li>
-													<li role="presentation"><a role="menuitem" tabindex="-1"
-														href="#">새우버거</a></li>
-												</ul>
-											</div>
+									</div>
+									<!-- 카테고리 드롭다운 끝 -->
+
+									<!-- 메뉴 드롭다운 -->
+									<div class="adminMenu-menuDropdown">
+										<p>메뉴</p>
+										<div class="dropdown adminMenu-basicInfoDropdown">
+											<button class="btn btn-default dropdown-toggle" type="button"
+												id="dropdownMenu1" data-toggle="dropdown"
+												aria-expanded="true" style="margin-right: 0;">
+												메뉴를 선택하세요. <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu"
+												aria-labelledby="dropdownMenu1">
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">불고기버거</a></li>
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">새우버거</a></li>
+											</ul>
 										</div>
-										<!-- 메뉴 드롭다운 끝 -->
-									</div> <!-- 드롭다운 끝 -->
-									
-									
-								<div class="menuInfo-basicInfo" style="margin-top: 18px!important;">
-								
+									</div>
+									<!-- 메뉴 드롭다운 끝 -->
+								</div>
+								<!-- 드롭다운 끝 -->
+
+
+								<div class="menuInfo-basicInfo"
+									style="margin-top: 18px !important;">
+
 									<p>메뉴이름</p>
 									<input type="text" style="width: 150px;" placeholder="메뉴이름">
 									<p>가격</p>
@@ -185,12 +189,30 @@
 								<!-- 메뉴 참고사항 -->
 								<div class="menuInfo-menuDetails">
 									<p style="margin-right: 20px;">참고사항</p>
+									<input type="checkbox" style="margin-left: 0 !important;">
 									<p class="normal">프로모션</p>
 									<input type="checkbox">
 									<p class="normal">추천메뉴</p>
 									<input type="checkbox">
 									<p class="normal">신메뉴</p>
-									<input type="checkbox">
+								</div>
+
+								<!-- 추가구성 - 기존 카드가 아닌 추가 카드에서만 보여야 됨 -->
+								<div class="adminMenu-unitCheck">
+									<p style="margin-right: 20px;">추가구성</p>
+
+									<!-- 체크박스 -->
+									<input type="checkbox" style="margin-left: 0 !important;">
+									<p class="normal">세트</p>
+
+									<!-- 버튼자리 -->
+									<div class="adminMenu-unitListBtn">
+										<a href="#"
+											class="btn btn-light btn-icon-split adminUnitListBtn"> <span
+											class="text">추가 / 목록</span>
+										</a>
+									</div>
+
 								</div>
 
 								<!-- 메뉴 설명 -->
@@ -257,6 +279,71 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
+	<!-- 구성 추가 모달 -->
+	<div class="modal" id="unitListModal">
+		<div class="modal-dialog" id="unitListModal-dialog">
+			<div class="modal-content" id="unitListModal-content">
+				<div class="modal-header" id="unitListModal-header">
+					<p class="modal-title" id="unitListModal-title">추가구성 목록</p>
+				</div>
+				
+				<!-- 모달 바디 -->
+				<div class="modal-body" id="unitListModal-body">
+					
+					<!-- <div class="adminModal-unitListCheck">
+						<input type="checkbox" style="margin-right: 2px !important;">
+						<p class="normal">세트</p>
+					</div> -->
+					
+					<table class="unitListModal-unitList">
+						<thead>
+							<tr>
+								<th><input type="checkbox"></th>
+								<th>이름</th>
+								<th>추가 구성</th>
+								<th>관리</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>세트</td>
+								<td>
+									사이드 : 감자튀김 <br>
+									음료 : 콜라
+								</td>
+								<td>적용 / 수정</td>
+							</tr>
+							
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>콤보</td>
+								<td>
+									사이드 : 감자튀김 <br>
+									음료 : 콜라 <br>
+									치킨 : 치킨 1조각
+								</td>
+								<td>적용 / 수정</td>
+							</tr>
+							
+						</tbody>
+					</table>
+				
+          </div> <!-- 모달 바디 끝 -->
+          
+	      <div class="modal-footer" id="unitListModal-footer">
+	       <!--  <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btnComplete">완료</button> -->
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- 구성 추가 모달 끝 -->	
+	
 	<!-- Bootstrap core JavaScript-->
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
@@ -271,5 +358,28 @@
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
 </body>
+<script type="text/javascript">
+	/* 이중모달 */
+	$(document).on('hidden.bs.modal', function (event) {
+		if ($('.modal:visible').length) {
+			$('body').addClass('modal-open');
+		}
+	});
 
+	// 추가 구성 리스트 모달 열기
+	$(document).ready(function() {
+		$("#unitListModal").modal();
+		
+		
+	});
+	
+	$(".adminUnitListBtn").on("click", function() {
+		$("#unitListModal").modal();
+	});
+	
+	// 추가 구성 추가/수정 모달 열기
+	$(".btnComplete").on("click", function() {
+		$("#recommend").modal();
+	});
+</script>
 </html>

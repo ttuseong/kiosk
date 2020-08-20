@@ -34,12 +34,20 @@
 	href="${pageContext.request.contextPath}/assets/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
+<!-- 기타 css 및 부트스트랩 -->
+<link
+	href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
+	rel="stylesheet" type="text/css">
+
 </head>
 
 <body id="page-top">
 
 	<!-- 관리자페이지 헤더 -->
-		<jsp:include page="/WEB-INF/views/includes/adminHeader.jsp" />
+	<jsp:include page="/WEB-INF/views/includes/adminHeader.jsp" />
 	<!-- 관리자페이지 헤더 -->
 
 	<!-- Page Wrapper -->
@@ -62,17 +70,18 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item"><a class="nav-link" href="adminMenu">
-					<i class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
+			<li class="nav-item"><a class="nav-link" href="adminMenu"> <i
+					class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
 			</a></li>
-			
+
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item"><a class="nav-link" href="adminToping">
-					<i class="fas fa-fw fa-hamburger"></i> <span>토핑 정보</span>
+			<li class="nav-item active"><a class="nav-link"
+				href="adminToping"> <i class="fas fa-fw fa-hamburger"></i> <span>토핑
+						정보</span>
 			</a></li>
 
 			<!-- Nav Item - Category -->
-			<li class="nav-item active"><a class="nav-link" href="adminCate"> <i
+			<li class="nav-item"><a class="nav-link" href="adminCate"> <i
 					class="fas fa-fw fa-folder"></i> <span>키오스크 카테고리</span></a></li>
 
 			<!-- Nav Item - Stats -->
@@ -102,143 +111,175 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800"
-						style="padding: 1.5rem 0 1.2rem 0 !important;">Kiosk Category</h1>
+						style="padding: 1.5rem 0 1.2rem 0 !important;">Toping
+						Information</h1>
 
-					<!-- 카테고리 추가 -->
+					<!-- 메뉴 기본 정보 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">카테고리 추가 및 수정</h6>
+							<h6 class="m-0 font-weight-bold text-primary">토핑 기본 정보</h6>
 						</div>
-						<div class="card-body">
-							<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
-								<div class="input-group">
-									<p>카테고리</p>
-									<input type="text"
-										class="form-control adminCate-addCateForm border-0 small"
-										placeholder="카테고리를 입력하세요." aria-label="addCate"
-										aria-describedby="basic-addon2">
-										
-									<div class="form-groupAndBtn">	
-										<div class="form-group">
-											<div class="custom-control custom-checkbox "
-												style="padding-left: 3rem !important;">
-												<input type="radio" class="custom-control-input"
-													id="cate-public" name="cate-openStatus" value="" checked>
-												<label class="custom-control-label" for="cate-public">공개</label>
-											</div>
-	
-	
-											<div class="custom-control custom-checkbox"
-												style="padding-left: 3rem !important;">
-												<input type="radio" class="custom-control-input"
-													id="cate-private" name="cate-openStatus" value=""> <label
-													class="custom-control-label" for="cate-private"
-													style="margin-right: 20px;">비공개</label>
-											</div>
-										</div>
-										<!-- End of form-group -->
-										
-										<div class="adminCate-submitBtn">
-											<a href="#" class="btn btn-success btn-icon-split"
-												style="height: 38px !important;"> <span class="text">확인</span>
-											</a>
+						<div class="card-body adminMenu-basicInfo">
+
+							<div class="menuInfo-menuCateAndImg">
+								<!-- 메뉴 이미지 -->
+								<img
+									src="${pageContext.request.contextPath}/assets/images/icon1.png"
+									class="menuInfo-menuImg img-rounded"> <input
+									id="menuInfo-menuImgInput" type="file" style="margin: auto;" />
+							</div>
+							<!-- 메뉴 이미지 끝 -->
+
+							<!-- 기본 메뉴 정보 -->
+							<div class="menuInfo-basicInfoContainer">
+
+								<div class="adminMenu-dropdownContainer">
+									<!-- 드롭다운 -->
+
+									<div class="adminMenu-cateDropdown">
+										<!-- 카테고리 드롭다운 -->
+										<p>카테고리</p>
+										<div class="dropdown adminMenu-basicInfoDropdown">
+											<button class="btn btn-default dropdown-toggle" type="button"
+												id="dropdownMenu1" data-toggle="dropdown"
+												aria-expanded="true">
+												카테고리를 선택하세요. <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu"
+												aria-labelledby="dropdownMenu1">
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">햄버거</a></li>
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">음료</a></li>
+											</ul>
 										</div>
 									</div>
+									<!-- 카테고리 드롭다운 끝 -->
+
+									<!-- 메뉴 드롭다운 -->
+									<div class="adminMenu-menuDropdown">
+										<p>메뉴</p>
+										<div class="dropdown adminMenu-basicInfoDropdown">
+											<button class="btn btn-default dropdown-toggle" type="button"
+												id="dropdownMenu1" data-toggle="dropdown"
+												aria-expanded="true" style="margin-right: 0;">
+												메뉴를 선택하세요. <span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu"
+												aria-labelledby="dropdownMenu1">
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">불고기버거</a></li>
+												<li role="presentation"><a role="menuitem"
+													tabindex="-1" href="#">새우버거</a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- 메뉴 드롭다운 끝 -->
+								</div>
+								<!-- 드롭다운 끝 -->
+
+
+								<div class="menuInfo-basicInfo"
+									style="margin-top: 18px !important;">
+
+									<p>메뉴이름</p>
+									<input type="text" style="width: 150px;" placeholder="메뉴이름">
+									<p>가격</p>
+									<input type="text" placeholder="가격">
+
+									<div style="display: inline-block !important;"
+										class="adminMenu-calorie">
+										<p>칼로리</p>
+										<input type="text" placeholder="칼로리">
+									</div>
+
 								</div>
 
-							</form>
-						</div>
+								<!-- 메뉴 참고사항 -->
+								<div class="menuInfo-menuDetails">
+									<p style="margin-right: 20px;">참고사항</p>
+									<p class="normal">프로모션</p>
+									<input type="checkbox">
+									<p class="normal">추천메뉴</p>
+									<input type="checkbox">
+									<p class="normal">신메뉴</p>
+									<input type="checkbox">
+								</div>
+
+								<!-- 메뉴 설명 -->
+								<div class="menuInfo-menuDescription">
+									<p>메뉴설명</p>
+									<textarea placeholder="메뉴 설명"></textarea>
+								</div>
+							</div>
+
+							<div class="adminCate-submitBtn">
+								<a href="#" class="btn btn-success btn-icon-split adminToping">
+									<span class="text">확인</span>
+								</a>
+							</div>
+						</div><!-- end of card body  -->
 					</div>
+					<!-- 메뉴 기본 정보 끝 -->
 
 					<!-- 카테고리 정보 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-success">카테고리 목록</h6>
+							<h6 class="m-0 font-weight-bold text-success">토핑 목록</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
+								<table class="table table-bordered adminToping-table"
+									id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
 											<th>No</th>
-											<th>Category Title</th>
-											<th>Public</th>
-											<th>Private</th>
+											<th>Name</th>
+											<th>Price</th>
 											<th>Delete</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
 											<th>No</th>
-											<th>Category Title</th>
-											<th>Public</th>
-											<th>Private</th>
+											<th>Name</th>
+											<th>Price</th>
 											<th>Delete</th>
 										</tr>
 									</tfoot>
 									<tbody>
 										<tr>
 											<td>01</td>
-											<td><a href="#">디저트</a></td>
-											<td>공개</td>
-											<td></td>
+											<td><a href="#">양상추</a></td>
+											<td>300</td>
 											<td><a href="#">X</a></td>
 										</tr>
 
 										<tr>
 											<td>02</td>
-											<td><a href="#">사이드</a></td>
-											<td>공개</td>
-											<td></td>
+											<td><a href="#">토마토</a></td>
+											<td>300</td>
 											<td><a href="#">X</a></td>
 										</tr>
 
 										<tr>
 											<td>03</td>
-											<td><a href="#">햄버거</a></td>
-											<td></td>
-											<td>비공개</td>
+											<td><a href="#">패티</a></td>
+											<td>700</td>
 											<td><a href="#">X</a></td>
 										</tr>
 
 										<tr>
 											<td>04</td>
-											<td><a href="#">세트</a></td>
-											<td></td>
-											<td>비공개</td>
-											<td><a href="#">X</a></td>
-										</tr>
-										
-										<tr>
-											<td>05</td>
-											<td><a href="#">박스</a></td>
-											<td></td>
-											<td>비공개</td>
-											<td><a href="#">X</a></td>
-										</tr>
-										
-										<tr>
-											<td>06</td>
-											<td><a href="#">단품/세트/박스</a></td>
-											<td>공개</td>
-											<td></td>
-											<td><a href="#">X</a></td>
-										</tr>
-										
-										<tr>
-											<td>07</td>
-											<td><a href="#">빙수</a></td>
-											<td></td>
-											<td>비공개</td>
+											<td><a href="#">치즈</a></td>
+											<td>300</td>
 											<td><a href="#">X</a></td>
 										</tr>
 
 										<tr>
-											<td>08</td>
-											<td><a href="#">치킨</a></td>
-											<td>공개</td>
-											<td></td>
+											<td>05</td>
+											<td><a href="#">양파</a></td>
+											<td>300</td>
 											<td><a href="#">X</a></td>
 										</tr>
 									</tbody>
