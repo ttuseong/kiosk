@@ -305,9 +305,7 @@ function sideChange(changeNo){
 		type : "post",
 		data : {changeNo : changeNo},
 		success : function(sideList){
-<<<<<<< HEAD
-			console.log(sildeList);
-=======
+
 			addSideMenu(sideList);
 			
 			sideChangeEndPoint = Math.ceil(sideList.length/6.0);
@@ -315,7 +313,6 @@ function sideChange(changeNo){
 			if(sideChangeEndPoint>1){
 				$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
 			}
->>>>>>> 8666346... 사이드 변경 모달 슬라이드 효과 추가
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -323,8 +320,7 @@ function sideChange(changeNo){
 	});
 }
 
-<<<<<<< HEAD
-=======
+
 function addSideMenu(sideList){
 	var str = "";
 	var index = 0; 
