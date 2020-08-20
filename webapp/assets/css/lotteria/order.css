@@ -64,7 +64,8 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 	background: #fff;
 }
 
-.tab_content {padding: 20px;font-size: 1.2em;}
+.tab_content {padding: 20px;font-size: 1.2em;height: 135px;
+}
 .menu {width: 50%;float: left;height: 250px;}
 .menu-img {width: 45%;float: left;}
 .menu-text {width: 55%;float: left;padding-top: 28.5px;font-size: 25px;}
@@ -127,7 +128,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 /*Tab Conent CSS*/
 .modal-tab_container {border: 1px solid white;border-top: none;overflow: hidden;clear: both;float: left;width: 100%;background: #fff;}
 .modal-tab_content {padding: 20px;font-size: 1.2em;}
-.modal-header {background-color: #82CAFA;}
+.modal-header {background-color:#d7f9fd;}
 .modal-body {padding: 0px;}
 .modal-footer {padding: 0px;text-align: center; height: 80px;}
 .modal-float{float: left;}
@@ -137,7 +138,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalfooter-color{background-color: #FFEBCD; width: 80%; margin-left: 40px; height: 80%; padding-top: 8px;}
 .modalFooter-width33{width:33%;height:100%;float: left;}
 .modalFooter-btn1{width:80%; height:75%;margin-top: 7px;border-radius: 10px;background-color: white;font-size: 20px;}
-.modalFooter-btn2{width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#93FFE8;font-size: 20px;}
+.modalFooter-btn2{width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#d7f9fd;;font-size: 20px;}
 .modal-height800px{height: 800px;}
 
 /* 단품, 세트 선택 모달 */
@@ -189,3 +190,19 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .margin-top10px{height: 100%; text-align: center; margin-top: 10px;}
 .btn-radius12px{height: 80%; width: 80%; font-size: 20px; background-color: white; border-radius: 12px;}
 .btn-backColor{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}
+.btn-left{position: absolute;left: 0%;top: 45%;height: 85px;width: 35px;border-radius: 0 10px 10px 0;border: 0px;color: white;background-color: #B6B6B4;}
+.btn-right{position: absolute;right: 0%;top: 45%;height: 85px;width: 35px;border-radius: 10px 0 0 10px;border: 0px;color: white;background-color: #B6B6B4;}
+.up-downDiv{display: inline-block;width: 15px;height: 27px;font-size: 0;border: 0.5px solid #B6B6B4;border-radius: 3px;}
+.btn-up{display: inline-block;height: 49%;width: 100%;font-size: 10px;vertical-align: middle;margin: 0%;padding: 0%;border: none;}
+.btn-down{display: inline-block;height: 49%;width: 100%;font-size: 10px;vertical-align: middle;margin: 0%;padding: 0%;border: none;}
+.number{display: inline-block;}
+
+.margin-right{margin: 0 30px 0 10px;}
+
+/* 토핑모달 */
+.toppingMenuName{font-size: 20px;font-weight: bold;}
+.width80{width: 80%;}
+.padding-top20px{width: 100%;padding-top: 20px;}
+.imgWidth{width:100px;}
+.imgWidth>img{width:100%;}
+.width100{width:100%}

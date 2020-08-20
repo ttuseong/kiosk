@@ -30,4 +30,10 @@ public class ApiLotteriaController {
 		return lotteriaService.selectMenu(menuNo);
 	}
 	
+	@RequestMapping("/menuCategoryNo")
+	@ResponseBody
+	public int menuCategoryNo(@RequestBody int selectMenuNo){
+		return lotteriaService.menuCategoryNo(selectMenuNo);
+	}
+	
 }

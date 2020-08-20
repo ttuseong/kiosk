@@ -60,7 +60,7 @@
 						<c:if test="${vo.categoryNo eq 4}">
 							<c:forEach items="${cateNo4SetMenu }" var="cateNo4">
 
-								<div class="menu" data-menuno="0">
+								<div class="menu" data-menuno="${cateNo4.menuNo }">
 									<div class="menu-img">
 										<img src="${pageContext.request.contextPath}/upload/${cateNo4.setImg }" width=" 100%">
 									</div>
@@ -76,10 +76,10 @@
 				</c:forEach>
 			<div>
 				<div>
-					<button type="button" style="position: absolute;left: 0%;top: 45%;height: 85px;width: 35px;border-radius: 0 10px 10px 0;border: 0px;color: white;background-color: #B6B6B4;">이전</button>
+					<button type="button" class="btn-left">이전</button>
 				</div>
 				<div>
-					<button type="button"style="position: absolute;right: 0%;top: 45%;height: 85px;width: 35px;border-radius: 10px 0 0 10px;border: 0px;color: white;background-color: #B6B6B4;">다음</button>
+					<button type="button" class="btn-right">다음</button>
 				</div>
 			</div>	
 			</div>
@@ -101,13 +101,7 @@
 				<tr>
 					<td class="menuNameText${i }">&nbsp;</td>
 					<td class="menuNumber${i }">&nbsp;</td>
-					<td>
-						<div class="row">
-							<div class="col-md-6 menuPrice${i }"></div>
-							<div class="col-md-6">
-							</div>
-						</div>
-					</td>
+					<td class="menuPrice${i }">&nbsp;</td>
 				</tr>
 				</c:forEach>
 
@@ -144,7 +138,7 @@
 
 
 		<!-- 토핑모달 -->
-		<div class="modal fade" id="topping">
+		<div class="modal fade" id="side">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -218,7 +212,6 @@
 
 
 		<!-- 단품, 세트 선택 모달 -->
-		<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
 		<div class="modal" id="setAndSingle">
 			<div class="modal-dialog" id="modalName-align">
 				<div class="modal-content" id="modalName-content">
@@ -253,6 +246,44 @@
 									<p>세트</p>
 								</div>
 								<p id="modalName-setPrice"></p>
+							</div>
+						</div>
+					</div>
+					<!-- modal-body -->
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal-dialog -->
+		</div>
+		<!-- /.modal -->
+		
+		
+		<!-- 토핑추가모달 -->
+		<div class="modal" id="topping">
+			<div class="modal-dialog" id="modalName-align">
+				<div class="modal-content" id="modalName-content">
+
+					<div class="modal-header" id="modalName-header">
+						<h4 class="modal-title" id="modalName-headerTitle">토핑을 선택해 주세요</h4>
+						<div class="modalName-closeBtnDiv">
+							<!-- 취소버튼 -->
+							<div class="icon-cancel modalName-closeBtn" data-dismiss="modal"></div>
+						</div>
+					</div>
+					<!-- modal-header -->
+
+					<div class="modal-body" id="modalName-body">
+						<div class="modalName-container width80">
+							<div class="toppingMenuName"></div>
+							<div class="padding-top20px">
+								<div class="imgWidth"><img src="${pageContext.request.contextPath}/assets/images/icon1.png"></div>
+								<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png"></div>
+								<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png"></div>
+								<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png"></div>
+							</div>
+							<div class="width100">
+								<button type="button">최소하기</button>
+								<button type="button">완료하기</button>
 							</div>
 						</div>
 					</div>

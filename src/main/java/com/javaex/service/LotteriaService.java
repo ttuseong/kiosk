@@ -41,4 +41,8 @@ public class LotteriaService {
 	public List<LotteriaVo> drinkList(){
 		return lotteriaDao.drinkList();
 	}
+	
+	public int menuCategoryNo(int menuNo) {
+		return lotteriaDao.menuCategoryNo(menuNo);
+	}
 }

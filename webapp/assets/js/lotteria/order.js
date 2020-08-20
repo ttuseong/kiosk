@@ -72,7 +72,7 @@ $(document).ready(function() {
 	/*세트클릭했을경우*/
 	$("#modalName-setMenu").on("click", function(){
 		$("#setAndSingle").modal("hide");
-		$("#topping").modal();
+		$("#side").modal();
 	});
 	
 	
@@ -94,10 +94,9 @@ $(document).ready(function() {
 		var drinkNo = $(this).data("drinkmenuno");
 		var drinkPrice = $(this).children().eq(0).children().eq(1).children().eq(1).text();
 		
-		$('#topping').modal("hide");
+		$('#side').modal("hide");
 		setMenu(menuNo,drinkNo, drinkPrice);
 	})
-	
 	
 	
 });
@@ -147,7 +146,7 @@ function setOrSingle(menuNo, menuName, menuPrice){
 			console.error(status + " : " + error);
 		}
 	});
-}
+};
 
 function setMenu(menuNo, drinkNo, drinkPrice){
 	$.ajax({
@@ -157,19 +156,15 @@ function setMenu(menuNo, drinkNo, drinkPrice){
 		data : JSON.stringify(menuNo),
 		dataType : "json",
 		success : function(selectMenu){
-			$(".menuNameText"+i).text(selectMenu[0].setName);
-			$(".menuNumber"+i).text("1");
 			var price = selectMenu[0].setPrice +  Number(dessertPrice) + Number(drinkPrice);
-			$(".menuPrice"+i).text(price);
 			
-			i+=1;
-			result();
+			render(selectMenu[0].setName, price);
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	}); 
-}
+};
 
 /*페이지하단에 선택한 총갯수와 총가격 출력*/
 function result(){
@@ -178,27 +173,126 @@ function result(){
 	var price = 0;
 	
 	for(var v = 1; v <=i; v++){
-		number += Number($(".menuNumber"+v).text());
-		price += Number($(".menuPrice"+v).text());
+		number += Number($(".menuNumber"+v).children().eq(0).text());
+		price += Number($(".menuPrice"+v).children().eq(0).text());
 	}
 	
 	$("#maximum").text(number);
 	$("#resultPrice").text(price);
+	
 };
 
 /*세트매뉴의 디저트와 드링크가 있지만 선택하지 않고 그냥 선택완료번튼을 클릭할경우*/
 function dessertAndDrink(){
 	
-	$('#topping').modal("hide");
+	$('#side').modal("hide");
 	render(setName, setPrice);
-}
+};
 
 
 function render(menuName, menuPrice){
-	$(".menuNameText"+i).text(menuName);
-	$(".menuNumber"+i).text("1");
-	$(".menuPrice"+i).text(menuPrice);
 	
-	i+=1;
+		var str1="";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menuPrice +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menuPrice+")'></button>";
+		str1 += "</div>";
+		
+		var selectMenuNo = Number(thisMenu.data("menuno"));
+		
+		$.ajax({
+			url : url+"/api/menuCategoryNo",		
+			type : "post",
+			contentType : "application/json",
+			data : JSON.stringify(selectMenuNo),
+			dataType : "json",
+			success : function(categoryNo){
+				
+				if(categoryNo == 5){
+					var str2="";
+					str2 += "<div class='number'>"+menuPrice+"</div>";
+					str2 += "<button type='button' onClick='toppingModal()'class='margin-right'>토핑추가</button>";
+					str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+					
+					$(".menuNameText"+i).text(menuName);
+					$(".menuNumber"+i).append(str1);
+					$(".menuPrice"+i).append(str2);
+					
+					result();
+					i+=1;
+				}else{
+					var str2="";
+					str2 += "<div class='number'>"+menuPrice+"</div>";
+					str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+					
+					$(".menuNameText"+i).text(menuName);
+					$(".menuNumber"+i).append(str1);
+					$(".menuPrice"+i).append(str2);
+					
+					result();
+					i+=1;
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		}); 
+		
+		
+		
+};
+
+function btnUp(i, menuPrice){
+	var menuNumber = Number($(".number"+i).text());
+	menuNumber +=1;
+	$(".number"+i).text(menuNumber);
+	
+	 var upPrice = menuPrice * Number($(".menuNumber"+i).text());
+	 $(".menuPrice"+i ).children().eq(0).text(upPrice);
+	
 	result();
+	i+=1;
+};
+
+function btnDown(i, menuPrice){
+	var menuNumber = Number($(".number"+i).text());
+	
+	if(menuNumber > 1){
+		menuNumber -=1;
+		$(".number"+i).text(menuNumber);
+		
+		var downPrice = Number(menuPrice)*Number(menuNumber);
+		$(".menuPrice"+i ).children().eq(0).text(downPrice);
+		
+		result();
+		i-=1;
+	};
+};
+
+function trDelete(i){
+	var y = $(".tr-center").nextAll().size()+1;
+	
+	$(".menuNameText"+i).empty();
+	$(".menuNumber"+i).empty();
+	$(".menuPrice"+i).empty();
+	
+	var str = "";
+	str += "<tr>";
+		str += "<td class='menuNameText"+y+"'>&nbsp;</td>"; 
+		str += "<td class='menuNumber"+y+"'>&nbsp;</td>"; 
+		str += "<td class='menuPrice"+y+"'>";
+		str += "</td>";
+	str += "</tr>";
+	$(".table-center").append(str);
+	
+	result();
+	i+=1;
+}
+
+function toppingModal(){
+	
+	
+	
+	$(".toppingMenuName").text(setName);
+	$('#topping').modal();
 }

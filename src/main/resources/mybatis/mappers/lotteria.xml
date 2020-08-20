@@ -33,15 +33,18 @@
 		
 	<select id="cateNo4setMenu" resultType="com.javaex.vo.LotteriaVo">
 		<![CDATA[
-			select setNo, 
-				   categoryNo, 
-				   setName, 
-				   setPrice, 
-				   setImg, 
-				   setDesc, 
-				   isSpecial 
-			from setmenu 
-			where categoryNo=4
+			select um.menuNo,
+			       sm.setNo, 
+				   sm.categoryNo, 
+			       sm.setName, 
+			       sm.setPrice, 
+			       sm.setImg, 
+				   sm.setDesc, 
+				   sm.isSpecial 
+			from setmenu sm, 
+			     useMenu um
+			where um.setNo = sm.setNo
+			and sm.categoryNo=4
 		]]>
 	</select>
 	
@@ -94,6 +97,13 @@
 			from menu 
 			where categoryNo=29 
 			order by menuNo asc
+		]]>
+	</select>
+	
+	<!-- 메뉴넘버로 카테고리 넘버 알아오기 -->
+	<select id="menuCategoryNo" resultType="int" parameterType="int">
+		<![CDATA[
+			select categoryNo from menu where menuNo=#{menuNo}
 		]]>
 	</select>
 	

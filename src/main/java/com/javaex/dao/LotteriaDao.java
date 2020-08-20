@@ -41,4 +41,8 @@ public class LotteriaDao {
 	public List<LotteriaVo> drinkList(){
 		return sqlSession.selectList("lotteria.drinkList");
 	}
+	
+	public int menuCategoryNo(int menuNo) {
+		return sqlSession.selectOne("lotteria.menuCategoryNo", menuNo);
+	}
 }
