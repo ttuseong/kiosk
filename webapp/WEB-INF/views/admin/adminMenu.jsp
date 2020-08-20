@@ -286,15 +286,15 @@
 				<div class="modal-header" id="unitListModal-header">
 					<p class="modal-title" id="unitListModal-title">추가구성 목록</p>
 				</div>
-				
+
 				<!-- 모달 바디 -->
 				<div class="modal-body" id="unitListModal-body">
-					
+
 					<!-- <div class="adminModal-unitListCheck">
 						<input type="checkbox" style="margin-right: 2px !important;">
 						<p class="normal">세트</p>
 					</div> -->
-					
+
 					<table class="unitListModal-unitList">
 						<thead>
 							<tr>
@@ -304,37 +304,63 @@
 								<th>관리</th>
 							</tr>
 						</thead>
-						
+
 						<tbody>
 							<tr>
 								<td><input type="checkbox"></td>
 								<td>세트</td>
-								<td>
-									사이드 : 감자튀김 <br>
-									음료 : 콜라
+								<td>사이드 : 감자튀김 <br> 음료 : 콜라
 								</td>
-								<td>적용 / 수정</td>
+								<td>
+									<!-- 수정 / 적용 버튼 -->
+									<div class="adminMenu-unitListBtnContainer">
+										<a href="#"
+											class="btn btn-secondary btn-icon-split adminMenu-unitListModify">
+											<span class="text">수정</span>
+										</a><a href="#"
+											class="btn btn-success btn-icon-split adminMenu-unitListSelect">
+											<span class="text">적용</span>
+										</a>
+									</div>
+								</td>
 							</tr>
-							
+
 							<tr>
 								<td><input type="checkbox"></td>
 								<td>콤보</td>
-								<td>
-									사이드 : 감자튀김 <br>
-									음료 : 콜라 <br>
-									치킨 : 치킨 1조각
+								<td>사이드 : 감자튀김 <br> 음료 : 콜라 <br> 치킨 : 치킨 1조각
 								</td>
-								<td>적용 / 수정</td>
+								<td>
+									<!-- 수정 / 적용 버튼 -->
+									<div class="adminMenu-unitListBtnContainer">
+										<a href="#"
+											class="btn btn-secondary btn-icon-split adminMenu-unitListModify">
+											<span class="text">수정</span>
+										</a><a href="#"
+											class="btn btn-success btn-icon-split adminMenu-unitListSelect">
+											<span class="text">적용</span>
+										</a>
+									</div>
+								</td>
+
 							</tr>
-							
+
 						</tbody>
 					</table>
-				
-          </div> <!-- 모달 바디 끝 -->
-          
-	      <div class="modal-footer" id="unitListModal-footer">
-	       <!--  <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btnComplete">완료</button> -->
+
+				</div>
+				<!-- 모달 바디 끝 -->
+
+				<div class="modal-footer" id="unitListModal-footer">
+					<div class="adminMenu-footerBtnContainer">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split adminMenu-unitDel">
+							<span class="text">선택 구성 삭제</span>
+						</a><a href="#"
+							class="btn btn-success btn-icon-split adminMenu-unitAdd">
+							<span class="text">구성 목록 추가</span>
+						</a>
+					</div>
 				</div>
 			</div>
 			<!-- /.modal-content -->
@@ -342,8 +368,8 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<!-- 구성 추가 모달 끝 -->	
-	
+	<!-- 구성 추가 모달 끝 -->
+
 	<!-- Bootstrap core JavaScript-->
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
@@ -360,7 +386,7 @@
 </body>
 <script type="text/javascript">
 	/* 이중모달 */
-	$(document).on('hidden.bs.modal', function (event) {
+	$(document).on('hidden.bs.modal', function(event) {
 		if ($('.modal:visible').length) {
 			$('body').addClass('modal-open');
 		}
@@ -369,16 +395,15 @@
 	// 추가 구성 리스트 모달 열기
 	$(document).ready(function() {
 		$("#unitListModal").modal();
-		
-		
+
 	});
-	
+
 	$(".adminUnitListBtn").on("click", function() {
 		$("#unitListModal").modal();
 	});
-	
+
 	// 추가 구성 추가/수정 모달 열기
-	$(".btnComplete").on("click", function() {
+	$(".adminMenu-unitListModify").on("click", function() {
 		$("#recommend").modal();
 	});
 </script>

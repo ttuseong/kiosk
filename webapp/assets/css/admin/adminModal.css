@@ -4,8 +4,9 @@
 
 /* / 모달 전체 / */
 #unitListModal-content {
-	width: 650px;
+	width: 655px;
     border: none;
+    font-size: 15px;
 }
 
 /* / 모달 헤더 / */
@@ -67,7 +68,7 @@
 /* 테이블 선 */
 .unitListModal-unitList > table, td, th {
 	border: 1px solid lightgray;
-    padding: 3px 5px;
+    padding: 5px 10px!important;
 }
 
 /* 테이블 및 셀 크기 */
@@ -75,26 +76,63 @@
 	width: 100%;
 }
 
-.unitListModal-unitList > th {
+.unitListModal-unitList > thead > th {
 	padding: 0!important;
 }
 
-.unitListModal-unitList > th:first-child {
+.unitListModal-unitList > thead > tr > th:first-child {
 	width: 10%!important;
 }
 
-.unitListModal-unitList > th:nth-child(2) {
-	width: 20%!important;
+.unitListModal-unitList > thead > tr > th:nth-child(2) {
+	width: 18%!important;
 }
 
-.unitListModal-unitList > th:nth-child(3) {
-	width: 40%!important;
+.unitListModal-unitList > thead > tr > th:nth-child(3) {
+	width: 45%!important;
 }
 
-.unitListModal-unitList > th:last-child {
-	width: 25%!important;
+.unitListModal-unitList > thead > tr > th:last-child {
+	width: 26%!important;
 }
 
 .unitListModal-unitList > tbody > tr > td:nth-child(3) {
 	text-align: left!important;
+}
+
+/* 수정/적용 버튼 */
+.adminMenu-unitListBtnContainer, .adminMenu-footerBtnContainer {
+	width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.adminMenu-unitListBtnContainer > .adminMenu-unitListModify,
+.adminMenu-unitListBtnContainer > .adminMenu-unitListSelect{
+	width: 55px!important;
+    height: 33px!important;
+    margin: 0 3px;
+    font-size: 15px;
+}
+
+/* 삭제 / 목록 추가 버튼 */
+.adminMenu-footerBtnContainer > .adminMenu-unitDel,
+.adminMenu-footerBtnContainer > .adminMenu-unitAdd{
+	width: 120px!important;
+    height: 33px!important;
+    margin: 0 3px;
+    font-size: 15px;
+}
+
+/* 버튼 색상 */
+.adminMenu-unitListBtnContainer > .adminMenu-unitListSelect,
+.adminMenu-footerBtnContainer > .adminMenu-unitAdd {
+	background-color: white;
+    color: #1cc88a;
+}
+
+.adminMenu-footerBtnContainer > .adminMenu-unitDel,
+.adminMenu-unitListBtnContainer > .adminMenu-unitListModify {
+	background-color: white;
+    color: #858796;
 }
