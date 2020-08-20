@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+@import
+url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css);
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+.adminCate-tooltip {
+	position: absolute;
+	top: 4%;
+	right: 1%;
+	transform: translate(-50%, -50%);
+}
+
+.adminCate-tooltip i {
+	color: #1cc88a;
+	font-size: 25px;
+}
+
+.adminCate-tooltip:hover .tooltip-text {
+	opacity: 1;
+}
+
+.tooltip-text {
+	opacity: 0;
+	transition: 0.3s;
+	background-color: rgba(0,0,0,0.6);
+	color: white;
+	font-size:18px;
+	padding: 25px 10px;
+	text-align: center;
+	border-radius: 5px;
+	width: 300px;
+	height: 100px;
+	display: inline-block;
+	position: absolute;
+	top: -50px;
+	right: 30px;
+}

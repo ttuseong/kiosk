@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 tr > th:nth-child(3), th:nth-child(4), th:nth-child(5){
-	width: 150px!important;
+	width: 80px!important;
+    padding-left: 30px!important;
 	text-align:center!important;
 }
 
@@ -38,3 +39,44 @@ tbody > tr > td:nth-child(2) > a {
 	}
 }
 
+/* 토핑 정보 페이지 리스트 테이블 */
+/* no열 크기 */
+.adminToping-table > thead > tr > th:first-child {
+	width: 150px!important;
+}
+
+/* name열 텍스트 정렬 */
+.adminToping-table > thead > tr > th:nth-child(2) {
+	padding-left: 26px!important;
+	text-align: center!important;
+}
+
+.adminToping-table > tfoot > tr > th:nth-child(2) {
+	text-align: center!important;
+}
+
+.adminToping-table > tbody > tr > td:nth-child(2) {
+	text-align: center!important;
+}
+
+/* price열 텍스트 정렬 */
+.adminToping-table > thead > tr > th:nth-child(3) {
+	text-align: right!important;
+    padding-right: 40px!important;
+}
+
+.adminToping-table > tfoot > tr > th:nth-child(3) {
+	text-align: right!important;
+    padding-right: 40px;
+}
+
+.adminToping-table > tbody > tr > td:nth-child(3) {
+	text-align: right!important;
+}
+
+/* 확인 버튼 */
+.adminToping {
+	width: 100px !important;
+	height: 38px !important;
+	margin-top: 40px !important;
+}

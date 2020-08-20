@@ -1,0 +1,100 @@
+@charset "UTF-8";
+
+/* / 모달 공통사항 / */
+
+/* / 모달 전체 / */
+#unitListModal-content {
+	width: 650px;
+    border: none;
+}
+
+/* / 모달 헤더 / */
+#unitListModal-header {
+    min-height: 50px;
+    border: none;
+    text-align: center;
+    background-color: #1cc88a;
+}
+
+/* / 모달 제목의 폰트 / */
+#unitListModal-title {
+    color: white;
+    font-size: 17px;
+	font-weight: bold;
+}
+
+#unitListModal-body {
+	min-height: 200px;
+	padding: 40px;
+	text-align: center;
+}
+
+/* / 모달 푸터 / */
+#unitListModal-footer {
+	/* border: none; */
+	height: 100px;
+	text-align: center;
+}
+
+/* / 취소, 완료 버튼 / *//* 
+#unitListModal-footer > .btn {
+	width: 220px;
+	height: 60px;
+	font-size: large;
+	font-weight: bold;
+}
+
+/ 취소 버튼 /
+#unitListModal-footer > .btnCancle {
+	background-color: lightgray;
+	color: white;
+} */
+
+/* / 완료 버튼 / */
+#unitListModal-footer > .btnComplete {
+	background-color: red;
+	color: white;
+}
+
+/* 구성 추가 모달 */
+.adminModal-unitListCheck > input, p {
+	display: inline-block;
+    margin: 0;
+	vertical-align: middle;
+}
+
+/* 리스트 테이블 */
+/* 테이블 선 */
+.unitListModal-unitList > table, td, th {
+	border: 1px solid lightgray;
+    padding: 3px 5px;
+}
+
+/* 테이블 및 셀 크기 */
+.unitListModal-unitList {
+	width: 100%;
+}
+
+.unitListModal-unitList > th {
+	padding: 0!important;
+}
+
+.unitListModal-unitList > th:first-child {
+	width: 10%!important;
+}
+
+.unitListModal-unitList > th:nth-child(2) {
+	width: 20%!important;
+}
+
+.unitListModal-unitList > th:nth-child(3) {
+	width: 40%!important;
+}
+
+.unitListModal-unitList > th:last-child {
+	width: 25%!important;
+}
+
+.unitListModal-unitList > tbody > tr > td:nth-child(3) {
+	text-align: left!important;
+}

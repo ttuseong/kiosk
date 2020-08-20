@@ -11,9 +11,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>관리자페이지 - 메뉴정보</title>
+<title>관리자페이지 - 카테고리</title>
 
-<!-- Custom fonts for this template-->
+<!-- Custom fonts for this template -->
 <link
 	href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
@@ -21,18 +21,25 @@
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
-<!-- Custom styles for this template-->
+<!-- Custom styles for this template -->
 <link
 	href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css"
+	rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
+	rel="stylesheet">
+
+<!-- Custom styles for this page -->
+<link
+	href="${pageContext.request.contextPath}/assets/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
 <!-- 기타 css 및 부트스트랩 -->
 <link
 	href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css"
 	rel="stylesheet" type="text/css">
-
 <link
-	href="${pageContext.request.contextPath}/assets/css/admin/adminModal.css"
+	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
 	rel="stylesheet" type="text/css">
 
 </head>
@@ -45,6 +52,7 @@
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
+
 
 		<!-- Sidebar -->
 		<ul
@@ -62,13 +70,14 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item active"><a class="nav-link" href="adminMenu">
-					<i class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
+			<li class="nav-item"><a class="nav-link" href="adminMenu"> <i
+					class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
 			</a></li>
 
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item"><a class="nav-link" href="adminToping">
-					<i class="fas fa-fw fa-hamburger"></i> <span>토핑 정보</span>
+			<li class="nav-item active"><a class="nav-link"
+				href="adminToping"> <i class="fas fa-fw fa-hamburger"></i> <span>토핑
+						정보</span>
 			</a></li>
 
 			<!-- Nav Item - Category -->
@@ -102,13 +111,13 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800"
-						style="padding: 1.5rem 0 1.2rem 0 !important;">Menu
+						style="padding: 1.5rem 0 1.2rem 0 !important;">Toping
 						Information</h1>
 
 					<!-- 메뉴 기본 정보 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">기본 정보</h6>
+							<h6 class="m-0 font-weight-bold text-primary">토핑 기본 정보</h6>
 						</div>
 						<div class="card-body adminMenu-basicInfo">
 
@@ -189,30 +198,12 @@
 								<!-- 메뉴 참고사항 -->
 								<div class="menuInfo-menuDetails">
 									<p style="margin-right: 20px;">참고사항</p>
-									<input type="checkbox" style="margin-left: 0 !important;">
 									<p class="normal">프로모션</p>
 									<input type="checkbox">
 									<p class="normal">추천메뉴</p>
 									<input type="checkbox">
 									<p class="normal">신메뉴</p>
-								</div>
-
-								<!-- 추가구성 - 기존 카드가 아닌 추가 카드에서만 보여야 됨 -->
-								<div class="adminMenu-unitCheck">
-									<p style="margin-right: 20px;">추가구성</p>
-
-									<!-- 체크박스 -->
-									<input type="checkbox" style="margin-left: 0 !important;">
-									<p class="normal">세트</p>
-
-									<!-- 버튼자리 -->
-									<div class="adminMenu-unitListBtn">
-										<a href="#"
-											class="btn btn-light btn-icon-split adminUnitListBtn"> <span
-											class="text">추가 / 목록</span>
-										</a>
-									</div>
-
+									<input type="checkbox">
 								</div>
 
 								<!-- 메뉴 설명 -->
@@ -221,36 +212,81 @@
 									<textarea placeholder="메뉴 설명"></textarea>
 								</div>
 							</div>
-						</div>
+
+							<div class="adminCate-submitBtn">
+								<a href="#" class="btn btn-success btn-icon-split adminToping">
+									<span class="text">확인</span>
+								</a>
+							</div>
+						</div><!-- end of card body  -->
 					</div>
 					<!-- 메뉴 기본 정보 끝 -->
 
-					<!-- 기본 정보 추가 버튼 -->
-					<div class="adminMenu-btnContainer"">
-						<a href="#" class="btn btn-success btn-circle"
-							style="margin: auto;"> <i class="fas fa-plus"></i>
-						</a>
-					</div>
-
-					<!-- 토핑 정보 -->
-					<div class="card shadow mb-4" style="margin-top: 24px">
+					<!-- 카테고리 정보 -->
+					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">토핑 정보</h6>
+							<h6 class="m-0 font-weight-bold text-success">토핑 목록</h6>
 						</div>
 						<div class="card-body">
-							<!-- 토핑 정보를 넣으세다 -->
+							<div class="table-responsive">
+								<table class="table table-bordered adminToping-table"
+									id="dataTable" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Delete</th>
+										</tr>
+									</thead>
+									<tfoot>
+										<tr>
+											<th>No</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Delete</th>
+										</tr>
+									</tfoot>
+									<tbody>
+										<tr>
+											<td>01</td>
+											<td><a href="#">양상추</a></td>
+											<td>300</td>
+											<td><a href="#">X</a></td>
+										</tr>
+
+										<tr>
+											<td>02</td>
+											<td><a href="#">토마토</a></td>
+											<td>300</td>
+											<td><a href="#">X</a></td>
+										</tr>
+
+										<tr>
+											<td>03</td>
+											<td><a href="#">패티</a></td>
+											<td>700</td>
+											<td><a href="#">X</a></td>
+										</tr>
+
+										<tr>
+											<td>04</td>
+											<td><a href="#">치즈</a></td>
+											<td>300</td>
+											<td><a href="#">X</a></td>
+										</tr>
+
+										<tr>
+											<td>05</td>
+											<td><a href="#">양파</a></td>
+											<td>300</td>
+											<td><a href="#">X</a></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-					<!-- 토핑 정보 끝 -->
-
-					<div class="adminMenu-btnContainer">
-						<a href="#" class="btn btn-secondary btn-icon-split"> <span
-							class="text">삭제</span>
-						</a> <a href="#" class="btn btn-success btn-icon-split"> <span
-							class="text">확인</span>
-						</a>
-					</div>
-
 
 				</div>
 				<!-- /.container-fluid -->
@@ -279,71 +315,6 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- 구성 추가 모달 -->
-	<div class="modal" id="unitListModal">
-		<div class="modal-dialog" id="unitListModal-dialog">
-			<div class="modal-content" id="unitListModal-content">
-				<div class="modal-header" id="unitListModal-header">
-					<p class="modal-title" id="unitListModal-title">추가구성 목록</p>
-				</div>
-				
-				<!-- 모달 바디 -->
-				<div class="modal-body" id="unitListModal-body">
-					
-					<!-- <div class="adminModal-unitListCheck">
-						<input type="checkbox" style="margin-right: 2px !important;">
-						<p class="normal">세트</p>
-					</div> -->
-					
-					<table class="unitListModal-unitList">
-						<thead>
-							<tr>
-								<th><input type="checkbox"></th>
-								<th>이름</th>
-								<th>추가 구성</th>
-								<th>관리</th>
-							</tr>
-						</thead>
-						
-						<tbody>
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>세트</td>
-								<td>
-									사이드 : 감자튀김 <br>
-									음료 : 콜라
-								</td>
-								<td>적용 / 수정</td>
-							</tr>
-							
-							<tr>
-								<td><input type="checkbox"></td>
-								<td>콤보</td>
-								<td>
-									사이드 : 감자튀김 <br>
-									음료 : 콜라 <br>
-									치킨 : 치킨 1조각
-								</td>
-								<td>적용 / 수정</td>
-							</tr>
-							
-						</tbody>
-					</table>
-				
-          </div> <!-- 모달 바디 끝 -->
-          
-	      <div class="modal-footer" id="unitListModal-footer">
-	       <!--  <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btnComplete">완료</button> -->
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-	<!-- 구성 추가 모달 끝 -->	
-	
 	<!-- Bootstrap core JavaScript-->
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
@@ -357,29 +328,17 @@
 	<!-- Custom scripts for all pages-->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
-</body>
-<script type="text/javascript">
-	/* 이중모달 */
-	$(document).on('hidden.bs.modal', function (event) {
-		if ($('.modal:visible').length) {
-			$('body').addClass('modal-open');
-		}
-	});
 
-	// 추가 구성 리스트 모달 열기
-	$(document).ready(function() {
-		$("#unitListModal").modal();
-		
-		
-	});
-	
-	$(".adminUnitListBtn").on("click", function() {
-		$("#unitListModal").modal();
-	});
-	
-	// 추가 구성 추가/수정 모달 열기
-	$(".btnComplete").on("click", function() {
-		$("#recommend").modal();
-	});
-</script>
+	<!-- Page level plugins -->
+	<script
+		src="${pageContext.request.contextPath}/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script
+		src="${pageContext.request.contextPath}/assets/js/admin/demo/datatables-demo.js"></script>
+
+</body>
+
 </html>

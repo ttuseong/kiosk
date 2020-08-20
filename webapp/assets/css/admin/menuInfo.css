@@ -5,7 +5,7 @@ a{
 }
 
 .adminMenu-basicInfoDropdown > ul > li {
-	width: 207px;
+	width: 238px;
 	text-align: center;
 	font-size: 16px!important;	
 }
@@ -83,7 +83,7 @@ a{
 }
 
 .menuInfo-basicInfoContainer > div {
-	margin: 10px 0 10px;
+	margin-bottom: 20px;
    	text-align: left;
 }
 
@@ -103,11 +103,14 @@ a{
 .menuInfo-basicInfo > input {
 	width: 120px;
     margin: 0 20px 0 20px;
+    padding-left: 5px;
 }
 
-.menuInfo-menuDetails > input {
+/* 체크박스 */
+.menuInfo-menuDetails > input,
+.adminMenu-unitCheck > input {
 	width: 15px;
-	margin: 0 15px 0 5px;
+    margin: 0 5px 1px 15px;
 	vertical-align: middle;
 }
 
@@ -119,6 +122,7 @@ a{
 	width: 556px;
     height: 70px;
     margin-left: 25px;
+    padding-left: 5px;
     color: gray;
 }
 
@@ -130,6 +134,7 @@ a{
 .adminMenu-calorie > input {
 	margin-left: 20px!important;
 	width: 120px!important;
+	padding-left: 5px;
 }
 
 .adminMenu-btnContainer {
@@ -163,6 +168,27 @@ a{
 	display: inline-block!important;
 }
 
+/* 메뉴 기본 정보의 p태그와 div */
+.menuInfo-basicInfoContainer > div > p,
+.menuInfo-basicInfoContainer > div > div > p {
+	margin-bottom: 0px;
+	vertical-align: middle;
+}
+
+/* 추가구성 목록 버튼 */
+.adminMenu-unitListBtn {
+	display: inline-block;	
+}
+
+.adminUnitListBtn {
+    margin: 0 0 0 15px!important;
+	box-shadow: 1px 1px 2px lightgrey;	
+	font-size: 15px;
+	color: #1cc88a;
+    font-weight: bold;
+}
+
+/* 반응 */
 @media (max-width:1200px) {
 	.adminMenu-basicInfo {
 	    padding: 50px 20px;
@@ -193,6 +219,7 @@ a{
 	
 	.adminMenu-calorie {
 		display: block!important;
+		margin-top: 10px;
 	}
 	
 	.adminMenu-calorie > p {
