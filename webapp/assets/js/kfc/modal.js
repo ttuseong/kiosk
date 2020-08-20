@@ -426,7 +426,7 @@ $(".placeSelectBodyContentContiner").on("click", function(){
 				addRecommenDationMenu(mList[i]);
 			}
 			$("#recommend").modal();
-
+			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -442,12 +442,76 @@ function addRecommenDationMenu(menuVo){
 	str += ' 	<img';
 	str += ' 	src="' + url + '/assets/images/icon1.png"';
 	str += '	class="img-responsive">';
-	str += '	<p class="menuName">' + '+' + menuVo.menuName +  '</p><br>';
-	str += '	<p class="menuPrice">' + '+' + menuVo.menuPrice +  '</p>';
+	str += '	<p class="menuName">' +  menuVo.menuName +  '</p><br>';
+	str += '	<p class="menuPrice">' + menuVo.menuPrice +  '</p><br>';
+	str += '	<p class="menuCount">';
 	str += '	</div>';						
 	str += '	<div class="icon-check recommend-hidden"></div>';		
 	str += ' </div>';	
 	
 	$("#recommend-body").append(str);
+}
+
+/*추천메뉴모달에서 체크된 값만 읽어오기*/
+
+$(".btnComplete").on("click", function(){
+	$("#recommend").modal("hide");
+	var text=[];
+	var price=[];
+
+	var length = $("#recommend-body > div").size();
+
+
+	for(var i = 0; i < length; i++){
+		var currentDiv = $("#recommend-body").children().eq(i);
+		console.log(currentDiv.children().eq(1).hasClass("recommend-check"));
+
+		if(currentDiv.children().eq(1).hasClass("recommend-check")){
+			text.push(currentDiv.children().eq(0).children('.menuName').text());
+			price.push(currentDiv.children().eq(0).children('.menuPrice').text());
+
+			console.log(text);
+			console.log(price);
+			console.log(currentDiv.children().eq(0).children('.menuPrice'));
+		}
+	}
+	addOrderList(text, price);
+	sum();
+	$("#MyOrderListModal").modal();
+	
+});
+
+function addOrderList(textArr, priceArr){
+	var str = "";
+	$(".orderList-table").empty();
+	for(var i=0; i < textArr.length; i++) {
+		str += '<tr>';
+		str += '	<td id="orderlist-menuName">' + textArr[i] + '</td>';
+		str += '	<td id="orderlist-menuCnt"> 1 </td>';
+		str += '	<td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
+		str += '</tr>';
+	}
+
+	$(".orderList-table").append(str);
+}
+
+function sum(){
+	var tbody = $(".orderList-table > tbody > tr");
+	var length = tbody.size();
+	var count = 0;
+	var totalPay = 0;
+	
+	for(var i = 0; i < length; i++){
+		console.log(typeof(tbody.eq(i).children().eq(1).text()))
+		var currentCount = Number(tbody.eq(i).children().eq(1).text());
+		count += currentCount;
+		totalPay += Number(tbody.eq(i).children().eq(2).text())*currentCount;
+	}
+	
+	console.log(count);
+	console.log(totalPay);
+	
+	$(".order-totalMenu > p").text(count);
+	$(".order-totalPrice > p").text(totalPay);
 }
 

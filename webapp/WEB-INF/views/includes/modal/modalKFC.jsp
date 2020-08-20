@@ -9,9 +9,7 @@
 			<div class="modal-header">
 				<h4 class="modal-title" id="myModalLabel">이런 메뉴 어떠세요?</h4>
 			</div>
-			<div class="modal-body" id="recommend-body">
-			
-
+				<div class="modal-body" id="recommend-body">
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -366,11 +364,7 @@
 	      		<div class="orderlist-body">
 	      			<div class="orderList-tableDiv">
 	      				<table class="orderList-table">
-			      			<tr>
-				      			<td id="orderlist-menuName"> (행사)닭껍질튀김 + 텐더 </td>
-				      			<td id="orderlist-menuCnt"> 2 </td>
-				      			<td id="orderlist-menuPrice"> 7,000 </td>
-				      		</tr>
+
 		      			</table>
 	      			</div>
 	      			
@@ -386,10 +380,10 @@
 	      					<p>합계</p>
 	      				</div>
 	      				<div class="order-totalMenu">
-	      					<p>9</p>
+	      					<p></p>
 	      				</div>
 	      				<div class="order-totalPrice">
-	      					<p>15,100</p>
+	      					<p></p>
 	      				</div>
 	      			</div>
 	      			
@@ -407,7 +401,7 @@
 	      					<p>총 결제 금액</p>
 	      				</div>
 	      				<div class="order-totalPrice">
-	      					<p>15,100</p>
+	      					<p></p>
 	      				</div>
 	      			</div>
 	      		</div>
