@@ -33,6 +33,8 @@
 <link
 	href="${pageContext.request.contextPath}/assets/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCateTool.css">
 
 </head>
 
@@ -154,6 +156,13 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-success">카테고리 목록</h6>
+							<div class="adminCate-tooltip">
+								<i class="fa fa-question-circle"></i>
+								<span class="tooltip-text">
+									카테고리 이름을 클릭하시면<br>
+									카테고리 수정이 가능합니다.
+								</span>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
