@@ -102,6 +102,7 @@ $(document).ready(function() {
 });
 
 
+
 function setOrSingle(menuNo, menuName, menuPrice){
 	/*세트제품이 있는지 확인*/
 	$.ajax({
@@ -116,8 +117,6 @@ function setOrSingle(menuNo, menuName, menuPrice){
 				render(menuName, menuPrice);
 				
 			}else{
-
-				/*셋트제품이 있을경우*/
 				$.ajax({
 					url : url+"/api/selectMenu",		
 					type : "post",
@@ -138,7 +137,6 @@ function setOrSingle(menuNo, menuName, menuPrice){
 						console.error(status + " : " + error);
 					}
 				}); 
-				
 			}
 			
 		},

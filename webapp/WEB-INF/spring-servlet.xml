@@ -62,7 +62,8 @@
 
 
 	<!-- url매핑 -->
-	<mvc:resources mapping="/upload/**" location="file:C:/javaStudy/upload/" />
-
+	<!-- <mvc:resources mapping="/upload/**" location="file:C:/javaStudy/upload/" /> -->
+	<mvc:resources mapping="/lotteia/**" location="file:C:/kiosk/lotteria/" />
+	<mvc:resources mapping="/kfc/**" location="file:C:/kiosk/kfc/" />
 
 </beans>

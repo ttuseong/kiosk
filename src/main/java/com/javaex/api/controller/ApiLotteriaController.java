@@ -21,6 +21,7 @@ public class ApiLotteriaController {
 	@RequestMapping("/setOrSingle")
 	@ResponseBody
 	public int setOrSingle(@RequestBody int menuNo) {
+		
 		return lotteriaService.setOrSingle(menuNo);
 	}
 	

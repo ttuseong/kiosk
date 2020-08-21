@@ -203,6 +203,5 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .toppingMenuName{font-size: 20px;font-weight: bold;}
 .width80{width: 80%;}
 .padding-top20px{width: 100%;padding-top: 20px;}
-.imgWidth{width:100px;}
-.imgWidth>img{width:100%;}
+.padding-top20px > div > img{width:100px;}
 .width100{width:100%}
