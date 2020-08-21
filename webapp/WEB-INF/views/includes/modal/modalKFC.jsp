@@ -136,57 +136,13 @@
 				</div>
 			</div>
 			<div class="modal-body">
-				<div class="selectModeBodyContainer" data-mode="4">
-					<div class="icon-check selectModeCheckBox">
-						<p class="hidden">채크박스</p>
-					</div>
-					<div class="selectModeBodyContent">
-						<h2 class="selectModeName" id="selectModeBoxName"></h2>
-						<div class="selectModeCompose">
-							<p>구성</p>
-						</div>
-						<p class="selectModeMenuGroup" id="selectModeBoxConfig"></p>
-						<p class="selectModePrice" id="selectModeBoxPrice"></p>
-					</div>
-					<img id="selectModeBoxImg" alt=""
-						src="${pageContext.request.contextPath}/assets/images/icon1.png">
+				
+				<div id="selectModeMainContent">
+				
+					<!-- 위, 아래 이동 화살표 -->
+					<jsp:include page="/WEB-INF/views/includes/modal/updownArrow.jsp" />
+					<!-- 위, 아래 이동 화살표 -->
 				</div>
-
-				<div class="selectModeBodyContainer" data-mode="3">
-					<div class="icon-check selectModeCheckBox">
-						<p class="hidden">채크박스</p>
-					</div>
-					<div class="selectModeBodyContent">
-						<h2 class="selectModeName" id="selectModeSetName"></h2>
-						<div class="selectModeCompose">
-							<p>구성</p>
-						</div>
-						<p class="selectModeMenuGroup" id="selectModeSetConfig"></p>
-						<p class="selectModePrice" id="selectModeSetPrice"></p>
-					</div>
-					<img id="selectModeSetImg" alt=""
-						src="${pageContext.request.contextPath}/assets/images/icon1.png">
-				</div>
-
-				<div class="selectModeBodyContainer" data-mode="1">
-					<div class="icon-check selectModeCheckBox">
-						<p class="hidden">채크박스</p>
-					</div>
-					<div class="selectModeBodyContent">
-						<h2 class="selectModeName" id="selectModeNomalName"></h2>
-						<div class="selectModeCompose">
-							<p>구성</p>
-						</div>
-						<p class="selectModeMenuGroup" id="selectModeNomalCongig"></p>
-						<p class="selectModePrice" id="selectModeNomalPrice"></p>
-					</div>
-					<img id="selectModeNomalImg" alt=""
-						src="${pageContext.request.contextPath}/assets/images/icon1.png">
-				</div>
-
-				<!-- 위, 아래 이동 화살표 -->
-				<jsp:include page="/WEB-INF/views/includes/modal/updownArrow.jsp" />
-				<!-- 위, 아래 이동 화살표 -->
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
@@ -199,7 +155,6 @@
 </div>
 <!-- /.modal -->
 <!-- 박스/세트/단품 선택 모달 -->
-
 
 <!-- 결제 내역 모달 -->
 <div class="modal" id="paymentDetails">
@@ -228,7 +183,6 @@
 </div>
 <!-- /.modal -->
 
-
 <!-- 햄버거박스 사이드 메뉴 -->
 <div class="modal" id="hamburgerBoxSideMenu">
 	<div class="modal-dialog">
@@ -238,42 +192,7 @@
 			</div>
 			<div class="modal-body hamburgerBoxBody">
 				<div id="hamburgerBoxBodyContainer">
-					<div class="menu-container hidden" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName" id="selectedBurgurTopping">추가 없음</p>
-						</div>
-						<button type="button" class="hamburgerBoxButton" data-no="1">버거재료 추가</button>
-					</div>
-					<div class="menu-container hidden" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName" id="selectedSide">후렌치후라(M)</p>
-						</div>
-						<button type="button" class="hamburgerBoxButton" data-no="2">사이드 변경</button>
-					</div>
-					<div class="menu-container hidden" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName" id="selecedDrinking">콜라(M)</p>
-						</div>
-						<button type="button" class="hamburgerBoxButton" data-no="3">음료 변경</button>
-					</div>
-					<div class="menu-container hidden" id="menuSet">
-						<img
-							src="${pageContext.request.contextPath}/assets/images/icon1.png"
-							class="img-responsive">
-						<div>
-							<p class="menuName" id="selectedChicken">핫크리스피치킨 1조각</p>
-						</div>
-						<button type="button" class="hamburgerBoxButton" data-no="4">치킨 변경</button>
-					</div>
+					
 				</div>	
 			</div>
 			<div class="modal-footer" id="hamburgerSideFooter">
@@ -287,7 +206,6 @@
 </div>
 <!-- /.modal -->
 
-
 <!-- 사이드 변경 모달 -->
 <div class="modal" id="sideChange">
 	<div class="modal-dialog">
@@ -296,8 +214,8 @@
 				<jsp:include page="/WEB-INF/views/includes/modal/hamburgerBoxHeader.jsp" />
 			</div>
 			<div class="modal-body" id="hamburgerBox-SideChangeBody">
-				<div class="icon-left-open-big" id="hamburgerBox-SideChangeBodyLeftBtn"></div>
-				<div class="icon-right-open-big" id="hamburgerBox-SideChangeBodyRightBtn"></div>
+				<div class="icon-left-open-big sideChangeBtn" id="hamburgerBox-SideChangeBodyLeftBtn"></div>
+				<div class="icon-right-open-big sideChangeBtn" id="hamburgerBox-SideChangeBodyRightBtn"></div>
 				<div id="sideChangeTitle">
 						<p>사이드 변경</p>
 				</div>
@@ -405,7 +323,6 @@
 	      				</div>
 	      			</div>
 	      		</div>
-	      		
      		</div>
           </div> 
 	      <div class="modal-footer">

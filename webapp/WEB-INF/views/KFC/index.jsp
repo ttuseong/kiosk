@@ -93,7 +93,7 @@
 				<ul id="pageCircleGroup">
 					<c:forEach var="current" begin="1" end="${map.menuMaxCount }">
 						<li><div class="pageCircle 
-						<c:if test="${map.currentPage == current }">
+						<c:if test="${1 == current }">
 							pageActive
 						</c:if>
 						

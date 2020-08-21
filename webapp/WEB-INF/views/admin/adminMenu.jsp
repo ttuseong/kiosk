@@ -279,21 +279,17 @@
 		class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- 구성 추가 모달 -->
+	<!-- 추가 구성 목록 모달 -->
 	<div class="modal" id="unitListModal">
 		<div class="modal-dialog" id="unitListModal-dialog">
 			<div class="modal-content" id="unitListModal-content">
 				<div class="modal-header" id="unitListModal-header">
 					<p class="modal-title" id="unitListModal-title">추가구성 목록</p>
+					<i class="fas fa-times unitListModal-close"></i>
 				</div>
 
 				<!-- 모달 바디 -->
 				<div class="modal-body" id="unitListModal-body">
-
-					<!-- <div class="adminModal-unitListCheck">
-						<input type="checkbox" style="margin-right: 2px !important;">
-						<p class="normal">세트</p>
-					</div> -->
 
 					<table class="unitListModal-unitList">
 						<thead>
@@ -354,11 +350,11 @@
 				<div class="modal-footer" id="unitListModal-footer">
 					<div class="adminMenu-footerBtnContainer">
 						<a href="#"
-							class="btn btn-secondary btn-icon-split adminMenu-unitDel">
-							<span class="text">선택 구성 삭제</span>
+							class="btn btn-secondary btn-icon-split adminMenu-unitDel"> <span
+							class="text">선택 구성 삭제</span>
 						</a><a href="#"
-							class="btn btn-success btn-icon-split adminMenu-unitAdd">
-							<span class="text">구성 목록 추가</span>
+							class="btn btn-success btn-icon-split adminMenu-unitAdd"> <span
+							class="text">구성 목록 추가</span>
 						</a>
 					</div>
 				</div>
@@ -368,7 +364,82 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<!-- 구성 추가 모달 끝 -->
+	<!-- 추가 구성 목록 모달 끝 -->
+
+	<!-- 구성 추가 / 수정 모달 -->
+	<div class="modal" id="unitManagerModal">
+		<div class="modal-dialog" id="unitManagerModal-dialog">
+			<div class="modal-content" id="unitManagerModal-content">
+				<div class="modal-header" id="unitManagerModal-header">
+					<p class="modal-title" id="unitManagerModal-title">구성 추가/수정</p>
+					<i class="fas fa-times unitManagerModal-close"></i>
+					<!-- 클로즈 버튼 -->
+				</div>
+
+				<!-- 모달 바디 -->
+				<div class="modal-body" id="unitManagerModal-body">
+				
+					<div class="unitManagerModal-unitName"><!-- 추가 구성 이름 -->
+						<p>이름</p>
+						<input type="text" placeholder="ex) 세트/콤보/박스">
+					</div> <!-- 이름 -->
+
+					<div class="unitManagerModal-unitComponent"> <!-- 추가 구성(카테고리, 메뉴) -->
+						<p>추가구성</p>
+						<div class="adminMenu-cateDropdown">
+							<!-- 카테고리 드롭다운 -->
+							<p>카테고리</p>
+							<div class="dropdown adminMenu-basicInfoDropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+									카테고리를 선택하세요. <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu"
+									aria-labelledby="dropdownMenu1">
+									<li role="presentation"><a role="menuitem" tabindex="-1"
+										href="#">햄버거</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1"
+										href="#">음료</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- 카테고리 드롭다운 끝 -->
+
+						<!-- 메뉴 드롭다운 -->
+						<div class="adminMenu-menuDropdown">
+							<p>메뉴</p>
+							<div class="dropdown adminMenu-basicInfoDropdown">
+								<button class="btn btn-default dropdown-toggle" type="button"
+									id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"
+									style="margin-right: 0;">
+									메뉴를 선택하세요. <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" role="menu"
+									aria-labelledby="dropdownMenu1">
+									<li role="presentation"><a role="menuitem" tabindex="-1"
+										href="#">불고기버거</a></li>
+									<li role="presentation"><a role="menuitem" tabindex="-1"
+										href="#">새우버거</a></li>
+								</ul>
+							</div>
+						</div>
+						<!-- 메뉴 드롭다운 끝 -->
+					</div>
+					<!-- 추가 구성(카테고리, 메뉴) 끝 -->
+					
+					
+					
+				</div>
+				<!-- 모달 바디 끝 -->
+
+				<div class="modal-footer" id="unitManagerModal-footer"></div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- 구성 추가 / 수정 모달 끝 -->
 
 	<!-- Bootstrap core JavaScript-->
 	<script
@@ -402,9 +473,23 @@
 		$("#unitListModal").modal();
 	});
 
-	// 추가 구성 추가/수정 모달 열기
+	// 추가 구성 리스트 모달 닫기
+	$(".unitListModal-close").on("click", function() {
+		$("#unitListModal").modal("hide");
+	});
+
+	// 구성 추가/수정 모달 열기
+	$(".adminMenu-unitAdd").on("click", function() {
+		$("#unitManagerModal").modal();
+	});
+
 	$(".adminMenu-unitListModify").on("click", function() {
-		$("#recommend").modal();
+		$("#unitManagerModal").modal();
+	});
+
+	// 구성 추가/수정 모달 닫기
+	$(".unitManagerModal-close").on("click", function() {
+		$("#unitManagerModal").modal("hide");
 	});
 </script>
 </html>
