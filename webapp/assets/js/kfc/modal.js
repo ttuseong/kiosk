@@ -6,7 +6,7 @@ var menuNo;
 // 단품/세트/박스 중 어떤 것을 선택했는지(4. 박스, 3. 세트, 1. 단품)
 // 메뉴 하나로 3개의 이미지도 가져와야함
 // menuImg+1+확장자 -> 이미지
-var selectedMode = 0;
+var selectedMode;
 
 //햄버거박스 사이드 메뉴
 var burgerName;
@@ -24,11 +24,15 @@ var sideChangeCurPoint = 0;
 var sideChangeEndPoint;
 var sideChangeCurPos = 0;
 
+//사이드 변경할 때 사용될 기본 가격
+var defaultPrice=0;
+
 $(document).ready(function(){
 	inittoppingArr();
 });
 
-/*토핑의 no, pricem, count*/
+/*토핑의 no, name, price, count*/
+/*금액 합산을 위해 미리 초기화를 하는 작업*/
 function inittoppingArr(){
 	$.ajax({
 		url : url+"/KFC/initTopping",		
@@ -88,8 +92,16 @@ function selectMenu(){
 		type : "post",
 		data : {menuNo : menuNo},
 		success : function(menuVoList){
-			OnselectMode(menuVoList);
+			$("#selectModeMainContent").empty();
 			
+			$("#selectModeMainName").text(menuVoList[menuVoList.length-1].menuName);
+			$("#selectModeMainDesc").text(menuVoList[menuVoList.length-1].menuDesc);
+			
+			for(var i = menuVoList.length - 1; i >= 0 ; i--){
+				OnselectMode(menuVoList[i]);
+			}
+			
+			$("#selectMode").modal();
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -98,26 +110,29 @@ function selectMenu(){
 }
 
 // 단품/세트/박스 모달을 띄울 때 해당 메뉴에 대한 정보로 리뉴얼하는 함수
-function OnselectMode(menuVoList){
-	$("#selectModeMainName").text(menuVoList[2].menuName);
-	$("#selectModeMainDesc").text(menuVoList[2].menuDesc);
+function OnselectMode(menuVo){
+	var str = "";
 	
-	$("#selectModeBoxName").text(menuVoList[0].menuName);
-	$("#selectModeBoxConfig").text(menuVoList[2].menuName + " + 사이드 변경 + 음료 변경 + 치킨 변경")
-	$("#selectModeBoxPrice").text(menuVoList[0].menuPrice);
+	str += ' <div class="selectModeBodyContainer" data-mode="' + menuVo.unitName + '">';
+	str += ' 	<div class="icon-check selectModeCheckBox">';
+	str += ' 		<p class="hidden">채크박스</p>';
+	str += ' 	</div>';
+	str += ' 	<div class="selectModeBodyContent">';
+	str += ' 		<h2 class="selectModeName">' + menuVo.menuName + '</h2>';
+	str += '		<div class="selectModeCompose">';
+	str += '			<p>구성</p>';
+	str += '		</div>';
+	str += '		<p class="selectModeMenuGroup">' + menuVo.menuName + '</p>';
+	str += ' 		<p class="selectModePrice"> ' + menuVo.menuPrice + '</p>';
+	str += ' 	</div>';
+	str += ' 	<img id="selectModeBoxImg" alt=""';
+	str += '		src="' + url +'/assets/images/icon1.png">';
+	str += ' </div>';				
 	
-	$("#selectModeSetName").text(menuVoList[1].menuName);
-	$("#selectModeSetConfig").text(menuVoList[2].menuName + " + 사이드 변경 + 음료 변경")
-	$("#selectModeSetPrice").text(menuVoList[1].menuPrice);
-	
-	$("#selectModeNomalName").text(menuVoList[2].menuName);
-	$("#selectModeNomalCongig").text(menuVoList[2].menuName);
-	$("#selectModeNomalPrice").text(menuVoList[2].menuPrice);
-	
-	$("#selectMode").modal();
+	$("#selectModeMainContent").prepend(str);
 }
 
-$(".selectModeBodyContainer").on("click", function(){
+$("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
 	var clickMode = $(this);
 	
 	clickMode.siblings().children(".selectModeCheckBox").removeAttr("id", "selectedMode");
@@ -135,10 +150,17 @@ $(".selectModeBodyContainer").on("click", function(){
 $("#selectedModecompleted").on("click", function(){
 	
 	$("#selectMode").modal("hide");
-	computeAllPrice();
-	hamburgerBoxSideMenuInputDefault();
-	addBurgerBoxBody();
-	$("#hamburgerBoxSideMenu").modal();
+	
+	if(selectedMode == 'default'){
+		
+	}
+	else{
+		computeAllPrice();
+		hamburgerBoxSideMenuInputDefault();
+		addBurgerBoxBody();
+		$("#hamburgerBoxSideMenu").modal();
+	}
+	
 })
 
 // hamburgerBoxHeader 기본 값 설정
@@ -151,46 +173,97 @@ function hamburgerBoxSideMenuInputDefault(){
 
 //햄버거 박스 사이드 메뉴 모달
 function addBurgerBoxBody(){
-	for(var i = 0; i < selectedMode;i++){
-		addBurgerBoxContents(i)
-	}
+	$.ajax({
+		url : url+"/KFC/selectMode",		
+		type : "post",
+		data : {utilName : selectedMode},
+		success : function(menuList){
+			$("#hamburgerBoxBodyContainer").empty();
+			hamburgerBoxShowDefault();
+			for(var i=0; i<menuList.length;i++){
+				hamburgerBoxShowContent(menuList[i]);
+			}
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
 }
 
-function addBurgerBoxContents(i){
-	$("#hamburgerBoxBodyContainer").children().eq(i).removeClass('hidden');
+function hamburgerBoxShowDefault(){
+	var str = '';
+	
+	str += ' <div class="menu-container" id="menuSet">';
+	str += ' 	<img';
+	str += '		src="' + url + '/assets/images/icon1.png"';
+	str += '		class="img-responsive">';
+	str += ' 	<div>';
+	str += '		<p class="menuName">추가 없음</p>';
+	str += '	</div>';
+	str += '	<button type="button" class="hamburgerBoxButton" data-no="0">버거재료 변경</button>';
+	str += ' </div>';
+	
+	$("#hamburgerBoxBodyContainer").append(str);
+}
 
+function hamburgerBoxShowContent(menuVo){
+	var str = '';
+	
+	str += ' <div class="menu-container" id="menuSet">';
+	str += ' 	<img';
+	str += '		src="' + url + '/assets/images/icon1.png"';
+	str += '		class="img-responsive">';
+	str += ' 	<div>';
+	str += '		<p class="menuName">' + menuVo.menuName +  '</p>';
+	str += '	</div>';
+	str += '	<button type="button" class="hamburgerBoxButton" data-no="' + menuVo.defaultNo + '">'  + menuVo.categoryName + ' 변경' + '</button>';
+	str += ' </div>';
+	
+	$("#hamburgerBoxBodyContainer").append(str);
 }
 
 // 모달 교체 시점2-1 토핑을 변경할 경우
-$(".hamburgerBoxButton").on("click", function(){
+$("#hamburgerBoxBodyContainer").on("click", ".hamburgerBoxButton", function(){
 	var thisBtn = $(this);
-	no = thisBtn.data("no");
+	no = thisBtn.data("no");	
+	changeList(no);
 	
-	$("#hamburgerBoxSideMenu").modal("hide");
-	hamburgerBoxSideMenuInputDefault();
-	switch(no){
-		case 1:
-			burgerToppingList();	
-			$("#bugerTopping").modal();
-			break;
-		case 2:
-		case 3:
-		case 4:
-			$("#sideChangeContents").empty();
-			sideChange(no);
-			$("#sideChange").modal();
-		default:
-	}
 });
 
 /*토핑 추가*/
-function burgerToppingList(){
+function changeList(no){
 	$.ajax({
-		url : url+"/KFC/selectTopping",		
+		url : url+"/KFC/changeList",		
 		type : "post",
-		success : function(toppingList){
-			for(var i = 0; i < toppingList.length; i++){
-				addBurgerToppingContent(toppingList[i]);	
+		data:{no:no},
+		success : function(list){
+			
+			console.log(no);
+			if(no == 0){
+				$("#bugerToppingContiner").empty();
+				for(var i = 0; i < list.length; i++){
+					addBurgerToppingContent(list[i], i);
+				}
+				$("#hamburgerBoxSideMenu").modal("hide");
+				$("#bugerTopping").modal();
+			}
+			else{
+				$("#sideChangeContents").empty();
+				$("#sideChangeContents").css("margin-left", "0px");
+				$(".sideChangeBtn").removeClass("btnActive");
+				sideChangeCurPoint = 0;
+				
+				addSideMenu(list);
+				
+				sideChangeEndPoint = Math.ceil(list.length/6.0);
+				
+				$("#sideChangeContents").width(648*sideChangeEndPoint);
+				
+				if(sideChangeEndPoint>1){
+					$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
+			}
+				$("#sideChange").modal();
 			}
 		},
 		error : function(XHR, status, error) {
@@ -199,16 +272,17 @@ function burgerToppingList(){
 	});
 }
 
-function addBurgerToppingContent(toppingVo){
+function addBurgerToppingContent(toppingVo, i){
+	console.log("test");
 	var str = "";
 	str += ' <div class="bugerToppinglist" id="cheeseTopping">';
-	str += ' 	<img alt="' + toppingVo.toppingName + '추가 이미지' + '"';
+	str += ' 	<img alt="' + toppingVo.menuName + '추가 이미지' + '"';
 	str += ' 	src="' + url + '/assets/images/icon1.png">';					
-	str += '	<h6>' + toppingVo.toppingName + '추가' + '</h6>';						
-	str += '	<p>' + '+' + toppingVo.toppingPrice +  '</p>';					
+	str += '	<h6>' + toppingVo.menuName + '추가' + '</h6>';						
+	str += '	<p>' + '+' + toppingVo.menuPrice +  '</p>';					
 	str += '	<div class="count">';		
 	str += '		<div class="icon-minus iconCombination"></div>';
-	str += '		<p data-toppingNo='+ toppingVo.toppingNo +'>0</p>';
+	str += '		<p data-toppingNo='+ toppingVo.menuNo +'>' + toppingArr[i][3] + '</p>';
 	str += '		<div class="icon-plus iconCombination"></div>';
 	str += '	</div>';	
 	str += ' </div>';
@@ -226,17 +300,15 @@ $("#bugerToppingCompleted").on("click", function(){
 		}
 	}
 	
-	if(arr.length == 0){
-		return;
-	}
-	
-	for(var i=0; i<arr.length; i++){
+	if(arr.length != 0){
+		for(var i=0; i<arr.length; i++){
 		str+=arr[i];
 		if(i != arr.length-1){
 			str+="<br>";
 		}
 	}
-	
+	}
+
 	$("#selectedBurgurTopping").html(str);
 	$("#bugerTopping").modal("hide");
 	$("#hamburgerBoxSideMenu").modal();
@@ -289,7 +361,7 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 	
 	for(var i=0; i<toppingArr.length;i++){
 		if(toppingArr[i][0] == toppingNo){
-			
+
 			thisBtn.prev().text(++toppingArr[i][3]);
 			break;
 		}
@@ -298,43 +370,25 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 	$(".burgerBoxPrice").text(totalPrice);
 });
 
-/*사이드 변경 선택*/
-function sideChange(changeNo){
-	$.ajax({
-		url : url+"/KFC/sideChange",		
-		type : "post",
-		data : {changeNo : changeNo},
-		success : function(sideList){
-
-			addSideMenu(sideList);
-			
-			sideChangeEndPoint = Math.ceil(sideList.length/6.0);
-			console.log(sideChangeEndPoint);
-			if(sideChangeEndPoint>1){
-				$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
-			}
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	});
-}
-
-
+/*사이드 변경 모달에 컨텐츠 추가하는 함수*/
 function addSideMenu(sideList){
 	var str = "";
-	var index = 0; 
 	var listLength = sideList.length;
+	var index = listLength-1; 
+
+	
+	defaultPrice = sideList[listLength - 1].menuPrice;
+	
 	console.log("test start" + sideList.length);
-	while(index < listLength){
+	while(index > -1){
 		console.log(index);
 		str += ' <div id="sideChangeContent">';
 		for(var j = 0; j < 6; j++){
-			if(index == listLength){
+			if(index == -1){
 				break;
 			}
 			
-			var addPrice = sideList[index].menuPrice - 2200;
+			var addPrice = sideList[index].menuPrice - defaultPrice;
 			
 			str += ' 	<div class="menu-container" id="menuSetSecond">';
 			str += ' 		<img';
@@ -351,7 +405,7 @@ function addSideMenu(sideList){
 			str += '		</div>';
 			str += '	</div>';
 
-			index++;
+			index--;
 		}
 		str += ' </div>';
 	}
@@ -367,7 +421,7 @@ $("#hamburgerBox-SideChangeBodyRightBtn").on("click", function(){
 		$("#sideChangeContents").animate({
 			marginLeft : sideChangeCurPos
 		});
-		if(!$("#hamburgerBox-SideChangeBodyLeftBtn").hasClass("btnActive") && sideChangeCurPoint > 0){
+		if(!$("#hamburgerBox").hasClass("btnActive") && sideChangeCurPoint > 0){
 			$("#hamburgerBox-SideChangeBodyLeftBtn").addClass("btnActive");
 		}
 		if(sideChangeCurPoint == sideChangeEndPoint-1){
@@ -380,14 +434,14 @@ $("#hamburgerBox-SideChangeBodyLeftBtn").on("click", function(){
 	
 	if($("#hamburgerBox-SideChangeBodyLeftBtn").hasClass("btnActive")){
 		sideChangeCurPoint--;
-		sideChangeCurPos = -1 * sideChangeCurPoint * 800;
+		sideChangeCurPos = -1 * sideChangeCurPoint * 648;
 		$("#sideChangeContents").animate({
-			marginLeft : curPos
+			marginLeft : sideChangeCurPos
 		});
 		if(!$("#hamburgerBox-SideChangeBodyRightBtn").hasClass("btnActive") && sideChangeCurPos < sideChangeEndPoint-1){
 			$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
 		}
-		if(sideChangeCurPos == 0){
+		if(sideChangeCurPoint == 0){
 			$("#hamburgerBox-SideChangeBodyLeftBtn").removeClass("btnActive");
 		}
 	}

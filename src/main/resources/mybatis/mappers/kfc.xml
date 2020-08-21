@@ -18,7 +18,7 @@
 			order by c.categoryno asc
 		]]>
 	</select>
-	<select id="selectMenuList" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.PageVo">
+	<select id="selectMenuList" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
 				menuNo,
@@ -64,26 +64,60 @@
 			SELECT
 			    sm.setname menuName,
 			    sm.setPrice menuPrice,
-			    sm.setimg menuImg
+			    sm.setimg menuImg,
+			    sm.unitno,
+			    su.unitName
 			FROM
 			    menu m,
 			    usemenu um,
-			    setmenu sm
+			    setmenu sm,
+			    setunit su
 			where
 			    m.menuNo = um.menuNo
 			and
 			    um.setNo = sm.setNo
 			and
+			    sm.unitNo=su.unitno
+			and
 			    m.menuNo = #{menuNo}
+			order by sm.unitno desc
 		]]>
 	</select>
-	<select id="selectToppingList" resultType="com.javaex.vo.ToppingVo">
+	<select id="selectCountUseCategory" resultType="com.javaex.vo.MenuVo" parameterType="String">
 		<![CDATA[
 			SELECT
-				toppingNo,
-			    toppingname,
-			    toppingprice,
-			    toppingimg
+			    m.menuName,
+			    dm.categoryno,
+			    dm.defaultNo,
+			    c.categoryname,
+			    m.menuimg
+			FROM
+			    setUnit su,
+			    useCategory uc,
+			    defaultMenu dm,
+			    menu m,
+			    category c
+			where
+			    su.unitName=#{unitName}
+			and
+			    su.unitno=uc.unitno
+			and
+			    uc.unitno=dm.unitno
+			and
+			    uc.categoryno = dm.categoryno
+			and
+			    dm.menuno=m.menuno
+			and
+			    dm.categoryno=c.categoryno
+		]]>
+	</select>
+	<select id="selectToppingList" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT
+				toppingNo menuNo,
+			    toppingname menuName,
+			    toppingprice menuPrice,
+			    toppingimg menuImg
 			FROM
 			    topping
 			where
@@ -122,37 +156,43 @@
 		]]>
 	</select>
 
-	<select id="selectBasicSide" resultType="com.javaex.vo.MenuVo">
+	<select id="selectBasicSide" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
-			    menuNo,
-			    menuImg,
-			    menuName,
-			    menuPrice
+			    m.menuname,
+			    m.menuprice,
+			    m.menuImg,
+			    m.menuNo
 			FROM
-			    menu
+			    defaultmenu dm,
+			    menu m
 			where
-			    categoryNo = 7
+			    dm.menuno = m.menuno
 			and
-			    isChange = 1
-			and
-			    menuNo = 203
+			    dm.defaultNo = #{defaultNo}
 		]]>
 	</select>
-	<select id="selectAnotherSide" resultType="com.javaex.vo.MenuVo">
+	<select id="selectAnotherSide" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
-			    menuImg,
-			    menuName,
-			    menuPrice
+			    m.menuname,
+			    m.menuprice,
+			    m.menuImg,
+			    m.menuNo
 			FROM
-			    menu
+			    defaultmenu dm,
+			    menu m,
+			    category c
 			where
-			    categoryNo = 7
+			    c.categoryno = dm.categoryno
 			and
-			    isChange = 1
+			    c.categoryno = m.categoryno
 			and
-    			menuNo != 203
+			    dm.defaultno=#{defaultNo}
+			and
+			    m.menuno != dm.menuno
+			and
+			    m.ischange = 1
 		]]>
 	</select>
 </mapper>

@@ -1,8 +1,6 @@
 package com.javaex.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.javaex.dao.KFCDao;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
-import com.javaex.vo.PageVo;
 import com.javaex.vo.ToppingVo;
 
 @Service
@@ -20,44 +17,37 @@ public class KFCService {
 	@Autowired
 	KFCDao kfcDao;
 	
-	public Map<String, Object> cateList(PageVo pageVo) {
+	public Map<String, Object> cateList(int  categoryNo) {
+		float maxOnePageMenu = 9;
 		List<CategoryVo> cateList = kfcDao.selectCateList();
 		
-		
-		if(pageVo.getCategoryNo() == 0) {
-			pageVo.setCategoryNo(cateList.get(0).getCategoryNo());
+		if(categoryNo == 0) {
+			categoryNo = cateList.get(0).getCategoryNo();
 		}
 		
-		if(pageVo.getCurrentPage() == 0) {
-			pageVo.setCurrentPage(1);
-		}
+		List<MenuVo> menuList = menuList(categoryNo);
 		
-		pageVo.setStartPoint((pageVo.getCurrentPage()-1)*9+1);
-		pageVo.setEndPoint(pageVo.getStartPoint()+8);
+		int menuMaxCount = (int)(Math.ceil((menuCount(categoryNo)/maxOnePageMenu)));
 		
-		List<MenuVo> menuList = menuList(pageVo);
-		
-		System.out.println(pageVo.toString());
-		
-		
-		int menuMaxCount = (int)Math.ceil((menuCount(pageVo.getCategoryNo())/9.0));
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		map.put("currentPage", pageVo.getCurrentPage());
-		map.put("menuMaxCount", menuMaxCount);
 		map.put("cateList", cateList);
 		map.put("menuList", menuList);
-		map.put("categoryNo", pageVo.getCategoryNo());
+		map.put("menuMaxCount", menuMaxCount);
 		
 		return map;
 	}
+	
+	public List<ToppingVo> intiTopping() {
+		return kfcDao.selectToppingbasicInfo();
+	}
 
-	public List<MenuVo> menuList(PageVo pageVo) {
-		return kfcDao.selectMenuList(pageVo);
+	public List<MenuVo> menuList(int categoryNo) {
+		return kfcDao.selectMenuList(categoryNo);
 	}
 	
-	public int menuCount(int categoruNo) {
-		return kfcDao.selectCountMenu(categoruNo);
+	public int menuCount(int categoryNo) {
+		return kfcDao.selectCountMenu(categoryNo);
 	}
 	
 	public List<MenuVo> selectMenu(int menuNo) {
@@ -68,58 +58,36 @@ public class KFCService {
 		return list;
 	}
 	
-	public List<ToppingVo> selectToppingList(){
-		
-		return kfcDao.selectToppingList();
-		
+	public List<MenuVo> selectMode(String utilName) {
+		return kfcDao.selectCountUseCategory(utilName);
 	}
 	
-	public List<ToppingVo> intiTopping() {
-		return kfcDao.selectToppingbasicInfo();
-	}
-	
-	public List<MenuVo> changeMenu(int changeNo){
-		List<MenuVo> list = null;
-
-		
-		switch(changeNo) {
-		case 2:
-			list = changeSide();
-			break;
-		case 3:
-			list = changeDrinking();
-			break;
-		case 4:
-			list = changeChicken();
-			break;
-		default:
-			System.out.println("KFC_Service changeMenu메소드에 잘못된 입력이 들어왔습니다.");
+	public List<MenuVo> changeList(int defaultNo){
+		List<MenuVo> list;
+		if(defaultNo == 0) {
+			list = kfcDao.selectToppingList();
+		}
+		else {
+			list = sideList(defaultNo);
 		}
 		
-		return list;
-	}
-	public List<MenuVo> changeSide(){
-		List<MenuVo> list = kfcDao.selectAnotherSide();
-		
-		list.add(selectBasicSide());
-		
+		System.out.println(list);
 		return list;
 	}
 	
-	public MenuVo selectBasicSide() {
-		return kfcDao.selectBasicSide();
+	public List<MenuVo> sideList(int defaultNo) {
+		List<MenuVo> list = sideAnotherList(defaultNo);
+		list.add(sideDefaultMenu(defaultNo));
+		return list;
 	}
 	
-	public List<MenuVo> selectAnotherSide(){
-		return kfcDao.selectAnotherSide();
+	public MenuVo sideDefaultMenu(int defaultNo) {
+		return kfcDao.selectBasicSide(defaultNo);
 	}
 	
-	public List<MenuVo> changeDrinking(){
-		return kfcDao.selectDrinkingList();
-	}
-	
-	public List<MenuVo> changeChicken(){
-		return kfcDao.selectChickenList();
+	public List<MenuVo> sideAnotherList(int defaultNo) {
+		
+		return kfcDao.selectAnotherSide(defaultNo);
 	}
 	
 	public List<MenuVo> recommenDationMenuList() {

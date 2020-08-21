@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
-import com.javaex.vo.PageVo;
 import com.javaex.vo.ToppingVo;
 
 
@@ -21,8 +20,8 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectCateList");
 	}
 	
-	public List<MenuVo> selectMenuList(PageVo kfcPageVo){
-		return sqlSession.selectList("kfc.selectMenuList", kfcPageVo);
+	public List<MenuVo> selectMenuList(int categoryNo){
+		return sqlSession.selectList("kfc.selectMenuList", categoryNo);
 	}
 	
 	public int selectCountMenu(int categoruNo) {
@@ -37,7 +36,11 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectSetMenus", menuNo);
 	}
 	
-	public List<ToppingVo> selectToppingList(){
+	public List<MenuVo> selectCountUseCategory(String utilName) {
+		return sqlSession.selectList("kfc.selectCountUseCategory", utilName);
+	}
+	
+	public List<MenuVo> selectToppingList(){
 		return sqlSession.selectList("kfc.selectToppingList");
 	}
 	
@@ -46,21 +49,14 @@ public class KFCDao {
 	}
 	
 
-	public MenuVo selectBasicSide() {
-		return sqlSession.selectOne("kfc.selectBasicSide");
+	public MenuVo selectBasicSide(int defaultNo) {
+		return sqlSession.selectOne("kfc.selectBasicSide", defaultNo);
 	}
 	
-	public List<MenuVo> selectAnotherSide(){
-		return sqlSession.selectList("kfc.selectAnotherSide");
+	public List<MenuVo> selectAnotherSide(int defaultNo){
+		return sqlSession.selectList("kfc.selectAnotherSide", defaultNo);
 	}
-	
-	public List<MenuVo> selectDrinkingList(){
-		return sqlSession.selectList("");
-	}
-	
-	public List<MenuVo> selectChickenList(){
-		return sqlSession.selectList("");
-	}
+
 	public List<MenuVo> selectRecommenDationMenuList() {
 		return sqlSession.selectList("kfc.selectRecommenDationMenuList");
 

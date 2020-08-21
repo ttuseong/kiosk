@@ -6,14 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.KFCService;
 import com.javaex.vo.MenuVo;
-import com.javaex.vo.PageVo;
 import com.javaex.vo.ToppingVo;
 
 @Controller
@@ -23,10 +21,10 @@ public class KFCController {
 	KFCService kfcService;
 	
 	@RequestMapping("/index")
-	public String index(Model model, @ModelAttribute PageVo pageVo) {		
-		System.out.println(pageVo.toString());
+	public String index(Model model, @RequestParam(value="categoryNo", required=false, defaultValue = "0") int categoryNo) {		
+		System.out.println(categoryNo);
 		
-		Map<String, Object> map = kfcService.cateList(pageVo);
+		Map<String, Object> map = kfcService.cateList(categoryNo);
 
 		model.addAttribute("map", map);
 		
@@ -43,9 +41,17 @@ public class KFCController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/selectTopping")
-	public List<ToppingVo> selectTopping() {
-		return kfcService.selectToppingList();
+	@RequestMapping("/selectMode")
+	public List<MenuVo> selectMode(@RequestParam(value="utilName", required=false, defaultValue = "null") String utilName){
+		
+		return kfcService.selectMode(utilName);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/changeList")
+	public List<MenuVo> changeList(@RequestParam("no") int no) {
+		
+		return kfcService.changeList(no);
 	}
 	
 	@ResponseBody
@@ -60,19 +66,6 @@ public class KFCController {
 		List<MenuVo> mList = kfcService.recommenDationMenuList();
 		System.out.println(mList.toString());
 		return mList;
-	}
-	
-
-
-	@ResponseBody
-	@RequestMapping("/sideChange")
-	public List<MenuVo> sideChange(@RequestParam("changeNo") int changeNo){
-		System.out.println(changeNo);
-		
-		List<MenuVo> list = kfcService.changeMenu(changeNo);
-		System.out.println(list.toString());
-		
-		return list;
 	}
 
 }
