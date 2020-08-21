@@ -47,7 +47,7 @@
 							<c:if test="${vo.categoryNo eq menu.categoryNo }">
 							<div class="menu" data-menuno="${menu.menuNo }">
 								<div class="menu-img">
-									<img src="${pageContext.request.contextPath}/upload/${menu.menuImg }"width=" 100%">
+									<img src="lotteria/${menu.menuImg }"width=" 100%">
 								</div>
 								<div class="menu-text">
 									<div class="menuName">${menu.menuName}</div>
@@ -62,7 +62,7 @@
 
 								<div class="menu" data-menuno="${cateNo4.menuNo }">
 									<div class="menu-img">
-										<img src="${pageContext.request.contextPath}/upload/${cateNo4.setImg }" width=" 100%">
+										<img src="lotteria/${cateNo4.setImg }" width=" 100%">
 									</div>
 									<div class="menu-text">
 										<div>${cateNo4.setName}</div>
