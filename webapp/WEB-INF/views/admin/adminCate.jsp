@@ -156,6 +156,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-success">카테고리 목록</h6>
+							<!-- 카테고리 툴팁 -->
 							<div class="adminCate-tooltip">
 								<i class="fa fa-question-circle"></i>
 								<span class="tooltip-text">
@@ -192,7 +193,7 @@
 											<td><a href="#">디저트</a></td>
 											<td>공개</td>
 											<td></td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 
 										<tr>
@@ -200,7 +201,7 @@
 											<td><a href="#">사이드</a></td>
 											<td>공개</td>
 											<td></td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 
 										<tr>
@@ -208,7 +209,7 @@
 											<td><a href="#">햄버거</a></td>
 											<td></td>
 											<td>비공개</td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 
 										<tr>
@@ -216,7 +217,7 @@
 											<td><a href="#">세트</a></td>
 											<td></td>
 											<td>비공개</td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 										
 										<tr>
@@ -224,7 +225,7 @@
 											<td><a href="#">박스</a></td>
 											<td></td>
 											<td>비공개</td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 										
 										<tr>
@@ -232,7 +233,7 @@
 											<td><a href="#">단품/세트/박스</a></td>
 											<td>공개</td>
 											<td></td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 										
 										<tr>
@@ -240,7 +241,7 @@
 											<td><a href="#">빙수</a></td>
 											<td></td>
 											<td>비공개</td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 
 										<tr>
@@ -248,7 +249,7 @@
 											<td><a href="#">치킨</a></td>
 											<td>공개</td>
 											<td></td>
-											<td><a href="#">X</a></td>
+											<td><a href="#" class="adminCate-delete">X</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -306,6 +307,10 @@
 	<!-- Page level custom scripts -->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/demo/datatables-demo.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/assets/js/admin/adminCate.js"></script>
+		
 
 </body>
 

@@ -9,14 +9,17 @@ body {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
+/* adminCate 툴팁 */
+
 .adminCate-tooltip {
 	position: absolute;
-	top: 4%;
+	top: 3.8%;
 	right: 1%;
 	transform: translate(-50%, -50%);
 }
 
 .adminCate-tooltip i {
+	
 	color: #1cc88a;
 	font-size: 25px;
 }
@@ -30,14 +33,33 @@ body {
 	transition: 0.3s;
 	background-color: rgba(0,0,0,0.6);
 	color: white;
-	font-size:18px;
-	padding: 25px 10px;
+	font-size:16px;
+	display:table-cell;
+	padding: 15px 20px;
 	text-align: center;
 	border-radius: 5px;
-	width: 300px;
-	height: 100px;
-	display: inline-block;
+	width: 230px;
+	height: 80px;
 	position: absolute;
 	top: -50px;
 	right: 30px;
+}
+
+/* adminToping 툴팁 */
+
+.adminCate-tooltip-topping {
+	position: absolute;
+	top: 5%;
+	right: 1%;
+	transform: translate(-50%, -50%);
+}
+
+.adminCate-tooltip-topping i {
+	
+	color: #1cc88a;
+	font-size: 25px;
+}
+
+.adminCate-tooltip-topping:hover .tooltip-text {
+	opacity: 1;
 }

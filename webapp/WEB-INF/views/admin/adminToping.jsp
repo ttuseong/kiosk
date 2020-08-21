@@ -41,6 +41,8 @@
 <link
 	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
 	rel="stylesheet" type="text/css">
+	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCateTool.css">
 
 </head>
 
@@ -226,6 +228,14 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-success">토핑 목록</h6>
+							<!-- 토핑 툴팁 -->
+							<div class="adminCate-tooltip-topping">
+								<i class="fa fa-question-circle"></i>
+								<span class="tooltip-text">
+									토핑 이름을 클릭하시면<br>
+									토핑 수정이 가능합니다.
+								</span>
+							</div>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
