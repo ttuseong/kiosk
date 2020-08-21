@@ -10,12 +10,13 @@
 				<h4 class="modal-title" id="myModalLabel">이런 메뉴 어떠세요?</h4>
 			</div>
 				<div class="modal-body" id="recommend-body">
-				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btnComplete">완료</button>
+				<button type="button" class="btn btnCancle" id="recommend-btn" data-dismiss="modal">취소</button>
+				<button type="button" class="btn btnComplete" id="">완료</button>
 			</div>
+			</div>
+			
 		</div>
 		<!-- /.modal-content -->
 	</div>

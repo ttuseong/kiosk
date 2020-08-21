@@ -495,7 +495,7 @@ function addRecommenDationMenu(menuVo){
 	str += ' 	<div class="recommend-imgAndPtag">';
 	str += ' 	<img';
 	str += ' 	src="' + url + '/assets/images/icon1.png"';
-	str += '	class="img-responsive">';
+	str += '	class="img-responsive-recommend">';
 	str += '	<p class="menuName">' +  menuVo.menuName +  '</p><br>';
 	str += '	<p class="menuPrice">' + menuVo.menuPrice +  '</p><br>';
 	str += '	<p class="menuCount">';

@@ -276,14 +276,17 @@
 						<div class="modalName-container width80">
 							<div class="toppingMenuName"></div>
 							<div class="padding-top20px">
+
 								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_bacon.png"></div>
 								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_tomato.png"></div>
 								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_cheese.png"></div>
 								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_beefPaty.png"></div>
+
+
 							</div>
 							<div class="width100">
-								<button type="button">최소하기</button>
-								<button type="button">완료하기</button>
+								<button class="topping-btn" type="button">취소하기</button>
+								<button class="topping-btn" type="button">완료하기</button>
 							</div>
 						</div>
 					</div>

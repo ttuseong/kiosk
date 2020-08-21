@@ -151,7 +151,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalName-closeBtnDiv {height: 35px;width: 35px;border-radius: 7px;border: solid 2px #24a3f7;background-color: #d7f9fd;position: absolute;top: 50%;right: 15px;transform: translateY(-50%);}
 .modalName-closeBtn {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 35px;color: #24a3f7;}
 /* 단품, 세트 선택  */
-#modalName-body {position: relative;height: 200px;}
+#modalName-body {position: relative;width:584px; height: 300px;}
 .modalName-container {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
 .modalName-container div {text-align: center;display: inline-block;}
 
@@ -203,5 +203,13 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .toppingMenuName{font-size: 20px;font-weight: bold;}
 .width80{width: 80%;}
 .padding-top20px{width: 100%;padding-top: 20px;}
+<<<<<<< HEAD
 .padding-top20px > div > img{width:100px;}
 .width100{width:100%}
+=======
+.imgWidth{width:100px;}
+.imgWidth>img{width:100%;}
+.width100{width:100%;}
+.topping-btn{background-color: red; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:20px;}
+.topping-btn:hover{background-color:skyblue;}
+>>>>>>> bd6802b... KFC recommend CSS수정완료 롯데리아 toping CSS수정중

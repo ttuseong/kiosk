@@ -127,7 +127,14 @@
 
 }
 
- 
+.img-responsive-recommend { /*추천메뉴 햄버거 이미지*/
+	display:inline-block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 150px;
+	height: 150px;
+}
+
 
 .menu-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
 	position: relative;
@@ -138,7 +145,7 @@
 	
 	display: inline-block;
 	
-	margin: 15px 32.5px 15px 32.5px;
+	margin: 10px 33px 10px 33px;
 	
 
 }
@@ -164,15 +171,17 @@
 .recommend-check { /* 메뉴 체크*/
 	position:absolute;
 	left: 50%;
-	top: 60%;
-	transform: translate(-50%, -60%) rotate(15deg);
+	top: 50%;
+	transform: translate(-55%, -60%) rotate(15deg);
 	font-size: 200px;
 	color: red;
 }
 
 #recommend-body { 
 	text-align: left;
+	min-height:720px;
 }
+
 
  
 
