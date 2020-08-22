@@ -55,3 +55,7 @@ function movePageCircle(){
 	$("#pageCircleGroup").children().eq(curPoint).children(".pageCircle").addClass("pageActive");
 	$("#pageCircleGroup").children().eq(curPoint).siblings().children(".pageCircle").removeClass("pageActive");
 }
+
+function test(){
+	console.log("test 성공");
+}

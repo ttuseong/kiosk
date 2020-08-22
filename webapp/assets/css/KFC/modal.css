@@ -162,12 +162,6 @@
 
 }
 
-.recommend-hidden { /*메뉴에 선택된 체크 숨기기*/
-	position:absolute;
-	left:-10000px;
-}
-
-
 .recommend-check { /* 메뉴 체크*/
 	position:absolute;
 	left: 50%;
@@ -799,14 +793,14 @@
     text-align:center;
 }
 
-#menuSetSecond {
+.menuSetSecond {
 	display: inline-block;
 	margin:17px;
 	width: 150px;
 	height: 220px;
 }
 
-#menuSetSecond > div p{
+.menuSetSecond > div p{
 	display: block;
 }
 

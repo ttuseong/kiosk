@@ -12,16 +12,15 @@
 				<div class="modal-body" id="recommend-body">
 			</div>
 			<div class="modal-footer">
+
 				<button type="button" class="btn btnCancle" id="recommend-btn" data-dismiss="modal">취소</button>
 				<button type="button" class="btn btnComplete" id="">완료</button>
 			</div>
-			</div>
-			
-		</div>
-		<!-- /.modal-content -->
+		</div>	
 	</div>
-	<!-- /.modal-dialog -->
+		<!-- /.modal-content -->
 </div>
+	<!-- /.modal-dialog -->
 <!-- /.modal -->
 
 <!-- 장소 선택 모달 -->
@@ -198,7 +197,7 @@
 			</div>
 			<div class="modal-footer" id="hamburgerSideFooter">
 				<button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
-				<button type="button" class="btn btnComplete">완료</button>
+				<button type="button" class="btn btnComplete" id="hamburgerBoxSideMenuComplete">완료</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -227,7 +226,7 @@
 				</div>
 			</div>
 			<div class="modal-footer" id="hamburgerSideFooter">
-				<button type="button" class="btn btnComplete">선택</button>
+				<button type="button" class="btn btnComplete" id="sideChangeComplete">선택</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->

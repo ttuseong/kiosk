@@ -15,8 +15,12 @@ var burgerCount = 1;
 var burgerPrice=0;
 var burgerImg;
 
+/*토핑 배열*/
 var toppingArr;
+/*사이드관련 배열*/
 var sideArr = [0,0,0];
+var sideCheckArr = [0, 0, 0];
+var sideIndex;
 var totalPrice=0;
 
 //sideChange 모달에 적용될 변수들
@@ -61,7 +65,7 @@ function computeAllPrice(){
 		totalPrice += (toppingArr[i][2]*toppingArr[i][3]);
 	}
 	for(var i=0; i<sideArr.length;i++){
-		totalPrice+=sideArr[i];
+		totalPrice+=Number(sideArr[i]);
 	}
 
 	totalPrice *= burgerCount;
@@ -181,7 +185,7 @@ function addBurgerBoxBody(){
 			$("#hamburgerBoxBodyContainer").empty();
 			hamburgerBoxShowDefault();
 			for(var i=0; i<menuList.length;i++){
-				hamburgerBoxShowContent(menuList[i]);
+				hamburgerBoxShowContent(menuList[i], i);
 			}
 			
 		},
@@ -207,7 +211,7 @@ function hamburgerBoxShowDefault(){
 	$("#hamburgerBoxBodyContainer").append(str);
 }
 
-function hamburgerBoxShowContent(menuVo){
+function hamburgerBoxShowContent(menuVo, i){
 	var str = '';
 	
 	str += ' <div class="menu-container" id="menuSet">';
@@ -217,7 +221,7 @@ function hamburgerBoxShowContent(menuVo){
 	str += ' 	<div>';
 	str += '		<p class="menuName">' + menuVo.menuName +  '</p>';
 	str += '	</div>';
-	str += '	<button type="button" class="hamburgerBoxButton" data-no="' + menuVo.defaultNo + '">'  + menuVo.categoryName + ' 변경' + '</button>';
+	str += '	<button type="button" class="hamburgerBoxButton" data-no="' + menuVo.defaultNo + '" data-index="' + i + '">'  + menuVo.categoryName + ' 변경' + '</button>';
 	str += ' </div>';
 	
 	$("#hamburgerBoxBodyContainer").append(str);
@@ -226,7 +230,8 @@ function hamburgerBoxShowContent(menuVo){
 // 모달 교체 시점2-1 토핑을 변경할 경우
 $("#hamburgerBoxBodyContainer").on("click", ".hamburgerBoxButton", function(){
 	var thisBtn = $(this);
-	no = thisBtn.data("no");	
+	var no = thisBtn.data("no");
+	sideIndex = thisBtn.data("index");	
 	changeList(no);
 	
 });
@@ -263,6 +268,7 @@ function changeList(no){
 				if(sideChangeEndPoint>1){
 					$("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
 			}
+				$("#hamburgerBoxSideMenu").modal("hide");
 				$("#sideChange").modal();
 			}
 		},
@@ -303,10 +309,10 @@ $("#bugerToppingCompleted").on("click", function(){
 	if(arr.length != 0){
 		for(var i=0; i<arr.length; i++){
 		str+=arr[i];
-		if(i != arr.length-1){
-			str+="<br>";
+			if(i != arr.length-1){
+				str+="<br>";
+			}
 		}
-	}
 	}
 
 	$("#selectedBurgurTopping").html(str);
@@ -371,26 +377,36 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 });
 
 /*사이드 변경 모달에 컨텐츠 추가하는 함수*/
-function addSideMenu(sideList){
+function addSideMenu(sideList, arrIndex){
 	var str = "";
 	var listLength = sideList.length;
 	var index = listLength-1; 
+	var classStatus;
 
-	
-	defaultPrice = sideList[listLength - 1].menuPrice;
+	defaultPrice = sideList[index].menuPrice;
 	
 	console.log("test start" + sideList.length);
 	while(index > -1){
 		console.log(index);
+	
 		str += ' <div id="sideChangeContent">';
 		for(var j = 0; j < 6; j++){
 			if(index == -1){
 				break;
+			}	
+			if(index == listLength-1 && sideCheckArr[sideIndex] == 0){
+				sideCheckArr[sideIndex] = sideList[index].menuNo;
+				classStatus='recommend-check';
 			}
+			else if(sideCheckArr[sideIndex] == sideList[index].menuNo){
+				classStatus='recommend-check';
+			}
+			else
+				classStatus='hidden';
 			
 			var addPrice = sideList[index].menuPrice - defaultPrice;
 			
-			str += ' 	<div class="menu-container" id="menuSetSecond">';
+			str += ' 	<div class="menu-container menuSetSecond" data-no=' + sideList[index].menuNo + '>';
 			str += ' 		<img';
 			str += '			src="'+ url +'/assets/images/' + sideList[index].menuImg + '"';
 			str += ' 			class="img-responsive">';
@@ -403,6 +419,7 @@ function addSideMenu(sideList){
 				str += '		<p class="menuPrice">' + '+' + addPrice + '</p>';
 			}
 			str += '		</div>';
+			str += '		<div class="icon-check ' + classStatus + '"></div>';
 			str += '	</div>';
 
 			index--;
@@ -410,6 +427,7 @@ function addSideMenu(sideList){
 		str += ' </div>';
 	}
 	
+	console.log(sideCheckArr);
 	$("#sideChangeContents").append(str);
 }
 
@@ -448,19 +466,72 @@ $("#hamburgerBox-SideChangeBodyLeftBtn").on("click", function(){
 	
 });
 
+$("#sideChangeContents").on("click", ".menuSetSecond", function(){
+	var temp = sideCheckArr[sideIndex];
+	var curClick = $(this);
+	sideCheckArr[sideIndex] = curClick.data("no");
+	
+	$('.menuSetSecond[data-no=' + temp + ']').children(".icon-check").removeClass('recommend-check');
+	$('.menuSetSecond[data-no=' + temp + ']').children(".icon-check").addClass('hidden');
+	
+	curClick.children(".icon-check").removeClass('hidden');
+	curClick.children(".icon-check").addClass('recommend-check');
+	
+	console.log(curClick.children().eq(1).children(".menuPrice").text().slice(1));
+
+	sideArr[sideIndex] = curClick.children().eq(1).children(".menuPrice").text().slice(1);
+	computeAllPrice();
+	
+	$(".burgerBoxPrice").text(totalPrice);
+});
+
+$("#sideChangeComplete").on("click", function(){
+	$("#hamburgerBoxSideMenu").modal();
+	
+	var childrenLength = $("#sideChangeContents > div").size();
+	console.log(childrenLength);
+	
+	for(var i = 0; i < childrenLength; i++){
+		var currentChild = $("#sideChangeContents").children().eq(i);
+		var grandchildrenLength = currentChild.children().size();
+		
+		for(var j = 0 ; j < grandchildrenLength; j++){
+			if(currentChild.children().eq(j).children().eq(2).hasClass("recommend-check")){
+				console.log("ㅋㅋ루삥뽕");
+				
+				
+				console.log(currentChild.children().eq(j).children().eq(1).children('.menuName').text());
+				
+				var parent = $('.hamburgerBoxButton[data-index=' + sideIndex + ']').parent();
+				console.log(parent);
+				
+				parent.children().eq(0).attr("src", currentChild.children().eq(j).children().eq(0).attr("src"));
+				parent.children().eq(1).children(".menuName").text(currentChild.children().eq(j).children().eq(1).children('.menuName').text());
+
+			}
+		}
+	}
+	
+	$("#sideChange").modal("hide");
+});
+
+$("#hamburgerBoxSideMenuComplete").on("click", function(){
+	console.log("test");
+	test();
+});
 
 /* 추천 메뉴 모달 */
-$('#recommend-body').on("click", ".recommendation",function(){
+$('.recommend-body').on("click", ".recommendation",function(){
 	var thisMenuContainer = $(this);
 	var target = thisMenuContainer.children(".icon-check");
 	
 	if(target.hasClass("recommend-check")){
-		target.addClass("recommend-hidden");
+		target.addClass("hidden");
 		target.removeClass("recommend-check")
 	}
 	else{
 		target.addClass("recommend-check");
-		target.removeClass("recommend-hidden")
+		target.removeClass("hidden")
 	}
 });
 
@@ -500,7 +571,7 @@ function addRecommenDationMenu(menuVo){
 	str += '	<p class="menuPrice">' + menuVo.menuPrice +  '</p><br>';
 	str += '	<p class="menuCount">';
 	str += '	</div>';						
-	str += '	<div class="icon-check recommend-hidden"></div>';		
+	str += '	<div class="icon-check hidden"></div>';		
 	str += ' </div>';	
 	
 	$("#recommend-body").append(str);
@@ -508,7 +579,7 @@ function addRecommenDationMenu(menuVo){
 
 /*추천메뉴모달에서 체크된 값만 읽어오기*/
 
-$(".btnComplete").on("click", function(){
+$("#recommendCompleteBtn").on("click", function(){
 	$("#recommend").modal("hide");
 	var text=[];
 	var price=[];
@@ -523,14 +594,9 @@ $(".btnComplete").on("click", function(){
 		if(currentDiv.children().eq(1).hasClass("recommend-check")){
 			text.push(currentDiv.children().eq(0).children('.menuName').text());
 			price.push(currentDiv.children().eq(0).children('.menuPrice').text());
-
-			console.log(text);
-			console.log(price);
-			console.log(currentDiv.children().eq(0).children('.menuPrice'));
 		}
 	}
 	addOrderList(text, price);
-	sum();
 	$("#MyOrderListModal").modal();
 	
 });
@@ -561,9 +627,6 @@ function sum(){
 		count += currentCount;
 		totalPay += Number(tbody.eq(i).children().eq(2).text())*currentCount;
 	}
-	
-	console.log(count);
-	console.log(totalPay);
 	
 	$(".order-totalMenu > p").text(count);
 	$(".order-totalPrice > p").text(totalPay);
