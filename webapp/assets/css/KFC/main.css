@@ -210,6 +210,7 @@ body{
 
 /*메뉴 테이블*/
 #menuTableSection{
+	height: 160px;
 }
 
 #menuTableSection > div{
@@ -258,13 +259,14 @@ body{
   text-align: center;
 }
 
-.textarea p:first-child{
-  font-size: 19px;
-}
-
 .textarea p:last-child{
   color: rgb(141, 170, 173);
   font-size: 12.2px;
+}
+
+.textarea p:first-child{
+  color : black;
+  font-size: 19px;
 }
 
 .count *{
@@ -436,7 +438,7 @@ body{
 #allCancelBtn{
   width: 130px;
   height: 125px;
-  bottom:3%;
+  bottom:8%;
   right: 390px;
   background-color: rgb(105,132,137);
   color: white;
@@ -445,7 +447,7 @@ body{
 #cuponBtn{
   width: 180px;
   height: 125px;
-  bottom:3%;
+  bottom:8%;
   right: 200px;
   background-color: rgb(221, 144, 89);
   color: white;
@@ -454,7 +456,7 @@ body{
 #orderBtn{
   width: 180px;
   height: 125px;
-  bottom:3%;
+  bottom:8%;
   right: 10px;
   background-color: rgb(218, 58, 44);
   color: white;

@@ -135,11 +135,11 @@
 				<div id="orderLeft">
 					<div class="orderCount">
 						<p class="string">수량</p>
-						<p class="number">1</p>
+						<p class="number">0</p>
 					</div>
 					<div class="orderCount">
 						<p class="string">금액</p>
-						<p class="number">5,800</p>
+						<p class="number">0</p>
 					</div>
 				</div>
 				<div id="orderRigth">

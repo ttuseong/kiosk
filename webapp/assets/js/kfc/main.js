@@ -64,7 +64,9 @@ function orderComplate(subText){
 	str += ' 	<td>';
 	str += '		<div class="textarea">';
 	str += '			<p>'+ burgerName +'</p>';
-	str += '			<p>'+ subText +'</p>';
+	if(subText != '-'){
+		str += '		<p>'+ subText +'</p>';	
+	}
 	str += '		</div>';
 	str += '	</td>';
 	str += '	<td>';
@@ -85,4 +87,26 @@ function orderComplate(subText){
 	str += ' </tr>';
 	
 	$("#menuTable>tbody").append(str);
+	
+	mainPageTotal();
+}
+
+function mainPageTotal(){
+	var mainTotalPrice = 0;
+	var mainTotalCount = 0;
+	
+	var trGroup = $("#menuTable>tbody").children();  
+	var length = trGroup.size();
+	
+	console.log(typeof(mainTotalCount));
+	
+	for(var i=0; i<length; i++){
+		mainTotalCount += Number(trGroup.eq(i).find(".count").children().eq(1).text());
+		mainTotalPrice += Number(trGroup.eq(i).find(".pricePos").children().eq(0).text());
+	}
+	
+	console.log(mainTotalCount + ", " + mainTotalPrice);
+	
+	$("#orderLeft").children().eq(0).children().eq(1).text(mainTotalCount);
+	$("#orderLeft").children().eq(1).children().eq(1).text(mainTotalPrice);
 }

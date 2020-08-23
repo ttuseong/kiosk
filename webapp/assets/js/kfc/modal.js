@@ -25,7 +25,7 @@ var sideArr;
 var sideIndex;
 var totalPrice=0;
 
-//sideChange 모달에 적용될 변수들
+//sideChange 모달에 적용될 변수들 슬라이드할 때 사용
 var sideChangeCurPoint = 0;
 var sideChangeEndPoint;
 var sideChangeCurPos = 0;
@@ -72,8 +72,6 @@ function initSideArr(defaultName){
 				sideArr[i].push(sideList[i]);
 				sideArr[i].push(sideList[i]);
 				sideArr[i].push(0);
-				
-				
 			}
 			
 			computeAllPrice();
@@ -404,7 +402,7 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 });
 
 /*사이드 변경 모달에 컨텐츠 추가하는 함수*/
-function addSideMenu(sideList, arrIndex){
+function addSideMenu(sideList){
 	var str = "";
 	var listLength = sideList.length;
 	var index = listLength-1; 
@@ -412,6 +410,7 @@ function addSideMenu(sideList, arrIndex){
 
 	defaultPrice = sideList[index].menuPrice;
 	
+	console.log(sideArr);
 
 	while(index > -1){
 	
@@ -420,7 +419,7 @@ function addSideMenu(sideList, arrIndex){
 			if(index == -1){
 				break;
 			}	
-
+			console.log(sideList[index].menuNo);
 			if(sideArr[sideIndex][1] == sideList[index].menuNo){
 				classStatus='recommend-check';
 			}
@@ -532,6 +531,7 @@ $("#hamburgerBoxSideMenuComplete").on("click", function(){
 	var burgurChangeList = "-";
 
 	for(var i = 0; i < toppingArr.length; i++){
+		console.log(toppingArr);
 		if(toppingArr[i][3] != 0){
 			
 			burgurChangeList += toppingArr[i][1] + " " + toppingArr[i][3] +"개";
@@ -543,7 +543,7 @@ $("#hamburgerBoxSideMenuComplete").on("click", function(){
 	
 	if(sideArr != undefined){
 		for(var i = 0; i < sideArr.length; i++){
-			console.log(sideArr[i]);
+			console.log(sideArr);
 			if(sideArr[i][0] != sideArr[i	][1]){
 				burgurChangeList += $(".hamburgerBoxButton[data-index=" + i + "]").prev().children(".menuName").text();
 				console.log(burgurChangeList);
