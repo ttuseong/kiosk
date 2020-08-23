@@ -195,4 +195,17 @@
 			    m.ischange = 1
 		]]>
 	</select>
+	<select id="selectDefaultMenuNoList" resultType="int" parameterType="String">
+		<![CDATA[
+			SELECT
+			    menuNo
+			FROM
+			    defaultmenu dm,
+			    setUnit su
+			where
+			    dm.unitno = su.unitno
+			and
+			    su.unitname=#{defaultName}
+		]]>
+	</select>
 </mapper>

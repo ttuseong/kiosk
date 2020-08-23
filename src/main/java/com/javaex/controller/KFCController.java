@@ -59,6 +59,13 @@ public class KFCController {
 	public List<ToppingVo> initTopping() {
 		return kfcService.intiTopping();
 	}
+	
+	@ResponseBody
+	@RequestMapping("/initSide")
+	public List<Integer> initSide(@RequestParam("defaultName") String defaultName){
+		System.out.println(defaultName);
+		return kfcService.initSide(defaultName);
+	}
 
 	@ResponseBody
 	@RequestMapping("/recommenDationMenu")

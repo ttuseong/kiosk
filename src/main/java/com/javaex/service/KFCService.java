@@ -41,6 +41,10 @@ public class KFCService {
 	public List<ToppingVo> intiTopping() {
 		return kfcDao.selectToppingbasicInfo();
 	}
+	
+	public List<Integer> initSide(String defaultName){
+		return kfcDao.selectDefaultMenuNoList(defaultName);
+	}
 
 	public List<MenuVo> menuList(int categoryNo) {
 		return kfcDao.selectMenuList(categoryNo);

@@ -32,6 +32,10 @@ public class KFCDao {
 		return sqlSession.selectOne("kfc.selectMenu", menuNo);
 	}
 	
+	public List<Integer> selectDefaultMenuNoList(String defaultName){
+		return sqlSession.selectList("kfc.selectDefaultMenuNoList", defaultName);
+	}
+	
 	public List<MenuVo> selectSetMenus(int menuNo){
 		return sqlSession.selectList("kfc.selectSetMenus", menuNo);
 	}

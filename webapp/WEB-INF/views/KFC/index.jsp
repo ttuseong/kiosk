@@ -111,60 +111,23 @@
 						<th>메뉴</th>
 						<th>수량</th>
 						<th>가격</th>
-						<th></th>
 					</thead>
 					<tbody>
-						<tr>
-							<td>
-								<div class="textarea">
-									<p>[행사] 커넬통다리버거세트</p>
-									<p>- 커널통다리버거 2개, 후렌치후라이(M), 콜라(M) 2개</p>
-								</div>
-							</td>
-							<td>
-								<div class="count">
-									<div class="icon-minus iconCombination"></div>
-									<p>1</p>
-									<div class="icon-plus iconCombination"></div>
-								</div>
-							</td>
-							<td>
-								<div class="price">
-									<div class="pricePos">
-										<p>5,800</p>
-										<div class="icon-cancel"></div>
-									</div>
-								</div>
-							</td>
-							<td rowspan="4">
-								<div id="scrollGroup">
-									<div class="icon-up-open-big">
-										<p>up</p>
-									</div>
-									<div class="icon-down-open-big">
-										<p>down</p>
-									</div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-
 					</tbody>
 				</table>
+			</div>
+			<div id="scrollGroup">
+				<div id="blank"></div>
+				<div id="scrollContatiner">
+					<div id="scrollContents">
+						<div class="icon-up-open-big kfcMainScroll" id="scrollUp">
+							<p class="hidden">up<p>
+						</div>
+						<div class="icon-down-open-big kfcMainScroll" id="scrollDown">
+							<p class="hidden">down</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 		<section id="ordersection">

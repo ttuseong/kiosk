@@ -56,6 +56,33 @@ function movePageCircle(){
 	$("#pageCircleGroup").children().eq(curPoint).siblings().children(".pageCircle").removeClass("pageActive");
 }
 
-function test(){
+function orderComplate(subText){
 	console.log("test 성공");
+	
+	var str = "";
+	str += ' <tr>';
+	str += ' 	<td>';
+	str += '		<div class="textarea">';
+	str += '			<p>'+ burgerName +'</p>';
+	str += '			<p>'+ subText +'</p>';
+	str += '		</div>';
+	str += '	</td>';
+	str += '	<td>';
+	str += '		<div class="count">';
+	str += '			<div class="icon-minus iconCombination"></div>';
+	str += '			<p>' + burgerCount + '</p>';
+	str += '			<div class="icon-plus iconCombination"></div>';
+	str += '		</div>';
+	str += '	</td>';
+	str += '	<td>';
+	str += '		<div class="price">';
+	str += '			<div class="pricePos">';
+	str += '				<p>'+ burgerPrice +'</p>';
+	str += '				<div class="icon-cancel"></div>';
+	str += '			</div>';
+	str += '		</div>';
+	str += '	</td>';
+	str += ' </tr>';
+	
+	$("#menuTable>tbody").append(str);
 }

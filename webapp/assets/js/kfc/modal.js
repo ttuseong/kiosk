@@ -17,9 +17,11 @@ var burgerImg;
 
 /*토핑 배열*/
 var toppingArr;
+
 /*사이드관련 배열*/
-var sideArr = [0,0,0];
-var sideCheckArr = [0, 0, 0];
+/*디폴트 메뉴의 번호, 변경될 번호, 추가 금액*/
+var sideArr;
+
 var sideIndex;
 var totalPrice=0;
 
@@ -50,7 +52,35 @@ function inittoppingArr(){
 				toppingArr[i].push(toppingList[i].toppingPrice);
 				toppingArr[i].push(0);
 			}
-			console.log(toppingArr);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
+
+function initSideArr(defaultName){
+	$.ajax({
+		url : url+"/KFC/initSide",		
+		type : "post",
+		data :{defaultName : defaultName},
+		success : function(sideList){
+			sideArr = new Array(sideList.length);
+			
+			for(var i = 0; i < sideList.length; i++){
+				sideArr[i] = new Array();
+				sideArr[i].push(sideList[i]);
+				sideArr[i].push(sideList[i]);
+				sideArr[i].push(0);
+				
+				
+			}
+			
+			computeAllPrice();
+			hamburgerBoxSideMenuInputDefault();
+			addBurgerBoxBody();
+			$("#hamburgerBoxSideMenu").modal();
+
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -64,9 +94,11 @@ function computeAllPrice(){
 	for(var i=0; i<toppingArr.length; i++){
 		totalPrice += (toppingArr[i][2]*toppingArr[i][3]);
 	}
+
 	for(var i=0; i<sideArr.length;i++){
-		totalPrice+=Number(sideArr[i]);
+		totalPrice+=Number(sideArr[i][2]);
 	}
+	
 
 	totalPrice *= burgerCount;
 
@@ -159,10 +191,8 @@ $("#selectedModecompleted").on("click", function(){
 		
 	}
 	else{
-		computeAllPrice();
-		hamburgerBoxSideMenuInputDefault();
-		addBurgerBoxBody();
-		$("#hamburgerBoxSideMenu").modal();
+		
+		initSideArr($("#selectedMode").parent().data("mode"));
 	}
 	
 })
@@ -203,7 +233,7 @@ function hamburgerBoxShowDefault(){
 	str += '		src="' + url + '/assets/images/icon1.png"';
 	str += '		class="img-responsive">';
 	str += ' 	<div>';
-	str += '		<p class="menuName">추가 없음</p>';
+	str += '		<p class="menuName" id="selectedBurgurTopping">추가 없음</p>';
 	str += '	</div>';
 	str += '	<button type="button" class="hamburgerBoxButton" data-no="0">버거재료 변경</button>';
 	str += ' </div>';
@@ -244,7 +274,6 @@ function changeList(no){
 		data:{no:no},
 		success : function(list){
 			
-			console.log(no);
 			if(no == 0){
 				$("#bugerToppingContiner").empty();
 				for(var i = 0; i < list.length; i++){
@@ -279,7 +308,6 @@ function changeList(no){
 }
 
 function addBurgerToppingContent(toppingVo, i){
-	console.log("test");
 	var str = "";
 	str += ' <div class="bugerToppinglist" id="cheeseTopping">';
 	str += ' 	<img alt="' + toppingVo.menuName + '추가 이미지' + '"';
@@ -300,6 +328,7 @@ function addBurgerToppingContent(toppingVo, i){
 $("#bugerToppingCompleted").on("click", function(){
 	var str="";
 	var arr=[];
+	
 	for(var i=0; i<toppingArr.length; i++){
 		if(toppingArr[i][3] != 0){
 			arr.push(toppingArr[i][1] + " " +toppingArr[i][3]+"개");
@@ -344,7 +373,6 @@ $(".icon-minus").on("click", function(){
 $("#bugerToppingContiner").on("click", ".icon-minus",function(){
 	var thisBtn = $(this);
 	var toppingNo = thisBtn.next().data("toppingno");
-	console.log(toppingNo);
 	
 	for(var i=0; i<toppingArr.length;i++){
 		if(toppingArr[i][0] == toppingNo){
@@ -363,7 +391,6 @@ $("#bugerToppingContiner").on("click", ".icon-minus",function(){
 $("#bugerToppingContiner").on("click", ".icon-plus",function(){
 	var thisBtn = $(this);
 	var toppingNo = thisBtn.prev().data("toppingno");
-	console.log(toppingNo);
 	
 	for(var i=0; i<toppingArr.length;i++){
 		if(toppingArr[i][0] == toppingNo){
@@ -385,20 +412,16 @@ function addSideMenu(sideList, arrIndex){
 
 	defaultPrice = sideList[index].menuPrice;
 	
-	console.log("test start" + sideList.length);
+
 	while(index > -1){
-		console.log(index);
 	
 		str += ' <div id="sideChangeContent">';
 		for(var j = 0; j < 6; j++){
 			if(index == -1){
 				break;
 			}	
-			if(index == listLength-1 && sideCheckArr[sideIndex] == 0){
-				sideCheckArr[sideIndex] = sideList[index].menuNo;
-				classStatus='recommend-check';
-			}
-			else if(sideCheckArr[sideIndex] == sideList[index].menuNo){
+
+			if(sideArr[sideIndex][1] == sideList[index].menuNo){
 				classStatus='recommend-check';
 			}
 			else
@@ -427,12 +450,10 @@ function addSideMenu(sideList, arrIndex){
 		str += ' </div>';
 	}
 	
-	console.log(sideCheckArr);
 	$("#sideChangeContents").append(str);
 }
 
 $("#hamburgerBox-SideChangeBodyRightBtn").on("click", function(){
-	console.log("클릭!");
 	if($("#hamburgerBox-SideChangeBodyRightBtn").hasClass("btnActive")){
 		sideChangeCurPoint++;
 		sideChangeCurPos = -1 * sideChangeCurPoint * 648;
@@ -467,44 +488,35 @@ $("#hamburgerBox-SideChangeBodyLeftBtn").on("click", function(){
 });
 
 $("#sideChangeContents").on("click", ".menuSetSecond", function(){
-	var temp = sideCheckArr[sideIndex];
+	var temp = sideArr[sideIndex][1];
 	var curClick = $(this);
-	sideCheckArr[sideIndex] = curClick.data("no");
+	sideArr[sideIndex][1] = curClick.data("no");
 	
 	$('.menuSetSecond[data-no=' + temp + ']').children(".icon-check").removeClass('recommend-check');
 	$('.menuSetSecond[data-no=' + temp + ']').children(".icon-check").addClass('hidden');
 	
 	curClick.children(".icon-check").removeClass('hidden');
 	curClick.children(".icon-check").addClass('recommend-check');
-	
-	console.log(curClick.children().eq(1).children(".menuPrice").text().slice(1));
 
-	sideArr[sideIndex] = curClick.children().eq(1).children(".menuPrice").text().slice(1);
+	sideArr[sideIndex][2] = curClick.children().eq(1).children(".menuPrice").text().slice(1);
 	computeAllPrice();
 	
 	$(".burgerBoxPrice").text(totalPrice);
 });
 
 $("#sideChangeComplete").on("click", function(){
-	$("#hamburgerBoxSideMenu").modal();
+	
 	
 	var childrenLength = $("#sideChangeContents > div").size();
-	console.log(childrenLength);
 	
 	for(var i = 0; i < childrenLength; i++){
 		var currentChild = $("#sideChangeContents").children().eq(i);
 		var grandchildrenLength = currentChild.children().size();
 		
 		for(var j = 0 ; j < grandchildrenLength; j++){
-			if(currentChild.children().eq(j).children().eq(2).hasClass("recommend-check")){
-				console.log("ㅋㅋ루삥뽕");
-				
-				
-				console.log(currentChild.children().eq(j).children().eq(1).children('.menuName').text());
-				
+			if(currentChild.children().eq(j).children().eq(2).hasClass("recommend-check")){			
 				var parent = $('.hamburgerBoxButton[data-index=' + sideIndex + ']').parent();
-				console.log(parent);
-				
+
 				parent.children().eq(0).attr("src", currentChild.children().eq(j).children().eq(0).attr("src"));
 				parent.children().eq(1).children(".menuName").text(currentChild.children().eq(j).children().eq(1).children('.menuName').text());
 
@@ -513,11 +525,37 @@ $("#sideChangeComplete").on("click", function(){
 	}
 	
 	$("#sideChange").modal("hide");
+	$("#hamburgerBoxSideMenu").modal();
 });
 
 $("#hamburgerBoxSideMenuComplete").on("click", function(){
-	console.log("test");
-	test();
+	var burgurChangeList = "-";
+
+	for(var i = 0; i < toppingArr.length; i++){
+		if(toppingArr[i][3] != 0){
+			
+			burgurChangeList += toppingArr[i][1] + " " + toppingArr[i][3] +"개";
+			console.log(burgurChangeList);
+		}
+	}
+	
+	console.log(burgurChangeList);
+	
+	if(sideArr != undefined){
+		for(var i = 0; i < sideArr.length; i++){
+			console.log(sideArr[i]);
+			if(sideArr[i][0] != sideArr[i	][1]){
+				burgurChangeList += $(".hamburgerBoxButton[data-index=" + i + "]").prev().children(".menuName").text();
+				console.log(burgurChangeList);
+			}
+		}
+	}
+	
+	console.log(burgurChangeList);
+	
+	orderComplate(burgurChangeList);
+	
+	$("#hamburgerBoxSideMenu").modal('hide');
 });
 
 /* 추천 메뉴 모달 */
@@ -589,8 +627,7 @@ $("#recommendCompleteBtn").on("click", function(){
 
 	for(var i = 0; i < length; i++){
 		var currentDiv = $("#recommend-body").children().eq(i);
-		console.log(currentDiv.children().eq(1).hasClass("recommend-check"));
-
+		
 		if(currentDiv.children().eq(1).hasClass("recommend-check")){
 			text.push(currentDiv.children().eq(0).children('.menuName').text());
 			price.push(currentDiv.children().eq(0).children('.menuPrice').text());
@@ -622,7 +659,6 @@ function sum(){
 	var totalPay = 0;
 	
 	for(var i = 0; i < length; i++){
-		console.log(typeof(tbody.eq(i).children().eq(1).text()))
 		var currentCount = Number(tbody.eq(i).children().eq(1).text());
 		count += currentCount;
 		totalPay += Number(tbody.eq(i).children().eq(2).text())*currentCount;

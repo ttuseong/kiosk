@@ -209,11 +209,19 @@ body{
 }
 
 /*메뉴 테이블*/
+#menuTableSection{
+}
+
+#menuTableSection > div{
+	float:left;
+	background-color: rgb(184, 213, 218);
+}
 
 #tableSize{
   height: 160px;
-  overflow: hidden;
-  padding: 0 10px 0 10px;
+  width : 700px;
+  overflhiddenow: ;
+  margin-left: 10px;
 }
 
 #menuTable thead th{
@@ -225,19 +233,15 @@ body{
 }
 
 #menuTable thead th:nth-child(1){
-  width: 600px;
+  width: 450px;
 }
 
 #menuTable thead th:nth-child(2){
-  width: 250px;
+	width: 110px;
 }
 
 #menuTable thead th:nth-child(3){
-  width: 250px;
-}
-
-#menuTable thead th:nth-child(4){
-  width: 100px;
+	width: 150px;
 }
 
 #menuTable tbody tr:first-child td:last-child{
@@ -269,7 +273,9 @@ body{
   align-items: center;
   margin: 0 5px 0 5px;
 }
-
+#menuTable tbody{
+	height: 133px;
+}
 #menuTable tbody td:nth-child(2){
   position: relative;
 }
@@ -325,33 +331,44 @@ body{
 }
 
 #scrollGroup{
+	width: 80px;
+	height: 160px;
+}
+
+#blank{
+	height: 38px;
+	border-bottom: 2px solid white;
+}
+
+#scrollContatiner{
+	margin: auto 0;
+}
+
+#scrollContatiner{
+	height: 122px;
+	position: relative;
+}
+
+#scrollContents{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform : translate(-50%, -50%);
+}
+
+#scrollUp{
+	margin-bottom: 10px;
+}
+
+.kfcMainScroll{
+	width:50px;
+	height:50px;
+	font-size: 30px;
+	border: 1px solid white;
+	border-radius: 100%;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-}
-
-#scrollGroup div p{
-  color: transparent;
-}
-
-#scrollGroup div{
-  position: absolute;
-  background-color: rgb(184, 211, 211);
-  border-radius: 100%;
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
-  font-size: 30px;
-  text-align: center;
-}
-
-.icon-up-open-big{
-  top: 10.8px;
-}
-
-.icon-down-open-big{
-  line-height: 38.5px;
-  bottom: 10.8px;
 }
 
 #menuTable tbody{
@@ -419,7 +436,7 @@ body{
 #allCancelBtn{
   width: 130px;
   height: 125px;
-  top: 10px;
+  bottom:3%;
   right: 390px;
   background-color: rgb(105,132,137);
   color: white;
@@ -428,7 +445,7 @@ body{
 #cuponBtn{
   width: 180px;
   height: 125px;
-  top: 10px;
+  bottom:3%;
   right: 200px;
   background-color: rgb(221, 144, 89);
   color: white;
@@ -437,7 +454,7 @@ body{
 #orderBtn{
   width: 180px;
   height: 125px;
-  top: 10px;
+  bottom:3%;
   right: 10px;
   background-color: rgb(218, 58, 44);
   color: white;
@@ -747,7 +764,7 @@ body{
 #paymentDetailsHeader{
 	position: relative;
 }
-#paymentDetailsHeader > div, p{
+#paymentDetailsHeader > div, #paymentDetailsHeader p{
 	display: inline-block;
 }
 
