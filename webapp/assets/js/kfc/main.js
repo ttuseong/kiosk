@@ -110,3 +110,47 @@ function mainPageTotal(){
 	$("#orderLeft").children().eq(0).children().eq(1).text(mainTotalCount);
 	$("#orderLeft").children().eq(1).children().eq(1).text(mainTotalPrice);
 }
+
+
+$("#menuTable").on("click", ".icon-cancel", function(){
+	var thisDelete = $(this);
+	thisDelete.parent().parent().parent().parent().remove();
+	
+	mainPageTotal();
+});
+
+$("#menuTable").on("click", ".icon-plus", function(){
+	var count = $(this).prev().text();
+	
+	var price = $(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text();
+	
+	price = price/count;
+	
+	price = price*(++count);
+	
+	
+	$(this).prev().text(count);
+	$(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text(price);
+	
+	mainPageTotal();
+});
+
+$("#menuTable").on("click", ".icon-minus", function(){
+	var count = $(this).next().text();
+	
+	if(count == 1){
+		return;
+	}
+	
+	var price = $(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text();
+	
+	price = price/count;
+	
+	price = price*(--count);
+	
+	
+	$(this).next().text(count);
+	$(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text(price);
+
+	mainPageTotal();
+});
