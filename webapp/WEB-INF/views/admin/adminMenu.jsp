@@ -226,7 +226,7 @@
 					<!-- 메뉴 기본 정보 끝 -->
 
 					<!-- 기본 정보 추가 버튼 -->
-					<div class="adminMenu-btnContainer"">
+					<div class="adminMenu-btnContainer">
 						<a href="#" class="btn btn-success btn-circle"
 							style="margin: auto;"> <i class="fas fa-plus"></i>
 						</a>
@@ -378,61 +378,128 @@
 
 				<!-- 모달 바디 -->
 				<div class="modal-body" id="unitManagerModal-body">
-				
-					<div class="unitManagerModal-unitName"><!-- 추가 구성 이름 -->
-						<p>이름</p>
-						<input type="text" placeholder="ex) 세트/콤보/박스">
-					</div> <!-- 이름 -->
-
-					<div class="unitManagerModal-unitComponent"> <!-- 추가 구성(카테고리, 메뉴) -->
-						<p>추가구성</p>
-						<div class="adminMenu-cateDropdown">
-							<!-- 카테고리 드롭다운 -->
-							<p>카테고리</p>
-							<div class="dropdown adminMenu-basicInfoDropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-									카테고리를 선택하세요. <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu"
-									aria-labelledby="dropdownMenu1">
-									<li role="presentation"><a role="menuitem" tabindex="-1"
-										href="#">햄버거</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1"
-										href="#">음료</a></li>
-								</ul>
+					<div class="unitManagerModal-inputAndDropDownContainer">
+						<div class="unitManagerModal-unitName"><!-- 추가 구성 이름 -->
+							<p>이름</p>
+							<input type="text" placeholder="ex) 세트/콤보/박스">
+						</div> <!-- 이름 -->
+	
+						<div class="unitManagerModal-unitComponent"> <!-- 추가 구성(카테고리, 메뉴) -->
+							<p>추가구성</p>
+							<div class="unitManagerModal-cateDropdown">
+								<!-- 카테고리 드롭다운 -->
+								<div class="dropdown unitManagerModal-basicInfoDropdown">
+									<button class="btn btn-default dropdown-toggle" type="button"
+										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+										카테고리를 선택하세요. <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu"
+										aria-labelledby="dropdownMenu1">
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">햄버거</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">음료</a></li>
+									</ul>
+								</div>
 							</div>
-						</div>
-						<!-- 카테고리 드롭다운 끝 -->
-
-						<!-- 메뉴 드롭다운 -->
-						<div class="adminMenu-menuDropdown">
-							<p>메뉴</p>
-							<div class="dropdown adminMenu-basicInfoDropdown">
-								<button class="btn btn-default dropdown-toggle" type="button"
-									id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"
-									style="margin-right: 0;">
-									메뉴를 선택하세요. <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" role="menu"
-									aria-labelledby="dropdownMenu1">
-									<li role="presentation"><a role="menuitem" tabindex="-1"
-										href="#">불고기버거</a></li>
-									<li role="presentation"><a role="menuitem" tabindex="-1"
-										href="#">새우버거</a></li>
-								</ul>
+							<!-- 카테고리 드롭다운 끝 -->
+	
+							<!-- 메뉴 드롭다운 -->
+							<div class="unitManagerModal-menuDropdown">
+								<div class="dropdown unitManagerModal-basicInfoDropdown">
+									<button class="btn btn-default dropdown-toggle" type="button"
+										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"
+										style="margin-right: 0;">
+										메뉴를 선택하세요. <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu"
+										aria-labelledby="dropdownMenu1">
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">불고기버거</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">새우버거</a></li>
+									</ul>
+								</div>
 							</div>
+							<!-- 메뉴 드롭다운 끝 -->
+							
+							<!-- 구성 추가 버튼 -->
+							<div class="unitManagerModal-btnContainer">
+								<a href="#" class="btn btn-success btn-circle unitAddBtn"
+									style="margin: auto;"> <i class="fas fa-plus"></i>
+								</a>
+							</div>
+							<!-- 구성 추가 버튼 끝 -->						
 						</div>
-						<!-- 메뉴 드롭다운 끝 -->
-					</div>
-					<!-- 추가 구성(카테고리, 메뉴) 끝 -->
-					
-					
-					
+						<!-- 추가 구성(카테고리, 메뉴) 끝 -->
+						
+						<div class="unitManagerModal-unitComponent"> <!-- 추가 구성(카테고리, 메뉴) -->
+							<p>추가구성2</p>
+							<div class="unitManagerModal-cateDropdown">
+								<!-- 카테고리 드롭다운 -->
+								<div class="dropdown unitManagerModal-basicInfoDropdown">
+									<button class="btn btn-default dropdown-toggle" type="button"
+										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+										카테고리를 선택하세요. <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu"
+										aria-labelledby="dropdownMenu1">
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">햄버거</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">음료</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- 카테고리 드롭다운 끝 -->
+	
+							<!-- 메뉴 드롭다운 -->
+							<div class="unitManagerModal-menuDropdown">
+								<div class="dropdown unitManagerModal-basicInfoDropdown">
+									<button class="btn btn-default dropdown-toggle" type="button"
+										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"
+										style="margin-right: 0;">
+										메뉴를 선택하세요. <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" role="menu"
+										aria-labelledby="dropdownMenu1">
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">불고기버거</a></li>
+										<li role="presentation"><a role="menuitem" tabindex="-1"
+											href="#">새우버거</a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- 메뉴 드롭다운 끝 -->
+							
+							<!-- 구성 추가 버튼 -->
+							<div class="unitManagerModal-btnContainer">
+								<a href="#" class="btn btn-success btn-circle unitAddBtn"
+									style="margin: auto;"> <i class="fas fa-plus"></i>
+								</a>
+							</div>
+							<!-- 구성 추가 버튼 끝 -->
+							
+						</div>
+						<!-- 추가 구성(카테고리, 메뉴) 끝 -->
+					</div> <!-- end of test -->
 				</div>
 				<!-- 모달 바디 끝 -->
 
-				<div class="modal-footer" id="unitManagerModal-footer"></div>
+				<!-- 모달 푸터 -->
+				<div class="modal-footer" id="unitManagerModal-footer">
+					<div class="adminMenu-footerBtnContainer">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split adminMenu-unitDel unitManager-cancle"> <span
+							class="text">취소</span>
+						</a><a href="#"
+							class="btn btn-success btn-icon-split adminMenu-unitAdd unitManager-submit"> <span
+							class="text">확인</span>
+						</a>
+					</div>
+				</div>
+				<!-- 모달 푸터 끝 -->
+				
 			</div>
 			<!-- /.modal-content -->
 		</div>
@@ -462,13 +529,14 @@
 			$('body').addClass('modal-open');
 		}
 	});
-
-	// 추가 구성 리스트 모달 열기
+	
+	// 테스트
 	$(document).ready(function() {
-		$("#unitListModal").modal();
+		$("#unitManagerModal").modal();
 
 	});
 
+	// 추가 구성 리스트 모달 열기
 	$(".adminUnitListBtn").on("click", function() {
 		$("#unitListModal").modal();
 	});
@@ -488,7 +556,7 @@
 	});
 
 	// 구성 추가/수정 모달 닫기
-	$(".unitManagerModal-close").on("click", function() {
+	$(".unitManagerModal-close, .unitManager-cancle").on("click", function() {
 		$("#unitManagerModal").modal("hide");
 	});
 </script>
