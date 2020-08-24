@@ -1,847 +1,1703 @@
 /* 모달 공통사항 */
 
+ 
+
 /* 모달 전체 */
+
+ 
 
 .modal-content { 
 
+ 
+
 	border-radius: 0px;
+
+ 
 
 	width: 750px;
 
+ 
+
 	min-height: 1050px;
+
 }
+
+ 
+
+ 
 
  
 
 /* 모달 헤더 */
 
+ 
+
 .modal-header { 
+
+ 
 
 	min-height: 155px;
 
+ 
+
 	border: none;
+
+ 
 
     padding-top: 50px;
 
+ 
+
     border-top: 10px solid red;
 
+ 
+
     text-align: center;
+
+ 
 
 }
 
  
 
+ 
+
+ 
+
 /* 모달 제목의 폰트 */
+
+ 
 
 .modal-title { 
 
+ 
+
     font-weight: bold;
+
+ 
 
     font-size: xx-large;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .modal-body { 
 
+ 
+
 	min-height: 785px;
+
+ 
 
 	padding: 40px;
 
+ 
+
 	text-align: center;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 모달 푸터 */
 
+ 
+
 .modal-footer {  
+
+ 
 
 	border: none;
 
+ 
+
 	height: 160px;
+
+ 
 
 	padding: 50px;
 
+ 
+
 	text-align: center;
+
+ 
 
 }
 
  
 
+ 
+
+ 
+
 /* 취소, 완료 버튼 */
+
+ 
 
 .modal-footer > .btn { 
 
+ 
+
 	width: 220px;
+
+ 
 
 	height: 60px;
 
+ 
+
 	font-size: large;
 
+ 
+
     font-weight: bold;
+
+ 
 
 }   
 
  
 
+ 
+
+ 
+
 /* 취소 버튼 */
+
+ 
 
 .btnCancle {
 
+ 
+
 	background-color: lightgray;
 
+ 
+
 	color: white;
+
+ 
 
 }
 
  
 
+ 
+
+ 
+
 /* 완료 버튼 */
+
+ 
 
 .btnComplete {
 
+ 
+
 	background-color: red;
+
+ 
 
 	color: white;
 
+ 
+
 }
 
+ 
+
 /* 숨김 효과 */
+
 .hidden{
+
 	position: absolute;
+
 	left: -1000000px;
+
 }
+
+ 
+
+ 
 
  
 
 /* ----- 추천메뉴 모달 ----- */
 
+ 
+
 .img-responsive { /* 이미지 크기 */
 
+ 
+
 	width: 150px;
+
+ 
 
 	height: 150px;
 
+ 
+
 }
+
+ 
 
 .img-responsive-recommend { /*추천메뉴 햄버거 이미지*/
+
 	display:inline-block;
+
 	margin-left: auto;
+
 	margin-right: auto;
+
 	width: 150px;
+
 	height: 150px;
+
 }
 
+ 
+
+ 
 
 .menu-container { /* 메뉴이미지, 메뉴 이름, 메뉴 가격 묶어놓은 박스 */
+
 	position: relative;
+
 	
+
 	width: 150px;
 
+ 
+
 	height: 200px;
+
 	
+
 	display: inline-block;
+
 	
+
 	margin: 10px 33px 10px 33px;
+
 	
+
+ 
 
 }
 
+ 
+
 .recommend-imgAndPtag{ /*메뉴 이미지와 p태그*/
+
 	text-align: center;
+
 } 
 
+ 
 
+ 
+
+ 
 
 .menuPrice{ /* 메뉴 가격 */
 
+ 
+
 	color: red;
 
+ 
+
 }
+
+ 
+
+.recommend-hidden { /*메뉴에 선택된 체크 숨기기*/
+
+	position:absolute;
+
+	left:-10000px;
+
+}
+
+ 
+
+ 
 
 .recommend-check { /* 메뉴 체크*/
+
 	position:absolute;
+
 	left: 50%;
+
 	top: 50%;
+
 	transform: translate(-55%, -60%) rotate(15deg);
+
 	font-size: 200px;
+
 	color: red;
+
 }
+
+ 
 
 #recommend-body { 
+
 	text-align: left;
+
 	min-height:720px;
+
 }
 
+ 
+
+ 
+
+ 
 
  
 
 /* ----- 나의 주문 리스트 모달 ----- */
+
 /* 주문목록 헤더 */	
+
 #MyOrderListModal .modal-body {
+
 	padding: 0px;
+
 }
+
+ 
 
 .orderlist-header{
+
 	font-size: 0px;
+
 }
+
+ 
 
 .orderlist-header div{
+
 	position: relative;
+
 	height: 40px;
+
 	margin: auto;
+
   	display: inline-block;
+
 	color: white;
+
     font-weight: bold;
+
     font-size: 18px;
+
 	background-color: red;
+
 }
+
+ 
 
 .orderlist-header div p{
+
 	position: absolute;
+
 	left: 50%;
+
 	top: 50%;
+
 	transform: translate(-50%, -50%);
+
 }
+
+ 
 
 /* 메뉴 */
+
 .orderlist-menu {
+
 	width: 300px;
+
 }
+
+ 
 
 /* 수량 */
+
 .orderlist-cnt {
+
 	width: 150px;
+
 }
+
+ 
 
 /* 가격 */
+
 .orderlist-price {
+
 	width: 200px;
+
 }
+
+ 
 
 /* 주문목록 바디 - 주문 리스트 출력 부분 */
+
 .orderlist-body {
+
 	position: relative;
+
 	width: 650px;
+
 	min-height: 600px;
+
 	margin: auto;
+
 	padding-top: 10px;
+
 	padding-bottom: 110px;
+
 	background-color: #fff5f4;
+
 }
+
+ 
 
 /* 주문 리스트 */
+
 .orderList-tableDiv {
+
 	min-height: 520px;
+
 }
+
+ 
 
 .orderlist-body table{		
+
 	width: 600px;
+
 	margin: auto;
+
     font-weight: bold;
+
     font-size: 17px;
+
 	border-collapse: separate;
+
 	border-spacing: 0px 15px;
+
 }
+
+ 
 
 /* 메뉴 이름 */
+
 #orderlist-menuName{
+
 	width: 275px;
+
 	text-align: left;
+
 }
+
+ 
 
 /* 메뉴 수량 */
+
 #orderlist-menuCnt{
+
 	width: 150px;
+
 	text-align: center;
+
 }
+
+ 
 
 /* 메뉴 가격 */
+
 #orderlist-menuPrice{
+
 	width: 175px;
+
 	text-align: right;
+
 }
+
+ 
 
 .orderList-pagingBtn {
+
 	position: absolute;
+
 	bottom: 5px;
+
 	left: 50%;
+
 	transform: translate(-50%, -50%);
+
 }
+
+ 
 
 /* UP/DOWN 화살표 */
+
 .orderList-pagingBtn div{
+
 	display: inline-block;
+
 	font-size: 3em;
+
 	color: #c0c0c0;
+
     margin: 0px 30px 0px 30px;
+
 }
 
+ 
+
 /* 주문목록 푸터 */
+
 .orderlist-footer {
+
 }
+
+ 
+
  
 
 /* div 간의 공백 제거를 위한 font-size 조정 */
 
+ 
+
 .orderlist-footer div{
+
+ 
 
 	font-size: 0px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* orderlist-footer > div > div 설정 */
 
+ 
+
 .orderlist-footer div div{
+
+ 
 
 	position: relative;
 
+ 
+
 	height: 40px;	
+
+ 
 
   	display: inline-block;
 
+ 
+
   	margin-top: 5px;
+
+ 
 
 	font-weight: bold;
 
+ 
+
 	background-color: #fff5f4;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 합계 div 설정 */
 
+ 
+
 .orderlist-sum div p{
+
+ 
 
 	position: absolute;
 
+ 
+
 	top: 50%;
+
+ 
 
 	transform: translateY(-50%);
 
+ 
+
     font-size: 17px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-sum div:nth-child(1) p{
 
+ 
+
 	left: 7%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-sum div:nth-child(2) p{
 
+ 
+
 	left: 50%;
+
+ 
 
 	right: 50%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-sum div:nth-child(3) p{
 
+ 
+
 	right: 10%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 할인 div 설정 */
 
+ 
+
 .orderlist-discount div p{
+
+ 
 
 	position: absolute;
 
+ 
+
 	top: 50%;
+
+ 
 
 	transform: translateY(-50%);
 
+ 
+
     font-size: 17px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-discount div:first-child p{
 
+ 
+
 	left: 5%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-discount div:last-child p{
 
+ 
+
 	right: 10%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 총 결제금액 div 설정 */
 
+ 
+
 .orderlist-total div p {
+
+ 
 
 	position: absolute;
 
+ 
+
 	top: 50%;
+
+ 
 
 	transform: translateY(-50%);
 
+ 
+
     font-size: 20px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-total div:first-child p{
 
+ 
+
 	left: 5%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .orderlist-total div:last-child p{
 
+ 
+
 	right: 10%;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 합계 */
 
+ 
+
 .orderlist-sum > .order-total {
+
+ 
 
 	width: 300px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 수량 */
 
+ 
+
 .order-totalMenu {
+
+ 
 
 	width: 150px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 합계 금액 */
 
+ 
+
 .orderlist-sum > .order-totalPrice {
+
+ 
 
 	width: 200px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 할인 */
 
+ 
+
 .order-discount {
+
+ 
 
 	width: 400px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 할인 한 금액 */
 
+ 
+
 .order-discountedPrice {
+
+ 
 
 	width: 250px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 총 결제 금액 */
 
+ 
+
 .orderlist-total > .order-total {
+
+ 
 
 	width: 400px;
 
+ 
+
 	height: 50px;
+
+ 
 
 	background-color: #ffdcd5;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 결제 할 금액 */
 
+ 
+
 .orderlist-total > .order-totalPrice {
+
+ 
 
 	width: 250px;
 
+ 
+
 	height: 50px;
+
+ 
 
 	background-color: #ffdcd5;
 
+ 
+
     color: red;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 /* 버거에 치즈와 베이컨 추가 모달 */
 
+ 
+
 /* 바디부분 */
+
 #bugerToppingBody{
+
 	position: relative;
+
 }
 
+ 
+
 #bugerToppingContiner{
+
 	margin-top: 25%;
+
 }
+
+ 
 
 #bugerToppingContiner h5{
 
+ 
+
 	font-size: 30px;
+
+ 
 
 	font-weight: bold;
 
+ 
+
 	margin-bottom: 30px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .bugerToppinglist{
 
+ 
+
 	display: inline-block;
+
+ 
 
 	position:relative;
 
+ 
+
 	margin: 0 15px 0 15px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .bugerToppinglist > img{
 
+ 
+
 	width: 250px;
+
+ 
 
 	height: 250px;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .bugerToppinglist h6{
 
+ 
+
 	font-weight: bold;
+
+ 
 
 	margin: 30px 0 30px 0;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .bugerToppinglist > p{
 
+ 
+
 	color: red;
 
+ 
+
 }
+
+ 
+
+ 
 
  
 
 .bugerToppinglist > .count{
 
+ 
+
 	top: 110%;
+
+ 
 
 }
 
  
 
+ 
+
+ 
+
+ 
 
 /* 햄버거박스 사이드 메뉴 */
 
+ 
+
 /* 모달 전체 */
+
 #hamburgerBoxContent {
+
 	border-radius: 0px;
+
 	width: 750px;
+
 	min-height: 1050px;
+
 }
+
+ 
 
 /* 모달 헤더 */
+
 .hamburgerBoxHeader {
+
 	position:relative;
+
 	min-height: 200px;
+
 	border: none;
+
 	padding-top: 50px;
+
 	border-top: 10px solid red;
+
 	border-bottom: 2px dashed gray;
+
 	text-align: left;
+
 }
+
+ 
 
 #hamburgerBoxSideContiner img{
+
 	float: left
+
 }
+
+ 
 
 #hamburgerBoxCount{
+
 	position: relative;
+
 	left: -20%;
+
 	top: 15px;
+
 }
+
+ 
 
 #hamburgerBoxMoney{
+
 	position: absolute;
+
 	right: 10%;
+
 	top:62%;
+
 }
+
+ 
 
 #hamburgerBoxMoney > div, #hamburgerBoxMoney > p{
+
 	display: inline-block;
+
 }
+
+ 
 
 #hamburgerBoxMoney > div{
+
 	width:25px;
+
 	height:25px;
+
 	border: 1px solid red;
+
 	background-color: red;
+
 	color: white;
+
 	border-radius: 100%;
+
 	display: inline-flex;
+
     justify-content: end;
+
     align-items: center;
+
 }
+
+ 
 
 #hamburgerBoxMoney > div > p{
+
 	position: absolute;
+
 	left: -1000000000px;
+
 }
+
 	
+
+ 
 
 .img-hamburgerBoxFix { /* 이미지 크기, 가운데 고정 */
+
    display:block;
+
    margin-left: auto;
+
    margin-right: auto;
+
    width: 150px;
+
 }
+
+ 
 
 /* 모달 제목의 폰트 */
+
 #hamburgerBoxBody {
+
 	min-height: 690px;
+
 	padding: 40px;
+
 	text-align: center;
+
 }
 
+ 
+
+ 
 
 #menuSet {
+
 	display: inline-block;
+
 	margin:5px;
+
 	width: 150px;
+
 	height: 200px;
+
 }
+
+ 
 
 #menuSet > div p{
+
 	display: block;
+
 }
+
+ 
 
 .img-responsive {
+
 	display:inline-block;
+
 	margin-left: auto;
+
 	margin-right: auto;
+
 	width: 150px;
+
 	height: 180px;
+
 }
+
+ 
 
 .hamburgerBoxButton {
+
    position: absolute;
+
    top: 120%;
+
    transform:translateX(-50%);	
+
    width: 150px;
+
    height: 50px;
+
    font-size: 20px;
+
    font-weight:bold;
+
    background-color:red;
+
    color:white;
+
    border: 1px solid transparent;
+
    border-radius: 4px;
+
 	
+
 }
+
+ 
 
 .hamburgerBoxBody {
+
 	position: relative;
+
 }
+
+ 
 
 #hamburgerBoxBodyContainer{
+
 	position: absolute;
+
 	top: 40%;
+
 	left:50%;
+
 	transform:translate(-50%, -40%);
+
 	text-align:center;
+
 	width: 800px;
+
 }
+
+ 
 
 /* 모달 푸터 */
+
 #hamburgerSideFooter {
+
 	min-height:110px;
+
 	border: none;
+
 	height: 160px;
+
 	padding: 50px;
+
 	text-align: center;
+
 }
+
+ 
 
 /* 취소, 완료 버튼 */
+
 .modal-footer > .btn {
+
 	width: 220px;
+
 	height: 60px;
+
 	font-size: large;
+
 	font-weight: bold;
+
 }
+
+ 
 
 /* 취소 버튼 */
+
 .btnCancle {
+
 	background-color: lightgray;
+
 	color: white;
+
 }
 
+ 
+
 /* 완료 버튼 */
+
 .btnComplete {
+
 	background-color: red;
+
 	color: white;
+
 }
+
+ 
 
 /* 사이	드 변경  */
 
+ 
+
 #hamburgerBox-SideChangeBody {
+
 	min-height: 690px;
+
 	padding: 50px 100px 100px 100px;
+
 	text-align: center;
+
 	position: relative;
+
 }
+
+ 
 
 #hamburgerBox-SideChangeBodyLeftBtn{
+
 	font-size: 30px;
+
 	position: absolute;
+
 	top: 50%;
+
 	left: 5%;
+
 	transform:translateY(-50%);
+
 	border: 1px solid gray;
+
 	height: 120px;
+
 	display: inline-flex;
+
 	align-items: center;
+
 	border-radius: 5px;
+
 	background-color: gray;
+
 	color: white;
+
 	z-index: 2;
+
 }
+
+ 
 
 #hamburgerBox-SideChangeBodyRightBtn{
+
 	font-size: 30px;
+
 	position: absolute;
+
 	top: 50%;
+
 	right: 5%;
+
 	transform:translateY(-50%);
+
 	border: 1px solid gray;
+
 	height: 120px;
+
 	display: inline-flex;
+
 	align-items: center;
+
 	border-radius: 5px;
+
 	background-color: gray;
+
 	color: white;
+
 	z-index: 2;
+
 }
+
 #sideChangeContainer {
+
 	width: 648px;
+
 	height: 538px;
+
 	position: absolute;
+
 	top: 10%;
+
 	left: 50%;
+
 	transform: translateX(-50%);
+
 	text-align: left;
+
 	overflow: hidden;
+
 	z-index: 1;
+
 }
+
+ 
 
 #sideChangeContents:after{
+
 	content: '';
+
 	display: block;
+
 	clear: both;
+
 }
+
+ 
 
 #sideChangeContent{
+
 	float: left;
+
 	width: 648px;
+
 	height: 538px;
+
 	padding: 0 40px;
+
 }
+
+ 
 
 #sideChangeTitle {
+
 	font-weight: bold;
+
     font-size: xx-large;
+
     text-align:center;
+
 }
 
-.menuSetSecond {
+ 
+
+#menuSetSecond {
+
 	display: inline-block;
+
 	margin:17px;
+
 	width: 150px;
+
 	height: 220px;
+
 }
 
-.menuSetSecond > div p{
+ 
+
+#menuSetSecond > div p{
+
 	display: block;
+
 }
+
+ 
 
 /* 장소 선택 모달 */
 
+ 
+
 .placeSelectBodyContentContiner{
+
 	position:relative;
+
 	width: 250px;
+
 	height: 700px;
+
 	display: inline-block;
+
 	background-color: red;
+
 	margin: 0 5px;
+
 }
+
+ 
 
 .placeSelectBodyContent{
+
 	position:absolute;
+
 	top:40%;
+
 	left:50%;
+
 	transform:translate(-50%, -50%);
+
 	width: 150px;
+
 	border-bottom: 1px dashed black;
+
 	padding-bottom: 60px;
+
 }
+
+ 
 
 .placeSelectBodyContent > img{
+
 	width: 100px;
+
 	height: 100px;
+
 }
+
+ 
 
 .placeSelectBodyContentContiner > div > h5{
+
 	font-size: 60px;
+
 	margin: 30px 0;
+
 }
 
+ 
+
+ 
 
 .placeSelectBodyContentContiner > p{
+
 	position: absolute;
+
 	bottom: 20%;
+
 	left: 50%;
+
 	transform:translateX(-50%);
+
+ 
 
 }
 
-
+ 

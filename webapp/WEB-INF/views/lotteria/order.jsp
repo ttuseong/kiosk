@@ -74,14 +74,16 @@
 
 					</div>
 				</c:forEach>
-			<div>
+				<!-- 페이징 div -->
 				<div>
-					<button type="button" class="btn-left">이전</button>
+					<div>
+						<button type="button" class="btn-left">이전</button>
+					</div>
+					<div>
+						<button type="button" class="btn-right">다음</button>
+					</div>
 				</div>
-				<div>
-					<button type="button" class="btn-right">다음</button>
-				</div>
-			</div>	
+				<!-- 페이징 div -->	
 			</div>
 				<!--Content-->
 			

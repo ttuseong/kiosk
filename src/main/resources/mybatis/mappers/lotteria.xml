@@ -107,4 +107,17 @@
 		]]>
 	</select>
 	
+	<select id="selectCountMenu" resultType="int" parameterType="int">
+		<![CDATA[
+			select count(*) from menu where categoryNo=#{categoryNo}
+		]]>
+	</select>
+	
+	<select id="selectCate4MenuCount" resultType="int" parameterType="int">
+		<![CDATA[
+			select count(*) from menu m, setMenu sm where m.categoryNo(+) = sm.categoryNo and sm.categoryNo=#{categoryNo}
+		]]>
+	</select>
+	
+	
 </mapper>

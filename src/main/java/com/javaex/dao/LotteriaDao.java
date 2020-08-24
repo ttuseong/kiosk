@@ -45,4 +45,5 @@ public class LotteriaDao {
 	public int menuCategoryNo(int menuNo) {
 		return sqlSession.selectOne("lotteria.menuCategoryNo", menuNo);
 	}
+
 }

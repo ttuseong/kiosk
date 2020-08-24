@@ -45,4 +45,6 @@ public class LotteriaService {
 	public int menuCategoryNo(int menuNo) {
 		return lotteriaDao.menuCategoryNo(menuNo);
 	}
+	
+
 }
