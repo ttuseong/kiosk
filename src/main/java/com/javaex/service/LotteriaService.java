@@ -1,11 +1,14 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javaex.dao.LotteriaDao;
+import com.javaex.util.Paging;
 import com.javaex.vo.LotteriaVo;
 
 @Service
@@ -18,8 +21,13 @@ public class LotteriaService {
 		return lotteriaDao.categoryList();
 	}
 	
-	public List<LotteriaVo> menuList(){
-		return lotteriaDao.menuList();
+	public Map<String, Object> menuList(int categoryNo, int pg){
+		Paging pgVo = new Paging(8,5,categoryMenuCount(categoryNo), pg, categoryNo);
+		Map<String, Object> menuListAndPg = new HashMap<String, Object>();
+		
+		menuListAndPg.put("menuList",lotteriaDao.menuList(pgVo));
+		menuListAndPg.put("pgVo",pgVo);
+		return menuListAndPg;
 	}
 	
 	public List<LotteriaVo> cateNo4setMenu(){
@@ -46,5 +54,12 @@ public class LotteriaService {
 		return lotteriaDao.menuCategoryNo(menuNo);
 	}
 	
+	public int categoryMenuCount(int categoryNo) {
+		if(categoryNo != 4) {
+			return lotteriaDao.categoryMenuCount(categoryNo);
+		}else {
+			return lotteriaDao.category4MenuCount(categoryNo);
+		}
+	}
 
 }

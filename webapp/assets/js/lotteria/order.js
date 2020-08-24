@@ -6,8 +6,25 @@ var thisMenu;
 var setName;
 var setPrice;
 
-$(document).ready(function() {
+var pg;
+var categoryNo;
+var params = location.search.substr(location.search.indexOf("?") + 1);
 
+$(document).ready(function() {
+	if(params != ""){
+		
+		params = params.split("&");
+		
+		for (var i = 0; i < params.length; i++) {
+			temp = params[i].split("=");
+			if ([temp[0]] == "pg") { pg = temp[1]; }
+			if ([temp[0]] == "categoryNo") { categoryNo = temp[1]; }
+		}
+	}else{
+		categoryNo=4;
+		pg = 1;
+	}
+	 
     var menuNo;
 
 	//메뉴 클릭
@@ -39,17 +56,22 @@ $(document).ready(function() {
 	
 	/*페이지 탭*/
 	$(".tab_content").hide(); 
-	$("ul.tabs li:first").addClass("active").show();
-	$(".tab_content:first").show();
+	$(".tab-"+categoryNo).addClass("active").show();
+	$("#tab"+categoryNo).show();
 	
 	$("ul.tabs li").click(function() {
-		
+		pg = 1;
 		$("ul.tabs li").removeClass("active"); 
-		$(this).addClass("active"); 
+		$(this).addClass("active");
+		
+		categoryNo = $(this).children().eq(0).data("categoryno")
+		
 		$(".tab_content").hide(); 
 		
 		var activeTab = $(this).find("a").attr("href");
 		$(activeTab).fadeIn();
+		
+		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg=1";
 		return false;
 	});
 	
@@ -71,6 +93,11 @@ $(document).ready(function() {
 	
 	/*세트클릭했을경우*/
 	$("#modalName-setMenu").on("click", function(){
+		$("ul.modal-tabs li").removeClass("active");
+		$(".modal-tab_content").hide(); 
+		$("ul.modal-tabs li:first").addClass("active").show();
+		$(".modal-tab_content:first").show();
+		
 		$("#setAndSingle").modal("hide");
 		$("#side").modal();
 	});
@@ -288,9 +315,21 @@ function trDelete(i){
 }
 
 function toppingModal(){
-	
-	
-	
 	$(".toppingMenuName").text(setName);
 	$('#topping').modal();
 }
+
+function pageDown(){
+	
+	if(pg > 1){
+		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)-1);
+	}
+}
+
+function pageUp(pageEnd){
+	
+	if(pg < pageEnd){
+		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)+1);
+	}
+}
+

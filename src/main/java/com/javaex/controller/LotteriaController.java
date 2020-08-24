@@ -26,14 +26,19 @@ public class LotteriaController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(Model model, @RequestParam(value="categoryNo", required=false, defaultValue = "4") int categoryNo) {
+	public String order(Model model, @RequestParam(value="categoryNo", required=false, defaultValue = "4") int categoryNo,
+									 @RequestParam(value="pg", required=false, defaultValue = "1") int pg) {
 		
+		/*카테고리 리스트*/
 		model.addAttribute("categoryList", lotteriaService.categoryList());
-		model.addAttribute("menuList", lotteriaService.menuList());
+		
+		/*메뉴리스트*/
+		model.addAttribute("menuListAndPg", lotteriaService.menuList(categoryNo,pg));
 		model.addAttribute("cateNo4SetMenu", lotteriaService.cateNo4setMenu());
+		
+		/*모달창 데이터리스트*/
 		model.addAttribute("dessertMenu",lotteriaService.dessertList());
 		model.addAttribute("drinkMenu", lotteriaService.drinkList());
-		
 		
 		return "/lotteria/order";
 	}

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.javaex.util.Paging;
 import com.javaex.vo.LotteriaVo;
 
 @Repository
@@ -18,8 +19,8 @@ public class LotteriaDao {
 		return sqlSession.selectList("lotteria.categoryList");
 	}
 
-	public List<LotteriaVo> menuList(){
-		return sqlSession.selectList("lotteria.menuList");
+	public List<LotteriaVo> menuList(Paging pgVo){
+		return sqlSession.selectList("lotteria.menuList",pgVo);
 	}
 	
 	public List<LotteriaVo> cateNo4setMenu(){
@@ -44,6 +45,14 @@ public class LotteriaDao {
 	
 	public int menuCategoryNo(int menuNo) {
 		return sqlSession.selectOne("lotteria.menuCategoryNo", menuNo);
+	}
+	
+	public int categoryMenuCount(int categoryNo) {
+		return sqlSession.selectOne("lotteria.categoryMenuCount", categoryNo);
+	}
+	
+	public int category4MenuCount(int categoryNo) {
+		return sqlSession.selectOne("lotteria.category4MenuCount", categoryNo);
 	}
 
 }

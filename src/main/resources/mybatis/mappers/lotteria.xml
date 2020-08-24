@@ -14,20 +14,38 @@
 		]]>
 	</select>
 	
-	<select id="menuList" resultType="com.javaex.vo.LotteriaVo">
+	<select id="menuList" resultType="com.javaex.vo.LotteriaVo" parameterType="com.javaex.util.Paging">
 	<![CDATA[
-		select menuNo, 
-			   m.categoryNo categoryNo, 
-			   menuName, 
-			   menuDesc, 
-			   menuPrice, 
-			   menuImg, 
-			   isSpecial 
-		from menu m , 
-			 category c  
-		where m.categoryNo = c.categoryNo 
-		and c.storeNo=2
-        and c.publicYn = 1
+       select menuNo,
+		       categoryNo,
+		       menuName,
+		       menuDesc,
+		       menuPrice,
+		       menuImg,
+		       isSpecial
+		from(select rownum rn,
+			       menuNo,
+			       categoryNo,
+			       menuName,
+			       menuDesc,
+			       menuPrice,
+			       menuImg,
+			       isSpecial
+			from(select  menuNo, 
+						m.categoryNo categoryNo, 
+						menuName, 
+						menuDesc, 
+						menuPrice, 
+						menuImg, 
+						isSpecial 
+				from    menu m , 
+		        		category c
+				where m.categoryNo = c.categoryNo 
+				and c.storeNo=2
+				and c.publicYn=1
+				and m.categoryNo=#{categoryNo}
+				order by categoryNo asc))
+		where rn >= #{writing_Start} and rn <= #{writing_End}
 	]]>
 	</select>
 		
@@ -107,13 +125,13 @@
 		]]>
 	</select>
 	
-	<select id="selectCountMenu" resultType="int" parameterType="int">
+	<select id="categoryMenuCount" resultType="int" parameterType="int">
 		<![CDATA[
 			select count(*) from menu where categoryNo=#{categoryNo}
 		]]>
 	</select>
 	
-	<select id="selectCate4MenuCount" resultType="int" parameterType="int">
+	<select id="category4MenuCount" resultType="int" parameterType="int">
 		<![CDATA[
 			select count(*) from menu m, setMenu sm where m.categoryNo(+) = sm.categoryNo and sm.categoryNo=#{categoryNo}
 		]]>

@@ -26,24 +26,24 @@
 	<!-- 헤더 -->
 
 	<div class="container width800height1200">
-		<div class="contents-header">
+		<!-- <div class="contents-header">
 			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
-		</div>
+		</div> -->
 
-		<div id="wrapper">
 			<!--탭 메뉴 영역 -->
 			<ul class="tabs">
 				<c:forEach items="${categoryList}" var="vo">
-					<li><a href="#tab${vo.categoryNo}">${ vo.categoryName}</a></li>
+					<li class="tab-${vo.categoryNo }"><a href="#tab${vo.categoryNo}" data-categoryno=${vo.categoryNo }>${ vo.categoryName}</a></li>
 				</c:forEach>
 			</ul>
+		<div id="wrapper">
 
 			<!--탭 콘텐츠 영역 -->
 			<div class="tab_container" id="tab_menu"   style="position: relative;">
 				<c:forEach items="${categoryList }" var="vo">
 					<div id="tab${vo.categoryNo }" class="tab_content">
 
-						<c:forEach items="${menuList }" var="menu" >
+						<c:forEach items="${menuListAndPg.menuList }" var="menu" >
 							<c:if test="${vo.categoryNo eq menu.categoryNo }">
 							<div class="menu" data-menuno="${menu.menuNo }">
 								<div class="menu-img">
@@ -74,16 +74,25 @@
 
 					</div>
 				</c:forEach>
+				
 				<!-- 페이징 div -->
 				<div>
 					<div>
-						<button type="button" class="btn-left">이전</button>
+						<button type="button" class="btn-left" onclick="pageDown()">이전</button>
 					</div>
+					
+					<div class="dotDiv">
+						<c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
+							<div class="pageDot <c:if test="${param.pg == current }">pageActive</c:if>"></div>
+						</c:forEach>
+					</div>
+										
 					<div>
-						<button type="button" class="btn-right">다음</button>
+						<button type="button" class="btn-right" onclick="pageUp(${menuListAndPg.pgVo.page_End})">다음</button>
 					</div>
 				</div>
-				<!-- 페이징 div -->	
+				<!-- 페이징 div -->
+					
 			</div>
 				<!--Content-->
 			

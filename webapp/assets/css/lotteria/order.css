@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-.width800height1200{width:800px;height:1200;background-color: white;}
+ .width800height1200{width:800px;height:1200;background-color: white;padding:0px;} 
 
 .width300{width: 300px; float: left;}
 .width50{width: 50%; height: 100%; float: left;}
 .btn-red{background-color: red; margin: 20px; color: white; border-radius: 5px;}
 .width-auto{width: auto;}
-.fontSize50px{font-size: 40px;}
-.contents-header{border:8px solid #990012;height:250px;text-align: center;}
+/* .fontSize50px{font-size: 40px;} */
+/* .contents-header{border:8px solid #990012;height:250px;text-align: center;} */
 .width130px{width:130px;height:180px;}
 
 ul.tabs {
@@ -66,7 +66,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 
 .tab_content {padding: 20px;font-size: 1.2em;height: 135px;
 }
-.menu {width: 50%;float: left;height: 250px;}
+.menu {width: 50%;float: left;height: 140px;}
 .menu-img {width: 45%;float: left;}
 .menu-text {width: 55%;float: left;padding-top: 28.5px;font-size: 25px;}
 .menu-price {color: red;}
@@ -218,3 +218,8 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .topping-btn{margin:5px; background-color: white; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:20px;}
 .topping-btn:hover{background-color:skyblue;}
 
+
+/* 페이징 */
+.pageDot{width:15px;height:15px;background-color:gray;border-radius: 15px;display: inline-block;}
+.dotDiv{bottom: 0%;position: absolute;bottom: 0%;width: 100%;text-align: center;}
+.pageActive{background-color:red;}
