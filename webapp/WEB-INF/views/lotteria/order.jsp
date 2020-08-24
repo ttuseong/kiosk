@@ -272,25 +272,46 @@
 					</div>
 					<!-- modal-header -->
 
-					<div class="modal-body" id="modalName-body">
+					<div class="modal-body" id="modalName-body-topping">
+						<div class="padding-top20px" style="text-align: center;">
+								<div class="toppingMenuName" style="display:inline-block; font-size:x-large;"></div>
+								<div class="toppingPirce" style="display:inline-block;">+0</div>
+						</div>
 						<div class="modalName-container width80">
-							<div class="toppingMenuName"></div>
+							
 							<div class="padding-top20px">
-
-								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_bacon.png"></div>
-								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_tomato.png"></div>
-								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_cheese.png"></div>
-								<div><img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_beefPaty.png"></div>
-
-
+								<div>
+									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_bacon.png">
+									<p>베이컨</p>
+									<p>+300</p>
+								</div>
+								<div>
+									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_tomato.png">
+									<p>토마토</p>
+									<p>+300</p>
+								</div>
+								<div>
+									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_cheese.png">
+									<p>치즈</p>
+									<p>+300</p>
+								</div>
+								<div>
+									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_beefPaty.png">
+									<p>패티</p>
+									<p>+300</p>
+								</div>
 							</div>
-							<div class="width100">
-								<button class="topping-btn" type="button">취소하기</button>
-								<button class="topping-btn" type="button">완료하기</button>
-							</div>
+							
 						</div>
 					</div>
 					<!-- modal-body -->
+					<!-- modal-footer -->
+					<div class=modal-footer id="topping-modal-footer">
+						<div class="width100">
+							<button class="topping-btn" type="button">취소하기</button>
+							<button class="topping-btn" type="button">완료하기</button>
+						</div>
+					</div>
 				</div>
 				<!-- /.modal-content -->
 			</div>

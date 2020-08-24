@@ -152,8 +152,10 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalName-closeBtn {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 35px;color: #24a3f7;}
 /* 단품, 세트 선택  */
 #modalName-body {position: relative;width:584px; height: 300px;}
+#modalName-body-topping {position: relative;width:584px; height: 300px;}
 .modalName-container {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
-.modalName-container div {text-align: center;display: inline-block;}
+
+.modalName-container div {text-align: center; display: inline-block;}
 
 /* 이미지 */
 .modalName-container img {width: 90px;}
@@ -200,16 +202,19 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .margin-right{margin: 0 30px 0 10px;}
 
 /* 토핑모달 */
-.toppingMenuName{font-size: 20px;font-weight: bold;}
-.width80{width: 80%;}
-.padding-top20px{width: 100%;padding-top: 20px;}
-<<<<<<< HEAD
+
+.modalName-container-topping {position: absolute;top: 10%;left: 50%;transform: translate(-80%, -50%); display:inline-block;text-align:center;}
+.toppingMenuName{display:block;font-size: 20px;font-weight: bold;}
+.toppingPirce{display:block;font-size:x-large;font-weight:bold;}
+.width80{width: 80%; }
+
+.padding-top20px{display:inline-block;width: 100%;}
 .padding-top20px > div > img{width:100px;}
-.width100{width:100%}
-=======
+.width100{width:100%; text-align:center;}
+#topping-modal-footer{height:120px;}
 .imgWidth{width:100px;}
 .imgWidth>img{width:100%;}
-.width100{width:100%;}
-.topping-btn{background-color: red; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:20px;}
+.width100{width:100%;display:inline-block;}
+.topping-btn{margin:5px; background-color: white; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:20px;}
 .topping-btn:hover{background-color:skyblue;}
->>>>>>> bd6802b... KFC recommend CSS수정완료 롯데리아 toping CSS수정중
+
