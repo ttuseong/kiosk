@@ -1,4 +1,13 @@
 @charset "UTF-8";
+#unitListModal {
+	left: -5.5%;
+}
+
+#unitManagerModal {    
+    left: -7%;
+    top: 2.25%;
+}
+ 
 /* 추가 구성 리스트 모달 */
 /* / 모달 전체 / */
 #unitListModal-content {
@@ -133,7 +142,7 @@
 /* 구성 추가/수정 모달 */
 /* / 모달 전체 / */
 #unitManagerModal-content {
-	width: 800px;
+	min-width: 700px;
     border: none;
     font-size: 15px;
     box-shadow: 0px 0px 7px grey;
@@ -141,14 +150,84 @@
 
 /* 모달 바디 */
 #unitManagerModal-body {
-	min-height: 200px;
+	width: 100%;
+	min-height: 100%;
 	padding: 40px;
 	text-align: center;
 }
 
+.unitManagerModal-inputAndDropDownContainer {
+	width: 600px;
+	margin: auto;	
+}
+
 /* 구성 이름 */
-#unitManagerModal-body > div > p, input{
+.unitManagerModal-unitName > p, input{
 	display: inline-block;
+}
+
+/* 구성 이름 인풋 박스 스타일 */
+.unitManagerModal-unitName > input {
+	width: 210px;
+    height: 40px;
+    border: 1px solid #aeaeb0;
+    border-radius: 6px;
+}
+
+/* 인풋 박스 네임 (이름, 추가구성 등) */
+#unitManagerModal-body > div > div > p {
+    width: 85px;
+    margin: 0 15px 0 0;
+    font-weight: bold;
+    text-align: center;
+    font-size: 16px;
+}
+
+#unitManagerModal-body > div > div {
+    width: 600px;
+	margin-bottom: 15px;
+    text-align: left;
+}
+
+#unitManagerModal-body > div > div:last-child {
+	margin-bottom: 0px!important;
+}
+
+/* 드롭다운 */
+.unitManagerModal-basicInfoDropdown > button {
+	width: 210px;
+	border: solid 1px #b4b4b4!important;
+}
+
+.unitManagerModal-basicInfoDropdown > ul > li {
+	width: 207px;
+	text-align: center;
+	font-size: 16px!important;	
+}
+
+.unitManagerModal-unitComponent > p {
+	display: inline-block;
+	margin: 0 15px 0 0;
+	font-weight: bold;
+}
+
+.unitManagerModal-cateDropdown, .unitManagerModal-menuDropdown {
+	display: inline-block!important;
+}
+
+.unitManagerModal-unitComponent > div > div {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+/* 구성 추가 버튼 */
+.unitManagerModal-btnContainer {
+	display: inline-block;
+}
+
+.unitManagerModal-btnContainer > .unitAddBtn {
+	width: 30px;
+	height: 30px;
 }
 
 
@@ -160,4 +239,8 @@
     padding: 0px;
 	border: none;
     text-align: center;
+}
+
+.adminMenu-footerBtnContainer > button {
+    width: 90px!important;
 }
