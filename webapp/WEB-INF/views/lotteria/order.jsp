@@ -155,7 +155,7 @@
 					<div class="modal-header">
 						<h4 class="modal-title">세트_디저트</h4>
 					</div>
-					<div class="modal-body modal-height800px">
+					<div class="modal-body modal-height700px">
 
 						<!--탭 메뉴 영역 -->
 						<ul class="modal-tabs">
@@ -169,12 +169,12 @@
 							<div id="modal-tab1" class="modal-tab_content">
 								<!--Content-->
 								<c:forEach items="${dessertMenu }" var="set" varStatus="v">
-								<div class="modal-float set_dessert" data-dessertmenuno="${ set.menuNo}" >
-									<div class="width130px">
-										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
-										<div class="modal-center width130px">
-											<div>${set.menuName }</div>
-											<p class="modal-red">${set.menuPrice }</p>
+								<div class="modal-float set_dessert margin_battom16px" data-dessertmenuno="${ set.menuNo}" >
+									<div class="width110px">
+										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="110px"></div>
+										<div class="modal-center width110px">
+											<div class="modal-fontSize15px">${set.menuName }</div>
+											<p class="modal-red modal-fontSize15px">${set.menuPrice }</p>
 										</div>
 									</div>
 								</div>
@@ -184,12 +184,12 @@
 							<div id="modal-tab2" class="modal-tab_content">
 								<!--Content-->
 								<c:forEach items="${drinkMenu }" var="set" varStatus="v">
-								<div class="modal-float set_drink" data-drinkmenuno="${ set.menuNo}">
-									<div class="width130px">
-										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="130px"></div>
-										<div class="modal-center width130px">
-											<div>${set.menuName }</div>
-											<p class="modal-red">${set.menuPrice }</p>
+								<div class="modal-float set_drink margin_battom16px" data-drinkmenuno="${ set.menuNo}">
+									<div class="width110px">
+										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="110px"></div>
+										<div class="modal-center width110px">
+											<div class="modal-fontSize15px">${set.menuName }</div>
+											<p class="modal-red modal-fontSize15px"">${set.menuPrice }</p>
 										</div>
 									</div>
 								</div>
@@ -276,41 +276,19 @@
 
 					<div class="modal-header" id="modalName-header">
 						<h4 class="modal-title" id="modalName-headerTitle">토핑을 선택해 주세요</h4>
-						<div class="modalName-closeBtnDiv">
-							<!-- 취소버튼 -->
-							<div class="icon-cancel modalName-closeBtn" data-dismiss="modal"></div>
-						</div>
+		
 					</div>
 					<!-- modal-header -->
 
 					<div class="modal-body" id="modalName-body-topping">
-						<div class="padding-top20px" style="text-align: center;">
+						<div class="padding-top20px">
 								<div class="toppingMenuName" style="display:inline-block; font-size:x-large;"></div>
-								<div class="toppingPirce" style="display:inline-block;">+0</div>
+								<div class="toppingPirce">+0</div>
 						</div>
 						<div class="modalName-container width80">
 							
-							<div class="padding-top20px">
-								<div>
-									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_bacon.png">
-									<p>베이컨</p>
-									<p>+300</p>
-								</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_tomato.png">
-									<p>토마토</p>
-									<p>+300</p>
-								</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_cheese.png">
-									<p>치즈</p>
-									<p>+300</p>
-								</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/assets/images/lotteria/topping_beefPaty.png">
-									<p>패티</p>
-									<p>+300</p>
-								</div>
+							<div class="padding-top20px" id = "toppingContents">
+	
 							</div>
 							
 						</div>
@@ -319,7 +297,7 @@
 					<!-- modal-footer -->
 					<div class=modal-footer id="topping-modal-footer">
 						<div class="width100">
-							<button class="topping-btn" type="button">취소하기</button>
+							<button class="topping-btn" type="button" data-dismiss="modal">취소하기</button>
 							<button class="topping-btn" type="button">완료하기</button>
 						</div>
 					</div>

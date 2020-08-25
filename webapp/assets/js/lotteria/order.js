@@ -123,9 +123,22 @@ $(document).ready(function() {
 		
 		$('#side').modal("hide");
 		setMenu(menuNo,drinkNo, drinkPrice);
-	})
+	});
 	
-	
+	$("#toppingContents").on("click",".toppingDiv", function(){
+		
+		var thisTopping = $(this);
+		var toppingNo = thisTopping.data("toppingno");
+		var toppingPrice = thisTopping.children().eq(2).text();
+		
+		var str = "";
+		str += "<div class='toppingCheck'></div>";
+		str += "<div class='toppingCheckNumber'>1</div>";
+		
+		thisTopping.append(str);
+			
+		
+	});
 });
 
 
@@ -236,8 +249,8 @@ function render(menuName, menuPrice){
 				if(categoryNo == 5){
 					var str2="";
 					str2 += "<div class='number'>"+menuPrice+"</div>";
-					str2 += "<button type='button' onClick='toppingModal()'class='margin-right'>토핑추가</button>";
-					str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+					str2 += "<button type='button' onClick='toppingModal()'class='margin-right height25px'>토핑추가</button>";
+					str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
 					
 					$(".menuNameText"+i).text(menuName);
 					$(".menuNumber"+i).append(str1);
@@ -316,7 +329,35 @@ function trDelete(i){
 
 function toppingModal(){
 	$(".toppingMenuName").text(setName);
-	$('#topping').modal();
+	var menuNo = thisMenu.data("menuno");
+	$("#toppingContents").empty();
+	$.ajax({
+		url : url+"/api/toppingList",		
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(menuNo),
+		dataType : "json",
+		success : function(toppingList){
+			
+			for(var z = 0; z < toppingList.length; z++){
+				str = "";
+				str += "<div class='toppingDiv relative' data-toppingno='"+toppingList[z].toppingNo+"'>";
+					str += "<img src='"+url+"/lotteria/"+toppingList[z].toppingImg+"'>";
+					str += "<p>"+toppingList[z].toppingName+"</p>";
+					str += "<p class='menuPrice'>"+ toppingList[z].toppingPrice+"</p>";
+				str += "</div>";
+				
+				$("#toppingContents").append(str);
+			}
+			
+			$('#topping').modal();
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	}); 
+	
 }
 
 function pageDown(){

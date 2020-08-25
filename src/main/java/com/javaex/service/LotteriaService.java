@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.javaex.dao.LotteriaDao;
 import com.javaex.util.Paging;
+import com.javaex.vo.LotteriaToppingVo;
 import com.javaex.vo.LotteriaVo;
 
 @Service
@@ -60,6 +61,10 @@ public class LotteriaService {
 		}else {
 			return lotteriaDao.category4MenuCount(categoryNo);
 		}
+	}
+	
+	public List<LotteriaToppingVo> toppingList(int menuNo){
+		return lotteriaDao.toppingList(menuNo);
 	}
 
 }

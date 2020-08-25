@@ -8,7 +8,7 @@
 .width-auto{width: auto;}
 /* .fontSize50px{font-size: 40px;} */
 /* .contents-header{border:8px solid #990012;height:250px;text-align: center;} */
-.width130px{width:130px;height:180px;}
+.width110px{width:110px;height:130px;}
 
 ul.tabs {
 	margin: 0;
@@ -127,7 +127,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 }
 
 /*Tab Conent CSS*/
-.modal-tab_container {border: 1px solid white;border-top: none;overflow: hidden;clear: both;float: left;width: 100%;background: #fff;}
+.modal-tab_container {border: 1px solid white;border-top: none;overflow: hidden;clear: both;float: left;width: 100%;background: #fff;padding: 10px 50px 10px 50px;}
 .modal-tab_content {padding: 20px;font-size: 1.2em;}
 .modal-header {background-color:#d7f9fd;}
 .modal-body {padding: 0px;}
@@ -140,7 +140,9 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalFooter-width33{width:33%;height:100%;float: left;}
 .modalFooter-btn1{width:80%; height:75%;margin-top: 7px;border-radius: 10px;background-color: white;font-size: 20px;}
 .modalFooter-btn2{width:80%; height:75%;margin-top: 7px;border-radius: 10px; background-color:#d7f9fd;;font-size: 20px;}
-.modal-height800px{height: 800px;}
+.modal-height700px{height: 700px;}
+.modal-fontSize15px{font-size:15px;}
+.margin_battom16px{margin-bottom: 16px;}
 
 /* 단품, 세트 선택 모달 */
 #modalName-align{top: 40%;transform:translateY(-50%);}
@@ -153,8 +155,8 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalName-closeBtn {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 35px;color: #24a3f7;}
 /* 단품, 세트 선택  */
 #modalName-body {position: relative;width:584px; height: 300px;}
-#modalName-body-topping {position: relative;width:584px; height: 300px;}
-.modalName-container {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);}
+#modalName-body-topping {position: relative;width:584px; height: 200px;}
+.modalName-container {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);margin-top: 20px;}
 
 .modalName-container div {text-align: center; display: inline-block;}
 
@@ -178,7 +180,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
   	justify-content: center;
   	align-items: center;
   	position: relative;
-  	margin: 10px 5px 10px 10px;
+  	margin: 5px 5px 5px 10px;
 }
 
 .helpIcon > p{
@@ -195,29 +197,33 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .btn-backColor{height: 80%; width: 80%; font-size: 20px; background-color: #F9A7B0; border-radius: 12px;}
 .btn-left{position: absolute;left: 0%;top: 45%;height: 85px;width: 35px;border-radius: 0 10px 10px 0;border: 0px;color: white;background-color: #B6B6B4;}
 .btn-right{position: absolute;right: 0%;top: 45%;height: 85px;width: 35px;border-radius: 10px 0 0 10px;border: 0px;color: white;background-color: #B6B6B4;}
-.up-downDiv{display: inline-block;width: 15px;height: 27px;font-size: 0;border: 0.5px solid #B6B6B4;border-radius: 3px;}
+.up-downDiv{display: inline-block;width: 15px;height: 25px;font-size: 0;border: 0.5px solid #B6B6B4;border-radius: 3px;}
 .btn-up{display: inline-block;height: 49%;width: 100%;font-size: 10px;vertical-align: middle;margin: 0%;padding: 0%;border: none;}
 .btn-down{display: inline-block;height: 49%;width: 100%;font-size: 10px;vertical-align: middle;margin: 0%;padding: 0%;border: none;}
 .number{display: inline-block;}
+.height25px{height:25px;}
 
 .margin-right{margin: 0 30px 0 10px;}
 
 /* 토핑모달 */
 
 .modalName-container-topping {position: absolute;top: 10%;left: 50%;transform: translate(-80%, -50%); display:inline-block;text-align:center;}
-.toppingMenuName{display:block;font-size: 20px;font-weight: bold;}
-.toppingPirce{display:block;font-size:x-large;font-weight:bold;}
+.toppingMenuName{display:block;font-size: 20px;font-weight: bold;margin-left: 90px;}
+.toppingPirce{display:block;font-size:x-large;font-weight:bold;display:inline-block;color:red;}
 .width80{width: 80%; }
 
-.padding-top20px{display:inline-block;width: 100%;}
+.padding-top20px{display:inline-block;width: 100%;margin-top:10px;}
 .padding-top20px > div > img{width:100px;}
 .width100{width:100%; text-align:center;}
-#topping-modal-footer{height:120px;}
+#topping-modal-footer{height:60px;}
 .imgWidth{width:100px;}
 .imgWidth>img{width:100%;}
 .width100{width:100%;display:inline-block;}
-.topping-btn{margin:5px; background-color: white; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:20px;}
+.topping-btn{margin:5px; background-color: white; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:5px;}
 .topping-btn:hover{background-color:skyblue;}
+.toppingCheck{height: 100px;width: 100px;position: absolute;padding: 0%;left: 0px;top: 0px;border-radius: 100%;background-color: gray;opacity: 70%;}
+.toppingCheckNumber{position: absolute;left: 33px;top: 15px;font-size: 50px;color: white;}
+.relative{position:relative;}
 
 
 /* 페이징 */

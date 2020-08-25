@@ -137,5 +137,21 @@
 		]]>
 	</select>
 	
+	<!-- 토핑리스트 -->
+	<select id="toppingList" resultType = "com.javaex.vo.LotteriaToppingVo" parameterType="int">
+		<![CDATA[
+			select t.toppingNo toppingNo, 
+			         toppingName, 
+			         toppingPrice, 
+			         toppingImg, 
+			         ut.menuNo menuNo
+			from topping t, 
+			     useTopping ut 
+			where ut.toppingNo(+) = t.toppingNo 
+			and t.storeNo=2
+			and ut.menuNo=#{menuNo}
+		]]>
+	</select>
+	
 	
 </mapper>

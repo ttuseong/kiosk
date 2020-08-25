@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.javaex.util.Paging;
+import com.javaex.vo.LotteriaToppingVo;
 import com.javaex.vo.LotteriaVo;
 
 @Repository
@@ -53,6 +54,10 @@ public class LotteriaDao {
 	
 	public int category4MenuCount(int categoryNo) {
 		return sqlSession.selectOne("lotteria.category4MenuCount", categoryNo);
+	}
+	
+	public List<LotteriaToppingVo> toppingList(int menuNo){
+		return sqlSession.selectList("lotteria.toppingList", menuNo);
 	}
 
 }

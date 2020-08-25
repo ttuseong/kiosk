@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.LotteriaService;
+import com.javaex.vo.LotteriaToppingVo;
 import com.javaex.vo.LotteriaVo;
 
 @Controller
@@ -37,4 +38,9 @@ public class ApiLotteriaController {
 		return lotteriaService.menuCategoryNo(selectMenuNo);
 	}
 	
+	@RequestMapping("/toppingList")
+	@ResponseBody
+	public List<LotteriaToppingVo> toppingList(@RequestBody int menuNo){
+		return lotteriaService.toppingList(menuNo);
+	}
 }
