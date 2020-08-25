@@ -6,6 +6,7 @@
     <mappers>
     <mapper resource="mybatis/mappers/lotteria.xml" />
     <mapper resource="mybatis/mappers/kfc.xml" />
+    <mapper resource="mybatis/mappers/adminMenu.xml" />
     
     </mappers>
 </configuration>
