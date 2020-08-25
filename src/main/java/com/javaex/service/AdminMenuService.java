@@ -61,4 +61,10 @@ public class AdminMenuService {
 		
 		return menuVo;
 	}
+	
+	// Service 메뉴 삭제
+	public int delMenu(int menuNo) {
+		
+		return adminMenuDao.delMenu(menuNo);
+	}
 }

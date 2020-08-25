@@ -52,4 +52,11 @@ public class AdminMenuController {
 		return menuVo;
 	}
 	
+	// 메뉴 정보
+	@ResponseBody
+	@RequestMapping("/adminDelMenu")
+	public int adminDelMenu(@RequestParam("menuNo") int menuNo) {
+		
+		return adminMenuService.delMenu(menuNo);
+	}
 }

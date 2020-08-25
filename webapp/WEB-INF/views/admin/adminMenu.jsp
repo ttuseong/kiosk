@@ -132,7 +132,8 @@
 									<div class="adminMenu-cateDropdown">
 										<!-- 카테고리 드롭다운 -->
 										<p>카테고리</p>
-										<div class="dropdown adminMenu-basicInfoDropdown" id="dropdownCateName">
+										<div class="dropdown adminMenu-basicInfoDropdown"
+											id="dropdownCateName">
 											<button class="btn btn-default dropdown-toggle" type="button"
 												id="dropdownMenu1" data-toggle="dropdown"
 												aria-expanded="true">
@@ -153,7 +154,8 @@
 									<!-- 메뉴 드롭다운 -->
 									<div class="adminMenu-menuDropdown">
 										<p>메뉴</p>
-										<div class="dropdown adminMenu-basicInfoDropdown" id="dropdownMenuName">
+										<div class="dropdown adminMenu-basicInfoDropdown"
+											id="dropdownMenuName">
 											<button class="btn btn-default dropdown-toggle" type="button"
 												id="dropdownMenu1" data-toggle="dropdown"
 												aria-expanded="true" style="margin-right: 0;">
@@ -177,7 +179,8 @@
 									style="margin-top: 18px !important;">
 
 									<p>메뉴이름</p>
-									<input type="text" style="width: 150px;" placeholder="메뉴이름" name="menuName">
+									<input type="text" style="width: 150px;" placeholder="메뉴이름"
+										name="menuName">
 									<p>가격</p>
 									<input type="text" placeholder="가격" name="menuPrice">
 
@@ -247,10 +250,13 @@
 					<!-- 토핑 정보 끝 -->
 
 					<div class="adminMenu-btnContainer">
-						<a href="#" class="btn btn-secondary btn-icon-split"> <span
-							class="text">삭제</span>
-						</a> <a href="#" class="btn btn-success btn-icon-split"> <span
-							class="text">확인</span>
+						<input type="hidden" id="selectMenuNo" value="">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split adminMenu-menuDelBtn">
+							<span class="text">삭제</span>
+						</a> <a href="#"
+							class="btn btn-success btn-icon-split adminMenu-menuSubmitBtn">
+							<span class="text">확인</span>
 						</a>
 					</div>
 
@@ -531,19 +537,19 @@
 		src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
 </body>
 <script type="text/javascript">
-	// 메뉴 리스트 받아오기 (특정 카테고리 선택 시, 해당 카테고리에 속해있는 메뉴 리스트 뽑아옴)
+	/* 메뉴 리스트 받아오기 (특정 카테고리 선택 시, 해당 카테고리에 속해있는 메뉴 리스트 뽑아옴) */
 	$("#dropdownCateList").on("click", "li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-		$("#dropdownMenuList").children('li').remove(); // 카테고리를 한 번 선택할 때마다 기존 menuList 삭제해 줌
+		$("#dropdownMenuList").children('li').remove(); // 카테고리를 한 번 선택할 때마다 기존 menuList 삭제해 줌 
+		$("#dropdownMenuName").children('button').text("메뉴를 선택하세요."); // 카테고리를 선택할 때마다 메뉴 드롭다운 타이틀 초기화
 
 		var id = $(this).attr('id'); // 카테고리 드롭다운 li의 아이디값 받아오기 - 카테고리 넘버 알아오기 위함
 		var cateNo = document.getElementById(id).value; // li의 value값(카테고리넘버) 받아오기
 		console.log(id + ', ' + cateNo);
-		
+
 		var cateName = $("#" + id).text(); // 선택한 카테고리 이름 받아오기 
 		$("#dropdownCateName").children('button').text(cateName); // '카테고리를 선택하세요' 문구를 선택한 카테고리 이름으로 변경
 
-		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminMenuList",
 			type : "post",
@@ -552,11 +558,11 @@
 			},
 			dataType : "json",
 			success : function(menuList) { /*성공시 처리해야될 코드 작성*/
-				
+
 				for (var i = 0; i < menuList.length; i++) {
 					menuListRender(menuList[i]);
 				}
-			
+
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -577,19 +583,19 @@
 		$("#dropdownMenuList").prepend(str);
 	}
 
-	// 메뉴 정보 받아오기 (특정 메뉴 선택시 해당 메뉴에 대한 정보 받아옴 - 메뉴이름, 가격, 이미지 등)
+	/* 메뉴 정보 받아오기 (특정 메뉴 선택시 해당 메뉴에 대한 정보 받아옴 - 메뉴이름, 가격, 이미지 등) */
 	$("#dropdownMenuList").on("click", "li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-		
+
 		var id = $(this).attr('id'); // 메뉴 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
 		var menuNo = document.getElementById(id).value; // li의 value값(메뉴 넘버) 받아오기
 		console.log(id + ', ' + menuNo);
+		
+		$("#selectMenuNo").val(menuNo); // 메뉴 등록, 수정, 삭제를 위해 페이지 하단에 메뉴 넘버 넘겨주기
 
 		var menuName = $("#" + id).text(); // 선택한 메뉴 이름 받아오기 
 		$("#dropdownMenuName").children('button').text(menuName); // '메뉴를 선택하세요' 문구를 선택한 메뉴 이름으로 변경
 
-		
-		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminMenuInfo",
 			type : "post",
@@ -607,9 +613,48 @@
 				console.error(status + " : " + error);
 			}
 		});
+
+	});
+
+	/* 메뉴 삭제 */
+	$(".adminMenu-menuDelBtn").on("click", function() {
+		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
+
+		var menuNo = $("#selectMenuNo").val(); // 메뉴 넘버 받아오기
+		console.log("삭제 버튼 클릭", menuNo);
+		
+		if(menuNo == '') {
+			alert("메뉴를 선택하세요.");
+		}		
+		else {
+			$.ajax({
+				url : "${pageContext.request.contextPath}/admin/adminDelMenu",
+				type : "post",
+				data : {
+					menuNo : menuNo
+				},
+				dataType : "json",
+				success : function(cnt) { /*성공시 처리해야될 코드 작성*/
+					console.log(cnt);
+					$("#dropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+
+					$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
+					
+					// 인풋박스 모두 비워주기
+					$("input[name=menuName]").val("");
+					$("input[name=menuPrice]").val("");
+					/* $("input[name=menuCalorie]").val(""); */
+					$("[name=menuDesc]").text("");
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+			
+		}
 		
 	});
-	
+
 	/* 이중모달 */
 	$(document).on('hidden.bs.modal', function(event) {
 		if ($('.modal:visible').length) {
