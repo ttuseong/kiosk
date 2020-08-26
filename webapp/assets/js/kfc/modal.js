@@ -219,7 +219,7 @@ function addBurgerBoxBody(){
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
-      }
+      }	
    });
 }
 
@@ -409,8 +409,6 @@ function addSideMenu(sideList){
    var classStatus;
 
    defaultPrice = sideList[index].menuPrice;
-   
-   console.log(sideArr);
 
    while(index > -1){
    
@@ -419,7 +417,6 @@ function addSideMenu(sideList){
          if(index == -1){
             break;
          }   
-         console.log(sideList[index].menuNo);
          if(sideArr[sideIndex][1] == sideList[index].menuNo){
             classStatus='recommend-check';
          }
