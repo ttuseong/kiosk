@@ -57,7 +57,6 @@ function movePageCircle(){
 }
 
 function orderComplate(subText){
-	console.log("test 성공");
 	
 	var str = "";
 	str += ' <tr>';
@@ -98,14 +97,10 @@ function mainPageTotal(){
 	var trGroup = $("#menuTable>tbody").children();  
 	var length = trGroup.size();
 	
-	console.log(typeof(mainTotalCount));
-	
 	for(var i=0; i<length; i++){
 		mainTotalCount += Number(trGroup.eq(i).find(".count").children().eq(1).text());
 		mainTotalPrice += Number(trGroup.eq(i).find(".pricePos").children().eq(0).text());
 	}
-	
-	console.log(mainTotalCount + ", " + mainTotalPrice);
 	
 	$("#orderLeft").children().eq(0).children().eq(1).text(mainTotalCount);
 	$("#orderLeft").children().eq(1).children().eq(1).text(mainTotalPrice);
