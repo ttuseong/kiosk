@@ -11,7 +11,7 @@ var selectedMode;
 //햄버거박스 사이드 메뉴
 var burgerName;
 var burgerConfig;
-var burgerCount = 1;
+var burgerCount;
 var burgerPrice=0;
 var burgerImg;
 
@@ -30,12 +30,9 @@ var sideChangeCurPoint = 0;
 var sideChangeEndPoint;
 var sideChangeCurPos = 0;
 
-//사이드 변경할 때 사용될 기본 가격
+//사이드 변경할 때 사용될 기본 가격, 변경할 때 얼마가 추가요금으로 나오는지 판단하기 위해 미리 저장
 var defaultPrice=0;
 
-$(document).ready(function(){
-   inittoppingArr();
-});
 
 /*토핑의 no, name, price, count*/
 /*금액 합산을 위해 미리 초기화를 하는 작업*/
@@ -182,14 +179,14 @@ $("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
 
 // 모달 교체 시점1
 $("#selectedModecompleted").on("click", function(){
-   
+   burgerCount = 1;
    $("#selectMode").modal("hide");
    
    if(selectedMode == 'default'){
       
    }
    else{
-      
+      inittoppingArr();
       initSideArr($("#selectedMode").parent().data("mode"));
    }
    

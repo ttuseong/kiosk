@@ -78,7 +78,7 @@ function orderComplate(subText){
 	str += '	<td>';
 	str += '		<div class="price">';
 	str += '			<div class="pricePos">';
-	str += '				<p>'+ burgerPrice +'</p>';
+	str += '				<p>'+ totalPrice +'</p>';
 	str += '				<div class="icon-cancel"></div>';
 	str += '			</div>';
 	str += '		</div>';
