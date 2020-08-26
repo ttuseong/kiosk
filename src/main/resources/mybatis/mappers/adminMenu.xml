@@ -46,4 +46,11 @@
 			where menuno = #{menuNo}
 		]]>
 	</select>
+	
+	<delete id="delMenu" parameterType="int">
+		<![CDATA[
+			delete from menu
+			where menuNo = #{menuNo}
+		]]>
+	</delete>
 </mapper>

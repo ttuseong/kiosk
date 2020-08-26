@@ -31,10 +31,18 @@ public class AdminMenuDao {
 		
 		return getMenuList;
 	}
-	
+
+	// Dao 메뉴 정보 불러오기
 	public MenuVo getMenuInfo(int menuNo) {
 		System.out.println("dao(adminMenu) - 메뉴 정보 불러오기");
 
 		return sqlSession.selectOne("adminMenu.getMenuInfo", menuNo);
+	}
+
+	// Dao 메뉴 삭제
+	public int delMenu(int menuNo) {
+		System.out.println("dao(adminMenu) - 메뉴 삭제");
+
+		return sqlSession.delete("adminMenu.delMenu", menuNo);
 	}
 }
