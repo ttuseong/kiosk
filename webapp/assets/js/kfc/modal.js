@@ -349,10 +349,10 @@ $("#bugerToppingCompleted").on("click", function(){
 
 /*클릭을 통한 가격 증가 이벤트*/
 $(".icon-plus").on("click", function(){
-   var thisBtn = $(this);
    burgerCount++;
    computeAllPrice();
-   thisBtn.prev().text(burgerCount);
+	
+   $(".burgertotalCount").text(burgerCount);
    $(".burgerBoxPrice").text(totalPrice);
 });
 
@@ -364,7 +364,7 @@ $(".icon-minus").on("click", function(){
    
    burgerCount--;
    computeAllPrice();
-   thisBtn.next().text(burgerCount);
+   $(".burgertotalCount").text(burgerCount);
    $(".burgerBoxPrice").text(totalPrice);
 });
 

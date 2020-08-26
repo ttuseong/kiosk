@@ -2,6 +2,6 @@
     pageEncoding="UTF-8"%>
 <div class="count">
 	<div class="icon-minus iconCombination"></div>
-	<p></p>
+	<p class="burgertotalCount"></p>
 	<div class="icon-plus iconCombination"></div>
 </div>
