@@ -287,19 +287,13 @@
 						</div>
 						<div class="modalName-container width80">
 							
-							<div class="padding-top20px" id = "toppingContents">
-	
-							</div>
-							
+							<div class="padding-top20px" id = "toppingContents"></div>
 						</div>
 					</div>
 					<!-- modal-body -->
 					<!-- modal-footer -->
 					<div class=modal-footer id="topping-modal-footer">
-						<div class="width100">
-							<button class="topping-btn" type="button" data-dismiss="modal">취소하기</button>
-							<button class="topping-btn" type="button">완료하기</button>
-						</div>
+						<div class="width100 toppingModalBtn"></div>
 					</div>
 				</div>
 				<!-- /.modal-content -->

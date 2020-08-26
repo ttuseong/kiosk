@@ -154,9 +154,9 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalName-closeBtnDiv {height: 35px;width: 35px;border-radius: 7px;border: solid 2px #24a3f7;background-color: #d7f9fd;position: absolute;top: 50%;right: 15px;transform: translateY(-50%);}
 .modalName-closeBtn {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 35px;color: #24a3f7;}
 /* 단품, 세트 선택  */
-#modalName-body {position: relative;width:584px; height: 300px;}
+#modalName-body {position: relative;width:584px; height: 200px;}
 #modalName-body-topping {position: relative;width:584px; height: 200px;}
-.modalName-container {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);margin-top: 20px;}
+.modalName-container {position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);margin-top: 20px;}
 
 .modalName-container div {text-align: center; display: inline-block;}
 
@@ -210,7 +210,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalName-container-topping {position: absolute;top: 10%;left: 50%;transform: translate(-80%, -50%); display:inline-block;text-align:center;}
 .toppingMenuName{display:block;font-size: 20px;font-weight: bold;margin-left: 90px;}
 .toppingPirce{display:block;font-size:x-large;font-weight:bold;display:inline-block;color:red;}
-.width80{width: 80%; }
+.width80{width: 80%;top: 52%;}
 
 .padding-top20px{display:inline-block;width: 100%;margin-top:10px;}
 .padding-top20px > div > img{width:100px;}
@@ -221,10 +221,10 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .width100{width:100%;display:inline-block;}
 .topping-btn{margin:5px; background-color: white; font-size:x-large; border:1px solid skyblue; border-radius:5px;padding:5px;}
 .topping-btn:hover{background-color:skyblue;}
-.toppingCheck{height: 100px;width: 100px;position: absolute;padding: 0%;left: 0px;top: 0px;border-radius: 100%;background-color: gray;opacity: 70%;}
+.toppingCheck{height: 70px;width: 70px;position: absolute;padding: 0%;left: 15px;top: 10px;border-radius: 100%;background-color: gray;opacity: 70%;}
 .toppingCheckNumber{position: absolute;left: 33px;top: 15px;font-size: 50px;color: white;}
 .relative{position:relative;}
-
+.toppingCansle{position: absolute;top: 0px;right: 0;width: 25px;height: 25px;font-size: 20px;background-color: #38ACEC;color: white;border-radius: 30px;font-weight: 700;}
 
 /* 페이징 */
 .pageDot{width:15px;height:15px;background-color:gray;border-radius: 15px;display: inline-block;}

@@ -10,6 +10,7 @@ var pg;
 var categoryNo;
 var params = location.search.substr(location.search.indexOf("?") + 1);
 
+
 $(document).ready(function() {
 	if(params != ""){
 		
@@ -124,24 +125,49 @@ $(document).ready(function() {
 		$('#side').modal("hide");
 		setMenu(menuNo,drinkNo, drinkPrice);
 	});
+		
 	
 	$("#toppingContents").on("click",".toppingDiv", function(){
-		
 		var thisTopping = $(this);
 		var toppingNo = thisTopping.data("toppingno");
 		var toppingPrice = thisTopping.children().eq(2).text();
+		var toppingNumber = thisTopping.children().eq(2).next().next().next().text();
+		var toppingTotalPrice = Number($(".toppingPirce").text());
 		
-		var str = "";
-		str += "<div class='toppingCheck'></div>";
-		str += "<div class='toppingCheckNumber'>1</div>";
+		if(toppingNumber != ""){
+			toppingNumber = Number(toppingNumber) + 1;
+			thisTopping.children().eq(2).next().next().next().text(toppingNumber);
+		}else{
+			var str = "";
+			str += "<div class='toppingCheck'></div>";
+			str += "<div class='toppingCheckNumber'>1</div>";
+			str += "<div class='toppingCansle'>X</div>";
+			thisTopping.append(str);
+		}
 		
-		thisTopping.append(str);
-			
+		if(toppingNumber == 0)toppingNumber =1;
 		
+		var total = Number(toppingPrice) + Number(toppingTotalPrice); 
+		$(".toppingPirce").text(total);
 	});
+
 });
 
+function cansle(){
+	$(".toppingPirce").text("+0");
+}
 
+function toppingOk(numberI){
+	var toppingPrice = Number($(".toppingPirce").text());
+	var price = Number($(".menuPrice" + numberI).children().eq(0).text());
+	var hap = toppingPrice + price;
+	$(".menuPrice" + numberI).children().eq(0).text(hap);
+	
+	menuPrice = hap;
+	result();
+	
+	$("#topping").modal("hide");
+}
 
 function setOrSingle(menuNo, menuName, menuPrice){
 	/*세트제품이 있는지 확인*/
@@ -249,7 +275,7 @@ function render(menuName, menuPrice){
 				if(categoryNo == 5){
 					var str2="";
 					str2 += "<div class='number'>"+menuPrice+"</div>";
-					str2 += "<button type='button' onClick='toppingModal()'class='margin-right height25px'>토핑추가</button>";
+					str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
 					str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
 					
 					$(".menuNameText"+i).text(menuName);
@@ -327,7 +353,9 @@ function trDelete(i){
 	i+=1;
 }
 
-function toppingModal(){
+function toppingModal(numberI){
+	$(".toppingModalBtn").empty();
+	
 	$(".toppingMenuName").text(setName);
 	var menuNo = thisMenu.data("menuno");
 	$("#toppingContents").empty();
@@ -345,11 +373,16 @@ function toppingModal(){
 					str += "<img src='"+url+"/lotteria/"+toppingList[z].toppingImg+"'>";
 					str += "<p>"+toppingList[z].toppingName+"</p>";
 					str += "<p class='menuPrice'>"+ toppingList[z].toppingPrice+"</p>";
-				str += "</div>";
+				str += "<div>";
 				
 				$("#toppingContents").append(str);
 			}
 			
+			var str1 = "";
+			str1 += "<button class='topping-btn' type='button' data-dismiss='modal' onClick='cansle();'>취소하기</button>";
+			str1 += "<button class='topping-btn' type='button' onClick='toppingOk("+numberI+");'>완료하기</button>";
+			
+			$(".toppingModalBtn").append(str1);
 			$('#topping').modal();
 			
 		},
