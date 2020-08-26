@@ -43,4 +43,16 @@ public class ApiLotteriaController {
 	public List<LotteriaToppingVo> toppingList(@RequestBody int menuNo){
 		return lotteriaService.toppingList(menuNo);
 	}
+	
+	@RequestMapping("/dessertMenu")
+	@ResponseBody
+	public List<LotteriaVo> dessertMenu(){
+		List<LotteriaVo> dessertList = lotteriaService.dessertList();
+		
+		for(LotteriaVo vo: dessertList) {
+			System.out.println(vo);
+		}
+		
+		return dessertList;
+	}
 }

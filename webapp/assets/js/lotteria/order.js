@@ -100,7 +100,7 @@ $(document).ready(function() {
 		$(".modal-tab_content:first").show();
 		
 		$("#setAndSingle").modal("hide");
-		$("#side").modal();
+		side();
 	});
 	
 	
@@ -128,11 +128,12 @@ $(document).ready(function() {
 		
 	
 	$("#toppingContents").on("click",".toppingDiv", function(){
+		
 		var thisTopping = $(this);
 		var toppingNo = thisTopping.data("toppingno");
 		var toppingPrice = thisTopping.children().eq(2).text();
 		var toppingNumber = thisTopping.children().eq(2).next().next().next().text();
-		var toppingTotalPrice = Number($(".toppingPirce").text());
+		var toppingTotalPrice = Number($(".toppingPrice").text());
 		
 		if(toppingNumber != ""){
 			toppingNumber = Number(toppingNumber) + 1;
@@ -148,17 +149,44 @@ $(document).ready(function() {
 		if(toppingNumber == 0)toppingNumber =1;
 		
 		var total = Number(toppingPrice) + Number(toppingTotalPrice); 
-		$(".toppingPirce").text(total);
+		$(".toppingPrice").text(total);
 	});
 
 });
 
+function side(){
+	alert("세트 클릭했수?");
+	$("#side").modal();
+	$.ajax({
+		url : url+"/api/dessertMenu",		
+		type : "post",
+		dataType : "json",
+		success : function(dessertList){
+			for( var y = 0 ; y < dessertList.length; y++){
+				var str = "";
+				str += "<div><img";
+				str += "</div>";
+				
+				
+				
+				$(".dessertContents")
+			}
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	}); 
+	
+	
+}
+
 function cansle(){
-	$(".toppingPirce").text("+0");
+	$(".toppingPrice").text("+0");
 }
 
 function toppingOk(numberI){
-	var toppingPrice = Number($(".toppingPirce").text());
+	var toppingPrice = Number($(".toppingPrice").text());
 	var price = Number($(".menuPrice" + numberI).children().eq(0).text());
 	var hap = toppingPrice + price;
 	$(".menuPrice" + numberI).children().eq(0).text(hap);
@@ -355,10 +383,13 @@ function trDelete(i){
 
 function toppingModal(numberI){
 	$(".toppingModalBtn").empty();
-	
+	$(".toppingPrice").text("+0");
 	$(".toppingMenuName").text(setName);
 	var menuNo = thisMenu.data("menuno");
 	$("#toppingContents").empty();
+	
+	$(".toppingPrice")
+	
 	$.ajax({
 		url : url+"/api/toppingList",		
 		type : "post",
@@ -366,7 +397,6 @@ function toppingModal(numberI){
 		data : JSON.stringify(menuNo),
 		dataType : "json",
 		success : function(toppingList){
-			
 			for(var z = 0; z < toppingList.length; z++){
 				str = "";
 				str += "<div class='toppingDiv relative' data-toppingno='"+toppingList[z].toppingNo+"'>";

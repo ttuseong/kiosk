@@ -168,25 +168,19 @@
 
 							<div id="modal-tab1" class="modal-tab_content">
 								<!--Content-->
-								<c:forEach items="${dessertMenu }" var="set" varStatus="v">
-								<div class="modal-float set_dessert margin_battom16px" data-dessertmenuno="${ set.menuNo}" >
-									<div class="width110px">
-										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="110px"></div>
-										<div class="modal-center width110px">
-											<div class="modal-fontSize15px">${set.menuName }</div>
-											<p class="modal-red modal-fontSize15px">${set.menuPrice }</p>
-										</div>
+								<div class="modal-float set_dessert margin_battom16px" data-dessertmenuno="<%-- ${ set.menuNo} --%>" >
+									<div class="width110px dessertContents">
+										
 									</div>
 								</div>
-								</c:forEach>
 							</div>
 
-							<div id="modal-tab2" class="modal-tab_content">
+ 							<div id="modal-tab2" class="modal-tab_content">
 								<!--Content-->
 								<c:forEach items="${drinkMenu }" var="set" varStatus="v">
-								<div class="modal-float set_drink margin_battom16px" data-drinkmenuno="${ set.menuNo}">
+								<div class="modal-float set_drink margin_battom16px" data-drinkmenuno="${ set.menuImg}">
 									<div class="width110px">
-										<div><img src="${pageContext.request.contextPath}/assets/images/icon1.png" width="110px"></div>
+										<div><img src="${pageContext.request.contextPath}/lotteria/${set.menuImg}" width="110px"></div>
 										<div class="modal-center width110px">
 											<div class="modal-fontSize15px">${set.menuName }</div>
 											<p class="modal-red modal-fontSize15px"">${set.menuPrice }</p>
@@ -194,8 +188,19 @@
 									</div>
 								</div>
 								</c:forEach>
-							</div>
+							</div> 
 
+							<!-- 페이징 div -->
+							<div>
+								<div><button type="button" class="btn-left" onclick="">이전</button></div>
+
+								<div class="modalDotDiv">
+									<div class="modalPageDot"></div>
+								</div>
+
+								<div><button type="button" class="btn-right" onclick="">다음</button></div>
+							</div>
+							<!-- 페이징 div -->
 
 						</div>
 
@@ -283,7 +288,7 @@
 					<div class="modal-body" id="modalName-body-topping">
 						<div class="padding-top20px">
 								<div class="toppingMenuName" style="display:inline-block; font-size:x-large;"></div>
-								<div class="toppingPirce">+0</div>
+								<div class="toppingPrice">+0</div>
 						</div>
 						<div class="modalName-container width80">
 							
