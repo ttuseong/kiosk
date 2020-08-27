@@ -1700,4 +1700,13 @@
 
 }
 
+.subText{
+	color: gray;
+	font-size: 15px;
+}
+
+.subTextTd{
+	padding-left: 10px;
+}
+
  

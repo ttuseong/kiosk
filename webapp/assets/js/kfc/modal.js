@@ -524,24 +524,24 @@ $("#sideChangeComplete").on("click", function(){
 $("#hamburgerBoxSideMenuComplete").on("click", function(){
    var burgurChangeList = "-";
 
-   for(var i = 0; i < toppingArr.length; i++){
-      console.log(toppingArr);
-      if(toppingArr[i][3] != 0){
-         
-         burgurChangeList += toppingArr[i][1] + " " + toppingArr[i][3] +"개";
-         console.log(burgurChangeList);
-      }
-   }
+   var menuName = burgerName.split(selectedMode);
+
+   burgurChangeList += menuName[0];
    
    console.log(burgurChangeList);
    
    if(sideArr != undefined){
       for(var i = 0; i < sideArr.length; i++){
-         console.log(sideArr);
-         if(sideArr[i][0] != sideArr[i   ][1]){
-            burgurChangeList += $(".hamburgerBoxButton[data-index=" + i + "]").prev().children(".menuName").text();
-            console.log(burgurChangeList);
-         }
+		 burgurChangeList += " + ";
+		 burgurChangeList += $(".hamburgerBoxButton[data-index=" + i + "]").prev().children(".menuName").text();
+      }
+   }
+
+   for(var i = 0; i < toppingArr.length; i++){
+      console.log(toppingArr);
+      if(toppingArr[i][3] != 0){
+         burgurChangeList += " + ";
+         burgurChangeList += toppingArr[i][1] + " " + toppingArr[i][3] +"개";
       }
    }
    
@@ -615,9 +615,42 @@ $("#recommendCompleteBtn").on("click", function(){
    $("#recommend").modal("hide");
    var text=[];
    var price=[];
+   var count=[];
 
-   var length = $("#recommend-body > div").size();
+   var length = $("#menuTable>tbody>tr").size();
 
+   console.log(length);
+   
+   for(var i = 0; i<length; i++ ){
+		var menuText = $("#menuTable>tbody>tr").eq(i).children().eq(0).children(".textarea").children().eq(0).text();
+		text.push(menuText);
+		
+		var menuPrice = $("#menuTable>tbody>tr").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
+		price.push(menuPrice);
+		
+		var menuCount = $("#menuTable>tbody>tr").eq(i).children().eq(1).children().eq(0).children().eq(1).text();
+		count.push(menuCount);
+		
+		
+		var subtext = $("#menuTable>tbody>tr").eq(i).children().eq(0).children(".textarea").children().eq(1).text();
+		subtext = subtext.substring(1, subtext.length);
+
+		firstSplitText = subtext.split(" + ");
+		
+		for(var j = 0; j < firstSplitText.length; j++){
+			lastSplitText = firstSplitText[j].split(" ");
+			text.push(lastSplitText[0]);
+			if(lastSplitText[1] == undefined){
+				count.push(1);
+			} else{
+				count.push(lastSplitText[1].substring(0, 1)*menuCount);
+			}
+			
+			price.push(0);
+		}
+   }
+
+   length = $("#recommend-body > div").size();	
 
    for(var i = 0; i < length; i++){
       var currentDiv = $("#recommend-body").children().eq(i);
@@ -625,22 +658,33 @@ $("#recommendCompleteBtn").on("click", function(){
       if(currentDiv.children().eq(1).hasClass("recommend-check")){
          text.push(currentDiv.children().eq(0).children('.menuName').text());
          price.push(currentDiv.children().eq(0).children('.menuPrice').text());
+		 count.push(1);
       }
    }
-   addOrderList(text, price);
+   addOrderList(text, price, count);
    sum();
    $("#MyOrderListModal").modal();
    
 });
 
-function addOrderList(textArr, priceArr){
+function addOrderList(textArr, priceArr, countArr){
    var str = "";
    $(".orderList-table").empty();
    for(var i=0; i < textArr.length; i++) {
-      str += '<tr>';
-      str += '   <td id="orderlist-menuName">' + textArr[i] + '</td>';
-      str += '   <td id="orderlist-menuCnt"> 1 </td>';
-      str += '   <td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
+	  
+	  if(priceArr[i] == 0)
+      	str += '<tr ' + 'class="subText"' + '>';
+	  else
+		str += '<tr>';
+	  if(priceArr[i] == 0)
+      	str += '   <td id="orderlist-menuName" class="subTextTd">' + textArr[i] + '</td>';
+	  else
+		str += '   <td id="orderlist-menuName">' + textArr[i] + '</td>';
+
+	  str += '   <td id="orderlist-menuCnt"> ' + countArr[i] + ' </td>';
+	  
+	  if(priceArr[i] != 0)
+      	str += ' <td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
       str += '</tr>';
    }
 
