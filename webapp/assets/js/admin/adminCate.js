@@ -3,39 +3,38 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 
 /*카테고리 x버튼 누르면 삭제하기 메뉴가 있으면 삭제가 되면 안된다.. --삭제기능..*/
 $(".adminCate-delete").on("click", function(){
+	event.preventDefault();
 	console.log("클릭");
 	var cateDelete = $(this);
 	
 	console.log(cateDelete);
 	var categoryNo = cateDelete.parent().parent().data("no");
-	
+	console.log($('[data-no=' + categoryNo + ']'));
 	console.log(cateDelete.parent().parent());
 	console.log(categoryNo);
 	/*var categoryNo = $("#");*/
 	
-	if(confirm("                    카테고리 안에 메뉴가 있을 수 있습니다 \n                    그래도 정말로 삭제하시겠습니까?") == true){
-		$.ajax({
-			url : url+"/admin/adminCateDel",
-			type: "post",
-			data : {categoryNo : categoryNo},
-			dataType : "json",
-			success : function(cnt){
-				console.log(cnt);
-				/*성공시 처리해야 될 코드 작성 */
-				if(cnt>1){
-					console.log("찐")
-				}
-				else{
-					console.log("넌 그냥 삭제");
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}	
-		});
-	}else{
-		return false;
-	}
+	$.ajax({
+		url : url+"/admin/adminCateDel",
+		type: "post",
+		data : {categoryNo : categoryNo},
+		dataType : "json",
+		success : function(cnt){
+			console.log(cnt);
+			/*성공시 처리해야 될 코드 작성 */
+			if(cnt==0){
+				console.log("실패");
+				alert('카테고리에 값이 남아있습니다.');
+			}
+			else{
+				console.log("넌 그냥 삭제");
+				$('[data-no=' + categoryNo + ']').remove();
+			}
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}	
+	});
 
 });
 
@@ -56,7 +55,6 @@ $("#btnCateNameCheck").on("click", function(){
 	$.ajax({
 		
 		url : url+"/admin/adminCateUpdate",
-		
 		type: "post",
 		data : adminCateInfo,
 		

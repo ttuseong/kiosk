@@ -62,7 +62,7 @@
 	</select>
 	
 	<!-- 첫번째  ajax alert창 띄우기 -->
-	<select id="selectOneMenuCount" parameterType="int" resultType="com.javaex.vo.MenuVo">
+	<select id="selectOneMenuCount" parameterType="int" resultType="int">
 		<![CDATA[
 			SELECT 
 				 count(*) cnt

@@ -6,11 +6,8 @@
     <mappers>
     <mapper resource="mybatis/mappers/lotteria.xml" />
     <mapper resource="mybatis/mappers/kfc.xml" />
-<<<<<<< HEAD
     <mapper resource="mybatis/mappers/adminMenu.xml" />
-=======
     <mapper resource="mybatis/mappers/adminCategory.xml"></mapper>
->>>>>>> 01950da... 관리자 카테고리 카테고리 값, 공개 비공개 값 불러오기 완료/ 중복체크 버튼을 누르면 alert창 뜨기 구현중 카테고리 리스트 삭제 구현중
     
     </mappers>
 </configuration>

@@ -1,6 +1,4 @@
 package com.javaex.controller;
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +66,6 @@ public class AdminCategoryController {
 		
 		return cateVo;
 	}
-	
-	
 	  //카테고리 삭제 --게시글이 있냐없냐를 판단
 	  
 	  @ResponseBody
@@ -80,8 +76,6 @@ public class AdminCategoryController {
 		  int cnt = adminCategoryService.adminCateDel(categoryNo);
 		  System.out.println("cnt넘어옴");
 		  return cnt; 
-	  
 	  }
-
-
+	  
 }

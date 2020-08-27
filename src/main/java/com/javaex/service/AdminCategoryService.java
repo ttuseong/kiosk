@@ -45,23 +45,23 @@ public class AdminCategoryService {
 
 	  //카테고리 삭제 
 	  public int adminCateDel(int categoryNo) {
-		  System.out.println("서비스-카테고리 삭제하기"); 
+		  System.out.println("서비스-카테고리 삭제하기" + categoryNo); 
 		  //X버튼 누르면 메뉴의 갯수를 세주는 ajax.
 		  
 		  int cnt = adminCategoryDao.selectMenuCount(categoryNo);
-		  System.out.println(categoryNo);
-		  
-		  	if(cnt==0) {
-		  		System.out.println("삭제 alert창 띄어주기");
-		  	}else {
-		  		System.out.println("삭제 성공");
-		  	}
-		  
-		  adminCategoryDao.deleteCate(categoryNo); 
-		  System.out.println("test");
 		  System.out.println(cnt);
 		  
-		  return cnt; 	
+		  	if(cnt>=1) {
+		  		System.out.println("삭제 alert창 띄어주기");
+		  		return 0;
+		  	}else {
+		  		System.out.println("삭제 성공");
+		  		cnt = adminCategoryDao.deleteCate(categoryNo);
+		  		  System.out.println("test");
+				  System.out.println(cnt);
+				  return cnt;
+		  	}
+
 	  }
 
 }

@@ -45,9 +45,9 @@ public class AdminCategoryDao {
 	public int selectMenuCount(int categoryNo) {
 		System.out.println("다오- 카테고리 alert창 뜨게하기");
 		//X버튼 누르면 메뉴의 갯수를 세주는 ajax.alert
-		sqlSession.selectOne("adminCategory.selectOneMenuCount", categoryNo);
+		int cnt = sqlSession.selectOne("adminCategory.selectOneMenuCount", categoryNo);
 		
-		return categoryNo;
+		return cnt;
 	}
 
 	// 카테고리 삭제 -- 두번째 ajax 삭제하기
@@ -55,6 +55,7 @@ public class AdminCategoryDao {
 		System.out.println("다오 - 카테고리 정보 불러오기");		  
 		
 		int cnt = sqlSession.delete("adminCategory.deleteCate", categoryNo);
+		//삭제해주면 갯수가나온다 
 		
 		return cnt;
 	}
