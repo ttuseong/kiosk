@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+	
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -49,14 +52,11 @@
 
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+		<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="adminMenu">
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminMenu">
+			
 				<div class="sidebar-brand-text mx-3">Admin</div>
 			</a>
 
@@ -103,8 +103,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"
-						style="padding: 1.5rem 0 1.2rem 0 !important;">Kiosk Category</h1>
+					<h1 class="h3 mb-2 text-gray-800" style="padding: 1.5rem 0 1.2rem 0 !important;">Kiosk Category</h1>
 
 					<!-- 카테고리 추가 -->
 					<div class="card shadow mb-4">
@@ -112,20 +111,21 @@
 							<h6 class="m-0 font-weight-bold text-primary">카테고리 추가 및 수정</h6>
 						</div>
 						<div class="card-body">
-							<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+							<form action="" method="" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
 								<div class="input-group">
 									<p>카테고리</p>
 									<input type="text"
 										class="form-control adminCate-addCateForm border-0 small"
 										placeholder="카테고리를 입력하세요." aria-label="addCate"
 										aria-describedby="basic-addon2">
+									<button type="button" id="btnCateNameCheck">중복체크</button>
 										
 									<div class="form-groupAndBtn">	
 										<div class="form-group">
-											<div class="custom-control custom-checkbox "
+											<div class="custom-control custom-checkbox"
 												style="padding-left: 3rem !important;">
 												<input type="radio" class="custom-control-input"
-													id="cate-public" name="cate-openStatus" value="" checked>
+													id="cate-public" name="cate-openStatus" value="1" checked="checked">
 												<label class="custom-control-label" for="cate-public">공개</label>
 											</div>
 	
@@ -133,16 +133,15 @@
 											<div class="custom-control custom-checkbox"
 												style="padding-left: 3rem !important;">
 												<input type="radio" class="custom-control-input"
-													id="cate-private" name="cate-openStatus" value=""> <label
-													class="custom-control-label" for="cate-private"
-													style="margin-right: 20px;">비공개</label>
+													id="cate-private" name="cate-openStatus" value="0" > 
+												<label class="custom-control-label" for="cate-private" style="margin-right: 20px;">비공개</label>
 											</div>
 										</div>
 										<!-- End of form-group -->
 										
 										<div class="adminCate-submitBtn">
 											<a href="#" class="btn btn-success btn-icon-split"
-												style="height: 38px !important;"> <span class="text">확인</span>
+												style="height: 38px !important;"> <span class="text adminCate-btn">확인</span>
 											</a>
 										</div>
 									</div>
@@ -164,11 +163,11 @@
 									카테고리 수정이 가능합니다.
 								</span>
 							</div>
+
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"
-									cellspacing="0">
+								<table class="table table-bordered" id="dataTable" width="100%"cellspacing="0">
 									<thead>
 										<tr>
 											<th>No</th>
@@ -188,69 +187,20 @@
 										</tr>
 									</tfoot>
 									<tbody>
-										<tr>
-											<td>01</td>
-											<td><a href="#">디저트</a></td>
-											<td>공개</td>
-											<td></td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
 
-										<tr>
-											<td>02</td>
-											<td><a href="#">사이드</a></td>
-											<td>공개</td>
-											<td></td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
-
-										<tr>
-											<td>03</td>
-											<td><a href="#">햄버거</a></td>
-											<td></td>
-											<td>비공개</td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
-
-										<tr>
-											<td>04</td>
-											<td><a href="#">세트</a></td>
-											<td></td>
-											<td>비공개</td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
-										
-										<tr>
-											<td>05</td>
-											<td><a href="#">박스</a></td>
-											<td></td>
-											<td>비공개</td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
-										
-										<tr>
-											<td>06</td>
-											<td><a href="#">단품/세트/박스</a></td>
-											<td>공개</td>
-											<td></td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
-										
-										<tr>
-											<td>07</td>
-											<td><a href="#">빙수</a></td>
-											<td></td>
-											<td>비공개</td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
-
-										<tr>
-											<td>08</td>
-											<td><a href="#">치킨</a></td>
-											<td>공개</td>
-											<td></td>
-											<td><a href="#" class="adminCate-delete">X</a></td>
-										</tr>
+											<c:forEach items="${cateList}" var="cList" varStatus="status">
+												<tr data-no="${cList.categoryNo }">
+													<td>${cList.categoryNo}</td>
+													<td><a href="#">${cList.categoryName}</a></td>
+													<td>
+														<c:if test="${cList.publicYN == 1}">공개</c:if>
+													</td>
+													<td>
+														<c:if test="${cList.publicYN == 0}">비공개</c:if>
+													</td>
+													<td><a href="#" class="adminCate-delete">X</a></td>
+												</tr>
+											</c:forEach>
 									</tbody>
 								</table>
 							</div>

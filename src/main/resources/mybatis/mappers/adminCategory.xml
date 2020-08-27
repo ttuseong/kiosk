@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminCategory">
+	<select id="selectAdminCateList" resultType="com.javaex.vo.CategoryVo">
+		<![CDATA[
+			 SELECT  
+	        		categoryNo,
+	        		categoryName,
+	        		publicYN
+			 FROM 
+	        		category
+			 WHERE 
+	        		storeno=1
+			 ORDER BY 
+			 		categoryNo desc
+		]]>
+	</select>
+	
+	<select id="selectCateUpdate" parameterType="String" resultType="com.javaex.vo.CategoryVo">
+		<![CDATA[
+			 SELECT 
+			 		categoryname,
+	        		storeno
+			 FROM 
+			 		category
+			 WHERE 
+			 		categoryname = #{categoryName}
+		]]>
+	</select>
+	
+	
+	<!-- selectKey 기능추가-->
+	<insert id="insertCateAdd" parameterType="com.javaex.vo.CategoryVo">
+		<selectKey keyProperty="categoryNo" resultType="int" order="BEFORE">
+			select CATEGORY_SEQ.nextval FROM dual
+		</selectKey>
+			<![CDATA[
+				INSERT INTO
+						category
+				VALUES( #{categoryNo},
+						#{storeNo},
+						#{categoryName},
+						#{publicYN},
+						#{isSet})
+			]]>
+	</insert>
+	
+	
+	
+	<select id="selectCateOneByCategoryNo" parameterType="int" resultType="com.javaex.vo.CategoryVo">
+		<![CDATA[
+			SELECT  
+	        		categoryNo,
+	        		categoryName,
+	        		publicYN
+			 FROM 
+	        		category
+			 WHERE 
+	        		categoryNo=#{categoryNo}
+		]]>
+	</select>
+	
+	<!-- 첫번째  ajax alert창 띄우기 -->
+	<select id="selectOneMenuCount" parameterType="int" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT 
+				 count(*) cnt
+			FROM 
+				 menu
+			WHERE 
+				 categoryNo=#{categoryNo}
+		]]>
+	</select>
+	
+	
+ 	<delete id="deleteCate" parameterType="int">
+		<![CDATA[
+			delete from category
+			where categoryNo = #{categoryNo}
+		]]>
+	</delete>
+
+</mapper>

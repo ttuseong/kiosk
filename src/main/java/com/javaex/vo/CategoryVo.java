@@ -5,14 +5,38 @@ public class CategoryVo {
 	private String categoryName;
 	private int publicYN;
 	private int isSet;
+	private int storeNo;
+	private int cnt;
+
+	
 	
 	public CategoryVo() {}
 	
-	public CategoryVo(int categoryNo, String categoryName, int publicYN, int isSet) {
+	public CategoryVo(int categoryNo, String categoryName, int publicYN, int isSet, int storeNo, int cnt) {
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
 		this.publicYN = publicYN;
 		this.isSet = isSet;
+		this.storeNo = storeNo;
+		this.cnt = cnt;
+	}
+
+	
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public int getStoreNo() {
+		return storeNo;
+	}
+
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
 	}
 
 	public int getCategoryNo() {
@@ -49,8 +73,12 @@ public class CategoryVo {
 
 	@Override
 	public String toString() {
-		return "KFCCategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
-				+ ", isSet=" + isSet + "]";
+		return "CategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
+				+ ", isSet=" + isSet + ", storeNo=" + storeNo + ", cnt=" + cnt + "]";
 	}
+
+
+
+    
 	
 }
