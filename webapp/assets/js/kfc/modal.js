@@ -672,17 +672,18 @@ function addOrderList(textArr, priceArr, countArr){
    $(".orderList-table").empty();
    for(var i=0; i < textArr.length; i++) {
 	  
-	  if(priceArr[i] == 0)
-      	str += '<tr ' + 'class="subText"' + '>';
-	  else
+	  if(priceArr[i] == 0){
+		str += '<tr ' + 'class="subText"' + '>';
+		str += '   <td id="orderlist-menuName" class="subTextTd">' + textArr[i] + '</td>';
+		str += '   <td id="orderlist-menuCnt" class="noCount"> ' + countArr[i] + ' </td>';
+	 }
+      	
+	  else{
 		str += '<tr>';
-	  if(priceArr[i] == 0)
-      	str += '   <td id="orderlist-menuName" class="subTextTd">' + textArr[i] + '</td>';
-	  else
 		str += '   <td id="orderlist-menuName">' + textArr[i] + '</td>';
+		str += '   <td id="orderlist-menuCnt"> ' + countArr[i] + ' </td>';
+	 }	
 
-	  str += '   <td id="orderlist-menuCnt"> ' + countArr[i] + ' </td>';
-	  
 	  if(priceArr[i] != 0)
       	str += ' <td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
       str += '</tr>';
@@ -698,9 +699,11 @@ function sum(){
    var totalPay = 0;
    
    for(var i = 0; i < length; i++){
-      var currentCount = Number(tbody.eq(i).children().eq(1).text());
-      count += currentCount;
-      totalPay += Number(tbody.eq(i).children().eq(2).text())*currentCount;
+ 	  if(!tbody.eq(i).children().eq(1).hasClass("noCount")){		 var currentCount = 
+         count += Number(tbody.eq(i).children().eq(1).text());
+         totalPay += Number(tbody.eq(i).children().eq(2).text());
+      }
+     
    }
    
    $(".order-totalMenu > p").text(count);
