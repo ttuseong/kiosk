@@ -155,8 +155,75 @@ $("#allCancelBtn").on("click", function(){
 	mainPageTotal();
 });
 
+var menuListlength;
+var menuListCurPos;
 
 function countAllMenulList(){
 	count = $("#menuTableContents").children().size();
 	console.log(count);
+	
+	if(count > 4){
+		if(menuListCurPos != 0){
+			$("#scrollDown").removeClass("scrollActive");
+		}
+		
+		menuListlength = count - 4;
+		menuListCurPos = 0;
+		
+		$("#menuTableContents").css('bottom', '0');
+		
+		$("#scrollUp").addClass("scrollActive");
+	}
 }
+
+$("#scrollUp").on("click", function(){
+	console.log("스크롤 업");
+	var thisScroll = $(this);
+	
+	if(thisScroll.hasClass("scrollActive")){
+		if(menuListCurPos==0){
+			$("#scrollDown").addClass("scrollActive");
+		}
+		
+		menuListCurPos--;
+		var movePos = menuListCurPos * 31;
+		
+		
+		console.log(menuListCurPos + ", " +movePos);
+		console.log($("#menuTableContents"));
+		
+		$("#menuTableContents").animate({bottom : movePos});
+		
+		if(menuListCurPos == menuListlength*-1){
+			thisScroll.removeClass("scrollActive");
+		}
+	}
+	
+});
+
+//scrollActive
+
+$("#scrollDown").on("click", function(){
+	console.log("스크롤 다운");
+	var thisScroll = $(this);
+	
+	if(thisScroll.hasClass("scrollActive")){
+		if(menuListCurPos == menuListlength*-1){
+			$("#scrollUp").addClass("scrollActive");
+		}
+		
+		menuListCurPos++;
+		var movePos = menuListCurPos * 31;
+		
+		
+		console.log(menuListCurPos + ", " +movePos);
+		console.log($("#menuTableContents"));
+		
+		$("#menuTableContents").animate({bottom : movePos});
+		
+		if(menuListCurPos == 0){
+			thisScroll.removeClass("scrollActive");
+		}
+	}
+	
+});
