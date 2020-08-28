@@ -59,33 +59,33 @@ function movePageCircle(){
 function orderComplate(subText){
 	
 	var str = "";
-	str += ' <tr>';
-	str += ' 	<td>';
-	str += '		<div class="textarea">';
-	str += '			<p>'+ burgerName +'</p>';
+	str += ' <div>';
+	str += ' 	<div>';
+	str += ' 		<div class="textarea">';
+	str += '			<p>' + burgerName + '</p>';
 	if(subText != '-'){
 		str += '		<p>'+ subText +'</p>';	
 	}
 	str += '		</div>';
-	str += '	</td>';
-	str += '	<td>';
+	str += ' 	</div>'
+	str += ' 	<div>';
 	str += '		<div class="count">';
-	str += '			<div class="icon-minus iconCombination"></div>';
-	str += '			<p>' + burgerCount + '</p>';
+	str += '			<div class="icon-minus iconCombination"></div>'
+	str += '			<p>'+ burgerCount +'</p>'
 	str += '			<div class="icon-plus iconCombination"></div>';
 	str += '		</div>';
-	str += '	</td>';
-	str += '	<td>';
-	str += '		<div class="price">';
+	str += ' 	</div>';
+	str += ' 	<div>';
+	str += ' 		<div class="price">';
 	str += '			<div class="pricePos">';
-	str += '				<p>'+ totalPrice +'</p>';
-	str += '				<div class="icon-cancel"></div>';
-	str += '			</div>';
+	str += '				<p>'+totalPrice+'</p>;'
+	str += '				<div class="icon-cancel"></div>'
+	str += '			</div>'
 	str += '		</div>';
-	str += '	</td>';
-	str += ' </tr>';
+	str += ' 	</div>';
+	str += ' </div>';
 	
-	$("#menuTable>tbody").append(str);
+	$("#menuTableContents").append(str);
 	
 	mainPageTotal();
 }
@@ -94,7 +94,7 @@ function mainPageTotal(){
 	var mainTotalPrice = 0;
 	var mainTotalCount = 0;
 	
-	var trGroup = $("#menuTable>tbody").children();  
+	var trGroup = $("#menuTableContents").children();  
 	var length = trGroup.size();
 	
 	for(var i=0; i<length; i++){
@@ -149,3 +149,14 @@ $("#menuTable").on("click", ".icon-minus", function(){
 
 	mainPageTotal();
 });
+
+$("#allCancelBtn").on("click", function(){
+	$("#menuTable>tbody").empty();
+	mainPageTotal();
+});
+
+
+function countAllMenulList(){
+	count = $("#menuTableContents").children().size();
+	console.log(count);
+}

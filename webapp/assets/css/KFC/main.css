@@ -221,11 +221,17 @@ body{
 #tableSize{
   height: 160px;
   width : 700px;
-  overflhiddenow: ;
+  overflow : hidden;
   margin-left: 10px;
 }
 
-#menuTable thead th{
+#menuTableHead{
+	font-size: 0;
+}
+
+#menuTableHead>div{
+  display:inline-block;
+  font-size:16px;
   text-align:center;
   padding: 10px 0px 10px 0px;
   border-bottom: 2px solid white;
@@ -233,27 +239,38 @@ body{
   font-weight: bold;
 }
 
-#menuTable thead th:nth-child(1){
+#menuTableHead>div:nth-child(1){
   width: 450px;
 }
 
-#menuTable thead th:nth-child(2){
-	width: 110px;
+#menuTableHead>div:nth-child(2){
+	width: 100px;
 }
 
-#menuTable thead th:nth-child(3){
+#menuTableHead>div:nth-child(3){
 	width: 150px;
 }
 
-#menuTable tbody tr:first-child td:last-child{
-  position: relative;
+#menuTableContents>div>div{
+	position: relative;
+	display: inline-block;
 }
 
-#menuTable tbody td:nth-child(1) p{
+#menuTableContents>div>div:nth-child(2){
+	width: 100px;
+	height: 31px;
+}
+
+#menuTableContents>div>div:nth-child(3){
+	width: 150px;
+	height: 31px;
+}
+#menuTableContents>div>div:nth-child(1) p{
   text-align:left;
 }
 
 .textarea{
+  width:450px;
   display: 	table;
   margin: 0 auto;
   text-align: center;
@@ -270,16 +287,17 @@ body{
 }
 
 .count *{
+  font-size:16px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   margin: 0 5px 0 5px;
 }
-#menuTable tbody{
-	height: 133px;
-}
-#menuTable tbody td:nth-child(2){
-  position: relative;
+
+#menuTableBody{
+	font-size:0;
+	height: 124px;
+	overflow: hidden;
 }
 
 .count{
@@ -299,7 +317,7 @@ body{
 }
 
 .icon-plus{
-  background-color: rgb(218, 58, 44);
+  background-color: rgb(218, 58, 44	);
 }
 
 .iconCombination{
@@ -308,11 +326,8 @@ body{
   text-align: center;
 }
 
-#menuTable tbody td:nth-child(3){
-  position: relative;
-}
-
 .pricePos *{
+	font-size:16px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -363,10 +378,11 @@ body{
 }
 
 .kfcMainScroll{
+	color:gray;
 	width:50px;
 	height:50px;
 	font-size: 30px;
-	border: 1px solid white;
+	border: 1px solid gray;
 	border-radius: 100%;
 	display: inline-flex;
 	justify-content: center;
@@ -429,7 +445,7 @@ body{
   position: absolute;
   display: inline-flex;
   border-radius: 5px;
-  font-size: 45px;
+  font-size: 48px;
   text-align: center;
   justify-content: center;
   align-items: center;

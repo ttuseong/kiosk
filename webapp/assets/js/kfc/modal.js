@@ -179,7 +179,7 @@ $("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
 
 // 모달 교체 시점1
 $("#selectedModecompleted").on("click", function(){
-   burgerCount = 1;
+  burgerCount = 1;
    $("#selectMode").modal("hide");
    
    if(selectedMode == 'default'){
@@ -196,7 +196,7 @@ $("#selectedModecompleted").on("click", function(){
 function hamburgerBoxSideMenuInputDefault(){
    $(".hamburgerBoxLabel").text(burgerName);
    $(".burgerBoxDesc").text(burgerConfig);
-   $(".count").children("p").text(burgerCount);
+   $("#hamburgerBoxCount").children(".count").children("p").text(burgerCount);
    $(".burgerBoxPrice").text(totalPrice);
 }
 
@@ -538,16 +538,15 @@ $("#hamburgerBoxSideMenuComplete").on("click", function(){
    }
 
    for(var i = 0; i < toppingArr.length; i++){
-      console.log(toppingArr);
       if(toppingArr[i][3] != 0){
          burgurChangeList += " + ";
          burgurChangeList += toppingArr[i][1] + " " + toppingArr[i][3] +"개";
       }
    }
-   
-   console.log(burgurChangeList);
-   
+
    orderComplate(burgurChangeList);
+
+	countAllMenulList();
    
    $("#hamburgerBoxSideMenu").modal('hide');
 });
@@ -617,18 +616,18 @@ $("#recommendCompleteBtn").on("click", function(){
    var price=[];
    var count=[];
 
-   var length = $("#menuTable>tbody>tr").size();
+   var length = $("#menuTableBody>div").size();
 
    console.log(length);
    
    for(var i = 0; i<length; i++ ){
-		var menuText = $("#menuTable>tbody>tr").eq(i).children().eq(0).children(".textarea").children().eq(0).text();
+		var menuText = $("#menuTableBody>div").	hildren(".textarea").children().eq(0).text();
 		text.push(menuText);
 		
-		var menuPrice = $("#menuTable>tbody>tr").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
+		var menuPrice = $("#menuTableBody>div").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
 		price.push(menuPrice);
 		
-		var menuCount = $("#menuTable>tbody>tr").eq(i).children().eq(1).children().eq(0).children().eq(1).text();
+		var menuCount = $("#menuTableBody>div").eq(i).children().eq(1).children().eq(0).children().eq(1).text();
 		count.push(menuCount);
 		
 		
@@ -703,9 +702,18 @@ function sum(){
          count += Number(tbody.eq(i).children().eq(1).text());
          totalPay += Number(tbody.eq(i).children().eq(2).text());
       }
-     
    }
    
    $(".order-totalMenu > p").text(count);
    $(".order-totalPrice > p").text(totalPay);
 }
+
+$("#myOrderComplete").on("click", function(){
+	$("#MyOrderListModal").modal("hide");
+	$("#paySelect").modal();
+});
+
+$("#credit").on("click", function(){
+
+	$("#paymentDetails").modal();
+});

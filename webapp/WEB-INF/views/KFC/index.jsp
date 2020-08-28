@@ -106,17 +106,19 @@
 		
 		<section id="menuTableSection">
 			<div id="tableSize">
-				<table id="menuTable">
-					<thead>
-						<th>메뉴</th>
-						<th>수량</th>
-						<th>가격</th>
-					</thead>
-					<tbody>
-					</tbody>
-				</table>
+				<div id="menuTable">
+					<div id="menuTableHead">
+						<div>메뉴</div>
+						<div>수량</div>
+						<div>가격</div>
+					</div>
+					<div id="menuTableBody">
+						<div id="menuTableContents">
+						</div>
+					</div>
+				</div>
 			</div>
-			<div id="scrollGroup">
+				<div id="scrollGroup">
 				<div id="blank"></div>
 				<div id="scrollContatiner">
 					<div id="scrollContents">
