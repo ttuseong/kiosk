@@ -80,5 +80,18 @@
 			where categoryNo = #{categoryNo}
 		]]>
 	</delete>
-
+	
+	<!-- 카테고리 수정 -->
+	<select id="selectTitleUpdate" parameterType="int" resultType="int">
+		<![CDATA[
+		select  
+				categoryno,
+        		categoryname,
+        		publicyn
+		from 	
+				category
+		where 
+				categoryNo = #{categoryNo}
+		]]>
+	</select>
 </mapper>

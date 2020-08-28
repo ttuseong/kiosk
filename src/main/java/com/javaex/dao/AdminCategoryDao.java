@@ -22,7 +22,7 @@ public class AdminCategoryDao {
 		return cateList;
 	}
 
-	// 카테고리 추가 및 수정
+	// 카테고리 추가 
 	public CategoryVo selectCateUpdate(String categoryName) {
 		System.out.println(categoryName);
 		CategoryVo categoryVo = sqlSession.selectOne("adminCategory.selectCateUpdate", categoryName);
@@ -30,12 +30,12 @@ public class AdminCategoryDao {
 		return categoryVo;
 	}
 
-	// 카테고리 추가 및 수정 --확인버튼 누르면 카테고리 추가
+	// 카테고리 추가  --확인버튼 누르면 카테고리 추가
 	public int insertCateAdd(CategoryVo categoryVo) {
 		return sqlSession.insert("adminCategory.insertCateAdd", categoryVo);
 	}
 
-	// 카테고리 추가 및 수정 --카테고리 목록에 추가
+	// 카테고리 추가  --카테고리 목록에 추가
 	public CategoryVo selectCateOne(int categoryNo) {
 		System.out.println("카테고리로로로로로");
 		return sqlSession.selectOne("adminCategory.selectCateOneByCategoryNo", categoryNo);
@@ -58,6 +58,15 @@ public class AdminCategoryDao {
 		//삭제해주면 갯수가나온다 
 		
 		return cnt;
+	}
+	
+	//카테고리 수정
+	public int selectTitleUpdate(int categoryNo) {
+		System.out.println("다오 - 카테고리 수정 불러오기");
+		
+		int update = sqlSession.selectOne("adminCategory.selectTitleUpdate", categoryNo);
+		
+		return update;
 	}
 
 }

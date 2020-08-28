@@ -19,7 +19,7 @@ public class AdminCategoryService {
 		return cateList;
 	}
 
-	// 카테고리 추가 및 수정 --카테고리 값 가져오기
+	// 카테고리 추가 --카테고리 값 가져오기
 	public boolean adminCateUpdate(String categoryName) {
 		CategoryVo categoryVo = adminCategoryDao.selectCateUpdate(categoryName);
 		boolean result = true;
@@ -32,7 +32,7 @@ public class AdminCategoryService {
 		return result;
 	}
 
-	// 카테고리 추가 및 수정 --확인버튼 누르면 카테고리 추가
+	// 카테고리 추가  --확인버튼 누르면 카테고리 추가
 	public CategoryVo adminCateAdd(CategoryVo categoryVo) {
 		adminCategoryDao.insertCateAdd(categoryVo);
 
@@ -44,24 +44,33 @@ public class AdminCategoryService {
 	}
 
 	  //카테고리 삭제 
-	  public int adminCateDel(int categoryNo) {
-		  System.out.println("서비스-카테고리 삭제하기" + categoryNo); 
-		  //X버튼 누르면 메뉴의 갯수를 세주는 ajax.
+	 public int adminCateDel(int categoryNo) {
+		 System.out.println("서비스-카테고리 삭제하기" + categoryNo); 
+		 //X버튼 누르면 메뉴의 갯수를 세주는 ajax.
 		  
-		  int cnt = adminCategoryDao.selectMenuCount(categoryNo);
-		  System.out.println(cnt);
+		 int cnt = adminCategoryDao.selectMenuCount(categoryNo);
+		 System.out.println(cnt);
 		  
-		  	if(cnt>=1) {
-		  		System.out.println("삭제 alert창 띄어주기");
-		  		return 0;
-		  	}else {
-		  		System.out.println("삭제 성공");
-		  		cnt = adminCategoryDao.deleteCate(categoryNo);
-		  		  System.out.println("test");
-				  System.out.println(cnt);
-				  return cnt;
-		  	}
+		  if(cnt>=1) {
+		  	System.out.println("삭제 alert창 띄어주기");
+		  	return 0;
+		  }else {
+		  	System.out.println("삭제 성공");
+		  	cnt = adminCategoryDao.deleteCate(categoryNo);
+		  	System.out.println("test");
+			System.out.println(cnt);
+			return cnt;  	
+		  }
 
-	  }
+	 }
+	  
+	 //카테고리 수정
+	 public int titleClickUpdate(int categoryNo) {
+		System.out.println("서비스 -카테고리 타이틀 클릭"); 
+		 
+		int update = adminCategoryDao.selectTitleUpdate(categoryNo);
+		
+		return update;
+	 }
 
 }

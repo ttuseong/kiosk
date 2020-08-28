@@ -34,7 +34,7 @@ public class AdminCategoryController {
 	//카테고리 롯데리아 리스트
 
 	
-	//카테고리 추가 및 수정 --카테고리 값 가져오기
+	//카테고리 추가  --카테고리 값 가져오기
 	@ResponseBody
 	@RequestMapping("/adminCateUpdate")
 	public boolean adminCateUpdate(@RequestParam ("cateName") String categoryName) {
@@ -46,7 +46,7 @@ public class AdminCategoryController {
 		return result;
 	}
 	
-	//카테고리 추가 및 수정 --확인버튼 누르면 카테고리 추가
+	//카테고리 추가 --확인버튼 누르면 카테고리 추가
 	@ResponseBody
 	@RequestMapping("/adminCateAdd")
 	public CategoryVo adminCateAdd(@ModelAttribute CategoryVo categoryVo) {
@@ -67,7 +67,6 @@ public class AdminCategoryController {
 		return cateVo;
 	}
 	  //카테고리 삭제 --게시글이 있냐없냐를 판단
-	  
 	  @ResponseBody
 	  @RequestMapping("/adminCateDel")
 	  public int adminCateDel(@RequestParam("categoryNo") int categoryNo) {
@@ -77,5 +76,19 @@ public class AdminCategoryController {
 		  System.out.println("cnt넘어옴");
 		  return cnt; 
 	  }
+	  
+	  //카테고리 수정
+	  @ResponseBody
+	  @RequestMapping("/titleClickUpdate")
+	  public int titleClickUpdate(@RequestParam("categoryNo") int categoryNo) {
+		  System.out.println("titleClickUpdate-컨트롤러");
+		  
+		  int update = adminCategoryService.titleClickUpdate(categoryNo);
+		  System.out.println("update넘어옴");
+		  
+		  return update;
+	  }
+	  
+	  
 	  
 }

@@ -1,6 +1,5 @@
 var url = window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
 
-
 /*카테고리 x버튼 누르면 삭제하기 메뉴가 있으면 삭제가 되면 안된다.. --삭제기능..*/
 $(".adminCate-delete").on("click", function(){
 	event.preventDefault();
@@ -8,7 +7,7 @@ $(".adminCate-delete").on("click", function(){
 	var cateDelete = $(this);
 	
 	console.log(cateDelete);
-	var categoryNo = cateDelete.parent().parent().data("no");
+	var categoryNo = cateDelete.parent().parent().data("no"); //data값 no를 가져온 이유는 최상위 값만 삭제하면 그 안에있던 데이터도 같이 삭제되기때문에(ex폴더)
 	console.log($('[data-no=' + categoryNo + ']'));
 	console.log(cateDelete.parent().parent());
 	console.log(categoryNo);
@@ -76,7 +75,7 @@ $("#btnCateNameCheck").on("click", function(){
 });
 
 /* 확인 버튼 누르면 카테고리 목록에 추가*/
-$(".adminCate-btn").on("click", function(){
+$(".adminCate-submitBtn").on("click", ".adminCate-btn",function(){
 	event.preventDefault();
 	console.log("확인클릭");
 	
@@ -121,9 +120,9 @@ function render(cateVo){
 	
 	str += "		<tr data-no="+ cateVo.categoryNo+">";
 	str += "			<td>"+ cateVo.categoryNo +"</td>";
-	str += "			<td><a href='#'>"+ cateVo.categoryName+"</a></td>";
+	str += "			<td><a href='#' class='adminCate-title'>"+ cateVo.categoryName+"</a></td>";
 	if(cateVo.publicYN==1){
-		str += "			<td>공개</td>";
+		str += "	<td>공개</td>";
 		str += "			<td></td>";
 	}
 	if(cateVo.publicYN==0){
@@ -137,5 +136,66 @@ function render(cateVo){
 }
 
 
-/*카테고리 x버튼 누르면 삭제하기 메뉴가 있으면 삭제가 되면 안된다..*/
+/*타이틀을 누르면 수정가능한 인풋박스 띄우기*/
+$(".adminCate-title").on("click", function(){
+	event.preventDefault();
+	console.log("타이틀 클릭");
+	var cateTitle = $(this);
+	console.log(cateTitle.text());
+	
+	//확인버튼 --> 수정버튼으로 변경
+	$(".text").text("수정");
+	//수정버튼 추가
+    $(".text").addClass("adminCate-btnUpdate");
+    //확인버튼 삭제
+    $(".text").removeClass("adminCate-btn") ;
+   
+
+	출처: https://sharphail.tistory.com/45 [샤해의 포스트잇]
+	var categoryNo = cateTitle.parent().parent().data("no"); //부모값 가져오기
+	console.log(categoryNo);
+	var categoryPublicY = cateTitle.parent().next().text().trim(); //형제가져오기 text=val trim=공백제거
+	console.log(categoryPublicY);
+	/*	console.log(cateTitle.parent().next().text());
+	console.log(cateTitle.parent().next());*/
+	if(categoryPublicY==""){
+		categoryPublicY = cateTitle.parent().next().next().text().trim(); //형제 중에 다른 형제가져요기
+	}
+
+	
+	//값을 넣어줄거야
+	$(".adminCate-addCateForm").val(cateTitle.text());
+	//라디오 체크값 넣어주기
+	
+	if(categoryPublicY == "공개"){
+		$('#cate-public').prop("checked", true).change();
+	}else{
+		console.log("치킨사라져");
+		$('#cate-private').prop("checked", true).change();
+	}
+	//categoryNo를 숨겨야하는이유 : 카테고리 넘버를 넣어주긴하지만 밖에보이면 안되서태그에다 넣어줘야함
+	//데이터의 값을 넣는법
+	$(".input-group").data('noe', categoryNo);
+	console.log($(".input-group").data('noe'));
+	
+	//값을 읽어왔고 확인버튼이 수정버튼으로 바뀌어야함
+	
+});
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!List ajax로 변경시 수정작업해야해
+//원래는 .adminCate-btnUpdate에 클릭 기능을 줬으나 먹지 않아서 그 위에있는 부모에게 기능을 줬다 
+$(".adminCate-submitBtn").on("click", ".adminCate-btnUpdate",function(){
+	console.log("수정버튼 클릭");
+	
+	//변경된 값을 가져올거야
+	var cateTitleChange = $(".adminCate-addCateForm").val();
+	console.log(cateTitleChange);
+	
+	var  publicYnChange = $('input:radio[name="cate-openStatus"]:checked').val();
+	console.log(publicYnChange);
+
+	//숨겨진 카테고리 값 데이터로 받아오기 
+
+	
+});
 
