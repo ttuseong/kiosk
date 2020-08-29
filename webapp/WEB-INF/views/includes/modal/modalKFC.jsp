@@ -285,13 +285,13 @@
 
                      </table>
                   </div>
-                  
-                  <div class="orderList-pagingBtn">
-                     <div class="icon-up-open-big" id="orderList-pagingUp"><!-- up 화살표 --></div>
-                     <div class="icon-down-open-big" id="orderList-pagingDown"><!-- down 화살표 --></div>
-                  </div>
                </div>
-               
+               <div id="orderList-btnContainer">
+               		<div class="orderList-pagingBtn">
+	                    <div class="icon-up-open-big" id="orderList-pagingUp"><!-- up 화살표 --></div>
+	                    <div class="icon-down-open-big" id="orderList-pagingDown"><!-- down 화살표 --></div>
+	                 </div>
+               </div>
                <div class="orderlist-footer">
                   <div class="orderlist-sum"> <!-- 합계 -->
                      <div class="order-total">

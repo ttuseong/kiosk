@@ -611,27 +611,27 @@ function addRecommenDationMenu(menuVo){
 /*추천메뉴모달에서 체크된 값만 읽어오기*/
 
 $("#recommendCompleteBtn").on("click", function(){
-   $("#recommend").modal("hide");
+  
    var text=[];
    var price=[];
    var count=[];
 
-   var length = $("#menuTableBody>div").size();
+   var length = $("#menuTableContents>div").size();
 
    console.log(length);
    
    for(var i = 0; i<length; i++ ){
-		var menuText = $("#menuTableBody>div").	hildren(".textarea").children().eq(0).text();
+		var menuText = $("#menuTableContents>div>div").children(".textarea").children().eq(0).text();
 		text.push(menuText);
 		
-		var menuPrice = $("#menuTableBody>div").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
+		var menuPrice = $("#menuTableContents>div").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
 		price.push(menuPrice);
 		
-		var menuCount = $("#menuTableBody>div").eq(i).children().eq(1).children().eq(0).children().eq(1).text();
+		var menuCount = $("#menuTableContents>div").eq(i).children().eq(1).children().eq(0).children().eq(1).text();
 		count.push(menuCount);
 		
 		
-		var subtext = $("#menuTable>tbody>tr").eq(i).children().eq(0).children(".textarea").children().eq(1).text();
+		var subtext = $("#menuTableContents>div").eq(i).children().eq(0).children(".textarea").children().eq(1).text();
 		subtext = subtext.substring(1, subtext.length);
 
 		firstSplitText = subtext.split(" + ");
@@ -662,6 +662,8 @@ $("#recommendCompleteBtn").on("click", function(){
    }
    addOrderList(text, price, count);
    sum();
+
+   $("#recommend").modal("hide");
    $("#MyOrderListModal").modal();
    
 });

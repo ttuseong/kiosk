@@ -151,7 +151,7 @@ $("#menuTable").on("click", ".icon-minus", function(){
 });
 
 $("#allCancelBtn").on("click", function(){
-	$("#menuTable>tbody").empty();
+	$("#menuTableContents").empty();
 	mainPageTotal();
 });
 
