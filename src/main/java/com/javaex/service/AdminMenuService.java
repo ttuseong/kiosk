@@ -62,6 +62,23 @@ public class AdminMenuService {
 		return menuVo;
 	}
 	
+	// Service 메뉴 추가
+	public int addMenu(MenuVo menuVo) {
+		
+		return adminMenuDao.menuInsert(menuVo);
+	}
+	
+	// Service 메뉴 수정
+	public MenuVo menuUpdate(MenuVo menuVo) {
+		
+		adminMenuDao.menuUpdate(menuVo); // 메뉴 업데이트
+		
+		// 업데이트 한 메뉴 정보 담기
+		MenuVo updateMenuInfo = adminMenuDao.getMenuInfo(menuVo.getMenuNo());
+		
+		return updateMenuInfo;
+	}
+	
 	// Service 메뉴 삭제
 	public int delMenu(int menuNo) {
 		

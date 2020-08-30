@@ -37,6 +37,8 @@
 	href="${pageContext.request.contextPath}/assets/css/admin/adminModal.css"
 	rel="stylesheet" type="text/css">
 
+<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/admin/adminMenu.js"></script> --%>
+
 </head>
 
 <body id="page-top">
@@ -139,13 +141,9 @@
 												aria-expanded="true">
 												카테고리를 선택하세요. <span class="caret"></span>
 											</button>
-											<ul class="dropdown-menu" id="dropdownCateList" role="menu"
+											<ul class="dropdown-menu dropdownCateList" id="dropdownCateList" role="menu"
 												aria-labelledby="dropdownMenu1">
-												<c:forEach items="${cateList}" var="cList">
-													<li role="presentation" id="cateNo_${cList.categoryNo}"
-														value="${cList.categoryNo}"><a role="menuitem"
-														tabindex="-1" href="#">${cList.categoryName}</a></li>
-												</c:forEach>
+												<!-- 카테고리 리스트 출력 할 자리 -->
 											</ul>
 										</div>
 									</div>
@@ -161,7 +159,7 @@
 												aria-expanded="true" style="margin-right: 0;">
 												메뉴를 선택하세요. <span class="caret"></span>
 											</button>
-											<ul class="dropdown-menu" id="dropdownMenuList" role="menu"
+											<ul class="dropdown-menu dropdownMenuList" id="dropdownMenuList" role="menu"
 												aria-labelledby="dropdownMenu1">
 
 												<li role="presentation"><a role="menuitem"
@@ -180,14 +178,14 @@
 
 									<p>메뉴이름</p>
 									<input type="text" style="width: 150px;" placeholder="메뉴이름"
-										name="menuName">
+										id="menuName">
 									<p>가격</p>
-									<input type="text" placeholder="가격" name="menuPrice">
+									<input type="text" placeholder="가격" id="menuPrice">
 
 									<div style="display: inline-block !important;"
 										class="adminMenu-calorie">
 										<p>칼로리</p>
-										<input type="text" placeholder="칼로리" name="menuCalorie">
+										<input type="text" placeholder="칼로리" id="menuCalorie">
 									</div>
 
 								</div>
@@ -224,19 +222,12 @@
 								<!-- 메뉴 설명 -->
 								<div class="menuInfo-menuDescription">
 									<p>메뉴설명</p>
-									<textarea placeholder="메뉴 설명" name="menuDesc"></textarea>
+									<textarea placeholder="메뉴 설명" id="menuDesc"></textarea>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 메뉴 기본 정보 끝 -->
-
-					<!-- 기본 정보 추가 버튼 -->
-					<div class="adminMenu-btnContainer">
-						<a href="#" class="btn btn-success btn-circle"
-							style="margin: auto;"> <i class="fas fa-plus"></i>
-						</a>
-					</div>
 
 					<!-- 토핑 정보 -->
 					<div class="card shadow mb-4" style="margin-top: 24px">
@@ -251,6 +242,7 @@
 
 					<div class="adminMenu-btnContainer">
 						<input type="hidden" id="selectMenuNo" value="">
+						<input type="hidden" id="selectCateNo" value="">
 						<a href="#"
 							class="btn btn-secondary btn-icon-split adminMenu-menuDelBtn">
 							<span class="text">삭제</span>
@@ -536,17 +528,53 @@
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
 </body>
-<script type="text/javascript">
+<script type="text/javascript">	
+	// 카테고리 리스트 불러오기
+	$(document).ready(function(){	
+		var storeNo = 1;
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/adminCateList",
+			type : "post",
+			data : {
+				storeNo : storeNo
+			},
+			dataType : "json",
+			success : function(cateList) { /*성공시 처리해야될 코드 작성*/
+				for (var i = 0; i < cateList.length; i++) {
+					cateListRender(cateList[i]);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	});
+
+	// 카테고리 리스트 html 그리기
+	function cateListRender(cateList) {
+		var str = '';
+		
+		str += '<li role="presentation" id="cateNo_' + cateList.categoryNo + '"';
+		str += 'value="' + cateList.categoryNo + '"><a role="menuitem"';
+		str += 'tabindex="-1" href="#">'
+				+ cateList.categoryName + '</a></li>';
+	
+		$("#dropdownCateList").prepend(str);
+	}
+
 	/* 메뉴 리스트 받아오기 (특정 카테고리 선택 시, 해당 카테고리에 속해있는 메뉴 리스트 뽑아옴) */
-	$("#dropdownCateList").on("click", "li", function() {
+	$(".dropdownCateList").on("click", "li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-		$("#dropdownMenuList").children('li').remove(); // 카테고리를 한 번 선택할 때마다 기존 menuList 삭제해 줌 
-		$("#dropdownMenuName").children('button').text("메뉴를 선택하세요."); // 카테고리를 선택할 때마다 메뉴 드롭다운 타이틀 초기화
+		
+		initialization(); // 초기화
 
 		var id = $(this).attr('id'); // 카테고리 드롭다운 li의 아이디값 받아오기 - 카테고리 넘버 알아오기 위함
 		var cateNo = document.getElementById(id).value; // li의 value값(카테고리넘버) 받아오기
 		console.log(id + ', ' + cateNo);
 
+		$("#selectCateNo").val(cateNo); // 메뉴 등록을 위해 페이지 하단에 카테고리 넘버 넘겨주기
+		
 		var cateName = $("#" + id).text(); // 선택한 카테고리 이름 받아오기 
 		$("#dropdownCateName").children('button').text(cateName); // '카테고리를 선택하세요' 문구를 선택한 카테고리 이름으로 변경
 
@@ -558,11 +586,29 @@
 			},
 			dataType : "json",
 			success : function(menuList) { /*성공시 처리해야될 코드 작성*/
+				
+				if(menuList.length == 0) { // 카테고리 내에 입력된 메뉴가 없을 경우
+					var str = '';
+						
+					str += '<li role="presentation" id="menuNo_0" value=""><a role="menuitem" tabindex="-1">새로운 메뉴 입력</a></li>';
 
-				for (var i = 0; i < menuList.length; i++) {
-					menuListRender(menuList[i]);
+					$("#dropdownMenuList").prepend(str);
 				}
+				else { // 메뉴가 하나라도 있을 경우 메뉴 리스트 출력
+					
+					for (var i = 0; i < menuList.length; i++) {
+						menuListRender(menuList[i]);
+					}
 
+					var str = '';
+				
+					str += '<li role="presentation" id="menuNo_0" value="0">';
+					str += '<a role="menuitem" tabindex="-1">새로운 메뉴 입력</a></li>';
+					str += '<li role="presentation" class="divider"></li>';
+					str += '<hr id="amdinMenu-menuDropdwon-hr">';
+
+					$("#dropdownMenuList").prepend(str);
+				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -582,9 +628,27 @@
 
 		$("#dropdownMenuList").prepend(str);
 	}
-
+	
+	// 카테고리를 한 번 선택할 때마다 초기화해줘야 하는 것들
+	function initialization() {
+		$("#dropdownMenuList").children('li').remove(); // 기존 menuList 삭제
+		$("#dropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+		$("#amdinMenu-menuDropdwon-hr").remove(); // 메뉴 드롭다운 리스트 초기화
+		$("#selectMenuNo").val(""); // 페이지 하단의 메뉴 넘버 초기화
+		$(".adminMenu-menuSubmitBtn").children('span').text("확인"); // 하단 버튼이 [확인]으로 변경
+		resetInput(); // 인풋박스 모두 비워주기
+	}
+	
+	// 인풋박스 모두 비워주기
+	function resetInput() {
+		$("#menuName").val("");
+		$("#menuPrice").val("");
+		$("#menuCalorie").val("");
+		$("#menuDesc").val("");
+	}
+	
 	/* 메뉴 정보 받아오기 (특정 메뉴 선택시 해당 메뉴에 대한 정보 받아옴 - 메뉴이름, 가격, 이미지 등) */
-	$("#dropdownMenuList").on("click", "li", function() {
+	$(".dropdownMenuList").on("click", "li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
 
 		var id = $(this).attr('id'); // 메뉴 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
@@ -596,37 +660,55 @@
 		var menuName = $("#" + id).text(); // 선택한 메뉴 이름 받아오기 
 		$("#dropdownMenuName").children('button').text(menuName); // '메뉴를 선택하세요' 문구를 선택한 메뉴 이름으로 변경
 
-		$.ajax({
-			url : "${pageContext.request.contextPath}/admin/adminMenuInfo",
-			type : "post",
-			data : {
-				menuNo : menuNo
-			},
-			dataType : "json",
-			success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
-				$("input[name=menuName]").val(menuVo.menuName);
-				$("input[name=menuPrice]").val(menuVo.menuPrice);
-				/* $("input[name=menuCalorie]").val(menuVo.menuCalorie); */
-				$("[name=menuDesc]").text(menuVo.menuDesc);
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-
+		if(menuNo == 0) { // 새로운 메뉴 등록을 클릭했을 경우 인풋박스 모두 지워줌
+			resetInput();
+			$(".adminMenu-menuSubmitBtn").children('span').text("확인"); // 입력 메뉴가 선택 된 경우 하단의 submit 버튼을 [확인]으로 바꿔줌
+		}
+		else {
+			$(".adminMenu-menuSubmitBtn").children('span').text("수정"); // 메뉴가 선택 된 경우 하단의 submit 버튼을 [수정]으로 바꿔줌
+			
+			$.ajax({
+				url : "${pageContext.request.contextPath}/admin/adminMenuInfo",
+				type : "post",
+				data : {
+					menuNo : menuNo
+				},
+				dataType : "json",
+				success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
+					
+					menuInfo(menuVo); // 메뉴 정보 인풋에 출력
+				
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		}
 	});
+	
+	// 메뉴 정보 받아서 인풋에 출력
+	function menuInfo(menuVo) {
+		$("#menuName").val(menuVo.menuName);
+		$("#menuPrice").val(menuVo.menuPrice);
+		/* $("#menuCalorie").val(menuVo.menuCalorie); */
+		$("#menuDesc").val(menuVo.menuDesc);
+	}
 
 	/* 메뉴 삭제 */
 	$(".adminMenu-menuDelBtn").on("click", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-
+		
 		var menuNo = $("#selectMenuNo").val(); // 메뉴 넘버 받아오기
 		console.log("삭제 버튼 클릭", menuNo);
 		
-		if(menuNo == '') {
+		if(menuNo == '') { // menuNo이 null일 경우 아직 메뉴가 선택되지 않은 상태임
 			alert("메뉴를 선택하세요.");
-		}		
+		}	
+		else if(menuNo == 0) { // menuNo이 0일 경우 새로 등록중인 메뉴임
+			alert("등록되어 있지 않은 메뉴 정보입니다.");
+		}
 		else {
+			
 			$.ajax({
 				url : "${pageContext.request.contextPath}/admin/adminDelMenu",
 				type : "post",
@@ -635,26 +717,131 @@
 				},
 				dataType : "json",
 				success : function(cnt) { /*성공시 처리해야될 코드 작성*/
-					console.log(cnt);
+					$("html").scrollTop(0); // 화면 최상단으로 이동
 					$("#dropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-
 					$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
 					
 					// 인풋박스 모두 비워주기
-					$("input[name=menuName]").val("");
-					$("input[name=menuPrice]").val("");
-					/* $("input[name=menuCalorie]").val(""); */
-					$("[name=menuDesc]").text("");
+					resetInput();
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
 				}
 			});
-			
 		}
-		
 	});
 
+	/* 메뉴 수정 & 추가 */
+	$(".adminMenu-menuSubmitBtn").on("click", function() {
+		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
+		
+		// 메뉴 정보 받아서 묶어주기
+		var menuNo = $("#selectMenuNo").val();
+		var cateNo = $("#selectCateNo").val();
+		
+		var menuVo = { 
+			menuNo: menuNo,
+			categoryNo: $("#selectCateNo").val(),
+			menuName: $("#menuName").val(), 
+			menuPrice: $("#menuPrice").val(), 
+			/* menuCalorie: $("#menuCalorie").val(),  */
+			menuDesc: $("#menuDesc").val()
+		};
+		
+		if(menuNo == 0) { // 메뉴 추가
+			if(cateNo == 0) {
+				alert("카테고리를 선택하세요.");
+			}
+			else {
+				// 인풋박스가 모두 null이 아닐 경우 메뉴 추가 (조건 ? 참일 경우 수행 : 거짓일 경우 수행)
+				txtFieldCheck() == true ? true : menuAdd(menuVo);
+			}
+		}
+		else { // 메뉴 수정
+			menuModify(menuVo);			
+		}
+	});
+	
+	// 메뉴정보 카드 안의 모든 input box 조회
+	function txtFieldCheck(){
+		
+		// 메뉴정보 카드 안의 모든 input box 변수에 대입
+		var txtEle = $(".menuInfo-basicInfoContainer input[type=text]");
+		
+		for(var i = 0; i < txtEle.length; i ++){ // input box 모두 순회하여 null 값 있는지 찾기
+			if("" == $(txtEle[i]).val() || null == $(txtEle[i]).val()){ // null인 경우
+				var ele_id = $(txtEle[i]).attr("id");
+				
+				alert("기본 정보를 모두 입력해주세요.");
+				
+				// 해당 input box에 focus
+				$("#" + ele_id).focus();
+				
+				return true;
+			}
+		}
+		textAreaCheck();
+	}
+	
+	// 메뉴 설명 박스 null 체크
+	function textAreaCheck() {
+		var txtEle = $(".menuInfo-menuDescription :input");
+		
+		if("" == $(txtEle).val() || null == $(txtEle).val()){
+			var ele_id = $(txtEle).attr("id");
+			
+			alert("기본 정보를 모두 입력해주세요.");
+			
+			$("#" + ele_id).focus();
+	
+			return true;
+		}
+	}
+	
+	/* 메뉴 추가 */
+	function menuAdd(menuVo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/adminAddeMenu",
+			type : "post",
+			contentType: "application/json",
+			data : JSON.stringify(menuVo), /* json 형식으로 변형 */
+			dataType : "json",
+			
+			success : function(result) { /*성공시 처리해야될 코드 작성*/
+				
+				alert("메뉴가 등록되었습니다."); // 알림창
+				$('html').scrollTop(0); // 페이지 상단으로 이동
+				resetInput(); // 인풋박스 비워주기
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
+	/* 메뉴 수정 */
+	function menuModify(menuVo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/adminUpdateMenu",
+			type : "post",
+			contentType: "application/json",
+			data : JSON.stringify(menuVo), /* json 형식으로 변형 */
+			dataType : "json",
+			
+			success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
+				
+				alert("수정이 완료되었습니다."); // 알림창
+				$('html').scrollTop(0); // 페이지 상단으로 이동
+				menuInfo(menuVo); // 업데이트 한 메뉴 정보 인풋에 넣어주기
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+	
 	/* 이중모달 */
 	$(document).on('hidden.bs.modal', function(event) {
 		if ($('.modal:visible').length) {

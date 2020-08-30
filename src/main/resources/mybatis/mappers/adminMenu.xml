@@ -47,6 +47,24 @@
 		]]>
 	</select>
 	
+	<insert id="menuInsert" parameterType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			insert into menu values(menu_seq.nextval, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, 'icon.png', 0, 0, 0)
+		]]>
+	</insert>
+	
+	<!-- 메뉴 수정 -->
+	<update id="menuUpdate" parameterType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			update menu
+			set menuname = #{menuName},
+			    menudesc = #{menuDesc},
+			    menuprice = #{menuPrice}
+			where menuNo = #{menuNo}
+		]]>
+	</update>
+	
+	<!-- 메뉴 삭제 -->
 	<delete id="delMenu" parameterType="int">
 		<![CDATA[
 			delete from menu

@@ -38,6 +38,20 @@ public class AdminMenuDao {
 
 		return sqlSession.selectOne("adminMenu.getMenuInfo", menuNo);
 	}
+	
+	// Dao 메뉴 추가
+	public int menuInsert(MenuVo menuVo) {
+		System.out.println("dao(adminMenu) - 메뉴 추가");
+		
+		return sqlSession.insert("adminMenu.menuInsert", menuVo);
+	}
+	
+	// Dao 메뉴 수정
+	public int menuUpdate(MenuVo menuVo) {
+		System.out.println("dao(adminMenu) - 메뉴 수정");
+		
+		return sqlSession.update("adminMenu.menuUpdate", menuVo);
+	}
 
 	// Dao 메뉴 삭제
 	public int delMenu(int menuNo) {
