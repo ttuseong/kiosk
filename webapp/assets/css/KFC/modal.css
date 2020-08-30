@@ -90,20 +90,11 @@
 
 .modal-body { 
 
- 
-
 	min-height: 785px;
-
- 
 
 	padding: 40px;
 
- 
-
 	text-align: center;
-
- 
-
 }
 
  
@@ -555,6 +546,7 @@
 	width: 650px;
 	position: relative;
 	margin: 0 auto;
+	background-color: #fff5f4;
 }
  
 
@@ -587,11 +579,6 @@
 
 }
 
- 
-
- 
-
- 
 
 /* orderlist-footer > div > div 설정 */
 

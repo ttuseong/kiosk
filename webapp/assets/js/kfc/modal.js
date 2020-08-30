@@ -667,17 +667,13 @@ $("#recommendCompleteBtn").on("click", function(){
    addOrderList(text, price, count);
    sum();
 
-	var curHeight = $(".orderList-tableDiv").css("height");
-	myOrderListModalLength = curHeight/600;
 	
-	console.log(curHeight + ", " + myOrderListModalLength);
 
    $("#recommend").modal("hide");
 
-	
-
    $("#MyOrderListModal").modal();
    
+   myOrderListSlideSetting();
 });
 
 function addOrderList(textArr, priceArr, countArr){
@@ -730,4 +726,77 @@ $("#myOrderComplete").on("click", function(){
 $("#credit").on("click", function(){
 
 	$("#paymentDetails").modal();
+});
+
+function myOrderListSlideSetting(){
+	var maxSize = 600;
+	var curHeight = $(".orderList-tableDiv").height();
+   
+	myOrderListModalLength = Math.floor(curHeight/maxSize)*-1;
+	
+	$("#orderList-pagingUp").removeClass("scrollActive");
+	$("#orderList-pagingDown").removeClass("scrollActive");
+	
+	if(myOrderListModalLength<0){
+		myOrderListModalLastMove = curHeight%maxSize;
+		
+		if(myOrderListModalLastMove == 0 && myOrderListModalLength != 1){
+			myOrderListModalLastMove = maxSize;
+		} else if(!(myOrderListModalLastMove == 0 && myOrderListModalLength == 1)){
+			$("#orderList-pagingDown").addClass("scrollActive");
+			myOrderListModalCurrentPos = 0;
+			console.log("여기는 와야지");
+		}
+	}
+}
+
+$("#orderList-pagingDown").on("click",function(){
+	var thisDownBtn = $(this);
+	
+	if(thisDownBtn.hasClass("scrollActive")){
+		
+		var movePos;
+		var maxSize = 600;
+		
+		if(myOrderListModalCurrentPos == 0){
+			$("#orderList-pagingUp").addClass("scrollActive");
+		}
+		
+		myOrderListModalCurrentPos--;
+		
+		if(myOrderListModalCurrentPos == myOrderListModalLength){
+			movePos = ((maxSize * (myOrderListModalLength + 1)) - myOrderListModalLastMove);
+			$("#orderList-pagingDown").removeClass("scrollActive");
+		} else{
+			movePos = maxSize*myOrderListModalCurrentPos;	
+		}
+		
+		$(".orderList-tableDiv").animate({top : movePos});
+	}
+});
+
+$("#orderList-pagingUp").on("click",function(){
+	var thisDownBtn = $(this);
+	
+	if(thisDownBtn.hasClass("scrollActive")){
+		
+		var movePos;
+		var maxSize = 600;
+		
+		if(myOrderListModalCurrentPos == myOrderListModalLength){
+			$("#orderList-pagingDown").addClass("scrollActive");
+		}
+		
+		myOrderListModalCurrentPos++;
+		
+		if(myOrderListModalCurrentPos == 0){
+			movePos = 0;
+			$("#orderList-pagingUp").removeClass("scrollActive");
+
+		} else{
+			movePos = ($(".orderList-tableDiv").height() + maxSize*(myOrderListModalLength - myOrderListModalCurrentPos -1)) * -1;
+		}
+		
+		$(".orderList-tableDiv").animate({top : movePos});
+	}
 });
