@@ -466,19 +466,20 @@
 
 	width: 650px;
 
-	height:710px;
+	height:600px;
 	
 	overflow:hidden;
 
 	margin: auto;
-
-	padding-top: 10px;
-
+	
 	background-color: #fff5f4;
 
 }
-
  
+.orderList-tableDiv{
+	position: absolute;
+	left: 25px;
+}
 
 /* 주문 리스트 */
  

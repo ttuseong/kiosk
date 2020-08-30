@@ -609,9 +609,12 @@ function addRecommenDationMenu(menuVo){
 }
 
 /*추천메뉴모달에서 체크된 값만 읽어오기*/
+var myOrderListModalLength;
+var myOrderListModalCurrentPos;
+var myOrderListModalLastMove;
 
 $("#recommendCompleteBtn").on("click", function(){
-  
+  	console.log("test");
    var text=[];
    var price=[];
    var count=[];
@@ -621,7 +624,7 @@ $("#recommendCompleteBtn").on("click", function(){
    console.log(length);
    
    for(var i = 0; i<length; i++ ){
-		var menuText = $("#menuTableContents>div>div").children(".textarea").children().eq(0).text();
+		var menuText = $("#menuTableContents>div").eq(i).children().eq(0).children(".textarea").children().eq(0).text();
 		text.push(menuText);
 		
 		var menuPrice = $("#menuTableContents>div").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
@@ -660,10 +663,19 @@ $("#recommendCompleteBtn").on("click", function(){
 		 count.push(1);
       }
    }
+
    addOrderList(text, price, count);
    sum();
 
+	var curHeight = $(".orderList-tableDiv").css("height");
+	myOrderListModalLength = curHeight/600;
+	
+	console.log(curHeight + ", " + myOrderListModalLength);
+
    $("#recommend").modal("hide");
+
+	
+
    $("#MyOrderListModal").modal();
    
 });
