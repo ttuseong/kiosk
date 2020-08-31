@@ -100,7 +100,7 @@ function computeAllPrice(){
 }
 
 //메뉴 클릭 이벤트 처리
-$(".menu").on("click", function(){
+$("#menuSectionContent").on("click",".menu", function(){
    var thisMenu = $(this);
    var status = thisMenu.data("status");
    
@@ -637,7 +637,7 @@ $("#recommendCompleteBtn").on("click", function(){
 		
 		
 		var subtext = $("#menuTableContents>div").eq(i).children().eq(0).children(".textarea").children().eq(1).text();
-
+	
 		if(subtext!=""){
 			subtext = subtext.substring(1, subtext.length);
 

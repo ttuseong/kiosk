@@ -1,7 +1,6 @@
 package com.javaex.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.javaex.service.KFCService;
+import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
 import com.javaex.vo.ToppingVo;
 
@@ -21,15 +21,21 @@ public class KFCController {
 	KFCService kfcService;
 	
 	@RequestMapping("/index")
-	public String index(Model model, @RequestParam(value="categoryNo", required=false, defaultValue = "0") int categoryNo) {		
-		System.out.println(categoryNo);
-		
-		Map<String, Object> map = kfcService.cateList(categoryNo);
+	public String index(Model model) {				
+		List<CategoryVo> list = kfcService.cateList();
 
-		model.addAttribute("map", map);
+		model.addAttribute("list", list);
 		
-		System.out.println(map.toString());
 		return "/KFC/index";
+	}
+	
+	@ResponseBody
+	@RequestMapping("menuList")
+	public List<MenuVo> menuList(@RequestParam("categoryNo") int categoryNo) {
+		System.out.println(categoryNo);
+		List<MenuVo> list = kfcService.menuList(categoryNo);
+		System.out.println(list.toString());
+		return list;
 	}
 	
 	@ResponseBody

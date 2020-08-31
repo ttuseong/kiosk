@@ -5,13 +5,65 @@ var curPos = 0;
 $(document).ready(function(){
 	var size = endPoint * 800;
 	console.log(size);
-	
+	defaultMenuList();
 	$("#menuSectionContent").width(size);
 	
 	if(endPoint > 1){
 		$("#btnRight").addClass("btnActive");
 	}
+	
+	
 });
+
+function defaultMenuList(){
+	console.log($(".categoryColorWhite:first-child").children(".menuLink"));
+	var no = $(".categoryColorWhite:first-child").children(".menuLink").data("no");
+	console.log(no);
+	addMenuAjax(no);
+}
+
+$(".menuLink").on("click", function(){
+	event.preventDefault();
+	var thismenuLink = $(this);
+	var no = thismenuLink.data("no");
+	
+	addMenuAjax(no);
+});
+
+function addMenuAjax(no){
+	$.ajax({
+      url : url+"/KFC/menuList",      
+      type : "post",
+      data :{categoryNo : no},
+      success : function(menuList){
+		$("#menuSectionContent > div").remove();
+		
+		for(var i = 0; i < menuList.length; i++){
+			if(i%9 == 0){
+				$("#menuSectionContent").append('<div></div>');		
+			}
+			addMenuList(menuList[i]);
+		}
+        
+      },
+      error : function(XHR, status, error) {
+         console.error(status + " : " + error);
+      }
+   });
+}
+
+function addMenuList(menuVo){
+	str = "";
+	str += ' <div class="menu" data-no="'+menuVo.menuNo+'" data-status="'+menuVo.isSet+'">';
+	str += ' 	<img class="menuImg" alt="메뉴 이미지" src="'+url+'/assets/images/icon1.png">';
+	str += '	<div class="menuContent">';
+	str += '		<p>'+menuVo.menuName+'</p>';
+	str += '		<p>'+menuVo.menuPrice+'</p>';
+	str += '	</div>';
+	str += ' </div>';
+		
+	$("#menuSectionContent > div:last-child").append(str);
+}
 
 $("#btnRight").on("click", function(){
 	console.log($("#btnRight").hasClass("btnActive"))

@@ -17,25 +17,10 @@ public class KFCService {
 	@Autowired
 	KFCDao kfcDao;
 	
-	public Map<String, Object> cateList(int  categoryNo) {
-		float maxOnePageMenu = 9;
+	public List<CategoryVo> cateList() {
 		List<CategoryVo> cateList = kfcDao.selectCateList();
-		
-		if(categoryNo == 0) {
-			categoryNo = cateList.get(0).getCategoryNo();
-		}
-		
-		List<MenuVo> menuList = menuList(categoryNo);
-		
-		int menuMaxCount = (int)(Math.ceil((menuCount(categoryNo)/maxOnePageMenu)));
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		map.put("cateList", cateList);
-		map.put("menuList", menuList);
-		map.put("menuMaxCount", menuMaxCount);
-		
-		return map;
+	
+		return cateList;
 	}
 	
 	public List<ToppingVo> intiTopping() {

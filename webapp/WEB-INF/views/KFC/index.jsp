@@ -43,7 +43,7 @@
 		<section id="categorySection">
 			<nav id="category">
 				<ul>
-				<c:forEach items="${map.cateList }" var="cateVo">
+				<c:forEach items="${list }" var="cateVo">
 					<c:choose>
 						<c:when test="${cateVo.isSet==1 }">
 							<li class="categoryColorRed">
@@ -52,7 +52,7 @@
 							<li class="categoryColorWhite">
 						</c:otherwise>
 					</c:choose>
-						<a href="${pageContext.request.contextPath}/KFC/index?categoryNo=${cateVo.categoryNo}">
+						<a href="#" data-no="${cateVo.categoryNo}" class="menuLink">
 							<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
 							<p>${cateVo.categoryName }</p>
 						</a>
@@ -64,25 +64,6 @@
 		<section id="menuSection">
 			<nav id="menuSectionContainer">
 				<div id="menuSectionContent">
-					<c:set var="loop_flag" value="false"></c:set>
-					<c:forEach begin="1" end="${((fn:length(map.menuList))/9)+(1-(((fn:length(map.menuList))/9)%1))%1}" var="i">
-						<div>
-							<c:forEach begin="1" end="9" var="j">
-								<c:if test="${((i-1)*9+j-1) == fn:length(map.menuList)}">
-									<c:set var="loop_flag" value="true"></c:set>
-								</c:if>
-								<c:if test="${not loop_flag }">
-									<div class="menu" data-no="${map.menuList[(i-1)*9+j-1].menuNo}" data-status="${map.menuList[(i-1)*9+j-1].isSet}">
-										<img class="menuImg" alt="메뉴 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
-										<div class="menuContent">
-											<p>${map.menuList[(i-1)*9+j-1].menuName}</p>
-											<p>${map.menuList[(i-1)*9+j-1].menuPrice}</p>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</div>						
-					</c:forEach>
 				</div>
 			</nav>
 		</section>
