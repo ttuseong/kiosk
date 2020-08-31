@@ -57,13 +57,14 @@ function movePageCircle(){
 }
 
 function orderComplate(subText){
-	
 	var str = "";
 	str += ' <div>';
 	str += ' 	<div>';
 	str += ' 		<div class="textarea">';
 	str += '			<p>' + burgerName + '</p>';
-	if(subText != '-'){
+	if(subText != '-' && typeof subText != "undefined"){
+		console.log(subText);
+		console.log(typeof subText);
 		str += '		<p>'+ subText +'</p>';	
 	}
 	str += '		</div>';

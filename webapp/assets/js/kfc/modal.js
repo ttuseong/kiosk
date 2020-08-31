@@ -105,7 +105,10 @@ $(".menu").on("click", function(){
    var status = thisMenu.data("status");
    
    if(status == 0){
-      
+      burgerName = thisMenu.children().eq(1).children().eq(0).text();
+	  burgerCount = 1;
+	  totalPrice=thisMenu.children().eq(1).children().eq(1).text();
+	  orderComplate();
    }
    else{
       menuNo = thisMenu.data("no");
@@ -114,7 +117,6 @@ $(".menu").on("click", function(){
    }
    
 })
-
 
 //단품/세트/박스 모달 띄우는 함수
 function selectMenu(){
@@ -635,21 +637,25 @@ $("#recommendCompleteBtn").on("click", function(){
 		
 		
 		var subtext = $("#menuTableContents>div").eq(i).children().eq(0).children(".textarea").children().eq(1).text();
-		subtext = subtext.substring(1, subtext.length);
 
-		firstSplitText = subtext.split(" + ");
-		
-		for(var j = 0; j < firstSplitText.length; j++){
-			lastSplitText = firstSplitText[j].split(" ");
-			text.push(lastSplitText[0]);
-			if(lastSplitText[1] == undefined){
-				count.push(1);
-			} else{
-				count.push(lastSplitText[1].substring(0, 1)*menuCount);
-			}
+		if(subtext!=""){
+			subtext = subtext.substring(1, subtext.length);
+
+			firstSplitText = subtext.split(" + ");
 			
-			price.push(0);
+			for(var j = 0; j < firstSplitText.length; j++){
+				lastSplitText = firstSplitText[j].split(" ");
+				text.push(lastSplitText[0]);
+				if(lastSplitText[1] == undefined){
+					count.push(1);
+				} else{
+					count.push(lastSplitText[1].substring(0, 1)*menuCount);
+				}
+				
+				price.push(0);
+			}
 		}
+		
    }
 
    length = $("#recommend-body > div").size();	
