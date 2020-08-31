@@ -741,7 +741,7 @@
 		
 		var menuVo = { 
 			menuNo: menuNo,
-			categoryNo: $("#selectCateNo").val(),
+			categoryNo: cateNo,
 			menuName: $("#menuName").val(), 
 			menuPrice: $("#menuPrice").val(), 
 			/* menuCalorie: $("#menuCalorie").val(),  */
@@ -749,16 +749,16 @@
 		};
 		
 		if(menuNo == 0) { // 메뉴 추가
-			if(cateNo == 0) {
+			if(cateNo == 0) { // 카테고리를 선택하지 않은 경우 경고창 띄움
 				alert("카테고리를 선택하세요.");
 			}
 			else {
-				// 인풋박스가 모두 null이 아닐 경우 메뉴 추가 (조건 ? 참일 경우 수행 : 거짓일 경우 수행)
-				var txtEle = $(".menuInfo-basicInfoContainer input[type=text]");
-				var txtarea = $(".menuInfo-menuDescription :input");
+				// 인풋박스가 모두 null이 아닐 경우에 메뉴 추가
+				var txtInput = $(".menuInfo-basicInfoContainer input[type=text]"); // input[type=text](메뉴이름, 가격, 칼로리)
+				var txtarea = $(".menuInfo-menuDescription :input"); // textarea (메뉴 설명)
 				
-				txtFieldCheck(txtEle) == true ? true : txtFieldCheck(txtarea);
-				txtFieldCheck(txtarea) == true ? true : menuAdd(menuVo);
+				// (조건 ? 참일 경우 수행 : 거짓일 경우 수행)
+				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuAdd(menuVo);
 			}
 		}
 		else { // 메뉴 수정
@@ -768,33 +768,17 @@
 	
 	// 메뉴정보 카드 안의 모든 input box 조회
 	function txtFieldCheck(txtEle){
-		
 		for(var i = 0; i < txtEle.length; i ++){ // input box 모두 순회하여 null 값 있는지 찾기
 			if("" == $(txtEle[i]).val() || null == $(txtEle[i]).val()){ // null인 경우
-				var ele_id = $(txtEle[i]).attr("id");
+				var ele_id = $(txtEle[i]).attr("id"); // 해당 input의 아이디 가져오기
 				
-				alert("기본 정보를 모두 입력해주세요.");
+				alert("기본 정보를 모두 입력해주세요."); // 경고창 띄움
 				
-				// 해당 input box에 focus
+				// 해당 input에 focus
 				$("#" + ele_id).focus();
 				
 				return true;
 			}
-		}
-	}
-	
-	// 메뉴 설명 박스 null 체크
-	function textAreaCheck() {
-		var txtEle = $(".menuInfo-menuDescription :input");
-		
-		if("" == $(txtEle).val() || null == $(txtEle).val()){
-			var ele_id = $(txtEle).attr("id");
-			
-			alert("기본 정보를 모두 입력해주세요.");
-			
-			$("#" + ele_id).focus();
-	
-			return true;
 		}
 	}
 	
