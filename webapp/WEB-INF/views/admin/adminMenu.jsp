@@ -754,7 +754,11 @@
 			}
 			else {
 				// 인풋박스가 모두 null이 아닐 경우 메뉴 추가 (조건 ? 참일 경우 수행 : 거짓일 경우 수행)
-				txtFieldCheck() == true ? true : menuAdd(menuVo);
+				var txtEle = $(".menuInfo-basicInfoContainer input[type=text]");
+				var txtarea = $(".menuInfo-menuDescription :input");
+				
+				txtFieldCheck(txtEle) == true ? true : txtFieldCheck(txtarea);
+				txtFieldCheck(txtarea) == true ? true : menuAdd(menuVo);
 			}
 		}
 		else { // 메뉴 수정
@@ -763,10 +767,7 @@
 	});
 	
 	// 메뉴정보 카드 안의 모든 input box 조회
-	function txtFieldCheck(){
-		
-		// 메뉴정보 카드 안의 모든 input box 변수에 대입
-		var txtEle = $(".menuInfo-basicInfoContainer input[type=text]");
+	function txtFieldCheck(txtEle){
 		
 		for(var i = 0; i < txtEle.length; i ++){ // input box 모두 순회하여 null 값 있는지 찾기
 			if("" == $(txtEle[i]).val() || null == $(txtEle[i]).val()){ // null인 경우
@@ -780,7 +781,6 @@
 				return true;
 			}
 		}
-		textAreaCheck();
 	}
 	
 	// 메뉴 설명 박스 null 체크
