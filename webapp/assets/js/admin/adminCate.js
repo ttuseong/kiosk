@@ -173,10 +173,10 @@ $(".adminCate-title").on("click", function(){
 		console.log("치킨사라져");
 		$('#cate-private').prop("checked", true).change();
 	}
-	//categoryNo를 숨겨야하는이유 : 카테고리 넘버를 넣어주긴하지만 밖에보이면 안되서태그에다 넣어줘야함
+	//categoryNo를 숨겨야하는이유 : 카테고리 넘버를 넣어주긴하지만 밖에보이면 안되서 태그에다 넣어줘야함
 	//데이터의 값을 넣는법
-	$(".input-group").data('noe', categoryNo);
-	console.log($(".input-group").data('noe'));
+	$(".input-group").data('hiddenCateNo', categoryNo);
+	console.log($(".input-group").data('hiddenCateNo'));
 	
 	//값을 읽어왔고 확인버튼이 수정버튼으로 바뀌어야함
 	
@@ -187,7 +187,7 @@ $(".adminCate-title").on("click", function(){
 $(".adminCate-submitBtn").on("click", ".adminCate-btnUpdate",function(){
 	console.log("수정버튼 클릭");
 	
-	//변경된 값을 가져올거야
+	//변경된 값을 가져올거야 3개 (숨겨진no값, 수정된 title, 수정된 publicYn)
 	var cateTitleChange = $(".adminCate-addCateForm").val();
 	console.log(cateTitleChange);
 	
@@ -195,7 +195,41 @@ $(".adminCate-submitBtn").on("click", ".adminCate-btnUpdate",function(){
 	console.log(publicYnChange);
 
 	//숨겨진 카테고리 값 데이터로 받아오기 
-
+	var hiddenCateNo = $(".input-group").data('hiddenCateNo');
+	console.log(hiddenCateNo);
 	
+	var titleClickUpdate = {
+			categoryName:cateTitleChange,
+			publicYN:publicYnChange,
+			categoryNo:hiddenCateNo
+	}
+	
+	$.ajax({
+		
+			url : url+"/admin/titleClickUpdate",
+			
+			type: "post",
+			data : titleClickUpdate,
+			dataType : "json",
+			success : function(categoryUpdate){
+				console.log(categoryUpdate);
+				
+				if(categoryUpdate==1){
+					console.log("성공");
+					alert('수정이 완료되었습니다');
+					window.location.reload();
+				}else{
+					console.log("실패");
+					alert('수정에 실패하였습니다');
+				}
+			},
+			
+			
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		
+	});
+
 });
 

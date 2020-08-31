@@ -65,12 +65,12 @@ public class AdminCategoryService {
 	 }
 	  
 	 //카테고리 수정
-	 public int titleClickUpdate(int categoryNo) {
+	 public int titleClickUpdate(CategoryVo categoryVo) {
 		System.out.println("서비스 -카테고리 타이틀 클릭"); 
 		 
-		int update = adminCategoryDao.selectTitleUpdate(categoryNo);
 		
-		return update;
+		
+		return adminCategoryDao.titleUpdate(categoryVo);
 	 }
 
 }

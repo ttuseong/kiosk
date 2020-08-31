@@ -113,7 +113,7 @@
 						<div class="card-body">
 							<form action="" method="" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
 								<div class="input-group">
-									<p>카테고리</p>
+									<p id="adminCate-Category">카테고리</p>
 									<input type="text"
 										class="form-control adminCate-addCateForm border-0 small"
 										placeholder="카테고리를 입력하세요." aria-label="addCate"

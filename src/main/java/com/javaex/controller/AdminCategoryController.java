@@ -80,13 +80,12 @@ public class AdminCategoryController {
 	  //카테고리 수정
 	  @ResponseBody
 	  @RequestMapping("/titleClickUpdate")
-	  public int titleClickUpdate(@RequestParam("categoryNo") int categoryNo) {
+	  public int titleClickUpdate(@ModelAttribute CategoryVo categoryVo) {
 		  System.out.println("titleClickUpdate-컨트롤러");
 		  
-		  int update = adminCategoryService.titleClickUpdate(categoryNo);
-		  System.out.println("update넘어옴");
+		  int categoryUpdate = adminCategoryService.titleClickUpdate(categoryVo);
 		  
-		  return update;
+		  return categoryUpdate;
 	  }
 	  
 	  

@@ -82,16 +82,13 @@
 	</delete>
 	
 	<!-- 카테고리 수정 -->
-	<select id="selectTitleUpdate" parameterType="int" resultType="int">
+	<select id="titleUpdate" parameterType="com.javaex.vo.CategoryVo">
 		<![CDATA[
-		select  
-				categoryno,
-        		categoryname,
-        		publicyn
-		from 	
-				category
+		update category
+		set categoryName = #{categoryName},
+    		publicYn = #{publicYN}
 		where 
-				categoryNo = #{categoryNo}
+    		categoryNo = #{categoryNo}
 		]]>
 	</select>
 </mapper>

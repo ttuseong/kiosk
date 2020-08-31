@@ -61,12 +61,12 @@ public class AdminCategoryDao {
 	}
 	
 	//카테고리 수정
-	public int selectTitleUpdate(int categoryNo) {
+	public int titleUpdate(CategoryVo categoryVo) {
 		System.out.println("다오 - 카테고리 수정 불러오기");
 		
-		int update = sqlSession.selectOne("adminCategory.selectTitleUpdate", categoryNo);
 		
-		return update;
+		
+		return sqlSession.update("adminCategory.titleUpdate", categoryVo);
 	}
 
 }
