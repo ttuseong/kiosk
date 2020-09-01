@@ -1,18 +1,9 @@
 var curPoint = 0;
-var endPoint = $("#menuSectionContent > div").size();
+var endPoint;
 var curPos = 0;
 
 $(document).ready(function(){
-	var size = endPoint * 800;
-	console.log(size);
 	defaultMenuList();
-	$("#menuSectionContent").width(size);
-	
-	if(endPoint > 1){
-		$("#btnRight").addClass("btnActive");
-	}
-	
-	
 });
 
 function defaultMenuList(){
@@ -21,6 +12,8 @@ function defaultMenuList(){
 	console.log(no);
 	addMenuAjax(no);
 }
+
+
 
 $(".menuLink").on("click", function(){
 	event.preventDefault();
@@ -37,6 +30,7 @@ function addMenuAjax(no){
       data :{categoryNo : no},
       success : function(menuList){
 		$("#menuSectionContent > div").remove();
+		$("#pageCircleGroup>li").remove();
 		
 		for(var i = 0; i < menuList.length; i++){
 			if(i%9 == 0){
@@ -44,7 +38,32 @@ function addMenuAjax(no){
 			}
 			addMenuList(menuList[i]);
 		}
-        
+		
+		if(endPoint != 0 && curPoint < endPoint){
+			$("#btnRight").removeClass("btnActive");
+		}
+		
+		endPoint = $("#menuSectionContent > div").size();
+		
+		if(curPoint != 0){
+			curPoint = 0;
+			curPos = 0;
+			$("#menuSectionContent").css("margin-left", curPos);
+			$("#btnLeft").removeClass("btnActive");
+		}
+		
+		for(var i = 0; i < endPoint; i++){
+			addPageCircleGroup(i);
+		}
+		
+		var size = endPoint * 800;
+		console.log(size);
+		
+		$("#menuSectionContent").width(size);
+		
+		if(endPoint > 1){
+			$("#btnRight").addClass("btnActive");
+		}
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
@@ -63,6 +82,17 @@ function addMenuList(menuVo){
 	str += ' </div>';
 		
 	$("#menuSectionContent > div:last-child").append(str);
+}
+
+function addPageCircleGroup(index){
+	str = '';
+	str += ' <li><div class="pageCircle ';
+	if(index == 0){
+		str += ' pageActive';
+	}
+	str += ' ">${current}</div></li>';
+	
+	$("#pageCircleGroup").append(str);
 }
 
 $("#btnRight").on("click", function(){
