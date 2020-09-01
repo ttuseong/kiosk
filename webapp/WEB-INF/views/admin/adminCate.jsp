@@ -115,10 +115,11 @@
 								<div class="input-group">
 									<p id="adminCate-Category">카테고리</p>
 									<input type="text"
+										
 										class="form-control adminCate-addCateForm border-0 small"
 										placeholder="카테고리를 입력하세요." aria-label="addCate"
 										aria-describedby="basic-addon2">
-									<button type="button" id="btnCateNameCheck">중복체크</button>
+									
 										
 									<div class="form-groupAndBtn">	
 										<div class="form-group">
@@ -141,7 +142,7 @@
 										
 										<div class="adminCate-submitBtn">
 											<a href="#" class="btn btn-success btn-icon-split"
-												style="height: 38px !important;"> <span class="text adminCate-btn">확인</span>
+												style="height: 38px !important;"> <span class="text adminCate-btn" >확인</span>
 											</a>
 										</div>
 									</div>

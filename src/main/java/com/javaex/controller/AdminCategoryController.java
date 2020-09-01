@@ -56,9 +56,6 @@ public class AdminCategoryController {
 		//세션에 있는  storeNo를 추가해준다
 		categoryVo.setStoreNo(1);
 		
-		//isSet 정책 결정되면 수정할것!!!
-		categoryVo.setIsSet(0);
-		
 		
 		System.out.println(categoryVo.toString());
 		CategoryVo cateVo = adminCategoryService.adminCateAdd(categoryVo);
