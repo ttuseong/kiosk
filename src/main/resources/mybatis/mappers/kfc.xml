@@ -25,8 +25,7 @@
 			    menuName,
 			    menuDesc,
 			    menuPrice,
-			    menuImg,
-			    isSet
+			    menuImg
 			FROM
 			    menu
 			where

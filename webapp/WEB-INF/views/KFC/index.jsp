@@ -72,14 +72,7 @@
 			<div id="pagecontainer">
 				<button id="btnLeft" class="btnPage">이전</button>
 				<ul id="pageCircleGroup">
-					<c:forEach var="current" begin="1" end="${map.menuMaxCount }">
-						<li><div class="pageCircle 
-						<c:if test="${1 == current }">
-							pageActive
-						</c:if>
-						
-						">${current}</div></li>
-					</c:forEach>
+					
 				</ul>
 				<button id="btnRight" class="btnPage">다음</button>
 			</div>
