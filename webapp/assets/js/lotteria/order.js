@@ -34,7 +34,6 @@ $(document).ready(function() {
 		menuNo = thisMenu.data("menuno");
 		var menuName = thisMenu.children().eq(1).children().eq(0).text();
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
-		
 		setOrSingle(menuNo, menuName,menuPrice);
 		
 	});	
@@ -154,22 +153,29 @@ $(document).ready(function() {
 
 });
 
+/*세트메뉴 선택시 사이드메뉴 리스트*/
 function side(){
-	alert("세트 클릭했수?");
 	$("#side").modal();
 	$.ajax({
-		url : url+"/api/dessertMenu",		
+		url : url+"/api/sideMenu",		
 		type : "post",
 		dataType : "json",
 		success : function(dessertList){
-			for( var y = 0 ; y < dessertList.length; y++){
+			for( var y = 0 ; y < dessertList.dessert.length; y++){
+				
+				console.log(dessertList.dessert[y].menuImg);				
+				
 				var str = "";
-				str += "<div><img";
+				str += "<div class='modal-float margin_battom16px; data-dessertmenuno='"+dessertList.dessert[y].menuNo+"'>";
+					str += "<div class='width110px'>";
+						str += "<div><img src='"+url+"/lotteria/"+dessertList.dessert[y].menuImg+"' width='110px'</div>";
+						str += "<div class='modal-center width110px'>";
+							str += "<div class='modal-fontSize15px'>"+dessertList.dessert[y].menuName+"</div>";
+							str += "<p class='modal-red modal-fontSize15px'>"+dessertList.dessert[y].menuPrice+"</p>";
+						str += "</div>";
+					str += "</div>";
 				str += "</div>";
-				
-				
-				
-				$(".dessertContents")
+				$("#modal-tab1").append(str);
 			}
 			
 		},
@@ -177,9 +183,8 @@ function side(){
 			console.error(status + " : " + error);
 		}
 	}); 
-	
-	
 }
+
 
 function cansle(){
 	$(".toppingPrice").text("+0");
@@ -218,13 +223,15 @@ function setOrSingle(menuNo, menuName, menuPrice){
 					data : JSON.stringify(menuNo),
 					dataType : "json",
 					success : function(selectMenu){
-						$("#modalName-setPrice").text(selectMenu[0].setPrice);
+						$("#modalName-setPrice").text(selectMenu[0].menuPrice);
 						$("#modalName-singlePrice").text(menuPrice);
 						
-						setNo = selectMenu[0].setNo;
-						setName = selectMenu[0].setName;
-						setPrice = selectMenu[0].setPrice;
+						setNo = selectMenu[0].menuNo;
+						setName = selectMenu[0].menuName;
+						setPrice = selectMenu[0].menuPrice;
 						
+						
+						console.log("세트할건지 단품할건지 모달");
 						$("#setAndSingle").modal();
 					},
 					error : function(XHR, status, error) {
@@ -276,7 +283,6 @@ function result(){
 
 /*세트매뉴의 디저트와 드링크가 있지만 선택하지 않고 그냥 선택완료번튼을 클릭할경우*/
 function dessertAndDrink(){
-	
 	$('#side').modal("hide");
 	render(setName, setPrice);
 };

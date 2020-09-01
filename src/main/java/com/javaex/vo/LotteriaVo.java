@@ -11,10 +11,12 @@ public class LotteriaVo {
 	private String menuDesc;
 	private int menuPrice;
 	private String menuImg;
+	private int isChange;
+	private int unitNo;
 	
 	public LotteriaVo() {}
 	public LotteriaVo(int categoryNo, String categoryName, int menuNo, String menuName, String menuDesc, int menuPrice,
-			String menuImg) {
+			String menuImg, int isChange, int unitNo) {
 		super();
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
@@ -23,7 +25,10 @@ public class LotteriaVo {
 		this.menuDesc = menuDesc;
 		this.menuPrice = menuPrice;
 		this.menuImg = menuImg;
+		this.isChange = isChange;
+		this.unitNo = unitNo;
 	}
+
 	public int getCategoryNo() {
 		return categoryNo;
 	}
@@ -66,12 +71,25 @@ public class LotteriaVo {
 	public void setMenuImg(String menuImg) {
 		this.menuImg = menuImg;
 	}
+	public int getIsChange() {
+		return isChange;
+	}
+	public void setIsChange(int isChange) {
+		this.isChange = isChange;
+	}
+	public int getUnitNo() {
+		return unitNo;
+	}
+	public void setUnitNo(int unitNo) {
+		this.unitNo = unitNo;
+	}
 	
 	@Override
 	public String toString() {
 		return "LotteriaVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", menuNo=" + menuNo
 				+ ", menuName=" + menuName + ", menuDesc=" + menuDesc + ", menuPrice=" + menuPrice + ", menuImg="
-				+ menuImg + "]";
+				+ menuImg + ", isChange=" + isChange + ", unitNo=" + unitNo + "]";
 	}
+	
 	
 }

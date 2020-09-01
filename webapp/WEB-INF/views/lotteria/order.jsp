@@ -40,7 +40,7 @@
 
 			<!--탭 콘텐츠 영역 -->
 			<div class="tab_container" id="tab_menu"   style="position: relative;">
-				<%-- <c:forEach items="${categoryList }" var="vo">
+				 <c:forEach items="${categoryList }" var="vo">
 					<div id="tab${vo.categoryNo }" class="tab_content">
 
 						<c:forEach items="${menuListAndPg.menuList }" var="menu" >
@@ -73,7 +73,7 @@
   						</c:if>
 
 					</div>
-				</c:forEach> --%>
+				</c:forEach> 
 				
 				<!-- 페이징 div -->
 				<div>
@@ -82,9 +82,9 @@
 					</div>
 					
 					<div class="dotDiv">
-						<%-- <c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
+						<c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
 							<div class="pageDot <c:if test="${param.pg == current }">pageActive</c:if>"></div>
-						</c:forEach> --%>
+						</c:forEach>
 					</div>
 										
 					<div>
@@ -148,7 +148,7 @@
 
 
 
-		<!-- 토핑모달 -->
+		<!-- 사이드메뉴모달 -->
 		<div class="modal fade" id="side">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -168,27 +168,11 @@
 
 							<div id="modal-tab1" class="modal-tab_content">
 								<!--Content-->
-								<div class="modal-float set_dessert margin_battom16px" data-dessertmenuno="<%-- ${ set.menuNo} --%>" >
-									<div class="width110px dessertContents">
-										
-									</div>
-								</div>
 							</div>
 
  							<div id="modal-tab2" class="modal-tab_content">
 								<!--Content-->
-								<c:forEach items="${drinkMenu }" var="set" varStatus="v">
-								<div class="modal-float set_drink margin_battom16px" data-drinkmenuno="${ set.menuImg}">
-									<div class="width110px">
-										<div><img src="${pageContext.request.contextPath}/lotteria/${set.menuImg}" width="110px"></div>
-										<div class="modal-center width110px">
-											<div class="modal-fontSize15px">${set.menuName }</div>
-											<p class="modal-red modal-fontSize15px"">${set.menuPrice }</p>
-										</div>
-									</div>
-								</div>
-								</c:forEach>
-							</div> 
+								
 
 							<!-- 페이징 div -->
 							<div>

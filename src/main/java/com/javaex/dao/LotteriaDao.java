@@ -52,10 +52,6 @@ public class LotteriaDao {
 		return sqlSession.selectOne("lotteria.categoryMenuCount", categoryNo);
 	}
 	
-	public int category4MenuCount(int categoryNo) {
-		return sqlSession.selectOne("lotteria.category4MenuCount", categoryNo);
-	}
-	
 	public List<LotteriaToppingVo> toppingList(int menuNo){
 		return sqlSession.selectList("lotteria.toppingList", menuNo);
 	}

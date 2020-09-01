@@ -44,6 +44,7 @@
 				and c.storeNo=2
 				and c.publicYn=1
 				and m.categoryNo=#{categoryNo}
+				and unitNo=5
 				order by categoryNo asc))
 		where rn >= #{writing_Start} and rn <= #{writing_End}
 	]]>
@@ -76,15 +77,18 @@
 	<!-- 메뉴넘버를 이용해서 세트메뉴의 데이터를 가져옴 -->
 	<select id="selectMenu" resultType="com.javaex.vo.LotteriaVo" parameterType="int">
 		<![CDATA[
-			select sm.setNo, 
-				   sm.setName, 
-				   sm.setprice, 
-				   sm.setImg, 
-				   sm.setDesc 
+			select m.menuNo menuNo, 
+				   categoryNo, 
+				   menuName, 
+				   menuDesc, 
+				   menuPrice, 
+				   menuImg, 
+				   isChange, 
+				   unitNo 
 			from useMenu um, 
-				 setMenu sm 
-			where um.setNo = sm.setNo 
-			and menuNo=#{menuNo}
+				 menu m  
+			where um.setNo(+) = m.menuNo 
+			and um.menuNo=#{menuNo}
 		]]>
 	</select>
 	
@@ -127,13 +131,7 @@
 	
 	<select id="categoryMenuCount" resultType="int" parameterType="int">
 		<![CDATA[
-			select count(*) from menu where categoryNo=#{categoryNo}
-		]]>
-	</select>
-	
-	<select id="category4MenuCount" resultType="int" parameterType="int">
-		<![CDATA[
-			select count(*) from menu m, setMenu sm where m.categoryNo(+) = sm.categoryNo and sm.categoryNo=#{categoryNo}
+			select count(*) from menu where categoryNo=#{categoryNo} and unitNo=5
 		]]>
 	</select>
 	

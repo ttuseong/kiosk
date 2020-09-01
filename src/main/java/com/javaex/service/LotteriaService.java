@@ -26,13 +26,7 @@ public class LotteriaService {
 		Paging pgVo = new Paging(8,5,categoryMenuCount(categoryNo), pg, categoryNo);
 		Map<String, Object> menuListAndPg = new HashMap<String, Object>();
 		
-		List<LotteriaVo> menu = lotteriaDao.menuList(pgVo);
-		
-		for(LotteriaVo vo: menu) {
-			System.out.println(vo.toString());
-		}
- 		
-		menuListAndPg.put("menuList",menu);
+		menuListAndPg.put("menuList",lotteriaDao.menuList(pgVo));
 		menuListAndPg.put("pgVo",pgVo);
 		return menuListAndPg;
 	}
@@ -62,15 +56,20 @@ public class LotteriaService {
 	}
 	
 	public int categoryMenuCount(int categoryNo) {
-		if(categoryNo != 4) {
-			return lotteriaDao.categoryMenuCount(categoryNo);
-		}else {
-			return lotteriaDao.category4MenuCount(categoryNo);
-		}
+		return lotteriaDao.categoryMenuCount(categoryNo);
 	}
 	
 	public List<LotteriaToppingVo> toppingList(int menuNo){
 		return lotteriaDao.toppingList(menuNo);
+	}
+	
+	public Map<String, Object> sideMenu(){
+		
+		Map<String,Object> sideMenu = new HashMap<String, Object>();
+		sideMenu.put("dessert",lotteriaDao.dessertList());
+		sideMenu.put("drink", lotteriaDao.drinkList());
+		
+		return sideMenu;
 	}
 
 }

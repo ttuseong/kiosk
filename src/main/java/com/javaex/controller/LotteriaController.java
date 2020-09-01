@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.LotteriaService;
+import com.javaex.vo.LotteriaVo;
 
 @Controller
 @RequestMapping("/lotteria")
@@ -34,7 +37,6 @@ public class LotteriaController {
 		
 		/*메뉴리스트*/
 		model.addAttribute("menuListAndPg", lotteriaService.menuList(categoryNo,pg));
-		//model.addAttribute("cateNo4SetMenu", lotteriaService.cateNo4setMenu());
 		
 		/*모달창 데이터리스트*/
 		model.addAttribute("dessertMenu",lotteriaService.dessertList());

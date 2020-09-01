@@ -1,6 +1,7 @@
 package com.javaex.api.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,6 @@ public class ApiLotteriaController {
 	@RequestMapping("/setOrSingle")
 	@ResponseBody
 	public int setOrSingle(@RequestBody int menuNo) {
-		
 		return lotteriaService.setOrSingle(menuNo);
 	}
 	
@@ -44,15 +44,14 @@ public class ApiLotteriaController {
 		return lotteriaService.toppingList(menuNo);
 	}
 	
-	@RequestMapping("/dessertMenu")
+	/*@RequestMapping("/dessertMenu")
 	@ResponseBody
 	public List<LotteriaVo> dessertMenu(){
-		List<LotteriaVo> dessertList = lotteriaService.dessertList();
-		
-		for(LotteriaVo vo: dessertList) {
-			System.out.println(vo);
-		}
-		
-		return dessertList;
+		return lotteriaService.dessertList();
+	}*/
+	@RequestMapping("/sideMenu")
+	@ResponseBody
+	public Map<String, Object> sideMenu(){
+		return lotteriaService.sideMenu();
 	}
 }
