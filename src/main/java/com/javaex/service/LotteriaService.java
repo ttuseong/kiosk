@@ -43,14 +43,6 @@ public class LotteriaService {
 		return lotteriaDao.selectMenu(menuNo);
 	}
 	
-	public List<LotteriaVo> dessertList(){
-		return lotteriaDao.dessertList();
-	}
-	
-	public List<LotteriaVo> drinkList(){
-		return lotteriaDao.drinkList();
-	}
-	
 	public int menuCategoryNo(int menuNo) {
 		return lotteriaDao.menuCategoryNo(menuNo);
 	}
@@ -63,13 +55,19 @@ public class LotteriaService {
 		return lotteriaDao.toppingList(menuNo);
 	}
 	
-	public Map<String, Object> sideMenu(){
+
+	public Map<String, Object> side(int pg){
+		Map<String, Object> side = new HashMap<String, Object>();
 		
-		Map<String,Object> sideMenu = new HashMap<String, Object>();
-		sideMenu.put("dessert",lotteriaDao.dessertList());
-		sideMenu.put("drink", lotteriaDao.drinkList());
+		Paging drinkPg = new Paging(16,5,categoryMenuCount(29), pg, 29);
 		
-		return sideMenu;
+		Paging dessertPg = new Paging(16,5,categoryMenuCount(28), pg, 28);
+		
+		side.put("dessert",lotteriaDao.dessertList(dessertPg));
+		side.put("drink",lotteriaDao.drinkList(drinkPg));
+		side.put("dessertPg", dessertPg);
+		side.put("drinkPg", drinkPg);
+		return side;
 	}
 
 }

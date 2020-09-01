@@ -44,14 +44,9 @@ public class ApiLotteriaController {
 		return lotteriaService.toppingList(menuNo);
 	}
 	
-	/*@RequestMapping("/dessertMenu")
+	@RequestMapping("/side")
 	@ResponseBody
-	public List<LotteriaVo> dessertMenu(){
-		return lotteriaService.dessertList();
-	}*/
-	@RequestMapping("/sideMenu")
-	@ResponseBody
-	public Map<String, Object> sideMenu(){
-		return lotteriaService.sideMenu();
+	public Map<String, Object> side(@RequestBody int pg){
+		return lotteriaService.side(pg);
 	}
 }

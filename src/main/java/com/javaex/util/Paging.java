@@ -23,7 +23,7 @@ public class Paging {
 		this.categoryNo = categoryNo;
 	}
 
-	public int getPage_Count() {
+	public int getPageCount() {
 		return ((writing_Count - 1) / w_size) + 1;
 	}
 
@@ -32,7 +32,7 @@ public class Paging {
 	}
 
 	public int getPage_End() {
-		return Math.min(getPage_Start() + p_size - 1, getPage_Count());
+		return Math.min(getPage_Start() + p_size - 1, getPageCount());
 	}
 
 	public boolean isPre() {
@@ -40,7 +40,7 @@ public class Paging {
 	}
 
 	public boolean isNext() {
-		return getPage_End() < getPage_Count();
+		return getPage_End() < getPageCount();
 	}
 
 	public int getWriting_Start() {
@@ -58,38 +58,5 @@ public class Paging {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
-
-	public static void main(String[] args) {
-		/*BoardDao dao = new BoardDao();*/
-		// 여러가지 매개변수로 테스트 해보시기 바랍니다.
-		/*Paging pg = new Paging(10, 5, dao.allPage(), 0);*/
-		// 총 글의 갯수는 select count(*) from board 하면 나오겠죠 ,
-		//현재 보고 있는 페이지 번호는 Default 1, 그리고 밑에 페이징에서 링크 걸린 i가 현재 페이지가 됩니다. 
-
-		//Paging pg = new Paging(한 화면에 보여질 글 수 , 페이지 분할 수 , 총 글의 갯수  , 현재 보고 있는 페이지 번호  );
-
-		/*		System.out.println("총 페이지 개수 : " + pg.getPage_Count());
-		System.out.println("페이지 시작 숫자  : " + pg.getPage_Start());
-		System.out.println("페이지 마지막 숫자  : " + pg.getPage_End());
-		System.out.println("Pre 표시 여부  : " + pg.isPre());
-		System.out.println("Next 표시 여부   : " + pg.isNext());
-		System.out.println("글 범위 시작 번호   : " + pg.getWriting_Start());
-		System.out.println("글 범위 끝 번호   : " + pg.getWriting_End());
-		System.out.println("현재 페이지: " + pg.cur_Page);*/
-
-		/*System.out.println("select * from board where no between " + pg.getWriting_Start() + " and " + pg.getWriting_End());*/
-		// 이 셀렉트 결과를 화면에 뿌린 후에
-
-		// 밑에서 페이징을 하면 되겠죠? 이거에 링크를 걸고 i가 현재 페이지 번호로서 링크가 걸리게 되겠죠?
-		/*if (pg.isPre())
-			System.out.print(" Pre ");
-		for (int i = pg.getPage_Start(); i <= pg.getPage_End(); i++) {
-			System.out.print(" " + i + " ");
-		}
-		if (pg.isNext())
-			System.out.print(" Next ");*/
-
-		// 이런 페이징 클래스를 작성하여 사용하는 것이 여러모로 편리합니다. ~ ㅋㅋ
-
-	}
+	
 }

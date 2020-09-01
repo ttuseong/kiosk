@@ -36,12 +36,12 @@ public class LotteriaDao {
 		return sqlSession.selectList("lotteria.selectMenu", menuNo);
 	}
 	
-	public List<LotteriaVo> dessertList(){
-		return sqlSession.selectList("lotteria.dessertList");
+	public List<LotteriaVo> dessertList(Paging pgVo){
+		return sqlSession.selectList("lotteria.dessertList",pgVo);
 	}
 	
-	public List<LotteriaVo> drinkList(){
-		return sqlSession.selectList("lotteria.drinkList");
+	public List<LotteriaVo> drinkList(Paging pgVo){
+		return sqlSession.selectList("lotteria.drinkList", pgVo);
 	}
 	
 	public int menuCategoryNo(int menuNo) {

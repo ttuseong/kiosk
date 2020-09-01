@@ -54,29 +54,12 @@
 							</c:if>
 						</c:forEach>
 						
-						<c:if test="${vo.categoryNo eq 4}">
-							<c:forEach items="${cateNo4SetMenu }" var="cateNo4">
-
-								<div class="menu" data-menuno="${cateNo4.menuNo }">
-									<div class="menu-img">
-										<img src="${pageContext.request.contextPath }/lotteria/${cateNo4.setImg }" width=" 100%">
-									</div>
-									<div class="menu-text">
-										<div>${cateNo4.setName}</div>
-										<div class="menu-price">${cateNo4.setPrice}</div>
-									</div>
-								</div>
-							</c:forEach>
-  						</c:if>
-
 					</div>
 				</c:forEach> 
 				
 				<!-- 페이징 div -->
 				<div>
-					<div>
-						<button type="button" class="btn-left" onclick="pageDown()">이전</button>
-					</div>
+					<div><button type="button" class="btn-left" onclick="pageDown()">이전</button></div>
 					
 					<div class="dotDiv">
 						<c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
@@ -84,9 +67,7 @@
 						</c:forEach>
 					</div>
 										
-					<div>
-						<button type="button" class="btn-right" onclick="pageUp(${menuListAndPg.pgVo.page_End})">다음</button>
-					</div>
+					<div><button type="button" class="btn-right" onclick="pageUp(${menuListAndPg.pgVo.page_End})">다음</button></div>
 				</div>
 				<!-- 페이징 div -->
 					
@@ -162,23 +143,14 @@
 						<!--탭 콘텐츠 영역 -->
 						<div class="modal-tab_container">
 
-							<div id="modal-tab1" class="modal-tab_content">
-								<!--Content-->
-							</div>
-
- 							<div id="modal-tab2" class="modal-tab_content">
-								<!--Content-->
-								
-
+							<div id="modal-tab1" class="modal-tab_content"><!--Content--></div>
+ 							<div id="modal-tab2" class="modal-tab_content"><!--Content--></div>
+ 							
 							<!-- 페이징 div -->
 							<div>
-								<div><button type="button" class="btn-left" onclick="">이전</button></div>
-
-								<div class="modalDotDiv">
-									<div class="modalPageDot"></div>
-								</div>
-
-								<div><button type="button" class="btn-right" onclick="">다음</button></div>
+								<div><button type="button" class="btn-left" onclick="side(1)">이전</button></div>
+								<div class="modalDotDiv" ></div>
+								<div><button type="button" class="btn-right" onclick="side(2)">다음</button></div>
 							</div>
 							<!-- 페이징 div -->
 
@@ -204,7 +176,6 @@
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
-	</div>
 	<!-- 토핑모달 -->
 
 
@@ -287,7 +258,7 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal -->
-	</div>
+		
 	
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />

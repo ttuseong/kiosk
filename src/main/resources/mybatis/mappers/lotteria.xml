@@ -50,23 +50,6 @@
 	]]>
 	</select>
 		
-	<select id="cateNo4setMenu" resultType="com.javaex.vo.LotteriaVo">
-		<![CDATA[
-			select um.menuNo,
-			       sm.setNo, 
-				   sm.categoryNo, 
-			       sm.setName, 
-			       sm.setPrice, 
-			       sm.setImg, 
-				   sm.setDesc, 
-				   sm.isSpecial 
-			from setmenu sm, 
-			     useMenu um
-			where um.setNo = sm.setNo
-			and sm.categoryNo=4
-		]]>
-	</select>
-	
 	<!-- 세트메뉴가 있는지 없는지 있다면 몇개가 있는지 카운트해줌 -->
 	<select id="setOrSingle" resultType="int" parameterType="int">
 		<![CDATA[
@@ -97,13 +80,25 @@
 			select menuNo, 
 				   categoryNo, 
 				   menuName, 
-				   menuDesc, 
 				   menuPrice, 
-				   menuImg, 
-				   isSpecial 
-			from menu 
-			where categoryNo=28 
-			order by menuNo asc
+				   menuImg  
+            from(select rownum rn,
+                   		menuNo,
+                   		categoryNo,
+                   		menuName,
+                   		menuDesc,
+                   		menuPrice,
+                   		menuImg
+            	  from(select menuNo, 
+				   			  categoryNo, 
+				   			  menuName, 
+				   			  menuDesc, 
+				   			  menuPrice, 
+				   			  menuImg  
+						from menu 
+						where categoryNo=28 
+						order by menuNo asc))
+           	where rn >= #{writing_Start} and rn <= #{writing_End}
 		]]>
 	</select>
 	
@@ -112,13 +107,25 @@
 			select menuNo, 
 				   categoryNo, 
 				   menuName, 
-				   menuDesc, 
 				   menuPrice, 
-				   menuImg, 
-				   isSpecial 
-			from menu 
-			where categoryNo=29 
-			order by menuNo asc
+				   menuImg  
+            from(select rownum rn,
+                   		menuNo,
+                   		categoryNo,
+                   		menuName,
+                   		menuDesc,
+                   		menuPrice,
+                   		menuImg
+            	  from(select menuNo, 
+				   			  categoryNo, 
+				   			  menuName, 
+				   			  menuDesc, 
+				   			  menuPrice, 
+				   			  menuImg  
+						from menu 
+						where categoryNo=29 
+						order by menuNo asc))
+           	where rn >= #{writing_Start} and rn <= #{writing_End}
 		]]>
 	</select>
 	

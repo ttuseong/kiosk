@@ -81,7 +81,7 @@ $(document).ready(function() {
 	$(".modal-tab_content:first").show(); 
 	
 	$("ul.modal-tabs li").click(function() {
-		
+		side(1);
 		$("ul.modal-tabs li").removeClass("active"); 
 		$(this).addClass("active");
 		$(".modal-tab_content").hide(); 
@@ -99,7 +99,7 @@ $(document).ready(function() {
 		$(".modal-tab_content:first").show();
 		
 		$("#setAndSingle").modal("hide");
-		side();
+		side(1);
 	});
 	
 	
@@ -150,39 +150,75 @@ $(document).ready(function() {
 		var total = Number(toppingPrice) + Number(toppingTotalPrice); 
 		$(".toppingPrice").text(total);
 	});
+	
 
 });
 
+
 /*세트메뉴 선택시 사이드메뉴 리스트*/
-function side(){
+function side(pg){
 	$("#side").modal();
+	
 	$.ajax({
-		url : url+"/api/sideMenu",		
+		url : url+"/api/side",		
 		type : "post",
 		dataType : "json",
-		success : function(dessertList){
-			for( var y = 0 ; y < dessertList.dessert.length; y++){
-				
-				console.log(dessertList.dessert[y].menuImg);				
-				
-				var str = "";
-				str += "<div class='modal-float margin_battom16px; data-dessertmenuno='"+dessertList.dessert[y].menuNo+"'>";
-					str += "<div class='width110px'>";
-						str += "<div><img src='"+url+"/lotteria/"+dessertList.dessert[y].menuImg+"' width='110px'</div>";
-						str += "<div class='modal-center width110px'>";
-							str += "<div class='modal-fontSize15px'>"+dessertList.dessert[y].menuName+"</div>";
-							str += "<p class='modal-red modal-fontSize15px'>"+dessertList.dessert[y].menuPrice+"</p>";
-						str += "</div>";
-					str += "</div>";
-				str += "</div>";
-				$("#modal-tab1").append(str);
+		contentType : "application/json",
+		data : JSON.stringify(pg),
+		success : function(side){
+			$("#modal-tab1").empty();
+			$("#modal-tab2").empty();
+			$(".modalDotDiv").empty();
+			
+			var dessertPg = side.dessertPg.pageCount;
+			var drinkPg = side.drinkPg.pageCount;
+			
+			for( var y = 0 ; y < side.dessert.length; y++){
+				sideRender(side.dessert[y], 1);
+			};
+			for( var y = 0 ; y < side.drink.length; y++){
+				sideRender(side.drink[y], 2);
+			};
+			
+			if($("ul.modal-tabs li.active").text() == "세트_디저트"){
+				for(var y =1; y <= dessertPg; y++){
+					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
+				}
+			}else if($("ul.modal-tabs li.active").text() == "세트_드링크"){
+				for(var y =1; y <= drinkPg; y++){
+					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
+				}
 			}
+			
+			
 			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	}); 
+}
+
+function sideRender(side, sideType){
+	
+	var str = "";
+	str += "<div class='modal-float margin_battom16px; data-dessertmenuno='"+side.menuNo+"'>";
+		str += "<div class='width110px'>";
+			str += "<div><img src='"+url+"/lotteria/"+side.menuImg+"' width='110px'</div>";
+			str += "<div class='modal-center width110px'>";
+				str += "<div class='modal-fontSize15px'>"+side.menuName+"</div>";
+				str += "<p class='modal-red modal-fontSize15px'>"+side.menuPrice+"</p>";
+			str += "</div>";
+		str += "</div>";
+	str += "</div>";
+	
+	if(sideType == 1){
+		$("#modal-tab1").append(str);
+	}else if(sideType == 2){
+		$("#modal-tab2").append(str);
+	}
+	
+	
 }
 
 
@@ -223,7 +259,6 @@ function setOrSingle(menuNo, menuName, menuPrice){
 					data : JSON.stringify(menuNo),
 					dataType : "json",
 					success : function(selectMenu){
-						console.log("selectMenu 성공");
 						$("#modalName-setPrice").text(selectMenu[0].menuPrice);
 						$("#modalName-singlePrice").text(menuPrice);
 						
@@ -231,8 +266,6 @@ function setOrSingle(menuNo, menuName, menuPrice){
 						setName = selectMenu[0].menuName;
 						setPrice = selectMenu[0].menuPrice;
 						
-						
-						console.log("세트할건지 단품할건지 모달창 호출");
 						$("#setAndSingle").modal();
 					},
 					error : function(XHR, status, error) {
