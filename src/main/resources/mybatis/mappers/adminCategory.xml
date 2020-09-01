@@ -41,8 +41,7 @@
 				VALUES( #{categoryNo},
 						#{storeNo},
 						#{categoryName},
-						#{publicYN},
-						#{isSet})
+						#{publicYN})
 			]]>
 	</insert>
 	
