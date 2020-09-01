@@ -14,39 +14,20 @@
 		]]>
 	</select>
 	
-	<select id="menuList" resultType="com.javaex.vo.LotteriaVo" parameterType="com.javaex.util.Paging">
+	<select id="menuList" resultType="com.javaex.vo.LotteriaVo" >
 	<![CDATA[
-       select menuNo,
-		       categoryNo,
-		       menuName,
-		       menuDesc,
-		       menuPrice,
-		       menuImg,
-		       isSpecial
-		from(select rownum rn,
-			       menuNo,
-			       categoryNo,
-			       menuName,
-			       menuDesc,
-			       menuPrice,
-			       menuImg,
-			       isSpecial
-			from(select  menuNo, 
-						m.categoryNo categoryNo, 
-						menuName, 
-						menuDesc, 
-						menuPrice, 
-						menuImg, 
-						isSpecial 
-				from    menu m , 
-		        		category c
-				where m.categoryNo = c.categoryNo 
-				and c.storeNo=2
-				and c.publicYn=1
-				and m.categoryNo=#{categoryNo}
-				and unitNo=5
-				order by categoryNo asc))
-		where rn >= #{writing_Start} and rn <= #{writing_End}
+       select menuNo, 
+       		  m.categoryNo categoryNo, 
+       		  menuName, 
+       		  menuDesc, 
+       		  menuPrice, 
+       		  menuImg 
+       	from menu m, 
+       		 category c 
+       	where c.categoryNo = m.categoryNo(+) 
+       	and c.storeNo = 2 
+    
+       	and unitNo = 5
 	]]>
 	</select>
 		

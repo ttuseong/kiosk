@@ -20,8 +20,8 @@ public class LotteriaDao {
 		return sqlSession.selectList("lotteria.categoryList");
 	}
 
-	public List<LotteriaVo> menuList(Paging pgVo){
-		return sqlSession.selectList("lotteria.menuList",pgVo);
+	public List<LotteriaVo> menuList(){
+		return sqlSession.selectList("lotteria.menuList");
 	}
 	
 	public List<LotteriaVo> cateNo4setMenu(){

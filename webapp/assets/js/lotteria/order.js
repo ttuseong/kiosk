@@ -71,7 +71,7 @@ $(document).ready(function() {
 		var activeTab = $(this).find("a").attr("href");
 		$(activeTab).fadeIn();
 		
-		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg=1";
+		//location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg=1";
 		return false;
 	});
 	

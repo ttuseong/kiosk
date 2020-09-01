@@ -26,11 +26,10 @@ public class LotteriaController {
 	}
 	
 	@RequestMapping("/order")
-	public String order(Model model, @RequestParam(value="categoryNo", required=false, defaultValue = "4") int categoryNo,
-									 @RequestParam(value="pg", required=false, defaultValue = "1") int pg) {
+	public String order(Model model) {
 		
 		model.addAttribute("categoryList", lotteriaService.categoryList());
-		model.addAttribute("menuListAndPg", lotteriaService.menuList(categoryNo,pg));
+		model.addAttribute("menuList", lotteriaService.menuList());
 		
 		return "/lotteria/order";
 	}

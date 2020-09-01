@@ -22,13 +22,8 @@ public class LotteriaService {
 		return lotteriaDao.categoryList();
 	}
 	
-	public Map<String, Object> menuList(int categoryNo, int pg){
-		Paging pgVo = new Paging(8,5,categoryMenuCount(categoryNo), pg, categoryNo);
-		Map<String, Object> menuListAndPg = new HashMap<String, Object>();
-		
-		menuListAndPg.put("menuList",lotteriaDao.menuList(pgVo));
-		menuListAndPg.put("pgVo",pgVo);
-		return menuListAndPg;
+	public List<LotteriaVo> menuList(){
+		return lotteriaDao.menuList();
 	}
 	
 	public List<LotteriaVo> cateNo4setMenu(){

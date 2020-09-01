@@ -40,7 +40,7 @@
 				 <c:forEach items="${categoryList }" var="vo">
 					<div id="tab${vo.categoryNo }" class="tab_content">
 
-						<c:forEach items="${menuListAndPg.menuList }" var="menu" >
+						<c:forEach items="${menuList }" var="menu" >
 							<c:if test="${vo.categoryNo eq menu.categoryNo }">
 							<div class="menu" data-menuno="${menu.menuNo }">
 								<div class="menu-img">
@@ -58,7 +58,7 @@
 				</c:forEach> 
 				
 				<!-- 페이징 div -->
-				<div>
+				<%-- <div>
 					<div><button type="button" class="btn-left" onclick="pageDown()">이전</button></div>
 					
 					<div class="dotDiv">
@@ -68,7 +68,7 @@
 					</div>
 										
 					<div><button type="button" class="btn-right" onclick="pageUp(${menuListAndPg.pgVo.page_End})">다음</button></div>
-				</div>
+				</div> --%>
 				<!-- 페이징 div -->
 					
 			</div>
