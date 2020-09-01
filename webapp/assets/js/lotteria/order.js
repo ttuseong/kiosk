@@ -105,10 +105,10 @@ $(document).ready(function() {
 	
 	
 	/*세트메뉴에 디저트를 클릭했을때*/
-	$(".set_dessert").on("click", function(){
+	$("#modal-tab1").on("click",".set_dessert", function(){
 		menuNo = thisMenu.data("menuno");
-		dessertNo = $(this).data("dessertmenuno");
-		dessertPrice = $(this).children().eq(0).children().eq(1).children().eq(1).text();
+		dessertNo = $(this).data("no");
+		dessertPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
 		
 		$("ul.modal-tabs li:first").removeClass("active");
 		$("ul.modal-tabs li:last").addClass("active").show();
@@ -117,11 +117,12 @@ $(document).ready(function() {
 	});
 	
 	/*세트메뉴에 드링크를 클릭했을때*/
-	$(".set_drink").on("click", function(){
-		var drinkNo = $(this).data("drinkmenuno");
-		var drinkPrice = $(this).children().eq(0).children().eq(1).children().eq(1).text();
+	$("#modal-tab2").on("click",".set_drink", function(){
+		var drinkNo = $(this).data("no");
+		var drinkPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
 		
 		$('#side').modal("hide");
+		
 		setMenu(menuNo,drinkNo, drinkPrice);
 	});
 		
@@ -202,7 +203,7 @@ function side(pg){
 function sideRender(side, sideType){
 	
 	var str = "";
-	str += "<div class='modal-float margin_battom16px; data-dessertmenuno='"+side.menuNo+"'>";
+	str += "<div class='modal-float margin_battom16px' data-no='"+side.menuNo+"'>";
 		str += "<div class='width110px'>";
 			str += "<div><img src='"+url+"/lotteria/"+side.menuImg+"' width='110px'</div>";
 			str += "<div class='modal-center width110px'>";
@@ -214,8 +215,10 @@ function sideRender(side, sideType){
 	
 	if(sideType == 1){
 		$("#modal-tab1").append(str);
+		$("#modal-tab1").children().addClass("set_dessert");
 	}else if(sideType == 2){
 		$("#modal-tab2").append(str);
+		$("#modal-tab2").children().addClass("set_drink");
 	}
 	
 	
@@ -289,9 +292,9 @@ function setMenu(menuNo, drinkNo, drinkPrice){
 		data : JSON.stringify(menuNo),
 		dataType : "json",
 		success : function(selectMenu){
-			var price = selectMenu[0].setPrice +  Number(dessertPrice) + Number(drinkPrice);
+			var price = selectMenu[0].menuPrice +  Number(dessertPrice) + Number(drinkPrice);
 			
-			render(selectMenu[0].setName, price);
+			render(selectMenu[0].menuName, price);
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -321,7 +324,7 @@ function dessertAndDrink(){
 	render(setName, setPrice);
 };
 
-
+/*총주문내역에 선택한 메뉴 출력*/
 function render(menuName, menuPrice){
 	
 		var str1="";

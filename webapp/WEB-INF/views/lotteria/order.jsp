@@ -148,9 +148,9 @@
  							
 							<!-- 페이징 div -->
 							<div>
-								<div><button type="button" class="btn-left" onclick="side(1)">이전</button></div>
+								<div><button type="button" class="btn-left" onclick="">이전</button></div>
 								<div class="modalDotDiv" ></div>
-								<div><button type="button" class="btn-right" onclick="side(2)">다음</button></div>
+								<div><button type="button" class="btn-right" onclick="">다음</button></div>
 							</div>
 							<!-- 페이징 div -->
 

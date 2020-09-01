@@ -62,7 +62,7 @@
 		<![CDATA[
 			select m.menuNo menuNo, 
 				   categoryNo, 
-				   menuName, 
+				   m.menuName menuName, 
 				   menuDesc, 
 				   menuPrice, 
 				   menuImg, 
