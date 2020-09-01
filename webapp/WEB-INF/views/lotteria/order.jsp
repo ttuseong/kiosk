@@ -26,9 +26,6 @@
 	<!-- 헤더 -->
 
 	<div class="container width800height1200">
-		<!-- <div class="contents-header">
-			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
-		</div> -->
 
 			<!--탭 메뉴 영역 -->
 			<ul class="tabs">
@@ -142,8 +139,7 @@
 				</div>
 			</div>
 		</div>
-
-
+	</div>
 
 
 
@@ -208,11 +204,12 @@
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
-		<!-- 토핑모달 -->
+	</div>
+	<!-- 토핑모달 -->
 
 
 		<!-- 단품, 세트 선택 모달 -->
-		<div class="modal" id="setAndSingle">
+		<div class="modal fade" id="setAndSingle">
 			<div class="modal-dialog" id="modalName-align">
 				<div class="modal-content" id="modalName-content">
 

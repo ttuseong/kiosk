@@ -223,6 +223,7 @@ function setOrSingle(menuNo, menuName, menuPrice){
 					data : JSON.stringify(menuNo),
 					dataType : "json",
 					success : function(selectMenu){
+						console.log("selectMenu 성공");
 						$("#modalName-setPrice").text(selectMenu[0].menuPrice);
 						$("#modalName-singlePrice").text(menuPrice);
 						
@@ -231,7 +232,7 @@ function setOrSingle(menuNo, menuName, menuPrice){
 						setPrice = selectMenu[0].menuPrice;
 						
 						
-						console.log("세트할건지 단품할건지 모달");
+						console.log("세트할건지 단품할건지 모달창 호출");
 						$("#setAndSingle").modal();
 					},
 					error : function(XHR, status, error) {
