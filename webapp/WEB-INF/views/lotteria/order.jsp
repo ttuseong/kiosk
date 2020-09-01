@@ -40,7 +40,7 @@
 
 			<!--탭 콘텐츠 영역 -->
 			<div class="tab_container" id="tab_menu"   style="position: relative;">
-				<c:forEach items="${categoryList }" var="vo">
+				<%-- <c:forEach items="${categoryList }" var="vo">
 					<div id="tab${vo.categoryNo }" class="tab_content">
 
 						<c:forEach items="${menuListAndPg.menuList }" var="menu" >
@@ -73,7 +73,7 @@
   						</c:if>
 
 					</div>
-				</c:forEach>
+				</c:forEach> --%>
 				
 				<!-- 페이징 div -->
 				<div>
@@ -82,9 +82,9 @@
 					</div>
 					
 					<div class="dotDiv">
-						<c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
+						<%-- <c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
 							<div class="pageDot <c:if test="${param.pg == current }">pageActive</c:if>"></div>
-						</c:forEach>
+						</c:forEach> --%>
 					</div>
 										
 					<div>
