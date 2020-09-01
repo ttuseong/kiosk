@@ -37,11 +37,12 @@
 
 			<!--탭 콘텐츠 영역 -->
 			<div class="tab_container" id="tab_menu"   style="position: relative;">
-				 <c:forEach items="${categoryList }" var="vo">
-					<div id="tab${vo.categoryNo }" class="tab_content">
-
-						<c:forEach items="${menuList }" var="menu" >
-							<c:if test="${vo.categoryNo eq menu.categoryNo }">
+				 <c:forEach items="${categoryList }" var="vo" >
+				 
+					<div id="tab${vo.categoryNo }" class="tab_content" data-categoryno=${vo.categoryNo }>
+												
+					 <c:forEach items="${menuList }" var="menu" varStatus="i">
+							<c:if test="${vo.categoryNo eq menu.categoryNo}">
 							<div class="menu" data-menuno="${menu.menuNo }">
 								<div class="menu-img">
 									<img src="${pageContext.request.contextPath }/lotteria/${menu.menuImg }"width=" 100%">
@@ -56,6 +57,8 @@
 						
 					</div>
 				</c:forEach> 
+				
+						
 				
 				<!-- 페이징 div -->
 				<%-- <div>
