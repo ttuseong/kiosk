@@ -1,5 +1,6 @@
 var url = window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
 
+
 //메뉴의 고유 번호
 var menuNo;
 
@@ -49,6 +50,8 @@ function inittoppingArr(){
             toppingArr[i].push(toppingList[i].toppingPrice);
             toppingArr[i].push(0);
          }
+
+		 initSideArr(selectedMode);
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
@@ -56,24 +59,25 @@ function inittoppingArr(){
    });
 }
 
-function initSideArr(defaultName){
+function initSideArr(unitNo){
    $.ajax({
       url : url+"/KFC/initSide",      
       type : "post",
-      data :{defaultName : defaultName},
+      data :{unitNo : unitNo},
       success : function(sideList){
          sideArr = new Array(sideList.length);
          
+		addBurgerBoxDefault();
+
          for(var i = 0; i < sideList.length; i++){
             sideArr[i] = new Array();
-            sideArr[i].push(sideList[i]);
-            sideArr[i].push(sideList[i]);
+            sideArr[i].push(sideList[i].menuNo);
+            sideArr[i].push(sideList[i].menuNo);
             sideArr[i].push(0);
+			addBurgerBoxContent(sideList[i], i);
          }
-         
          computeAllPrice();
          hamburgerBoxSideMenuInputDefault();
-         addBurgerBoxBody();
          $("#hamburgerBoxSideMenu").modal();
 
       },
@@ -86,6 +90,7 @@ function initSideArr(defaultName){
 /*토핑 및 버거 수에 따른 금액 합산*/
 function computeAllPrice(){
    totalPrice = Number(burgerPrice);
+   
    for(var i=0; i<toppingArr.length; i++){
       totalPrice += (toppingArr[i][2]*toppingArr[i][3]);
    }
@@ -94,47 +99,46 @@ function computeAllPrice(){
       totalPrice+=Number(sideArr[i][2]);
    }
    
-
    totalPrice *= burgerCount;
-
 }
 
 //메뉴 클릭 이벤트 처리
 $("#menuSectionContent").on("click",".menu", function(){
    var thisMenu = $(this);
-   var status = thisMenu.data("status");
-   
-   if(status == 0){
-      burgerName = thisMenu.children().eq(1).children().eq(0).text();
-	  burgerCount = 1;
-	  totalPrice=thisMenu.children().eq(1).children().eq(1).text();
-	  orderComplate();
-   }
-   else{
-      menuNo = thisMenu.data("no");
-   
-      selectMenu();
-   }
+   var name = thisMenu.children(".menuContent").children().eq(0).text();
+
+   var data = {categoryNo : categoryNo, menuName : name};
+
+   console.log(data);
+   selectMenu(data);
    
 })
 
 //단품/세트/박스 모달 띄우는 함수
-function selectMenu(){
+function selectMenu(data){
    $.ajax({
       url : url+"/KFC/selectMenu",      
       type : "post",
-      data : {menuNo : menuNo},
-      success : function(menuVoList){
-         $("#selectModeMainContent").empty();
+      data : data,
+      success : function(menuList){
+	     console.log(menuList.length);
+		if(menuList.length > 1){
+			$("#selectModeMainContent").empty();
          
-         $("#selectModeMainName").text(menuVoList[menuVoList.length-1].menuName);
-         $("#selectModeMainDesc").text(menuVoList[menuVoList.length-1].menuDesc);
+	         $("#selectModeMainName").text(menuList[0].menuName);
+	         $("#selectModeMainDesc").text(menuList[0].menuDesc);
+	         
+	         for(var i = 0; i < menuList.length ; i++){
+	            OnselectMode(menuList[i]);
+	         }
+	         
+	         $("#selectMode").modal();	
+		}
+		else{
+			//단위가 없는 메뉴 처리
+			console.log("Test");
+		}
          
-         for(var i = menuVoList.length - 1; i >= 0 ; i--){
-            OnselectMode(menuVoList[i]);
-         }
-         
-         $("#selectMode").modal();
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
@@ -146,7 +150,7 @@ function selectMenu(){
 function OnselectMode(menuVo){
    var str = "";
    
-   str += ' <div class="selectModeBodyContainer" data-mode="' + menuVo.unitName + '">';
+   str += ' <div class="selectModeBodyContainer" data-mode="' + menuVo.unitNo + '">';
    str += '    <div class="icon-check selectModeCheckBox">';
    str += '       <p class="hidden">채크박스</p>';
    str += '    </div>';
@@ -189,40 +193,19 @@ $("#selectedModecompleted").on("click", function(){
    }
    else{
       inittoppingArr();
-      initSideArr($("#selectedMode").parent().data("mode"));
    }
-   
 })
 
 // hamburgerBoxHeader 기본 값 설정
 function hamburgerBoxSideMenuInputDefault(){
    $(".hamburgerBoxLabel").text(burgerName);
    $(".burgerBoxDesc").text(burgerConfig);
-   $("#hamburgerBoxCount").children(".count").children("p").text(burgerCount);
+   $(".burgertotalCount").text(burgerCount);
    $(".burgerBoxPrice").text(totalPrice);
 }
 
-//햄버거 박스 사이드 메뉴 모달
-function addBurgerBoxBody(){
-   $.ajax({
-      url : url+"/KFC/selectMode",      
-      type : "post",
-      data : {utilName : selectedMode},
-      success : function(menuList){
-         $("#hamburgerBoxBodyContainer").empty();
-         hamburgerBoxShowDefault();
-         for(var i=0; i<menuList.length;i++){
-            hamburgerBoxShowContent(menuList[i], i);
-         }
-         
-      },
-      error : function(XHR, status, error) {
-         console.error(status + " : " + error);
-      }	
-   });
-}
-
-function hamburgerBoxShowDefault(){
+function addBurgerBoxDefault(){
+   $("#hamburgerBoxBodyContainer > div").remove();
    var str = '';
    
    str += ' <div class="menu-container" id="menuSet">';
@@ -238,7 +221,7 @@ function hamburgerBoxShowDefault(){
    $("#hamburgerBoxBodyContainer").append(str);
 }
 
-function hamburgerBoxShowContent(menuVo, i){
+function addBurgerBoxContent(menuVo, i){
    var str = '';
    
    str += ' <div class="menu-container" id="menuSet">';
@@ -248,7 +231,7 @@ function hamburgerBoxShowContent(menuVo, i){
    str += '    <div>';
    str += '      <p class="menuName">' + menuVo.menuName +  '</p>';
    str += '   </div>';
-   str += '   <button type="button" class="hamburgerBoxButton" data-no="' + menuVo.defaultNo + '" data-index="' + i + '">'  + menuVo.categoryName + ' 변경' + '</button>';
+   str += '   <button type="button" class="hamburgerBoxButton" data-no="' + menuVo.categoryNo + '" data-index="' + i + '">'  + menuVo.categoryName + ' 변경' + '</button>';
    str += ' </div>';
    
    $("#hamburgerBoxBodyContainer").append(str);
@@ -259,19 +242,24 @@ $("#hamburgerBoxBodyContainer").on("click", ".hamburgerBoxButton", function(){
    var thisBtn = $(this);
    var no = thisBtn.data("no");
    sideIndex = thisBtn.data("index");   
-   changeList(no);
-   
+
+   var data = {categoryNo : no};
+
+   if(sideIndex != undefined){
+	  data.menuNo = sideArr[sideIndex][0];
+   }
+
+   changeList(data);
 });
 
 /*토핑 추가*/
-function changeList(no){
+function changeList(data){
    $.ajax({
       url : url+"/KFC/changeList",      
       type : "post",
-      data:{no:no},
+      data:data,
       success : function(list){
-         
-         if(no == 0){
+         if(data.categoryNo == 0){
             $("#bugerToppingContiner").empty();
             for(var i = 0; i < list.length; i++){
                addBurgerToppingContent(list[i], i);
@@ -526,7 +514,7 @@ $("#sideChangeComplete").on("click", function(){
 $("#hamburgerBoxSideMenuComplete").on("click", function(){
    var burgurChangeList = "-";
 
-   var menuName = burgerName.split(selectedMode);
+   var menuName = burgerName.split(" ");
 
    burgurChangeList += menuName[0];
    
@@ -590,7 +578,6 @@ $(".placeSelectBodyContentContiner").on("click", function(){
          console.error(status + " : " + error);
       }
    });
-
 });
 
 function addRecommenDationMenu(menuVo){
@@ -644,10 +631,11 @@ $("#recommendCompleteBtn").on("click", function(){
 			firstSplitText = subtext.split(" + ");
 			
 			for(var j = 0; j < firstSplitText.length; j++){
+				console.log(firstSplitText[j]);
 				lastSplitText = firstSplitText[j].split(" ");
 				text.push(lastSplitText[0]);
 				if(lastSplitText[1] == undefined){
-					count.push(1);
+					count.push(1*menuCount);
 				} else{
 					count.push(lastSplitText[1].substring(0, 1)*menuCount);
 				}
@@ -655,7 +643,6 @@ $("#recommendCompleteBtn").on("click", function(){
 				price.push(0);
 			}
 		}
-		
    }
 
    length = $("#recommend-body > div").size();	
@@ -673,8 +660,6 @@ $("#recommendCompleteBtn").on("click", function(){
    addOrderList(text, price, count);
    sum();
 
-	
-
    $("#recommend").modal("hide");
 
    $("#MyOrderListModal").modal();
@@ -691,18 +676,18 @@ function addOrderList(textArr, priceArr, countArr){
 		str += '<tr ' + 'class="subText"' + '>';
 		str += '   <td id="orderlist-menuName" class="subTextTd">' + textArr[i] + '</td>';
 		str += '   <td id="orderlist-menuCnt" class="noCount"> ' + countArr[i] + ' </td>';
-	 }
+	  }
       	
 	  else{
 		str += '<tr>';
 		str += '   <td id="orderlist-menuName">' + textArr[i] + '</td>';
 		str += '   <td id="orderlist-menuCnt"> ' + countArr[i] + ' </td>';
-	 }	
+	  }	
 
 	  if(priceArr[i] != 0)
       	str += ' <td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
-      str += '</tr>';
-   }
+      	str += '</tr>';
+      }
 
    $(".orderList-table").append(str);
 }

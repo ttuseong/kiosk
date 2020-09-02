@@ -24,24 +24,16 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectMenuList", categoryNo);
 	}
 	
-	public int selectCountMenu(int categoruNo) {
-		return sqlSession.selectOne("kfc.selectCountMenu", categoruNo);
+	public List<MenuVo> selectMenu(MenuVo menuVo) {
+		return sqlSession.selectList("kfc.selectMenu", menuVo);
 	}
 	
-	public MenuVo selectMenu(int menuNo) {
-		return sqlSession.selectOne("kfc.selectMenu", menuNo);
-	}
-	
-	public List<Integer> selectDefaultMenuNoList(String defaultName){
-		return sqlSession.selectList("kfc.selectDefaultMenuNoList", defaultName);
+	public List<MenuVo> selectDefaultMenuList(int unitNo){
+		return sqlSession.selectList("kfc.selectDefaultMenuList", unitNo);
 	}
 	
 	public List<MenuVo> selectSetMenus(int menuNo){
 		return sqlSession.selectList("kfc.selectSetMenus", menuNo);
-	}
-	
-	public List<MenuVo> selectCountUseCategory(String utilName) {
-		return sqlSession.selectList("kfc.selectCountUseCategory", utilName);
 	}
 	
 	public List<MenuVo> selectToppingList(){
@@ -53,12 +45,12 @@ public class KFCDao {
 	}
 	
 
-	public MenuVo selectBasicSide(int defaultNo) {
-		return sqlSession.selectOne("kfc.selectBasicSide", defaultNo);
+	public MenuVo selectBasicSide(int menuNo) {
+		return sqlSession.selectOne("kfc.selectBasicSide", menuNo);
 	}
 	
-	public List<MenuVo> selectAnotherSide(int defaultNo){
-		return sqlSession.selectList("kfc.selectAnotherSide", defaultNo);
+	public List<MenuVo> selectAnotherSide(MenuVo menuVo){
+		return sqlSession.selectList("kfc.selectAnotherSide", menuVo);
 	}
 
 	public List<MenuVo> selectRecommenDationMenuList() {

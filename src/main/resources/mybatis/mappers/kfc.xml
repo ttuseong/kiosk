@@ -30,87 +30,29 @@
 			    menu
 			where
 			    categoryNo = #{categoryNo}
+			and
+			    unitNo is null
+		]]>
+	</select>
+	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT
+			    menuNo,
+				menuName,
+				menuDesc,
+				menuPrice,
+				menuImg,
+				unitNo
+			FROM
+			    menu
+			where
+			    categoryNo = #{categoryNo}
+			and
+			    menuName like #{menuName}||'%'
+			order by menuNo asc
 		]]>
 	</select>
 	
-	<select id="selectCountMenu" resultType="int" parameterType="int">
-		<![CDATA[
-			SELECT
-			    count(menuNo)
-			FROM
-			    menu
-			where
-			    categoryNo = #{categoruNo}
-		]]>
-	</select>
-	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="int">
-		<![CDATA[
-			SELECT
-				menuNo,
-			    menuName,
-			    menuDesc,
-			    menuPrice,
-			    menuImg,
-			    isSet
-			FROM
-			    menu
-			where
-			    menuNo=#{menuNo}
-		]]>
-	</select>
-	<select id="selectSetMenus" resultType="com.javaex.vo.MenuVo" parameterType="int">
-		<![CDATA[
-			SELECT
-			    sm.setname menuName,
-			    sm.setPrice menuPrice,
-			    sm.setimg menuImg,
-			    sm.unitno,
-			    su.unitName
-			FROM
-			    menu m,
-			    usemenu um,
-			    setmenu sm,
-			    setunit su
-			where
-			    m.menuNo = um.menuNo
-			and
-			    um.setNo = sm.setNo
-			and
-			    sm.unitNo=su.unitno
-			and
-			    m.menuNo = #{menuNo}
-			order by sm.unitno desc
-		]]>
-	</select>
-	<select id="selectCountUseCategory" resultType="com.javaex.vo.MenuVo" parameterType="String">
-		<![CDATA[
-			SELECT
-			    m.menuName,
-			    dm.categoryno,
-			    dm.defaultNo,
-			    c.categoryname,
-			    m.menuimg
-			FROM
-			    setUnit su,
-			    useCategory uc,
-			    defaultMenu dm,
-			    menu m,
-			    category c
-			where
-			    su.unitName=#{unitName}
-			and
-			    su.unitno=uc.unitno
-			and
-			    uc.unitno=dm.unitno
-			and
-			    uc.categoryno = dm.categoryno
-			and
-			    dm.menuno=m.menuno
-			and
-			    dm.categoryno=c.categoryno
-			order by dm.defaultno desc
-		]]>
-	</select>
 	<select id="selectToppingList" resultType="com.javaex.vo.MenuVo">
 		<![CDATA[
 			SELECT
@@ -155,58 +97,56 @@
     				m.isspecial=1
 		]]>
 	</select>
-
 	<select id="selectBasicSide" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
-			    m.menuname,
-			    m.menuprice,
-			    m.menuImg,
-			    m.menuNo
+			    menuName,
+			    menuPrice,
+			    menuImg,
+			    menuNo
 			FROM
-			    defaultmenu dm,
-			    menu m
+			    menu
 			where
-			    dm.menuno = m.menuno
-			and
-			    dm.defaultNo = #{defaultNo}
+			    menuNo = #{menuNo}
 		]]>
 	</select>
-	<select id="selectAnotherSide" resultType="com.javaex.vo.MenuVo" parameterType="int">
+	<select id="selectAnotherSide" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT
+			    menuName,
+			    menuPrice,
+			    menuImg,
+			    menuNo
+			FROM
+			    menu
+			where
+			    categoryNo = #{categoryNo}
+			and
+			    isChange = 1
+			and
+				menuNo != #{menuNo}
+		]]>
+	</select>
+	<select id="selectDefaultMenuList" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
 			    m.menuname,
-			    m.menuprice,
-			    m.menuImg,
-			    m.menuNo
+				m.menuprice,
+				m.menuImg,
+			    m.menuNo,
+			    m.categoryNo,
+			    c.categoryname
 			FROM
-			    defaultmenu dm,
+			    defaultMenu dm,
 			    menu m,
 			    category c
 			where
-			    c.categoryno = dm.categoryno
+			    dm.unitNo = #{unitNo}
 			and
-			    c.categoryno = m.categoryno
+			    dm.menuNo = m.menuNo
 			and
-			    dm.defaultno=#{defaultNo}
-			and
-			    m.menuno != dm.menuno
-			and
-			    m.ischange = 1
-		]]>
-	</select>
-	<select id="selectDefaultMenuNoList" resultType="int" parameterType="String">
-		<![CDATA[
-			SELECT
-			    dm.menuNo
-			FROM
-			    defaultmenu dm,
-			    setUnit su
-			where
-			    dm.unitno = su.unitno
-			and
-			    su.unitname=#{defaultName}
-			order by dm.defaultno desc
+			    c.categoryNo = m.categoryNo
+			order by m.menuNo desc
 		]]>
 	</select>
 </mapper>

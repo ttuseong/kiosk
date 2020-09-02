@@ -27,56 +27,45 @@ public class KFCService {
 		return kfcDao.selectToppingbasicInfo();
 	}
 	
-	public List<Integer> initSide(String defaultName){
-		return kfcDao.selectDefaultMenuNoList(defaultName);
+	public List<MenuVo> initSide(int unitNo){
+		return kfcDao.selectDefaultMenuList(unitNo);
 	}
 
 	public List<MenuVo> menuList(int categoryNo) {
 		return kfcDao.selectMenuList(categoryNo);
 	}
 	
-	public int menuCount(int categoryNo) {
-		return kfcDao.selectCountMenu(categoryNo);
-	}
-	
-	public List<MenuVo> selectMenu(int menuNo) {
-		List<MenuVo> list = kfcDao.selectSetMenus(menuNo);
-		
-		list.add(kfcDao.selectMenu(menuNo));
+	public List<MenuVo> selectMenu(MenuVo menuVo) {
 
-		return list;
+		return kfcDao.selectMenu(menuVo);
 	}
 	
-	public List<MenuVo> selectMode(String utilName) {
-		return kfcDao.selectCountUseCategory(utilName);
-	}
-	
-	public List<MenuVo> changeList(int defaultNo){
+	public List<MenuVo> changeList(MenuVo menuVo){
 		List<MenuVo> list;
-		if(defaultNo == 0) {
+		if(menuVo.getCategoryNo() == 0) {
 			list = kfcDao.selectToppingList();
 		}
 		else {
-			list = sideList(defaultNo);
+			list = sideList(menuVo);
 		}
 		
 		System.out.println(list);
 		return list;
 	}
 	
-	public List<MenuVo> sideList(int defaultNo) {
-		List<MenuVo> list = sideAnotherList(defaultNo);
-		list.add(sideDefaultMenu(defaultNo));
+	public List<MenuVo> sideList(MenuVo menuVo) {
+		List<MenuVo> list = sideAnotherList(menuVo);
+		list.add(sideDefaultMenu(menuVo.getMenuNo()));
 		return list;
 	}
 	
-	public MenuVo sideDefaultMenu(int defaultNo) {
-		return kfcDao.selectBasicSide(defaultNo);
+	public MenuVo sideDefaultMenu(int menuNo) {
+		return kfcDao.selectBasicSide(menuNo);
 	}
 	
-	public List<MenuVo> sideAnotherList(int defaultNo) {
+	public List<MenuVo> sideAnotherList(MenuVo menuVo) {
 		
-		return kfcDao.selectAnotherSide(defaultNo);
+		return kfcDao.selectAnotherSide(menuVo);
 	}
 	
 	public List<MenuVo> recommenDationMenuList() {

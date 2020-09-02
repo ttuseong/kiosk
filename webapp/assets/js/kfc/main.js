@@ -2,15 +2,18 @@ var curPoint = 0;
 var endPoint;
 var curPos = 0;
 
+//선택한 카테고리의 번호
+//선택한 메뉴를 뽑아올 때 사용
+var categoryNo;
+
 $(document).ready(function(){
 	defaultMenuList();
 });
 
 function defaultMenuList(){
 	console.log($(".categoryColorWhite:first-child").children(".menuLink"));
-	var no = $(".categoryColorWhite:first-child").children(".menuLink").data("no");
-	console.log(no);
-	addMenuAjax(no);
+	categoryNo = $(".categoryColorWhite:first-child").children(".menuLink").data("no");
+	addMenuAjax();
 }
 
 
@@ -18,16 +21,16 @@ function defaultMenuList(){
 $(".menuLink").on("click", function(){
 	event.preventDefault();
 	var thismenuLink = $(this);
-	var no = thismenuLink.data("no");
+	categoryNo = thismenuLink.data("no");
 	
-	addMenuAjax(no);
+	addMenuAjax();
 });
 
-function addMenuAjax(no){
+function addMenuAjax(){
 	$.ajax({
       url : url+"/KFC/menuList",      
       type : "post",
-      data :{categoryNo : no},
+      data :{categoryNo : categoryNo},
       success : function(menuList){
 		$("#menuSectionContent > div").remove();
 		$("#pageCircleGroup>li").remove();
@@ -73,7 +76,7 @@ function addMenuAjax(no){
 
 function addMenuList(menuVo){
 	str = "";
-	str += ' <div class="menu" data-no="'+menuVo.menuNo+'" data-status="'+menuVo.isSet+'">';
+	str += ' <div class="menu" data-no="'+menuVo.menuNo+'">';
 	str += ' 	<img class="menuImg" alt="메뉴 이미지" src="'+url+'/assets/images/icon1.png">';
 	str += '	<div class="menuContent">';
 	str += '		<p>'+menuVo.menuName+'</p>';
