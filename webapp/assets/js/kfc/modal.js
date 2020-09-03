@@ -106,16 +106,17 @@ function computeAllPrice(){
 $("#menuSectionContent").on("click",".menu", function(){
    var thisMenu = $(this);
    var name = thisMenu.children(".menuContent").children().eq(0).text();
+   var price = thisMenu.children(".menuContent").children().eq(1).text();
 
    var data = {categoryNo : categoryNo, menuName : name};
 
    console.log(data);
-   selectMenu(data);
+   selectMenu(data, price);
    
 })
 
 //단품/세트/박스 모달 띄우는 함수
-function selectMenu(data){
+function selectMenu(data, price){
    $.ajax({
       url : url+"/KFC/selectMenu",      
       type : "post",
@@ -137,6 +138,16 @@ function selectMenu(data){
 		else{
 			//단위가 없는 메뉴 처리
 			console.log("Test");
+			burgerName = data.menuName;
+
+			burgerCount = 1;
+			
+			totalPrice = price;
+			
+			orderComplate();
+			
+			countAllMenulList();
+			
 		}
          
       },
