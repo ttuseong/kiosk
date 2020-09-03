@@ -198,6 +198,38 @@ $("#menuTable").on("click", ".icon-cancel", function(){
 	thisDelete.parent().parent().parent().parent().remove();
 	
 	mainPageTotal();
+	
+	var count = $("#menuTableContents").children().size();
+	var targetPos = (count-4) * -31;
+	var str = $("#menuTableContents").css("bottom").split("px");
+
+	if(count == 3){
+		console.log("test");
+		$("#menuTableContents").removeAttr("style");
+	} else if(targetPos > Number(str[0])){
+		$("#menuTableContents").css("bottom", targetPos);
+	}
+	
+	if(menuListCurPos == 0){
+		menuListlength--;
+		if(menuListlength == 0){
+			$("#scrollUp").removeClass("scrollActive");
+		}
+	} else if((menuListCurPos == menuListlength * -1) && menuListCurPos != 0){
+		menuListCurPos ++;
+		menuListlength --;
+		if(menuListlength == 0){
+			$("#scrollDown").removeClass("scrollActive");
+		}
+	} else if(menuListCurPos > menuListlength * -1){
+		menuListlength --;
+		if(menuListlength == 0){
+			$("#scrollDown").removeClass("scrollActive");
+		} else if(menuListCurPos == menuListlength * -1){
+			$("#scrollUp").removeClass("scrollActive");
+		}
+	}
+	console.log("menuListlength : " + menuListlength + ", " + "menuListCurPos : " + menuListCurPos);
 });
 
 $("#menuTable").on("click", ".icon-plus", function(){
