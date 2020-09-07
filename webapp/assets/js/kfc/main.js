@@ -11,12 +11,9 @@ $(document).ready(function(){
 });
 
 function defaultMenuList(){
-	console.log($(".categoryColorWhite:first-child").children(".menuLink"));
 	categoryNo = $(".categoryColorWhite:first-child").children(".menuLink").data("no");
 	addMenuAjax();
 }
-
-
 
 $(".menuLink").on("click", function(){
 	event.preventDefault();
@@ -60,7 +57,6 @@ function addMenuAjax(){
 		}
 		
 		var size = endPoint * 800;
-		console.log(size);
 		
 		$("#menuSectionContent").width(size);
 		
@@ -99,7 +95,6 @@ function addPageCircleGroup(index){
 }
 
 $("#btnRight").on("click", function(){
-	console.log($("#btnRight").hasClass("btnActive"))
 	if($("#btnRight").hasClass("btnActive")){
 		curPoint++;
 		curPos = -1 * curPoint * 800;
@@ -107,7 +102,6 @@ $("#btnRight").on("click", function(){
 			marginLeft : curPos
 		});
 		movePageCircle();
-		console.log(!$("#btnLeft").hasClass("btnActive"));
 		if(!$("#btnLeft").hasClass("btnActive") && curPoint > 0){
 			$("#btnLeft").addClass("btnActive");
 		}
@@ -115,8 +109,8 @@ $("#btnRight").on("click", function(){
 			$("#btnRight").removeClass("btnActive");
 		}
 	}
-	
 });
+
 $("#btnLeft").on("click", function(){
 	
 	if($("#btnLeft").hasClass("btnActive")){
@@ -148,8 +142,6 @@ function orderComplate(subText){
 	str += ' 		<div class="textarea">';
 	str += '			<p>' + burgerName + '</p>';
 	if(subText != '-' && typeof subText != "undefined"){
-		console.log(subText);
-		console.log(typeof subText);
 		str += '		<p>'+ subText +'</p>';	
 	}
 	str += '		</div>';
@@ -194,34 +186,43 @@ function mainPageTotal(){
 
 
 $("#menuTable").on("click", ".icon-cancel", function(){
+	console.log("삭제 처리");
 	var thisDelete = $(this);
 	thisDelete.parent().parent().parent().parent().remove();
 	
 	mainPageTotal();
 	
 	var count = $("#menuTableContents").children().size();
-	var targetPos = (count-4) * -31;
+	console.log("삭제처리 : " + typeof(count));
+	var targetPos = count > 2 ? (count-4) * -31 : 0;
 	var str = $("#menuTableContents").css("bottom").split("px");
 
+	console.log(targetPos);
+	
 	if(count == 3){
 		console.log("test");
 		$("#menuTableContents").removeAttr("style");
 	} else if(targetPos > Number(str[0])){
+		console.log("1");
 		$("#menuTableContents").css("bottom", targetPos);
 	}
 	
+	// 업, 다운 화살표 활성화 제거
 	if(menuListCurPos == 0){
+		console.log(2);
 		menuListlength--;
 		if(menuListlength == 0){
 			$("#scrollUp").removeClass("scrollActive");
 		}
 	} else if((menuListCurPos == menuListlength * -1) && menuListCurPos != 0){
+		console.log(3);
 		menuListCurPos ++;
 		menuListlength --;
 		if(menuListlength == 0){
 			$("#scrollDown").removeClass("scrollActive");
 		}
 	} else if(menuListCurPos > menuListlength * -1){
+		console.log(4);
 		menuListlength --;
 		if(menuListlength == 0){
 			$("#scrollDown").removeClass("scrollActive");
@@ -270,6 +271,8 @@ $("#menuTable").on("click", ".icon-minus", function(){
 
 $("#allCancelBtn").on("click", function(){
 	$("#menuTableContents").empty();
+	$("#scrollContents").children(".scrollActive").removeClass("scrollActive");
+	$("#menuTableContents").removeAttr("style");
 	mainPageTotal();
 });
 
@@ -278,7 +281,6 @@ var menuListCurPos;
 
 function countAllMenulList(){
 	count = $("#menuTableContents").children().size();
-	console.log(count);
 	
 	if(count > 4){
 		if(menuListCurPos != 0){
@@ -295,7 +297,6 @@ function countAllMenulList(){
 }
 
 $("#scrollUp").on("click", function(){
-	console.log("스크롤 업");
 	var thisScroll = $(this);
 	
 	if(thisScroll.hasClass("scrollActive")){
@@ -305,10 +306,6 @@ $("#scrollUp").on("click", function(){
 		
 		menuListCurPos--;
 		var movePos = menuListCurPos * 31;
-		
-		
-		console.log(menuListCurPos + ", " +movePos);
-		console.log($("#menuTableContents"));
 		
 		$("#menuTableContents").animate({bottom : movePos});
 		
@@ -322,7 +319,6 @@ $("#scrollUp").on("click", function(){
 //scrollActive
 
 $("#scrollDown").on("click", function(){
-	console.log("스크롤 다운");
 	var thisScroll = $(this);
 	
 	if(thisScroll.hasClass("scrollActive")){
@@ -333,15 +329,10 @@ $("#scrollDown").on("click", function(){
 		menuListCurPos++;
 		var movePos = menuListCurPos * 31;
 		
-		
-		console.log(menuListCurPos + ", " +movePos);
-		console.log($("#menuTableContents"));
-		
 		$("#menuTableContents").animate({bottom : movePos});
 		
 		if(menuListCurPos == 0){
 			thisScroll.removeClass("scrollActive");
 		}
 	}
-	
 });
