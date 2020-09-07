@@ -1,5 +1,7 @@
 var url = window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
 
+//모달이 취소할 때 이동할 지점
+var modalCanclePoint= new Array();
 
 //메뉴의 고유 번호
 var menuNo;
@@ -78,8 +80,8 @@ function initSideArr(unitNo){
          }
          computeAllPrice();
          hamburgerBoxSideMenuInputDefault();
+		 modalCanclePoint.push("hamburgerBoxSideMenu");
          $("#hamburgerBoxSideMenu").modal();
-
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
@@ -102,6 +104,14 @@ function computeAllPrice(){
    totalPrice *= burgerCount;
 }
 
+//모달을 취소할 경우 이벤트 처리
+$(".btnCancle").on("click", function(){
+	if(modalCanclePoint[0] != undefined){
+		$("#"+modalCanclePoint.pop()).modal("hide");
+		$("#"+modalCanclePoint[modalCanclePoint.length-1]).modal();
+	}
+});
+
 //메뉴 클릭 이벤트 처리
 $("#menuSectionContent").on("click",".menu", function(){
    var thisMenu = $(this);
@@ -110,7 +120,8 @@ $("#menuSectionContent").on("click",".menu", function(){
 
    var data = {categoryNo : categoryNo, menuName : name};
 
-   console.log(data);
+   modalCanclePoint.push("selectMode");
+
    selectMenu(data, price);
    
 })
@@ -549,6 +560,8 @@ $("#hamburgerBoxSideMenuComplete").on("click", function(){
 
 	countAllMenulList();
    
+	modalCanclePoint = [];
+
    $("#hamburgerBoxSideMenu").modal('hide');
 });
 
@@ -569,6 +582,7 @@ $('#recommend-body').on("click", ".recommendation",function(){
 
 /*주문버튼-->장소선택 모달-->추천 메뉴 모달*/
 $("#orderBtn").on("click", function(){
+	modalCanclePoint.push("placeSelect");
    $("#placeSelect").modal();
 });
 
@@ -582,6 +596,8 @@ $(".placeSelectBodyContentContiner").on("click", function(){
          for(var i=0; i< mList.length; i++){
             addRecommenDationMenu(mList[i]);
          }
+
+		 modalCanclePoint.push("recommend");
          $("#recommend").modal();
          
       },
@@ -672,7 +688,7 @@ $("#recommendCompleteBtn").on("click", function(){
    sum();
 
    $("#recommend").modal("hide");
-
+   modalCanclePoint.push("MyOrderListModal");
    $("#MyOrderListModal").modal();
    
    myOrderListSlideSetting();

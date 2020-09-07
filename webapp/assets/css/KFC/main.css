@@ -254,7 +254,9 @@ body{
 
 #menuTableContents>div>div{
 	position: relative;
-	display: inline-block;
+	display: table-cell;
+	vertical-align:middle;
+	text-align: center;
 }
 
 #menuTableContents>div>div:nth-child(2){
@@ -271,6 +273,7 @@ body{
 }
 
 .textarea{
+  position:relative;
   width:450px;
   display: 	table;
   margin: 0 auto;
@@ -362,7 +365,7 @@ body{
 }
 
 #blank{
-	height: 37px;
+	height: 38px;
 	border-bottom: 2px solid white;
 }
 

@@ -322,7 +322,6 @@ $("#scrollUp").on("click", function(){
 			thisScroll.removeClass("scrollActive");
 		}
 	}
-	
 });
 
 //scrollActive

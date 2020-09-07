@@ -145,7 +145,7 @@
             </div>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+            <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
             <button type="button" class="btn btn-danger" id="selectedModecompleted">완료</button>
          </div>
       </div>
