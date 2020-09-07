@@ -8,14 +8,30 @@ public class MenuVo {
 	private String menuDesc;
 	private int menuPrice;
 	private String menuImg;
+	private int isSpecial;
+	private int isChange;
 	private int isSet;
 	private int defaultNo;
 	private int unitNo;
 	private String unitName;
 	
-	public MenuVo() {}
+	public int getIsSpecial() {
+		return isSpecial;
+	}
 
-	
+	public void setIsSpecial(int isSpecial) {
+		this.isSpecial = isSpecial;
+	}
+
+	public int getIsChange() {
+		return isChange;
+	}
+
+	public void setIsChange(int isChange) {
+		this.isChange = isChange;
+	}
+
+	public MenuVo() {}
 
 	public MenuVo(int menuNo, int categoryNo, String categoryName, String menuName, String menuDesc, int menuPrice,
 			String menuImg, int isSet, int defaultNo, int unitNo, String unitName) {
@@ -31,8 +47,6 @@ public class MenuVo {
 		this.unitNo = unitNo;
 		this.unitName = unitName;
 	}
-
-
 
 	public int getMenuNo() {
 		return menuNo;
@@ -98,6 +112,14 @@ public class MenuVo {
 		this.isSet = isSet;
 	}
 
+	public int getDefaultNo() {
+		return defaultNo;
+	}
+
+	public void setDefaultNo(int defaultNo) {
+		this.defaultNo = defaultNo;
+	}
+
 	public int getUnitNo() {
 		return unitNo;
 	}
@@ -114,19 +136,11 @@ public class MenuVo {
 		this.unitName = unitName;
 	}
 
-	public int getDefaultNo() {
-		return defaultNo;
-	}
-
-	public void setDefaultNo(int defaultNo) {
-		this.defaultNo = defaultNo;
-	}
-
 	@Override
 	public String toString() {
 		return "MenuVo [menuNo=" + menuNo + ", categoryNo=" + categoryNo + ", categoryName=" + categoryName
 				+ ", menuName=" + menuName + ", menuDesc=" + menuDesc + ", menuPrice=" + menuPrice + ", menuImg="
-				+ menuImg + ", isSet=" + isSet + ", defaultNo=" + defaultNo + ", unitNo=" + unitNo + ", unitName="
-				+ unitName + "]";
+				+ menuImg + ", isSpecial=" + isSpecial + ", isChange=" + isChange + ", isSet=" + isSet + ", defaultNo="
+				+ defaultNo + ", unitNo=" + unitNo + ", unitName=" + unitName + "]";
 	}
 }

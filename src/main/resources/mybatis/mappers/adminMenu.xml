@@ -24,7 +24,7 @@
 			        menuimg,
 			        isspecial,
 			        ischange,
-			        isset
+			       	unitno
 			from menu
 			where categoryno =  #{categoryNo}
 		]]>
@@ -41,15 +41,16 @@
 			        menuimg,
 			        isspecial,
 			        ischange,
-			        isset
+			       	unitno
 			from menu
 			where menuno = #{menuNo}
 		]]>
 	</select>
 	
+	<!-- 메뉴 추가 -->
 	<insert id="menuInsert" parameterType="com.javaex.vo.MenuVo">
 		<![CDATA[
-			insert into menu values(menu_seq.nextval, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, 'icon.png', 0, 0, 0)
+			insert into menu values(menu_seq.nextval, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, 'icon.png', #{isSpecial}, #{isChange}, null)
 		]]>
 	</insert>
 	
@@ -59,7 +60,9 @@
 			update menu
 			set menuname = #{menuName},
 			    menudesc = #{menuDesc},
-			    menuprice = #{menuPrice}
+			    menuprice = #{menuPrice},
+			   	isSpecial = #{isSpecial},
+			   	isChange = #{isChange}
 			where menuNo = #{menuNo}
 		]]>
 	</update>
@@ -71,4 +74,73 @@
 			where menuNo = #{menuNo}
 		]]>
 	</delete>
+	
+	<!-- 해당 매장의 단위 정보 모두 가져옴 -->
+	<select id="getUnitList" parameterType="int" resultType="com.javaex.vo.UnitModalVo">
+		<![CDATA[
+			select  u.unitno,
+					u.unitname,
+					d.menuno,
+					m.menuName,
+					m.categoryNo,
+					c.categoryname	
+			from 	menu m, category c, defaultmenu d, setunit u
+			where u.storeno = #{storeNo}
+			 and  u.unitno = d.unitno
+			 and  m.menuno = d.menuno
+			 and  m.categoryno = c.categoryno
+			order by u.unitno desc	
+		]]>
+	</select>
+	
+	<!-- 특정 단위에 속해있는 단위 정보 모두 가져옴 -->
+	<select id="selectByUnitNo" parameterType="int" resultType="com.javaex.vo.UnitModalVo">
+		<![CDATA[
+			select  u.unitno,
+			        u.unitname,
+			        d.menuno,
+			        m.menuName,
+			        m.categoryNo,
+			        c.categoryname	
+			from 	menu m, category c, defaultmenu d, setunit u
+			where u.unitno = #{unitNo}
+			 and  u.unitno = d.unitno
+			 and  m.menuno = d.menuno
+			 and  m.categoryno = c.categoryno	
+		]]>
+	</select>
+	
+	<!-- 단위 생성 -->
+	<insert id="unitInsert" parameterType="map">
+		<![CDATA[
+			insert into setunit values(SETUNIT_SEQ.nextval, #{storeNo}, #{unitName})
+		]]>
+	</insert>
+	
+	<!-- 단위의 구성품목 삽입 -->
+	<insert id="unitComponentInsert" parameterType="map">
+		<![CDATA[
+			insert into defaultmenu values(#{menuNo}, #{unitNo})
+		]]>
+	</insert>
+	
+	<!-- 단위의 구성 품목 수정 -->
+	<update id="updateUnit" parameterType="map">
+		<![CDATA[
+			update defaultmenu
+			set menuno = #{setMenuNo}
+			where menuno = #{menuNo}
+			and unitno = #{unitNo}
+		]]>
+	</update>
+	
+	<!-- 단위 삭제 -->
+	<delete id="delUnit" parameterType="int">
+		<![CDATA[
+			delete from setunit
+			where unitno = #{unitNo}
+		]]>
+	</delete>
+	
+
 </mapper>

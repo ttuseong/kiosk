@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.javaex.service.AdminMenuService;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
+import com.javaex.vo.UnitModalVo;
 
 @Controller
 @RequestMapping("/admin")
@@ -65,10 +66,9 @@ public class AdminMenuController {
 		System.out.println(menuVo.toString());
 		
 		adminMenuService.addMenu(menuVo);
-		
+	
 		return 0;
 	}
-	
 	
 	// 메뉴 수정
 	@ResponseBody
@@ -85,7 +85,27 @@ public class AdminMenuController {
 	@ResponseBody
 	@RequestMapping("/adminDelMenu")
 	public int adminDelMenu(@RequestParam("menuNo") int menuNo) {
-		
 		return adminMenuService.delMenu(menuNo);
+	}
+	
+	// 단위 모달 - 해당 매장의 단위 정보 모두 가져옴
+	@ResponseBody
+	@RequestMapping("/adminUnitList")
+	public List<UnitModalVo> adminUnitList(@RequestParam("storeNo") int storeNo) {
+
+		List<UnitModalVo> unitList = adminMenuService.getUnitList(storeNo);
+		
+		return unitList;
+	}
+	
+	// 단위 모달 - 특정 단위에 속해있는 단위 정보 모두 가져옴
+	@ResponseBody
+	@RequestMapping("/adminUnitInfoList")
+	public List<UnitModalVo> adminUnitInfo(@RequestParam("unitNo") int unitNo) {
+
+		List<UnitModalVo> unitInfoList = adminMenuService.adminUnitInfoList(unitNo);
+		System.out.println(unitInfoList.toString());
+
+		return unitInfoList;
 	}
 }

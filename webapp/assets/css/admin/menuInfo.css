@@ -94,6 +94,14 @@ a{
    	text-align: left;
 }
 
+.menuInfo-basicInfoContainer > div:nth-last-child(2) {
+	margin: 0px;
+}
+
+.menuInfo-basicInfoContainer > div:last-child {
+    margin-left: 85px;
+}
+
 .menuInfo-basicInfoContainer div > p, input {
 	display: inline-block;
 }

@@ -172,6 +172,7 @@
     height: 40px;
     border: 1px solid #aeaeb0;
     border-radius: 6px;
+    padding-left: 10px;
 }
 
 /* 인풋 박스 네임 (이름, 추가구성 등) */
@@ -188,6 +189,12 @@
 	margin-bottom: 15px;
     text-align: left;
 }
+
+#unitManagerModal-body > div > div:nth-child(n+3) {
+    margin-left: 104px!important;
+    width: auto!important;
+}
+
 
 #unitManagerModal-body > div > div:last-child {
 	margin-bottom: 0px!important;

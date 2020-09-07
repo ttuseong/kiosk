@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,36 +11,12 @@ import org.springframework.stereotype.Service;
 import com.javaex.dao.AdminMenuDao;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
+import com.javaex.vo.UnitModalVo;
 
 @Service
 public class AdminMenuService {
 	@Autowired
 	private AdminMenuDao adminMenuDao;
-
-	// Service 카테고리 및 메뉴 정보 불러오기
-	public Map<String, Object> getMenuInfo(int storeNo, int categoryNo, int menuNo) {
-		System.out.println("service(adminMenu) - 카테고리 및 메뉴 정보 불러오기");
-		
-		Map<String, Object> adminMenuInfo = new HashMap<String, Object>();
-		
-		// 드롭다운 - 카테고리 리스트 담기
-		List<CategoryVo> cateList = adminMenuDao.getCateList(storeNo);
-		System.out.println(cateList.toString());
-		adminMenuInfo.put("cateList", cateList);
-		
-		// 드롭다운 - 메뉴 리스트 담기
-		List<MenuVo> menuList = adminMenuDao.getMenuList(categoryNo);
-
-		System.out.println(menuList.toString());
-		adminMenuInfo.put("menuList", menuList);
-		
-		// 특정 메뉴 정보 담기
-		MenuVo menuInfo = adminMenuDao.getMenuInfo(menuNo);
-		adminMenuInfo.put("menuInfo", menuInfo);
-		System.out.println(menuInfo.toString());
-		
-		return adminMenuInfo;
-	}
 
 	// Service 카테고리 리스트
 	public List<CategoryVo> getCateList(int storeNo) {
@@ -83,5 +60,43 @@ public class AdminMenuService {
 	public int delMenu(int menuNo) {
 		
 		return adminMenuDao.delMenu(menuNo);
+	}
+	
+	// Service 단위 모달 - 모든 단위 정보 가져오기
+	public List<UnitModalVo> getUnitList(int storeNo) {
+		
+		List<UnitModalVo> unitList = adminMenuDao.getUnitList(storeNo);
+		
+		return unitList;
+	}
+	
+	// Service 단위 모달 - 특정 단위에 속해있는 단위 정보 모두 가져옴
+	public List<UnitModalVo> adminUnitInfoList(int unitNo) {
+		
+		return adminMenuDao.selectByUnitNo(unitNo);
+	}
+
+	// Service 단위 모달 - 단위 생성
+	public int unitInsert(int storeNo, String unitName) {
+		
+		return adminMenuDao.unitInsert(storeNo, unitName);
+	}
+
+	// Service 단위 모달 - 단위의 구성품목 삽입
+	public int unitComponentInsert(int menuNo, String unitNo) {
+
+		return adminMenuDao.unitComponentInsert(menuNo, unitNo);
+	}
+
+	// Service 단위 모달 - 단위의 구성 품목 수정
+	public int updateUnit(String setMenuName, int menuNo, String unitNo) {
+		
+		return adminMenuDao.updateUnit(setMenuName, menuNo, unitNo);
+	}
+
+	// Service 단위 모달 - 단위 삭제
+	public int delUnit(int unitNo) {
+		
+		return adminMenuDao.delUnit(unitNo);
 	}
 }
