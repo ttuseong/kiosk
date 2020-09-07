@@ -6,8 +6,7 @@
 		<![CDATA[
 			SELECT
 			    c.categoryNo,
-			    c.categoryName,
-			    c.publicYN
+			    c.categoryName
 			FROM
 			    store s,
 			    category c
@@ -15,6 +14,8 @@
 			    s.storeName = 'KFC'
 			and
 			    s.storeno = c.storeno
+			and
+			    c.publicYN = 1
 			order by c.categoryno asc
 		]]>
 	</select>

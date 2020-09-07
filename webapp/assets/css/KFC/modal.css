@@ -1374,6 +1374,14 @@
 
 }
 
+.hamburgerBoxBodyContent{
+	height: 31.3px;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 150px;
+}
+
  
 
 /* 모달 푸터 */

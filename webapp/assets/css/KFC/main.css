@@ -52,7 +52,7 @@ body{
 #category ul li{
   position: relative;
   display: inline-block;
-  width: 128.5px;
+  width: 129.1px;
   height: 128.5px;
   margin-right: 5px;
 }
@@ -60,10 +60,6 @@ body{
 #category ul li > a{
 	display: block;
 	height: 128.5px;
-}
-
-#category ul li:last-child{
-	margin-right:0;
 }
 
 #category ul li p{
@@ -334,11 +330,8 @@ body{
   text-align: center;
 }
 
-.pricePos *{
-	font-size:16px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.pricePos > p{
+  font-size:16px;
 }
 
 .pricePos{
@@ -348,11 +341,19 @@ body{
   transform:translate(-50%, -50%);
 }
 
-.icon-cancel{
+.price > .icon-cancel{
   width: 20px;
   height: 20px;
   background-color: rgb(96, 128, 131);
   color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  font-size: 16px;
 }
 
 #scrollGroup{
@@ -361,7 +362,7 @@ body{
 }
 
 #blank{
-	height: 38px;
+	height: 37px;
 	border-bottom: 2px solid white;
 }
 

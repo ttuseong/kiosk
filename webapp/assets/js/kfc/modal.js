@@ -223,7 +223,7 @@ function addBurgerBoxDefault(){
    str += '    <img';
    str += '      src="' + url + '/assets/images/icon1.png"';
    str += '      class="img-responsive">';
-   str += '    <div>';
+   str += '    <div class="hamburgerBoxBodyContent">';
    str += '      <p class="menuName" id="selectedBurgurTopping">추가 없음</p>';
    str += '   </div>';
    str += '   <button type="button" class="hamburgerBoxButton" data-no="0">버거재료 변경</button>';
@@ -239,7 +239,7 @@ function addBurgerBoxContent(menuVo, i){
    str += '    <img';
    str += '      src="' + url + '/assets/images/icon1.png"';
    str += '      class="img-responsive">';
-   str += '    <div>';
+   str += '    <div class="hamburgerBoxBodyContent">';
    str += '      <p class="menuName">' + menuVo.menuName +  '</p>';
    str += '   </div>';
    str += '   <button type="button" class="hamburgerBoxButton" data-no="' + menuVo.categoryNo + '" data-index="' + i + '">'  + menuVo.categoryName + ' 변경' + '</button>';

@@ -7,8 +7,19 @@ var curPos = 0;
 var categoryNo;
 
 $(document).ready(function(){
+	categoryMarginInit();
 	defaultMenuList();
 });
+
+function categoryMarginInit(){
+	var categoryLength = $("#category").children("ul").children("li").size();
+	
+	for(var i = 1; i <= categoryLength; i++){
+		if(i%6 == 0 && i != 0){
+			$("#category").children("ul").children().eq(i-1).css("margin-right", 0);
+		}
+	}
+}
 
 function defaultMenuList(){
 	categoryNo = $(".categoryColorWhite:first-child").children(".menuLink").data("no");
@@ -156,9 +167,10 @@ function orderComplate(subText){
 	str += ' 	<div>';
 	str += ' 		<div class="price">';
 	str += '			<div class="pricePos">';
-	str += '				<p>'+totalPrice+'</p>;'
-	str += '				<div class="icon-cancel"></div>'
-	str += '			</div>'
+	str += '				<p>'+totalPrice+'</p>;';
+	
+	str += '			</div>';
+	str += '				<div class="icon-cancel"></div>';
 	str += '		</div>';
 	str += ' 	</div>';
 	str += ' </div>';
@@ -186,18 +198,15 @@ function mainPageTotal(){
 
 
 $("#menuTable").on("click", ".icon-cancel", function(){
-	console.log("삭제 처리");
 	var thisDelete = $(this);
-	thisDelete.parent().parent().parent().parent().remove();
+	
+	thisDelete.parent().parent().parent().remove();
 	
 	mainPageTotal();
 	
 	var count = $("#menuTableContents").children().size();
-	console.log("삭제처리 : " + typeof(count));
 	var targetPos = count > 2 ? (count-4) * -31 : 0;
 	var str = $("#menuTableContents").css("bottom").split("px");
-
-	console.log(targetPos);
 	
 	if(count == 3){
 		console.log("test");
