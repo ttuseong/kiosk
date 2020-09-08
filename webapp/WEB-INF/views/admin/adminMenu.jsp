@@ -449,6 +449,21 @@
 		getUnitList(storeNo); // 단위 정보
 	});
 	
+	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
+	function readURL(input){
+		if(input.files && input.files[0]){
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".menuInfo-menuImg").attr("src", e.target.result);
+			};
+			reader.readAsDataURL(input.files[0]);
+		}		
+	}
+	
+	$("#menuInfo-menuImgInput").change(function(){
+		readURL(this);
+	});
+	
 	// 카테고리 리스트 불러오기 함수
 	function getCateList(storeNo) {
 		$.ajax({
