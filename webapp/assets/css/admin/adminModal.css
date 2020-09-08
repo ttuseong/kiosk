@@ -232,7 +232,8 @@
 	display: inline-block;
 }
 
-.unitManagerModal-btnContainer > .unitAddBtn {
+.unitManagerModal-btnContainer > .unitAddBtn,
+.unitManagerModal-btnContainer > .unitDelBtn {
 	width: 30px;
 	height: 30px;
 }
