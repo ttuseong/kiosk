@@ -50,8 +50,14 @@
 	<!-- 메뉴 추가 -->
 	<insert id="menuInsert" parameterType="com.javaex.vo.MenuVo">
 		<![CDATA[
-			insert into menu values(menu_seq.nextval, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, 'icon.png', #{isSpecial}, #{isChange}, null)
+			insert into menu values(menu_seq.nextval, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, #{menuImg}, #{isSpecial}, #{isChange}, 
 		]]>
+		<if test="unitNo == 0">
+			null)
+		</if>
+		<if test="unitNo != 0">
+			#{unitNo})
+		</if>
 	</insert>
 	
 	<!-- 메뉴 수정 -->

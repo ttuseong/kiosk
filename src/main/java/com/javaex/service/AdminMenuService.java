@@ -1,12 +1,15 @@
 package com.javaex.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.AdminMenuDao;
 import com.javaex.vo.CategoryVo;
@@ -40,7 +43,32 @@ public class AdminMenuService {
 	}
 	
 	// Service 메뉴 추가
-	public int addMenu(MenuVo menuVo) {
+	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo) {
+		
+		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+		
+		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+		
+		MenuVo menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo);
+		
+		System.out.println(menuVo.toString());
+		
+		try {
+			byte[] fileData = file.getBytes();
+			
+			/* 윈도우에서 사용 */
+			/* OutputStream out = new FileOutputStream("C:\\test\\"+saveName); */
+			
+			/* 리눅스에서 사용 */
+			OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+			BufferedOutputStream bout = new BufferedOutputStream(out);
+			
+			bout.write(fileData);
+			bout.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return adminMenuDao.menuInsert(menuVo);
 	}

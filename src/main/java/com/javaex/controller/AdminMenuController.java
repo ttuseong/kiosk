@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.AdminMenuService;
 import com.javaex.vo.CategoryVo;
@@ -62,12 +62,11 @@ public class AdminMenuController {
 	// 메뉴 추가
 	@ResponseBody
 	@RequestMapping("/adminAddeMenu")
-	public int adminAddeMenu(@RequestBody MenuVo menuVo) {
-		System.out.println(menuVo.toString());
+	public int adminAddeMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
+			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
+			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo) {
 		
-		adminMenuService.addMenu(menuVo);
-	
-		return 0;
+		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo);
 	}
 	
 	// 메뉴 수정

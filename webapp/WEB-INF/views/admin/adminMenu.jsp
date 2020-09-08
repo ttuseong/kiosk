@@ -115,15 +115,16 @@
 							<h6 class="m-0 font-weight-bold text-primary">기본 정보</h6>
 						</div>
 						<div class="card-body adminMenu-basicInfo">
-
-							<div class="menuInfo-menuCateAndImg">
-								<!-- 메뉴 이미지 -->
-									<img
-									src="${pageContext.request.contextPath}/assets/images/icon1.png"
-									class="menuInfo-menuImg img-rounded">
-									 <input
-									id="menuInfo-menuImgInput" type="file" style="margin: auto;" />
-							</div>
+							<form id="menuImgInput" method="post" enctype="multipart/form-data">
+								<div class="menuInfo-menuCateAndImg">
+									<!-- 메뉴 이미지 -->
+										<img
+										src="${pageContext.request.contextPath}/assets/images/icon1.png"
+										class="menuInfo-menuImg img-rounded">
+										 <input
+										id="menuInfo-menuImgInput" name="file" type="file" style="margin: auto;" />
+								</div>
+							</form>
 							<!-- 메뉴 이미지 끝 -->
 
 							<!-- 기본 메뉴 정보 -->
@@ -796,6 +797,30 @@
 			isChange = parseInt(checked_isChange); // isChange 값 변경해 줌
 		}
 		
+		
+		
+		var form = $("#menuImgInput");
+		var imgData = new FormData(form[0]);
+		
+		imgData.append("menuNo", menuNo);
+		imgData.append("categoryNo", cateNo);
+		imgData.append("menuName", $("#menuName").val());
+		imgData.append("menuPrice", Number($("#menuPrice").val()));
+		imgData.append("isSpecial", isSpecial);
+		imgData.append("isChange", isChange);
+		imgData.append("menuDesc", $("#menuDesc").val());
+		
+		var val = imgData.values();
+		
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		console.log(val.next());
+		
      	// 메뉴 정보 묶어주기
 		var menuVo = { 
 			menuNo: menuNo,
@@ -818,7 +843,7 @@
 				var txtarea = $(".menuInfo-menuDescription :input"); // textarea (메뉴 설명)
 				
 				// (조건 ? 참일 경우 수행 : 거짓일 경우 수행)
-				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuAdd(menuVo);
+				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuAdd(imgData);
 			}
 		}
 		else { // 메뉴 수정
@@ -843,20 +868,20 @@
 	}
 	
 	/* 메뉴 추가 함수 */
-	function menuAdd(menuVo) {
+	function menuAdd(imgData) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminAddeMenu",
 			type : "post",
-			contentType: "application/json",
-			data : JSON.stringify(menuVo), /* json 형식으로 변형 */
+			enctype: 'multipart/form-data',
+			processData:false,
+			contentType: false,
+			data : imgData, /* json 형식으로 변형 */
 			dataType : "json",
 			
 			success : function(result) { /*성공시 처리해야될 코드 작성*/
-				
-				alert("메뉴가 등록되었습니다."); // 알림창
-				$('html').scrollTop(0); // 페이지 상단으로 이동
-				resetInput(); // 인풋박스 비워주기
-				
+				if(result > 0){
+					$(location).attr('href', 'http://125.180.31.137:8088/kiosk/admin/adminMenu');
+				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
