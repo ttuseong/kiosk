@@ -6,7 +6,8 @@
 		<![CDATA[
 			SELECT
 			    c.categoryNo,
-			    c.categoryName
+			    c.categoryName,
+			    c.categoryImg
 			FROM
 			    store s,
 			    category c

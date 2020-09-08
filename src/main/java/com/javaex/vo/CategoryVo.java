@@ -4,24 +4,25 @@ public class CategoryVo {
 	private int categoryNo;
 	private String categoryName;
 	private int publicYN;
-	private int isSet;
+	private String categoryImg;
 	private int storeNo;
+	private int isSet;
 	private int cnt;
 
 	
 	
 	public CategoryVo() {}
-	
-	public CategoryVo(int categoryNo, String categoryName, int publicYN, int isSet, int storeNo, int cnt) {
+
+	public CategoryVo(int categoryNo, String categoryName, int publicYN, String categoryImg, int storeNo, int isSet,
+			int cnt) {
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
 		this.publicYN = publicYN;
-		this.isSet = isSet;
+		this.categoryImg = categoryImg;
 		this.storeNo = storeNo;
+		this.isSet = isSet;
 		this.cnt = cnt;
 	}
-
-	
 
 	public int getCnt() {
 		return cnt;
@@ -63,6 +64,14 @@ public class CategoryVo {
 		this.publicYN = publicYN;
 	}
 
+	public String getCategoryImg() {
+		return categoryImg;
+	}
+
+	public void setCategoryImg(String categoryImg) {
+		this.categoryImg = categoryImg;
+	}
+
 	public int getIsSet() {
 		return isSet;
 	}
@@ -74,11 +83,9 @@ public class CategoryVo {
 	@Override
 	public String toString() {
 		return "CategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
-				+ ", isSet=" + isSet + ", storeNo=" + storeNo + ", cnt=" + cnt + "]";
+				+ ", categoryImg=" + categoryImg + ", storeNo=" + storeNo + ", isSet=" + isSet + ", cnt=" + cnt + "]";
 	}
 
-
-
-    
+	 
 	
 }

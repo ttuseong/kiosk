@@ -53,7 +53,7 @@
 						</c:otherwise>
 					</c:choose>
 						<a href="#" data-no="${cateVo.categoryNo}" class="menuLink">
-							<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+							<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/kfc/${catevo.categoryImg}">
 							<p>${cateVo.categoryName }</p>
 						</a>
 					</li>

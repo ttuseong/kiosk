@@ -84,7 +84,7 @@ function addMenuAjax(){
 function addMenuList(menuVo){
 	str = "";
 	str += ' <div class="menu" data-no="'+menuVo.menuNo+'">';
-	str += ' 	<img class="menuImg" alt="메뉴 이미지" src="'+url+'/assets/images/icon1.png">';
+	str += ' 	<img class="menuImg" alt="메뉴 이미지" src="'+url+'/kfc/'+ menuVo.menuImg +'">';
 	str += '	<div class="menuContent">';
 	str += '		<p>'+menuVo.menuName+'</p>';
 	str += '		<p>'+menuVo.menuPrice+'</p>';

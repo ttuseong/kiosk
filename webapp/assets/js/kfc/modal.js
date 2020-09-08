@@ -11,7 +11,7 @@ var menuNo;
 // menuImg+1+확장자 -> 이미지
 var selectedMode;
 
-//햄버거박스 사이드 메뉴
+//햄버거박스 사이드 메뉴 정보
 var burgerName;
 var burgerConfig;
 var burgerCount;
@@ -139,6 +139,7 @@ function selectMenu(data, price){
          
 	         $("#selectModeMainName").text(menuList[0].menuName);
 	         $("#selectModeMainDesc").text(menuList[0].menuDesc);
+			 $("#selectModeMainImg").attr("src", url+"/kfc/"+menuList[0].menuImg);
 	         
 	         for(var i = 0; i < menuList.length ; i++){
 	            OnselectMode(menuList[i]);
@@ -148,7 +149,6 @@ function selectMenu(data, price){
 		}
 		else{
 			//단위가 없는 메뉴 처리
-			console.log("Test");
 			burgerName = data.menuName;
 
 			burgerCount = 1;
@@ -184,8 +184,8 @@ function OnselectMode(menuVo){
    str += '      <p class="selectModeMenuGroup">' + menuVo.menuName + '</p>';
    str += '       <p class="selectModePrice"> ' + menuVo.menuPrice + '</p>';
    str += '    </div>';
-   str += '    <img id="selectModeBoxImg" alt=""';
-   str += '      src="' + url +'/assets/images/icon1.png">';
+   str += '    <img class="selectModeBoxImg" alt=""';
+   str += '      src="' + url +'/kfc/' + menuVo.menuImg + '">';
    str += ' </div>';            
    
    $("#selectModeMainContent").prepend(str);
@@ -200,7 +200,8 @@ $("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
    burgerName = clickMode.children(".selectModeBodyContent").children(".selectModeName").text();
    burgerConfig = clickMode.children(".selectModeBodyContent").children(".selectModeMenuGroup").text();
    burgerPrice = clickMode.children(".selectModeBodyContent").children(".selectModePrice").text();
-   
+   burgerImg = clickMode.children(".selectModeBoxImg").attr("src");
+
    selectedMode = clickMode.data("mode");
 });
 
@@ -224,6 +225,8 @@ function hamburgerBoxSideMenuInputDefault(){
    $(".burgerBoxDesc").text(burgerConfig);
    $(".burgertotalCount").text(burgerCount);
    $(".burgerBoxPrice").text(totalPrice);
+   $(".img-hamburgerBoxFix").attr("src", burgerImg);
+
 }
 
 function addBurgerBoxDefault(){
@@ -248,7 +251,7 @@ function addBurgerBoxContent(menuVo, i){
    
    str += ' <div class="menu-container" id="menuSet">';
    str += '    <img';
-   str += '      src="' + url + '/assets/images/icon1.png"';
+   str += '      src="' + url + '/kfc/' + menuVo.menuImg + '"';
    str += '      class="img-responsive">';
    str += '    <div class="hamburgerBoxBodyContent">';
    str += '      <p class="menuName">' + menuVo.menuName +  '</p>';
@@ -303,7 +306,7 @@ function changeList(data){
             
             if(sideChangeEndPoint>1){
                $("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
-         }
+         	}
             $("#hamburgerBoxSideMenu").modal("hide");
             $("#sideChange").modal();
          }
@@ -318,7 +321,7 @@ function addBurgerToppingContent(toppingVo, i){
    var str = "";
    str += ' <div class="bugerToppinglist" id="cheeseTopping">';
    str += '    <img alt="' + toppingVo.menuName + '추가 이미지' + '"';
-   str += '    src="' + url + '/assets/images/icon1.png">';               
+   str += '    src="' + url + '/kfc/'+toppingVo.menuImg+'">';               
    str += '   <h6>' + toppingVo.menuName + '추가' + '</h6>';                  
    str += '   <p>' + '+' + toppingVo.menuPrice +  '</p>';               
    str += '   <div class="count">';      
@@ -436,7 +439,7 @@ function addSideMenu(sideList){
          
          str += '    <div class="menu-container menuSetSecond" data-no=' + sideList[index].menuNo + '>';
          str += '       <img';
-         str += '         src="'+ url +'/assets/images/' + sideList[index].menuImg + '"';
+         str += '         src="'+ url +'/kfc/' + sideList[index].menuImg + '"';
          str += '          class="img-responsive">';
          str += '      <div>';
          str += '         <p class="menuName">' + sideList[index].menuName + '</p>';
@@ -612,7 +615,7 @@ function addRecommenDationMenu(menuVo){
    str += ' <div class="menu-container recommendation">';
    str += '    <div class="recommend-imgAndPtag">';
    str += '    <img';
-   str += '    src="' + url + '/assets/images/icon1.png"';
+   str += '    src="' + url + '/kfc/'+menuVo.menuImg+'"';
    str += '   class="img-responsive-recommend">';
    str += '   <p class="menuName">' +  menuVo.menuName +  '</p><br>';
    str += '   <p class="menuPrice">' + menuVo.menuPrice +  '</p><br>';
@@ -636,8 +639,6 @@ $("#recommendCompleteBtn").on("click", function(){
    var count=[];
 
    var length = $("#menuTableContents>div").size();
-
-   console.log(length);
    
    for(var i = 0; i<length; i++ ){
 		var menuText = $("#menuTableContents>div").eq(i).children().eq(0).children(".textarea").children().eq(0).text();
