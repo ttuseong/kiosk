@@ -172,8 +172,8 @@
 										<form action="${pageContext.request.contextPath}/admin/adminCate" method="get">	
 											<label>Search:</label>
 											<input name="searchTerm" type="search" class="form-control-search" id="findSearch" placeholder="카테고리 찾기" aria-controls="dataTable">
-											<div class="adminCate-submitBtn">
-		                                		<button type="submit"  class="btn btn-success btn-icon-split" id="adminCate-search" style="height: 38px !important;">확인</button>
+											<div class="adminCate-submitBtn" style="display: inline;">
+		                                		<button type="submit"  class="btn btn-success btn-icon-split" id="adminCate-search">확인</button>
 		                             		</div>
 	                             		</form>
 									</div>

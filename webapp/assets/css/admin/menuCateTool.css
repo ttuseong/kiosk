@@ -46,6 +46,11 @@ body {
 }
 
 
+#adminCate-search{
+	height: 30px !important;
+	width: 50px;
+	line-height: 30px;
+}
 
 
 
