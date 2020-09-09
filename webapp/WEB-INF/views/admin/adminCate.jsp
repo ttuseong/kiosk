@@ -140,7 +140,7 @@
 										</div>
 										<!-- End of form-group -->
 										
-										<div class="adminCate-submitBtn">
+										<div class="adminCate-submitBtn" id="adminCate-insert">
 											<a href="#" class="btn btn-success btn-icon-split"
 												style="height: 38px !important;"> <span class="text adminCate-btn" >확인</span>
 											</a>
@@ -167,7 +167,16 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%"cellspacing="0">
+								<table class="table table-bordered" width="100%"cellspacing="0">
+									<div class="admin-search dataTables_filter">
+										<form action="${pageContext.request.contextPath}/admin/adminCate" method="get">	
+											<label>Search:</label>
+											<input name="searchTerm" type="search" class="form-control-search" id="findSearch" placeholder="카테고리 찾기" aria-controls="dataTable">
+											<div class="adminCate-submitBtn">
+		                                		<button type="submit"  class="btn btn-success btn-icon-split" id="adminCate-search" style="height: 38px !important;">확인</button>
+		                             		</div>
+	                             		</form>
+									</div>
 									<thead>
 										<tr>
 											<th>No</th>
@@ -175,6 +184,7 @@
 											<th>Public</th>
 											<th>Private</th>
 											<th>Delete</th>
+											<th>사진미리보기</th>
 										</tr>
 									</thead>
 									<tfoot>
@@ -184,6 +194,7 @@
 											<th>Public</th>
 											<th>Private</th>
 											<th>Delete</th>
+											<th>사진미리보기</th>
 										</tr>
 									</tfoot>
 									<tbody>
@@ -199,6 +210,7 @@
 														<c:if test="${cList.publicYN == 0}">비공개</c:if>
 													</td>
 													<td><a href="#" class="adminCate-delete">X</a></td>
+													<td></td>
 												</tr>
 											</c:forEach>
 									</tbody>

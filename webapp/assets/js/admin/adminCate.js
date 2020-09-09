@@ -2,7 +2,7 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 
 
 /* 카테고리 추가 및 수정 */
-$(".adminCate-submitBtn").on("click", ".adminCate-btn",function(){
+$("#adminCate-insert").on("click", ".adminCate-btn",function(){
 	event.preventDefault();
 	console.log("클릭");
 	console.log(url);
@@ -39,7 +39,6 @@ $(".adminCate-submitBtn").on("click", ".adminCate-btn",function(){
 			
 			if(result == true) {
 				alert("사용 가능합니다.")
-				
 			}else {
 				alert("중복된 타이틀입니다. 사용할 수 없습니다.")
 				return;
@@ -117,7 +116,6 @@ $(".adminCate-title").on("click", function(){
     $(".text").removeClass("adminCate-btn") ;
    
 
-	출처: https://sharphail.tistory.com/45 [샤해의 포스트잇]
 	var categoryNo = cateTitle.parent().parent().data("no"); //부모값 가져오기
 	console.log(categoryNo);
 	var categoryPublicY = cateTitle.parent().next().text().trim(); //형제가져오기 text=val trim=공백제거
@@ -181,11 +179,11 @@ $(".adminCate-submitBtn").on("click", ".adminCate-btnUpdate",function(){
 				console.log(categoryUpdate);
 				
 				if(categoryUpdate==1){
-					console.log("성공");
+					console.log("완료");
 					alert('수정이 완료되었습니다');
 					window.location.reload();
 				}else{
-					console.log("실패");
+					console.log("완료");
 					alert('수정에 실패하였습니다');
 				}
 			},
@@ -238,3 +236,7 @@ $(".adminCate-delete").on("click", function(){
 });
 
 
+/*카테고리 검색기능*/
+$("#adminCate-search").on("click", function(){
+	console.log("임시클릭");
+});

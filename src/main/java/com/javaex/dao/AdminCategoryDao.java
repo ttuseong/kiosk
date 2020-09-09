@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,16 @@ public class AdminCategoryDao {
 	SqlSession sqlSession;
 
 	// 카테고리 리스트
-	public List<CategoryVo> selectAdminCateList() {
+	public List<CategoryVo> selectAdminCateList(Map<String, String> map) {
 		System.out.println("CateList");
-		List<CategoryVo> cateList = sqlSession.selectList("adminCategory.selectAdminCateList");
-
+		List<CategoryVo> cateList = sqlSession.selectList("adminCategory.selectAdminCateList", map);
 		return cateList;
 	}
 
+
+	
+	
+	
 	// 카테고리 추가 
 	public CategoryVo selectCateUpdate(String categoryName) {
 		System.out.println(categoryName);
@@ -40,6 +44,19 @@ public class AdminCategoryDao {
 		System.out.println("카테고리로로로로로");
 		return sqlSession.selectOne("adminCategory.selectCateOneByCategoryNo", categoryNo);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//카테고리 삭제 -- 첫번째 ajax alert창 띄우기
 	public int selectMenuCount(int categoryNo) {

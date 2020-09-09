@@ -24,8 +24,9 @@ public class AdminCategoryController {
 	
 	// 카테고리 kfc 리스트
 	@RequestMapping("/adminCate")
-	public String adminCate(Model model) {
-		List<CategoryVo> cateList = adminCategoryService.adminCateList();
+	public String adminCate(Model model, @RequestParam(value="searchTerm", required=false) String searchTerm) {
+		System.out.println(searchTerm + "***********************************************************");
+		List<CategoryVo> cateList = adminCategoryService.adminCateList(searchTerm);
 
 		model.addAttribute("cateList", cateList);
 		
@@ -34,6 +35,7 @@ public class AdminCategoryController {
 	
 	//카테고리 롯데리아 리스트
 
+	
 	
 	//카테고리 추가  --카테고리 값 가져오기
 	@ResponseBody
@@ -64,6 +66,9 @@ public class AdminCategoryController {
 		
 		return cateVo;
 	}
+	
+
+	
 	  //카테고리 삭제 --게시글이 있냐없냐를 판단
 	  @ResponseBody
 	  @RequestMapping("/adminCateDel")
@@ -85,6 +90,8 @@ public class AdminCategoryController {
 		  
 		  return categoryUpdate;
 	  }
+	  
+	  
 	  
 	  
 	  

@@ -1,6 +1,8 @@
 package com.javaex.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,18 @@ public class AdminCategoryService {
 	AdminCategoryDao adminCategoryDao;
 
 	// 카테고리 리스트
-	public List<CategoryVo> adminCateList() {
-		List<CategoryVo> cateList = adminCategoryDao.selectAdminCateList();
+	public List<CategoryVo> adminCateList(String searchTerm) {
+		Map<String, String> map = new HashMap<String, String>();
+	      map.put("searchTerm", searchTerm);
+	    System.out.println(map.get("searchTerm"));
+		List<CategoryVo> cateList = adminCategoryDao.selectAdminCateList(map);
 		return cateList;
 	}
 
+	
+	
+	
+	
 	// 카테고리 추가 --카테고리 값 가져오기
 	public boolean adminCateUpdate(String categoryName) {
 		CategoryVo categoryVo = adminCategoryDao.selectCateUpdate(categoryName);
@@ -42,6 +51,12 @@ public class AdminCategoryService {
 
 		return cateVo;
 	}
+	
+	
+	
+	
+	
+	
 
 	  //카테고리 삭제 
 	 public int adminCateDel(int categoryNo) {
