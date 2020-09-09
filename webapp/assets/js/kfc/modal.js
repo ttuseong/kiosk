@@ -108,19 +108,19 @@ function computeAllPrice(){
 $(".btnCancle").on("click", function(){
 	if(modalCanclePoint[0] != undefined){
 		$("#"+modalCanclePoint.pop()).modal("hide");
+		console.log(modalCanclePoint[modalCanclePoint.length-1]);
 		$("#"+modalCanclePoint[modalCanclePoint.length-1]).modal();
 	}
 });
 
 //메뉴 클릭 이벤트 처리
 $("#menuSectionContent").on("click",".menu", function(){
+   selectedMode = -1;
    var thisMenu = $(this);
    var name = thisMenu.children(".menuContent").children().eq(0).text();
    var price = thisMenu.children(".menuContent").children().eq(1).text();
 
    var data = {categoryNo : categoryNo, menuName : name};
-
-   modalCanclePoint.push("selectMode");
 
    selectMenu(data, price);
    
@@ -145,6 +145,7 @@ function selectMenu(data, price){
 	            OnselectMode(menuList[i]);
 	         }
 	         
+			 modalCanclePoint.push("selectMode");
 	         $("#selectMode").modal();	
 		}
 		else{
@@ -208,15 +209,20 @@ $("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
 
 // 모달 교체 시점1
 $("#selectedModecompleted").on("click", function(){
-  burgerCount = 1;
-   $("#selectMode").modal("hide");
-   
-   if(selectedMode == 'default'){
-      
-   }
-   else{
-      inittoppingArr();
-   }
+	if(selectedMode >= 0){
+	   burgerCount = 1;
+	   $("#selectMode").modal("hide");
+	   
+	   if(selectedMode == 'default'){
+	      
+	   }
+	   else{
+	      inittoppingArr();
+	   }
+	} else{
+		alert("단위를 선택해주세요");
+	}
+  
 })
 
 // hamburgerBoxHeader 기본 값 설정
@@ -352,6 +358,8 @@ $("#bugerToppingCompleted").on("click", function(){
             str+="<br>";
          }
       }
+   } else{
+	   str += "추가 없음";
    }
 
    $("#selectedBurgurTopping").html(str);
@@ -585,8 +593,15 @@ $('#recommend-body').on("click", ".recommendation",function(){
 
 /*주문버튼-->장소선택 모달-->추천 메뉴 모달*/
 $("#orderBtn").on("click", function(){
-	modalCanclePoint.push("placeSelect");
-   $("#placeSelect").modal();
+	var menuLenght = $("#menuTableContents").children().size();
+	
+	if(menuLenght > 0){
+		modalCanclePoint.push("placeSelect");
+   		$("#placeSelect").modal();
+	} else{
+		alert("메뉴를 선택해주세요");
+	}
+	
 });
 
 $(".placeSelectBodyContentContiner").on("click", function(){
