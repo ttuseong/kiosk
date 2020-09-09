@@ -62,7 +62,7 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 	float: left;
 	width: 100%;
 	background: #fff;
-	/* height:580px; */
+	height:580px;
 }
 
 .tab_content {padding: 20px;font-size: 1.2em;height: 135px;

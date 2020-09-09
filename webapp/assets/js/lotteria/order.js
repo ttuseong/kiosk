@@ -27,7 +27,6 @@ $(document).ready(function() {
 	}
 	 
     var menuNo;
-
 	//메뉴 클릭
 	$(".menu").on("click",function(){
 		thisMenu = $(this);
@@ -35,11 +34,8 @@ $(document).ready(function() {
 		var menuName = thisMenu.children().eq(1).children().eq(0).text();
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
 		setOrSingle(menuNo, menuName,menuPrice);
-		
 	});	
 	
-	
-
 	/*세트제품이 있지만 단품을 클릭했을 경우*/
 	$("#modalName-onlyBurger").on("click", function(){
 		$("#modalName-body").modal('hide');
@@ -48,11 +44,7 @@ $(document).ready(function() {
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
 		
 		render(menuName, menuPrice);
-		
 	})
-	
-	
-	
 	
 	/*페이지 탭*/
 	$(".tab_content").hide(); 
@@ -70,7 +62,7 @@ $(document).ready(function() {
 		
 		var activeTab = $(this).find("a").attr("href");
 		$(activeTab).fadeIn();
-		
+		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg=1";
 		return false;
 	});
 	
@@ -156,8 +148,6 @@ $(document).ready(function() {
 		var total = Number(toppingPrice) + Number(toppingTotalPrice); 
 		$(".toppingPrice").text(total);
 	});
-	
-
 });
 
 
@@ -183,6 +173,7 @@ function sidePageUp(){
 		$(".modalDotDiv").data("page",modalPage);
 	}
 }
+
 /*세트메뉴 선택시 사이드메뉴 리스트*/
 function side(pg){
 	$("#side").modal();
@@ -209,17 +200,14 @@ function side(pg){
 			};
 			
 			if($("ul.modal-tabs li.active").text() == "세트_디저트"){
-				for(var y =1; y <= dessertPg; y++){
+				for(var y =1; y <= side.dessertPg.page_Count; y++){
 					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
 				}
 			}else if($("ul.modal-tabs li.active").text() == "세트_드링크"){
-				for(var y =1; y <= drinkPg; y++){
+				for(var y =1; y <= side.drinkPg.page_Count; y++){
 					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
 				}
 			}
-			
-			
-			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -247,8 +235,6 @@ function sideRender(side, sideType){
 		$("#modal-tab2").append(str);
 		$("#modal-tab2").children().addClass("set_drink");
 	}
-	
-	
 }
 
 
@@ -280,7 +266,6 @@ function setOrSingle(menuNo, menuName, menuPrice){
 			if(count <= 0){
 				/*단품제품일경우*/
 				render(menuName, menuPrice);
-				
 			}else{
 				$.ajax({
 					url : url+"/api/selectMenu",		
@@ -303,7 +288,6 @@ function setOrSingle(menuNo, menuName, menuPrice){
 					}
 				}); 
 			}
-			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -477,31 +461,26 @@ function toppingModal(numberI){
 				
 				$("#toppingContents").append(str);
 			}
-			
 			var str1 = "";
 			str1 += "<button class='topping-btn' type='button' data-dismiss='modal' onClick='cansle();'>취소하기</button>";
 			str1 += "<button class='topping-btn' type='button' onClick='toppingOk("+numberI+");'>완료하기</button>";
 			
 			$(".toppingModalBtn").append(str1);
 			$('#topping').modal();
-			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	}); 
-	
 }
 
 function pageDown(){
-	
 	if(pg > 1){
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)-1);
 	}
 }
 
 function pageUp(pageEnd){
-	
 	if(pg < pageEnd){
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)+1);
 	}

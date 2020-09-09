@@ -7,14 +7,14 @@ public class Paging {
 	public int categoryNo;
 
 	public int cur_Page = 0; //현재페이지
-	
+
 	public Paging(int w_size, int p_size, int writing_Count, int cur_Page) {
 		this.w_size = w_size;
 		this.p_size = p_size;
 		this.writing_Count = writing_Count;
 		this.cur_Page = cur_Page;
 	}
-	
+
 	public Paging(int w_size, int p_size, int writing_Count, int cur_Page, int categoryNo) {
 		this.w_size = w_size;
 		this.p_size = p_size;
@@ -23,7 +23,7 @@ public class Paging {
 		this.categoryNo = categoryNo;
 	}
 
-	public int getPageCount() {
+	public int getPage_Count() {
 		return ((writing_Count - 1) / w_size) + 1;
 	}
 
@@ -32,7 +32,7 @@ public class Paging {
 	}
 
 	public int getPage_End() {
-		return Math.min(getPage_Start() + p_size - 1, getPageCount());
+		return Math.min(getPage_Start() + p_size - 1, getPage_Count());
 	}
 
 	public boolean isPre() {
@@ -40,7 +40,7 @@ public class Paging {
 	}
 
 	public boolean isNext() {
-		return getPage_End() < getPageCount();
+		return getPage_End() < getPage_Count();
 	}
 
 	public int getWriting_Start() {
@@ -58,5 +58,6 @@ public class Paging {
 	public void setCategoryNo(int categoryNo) {
 		this.categoryNo = categoryNo;
 	}
+
 	
-}
+} 
