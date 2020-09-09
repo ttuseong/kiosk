@@ -101,10 +101,12 @@ $(document).ready(function() {
 		side(1);
 	});
 	
-	
-	
 	/*세트메뉴에 디저트를 클릭했을때*/
 	$("#modal-tab1").on("click",".set_dessert", function(){
+		/*모달페이지 초기화*/
+		$(".modalDotDiv").data("page",1);
+		$("#modalCategory").data("category",28);
+		
 		menuNo = thisMenu.data("menuno");
 		dessertNo = $(this).data("no");
 		dessertPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
@@ -112,19 +114,23 @@ $(document).ready(function() {
 		$("ul.modal-tabs li:first").removeClass("active");
 		$("ul.modal-tabs li:last").addClass("active").show();
 		$("#modal-tab1").hide();
-		$("#modal-tab2").addClass("active").show(); 
+		
+		side(1);
+		$("#modal-tab2").addClass("active").show();
 	});
 	
 	/*세트메뉴에 드링크를 클릭했을때*/
 	$("#modal-tab2").on("click",".set_drink", function(){
+		/*모달페이지 초기화*/
+		$(".modalDotDiv").data("page",1);
+		
 		var drinkNo = $(this).data("no");
 		var drinkPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
 		
 		$('#side').modal("hide");
-		
 		setMenu(menuNo,drinkNo, drinkPrice);
+		side(1);
 	});
-		
 	
 	$("#toppingContents").on("click",".toppingDiv", function(){
 		
@@ -155,6 +161,28 @@ $(document).ready(function() {
 });
 
 
+/*사이드모달 페이지다운*/
+function sidePageDown(){
+	var modalPage = $(".modalDotDiv").data("page");
+	
+	if(modalPage>1){
+		modalPage-=1;
+		side(modalPage);
+		$(".modalDotDiv").data("page",modalPage);
+	}
+}
+
+/*사이드모달 페이지업*/
+function sidePageUp(){
+	var modalPage = $(".modalDotDiv").data("page");
+	var pgCount=$(".modalPageDot").size();
+	
+	if(pgCount>modalPage){
+		modalPage+=1;
+		side(modalPage);
+		$(".modalDotDiv").data("page",modalPage);
+	}
+}
 /*세트메뉴 선택시 사이드메뉴 리스트*/
 function side(pg){
 	$("#side").modal();

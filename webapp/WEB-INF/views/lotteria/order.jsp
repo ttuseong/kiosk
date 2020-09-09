@@ -151,9 +151,9 @@
  							
 							<!-- 페이징 div -->
 							<div>
-								<div><button type="button" class="btn-left" onclick="">이전</button></div>
-								<div class="modalDotDiv" ></div>
-								<div><button type="button" class="btn-right" onclick="">다음</button></div>
+								<div><button type="button" class="btn-left" onclick="sidePageDown()">이전</button></div>
+								<div class="modalDotDiv" data-page="1"></div>
+								<div><button type="button" class="btn-right" onclick="sidePageUp()">다음</button></div>
 							</div>
 							<!-- 페이징 div -->
 
