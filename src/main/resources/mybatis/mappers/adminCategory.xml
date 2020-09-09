@@ -32,6 +32,8 @@
 			 		category
 			 WHERE 
 			 		categoryname = #{categoryName}
+			 AND
+			 		storeno=1
 		]]>
 	</select>
 	

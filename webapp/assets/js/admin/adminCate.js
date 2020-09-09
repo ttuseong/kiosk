@@ -5,7 +5,10 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 	event.preventDefault();
 	console.log("클릭");
-	console.log(url);
+
+	var cateNo = $(".input-group").data('hiddenCateNo');
+	console.log(cateNo);
+	
 	var adminCateName = $(".adminCate-addCateForm").val();
 	console.log(adminCateName);
 	
@@ -13,7 +16,6 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 			cateName:adminCateName
 	};
 	
-
 	//타이틀값, 공개 비공개 값 읽어오기
 	var cateTitle = $(".adminCate-addCateForm").val();
 	console.log(cateTitle);
@@ -26,55 +28,107 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 			publicYN: adminCatePublicYn
 	};
 	
-	$.ajax({
-		
-		url : url+"/admin/adminCateUpdate",
-		type: "post",
-		data : adminCateInfo,
-		dataType : "json",
-		success : function(result){
-			console.log(result);
-			/*성공시 처리해야 될 코드 작성 */
-			//확인버튼 눌렀을시 타이틀이 중복되었을경우 alert창 뜨기
-			
-			if(result == true) {
-				alert("사용 가능합니다.")
-			}else {
-				alert("중복된 타이틀입니다. 사용할 수 없습니다.")
-				return;
-			}
-			//중복되지 않았을 경우 리스트에 추가하기
-			$.ajax({
+	if(cateNo == undefined){
+		console.log("카테고리 추가");
+		$.ajax({
+			url : url+"/admin/adminCateUpdate",
+			type: "post",
+			data : adminCateInfo,
+			dataType : "json",
+			success : function(result){
+				console.log(result);
+				/*성공시 처리해야 될 코드 작성 
+				확인버튼 눌렀을시 타이틀이 중복되었을경우 alert창 뜨기*/
 				
-				url : url+"/admin/adminCateAdd",
-				
-				type: "post",
-				data : cateNameAndPublicYn,
-				dataType : "json",
-				success : function(cateVo){
-					console.log(cateVo);
-					render(cateVo);
-
-					for(var i=0; i<cateVo.length; i++){
-						render(cateVo[i]);
-					}
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
+				if(result == true) {
+					alert("사용 가능합니다.")
+				}else {
+					alert("중복된 타이틀입니다. 사용할 수 없습니다.")
+					return;
 				}
-				
-			});
+				//중복되지 않았을 경우 리스트에 추가하기
+				$.ajax({
+					
+					url : url+"/admin/adminCateAdd",
+					
+					type: "post",
+					data : cateNameAndPublicYn,
+					dataType : "json",
+					success : function(cateVo){
+						console.log(cateVo);
+						render(cateVo);
+	
+						for(var i=0; i<cateVo.length; i++){
+							render(cateVo[i]);
+						}
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+					
+				});
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}		
+		});
+	} else{
+		console.log("카테고리 업데이트");
 			
-			
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
+		var titleClickUpdate = {
+			categoryName:cateTitle,
+			publicYN:adminCatePublicYn,
+			categoryNo:cateNo
 		}
 		
-	});
+		$.ajax({
+			url : url+"/admin/adminCateUpdate",
+			type: "post",
+			data : adminCateInfo,
+			dataType : "json",
+			success : function(result){
+				console.log(result);
+				/*성공시 처리해야 될 코드 작성 
+				확인버튼 눌렀을시 타이틀이 중복되었을경우 alert창 뜨기*/
+				
+				if(result == true) {
+					alert("사용 가능합니다.")
+				}else {
+					alert("중복된 타이틀입니다. 사용할 수 없습니다.")
+					return;
+				}
+				//중복되지 않았을 경우 리스트에 추가하기
+				$.ajax({
+				
+					url : url+"/admin/titleClickUpdate",
+							
+					type: "post",
+					data : titleClickUpdate,
+					dataType : "json",
+					success : function(categoryUpdate){
+						console.log(categoryUpdate);
+								
+						if(categoryUpdate==1){
+							console.log("완료");
+							alert('수정이 완료되었습니다');
+							window.location.reload();
+						}else{
+							console.log("완료");
+							alert('수정에 실패하였습니다');
+							}
+					},	
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}	
+				});
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}	
+		});
+				
+	}
 });
-
-
 
 
 function render(cateVo){
@@ -99,9 +153,6 @@ function render(cateVo){
 }
 
 
-
-
-
 /*타이틀을 누르면 수정가능한 인풋박스 띄우기*/
 $(".adminCate-title").on("click", function(){
 	event.preventDefault();
@@ -111,11 +162,7 @@ $(".adminCate-title").on("click", function(){
 	
 	//확인버튼 --> 수정버튼으로 변경
 	$(".text").text("수정");
-	//수정버튼 추가
-    $(".text").addClass("adminCate-btnUpdate");
-    //확인버튼 삭제
-    $(".text").removeClass("adminCate-btn") ;
-   
+	
 
 	var categoryNo = cateTitle.parent().parent().data("no"); //부모값 가져오기
 	console.log(categoryNo);
@@ -145,57 +192,6 @@ $(".adminCate-title").on("click", function(){
 	
 	//값을 읽어왔고 확인버튼이 수정버튼으로 바뀌어야함
 	
-});
-
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!List ajax로 변경시 수정작업해야해
-//원래는 .adminCate-btnUpdate에 클릭 기능을 줬으나 먹지 않아서 그 위에있는 부모에게 기능을 줬다 
-$(".adminCate-submitBtn").on("click", ".adminCate-btnUpdate",function(){
-	console.log("수정버튼 클릭");
-	
-	//변경된 값을 가져올거야 3개 (숨겨진no값, 수정된 title, 수정된 publicYn)
-	var cateTitleChange = $(".adminCate-addCateForm").val();
-	console.log(cateTitleChange);
-	
-	var  publicYnChange = $('input:radio[name="cate-openStatus"]:checked').val();
-	console.log(publicYnChange);
-
-	//숨겨진 카테고리 값 데이터로 받아오기 
-	var hiddenCateNo = $(".input-group").data('hiddenCateNo');
-	console.log(hiddenCateNo);
-	
-	var titleClickUpdate = {
-			categoryName:cateTitleChange,
-			publicYN:publicYnChange,
-			categoryNo:hiddenCateNo
-	}
-	
-	$.ajax({
-		
-			url : url+"/admin/titleClickUpdate",
-			
-			type: "post",
-			data : titleClickUpdate,
-			dataType : "json",
-			success : function(categoryUpdate){
-				console.log(categoryUpdate);
-				
-				if(categoryUpdate==1){
-					console.log("완료");
-					alert('수정이 완료되었습니다');
-					window.location.reload();
-				}else{
-					console.log("완료");
-					alert('수정에 실패하였습니다');
-				}
-			},
-			
-			
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		
-	});
-
 });
 
 
@@ -236,8 +232,3 @@ $(".adminCate-delete").on("click", function(){
 
 });
 
-
-/*카테고리 검색기능*/
-$("#adminCate-search").on("click", function(){
-	console.log("임시클릭");
-});
