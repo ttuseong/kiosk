@@ -76,6 +76,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 
 
 
+
 function render(cateVo){
 	
 	var str = "";

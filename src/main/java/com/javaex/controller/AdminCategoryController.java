@@ -1,7 +1,7 @@
 package com.javaex.controller;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class AdminCategoryController {
 	@Autowired
 	AdminCategoryService adminCategoryService;
 	
-	// 카테고리 kfc 리스트
+	// 카테고리 kfc 리스트, 서치
 	@RequestMapping("/adminCate")
 	public String adminCate(Model model, @RequestParam(value="searchTerm", required=false) String searchTerm) {
 		System.out.println(searchTerm + "***********************************************************");
@@ -79,6 +79,7 @@ public class AdminCategoryController {
 		  System.out.println("cnt넘어옴");
 		  return cnt; 
 	  }
+	  
 	  
 	  //카테고리 수정
 	  @ResponseBody
