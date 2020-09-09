@@ -115,16 +115,17 @@
 							<h6 class="m-0 font-weight-bold text-primary">기본 정보</h6>
 						</div>
 						<div class="card-body adminMenu-basicInfo">
-							<form id="menuImgInput" method="post" enctype="multipart/form-data">
-								<div class="menuInfo-menuCateAndImg">
+							<div class="menuInfo-menuCateAndImg">
+								<form id="menuImgInput" method="post" enctype="multipart/form-data">
 									<!-- 메뉴 이미지 -->
 										<img
 										src="${pageContext.request.contextPath}/assets/images/icon1.png"
 										class="menuInfo-menuImg img-rounded">
 										 <input
 										id="menuInfo-menuImgInput" name="file" type="file" style="margin: auto;" />
-								</div>
-							</form>
+								</form>	
+							</div>
+							
 							<!-- 메뉴 이미지 끝 -->
 
 							<!-- 기본 메뉴 정보 -->
