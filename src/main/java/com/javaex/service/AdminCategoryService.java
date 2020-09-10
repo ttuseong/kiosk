@@ -15,16 +15,44 @@ public class AdminCategoryService {
 	@Autowired
 	AdminCategoryDao adminCategoryDao;
 
-	// 카테고리 리스트
-	public List<CategoryVo> adminCateList(String searchTerm) {
-		Map<String, String> map = new HashMap<String, String>();
-	      map.put("searchTerm", searchTerm);
-	    System.out.println(map.get("searchTerm"));
-		List<CategoryVo> cateList = adminCategoryDao.selectAdminCateList(map);
-		return cateList;
+	// 카테고리 리스트, 서치, 페이징
+	public Map<String, Object> adminCateList(String searchTerm, int point) {
+
+		int totalCount = adminCateCount(1, searchTerm); //괄호에 스토어 넘버가 들어가면 됨 KFC=1 롯데리아=2
+        System.out.println(totalCount);
+        int totalPage = (int)Math.ceil(totalCount/5.0);
+        System.out.println(totalPage);
+        int startPoint = (point-1)*5+1;
+        int endPoint = startPoint+4;
+
+        Map<String, Object> map = new HashMap<String, Object>();
+          map.put("searchTerm", searchTerm);
+          map.put("totalCount", totalCount);
+          map.put("startPoint", startPoint);
+          map.put("endPoint", endPoint);
+          
+
+        System.out.println(map.get("searchTerm"));
+        List<CategoryVo> cateList = adminCategoryDao.selectAdminCateList(map);
+
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        resultMap.put("cateList", cateList);
+        resultMap.put("totalPage", totalPage);
+        resultMap.put("point", point);
+        resultMap.put("searchTerm", searchTerm);
+
+
+        return resultMap;
 	}
 
-	
+	//페이징 - storeno를 읽고 categoryNo의 count를 세어줄것
+	public int adminCateCount(int storeNo, String searchTerm) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("storeNo", storeNo);
+		map.put("searchTerm", searchTerm);
+		return adminCategoryDao.selectAdminCateCount(map);
+	}
 	
 	
 	

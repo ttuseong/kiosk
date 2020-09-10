@@ -16,14 +16,18 @@ public class AdminCategoryDao {
 	SqlSession sqlSession;
 
 	// 카테고리 리스트
-	public List<CategoryVo> selectAdminCateList(Map<String, String> map) {
+	public List<CategoryVo> selectAdminCateList(Map<String, Object> map) {
 		System.out.println("CateList");
 		List<CategoryVo> cateList = sqlSession.selectList("adminCategory.selectAdminCateList", map);
 		return cateList;
 	}
-
-
 	
+	//페이지 categoryNo 값 가져오기
+	public int selectAdminCateCount(Map<String, Object> map) {
+		
+		return sqlSession.selectOne("adminCategory.selectAdminCateCount", map);
+		
+	}
 	
 	
 	// 카테고리 추가 

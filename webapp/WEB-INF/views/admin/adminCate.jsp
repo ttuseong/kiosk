@@ -215,13 +215,27 @@
 											</c:forEach>
 									</tbody>
 								</table>
+								
 								<ul class="pagination admin-paging">
-									<li class=""><a href="#" class="admin-pageLink admin-pagePrevious">Previous</a></li>
-									<c:forEach begin="1" end="${resultMap.totalPage }" var="i">
-										<li class=""><a href="#" class="admin-pageLink">${i}</a></li>
-									</c:forEach>
-									
-									<li class=""><a href="#" class="admin-pageLink admin-next">next</a></li>
+									<li class=""><a
+									  <c:if test="${resultMap.point>1}">
+										href="${pageContext.request.contextPath}/admin/adminCate?searchTerm=${resultMap.searchTerm}&point=${resultMap.point-1}"
+									  </c:if>	 
+										class="admin-pageLink admin-pagePrevious">Previous</a></li>
+									 
+									  <c:forEach begin="1" end="${resultMap.totalPage}" var="i"> <!-- i는 뽑아지는 값  begin으로 1페이지를 왔다치자! totalPage가 3이라치자 2페이지는 어떻게 갈건데?-->
+                                        <c:if test="${resultMap.point == i}">
+									   		<li class=""><a href="${pageContext.request.contextPath}/admin/adminCate?searchTerm=${resultMap.searchTerm}&point=${i}" class="admin-pageLink admin-pageActive">${i}</a></li>
+                                        </c:if>
+                                        <c:if test="${resultMap.point != i}">
+                                        	<li class=""><a href="${pageContext.request.contextPath}/admin/adminCate?searchTerm=${resultMap.searchTerm}&point=${i}" class="admin-pageLink">${i}</a></li>
+                                        </c:if>
+                                    </c:forEach>
+                                    <li class=""><a
+                                    <c:if test="${resultMap.point<resultMap.totalPage}">
+                                    	href="${pageContext.request.contextPath}/admin/adminCate?searchTerm=${resultMap.searchTerm}&point=${resultMap.point+1}" 
+                                    </c:if>
+                                    class="admin-pageLink admin-next">next</a></li>
 								</ul>
 							</div>
 						</div>

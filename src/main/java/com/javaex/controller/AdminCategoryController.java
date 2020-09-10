@@ -1,7 +1,8 @@
 package com.javaex.controller;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,14 @@ public class AdminCategoryController {
 	
 	// 카테고리 kfc 리스트, 서치
 	@RequestMapping("/adminCate")
-	public String adminCate(Model model, @RequestParam(value="searchTerm", required=false) String searchTerm) {
+	public String adminCate(Model model, @RequestParam(value="searchTerm", required=false) String searchTerm,
+			 @RequestParam(value="point", defaultValue = "1") int point) {
 		System.out.println(searchTerm + "***********************************************************");
-		List<CategoryVo> cateList = adminCategoryService.adminCateList(searchTerm);
+		//List<CategoryVo> cateList = adminCategoryService.adminCateList(searchTerm, point);
+		Map<String, Object> resultMap = adminCategoryService.adminCateList(searchTerm, point);
 
-		model.addAttribute("cateList", cateList);
+		
+		model.addAttribute("resultMap", resultMap);
 		
 		return "/admin/adminCate";
 	}
@@ -91,8 +95,6 @@ public class AdminCategoryController {
 		  
 		  return categoryUpdate;
 	  }
-	  
-	  
 	  
 	  
 	  
