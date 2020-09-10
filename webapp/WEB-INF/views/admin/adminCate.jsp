@@ -199,7 +199,7 @@
 									</tfoot>
 									<tbody>
 
-											<c:forEach items="${cateList}" var="cList" varStatus="status">
+											<c:forEach items="${resultMap.cateList}" var="cList" varStatus="status">
 												<tr data-no="${cList.categoryNo }">
 													<td>${cList.categoryNo}</td>
 													<td><a href="#" class="adminCate-title">${cList.categoryName}</a></td>
@@ -217,9 +217,10 @@
 								</table>
 								<ul class="pagination admin-paging">
 									<li class=""><a href="#" class="admin-pageLink admin-pagePrevious">Previous</a></li>
-									<li class=""><a href="#" class="admin-pageLink admin-pageActive">1</a></li>
-									<li class=""><a href="#" class="admin-pageLink">2</a></li>
-									<li class=""><a href="#" class="admin-pageLink">3</a></li>
+									<c:forEach begin="1" end="${resultMap.totalPage }" var="i">
+										<li class=""><a href="#" class="admin-pageLink">${i}</a></li>
+									</c:forEach>
+									
 									<li class=""><a href="#" class="admin-pageLink admin-next">next</a></li>
 								</ul>
 							</div>

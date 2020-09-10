@@ -24,6 +24,8 @@ public class KFCController {
 	@RequestMapping("/index")
 	public String index(Model model) {				
 		List<CategoryVo> list = kfcService.cateList();
+		
+		System.out.println(list.toString());
 
 		model.addAttribute("list", list);
 		

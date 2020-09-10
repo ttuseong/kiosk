@@ -241,7 +241,7 @@ function addBurgerBoxDefault(){
    
    str += ' <div class="menu-container" id="menuSet">';
    str += '    <img';
-   str += '      src="' + url + '/assets/images/icon1.png"';
+   str += '      src="' + url + '/kfc/toppingDefaultImg.png"';
    str += '      class="img-responsive">';
    str += '    <div class="hamburgerBoxBodyContent">';
    str += '      <p class="menuName" id="selectedBurgurTopping">추가 없음</p>';
