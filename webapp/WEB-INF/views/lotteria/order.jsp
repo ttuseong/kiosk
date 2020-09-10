@@ -18,6 +18,10 @@
 <script type="text/javascript"src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
 <script type="text/javascript" src="/kiosk/assets/js/lotteria/order.js"></script>
 
+<!-- 쿠키 플러그인 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+
 <title>키오스크-롯데리아</title>
 </head>
 <body>

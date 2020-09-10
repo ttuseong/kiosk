@@ -10,14 +10,23 @@ var pg;
 var categoryNo;
 var params = location.search.substr(location.search.indexOf("?") + 1);
 
+var selectMenu = {}
 
 $(document).ready(function() {
+	
+	
+	/*총주문내역이 쿠키에 있을 경우 cookieRender 호출*/
+	if($.cookie("selectList") != null ) {
+		console.log("쿠키 있음. 위에" );
+		cookieRender();
+	}
+		
 	if(params != ""){
 		
 		params = params.split("&");
 		
-		for (var i = 0; i < params.length; i++) {
-			temp = params[i].split("=");
+		for (var z = 0; z < params.length; z++) {
+			temp = params[z].split("=");
 			if ([temp[0]] == "pg") { pg = temp[1]; }
 			if ([temp[0]] == "categoryNo") { categoryNo = temp[1]; }
 		}
@@ -52,6 +61,33 @@ $(document).ready(function() {
 	$("#tab"+categoryNo).show();
 	
 	$("ul.tabs li").click(function() {
+		
+		/*총주문내역이 있을경우*/
+		if(($(".menuNameText1").text()).length  > 1){
+			
+			/*총주문내역 쿠키에 저장*/
+			for(var v = 1; v < i; v++){
+				
+				var number = $(".menuNumber"+v).text();
+				var price =$(".menuPrice"+v).children().eq(0).text();
+				var menuName = $(".menuNameText"+v).text();
+				var categoryNo = $(".menuPrice"+v).children().eq(0).data("categoryno");
+				
+				var menuList;
+				var temp = {"categoryNo":categoryNo, "menuName":menuName, "number":number, "menuPrice":price};
+				
+				if(v >= 2){
+					menuList = menuList + JSON.stringify(temp);
+					$.cookie("selectList",menuList);
+					
+				}else{
+					$.cookie("selectList",JSON.stringify(temp));
+					menuList = JSON.stringify(temp);
+				}
+			}
+		}
+		
+		
 		pg = 1;
 		$("ul.tabs li").removeClass("active"); 
 		$(this).addClass("active");
@@ -149,35 +185,9 @@ $(document).ready(function() {
 		$(".toppingPrice").text(total);
 	});
 
-	console.log(getCookie("햄버거"));
-	/*setCookie("햄버거",5000,1);*/
 });
 
-function setCookie(name, value, days) {
-    if (days) {
-            var date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            var expires = "; expires=" + date.toGMTString();
-    } else {
-           var expires = "";
-    }
-    
-    document.cookie = name + "=" + value + expires + "; path=/";
-}
-function getCookie(name) {
-    var i, x, y, ARRcookies = document.cookie.split(";");
-    
-    for (i = 0; i < ARRcookies.length; i++) {     
-            x = ARRcookies[i].substr(0, ARRcookies[i].indexOf("="));
-            y = ARRcookies[i].substr(ARRcookies[i].indexOf("=") + 1);
-            
-            x = x.replace(/^\s+|\s+$/g, "");
 
-            if (x == name) {
-                    return unescape(y);
-            }
-    }
-}
 
 
 /*사이드모달 페이지다운*/
@@ -364,7 +374,7 @@ function dessertAndDrink(){
 	render(setName, setPrice);
 };
 
-/*총주문내역에 선택한 메뉴 출력*/
+/*선택한메뉴 총주문내역에 출력*/
 function render(menuName, menuPrice){
 	
 		var str1="";
@@ -385,7 +395,7 @@ function render(menuName, menuPrice){
 				
 				if(categoryNo == 5){
 					var str2="";
-					str2 += "<div class='number'>"+menuPrice+"</div>";
+					str2 += "<div class='number' data-categoryno='5'>"+menuPrice+"</div>";
 					str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
 					str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
 					
@@ -397,16 +407,18 @@ function render(menuName, menuPrice){
 					i+=1;
 				}else{
 					var str2="";
-					str2 += "<div class='number'>"+menuPrice+"</div>";
+					str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menuPrice+"</div>";
 					str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
 					
 					$(".menuNameText"+i).text(menuName);
 					$(".menuNumber"+i).append(str1);
 					$(".menuPrice"+i).append(str2);
-					
+
 					result();
 					i+=1;
+					
 				}
+				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -513,5 +525,290 @@ function pageUp(pageEnd){
 	if(pg < pageEnd){
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)+1);
 	}
+}
+
+/*쿠키에 있는 총주문내역 출력*/
+function cookieRender(){
+	var menuList = ($.cookie("selectList")).split('}');//특정문자 삭제
+	var menu1;
+	var menu2;
+	var menu3;
+	var menu4;
+	var menu5;
+	
+	for(var ii = 0; ii < menuList.length-1; ii++){
+		menuList[ii] = menuList[ii].replace("{","");//특정문자 치환
+		//console.log(menuList[ii]);
+	}
+	
+	
+	
+	if(menuList.length >= 6){
+		menu5= menuList[4].split(",")
+		
+		var str1="";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu5[3] +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu5[3]+")'></button>";
+		str1 += "</div>";
+		
+		for(var zz = 0; zz < menu5.length; zz++){
+			var n = [zz]; 
+			n[zz]= menu5[zz].indexOf(":");
+			
+			menu5[zz] = menu5[zz].substring(n[zz]);
+			menu5[zz] = menu5[zz].replace(/"/g, "");
+			menu5[zz] = menu5[zz].replace(":", "");
+			
+			var str1="";
+			str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+			str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu5[3] +")'></button>";
+			str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu5[3]+")'></button>";
+			str1 += "</div>";
+		}
+		
+		if(menu5[0] == 5){
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='5'>"+menu5[3]+"</div>";
+			str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
+			str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu5[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+			
+			result();
+			i+=1;
+		}else{
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menu5[3]+"</div>";
+			str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu5[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+
+			result();
+			i+=1;
+		}
+	}
+	
+	
+	
+	
+	if(menuList.length >= 5){
+		menu4= menuList[3].split(",")
+		
+		var str1="";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu4[3] +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu4[3]+")'></button>";
+		str1 += "</div>";
+		
+		for(var zz = 0; zz < menu4.length; zz++){
+			var n = [zz]; 
+			n[zz]= menu4[zz].indexOf(":");
+			
+			menu4[zz] = menu4[zz].substring(n[zz]);
+			menu4[zz] = menu4[zz].replace(/"/g, "");
+			menu4[zz] = menu4[zz].replace(":", "");
+			
+			var str1="";
+			str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+			str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu4[3] +")'></button>";
+			str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu4[3]+")'></button>";
+			str1 += "</div>";
+		}
+		
+		if(menu4[0] == 5){
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='5'>"+menu4[3]+"</div>";
+			str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
+			str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu4[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+			
+			result();
+			i+=1;
+		}else{
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menu4[3]+"</div>";
+			str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu4[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+
+			result();
+			i+=1;
+		}
+	}
+	
+	if(menuList.length >= 4){
+		menu3= menuList[2].split(",")
+		
+		var str1="";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu3[3] +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu3[3]+")'></button>";
+		str1 += "</div>";
+		
+		for(var zz = 0; zz < menu3.length; zz++){
+			var n = [zz]; 
+			n[zz]= menu3[zz].indexOf(":");
+			
+			menu3[zz] = menu3[zz].substring(n[zz]);
+			menu3[zz] = menu3[zz].replace(/"/g, "");
+			menu3[zz] = menu3[zz].replace(":", "");
+			
+			var str1="";
+			str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+			str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu3[3] +")'></button>";
+			str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu3[3]+")'></button>";
+			str1 += "</div>";
+		}
+		
+		if(menu3[0] == 5){
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='5'>"+menu3[3]+"</div>";
+			str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
+			str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu3[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+			
+			result();
+			i+=1;
+		}else{
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menu3[3]+"</div>";
+			str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu3[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+
+			result();
+			i+=1;
+		}
+	}
+	
+	
+	if(menuList.length >= 3){
+		menu2= menuList[1].split(",")
+		
+		var str1="";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu2[3] +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu2[3]+")'></button>";
+		str1 += "</div>";
+		
+		for(var zz = 0; zz < menu2.length; zz++){
+			var n = [zz]; 
+			n[zz]= menu2[zz].indexOf(":");
+			
+			menu2[zz] = menu2[zz].substring(n[zz]);
+			menu2[zz] = menu2[zz].replace(/"/g, "");
+			menu2[zz] = menu2[zz].replace(":", "");
+			
+			var str1="";
+			str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+			str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu2[3] +")'></button>";
+			str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu2[3]+")'></button>";
+			str1 += "</div>";
+		}
+		
+		if(menu2[0] == 5){
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='5'>"+menu2[3]+"</div>";
+			str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
+			str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu2[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+			
+			result();
+			i+=1;
+		}else{
+			
+			var str2="";
+			str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menu2[3]+"</div>";
+			str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+			
+			$(".menuNameText"+i).text(menu2[1]);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+
+			result();
+			i+=1;
+		}
+	}
+	
+	menu1= menuList[0].split(",")
+	
+	var str1="";
+	str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+	str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu1[3] +")'></button>";
+	str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu1[3]+")'></button>";
+	str1 += "</div>";
+	
+	for(var zz = 0; zz < menu1.length; zz++){
+		var n = [zz]; 
+		n[zz]= menu1[zz].indexOf(":");
+		
+		menu1[zz] = menu1[zz].substring(n[zz]);
+		menu1[zz] = menu1[zz].replace(/"/g, "");
+		menu1[zz] = menu1[zz].replace(":", "");
+		
+		var str1="";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu1[3] +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu1[3]+")'></button>";
+		str1 += "</div>";
+	}
+	
+	if(menu1[0] == 5){
+		
+		var str2="";
+		str2 += "<div class='number' data-categoryno='5'>"+menu1[3]+"</div>";
+		str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
+		str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+		
+		$(".menuNameText"+i).text(menu1[1]);
+		$(".menuNumber"+i).append(str1);
+		$(".menuPrice"+i).append(str2);
+		
+		result();
+		i+=1;
+	}else{
+		
+		var str2="";
+		str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menu1[3]+"</div>";
+		str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+		
+		$(".menuNameText"+i).text(menu1[1]);
+		$(".menuNumber"+i).append(str1);
+		$(".menuPrice"+i).append(str2);
+		
+		result();
+		i+=1;
+	}
+	
+	
+	
+	
+	
+	
 }
 
