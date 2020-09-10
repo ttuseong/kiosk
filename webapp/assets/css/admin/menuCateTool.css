@@ -45,6 +45,9 @@ body {
 	right: 30px;
 }
 
+a{
+	text-decoration: none !important;
+}
 
 #adminCate-search{
 	height: 30px !important;
@@ -52,6 +55,33 @@ body {
 	line-height: 30px;
 }
 
+.admin-paging{
+	justify-content: flex-end;
+}
+
+.admin-pageLink{
+	padding: .5rem .75rem;
+	line-height: 1.25;
+	color: #1cc88a;
+	background-color: white;
+	border: 1px solid #dddfeb;
+}
+
+.admin-pagePrevious{
+	border-top-left-radius: .35rem;
+	border-bottom-left-radius: .35rem;
+}
+
+.admin-next{
+	border-top-right-radius: .35rem;
+	border-bottom-right-radius: .35rem;
+}
+
+.admin-pageActive{
+	color: white;
+	background-color: #1cc88a;
+	border-color: #1cc88a;
+}
 
 
 /* adminToping 툴팁 */

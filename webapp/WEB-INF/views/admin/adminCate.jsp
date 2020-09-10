@@ -215,6 +215,13 @@
 											</c:forEach>
 									</tbody>
 								</table>
+								<ul class="pagination admin-paging">
+									<li class=""><a href="#" class="admin-pageLink admin-pagePrevious">Previous</a></li>
+									<li class=""><a href="#" class="admin-pageLink admin-pageActive">1</a></li>
+									<li class=""><a href="#" class="admin-pageLink">2</a></li>
+									<li class=""><a href="#" class="admin-pageLink">3</a></li>
+									<li class=""><a href="#" class="admin-pageLink admin-next">next</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>
