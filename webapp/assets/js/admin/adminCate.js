@@ -147,6 +147,7 @@ function render(cateVo){
 		str += "			<td>비공개</td>";
 	}
 	str += "			<td><a href='#' class='adminCate-delete'>X</a></td>";
+	str += "			<td></td>";
 	str +="			</tr>";
 	
 	$("tbody").prepend(str);
@@ -196,7 +197,7 @@ $(".adminCate-title").on("click", function(){
 
 
 /*카테고리 x버튼 누르면 삭제하기 메뉴가 있으면 삭제가 되면 안된다.. --삭제기능..*/
-$(".adminCate-delete").on("click", function(){
+$(".table-bordered").on("click", ".adminCate-delete", function(){
 	event.preventDefault();
 	console.log("클릭");
 	var cateDelete = $(this);
