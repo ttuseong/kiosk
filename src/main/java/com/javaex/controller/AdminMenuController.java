@@ -107,4 +107,21 @@ public class AdminMenuController {
 
 		return unitInfoList;
 	}
+	
+	// 단위 모달 - 단위 추가
+	@ResponseBody
+	@RequestMapping("/adminUnitAdd")
+	public int adminUnitAdd(@RequestParam("storeNo") int storeNo,
+							@RequestParam("unitName") String unitName,
+							@RequestParam(value="arrNumber[]") List<Integer> arrNumber) {
+
+		System.out.println(storeNo);
+		System.out.println(unitName);
+		System.out.println(arrNumber);
+		
+		adminMenuService.unitInsert(storeNo, unitName, arrNumber);
+		
+		return 0;
+	}
+	
 }

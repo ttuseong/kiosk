@@ -123,6 +123,15 @@
 		]]>
 	</insert>
 	
+	<!-- 가장 최근에 생긴 세트 넘버 가져옴 -->
+	<select id="getUnitNo" parameterType="int" resultType="map">
+		<![CDATA[
+			select max(unitNo) as unit_No
+			from setunit
+			where storeno = #{storeNo}
+		]]>
+	</select>
+	
 	<!-- 단위의 구성품목 삽입 -->
 	<insert id="unitComponentInsert" parameterType="map">
 		<![CDATA[
@@ -139,6 +148,14 @@
 			and unitno = #{unitNo}
 		]]>
 	</update>
+	
+	<!-- 단위의 구성 품목 삭제 -->
+	<delete id="delUnitComponent" parameterType="int">
+		<![CDATA[
+			delete from defaultmenu
+			where unitno = #{unitNo}
+		]]>
+	</delete>
 	
 	<!-- 단위 삭제 -->
 	<delete id="delUnit" parameterType="int">

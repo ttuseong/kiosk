@@ -90,8 +90,21 @@ public class AdminMenuDao {
 		return sqlSession.insert("adminMenu.unitInsert", unitMap);
 	}
 	
+	// Dao 단위 모달 - 가장 최근에 생긴 세트 넘버 가져옴
+	public int getUnitNo(int storeNo) {
+		System.out.println("dao(adminMenu) - 가장 최근에 생긴 세트 넘버 가져옴");
+		
+		Map<String, Object> map = sqlSession.selectOne("adminMenu.getUnitNo", storeNo);
+		
+		// Oracle에서 데이터 타입이 number인 데이터를 Java에서 Integer로 받을 때 오류가 발생
+		// 오브젝트를 String으로 만든 후 Integer.parseInt를 통해 Integer로 바꿔줘야 함
+		int unitNo = Integer.parseInt(String.valueOf(map.get("UNIT_NO")));
+		
+		return unitNo;
+	}
+	
 	// Dao 단위 모달 - 단위의 구성품목 삽입
-	public int unitComponentInsert(int menuNo, String unitNo) {
+	public int unitComponentInsert(int menuNo, int unitNo) {
 		System.out.println("dao(adminMenu) - 단위의 구성품목 삽입");
 		
 		Map<String, Object> unitMap = new HashMap<String, Object>();
@@ -111,6 +124,13 @@ public class AdminMenuDao {
 		unitMap.put("unitNo", unitNo);
 		
 		return sqlSession.insert("adminMenu.unitComponentInsert", unitMap);
+	}
+
+	// Dao 단위 모달 - 단위의 구성 품목 삭제
+	public int delUnitComponent(int unitNo) {
+		System.out.println("dao(adminMenu) - 단위 구성 품목 삭제");
+
+		return sqlSession.selectOne("adminMenu.delUnitComponent", unitNo);
 	}
 	
 	// Dao 단위 모달 - 단위 삭제

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -107,13 +108,21 @@ public class AdminMenuService {
 	}
 
 	// Service 단위 모달 - 단위 생성
-	public int unitInsert(int storeNo, String unitName) {
+	public int unitInsert(int storeNo, String unitName, List<Integer> arrNumber) {
 		
-		return adminMenuDao.unitInsert(storeNo, unitName);
+		adminMenuDao.unitInsert(storeNo, unitName); // 단위생성
+		int unitNo = adminMenuDao.getUnitNo(storeNo); // 생성 된 단위의 no 받아옴
+		
+		// 배열을 모두 돌며 생성된 단위에 메뉴 insert
+		for(int i = 0; i < arrNumber.size(); i++) {
+			adminMenuDao.unitComponentInsert(arrNumber.get(i), unitNo);
+		}
+		
+		return 0;
 	}
 
 	// Service 단위 모달 - 단위의 구성품목 삽입
-	public int unitComponentInsert(int menuNo, String unitNo) {
+	public int unitComponentInsert(int menuNo, int unitNo) {
 
 		return adminMenuDao.unitComponentInsert(menuNo, unitNo);
 	}
