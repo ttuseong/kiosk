@@ -34,6 +34,7 @@ public class AdminCategoryService {
 
         System.out.println(map.get("searchTerm"));
         List<CategoryVo> cateList = adminCategoryDao.selectAdminCateList(map);
+        System.out.println(cateList.toString());
 
         Map<String, Object> resultMap = new HashMap<String, Object>();
         resultMap.put("cateList", cateList);
