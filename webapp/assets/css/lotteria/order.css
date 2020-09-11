@@ -62,10 +62,10 @@ html ul.tabs li.active, html ul.tabs li.active a:hover {
 	float: left;
 	width: 100%;
 	background: #fff;
-	height:580px;
+	height:550px;
 }
 
-.tab_content {padding: 20px;font-size: 1.2em;height: 135px;
+.tab_content {font-size: 1.2em;height: 135px;
 }
 .menu {width: 50%;float: left;height: 140px;}
 .menu-img {width: 45%;float: left;}

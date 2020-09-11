@@ -43,7 +43,6 @@
 			<div class="tab_container" id="tab_menu"   style="position: relative;">
 				 <c:forEach items="${categoryList }" var="vo" >
 					<div id="tab${vo.categoryNo }" class="tab_content" data-categoryno=${vo.categoryNo }>
-												
 					 <c:forEach items="${menuListAndPg.menuList }" var="menu" varStatus="i">
 							<c:if test="${vo.categoryNo eq menu.categoryNo}">
 							<div class="menu" data-menuno="${menu.menuNo }">
@@ -57,29 +56,22 @@
 							</div>
 							</c:if>
 						</c:forEach>
-						
 					</div>
 				</c:forEach> 
-				
-						
 				
 				<!-- 페이징 div -->
 				<div>
 					<div><button type="button" class="btn-left" onclick="pageDown()">이전</button></div>
-					
 					<div class="dotDiv">
 						<c:forEach var="current" begin="1" end="${menuListAndPg.pgVo.page_End }">
 							<div class="pageDot <c:if test="${param.pg == current }">pageActive</c:if>"></div>
 						</c:forEach>
 					</div>
-										
 					<div><button type="button" class="btn-right" onclick="pageUp(${menuListAndPg.pgVo.page_End})">다음</button></div>
 				</div>
 				<!-- 페이징 div -->
-					
 			</div>
-				<!--Content-->
-			
+			<!--Content-->
 			<table class="table-center">
 				<colgroup>
 					<col width="33%">
@@ -91,16 +83,13 @@
 					<td id ="maximum">0 개</td>
 					<td class="td-red" id="resultPrice">0</td>
 				</tr>
-
 				<c:forEach var="i" begin="1" end="5">
-				<tr>
-					<td class="menuNameText${i }">&nbsp;</td>
-					<td class="menuNumber${i }">&nbsp;</td>
-					<td class="menuPrice${i }">&nbsp;</td>
+				<tr style="height: 27px;">
+					<td class="menuNameText${i }"></td>
+					<td class="menuNumber${i }"></td>
+					<td class="menuPrice${i }"></td>
 				</tr>
 				</c:forEach>
-
-
 			</table>
 
 			<div class="row height60">
@@ -114,7 +103,7 @@
 					<div class="icon-volume-high helpIcon">
 						<p>직원호출</p>
 					</div>
-					<div class="icon-left-small helpIcon">
+					<div class="icon-left-small helpIcon" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">
 						<p>이전</p>
 					</div>
 				</div>
@@ -128,9 +117,6 @@
 		</div>
 	</div>
 
-
-
-
 		<!-- 사이드메뉴모달 -->
 		<div class="modal fade" id="side">
 			<div class="modal-dialog">
@@ -139,19 +125,15 @@
 						<h4 class="modal-title">세트_디저트</h4>
 					</div>
 					<div class="modal-body modal-height700px">
-
 						<!--탭 메뉴 영역 -->
 						<ul class="modal-tabs">
 							<li><a href="#modal-tab1">세트_디저트</a></li>
 							<li><a href="#modal-tab2">세트_드링크</a></li>
 						</ul>
-
 						<!--탭 콘텐츠 영역 -->
 						<div class="modal-tab_container">
-
 							<div id="modal-tab1" class="modal-tab_content"><!--Content--></div>
  							<div id="modal-tab2" class="modal-tab_content"><!--Content--></div>
- 							
 							<!-- 페이징 div -->
 							<div>
 								<div><button type="button" class="btn-left" onclick="sidePageDown()">이전</button></div>
@@ -159,7 +141,6 @@
 								<div><button type="button" class="btn-right" onclick="sidePageUp()">다음</button></div>
 							</div>
 							<!-- 페이징 div -->
-
 						</div>
 
 					</div>
@@ -183,7 +164,6 @@
 			<!-- /.modal-dialog -->
 		</div>
 	<!-- 토핑모달 -->
-
 
 		<!-- 단품, 세트 선택 모달 -->
 		<div class="modal fade" id="setAndSingle">
@@ -231,7 +211,6 @@
 		</div>
 		<!-- /.modal -->
 		
-		
 		<!-- 토핑추가모달 -->
 		<div class="modal" id="topping">
 			<div class="modal-dialog" id="modalName-align">
@@ -239,7 +218,6 @@
 
 					<div class="modal-header" id="modalName-header">
 						<h4 class="modal-title" id="modalName-headerTitle">토핑을 선택해 주세요</h4>
-		
 					</div>
 					<!-- modal-header -->
 
@@ -249,7 +227,6 @@
 								<div class="toppingPrice">+0</div>
 						</div>
 						<div class="modalName-container width80">
-							
 							<div class="padding-top20px" id = "toppingContents"></div>
 						</div>
 					</div>

@@ -21,7 +21,7 @@
 	<!-- 헤더 -->
 	
 	<div class="container width800height1200">
-		<a href="${pageContext.request.contextPath}/lotteria/payment"><img src="${pageContext.request.contextPath}/assets/images/lotteria_main.png" width="100%"></a>
+		<a href="${pageContext.request.contextPath}/lotteria/payment"><img src="${pageContext.request.contextPath}/assets/images/lotteria/lotteria_main.png" width="700px"style = "height:855px;"></a>
 	</div>
 	
 	<!-- 풋터 -->

@@ -164,11 +164,11 @@
 						
 						<div>
 							<div class="img-inline_block border-right">
-								<img src="${pageContext.request.contextPath}/assets/images/package.jpg" width="100%">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/package.jpg" width="100%">
 							</div>
 		
 							<div class="img-inline_block width49">
-								<img src="${pageContext.request.contextPath}/assets/images/shop.jpg" width="100%">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/shop.jpg" width="100%">
 							</div>
 							
 						</div>
@@ -181,13 +181,13 @@
 						
 						<div>
 							<div class="img-inline_block img-3size selectOptiong">
-								<img src="${pageContext.request.contextPath}/assets/images/discaount.jpg" width="100%" class="height100">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/discaount.jpg" width="100%" class="height100">
 							</div>
 							<div class="img-inline_block img-3size">
-								<img src="${pageContext.request.contextPath}/assets/images/LPOINT.jpg" width="100%" class="height100">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/LPOINT.jpg" width="100%" class="height100">
 							</div>
 							<div class="img-inline_block img-3size">
-								<img src="${pageContext.request.contextPath}/assets/images/noSelect.jpg" width="100%" class="height100">
+								<img src="${pageContext.request.contextPath}/assets/images/lotteria/noSelect.jpg" width="100%" class="height100">
 							</div>
 						</div>
 					</div>
@@ -217,12 +217,6 @@
 				</div>
 			</div>
 		</div>
-
-
-
-
-
-
 
 		<div class="row" style="height: 60px;">
 			<div class="col-md-4 height100">

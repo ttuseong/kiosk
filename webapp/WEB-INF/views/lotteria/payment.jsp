@@ -25,9 +25,6 @@
 	<!-- 헤더 -->
 	
 	<div class="container width800height1200">
-		<div class="contents-header">
-			<p class="fontSize40px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
-		</div>
 		
 		<div class="color-pink">원하시는 결제방법을 선택해주세요</div>
 		
@@ -35,7 +32,7 @@
 			<a href="${pageContext.request.contextPath}/lotteria/order">
 				<div class="col-md-6">
 					<div>
-						<img src="${pageContext.request.contextPath}/assets/images/card.jpg" width="100%">
+						<img src="${pageContext.request.contextPath}/assets/images/lotteria/card.jpg" width="100%">
 					</div>
 				</div>
 
@@ -50,11 +47,11 @@
 			</a>
 		</div>
 
-		<div class="row padding20px">
+		<div class="row padding10px">
 			<div class="col-md-6 border-right">
 				<a href="${pageContext.request.contextPath}/lotteria/order">
 					<div>
-						<img src="${pageContext.request.contextPath}/assets/images/pay.jpg" style="height: 300px;">
+						<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" style="height: 300px;">
 					</div>
 					
 					<div>
@@ -68,7 +65,7 @@
 			<div class="col-md-6">
 				<a href="${pageContext.request.contextPath}/lotteria/order">
 					<div style="width:100%;">
-						<img src="${pageContext.request.contextPath}/assets/images/cash.jpg" width="100%">
+						<img src="${pageContext.request.contextPath}/assets/images/lotteria/cash.jpg" width="100%">
 					</div>
 					
 					<div>
@@ -80,9 +77,9 @@
 			</div>
 		</div>
 		
-		<div class="row" style="height: 60px;">
+		<div class="row helpIconDiv">
 			<div class="col-md-6" style="height: 100%;">
-				<div class="icon-wheelchair helpIcon">
+				<div class="icon-wheelchair helpIcon" >
 					<p>장애인</p>
 				</div>
 				<div class="icon-search helpIcon">
@@ -91,7 +88,7 @@
 				<div class="icon-volume-high helpIcon">
 					<p>직원호출</p>
 				</div>
-				<div class="icon-left-small helpIcon">
+				<div class="icon-left-small helpIcon"onclick="location.href='${pageContext.request.contextPath}/lotteria/index'">
 					<p>이전</p>
 				</div>
 			</div>
@@ -99,7 +96,6 @@
 				<button type="button" class="btn-border_radius12px"> 할인행사안내</button>
 			</div>
 		</div>
-		
 	</div>
 	
 	<!-- 풋터 -->
