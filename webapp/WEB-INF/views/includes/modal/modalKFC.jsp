@@ -72,37 +72,38 @@
          <div class="modal-body">
             <div id="select-container">
                <div id="selectCardGroup">
-                  <div id="credit">
+                  <div id="credit" class="payMethod">
                      <div class="icon-credit-card"></div>
                      <p>신용카드</p>
                   </div>
-                  <div id="prepaidcard">
+                  <div id="prepaidcard" class="payMethod">
                      <div class="icon-credit-card"></div>
                      <p>KFC 선불카드</p>
                   </div>
                </div>
-               <div id="selectPayCode">
-                  <div class="payCodeContianer">
-                     <div class="icon-credit-card"></div>
-                     <p>카카오 페이</p>
-                  </div>
-                  <div class="payCodeContianer">
-                     <div class="icon-credit-card"></div>
-                     <p>제로페이</p>
-                  </div>
-                  <div class="payCodeContianer">
-                     <div class="icon-credit-card"></div>
-                     <p>OK 캐쉬백</p>
-                  </div>
-                  <div class="payCodeContianer">
-                     <div class="icon-credit-card"></div>
-                     <p>BC 페이북 QR</p>
-                  </div>
-                  <div class="payCodeContianer">
-                     <div class="icon-credit-card"></div>
-                     <p>누구냐 넌</p>
-                  </div>
-                  <div class="payCodeContianer"></div>
+               <div id="selectPayCodeContainer">
+               		<div id="selectPayCodeContents">
+	                  <div class="payCodeContianer payMethod">
+	                     <div class="icon-credit-card"></div>
+	                     <p>카카오 페이</p>
+	                  </div>
+	                  <div class="payCodeContianer payMethod">
+	                     <div class="icon-credit-card"></div>
+	                     <p>제로페이</p>
+	                  </div>
+	                  <div class="payCodeContianer payMethod">
+	                     <div class="icon-credit-card"></div>
+	                     <p>OK 캐쉬백</p>
+	                  </div>
+	                  <div class="payCodeContianer payMethod">
+	                     <div class="icon-credit-card"></div>
+	                     <p>BC 페이북 QR</p>
+	                  </div>
+	                  <div class="payCodeContianer payMethod">
+	                     <div class="icon-credit-card"></div>
+	                     <p>L.pay</p>
+	                  </div>
+	               </div>
                </div>
             </div>
 
@@ -139,10 +140,12 @@
             
             <div id="selectModeMainContent">
             
-               <!-- 위, 아래 이동 화살표 -->
-               <jsp:include page="/WEB-INF/views/includes/modal/updownArrow.jsp" />
-               <!-- 위, 아래 이동 화살표 -->
+              
             </div>
+            <!-- 위, 아래 이동 화살표 -->
+            <jsp:include page="/WEB-INF/views/includes/modal/updownArrow.jsp" />
+               
+            <!-- 위, 아래 이동 화살표 -->
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
@@ -173,8 +176,8 @@
             </div>
          </div>
          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-            <button type="button" class="btn btn-danger">완료</button>
+            <button type="button" class="btn btnCancle" data-dismiss="modal">이전</button>
+            <button type="button" class="btn btn-danger" id="payComplate">결제</button>
          </div>
       </div>
       <!-- /.modal-content -->
@@ -332,3 +335,23 @@
        </div><!-- /.modal-content -->
      </div><!-- /.modal-dialog -->
    </div><!-- /.modal -->
+   
+<!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
+	<div class="modal" id="paymentmodal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        	<h4 class="modal-title" id="myModalLabel">이런 메뉴 어떠세요?</h4>
+	      </div>
+	      <div class="modal-body">
+	      	<div class="menu-container">
+	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p>
+            </div>
+          </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
+	        <button type="button" class="btn btnComplete">확인</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->

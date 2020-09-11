@@ -106,6 +106,7 @@ function computeAllPrice(){
 
 //모달을 취소할 경우 이벤트 처리
 $(".btnCancle").on("click", function(){
+	console.log(modalCanclePoint);
 	if(modalCanclePoint[0] != undefined){
 		$("#"+modalCanclePoint.pop()).modal("hide");
 		console.log(modalCanclePoint[modalCanclePoint.length-1]);
@@ -213,7 +214,7 @@ $("#selectedModecompleted").on("click", function(){
 	   burgerCount = 1;
 	   $("#selectMode").modal("hide");
 	   
-	   if(selectedMode == 'default'){
+	   if(selectedMode == -2){
 	      
 	   }
 	   else{
@@ -594,6 +595,7 @@ $('#recommend-body').on("click", ".recommendation",function(){
 /*주문버튼-->장소선택 모달-->추천 메뉴 모달*/
 $("#orderBtn").on("click", function(){
 	var menuLenght = $("#menuTableContents").children().size();
+	modalCanclePoint = [];
 	
 	if(menuLenght > 0){
 		modalCanclePoint.push("placeSelect");
@@ -754,11 +756,13 @@ function sum(){
 
 $("#myOrderComplete").on("click", function(){
 	$("#MyOrderListModal").modal("hide");
+	modalCanclePoint.push("paySelect");
 	$("#paySelect").modal();
 });
 
-$("#credit").on("click", function(){
-
+$(".payMethod").on("click", function(){
+	$("#paySelect").modal("hide");
+	modalCanclePoint.push("paymentDetails");
 	$("#paymentDetails").modal();
 });
 
@@ -779,7 +783,6 @@ function myOrderListSlideSetting(){
 		} else if(!(myOrderListModalLastMove == 0 && myOrderListModalLength == 1)){
 			$("#orderList-pagingDown").addClass("scrollActive");
 			myOrderListModalCurrentPos = 0;
-			console.log("여기는 와야지");
 		}
 	}
 }
@@ -832,5 +835,29 @@ $("#orderList-pagingUp").on("click",function(){
 		}
 		
 		$(".orderList-tableDiv").animate({top : movePos});
+	}
+});
+
+$("#payComplate").on("click", function(){
+	modalCanclePoint.push("paymentDetails");
+	$("#paymentDetails").modal("hide");
+	$("#paymentmodal").modal();
+});
+
+
+$(".paySelectUp").on("click", function(){
+	var parent = $(this).parent().parent().parent().children().eq(0).children().eq(1);
+	if(parent.is("#selectPayCodeContainer")){
+		var target = parent.children("#selectPayCodeContents");
+		target.animate({top : "-75px"});
+	}
+});
+
+$(".paySelectDown").on("click", function(){
+	console.log("downtest");
+	var parent = $(this).parent().parent().parent().children().eq(0).children().eq(1);
+	if(parent.is("#selectPayCodeContainer")){
+		var target = parent.children("#selectPayCodeContents");
+		target.animate({top : "0px"});
 	}
 });
