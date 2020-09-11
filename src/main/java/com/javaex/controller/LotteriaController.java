@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +38,8 @@ public class LotteriaController {
 	}
 
 	@RequestMapping("/orderList")
-	public String orderList() {
+	public String orderList(@RequestParam Map map, Model model) {
+		model.addAttribute("menuList", map);
 		return "/lotteria/orderList";
 	}
 	

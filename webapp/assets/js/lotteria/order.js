@@ -380,8 +380,12 @@ function dessertAndDrink(){
 function render(menuName, menuPrice){
 	
 		var str1="";
-		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
-		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menuPrice +")'></button>";
+		
+		str1 += "<input type='hidden' name='menuName"+i+"' value='"+menuName+"'>";
+		str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menuPrice+"'>";
+		str1 += "<input type='hidden' name='number"+i+"' value='1' id='ea"+i+"'>";
+		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>";
+			str1+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menuPrice +")'></button>";
 		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menuPrice+")'></button>";
 		str1 += "</div>";
 		
@@ -436,9 +440,10 @@ function btnUp(i, menuPrice){
 	menuNumber +=1;
 	$(".number"+i).text(menuNumber);
 	
-	 var upPrice = menuPrice * Number($(".menuNumber"+i).text());
-	 $(".menuPrice"+i ).children().eq(0).text(upPrice);
+	var upPrice = menuPrice * Number($(".menuNumber"+i).text());
+	$(".menuPrice"+i ).children().eq(0).text(upPrice);
 	
+	$("#ea"+i).val(menuNumber);
 	result();
 	i+=1;
 };
@@ -453,6 +458,7 @@ function btnDown(i, menuPrice){
 		var downPrice = Number(menuPrice)*Number(menuNumber);
 		$(".menuPrice"+i ).children().eq(0).text(downPrice);
 		
+		$("#ea"+i).val(menuNumber);
 		result();
 		i-=1;
 	};
@@ -467,9 +473,9 @@ function trDelete(i){
 	
 	$(".menuNameText"+i).parents("tr").remove();
 	var str = "";
-	str += "<tr>";
-		str += "<td class='menuNameText"+y+"'>&nbsp;</td>"; 
-		str += "<td class='menuNumber"+y+"'>&nbsp;</td>"; 
+	str += "<tr style='height: 27px;'>";
+		str += "<td class='menuNameText"+y+"'></td>"; 
+		str += "<td class='menuNumber"+y+"'></td>"; 
 		str += "<td class='menuPrice"+y+"'>";
 		str += "</td>";
 	str += "</tr>";
@@ -546,11 +552,6 @@ function cookieParsing(){
 function cookieRender(menuList){
 	var menu= menuList.split(",")
 	
-	var str1="";
-	str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
-	str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu[3] +")'></button>";
-	str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu[3]+")'></button>";
-	str1 += "</div>";
 	
 	for(var zz = 0; zz < menu.length; zz++){
 		var n = [zz]; 
@@ -560,7 +561,12 @@ function cookieRender(menuList){
 		menu[zz] = menu[zz].replace(/"/g, "");
 		menu[zz] = menu[zz].replace(":", "");
 		
+		console.log(menu[3]);
 		var str1="";
+		str1 += "<input type='hidden' name='menuName"+i+"' value='"+menu[1]+"'>";
+		str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menu[3]+"'>";
+		str1 += "<input type='hidden' name='number"+i+"' value='"+menu[2]+"' id='ea"+i+"'>";
+		
 		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
 		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu[3] +")'></button>";
 		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu[3]+")'></button>";
@@ -594,16 +600,3 @@ function cookieRender(menuList){
 		i+=1;
 	}
 }
-
-function pageMove(){
-	for(var b=1; b<=5;b++ ){
-		if(($(".menuNameText"+b).text()) != ""){
-			console.log($(".tr-center").nextAll().size());
-		}
-		
-	}
-}
-
-
-
-

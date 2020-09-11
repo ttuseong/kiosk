@@ -70,41 +70,43 @@
 				<!-- 페이징 div -->
 			</div>
 			<!--Content-->
-			<table class="table-center">
-				<colgroup>
-					<col width="33%">
-					<col width="33%">
-					<col width="33%">
-				</colgroup>
-				<tr class="tr-center">
-					<td>총주문내역</td>
-					<td id ="maximum">0 개</td>
-					<td class="td-red" id="resultPrice">0</td>
-				</tr>
-				<c:forEach var="i" begin="1" end="5">
-				<tr style="height: 27px;">
-					<td class="menuNameText${i }"></td>
-					<td class="menuNumber${i }"></td>
-					<td class="menuPrice${i }"></td>
-				</tr>
-				</c:forEach>
-			</table>
+			<form action="${pageContext.request.contextPath }/lotteria/orderList" method="get">
+				<table class="table-center">
+					<colgroup>
+						<col width="33%">
+						<col width="33%">
+						<col width="33%">
+					</colgroup>
+					<tr class="tr-center">
+						<td>총주문내역</td>
+						<td id="maximum">0 개</td>
+						<td class="td-red" id="resultPrice">0</td>
+					</tr>
+					<c:forEach var="i" begin="1" end="5">
+						<tr style="height: 27px;">
+							<td class="menuNameText${i }"></td>
+							<td class="menuNumber${i }"></td>
+							<td class="menuPrice${i }"></td>
+						</tr>
+					</c:forEach>
+				</table>
 
-			<div class="row height60">
-				<div class="col-md-4 height100">
-					<div class="icon-wheelchair helpIcon"><p>장애인</p></div>
-					<div class="icon-search helpIcon"><p>돋보기</p></div>
-					<div class="icon-volume-high helpIcon"><p>직원호출</p></div>
-					<div class="icon-left-small helpIcon" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'"><p>이전</p></div>
+				<div class="row height60">
+					<div class="col-md-4 height100">
+						<div class="icon-wheelchair helpIcon"><p>장애인</p></div>
+						<div class="icon-search helpIcon"><p>돋보기</p></div>
+						<div class="icon-volume-high helpIcon"><p>직원호출</p></div>
+						<div class="icon-left-small helpIcon"onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'"><p>이전</p></div>
+					</div>
+					<div class="col-md-4 margin-top10px">
+						<button type="button" class="btn-radius12px"onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">취소하기</button>
+					</div>
+					<div class="col-md-4 margin-top10px">
+						<%-- <button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'">결제하기</button> --%>
+						<input type="submit" class="btn-backColor" value="결제하기">
+					</div>
 				</div>
-				<div class="col-md-4 margin-top10px">
-					<button type="button" class="btn-radius12px" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">취소하기</button>
-				</div>
-				<div class="col-md-4 margin-top10px">
-					<%-- <button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'">결제하기</button> --%>
-					<button type="button" class="btn-backColor" onclick="pageMove()">결제하기</button>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 

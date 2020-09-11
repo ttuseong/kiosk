@@ -25,9 +25,7 @@
 	<!-- 헤더 -->
 	
 	<div class="container width800height1200">
-		<div class="contents-header">
-			<p class="fontSize50px">고객님들의<br> 안전과 질병 예방을 위해<br> 무인포스는 매시간 살균, 소독을<br> 실시하고 있습니다.</p>
-		</div>
+
 		<div class="row">
 			<div class="col-md-6">
 				<table class="border-height420px" frame="hsides">
@@ -46,44 +44,29 @@
 
 					<tbody>
 						<tr>
-							<td>레몬에이드L</td>
-							<td class="center">3</td>
-							<td class="right">8,400</td>
+							<td>${menuList.menuName1 }</td>
+							<td class="center">${menuList.number1 }</td>
+							<td class="right">${menuList.menuPrice1}</td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
+							<td>${menuList.menuName2 }</td>
+							<td class="center">${menuList.number2 }</td>
+							<td class="right">${menuList.menuPrice2}</td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
+							<td>${menuList.menuName3}</td>
+							<td class="center">${menuList.number3}</td>
+							<td class="right">${menuList.menuPrice3}</td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
+							<td>${menuList.menuName4 }</td>
+							<td class="center">${menuList.number4 }</td>
+							<td class="right">${menuList.menuPrice4}</td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
-						</tr>
-						<tr>
-							<td>&nbsp;</td>
-							<td class="center">&nbsp;</td>
-							<td class="right">&nbsp;</td>
+							<td>${menuList.menuName5 }</td>
+							<td class="center">${menuList.number5 }</td>
+							<td class="right">${menuList.menuPrice5}</td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
@@ -125,7 +108,7 @@
 					</colgroup>
 					<tr>
 						<td>주문금액</td>
-						<td>8,400</td>
+						<td class="orderPrice"></td>
 					</tr>
 
 					<tr>
@@ -135,7 +118,7 @@
 				</table>
 				<div class="outside-div">
 					<div class="insid-div_left">결제할금액</div>
-					<div class="insid-div_right">8,400</div>
+					<div class="insid-div_right orderPrice"></div>
 				</div>
 
 				<div class="outside-div2">
@@ -151,7 +134,7 @@
 
 					<div>
 						<div></div>
-						<div></div>
+						<div>asd</div>
 					</div>
 				</div>
 			</div>
@@ -165,10 +148,12 @@
 						<div>
 							<div class="img-inline_block border-right">
 								<img src="${pageContext.request.contextPath}/assets/images/lotteria/package.jpg" width="100%">
+								<div></div>
 							</div>
 		
 							<div class="img-inline_block width49">
 								<img src="${pageContext.request.contextPath}/assets/images/lotteria/shop.jpg" width="100%">
+								<div></div>
 							</div>
 							
 						</div>
@@ -177,39 +162,15 @@
 					
 					<!-- 적립을 선택 -->
 					<div id="discount" class="selectDisable">
-						<div class="subtitle">Step 2 할인/적립을 선택하세요.</div>
-						
-						<div>
-							<div class="img-inline_block img-3size selectOptiong">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/discaount.jpg" width="100%" class="height100">
-							</div>
-							<div class="img-inline_block img-3size">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/LPOINT.jpg" width="100%" class="height100">
-							</div>
-							<div class="img-inline_block img-3size">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/noSelect.jpg" width="100%" class="height100">
-							</div>
-						</div>
+						<div class = 'subtitle gray'></div>
+						<div class="subContents">포장 선택후 주문 완료를<br> 누르시면 주문완료가 됩니다.</div>
 					</div>
 					<!-- 적립을 선택 -->
 					
 					<!-- 결제를 선택 -->
-					<div id="payment" class="selectDisable">	
-						<div class="subtitle">Step 3 결제를 선택하세요.</div>
-						
-						<div>
-							<div class="img-inline_block img-3size">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/card2.jpg" width="100%" class="height100">
-							</div>
-							<div class="img-inline_block img-3size">
-								<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" width="100%" class="height100">
-							</div>
-							<div class="img-inline_block img-vertical">
-								<img class="img-2size" src="${pageContext.request.contextPath}/assets/images/lotteria/L.point.jpg" width="100%" class="height99">
-								<img class="img-2size" src="${pageContext.request.contextPath}/assets/images/lotteria/transportation.jpg" width="100%" class="height99">
-							</div>
-						</div>
-						
+					<div id="payment" class="selectDisable">
+						<div class = 'subtitle gray'></div>	
+						<div class="subContents">결제는 주문하신 제품을<br> 받으실때 하시면 됩니다.</div>
 					</div>
 					<!-- 결제를 선택 -->
 					
@@ -237,7 +198,7 @@
 				<button type="button" class="btn1" id="cancel">취소하기</button>
 			</div>
 			<div class="col-md-4 margin-top10px">
-				<button type="button" class="btn2" onclick="location.href='${pageContext.request.contextPath}/lotteria/order'">추가주문</button>
+				<button type="button" class="btn2" onclick="complete()">주문완료</button>
 			</div>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-
+td, th {padding: 0;height: 46px;}
 .width800height1200{width:800px;height:1200;background-color: white;}
 
 .contents-header{border:8px solid #990012;height:250px;text-align: center;}
@@ -29,6 +29,8 @@
   	position: relative;
   	margin: 10px 5px 10px 10px;
 }
+
+.check{position: absolute;left: 50px;top: 20px;color: red;font-size: 70px;}
 .helpIcon > p{width:60px;text-align:center;font-size: 15px;position: absolute;bottom: -95%;}
 
 .table-border {border-top:0.5px solid #E5E4E2; width:100%;border-bottom:1px solid #E5E4E2;}
@@ -113,10 +115,9 @@
 
 /* 선택관련 css */
 
-.selectDisable{
-	opacity: 0.3;
-}
+.selectDisable{opacity: 0.3;}
 
-.selectOption{
-	opacity: 1;
-}
+.selectOption{opacity: 1;position: relative;}
+
+.gray{background-color: #D1D0CE;}
+.subContents{height: 200px;text-align: center;margin-top: 70px;font-size: 20px;}
