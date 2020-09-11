@@ -1817,4 +1817,9 @@
 	color: transparent;
 }
 
+/* 최종 결제 모달 */
+#paymentmodalContent{
+	width: 480px;
+	height: 700px;
+}
  
