@@ -60,35 +60,7 @@ $(document).ready(function() {
 	$("#tab"+categoryNo).show();
 	
 	$("ul.tabs li").click(function() {
-		/*총주문내역이 있을경우*/
-		if(($(".tr-center").next().children().eq(0).text()) != ""){
-			/*총주문내역 쿠키에 저장*/
-			for(var v = 1; v < i; v++){
-				
-				var number = $(".menuNumber"+v).text();
-				var price =$(".menuPrice"+v).children().eq(0).text();
-				var menuName = $(".menuNameText"+v).text();
-				var categoryNo = $(".menuPrice"+v).children().eq(0).data("categoryno");
-				
-				var menuList;
-				var temp = {"categoryNo":categoryNo, "menuName":menuName, "number":number, "menuPrice":price};
-				
-				if(menuName != ""){
-					if(v >= 2){
-						menuList = menuList + JSON.stringify(temp);
-						$.cookie("selectList",menuList);
-						
-					}else{
-						$.cookie("selectList",JSON.stringify(temp));
-						menuList = JSON.stringify(temp);
-					}
-				}
-				
-			}
-		}else{
-			$.removeCookie('selectList');
-		}
-		
+		cookieCheck();
 		
 		pg = 1;
 		$("ul.tabs li").removeClass("active"); 
@@ -189,8 +161,36 @@ $(document).ready(function() {
 
 });
 
-
-
+function cookieCheck(){
+	/*총주문내역이 있을경우*/
+	if(($(".tr-center").next().children().eq(0).text()) != ""){
+		/*총주문내역 쿠키에 저장*/
+		for(var v = 1; v < i; v++){
+			
+			var number = $(".menuNumber"+v).text();
+			var price =$(".menuPrice"+v).children().eq(0).text();
+			var menuName = $(".menuNameText"+v).text();
+			var categoryNo = $(".menuPrice"+v).children().eq(0).data("categoryno");
+			
+			var menuList;
+			var temp = {"categoryNo":categoryNo, "menuName":menuName, "number":number, "menuPrice":price};
+			
+			if(menuName != ""){
+				if(v >= 2){
+					menuList = menuList + JSON.stringify(temp);
+					$.cookie("selectList",menuList);
+					
+				}else{
+					$.cookie("selectList",JSON.stringify(temp));
+					menuList = JSON.stringify(temp);
+				}
+			}
+			
+		}
+	}else{
+		$.removeCookie('selectList');
+	}
+}
 
 /*사이드모달 페이지다운*/
 function sidePageDown(){
@@ -516,12 +516,14 @@ function toppingModal(numberI){
 
 function pageDown(){
 	if(pg > 1){
+		cookieCheck();
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)-1);
 	}
 }
 
 function pageUp(pageEnd){
 	if(pg < pageEnd){
+		cookieCheck();
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)+1);
 	}
 }
