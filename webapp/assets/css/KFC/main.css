@@ -675,29 +675,34 @@ body{
 #paymentDetailsHeader{
 	position: relative;
 }
-#paymentDetailsHeader > div, #paymentDetailsHeader p{
-	display: inline-block;
+
+#payment-header{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
 }
 
-#paymentDetailsHeader > div > p{
+#payment-header > *{
+	float: left;
+	width: 191.109px;
+	height: 143px;
+	line-height: 143px;
+}
+
+#payment-header > div > p{
 	color: transparent;
 }
 
-#paymentDetailsHeader > div{
+#payment-header > div{
 	font-size: 70px;
-	position: absolute;
-	left: 30%;
-	top: 50%;
-	transform: translateY(-50%);
+	
 }
 
-#paymentDetailsHeader > p{
+#payment-header > p{
 	font-size: 30px;
 	font-weight: bold;
-	position: absolute;
-	top: 50%;
-	right: 40%;
-	transform: translateY(-50%);
 }
 
 #paymentDetailsBody{

@@ -210,7 +210,12 @@
 														<c:if test="${cList.publicYN == 0}">비공개</c:if>
 													</td>
 													<td><a href="#" class="adminCate-delete">X</a></td>
-													<td></td>
+													<td>
+														<div class="adminnCate-tooltipPicture">
+															<i class="far fa-image fa-lg"></i>
+															<span class="tooltip-img"><img alt="미리보기 이미지" src="${pageContext.request.contextPath}/kfc/${cList.categoryImg}"></span>
+														</div>
+													</td>
 												</tr>
 											</c:forEach>
 									</tbody>

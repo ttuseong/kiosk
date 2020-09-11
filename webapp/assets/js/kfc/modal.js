@@ -749,6 +749,8 @@ function sum(){
          totalPay += Number(tbody.eq(i).children().eq(2).text());
       }
    }
+
+   totalPrice = totalPay
    
    $(".order-totalMenu > p").text(count);
    $(".order-totalPrice > p").text(totalPay);
@@ -761,6 +763,15 @@ $("#myOrderComplete").on("click", function(){
 });
 
 $(".payMethod").on("click", function(){
+	var thisSelect = $(this);
+	
+	var no=thisSelect.data("no");
+	
+	$("#paymentDetailsMoney").text(totalPrice);
+	$("#paymentTitle").text(thisSelect.children().eq(1).text());
+	
+	$("#paymentmodalContent").attr("src", url+"/assets/images/" +no+".png");
+	
 	$("#paySelect").modal("hide");
 	modalCanclePoint.push("paymentDetails");
 	$("#paymentDetails").modal();
@@ -849,7 +860,7 @@ $(".paySelectUp").on("click", function(){
 	var parent = $(this).parent().parent().parent().children().eq(0).children().eq(1);
 	if(parent.is("#selectPayCodeContainer")){
 		var target = parent.children("#selectPayCodeContents");
-		target.animate({top : "-75px"});
+		target.animate({top : "0px"});
 	}
 });
 
@@ -858,6 +869,6 @@ $(".paySelectDown").on("click", function(){
 	var parent = $(this).parent().parent().parent().children().eq(0).children().eq(1);
 	if(parent.is("#selectPayCodeContainer")){
 		var target = parent.children("#selectPayCodeContents");
-		target.animate({top : "0px"});
+		target.animate({top : "-75px"});
 	}
 });

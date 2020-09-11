@@ -72,34 +72,34 @@
          <div class="modal-body">
             <div id="select-container">
                <div id="selectCardGroup">
-                  <div id="credit" class="payMethod">
+                  <div id="credit" class="payMethod" data-no="0">
                      <div class="icon-credit-card"></div>
                      <p>신용카드</p>
                   </div>
-                  <div id="prepaidcard" class="payMethod">
+                  <div id="prepaidcard" class="payMethod" data-no="1">
                      <div class="icon-credit-card"></div>
                      <p>KFC 선불카드</p>
                   </div>
                </div>
                <div id="selectPayCodeContainer">
                		<div id="selectPayCodeContents">
-	                  <div class="payCodeContianer payMethod">
+	                  <div class="payCodeContianer payMethod" data-no="2">
 	                     <div class="icon-credit-card"></div>
 	                     <p>카카오 페이</p>
 	                  </div>
-	                  <div class="payCodeContianer payMethod">
+	                  <div class="payCodeContianer payMethod" data-no="3">
 	                     <div class="icon-credit-card"></div>
 	                     <p>제로페이</p>
 	                  </div>
-	                  <div class="payCodeContianer payMethod">
+	                  <div class="payCodeContianer payMethod" data-no="4">
 	                     <div class="icon-credit-card"></div>
 	                     <p>OK 캐쉬백</p>
 	                  </div>
-	                  <div class="payCodeContianer payMethod">
+	                  <div class="payCodeContianer payMethod" data-no="5">
 	                     <div class="icon-credit-card"></div>
 	                     <p>BC 페이북 QR</p>
 	                  </div>
-	                  <div class="payCodeContianer payMethod">
+	                  <div class="payCodeContianer payMethod" data-no="6">
 	                     <div class="icon-credit-card"></div>
 	                     <p>L.pay</p>
 	                  </div>
@@ -164,15 +164,17 @@
    <div class="modal-dialog">
       <div class="modal-content" id="paymentDetailsContent">
          <div class="modal-header" id="paymentDetailsHeader">
-            <div class="icon-credit-card">
-               <p>아이콘</p>
-            </div>
-            <p>신용카드</p>
+         	<div id="payment-header">
+         		<div class="icon-credit-card">
+	               <p>아이콘</p>
+	            </div>
+	            <p id="paymentTitle"></p>
+         	</div>
          </div>
          <div class="modal-body" id="paymentDetailsBody">
             <div>
                <p id="paymentDetailsDes">결제 금액</p>
-               <p id="paymentDetailsMoney">5,800</p>
+               <p id="paymentDetailsMoney"></p>
             </div>
          </div>
          <div class="modal-footer">
@@ -340,13 +342,8 @@
 	<div class="modal" id="paymentmodal">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
-	      <div class="modal-header">
-	        	<h4 class="modal-title" id="myModalLabel">이런 메뉴 어떠세요?</h4>
-	      </div>
 	      <div class="modal-body">
-	      	<div class="menu-container">
-	      		<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="img-responsive"></p>
-            </div>
+	      	<img id="paymentmodalContent" class="img-responsive">
           </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>

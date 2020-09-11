@@ -9,18 +9,21 @@
     			rn,
     			categoryNo,
    				categoryName,
-   				publicYN
+   				publicYN,
+   				categoryImg
 		FROM
 				(SELECT
 	            		ROWNUM rn,
 	            		categoryNo,
 	            		categoryName,
-	            		publicYN
+	            		publicYN,
+	            		categoryImg
 	        	 FROM
 						 (SELECT  
 				        		categoryNo,
 				        		categoryName,
-				        		publicYN
+				        		publicYN,
+				        		categoryImg
 						 FROM 
 				        		category
 						 WHERE 

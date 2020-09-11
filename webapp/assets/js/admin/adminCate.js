@@ -147,7 +147,7 @@ function render(cateVo){
 		str += "			<td>비공개</td>";
 	}
 	str += "			<td><a href='#' class='adminCate-delete'>X</a></td>";
-	str += "			<td></td>";
+	str += "			<td><i class='fa fa-question-circle'></i></td>";
 	str +="			</tr>";
 	
 	$("tbody").prepend(str);
