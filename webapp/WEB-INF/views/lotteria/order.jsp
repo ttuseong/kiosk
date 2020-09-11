@@ -46,9 +46,7 @@
 					 <c:forEach items="${menuListAndPg.menuList }" var="menu" varStatus="i">
 							<c:if test="${vo.categoryNo eq menu.categoryNo}">
 							<div class="menu" data-menuno="${menu.menuNo }">
-								<div class="menu-img">
-									<img src="${pageContext.request.contextPath }/lotteria/${menu.menuImg }"width=" 100%">
-								</div>
+								<div class="menu-img"><img src="${pageContext.request.contextPath }/lotteria/${menu.menuImg }"width=" 100%"></div>
 								<div class="menu-text">
 									<div class="menuName">${menu.menuName}</div>
 									<div class="menu-price">${menu.menuPrice}</div>
@@ -94,24 +92,17 @@
 
 			<div class="row height60">
 				<div class="col-md-4 height100">
-					<div class="icon-wheelchair helpIcon">
-						<p>장애인</p>
-					</div>
-					<div class="icon-search helpIcon">
-						<p>돋보기</p>
-					</div>
-					<div class="icon-volume-high helpIcon">
-						<p>직원호출</p>
-					</div>
-					<div class="icon-left-small helpIcon" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">
-						<p>이전</p>
-					</div>
+					<div class="icon-wheelchair helpIcon"><p>장애인</p></div>
+					<div class="icon-search helpIcon"><p>돋보기</p></div>
+					<div class="icon-volume-high helpIcon"><p>직원호출</p></div>
+					<div class="icon-left-small helpIcon" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'"><p>이전</p></div>
 				</div>
 				<div class="col-md-4 margin-top10px">
 					<button type="button" class="btn-radius12px" onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">취소하기</button>
 				</div>
 				<div class="col-md-4 margin-top10px">
-					<button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'">결제하기</button>
+					<%-- <button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'">결제하기</button> --%>
+					<button type="button" class="btn-backColor" onclick="pageMove()">결제하기</button>
 				</div>
 			</div>
 		</div>
@@ -142,7 +133,6 @@
 							</div>
 							<!-- 페이징 div -->
 						</div>
-
 					</div>
 					<div class="modal-footer">
 						<div class="modalFooter-float">
@@ -182,11 +172,8 @@
 					<div class="modal-body" id="modalName-body">
 						<div class="modalName-container">
 							<div class="modalName-onlyBurger">
-
 								<div class="modalName-select" id="modalName-onlyBurger" data-dismiss="modal">
-									<p>
-										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-onlyBurgerImg">
-									</p>
+									<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-onlyBurgerImg"></p>
 									<p>버거만</p>
 								</div>
 								<p id="modalName-singlePrice"></p>
@@ -194,9 +181,7 @@
 
 							<div class="modalName-setMenu">
 								<div class="modalName-select" id="modalName-setMenu">
-									<p>
-										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-setMenuImg">
-									</p>
+									<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-setMenuImg"></p>
 									<p>세트</p>
 								</div>
 								<p id="modalName-setPrice"></p>

@@ -459,7 +459,11 @@ function btnDown(i, menuPrice){
 };
 
 function trDelete(i){
-	var y = $(".tr-center").nextAll().size()+1;
+	/*var y = $(".tr-center").nextAll().size()+1;*/
+	var classname = $(".table-center tr:last").children().eq(0).attr("class");
+	classname = classname.substring(12);
+	classname = Number(classname);
+	var y = classname + 1;
 	
 	$(".menuNameText"+i).parents("tr").remove();
 	var str = "";
@@ -535,7 +539,6 @@ function cookieParsing(){
 	for(var ii = 0; ii < menuList.length-1; ii++){
 		menuList[ii] = menuList[ii].replace("{","");//특정문자 치환
 		//console.log(menuList[ii]);
-		
 		cookieRender(menuList[ii]);
 	}
 }
@@ -592,6 +595,14 @@ function cookieRender(menuList){
 	}
 }
 
+function pageMove(){
+	for(var b=1; b<=5;b++ ){
+		if(($(".menuNameText"+b).text()) != ""){
+			console.log($(".tr-center").nextAll().size());
+		}
+		
+	}
+}
 
 
 
