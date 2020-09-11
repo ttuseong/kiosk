@@ -62,7 +62,6 @@ $(document).ready(function() {
 	$("ul.tabs li").click(function() {
 		/*총주문내역이 있을경우*/
 		if(($(".tr-center").next().children().eq(0).text()) != ""){
-			alert("쿠키저장");
 			/*총주문내역 쿠키에 저장*/
 			for(var v = 1; v < i; v++){
 				
@@ -87,7 +86,6 @@ $(document).ready(function() {
 				
 			}
 		}else{
-			alert("쿠키삭제");
 			$.removeCookie('selectList');
 		}
 		
