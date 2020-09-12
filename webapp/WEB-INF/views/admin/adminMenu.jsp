@@ -409,15 +409,15 @@
 
 				<!-- 모달 푸터 -->
 				<div class="modal-footer" id="unitManagerModal-footer">
-					<p class="hi">test</p>
-									
 					<div class="adminMenu-footerBtnContainer">
 						<a href="#"
 							class="btn btn-secondary btn-icon-split adminMenu-unitDel unitManager-cancle">
 							<span class="text">취소</span>
 						</a><a href="#"
-							class="btn btn-success btn-icon-split adminMenu-unitAdd unitManager-submit">
+							class="btn btn-success btn-icon-split adminMenu-unitAdd unitAdd-submit unitModify-submit">
+							<input type="hidden" class="unitManagerNo" value="1"> <!-- 추가 모달일 경우 1, 수정 모달일 경우 2 -->
 							<input type="hidden" class="numberOfUnit" value="1">
+							<input type="hidden" class="unitNo" value="0">
 							<span class="text">확인</span>
 						</a>
 					</div>
@@ -452,8 +452,8 @@
 		var storeNo = 2;
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 정보
-	});
-	
+	});	
+
 	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
 	function readURL(input){
 		if(input.files && input.files[0]){
@@ -789,8 +789,6 @@
 			isChange = parseInt(checked_isChange); // isChange 값 변경해 줌
 		}
 		
-		
-		
 		var form = $("#menuImgInput");
 		var imgData = new FormData(form[0]);
 		
@@ -943,6 +941,8 @@
 		$(".unitManagerModal-unitComponent").remove(); // 구성 추가/수정 모달을 함께 쓰기 때문에 중복 출력되지 않도록 모달이 열릴 때마다 비워줌
 		$("#unitManager-unitNameInput").val(""); // 단위 이름 인풋박스 비우기
 		$(".numberOfUnit").val("1"); // 단위 개수 초기화
+		$(".unitManagerNo").val("1"); // 추가/수정 모달임을 판단하는 인풋 박스에 추가 모달임을 알리기 위해 [1] 넣어줌
+		$(".unitNo").val(""); // 단위를 추가하는 경우에는 유닛 넘버가 아직 없는 상태이기 때문에 유닛 넘버 초기화 해 줌
 
 		renderUnitAdd(0); // 단위 추가 html 그리기
 		
@@ -965,12 +965,12 @@
 		str += '	<div class="unitManagerModal-cateDropdown">';
 		str += '		<!-- 카테고리 드롭다운 -->';
 		str += '		<div class="dropdown unitManagerModal-basicInfoDropdown" id="unitAddDropdownCateName">';
-		str += '			<input type="hidden" id="cateNo" value="">';
+		str += '			<input type="hidden" id="selectCateNo_1" value="">';
 		str += '			<button class="btn btn-default dropdown-toggle" type="button"';
 		str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">';
 		str += '				카테고리를 선택하세요. <span class="caret"></span>';
 		str += '			</button>';
-		str += '			<ul class="dropdown-menu unitAddDropdownCateList" role="menu"';
+		str += '			<ul class="dropdown-menu unitAddDropdownCateList unitManagerModalCateList" role="menu"';
 		str += '				aria-labelledby="dropdownMenu1">';
 		str += '				<!-- 카테고리 리스트 들어갈 자리 -->';
 		str += '			</ul>';
@@ -981,12 +981,12 @@
 		str += '	<!-- 메뉴 드롭다운 -->';
 		str += '	<div class="unitManagerModal-menuDropdown">';
 		str += '		<div class="dropdown unitManagerModal-basicInfoDropdown" id="unitAddDropdownMenuName">';
-		str += '			<input type="hidden" id="menuNo" value="">';
+		str += '			<input type="hidden" id="selectMenuNo_1" value="">';
 		str += '			<button class="btn btn-default dropdown-toggle" type="button"';
 		str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">';
 		str += '				메뉴를 선택하세요. <span class="caret"></span>';
 		str += '			</button>';
-		str += '			<ul class="dropdown-menu unitAddDropdownMenuList" role="menu"';
+		str += '			<ul class="dropdown-menu unitAddDropdownMenuList unitManagerModalMenuList" role="menu"';
 		str += '				aria-labelledby="dropdownMenu1">';
 		str += '					<li role="presentation"><a role="menuitem"';
 		str += '					tabindex="-1">카테고리 먼저 선택하세요.</a></li>';
@@ -1021,9 +1021,9 @@
 	}
 
 	/* 메뉴 리스트 받아오기 (특정 카테고리 선택 시, 해당 카테고리에 속해있는 메뉴 리스트 뽑아옴) */
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitAddDropdownCateList>li", function() {
+	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalCateList>li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-
+		
 		var id = $(this).attr('id'); // 카테고리 드롭다운 li의 아이디값 받아오기 - 카테고리 넘버 알아오기 위함
 		var cateNo = document.getElementById(id).value; // li의 value값(카테고리넘버) 받아오기
 		console.log(id + ', ' + cateNo);
@@ -1031,16 +1031,21 @@
 		var cateName = $("#"+id).text(); // 선택한 카테고리 이름 받아오기 
 		console.log(cateName);
 		
-		$(this).parent().parent().children('#cateNo').val(cateNo); // 카테고리 넘버 넘겨주기(단위 등록을 위함)
 		$(this).parent().parent().children('button').text(cateName); // '카테고리를 선택하세요' 문구를 선택한 카테고리 이름으로 변경
-		setID($(this), "cateNo"); // id="cateNo" 뒤에 숫자 붙여줌 (나중에 cateNo 뽑아오기 쉽게 하기 위함)
+		$(this).parent().parent().children('input[id^="selectMenuNo_"]').val(menuNo); // 선택된 메뉴 넘버 넘겨주기(단위 등록을 위함)
 		
 		// 메뉴 리스트가 출력 될 위치 (카테고리 li > ul > 카테고리 드롭다운 div > 카테고리 container > 메뉴 container > 메뉴 드롭다운 div > ul)
 		var selector = $(this).parent().parent().parent().next().children();
 		
 		selector.children('ul').children('li').remove(); // 카테고리 선택할 때마다 메뉴 리스트 비워줌 (이 과정이 없으면 카테고리를 선택할 때마다 기존 메뉴 리스트에 새로운 메뉴 리스트가 덧붙여져서 출력됨)
 		selector.children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-				
+		selector.children('input[id^="selectMenuNo_"]').val(""); // 메뉴 넘버 초기화
+		
+		renderMenuList(cateNo, selector.children('ul'));
+	});
+	
+	// 단위 모달 - 메뉴 리스트 받아오기 함수
+	function renderMenuList(cateNo, selector) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminMenuList",
 			type : "post",
@@ -1056,7 +1061,7 @@
 				}
 				else { // 메뉴가 하나라도 있을 경우 메뉴 리스트 출력
 					for (var i = 0; i < menuList.length; i++) {
-						menuListRender(menuList[i], selector.children('ul'));
+						menuListRender(menuList[i], selector);
 						
 					}
 				}
@@ -1065,10 +1070,10 @@
 				console.error(status + " : " + error);
 			}
 		});
-	});
+	}
 
 	// 메뉴 리스트에서 메뉴 선택 시
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitAddDropdownMenuList>li", function() {
+	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalMenuList>li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
 
 		var id = $(this).attr('id'); // 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
@@ -1078,28 +1083,25 @@
 		var menuName = $("#"+id).text(); // 선택한 메뉴 이름 받아오기 
 		console.log(menuName);
 		
-		$(this).parent().parent().children('#menuNo').val(menuNo); // 카테고리 넘버 넘겨주기(단위 등록을 위함)
+		$(this).parent().parent().children('input[id^="selectMenuNo_"]').val(menuNo); // 선택된 메뉴 넘버 넘겨주기(단위 등록을 위함)
 		$(this).parent().parent().children('button').text(menuName); // 메뉴 드롭다운 타이틀을 선택한 메뉴 이름으로 변경
-		setID($(this), "menuNo");
 	});
-	
-	function setID(selector, setTitle) {
-		var numberOfUnit = $(".numberOfUnit").val();
-		console.log()
-		selector.parent().parent().children('#' + setTitle).attr('id', setTitle + '_' + numberOfUnit);
-	}
 	
 	// 구성 추가 버튼 [+] 클릭 시
 	$(".unitManagerModal-inputAndDropDownContainer").on("click", "#unitAddBtn", function() {
 		console.log("구성추가 버튼클릭");
+		$(".numberOfUnit").val(parseInt($(".numberOfUnit").val()) + 1);// 단위 개수 카운트
 		var numberOfUnit = $(".numberOfUnit").val();
-		$(".numberOfUnit").val(parseInt(numberOfUnit) + 1);// 단위 개수 카운트
+
+		var storeNo = 2;
 
 		renderUnitAdd(1); // 단위 추가 html 그리기
-		
-		var storeNo = 2;
-		
-		renderCateList(storeNo, ".unitManagerModal-inputAndDropDownContainer div:last-child div:first-child div .unitAddDropdownCateList"); // 카테고리 리스트 받아옴
+		renderCateList(storeNo, ".unitManagerModal-unitComponent:last-child div:first-child div .unitManagerModalCateList"); // 카테고리 리스트 받아옴
+
+		// 추가/수정/삭제를 위해서는 단위 구성품의 카테고리와 메뉴 id가 모두 달라야 함 (첫 번째 단위 구성품의 카테고리와 메뉴는 No_1의 아이디를 가짐)
+		// 때문에 새로 생긴 단위의 경우 카테고리와 메뉴 아이디를 바꿔줘야 함 (selectCateNo_ + 마지막 유닛의 수)
+		$(".unitManagerModal-unitComponent:last-child div div #selectCateNo_1").attr('id', "selectCateNo_" + numberOfUnit);
+		$(".unitManagerModal-unitComponent:last-child div:nth-child(2) div #selectMenuNo_1").attr('id', "selectMenuNo_" + numberOfUnit)
 		
 	});
 	
@@ -1112,46 +1114,67 @@
 		$(this).parent().remove(); // 해당 요소 삭제
 	});
 	
-	// 구성 추가 확인 버튼 클릭 시
-	$(".unitManager-submit").on("click", function() {
+	// 구성 추가/수정 모달 - 확인 버튼 클릭 시
+	$(".unitAdd-submit").on("click", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-		console.log("구성 추가 확인 버튼 클릭");
+		console.log("구성 추가/수정 모달 - 확인 버튼 클릭");
+		
+		var unitManagerNo = $(".unitManagerNo").val();
 		
 		var storeNo = 2;
 		var unitName = $("#unitManager-unitNameInput").val(); // 단위 이름 받아오기          
 		var numberOfUnit = $(".unitManagerModal-unitComponent").length; // 추가 된 구성들의 개수 구하기
-		var arrNumber = new Array(); // cateNo, menuNo을 담아줄 배열
-		var i = 0;
+		var nullCheck = false; // 구성 추가모달에서 드롭다운 null 체크를 위한 변수
 		
-		// 단위 정보가 모두 입력되지 않은 상태로 확인 버튼을 눌렀을 경우
-		if(unitName == "" || unitName == null) {
+		if(unitName == "" || unitName == null) { // 단위 이름 null 체크
 			alert("기본 정보를 모두 입력하세요.");
 			$("#unitManager-unitNameInput").focus();
 		}
-		else if($("#cateNo").length >= 1 || $("#menuNo").length >= 1) {
-			alert("기본 정보를 모두 입력하세요.");
-		}
-		else{
-			for(var j = 1; j <= numberOfUnit; j++) { // 추가 된 구성들의 개수만큼 반복하여 menuNo 담아주기
-				arrNumber[j - 1] = parseInt($("#menuNo_" + j).val());
-			}	
-			
-			$.ajax({
-				url : "${pageContext.request.contextPath}/admin/adminUnitAdd",
-				type : "post",
-				data : { storeNo: storeNo, unitName: unitName, arrNumber : arrNumber },
-				dataType : "json",
-				success : function(result) { /*성공시 처리해야될 코드 작성*/
-					console.log("성공");
-					alert("추가가 완료되었습니다.");
-					$("#unitManagerModal").modal("hide");
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
+		
+		else if(unitManagerNo == 1) { // 추가 모달일 경우
+			for(var i = 1; i <= numberOfUnit; i++) { // 드롭다운 null 체크
+				if($("#selectCateNo_" + i).val() == 0 || $("#selectMenuNo_" + i).val() == 0) {
+					alert("기본 정보를 모두 입력하세요.");
+					nullCheck = true; // 드롭다운에 null 값이 있을 경우 nullCheck 변수를 true로 바꿔줌
+					break; // 다음으로 넘어가지 않고 조건문 종료
 				}
-			});	
+			}
+			
+			if(nullCheck == false) { // null 체크가 완료된 경우 구성 추가 함수 실행
+				console.log("구성 추가");
+				unitAdd(storeNo, unitName, numberOfUnit);
+			}
+		}
+		
+		else if(unitManagerNo == 2) {
+			console.log("구성 수정");
+			unitModify();
 		}
 	});
+	
+	// 구성 추가 함수
+	function unitAdd(storeNo, unitName, numberOfUnit) {
+		var arrNumber = new Array(); // menuNo을 담아줄 배열
+		
+		for(var i = 1; i <= numberOfUnit; i++){ // 추가 된 구성들의 개수만큼 반복하여 menuNo 담아주기
+			arrNumber[i - 1] = parseInt($("#selectMenuNo_" + i).val());
+		}
+	
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/adminUnitAdd",
+			type : "post",
+			data : { storeNo: storeNo, unitName: unitName, arrNumber : arrNumber },
+			dataType : "json",
+			success : function(result) {
+				console.log("성공");
+				alert("추가가 완료되었습니다.");
+				$("#unitManagerModal").modal("hide");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
 	
 	/* 구성 수정 모달 열기 */
 	// 수정 버튼의 경우 동적으로 할당 된 요소이기 때문에 이벤트를 실행하기 위해서는 위임을 받아줘야 함
@@ -1159,6 +1182,9 @@
 	$(".unitListModal-tbody").on("click", ".adminMenu-unitListModify", function() {
 		var unitNo = $(this).parent().children("input").val(); // 클릭 된 단위의 unitNo 받아옴
 		$(".unitManagerModal-unitComponent").remove();
+		$(".numberOfUnit").val("1"); // 단위 개수 초기화
+		$(".unitManagerNo").val("2"); // 추가/수정 모달임을 판단하는 인풋 박스에 수정 모달임을 알리기 위해 [2] 넣어줌.
+		$(".unitNo").val(unitNo);
 		
 		var storeNo = 2;
 		
@@ -1169,8 +1195,6 @@
 			dataType : "json",
 			success : function(adminUnitInfoList) { /*성공시 처리해야될 코드 작성*/
 				$("#unitManager-unitNameInput").val(adminUnitInfoList[0].unitName);
-				console.log(adminUnitInfoList);
-				console.log(adminUnitInfoList[0].categoryName);
 				
 				for(var i = 0; i < adminUnitInfoList.length; i++) {
 					var str = '';
@@ -1183,11 +1207,13 @@
 					str += '	<div class="unitManagerModal-cateDropdown">';
 					str += '		<!-- 카테고리 드롭다운 -->';
 					str += '		<div class="dropdown unitManagerModal-basicInfoDropdown">';
+					str += '			<input type="hidden" id="cateNo_' + (i + 1) + '" value="' + adminUnitInfoList[i].categoryNo + '">';
+					str += '			<input type="hidden" id="selectCateNo_' + (i + 1) + '" value="' + adminUnitInfoList[i].categoryNo + '">';
 					str += '			<button class="btn btn-default dropdown-toggle" type="button"';
 					str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">';
 					str += 					adminUnitInfoList[i].categoryName + ' <span class="caret"></span>';
 					str += '			</button>';
-					str += '			<ul class="dropdown-menu unitManagerModal-dropdownCate" role="menu"';
+					str += '			<ul class="dropdown-menu unitManagerModal-dropdownCate unitManagerModalCateList" role="menu"';
 					str += '				aria-labelledby="dropdownMenu1">';
 					str += '				<!-- 카테고리 리스트 들어갈 자리 -->';
 					str += '			</ul>';
@@ -1198,11 +1224,13 @@
 					str += '	<!-- 메뉴 드롭다운 -->';
 					str += '	<div class="unitManagerModal-menuDropdown">';
 					str += '		<div class="dropdown unitManagerModal-basicInfoDropdown">';
+					str += '			<input type="hidden" id="menuNo" value="' + adminUnitInfoList[i].menuNo + '">';
+					str += '			<input type="hidden" id="selectMenuNo_' + (i + 1) + '" value="' + adminUnitInfoList[i].menuNo + '">';
 					str += '			<button class="btn btn-default dropdown-toggle" type="button"';
 					str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">';
 					str += 					adminUnitInfoList[i].menuName + ' <span class="caret"></span>';
 					str += '			</button>';
-					str += '			<ul class="dropdown-menu unitManagerModal-dropdownMenu" role="menu"';
+					str += '			<ul class="dropdown-menu unitManagerModal-dropdownMenu unitManagerModalMenuList" id="unitModifyMenuList_' + i + '" role="menu"';
 					str += '				aria-labelledby="dropdownMenu1">';
 					str += '				<!-- 메뉴 리스트 들어갈 자리 -->';
 					str += '			</ul>';
@@ -1233,10 +1261,13 @@
 
 					$(".unitManagerModal-inputAndDropDownContainer").append(str);
 
-					renderCateList(storeNo,".unitManagerModal-dropdownCate"); // 드롭다운의 카테고리 리스트 뿌리기
-
-					$("#unitManagerModal").modal(); // 모달 열기
+					renderMenuList($("#cateNo_" + (i + 1)).val(), $("#unitModifyMenuList_" + i)); // 드롭다운의 카테고리 리스트 뿌리기
 				}
+
+				renderCateList(storeNo,".unitManagerModal-dropdownCate"); // 드롭다운의 카테고리 리스트 뿌리기
+				$(".numberOfUnit").val(adminUnitInfoList.length); // 단위 개수를 세어주는 인풋에 현재 있는 리스트의 개수 넣어주기
+
+				$("#unitManagerModal").modal(); // 모달 열기
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -1244,6 +1275,7 @@
 		});		
 	});
 	
+	// 2차 때 할 것
 	$("#all_unit_checked").on("click", function() {
 		console.log("모든 단위 체크");
 
@@ -1255,5 +1287,6 @@
 	$(".unitManagerModal-close, .unitManager-cancle").on("click", function() {
 		$("#unitManagerModal").modal("hide");
 	});
+	
 </script>
 </html>

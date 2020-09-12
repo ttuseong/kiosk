@@ -121,6 +121,7 @@ public class AdminMenuService {
 		return 0;
 	}
 
+	////////////////////////////////////
 	// Service 단위 모달 - 단위의 구성품목 삽입
 	public int unitComponentInsert(int menuNo, int unitNo) {
 
