@@ -233,3 +233,22 @@ $(".table-bordered").on("click", ".adminCate-delete", function(){
 
 });
 
+$("#tooltipTextHover").hover(function(){
+	$(".tooltip-text").css("opacity", "1");
+}, function(){
+	$(".tooltip-text").css("opacity", "0");
+});
+
+$(".tooltipImgHover").hover(function(){
+	var thisHover = $(this);
+	$(".tooltipImgHover").css("display", "none");
+	$(".adminCate-delete").css("display", "none");
+	thisHover.next().css("opacity", "1");
+}, function(){
+	var thisHover = $(this);
+	$(".tooltipImgHover").css("display", "inline-block");
+	$(".adminCate-delete").css("display", "inline-block");
+	thisHover.next().css("opacity", "0");
+});
+
+

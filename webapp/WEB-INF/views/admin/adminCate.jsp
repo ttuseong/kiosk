@@ -157,7 +157,7 @@
 							<h6 class="m-0 font-weight-bold text-success">카테고리 목록</h6>
 							<!-- 카테고리 툴팁 -->
 							<div class="adminCate-tooltip">
-								<i class="fa fa-question-circle"></i>
+								<i class="fa fa-question-circle" id="tooltipTextHover"></i>
 								<span class="tooltip-text">
 									카테고리 이름을 클릭하시면<br>
 									카테고리 수정이 가능합니다.
@@ -212,7 +212,7 @@
 													<td><a href="#" class="adminCate-delete">X</a></td>
 													<td>
 														<div class="adminnCate-tooltipPicture">
-															<i class="far fa-image fa-lg"></i>
+															<i class="far fa-image fa-lg tooltipImgHover"></i>
 															<span class="tooltip-img"><img alt="미리보기 이미지" src="${pageContext.request.contextPath}/kfc/${cList.categoryImg}"></span>
 														</div>
 													</td>
