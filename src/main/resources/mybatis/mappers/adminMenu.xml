@@ -140,12 +140,11 @@
 	</insert>
 	
 	<!-- 단위의 구성 품목 수정 -->
-	<update id="updateUnit" parameterType="map">
+	<update id="updateUnitName" parameterType="map">
 		<![CDATA[
-			update defaultmenu
-			set menuno = #{setMenuNo}
-			where menuno = #{menuNo}
-			and unitno = #{unitNo}
+			update setunit
+			set unitName = #{unitName}
+			where unitNo = #{unitNo}
 		]]>
 	</update>
 	

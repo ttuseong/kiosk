@@ -108,20 +108,22 @@ public class AdminMenuController {
 		return unitInfoList;
 	}
 	
-	// 단위 모달 - 단위 추가
+	// 단위 모달 - 단위 추가/수정
 	@ResponseBody
-	@RequestMapping("/adminUnitAdd")
+	@RequestMapping("/unitInsert")
 	public int adminUnitAdd(@RequestParam("storeNo") int storeNo,
+							@RequestParam("unitNo") int unitNo,
 							@RequestParam("unitName") String unitName,
 							@RequestParam(value="arrNumber[]") List<Integer> arrNumber) {
 
-		System.out.println(storeNo);
-		System.out.println(unitName);
-		System.out.println(arrNumber);
-		
-		adminMenuService.unitInsert(storeNo, unitName, arrNumber);
-		
-		return 0;
+		return adminMenuService.unitInsert(storeNo, unitNo, unitName, arrNumber);
 	}
 	
+	// 단위 모달 - 단위 삭제
+	@ResponseBody
+	@RequestMapping("/unitDel")
+	public int adminUnitAdd(@RequestParam("unitNo") int unitNo) {
+
+		return adminMenuService.delUnit(unitNo);
+	}
 }

@@ -107,36 +107,43 @@ public class AdminMenuService {
 		return adminMenuDao.selectByUnitNo(unitNo);
 	}
 
-	// Service 단위 모달 - 단위 생성
-	public int unitInsert(int storeNo, String unitName, List<Integer> arrNumber) {
+	// Service 단위 모달 - 단위 추가/수정
+	public int unitInsert(int storeNo, int unitNo, String unitName, List<Integer> arrNumber) {
 		
-		adminMenuDao.unitInsert(storeNo, unitName); // 단위생성
-		int unitNo = adminMenuDao.getUnitNo(storeNo); // 생성 된 단위의 no 받아옴
-		
-		// 배열을 모두 돌며 생성된 단위에 메뉴 insert
-		for(int i = 0; i < arrNumber.size(); i++) {
-			adminMenuDao.unitComponentInsert(arrNumber.get(i), unitNo);
+		if(unitNo == 0) { // 단위 번호가 0일 경우 단위 추가
+			System.out.println("단위 추가");
+			adminMenuDao.unitInsert(storeNo, unitName); // 단위생성
+			int getUnitNo = adminMenuDao.getUnitNo(storeNo); // 생성 된 단위의 no 받아옴
+			
+			// 배열을 모두 돌며 생성된 단위에 메뉴 insert
+			for(int i = 0; i < arrNumber.size(); i++) {
+				adminMenuDao.unitComponentInsert(arrNumber.get(i), getUnitNo);
+			}
+		}
+		else if(unitNo > 0) { // 단위 번호가 있을 경우 단위 수정
+			System.out.println("단위 수정");
+			if(unitName != null) {
+				// 단위 이름 업데이트
+				adminMenuDao.unitNameModify(unitNo, unitName);
+			}
+			
+			adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
+			
+			// 배열을 모두 돌며 메뉴 insert
+			for(int i = 0; i < arrNumber.size(); i++) {
+				adminMenuDao.unitComponentInsert(arrNumber.get(i), unitNo);
+			}
 		}
 		
 		return 0;
 	}
 
-	////////////////////////////////////
-	// Service 단위 모달 - 단위의 구성품목 삽입
-	public int unitComponentInsert(int menuNo, int unitNo) {
-
-		return adminMenuDao.unitComponentInsert(menuNo, unitNo);
-	}
-
-	// Service 단위 모달 - 단위의 구성 품목 수정
-	public int updateUnit(String setMenuName, int menuNo, String unitNo) {
-		
-		return adminMenuDao.updateUnit(setMenuName, menuNo, unitNo);
-	}
-
 	// Service 단위 모달 - 단위 삭제
 	public int delUnit(int unitNo) {
+
+		adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
+		adminMenuDao.delUnit(unitNo); // 단위 삭제
 		
-		return adminMenuDao.delUnit(unitNo);
+		return 0;
 	}
 }

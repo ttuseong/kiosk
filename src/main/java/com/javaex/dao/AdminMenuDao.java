@@ -114,29 +114,28 @@ public class AdminMenuDao {
 		return sqlSession.insert("adminMenu.unitComponentInsert", unitMap);
 	}
 	
-	// Dao 단위 모달 - 단위의 구성 품목 수정
-	public int updateUnit(String setMenuName, int menuNo, String unitNo) {
-		System.out.println("dao(adminMenu) - 단위의 구성품목 수정");
-		
-		Map<String, Object> unitMap = new HashMap<String, Object>();
-		unitMap.put("setMenuName", setMenuName);
-		unitMap.put("menuNo", menuNo);
-		unitMap.put("unitNo", unitNo);
-		
-		return sqlSession.insert("adminMenu.unitComponentInsert", unitMap);
-	}
+	// Dao 단위 모달 - 단위 이름 수정
+	public int unitNameModify(int unitNo, String unitName) {
+		System.out.println("dao(adminMenu) - 단위 이름 수정");
 
+		Map<String, Object> unitMap = new HashMap<String, Object>();
+		unitMap.put("unitNo", unitNo);
+		unitMap.put("unitName", unitName);
+		
+		return sqlSession.update("updateUnitName", unitMap);
+	}
+	
 	// Dao 단위 모달 - 단위의 구성 품목 삭제
 	public int delUnitComponent(int unitNo) {
 		System.out.println("dao(adminMenu) - 단위 구성 품목 삭제");
-
-		return sqlSession.selectOne("adminMenu.delUnitComponent", unitNo);
+		
+		return sqlSession.delete("adminMenu.delUnitComponent", unitNo);
 	}
 	
 	// Dao 단위 모달 - 단위 삭제
 	public int delUnit(int unitNo) {
 		System.out.println("dao(adminMenu) - 단위 삭제");
 
-		return sqlSession.selectOne("adminMenu.delUnit", unitNo);
+		return sqlSession.delete("adminMenu.delUnit", unitNo);
 	}
 }

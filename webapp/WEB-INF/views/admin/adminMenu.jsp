@@ -415,7 +415,6 @@
 							<span class="text">취소</span>
 						</a><a href="#"
 							class="btn btn-success btn-icon-split adminMenu-unitAdd unitAdd-submit unitModify-submit">
-							<input type="hidden" class="unitManagerNo" value="1"> <!-- 추가 모달일 경우 1, 수정 모달일 경우 2 -->
 							<input type="hidden" class="numberOfUnit" value="1">
 							<input type="hidden" class="unitNo" value="0">
 							<span class="text">확인</span>
@@ -735,31 +734,37 @@
 		var menuNo = $("#selectMenuNo").val(); // 메뉴 넘버 받아오기
 		console.log("삭제 버튼 클릭", menuNo);
 		
-		if(menuNo == '') { // menuNo이 null일 경우 아직 메뉴가 선택되지 않은 상태임
-			alert("메뉴를 선택하세요.");
-		}	
-		else if(menuNo == 0) { // menuNo이 0일 경우 새로 등록중인 메뉴임
-			alert("등록되어 있지 않은 메뉴 정보입니다.");
+		if (window.confirm("삭제하시겠습니까?")) { // 알림창 띄우기
+			// 확인 버튼을 누른 경우
+			if(menuNo == '') { // menuNo이 null일 경우 아직 메뉴가 선택되지 않은 상태임
+				alert("메뉴를 선택하세요.");
+			}	
+			else if(menuNo == 0) { // menuNo이 0일 경우 새로 등록중인 메뉴임
+				alert("등록되어 있지 않은 메뉴 정보입니다.");
+			}
+			else {
+				$.ajax({
+					url : "${pageContext.request.contextPath}/admin/adminDelMenu",
+					type : "post",
+					data : { menuNo : menuNo },
+					dataType : "json",
+					success : function(cnt) { /*성공시 처리해야될 코드 작성*/
+						$("html").scrollTop(0); // 화면 최상단으로 이동
+						alert("삭제가 완료되었습니다.");
+						$("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+						$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
+						
+						// 인풋박스 모두 비워주기
+						resetInput();
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+			}
 		}
 		else {
-			$.ajax({
-				url : "${pageContext.request.contextPath}/admin/adminDelMenu",
-				type : "post",
-				data : { menuNo : menuNo },
-				dataType : "json",
-				success : function(cnt) { /*성공시 처리해야될 코드 작성*/
-					$("html").scrollTop(0); // 화면 최상단으로 이동
-					alert("삭제가 완료되었습니다.");
-					$("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-					$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
-					
-					// 인풋박스 모두 비워주기
-					resetInput();
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-			});
+			// 취소버튼을 누른 경우
 		}
 	});
 
@@ -941,8 +946,7 @@
 		$(".unitManagerModal-unitComponent").remove(); // 구성 추가/수정 모달을 함께 쓰기 때문에 중복 출력되지 않도록 모달이 열릴 때마다 비워줌
 		$("#unitManager-unitNameInput").val(""); // 단위 이름 인풋박스 비우기
 		$(".numberOfUnit").val("1"); // 단위 개수 초기화
-		$(".unitManagerNo").val("1"); // 추가/수정 모달임을 판단하는 인풋 박스에 추가 모달임을 알리기 위해 [1] 넣어줌
-		$(".unitNo").val(""); // 단위를 추가하는 경우에는 유닛 넘버가 아직 없는 상태이기 때문에 유닛 넘버 초기화 해 줌
+		$(".unitNo").val(0); // 단위를 추가하는 경우에는 유닛 넘버가 아직 없는 상태이기 때문에 유닛 넘버 초기화 해 줌
 
 		renderUnitAdd(0); // 단위 추가 html 그리기
 		
@@ -1020,162 +1024,6 @@
 		$(".unitManagerModal-inputAndDropDownContainer").append(str);
 	}
 
-	/* 메뉴 리스트 받아오기 (특정 카테고리 선택 시, 해당 카테고리에 속해있는 메뉴 리스트 뽑아옴) */
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalCateList>li", function() {
-		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-		
-		var id = $(this).attr('id'); // 카테고리 드롭다운 li의 아이디값 받아오기 - 카테고리 넘버 알아오기 위함
-		var cateNo = document.getElementById(id).value; // li의 value값(카테고리넘버) 받아오기
-		console.log(id + ', ' + cateNo);
-		
-		var cateName = $("#"+id).text(); // 선택한 카테고리 이름 받아오기 
-		console.log(cateName);
-		
-		$(this).parent().parent().children('button').text(cateName); // '카테고리를 선택하세요' 문구를 선택한 카테고리 이름으로 변경
-		$(this).parent().parent().children('input[id^="selectMenuNo_"]').val(menuNo); // 선택된 메뉴 넘버 넘겨주기(단위 등록을 위함)
-		
-		// 메뉴 리스트가 출력 될 위치 (카테고리 li > ul > 카테고리 드롭다운 div > 카테고리 container > 메뉴 container > 메뉴 드롭다운 div > ul)
-		var selector = $(this).parent().parent().parent().next().children();
-		
-		selector.children('ul').children('li').remove(); // 카테고리 선택할 때마다 메뉴 리스트 비워줌 (이 과정이 없으면 카테고리를 선택할 때마다 기존 메뉴 리스트에 새로운 메뉴 리스트가 덧붙여져서 출력됨)
-		selector.children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-		selector.children('input[id^="selectMenuNo_"]').val(""); // 메뉴 넘버 초기화
-		
-		renderMenuList(cateNo, selector.children('ul'));
-	});
-	
-	// 단위 모달 - 메뉴 리스트 받아오기 함수
-	function renderMenuList(cateNo, selector) {
-		$.ajax({
-			url : "${pageContext.request.contextPath}/admin/adminMenuList",
-			type : "post",
-			data : { cateNo : cateNo },
-			dataType : "json",
-			success : function(menuList) { /*성공시 처리해야될 코드 작성*/
-				if(menuList.length == 0) { // 카테고리 내에 입력된 메뉴가 없을 경우
-					var str = '';
-						
-					str += '<li role="presentation" id="menuNo_0" value="0"><a role="menuitem" tabindex="-1">메뉴가 없습니다.</a></li>';
-
-					$(".unitAddDropdownMenuList").prepend(str);
-				}
-				else { // 메뉴가 하나라도 있을 경우 메뉴 리스트 출력
-					for (var i = 0; i < menuList.length; i++) {
-						menuListRender(menuList[i], selector);
-						
-					}
-				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-	}
-
-	// 메뉴 리스트에서 메뉴 선택 시
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalMenuList>li", function() {
-		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-
-		var id = $(this).attr('id'); // 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
-		var menuNo = document.getElementById(id).value; // li의 value값(메뉴 넘버) 받아오기
-		console.log(id + ', ' + menuNo);
-		
-		var menuName = $("#"+id).text(); // 선택한 메뉴 이름 받아오기 
-		console.log(menuName);
-		
-		$(this).parent().parent().children('input[id^="selectMenuNo_"]').val(menuNo); // 선택된 메뉴 넘버 넘겨주기(단위 등록을 위함)
-		$(this).parent().parent().children('button').text(menuName); // 메뉴 드롭다운 타이틀을 선택한 메뉴 이름으로 변경
-	});
-	
-	// 구성 추가 버튼 [+] 클릭 시
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", "#unitAddBtn", function() {
-		console.log("구성추가 버튼클릭");
-		$(".numberOfUnit").val(parseInt($(".numberOfUnit").val()) + 1);// 단위 개수 카운트
-		var numberOfUnit = $(".numberOfUnit").val();
-
-		var storeNo = 2;
-
-		renderUnitAdd(1); // 단위 추가 html 그리기
-		renderCateList(storeNo, ".unitManagerModal-unitComponent:last-child div:first-child div .unitManagerModalCateList"); // 카테고리 리스트 받아옴
-
-		// 추가/수정/삭제를 위해서는 단위 구성품의 카테고리와 메뉴 id가 모두 달라야 함 (첫 번째 단위 구성품의 카테고리와 메뉴는 No_1의 아이디를 가짐)
-		// 때문에 새로 생긴 단위의 경우 카테고리와 메뉴 아이디를 바꿔줘야 함 (selectCateNo_ + 마지막 유닛의 수)
-		$(".unitManagerModal-unitComponent:last-child div div #selectCateNo_1").attr('id', "selectCateNo_" + numberOfUnit);
-		$(".unitManagerModal-unitComponent:last-child div:nth-child(2) div #selectMenuNo_1").attr('id', "selectMenuNo_" + numberOfUnit)
-		
-	});
-	
-	// 구성 삭제 버튼 [-] 클릭 시
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", "#unitDelBtn", function() {
-		console.log("구성삭제 버튼클릭");
-		var numberOfUnit = $(".numberOfUnit").val();
-		$(".numberOfUnit").val(parseInt(numberOfUnit) - 1);// 단위 개수 카운트
-		
-		$(this).parent().remove(); // 해당 요소 삭제
-	});
-	
-	// 구성 추가/수정 모달 - 확인 버튼 클릭 시
-	$(".unitAdd-submit").on("click", function() {
-		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
-		console.log("구성 추가/수정 모달 - 확인 버튼 클릭");
-		
-		var unitManagerNo = $(".unitManagerNo").val();
-		
-		var storeNo = 2;
-		var unitName = $("#unitManager-unitNameInput").val(); // 단위 이름 받아오기          
-		var numberOfUnit = $(".unitManagerModal-unitComponent").length; // 추가 된 구성들의 개수 구하기
-		var nullCheck = false; // 구성 추가모달에서 드롭다운 null 체크를 위한 변수
-		
-		if(unitName == "" || unitName == null) { // 단위 이름 null 체크
-			alert("기본 정보를 모두 입력하세요.");
-			$("#unitManager-unitNameInput").focus();
-		}
-		
-		else if(unitManagerNo == 1) { // 추가 모달일 경우
-			for(var i = 1; i <= numberOfUnit; i++) { // 드롭다운 null 체크
-				if($("#selectCateNo_" + i).val() == 0 || $("#selectMenuNo_" + i).val() == 0) {
-					alert("기본 정보를 모두 입력하세요.");
-					nullCheck = true; // 드롭다운에 null 값이 있을 경우 nullCheck 변수를 true로 바꿔줌
-					break; // 다음으로 넘어가지 않고 조건문 종료
-				}
-			}
-			
-			if(nullCheck == false) { // null 체크가 완료된 경우 구성 추가 함수 실행
-				console.log("구성 추가");
-				unitAdd(storeNo, unitName, numberOfUnit);
-			}
-		}
-		
-		else if(unitManagerNo == 2) {
-			console.log("구성 수정");
-			unitModify();
-		}
-	});
-	
-	// 구성 추가 함수
-	function unitAdd(storeNo, unitName, numberOfUnit) {
-		var arrNumber = new Array(); // menuNo을 담아줄 배열
-		
-		for(var i = 1; i <= numberOfUnit; i++){ // 추가 된 구성들의 개수만큼 반복하여 menuNo 담아주기
-			arrNumber[i - 1] = parseInt($("#selectMenuNo_" + i).val());
-		}
-	
-		$.ajax({
-			url : "${pageContext.request.contextPath}/admin/adminUnitAdd",
-			type : "post",
-			data : { storeNo: storeNo, unitName: unitName, arrNumber : arrNumber },
-			dataType : "json",
-			success : function(result) {
-				console.log("성공");
-				alert("추가가 완료되었습니다.");
-				$("#unitManagerModal").modal("hide");
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		});
-	}
-	
 	/* 구성 수정 모달 열기 */
 	// 수정 버튼의 경우 동적으로 할당 된 요소이기 때문에 이벤트를 실행하기 위해서는 위임을 받아줘야 함
 	// (동적 할당 요소를 감싼 부모를 선택자로 지정하고, 그 안의 특정 요소를 클릭받을 때를 이벤트로 받아줘야 함)
@@ -1183,7 +1031,6 @@
 		var unitNo = $(this).parent().children("input").val(); // 클릭 된 단위의 unitNo 받아옴
 		$(".unitManagerModal-unitComponent").remove();
 		$(".numberOfUnit").val("1"); // 단위 개수 초기화
-		$(".unitManagerNo").val("2"); // 추가/수정 모달임을 판단하는 인풋 박스에 수정 모달임을 알리기 위해 [2] 넣어줌.
 		$(".unitNo").val(unitNo);
 		
 		var storeNo = 2;
@@ -1273,6 +1120,174 @@
 				console.error(status + " : " + error);
 			}
 		});		
+	});
+	
+	/* 메뉴 리스트 받아오기 (특정 카테고리 선택 시, 해당 카테고리에 속해있는 메뉴 리스트 뽑아옴) */
+	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalCateList>li", function() {
+		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
+		
+		var id = $(this).attr('id'); // 카테고리 드롭다운 li의 아이디값 받아오기 - 카테고리 넘버 알아오기 위함
+		var cateNo = document.getElementById(id).value; // li의 value값(카테고리넘버) 받아오기
+		console.log(id + ', ' + cateNo);
+		
+		var cateName = $("#"+id).text(); // 선택한 카테고리 이름 받아오기 
+		console.log(cateName);
+		
+		$(this).parent().parent().children('button').text(cateName); // '카테고리를 선택하세요' 문구를 선택한 카테고리 이름으로 변경
+		$(this).parent().parent().children('input[id^="selectCateNo_"]').val(cateNo); // 선택된 메뉴 넘버 넘겨주기(단위 등록을 위함)
+		
+		// 메뉴 리스트가 출력 될 위치 (카테고리 li > ul > 카테고리 드롭다운 div > 카테고리 container > 메뉴 container > 메뉴 드롭다운 div > ul)
+		var selector = $(this).parent().parent().parent().next().children();
+		
+		selector.children('ul').children('li').remove(); // 카테고리 선택할 때마다 메뉴 리스트 비워줌 (이 과정이 없으면 카테고리를 선택할 때마다 기존 메뉴 리스트에 새로운 메뉴 리스트가 덧붙여져서 출력됨)
+		selector.children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+		selector.children('input[id^="selectMenuNo_"]').val(""); // 메뉴 넘버 초기화
+		
+		renderMenuList(cateNo, selector.children('ul'));
+	});
+	
+	// 단위 모달 - 메뉴 리스트 받아오기 함수
+	function renderMenuList(cateNo, selector) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/adminMenuList",
+			type : "post",
+			data : { cateNo : cateNo },
+			dataType : "json",
+			success : function(menuList) { /*성공시 처리해야될 코드 작성*/
+				if(menuList.length == 0) { // 카테고리 내에 입력된 메뉴가 없을 경우
+					var str = '';
+						
+					str += '<li role="presentation" id="menuNo_0" value="0"><a role="menuitem" tabindex="-1">메뉴가 없습니다.</a></li>';
+
+					$(".unitAddDropdownMenuList").prepend(str);
+				}
+				else { // 메뉴가 하나라도 있을 경우 메뉴 리스트 출력
+					for (var i = 0; i < menuList.length; i++) {
+						menuListRender(menuList[i], selector);
+						
+					}
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
+
+	// 메뉴 리스트에서 메뉴 선택 시
+	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalMenuList>li", function() {
+		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
+
+		var id = $(this).attr('id'); // 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
+		var menuNo = document.getElementById(id).value; // li의 value값(메뉴 넘버) 받아오기
+		console.log(id + ', ' + menuNo);
+		
+		var menuName = $("#"+id).text(); // 선택한 메뉴 이름 받아오기 
+		console.log(menuName);
+		
+		$(this).parent().parent().children('input[id^="selectMenuNo_"]').val(menuNo); // 선택된 메뉴 넘버 넘겨주기(단위 등록을 위함)
+		$(this).parent().parent().children('button').text(menuName); // 메뉴 드롭다운 타이틀을 선택한 메뉴 이름으로 변경
+	});
+	
+	// 구성 추가 버튼 [+] 클릭 시
+	$(".unitManagerModal-inputAndDropDownContainer").on("click", "#unitAddBtn", function() {
+		console.log("구성추가 버튼클릭");
+		$(".numberOfUnit").val(parseInt($(".numberOfUnit").val()) + 1);// 단위 개수 카운트
+		var numberOfUnit = $(".numberOfUnit").val();
+
+		var storeNo = 2;
+
+		renderUnitAdd(1); // 단위 추가 html 그리기
+		renderCateList(storeNo, ".unitManagerModal-unitComponent:last-child div:first-child div .unitManagerModalCateList"); // 카테고리 리스트 받아옴
+
+		// 추가/수정/삭제를 위해서는 단위 구성품의 카테고리와 메뉴 id가 모두 달라야 함 (첫 번째 단위 구성품의 카테고리와 메뉴는 No_1의 아이디를 가짐)
+		// 때문에 새로 생긴 단위의 경우 카테고리와 메뉴 아이디를 바꿔줘야 함 (selectCateNo_ + 마지막 유닛의 수)
+		$(".unitManagerModal-unitComponent:last-child div div #selectCateNo_1").attr('id', "selectCateNo_" + numberOfUnit);
+		$(".unitManagerModal-unitComponent:last-child div:nth-child(2) div #selectMenuNo_1").attr('id', "selectMenuNo_" + numberOfUnit)
+		
+	});
+	
+	// 구성 삭제 버튼 [-] 클릭 시
+	$(".unitManagerModal-inputAndDropDownContainer").on("click", "#unitDelBtn", function() {
+		console.log("구성삭제 버튼클릭");
+		var numberOfUnit = $(".numberOfUnit").val();
+		$(".numberOfUnit").val(parseInt(numberOfUnit) - 1);// 단위 개수 카운트
+		
+		$(this).parent().remove(); // 해당 요소 삭제
+	});
+	
+	// 구성 추가/수정 모달 - 확인 버튼 클릭 시
+	$(".unitAdd-submit").on("click", function() {
+		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
+		console.log("구성 추가/수정 모달 - 확인 버튼 클릭");
+		
+		var storeNo = 2;
+		var unitNo = $(".unitNo").val();
+		var unitName = $("#unitManager-unitNameInput").val(); // 단위 이름 받아오기          
+		var numberOfUnit = $(".unitManagerModal-unitComponent").length; // 추가 된 구성들의 개수 구하기
+		var nullCheck = false; // 구성 추가모달에서 드롭다운 null 체크를 위한 변수
+		var arrNumber = new Array(); // menuNo을 담아줄 배열
+		
+		if(unitName == "" || unitName == null) { // 단위 이름 null 체크
+			alert("기본 정보를 모두 입력하세요.");
+			$("#unitManager-unitNameInput").focus();
+		}
+		else if(nullCheck == false) { // 드롭다운 null 체크
+			for(var i = 1; i <= numberOfUnit; i++) {
+				if($("#selectCateNo_" + i).val() == 0 || $("#selectMenuNo_" + i).val() == 0) {
+					alert("기본 정보를 모두 입력하세요.");
+					nullCheck = true; // 드롭다운에 null 값이 있을 경우 nullCheck 변수를 true로 바꿔줌
+					break; // 다음으로 넘어가지 않고 조건문 종료
+				}
+			}
+			
+			if(nullCheck == false) { // null 체크가 완료된 경우 구성 추가/수정 함수 실행
+				for(var i = 1; i <= numberOfUnit; i++){ // 추가 된 구성들의 개수만큼 반복하여 menuNo 담아주기
+					arrNumber[i - 1] = parseInt($("#selectMenuNo_" + i).val());
+				}
+			
+				$.ajax({
+					url : "${pageContext.request.contextPath}/admin/unitInsert",
+					type : "post",
+					data : { storeNo: storeNo, unitNo: unitNo, unitName: unitName, arrNumber : arrNumber },
+					dataType : "json",
+					success : function(result) {
+						alert("완료되었습니다.");
+						$("#unitManagerModal").modal("hide");
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+			}
+		}
+	});
+	
+	// 단위 삭제
+	$("#adminMenu-unitDel").on("click", function() {
+		console.log("삭제 버튼 클릭");
+		
+		var unitNo = $("input[id^='check_']:checked").val()
+
+		if (window.confirm("삭제하시겠습니까?")) {
+			// 확인 버튼을 누른 경우
+			$.ajax({
+				url : "${pageContext.request.contextPath}/admin/unitDel",
+				type : "post",
+				data : { unitNo: unitNo },
+				dataType : "json",
+				success : function(result) {
+					alert("삭제가 완료되었습니다.");
+					$("#unitNo_" + unitNo).remove(); // 해당 단위를 화면에서 삭제
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
+				}
+			});
+		}
+		else {
+			// 취소버튼을 누른 경우
+		}
 	});
 	
 	// 2차 때 할 것
