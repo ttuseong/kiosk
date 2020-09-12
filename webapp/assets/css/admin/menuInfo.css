@@ -102,7 +102,8 @@ a{
     margin-left: 85px;
 }
 
-.menuInfo-basicInfoContainer div > p, input {
+.menuInfo-basicInfoContainer div > p, input,
+.adminMenu-unitBasicInfo {
 	display: inline-block;
 }
 
@@ -123,10 +124,15 @@ a{
 
 /* 체크박스 */
 .menuInfo-menuDetails > input,
-.adminMenu-unitCheck > input {
+.adminMenu-unitCheck > .adminMenu-unitBasicInfo > input {
 	width: 15px;
     margin: 0 5px 1px 15px;
 	vertical-align: middle;
+}
+
+/* 단위 정보 체크박스를 둘러싸고 있는 div */
+.adminMenu-unitBasicInfo {
+	margin-right: 15px;
 }
 
 .menuInfo-menuDescription > p {

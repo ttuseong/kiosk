@@ -22,7 +22,6 @@ public class AdminMenuController {
 	@Autowired
 	private AdminMenuService adminMenuService;
 
-	// 카테고리 리스트
 	@RequestMapping("/adminMenu")
 	public String adminMenu(Model model) {
 		
@@ -55,6 +54,7 @@ public class AdminMenuController {
 	public MenuVo adminMenuInfo(@RequestParam("menuNo") int menuNo) {
 		
 		MenuVo menuVo = adminMenuService.getMenuInfo(menuNo);
+		System.out.println(menuVo.toString());
 		
 		return menuVo;
 	}
@@ -87,6 +87,17 @@ public class AdminMenuController {
 		return adminMenuService.delMenu(menuNo);
 	}
 	
+	// 해당 매장의 단위 넘버와 이름 가져오기 
+	@ResponseBody
+	@RequestMapping("/getUnitBasicInfo")
+	public List<MenuVo> getUnitBasicInfo(@RequestParam("storeNo") int storeNo) {
+
+		List<MenuVo> getUnitList = adminMenuService.getUnitBasicInfo(storeNo);
+		System.out.println(getUnitList.toString());
+		
+		return getUnitList;
+	}
+
 	// 단위 모달 - 해당 매장의 단위 정보 모두 가져옴
 	@ResponseBody
 	@RequestMapping("/adminUnitList")

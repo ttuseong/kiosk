@@ -81,6 +81,17 @@
 		]]>
 	</delete>
 	
+	<!-- 해당 매장의 단위 정보와 이름 가져옴 -->
+	<select id="getUnitBasicInfo" parameterType="int" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			select  unitno,
+					unitname
+			from 	setunit
+			where storeno = #{storeNo}
+			order by unitno desc	
+		]]>
+	</select>
+	
 	<!-- 해당 매장의 단위 정보 모두 가져옴 -->
 	<select id="getUnitList" parameterType="int" resultType="com.javaex.vo.UnitModalVo">
 		<![CDATA[
@@ -139,7 +150,7 @@
 		]]>
 	</insert>
 	
-	<!-- 단위의 구성 품목 수정 -->
+	<!-- 단위의 이름 수정 -->
 	<update id="updateUnitName" parameterType="map">
 		<![CDATA[
 			update setunit

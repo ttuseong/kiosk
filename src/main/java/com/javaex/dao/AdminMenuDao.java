@@ -63,6 +63,15 @@ public class AdminMenuDao {
 		return sqlSession.delete("adminMenu.delMenu", menuNo);
 	}
 	
+	// 해당 매장의 단위 넘버와 이름 가져오기
+	public List<MenuVo> getUnitBasicInfo(int storeNo) {
+		System.out.println("dao(adminMenu) - 해당 매장의 단위 넘버와 이름 가져오기");
+		
+		List<MenuVo> getUnitList = sqlSession.selectList("adminMenu.getUnitBasicInfo", storeNo);
+		
+		return getUnitList;
+	}
+	
 	// Dao 단위 모달 - 단위 정보 가져오기
 	public List<UnitModalVo> getUnitList(int storeNo) {
 		System.out.println("dao(adminMenu) - 단위 정보 가져오기");

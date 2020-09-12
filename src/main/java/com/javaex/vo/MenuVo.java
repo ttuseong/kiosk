@@ -33,6 +33,11 @@ public class MenuVo {
 
 	public MenuVo() {}
 	
+	public MenuVo(int unitNo, String unitName) {
+		this.unitNo = unitNo;
+		this.unitName = unitName;
+	}
+
 	public MenuVo(int categoryNo, String menuName, String menuDesc, int menuPrice, String menuImg, int isSpecial,
 			int isChange, int unitNo) {
 		this.categoryNo = categoryNo;

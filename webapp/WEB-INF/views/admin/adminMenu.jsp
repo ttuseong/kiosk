@@ -208,9 +208,7 @@
 								<div class="adminMenu-unitCheck">
 									<p style="margin-right: 20px;">추가구성</p>
 
-									<!-- 체크박스 -->
-									<input type="checkbox" style="margin-left: 0 !important;">
-									<p class="normal">세트</p>
+									<!-- 단위 정보 들어갈 자리 -->
 
 									<!-- 버튼자리 -->
 									<div class="adminMenu-unitListBtn">
@@ -449,8 +447,9 @@
 	/* 페이지가 로드되는 순간 불러와야 할 정보들 */
 	$(document).ready(function(){	
 		var storeNo = 2;
+		getUnitBasicInfo(storeNo) // 관리자 단에서 뿌려질 단위 정보
 		getCateList(storeNo); // 카테고리 리스트
-		getUnitList(storeNo); // 단위 정보
+		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
 	});	
 
 	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
@@ -467,6 +466,32 @@
 	$("#menuInfo-menuImgInput").change(function(){
 		readURL(this);
 	});
+	
+	// 해당 매장의 단위 넘버와 이름 가져오기 함수
+	function getUnitBasicInfo(storeNo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/getUnitBasicInfo",
+			type : "post",
+			data : { storeNo : storeNo },
+			dataType : "json",
+			success : function(unitList) { /*성공시 처리해야될 코드 작성*/
+				for (var i = 0; i < unitList.length; i++) {
+					var str = '';
+					
+					str += '<div class="adminMenu-unitBasicInfo" id="unitInfo_' + unitList[i].unitNo + '">';
+					str += '	<input type="radio" id="unitInfo_check_' + unitList[i].unitNo + '" name="unitBasicInfo"';
+					str += '		value="' + unitList[i].unitNo + '" style="margin-left: 0 !important;">';
+					str += '	<p class="normal">' + unitList[i].unitName + '</p>';
+					str += '</div';
+					
+					$(".adminMenu-unitListBtn").before(str);
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
 	
 	// 카테고리 리스트 불러오기 함수
 	function getCateList(storeNo) {
@@ -775,6 +800,8 @@
 		// 메뉴 정보 받기
 		var menuNo = $("#selectMenuNo").val();
 		var cateNo = $("#selectCateNo").val();
+		var unitNo = $("input[id^='unitInfo_check_']:checked").val();
+		console.log(unitNo);
 		
 		// menuVo의 isSpecial 값을 위한 부분
 		var isSpecial = 0; // 아무 것도 체크되지 않은 상태에서는 0임
@@ -804,9 +831,11 @@
 		imgData.append("isSpecial", isSpecial);
 		imgData.append("isChange", isChange);
 		imgData.append("menuDesc", $("#menuDesc").val());
+		imgData.append("unitNo", unitNo);
 		
 		var val = imgData.values();
 		
+		console.log(val.next());
 		console.log(val.next());
 		console.log(val.next());
 		console.log(val.next());
@@ -823,9 +852,10 @@
 			menuName: $("#menuName").val(), 
 			menuPrice: $("#menuPrice").val(), 
 			/* menuCalorie: $("#menuCalorie").val(),  */
+			menuDesc: $("#menuDesc").val(),
 			isSpecial: isSpecial,
 			isChange: isChange,
-			menuDesc: $("#menuDesc").val()
+			unitNo: unitNo
 		};
 	
 		if(menuNo == 0) { // 메뉴 추가
@@ -1267,7 +1297,8 @@
 	$("#adminMenu-unitDel").on("click", function() {
 		console.log("삭제 버튼 클릭");
 		
-		var unitNo = $("input[id^='check_']:checked").val()
+		var unitNo = $("input[id^='check_']:checked").val();
+		console.log(unitNo);
 
 		if (window.confirm("삭제하시겠습니까?")) {
 			// 확인 버튼을 누른 경우

@@ -91,6 +91,14 @@ public class AdminMenuService {
 	public int delMenu(int menuNo) {
 		
 		return adminMenuDao.delMenu(menuNo);
+	}	
+
+	// Service 해당 매장의 단위 넘버와 이름 가져오기
+	public List<MenuVo> getUnitBasicInfo(int storeNo) {
+		
+		List<MenuVo> getUnitList = adminMenuDao.getUnitBasicInfo(storeNo);
+		
+		return getUnitList;
 	}
 	
 	// Service 단위 모달 - 모든 단위 정보 가져오기
