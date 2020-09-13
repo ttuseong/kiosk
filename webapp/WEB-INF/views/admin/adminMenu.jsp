@@ -476,21 +476,25 @@
 			dataType : "json",
 			success : function(unitList) { /*성공시 처리해야될 코드 작성*/
 				for (var i = 0; i < unitList.length; i++) {
-					var str = '';
-					
-					str += '<div class="adminMenu-unitBasicInfo" id="unitInfo_' + unitList[i].unitNo + '">';
-					str += '	<input type="radio" id="unitInfo_check_' + unitList[i].unitNo + '" name="unitBasicInfo"';
-					str += '		value="' + unitList[i].unitNo + '" style="margin-left: 0 !important;">';
-					str += '	<p class="normal">' + unitList[i].unitName + '</p>';
-					str += '</div';
-					
-					$(".adminMenu-unitListBtn").before(str);
+					renderUnitInfo(unitList[i]);
 				}
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		});
+	}
+	
+	function renderUnitInfo(unitList) {
+		var str = '';
+		
+		str += '<div class="adminMenu-unitBasicInfo" id="unitInfo_' + unitList.unitNo + '">';
+		str += '	<input type="radio" id="unitInfo_check_' + unitList.unitNo + '" name="unitBasicInfo"';
+		str += '		value="' + unitList.unitNo + '" style="margin-left: 0 !important;">';
+		str += '	<p class="normal">' + unitList.unitName + '</p>';
+		str += '</div';
+		
+		$(".adminMenu-unitListBtn").before(str);
 	}
 	
 	// 카테고리 리스트 불러오기 함수
@@ -951,6 +955,13 @@
 	/* 추가 구성 리스트 모달 열기 */
 	$(".adminUnitListBtn").on("click", function() {
 		$("#unitListModal").modal();
+
+		// 메뉴 정보 페이지에서 선택 된 구성이 모달에서도 선택되도록 함
+		var unitNo = $("input[id^='unitInfo_check_']:checked").val(); // 현재 메뉴 정보페이지에서 선택된 단위 번호 받아옴
+		if(unitNo != null) { // 단위가 선택된 경우
+			$('input:radio[id="check_' + unitNo + '"]').prop("checked", true); // 해당 단위를 모달에서도 선택되게 함
+		}
+		
 	});
 	
 	// 추가 구성 리스트 모달 닫기
@@ -1299,6 +1310,8 @@
 								}
 							}
 							
+							renderUnitInfo(unitList[0]);
+							
 							alert("추가가 완료되었습니다.");
 						}
 						else if(map.result == 1) { // 수정 시 리스트에서 수정된 정보로 변경해줌
@@ -1398,6 +1411,16 @@
 		else {
 			// 취소버튼을 누른 경우
 		}
+	});
+	
+	// 단위 모달 - 적용 버튼 클릭
+	$("#unitListModal-body").on("click", ".adminMenu-unitListSelect", function() {
+		console.log("적용 버튼 클릭");
+
+		var unitNo = $(this).prev().prev().val(); // 적용 버튼을 누른 단위의 번호 가져옴
+		$('input:radio[id="unitInfo_check_' + unitNo + '"]').prop("checked", true); // 메뉴 정보 페이지에서 선택되게 함
+		$('input:radio[id="check_' + unitNo + '"]').prop("checked", true); // 모달에서 선택되게 함
+		
 	});
 	
 	// 2차 때 할 것
