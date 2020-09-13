@@ -534,7 +534,7 @@
 			dataType : "json",
 			success : function(unitList) { /*성공시 처리해야될 코드 작성*/
 				var unitNo = 0;
-			
+				
 				for (var i = 0; i < unitList.length; i++) {					
 					var str = '';
 					if(unitNo != unitList[i].unitNo) {	
@@ -666,6 +666,7 @@
 		$("#menuDesc").val("");
 
 		$("input[type=checkbox]").prop("checked", false); // 체크박스 모두 해제
+		$("input[type=radio]").prop("checked", false); // 체크박스 모두 해제
 	}
 	
 	/* 메뉴 정보 받아오기 (특정 메뉴 선택시 해당 메뉴에 대한 정보 받아옴 - 메뉴이름, 가격, 이미지 등) */
@@ -713,6 +714,7 @@
 		$("#menuDesc").val(menuVo.menuDesc);
 
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
+		$("input[type=radio]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
 		
 		// isSpecial => 1 : 프로모션 / 2 : 추천 / 4 : 신메뉴
 		switch (menuVo.isSpecial){
@@ -749,6 +751,11 @@
 		
 		if(menuVo.isChange == 1) {
 			$('input:checkbox[id="isChange"]').prop("checked", true); 
+		}
+
+		// 추가 구성 체크
+		if(menuVo.unitNo != null && menuVo.unitNo != 0) {
+			$('input:radio[id="unitInfo_check_' + menuVo.unitNo + '"]').prop("checked", true); 
 		}
 	}
 
@@ -801,7 +808,9 @@
 		var menuNo = $("#selectMenuNo").val();
 		var cateNo = $("#selectCateNo").val();
 		var unitNo = $("input[id^='unitInfo_check_']:checked").val();
-		console.log(unitNo);
+		if(unitNo == null) {
+			unitNo = 0;
+		}
 		
 		// menuVo의 isSpecial 값을 위한 부분
 		var isSpecial = 0; // 아무 것도 체크되지 않은 상태에서는 0임
@@ -846,22 +855,27 @@
 			unitNo: unitNo
 		};
 	
-		if(menuNo == 0) { // 메뉴 추가
-			if(cateNo == 0) { // 카테고리를 선택하지 않은 경우 경고창 띄움
-				alert("카테고리를 선택하세요.");
-			}
-			else {
-				// 인풋박스가 모두 null이 아닐 경우에 메뉴 추가
-				var txtInput = $(".menuInfo-basicInfoContainer input[type=text]"); // input[type=text](메뉴이름, 가격, 칼로리)
-				var txtarea = $(".menuInfo-menuDescription :input"); // textarea (메뉴 설명)
-				
+     
+		if(menuNo == 0 && cateNo == 0) { // 메뉴 추가 시 카테고리를 선택하지 않은 경우 경고창 띄움
+			alert("카테고리를 선택하세요.");
+		}
+		else if(menuNo == '') { // menuNo이 null일 경우 아직 메뉴가 선택되지 않은 상태임
+			alert("메뉴를 선택하세요.\n새로운 메뉴를 추가하실 경우 메뉴 드롭다운에서 [새로운 메뉴 입력] 버튼을 눌러주세요.");
+		}	
+		else {
+			// 인풋박스가 모두 null이 아닐 경우에 메뉴 추가
+			var txtInput = $(".menuInfo-basicInfoContainer input[type=text]"); // input[type=text](메뉴이름, 가격, 칼로리)
+			var txtarea = $(".menuInfo-menuDescription :input"); // textarea (메뉴 설명)
+			
+			if(menuNo == 0) { // 메뉴 추가
 				// (조건 ? 참일 경우 수행 : 거짓일 경우 수행)
 				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuAdd(imgData);
 			}
+			else { // 메뉴 수정
+				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(menuVo);			
+			} 
 		}
-		else { // 메뉴 수정
-			menuModify(menuVo);			
-		} 
+
 	});
 	
 	// 메뉴정보 카드 안의 모든 input box를 조회하는 함수
@@ -893,7 +907,10 @@
 			
 			success : function(result) { /*성공시 처리해야될 코드 작성*/
 				if(result > 0){
-					$(location).attr('href', 'http://125.180.31.137:8088/kiosk/admin/adminMenu');
+					// $(location).attr('href', 'http://125.180.31.137:8088/kiosk/admin/adminMenu');
+					
+					alert("추가가 완료되었습니다."); // 알림창
+					location.reload();
 				}
 			},
 			error : function(XHR, status, error) {
@@ -1269,9 +1286,38 @@
 					type : "post",
 					data : { storeNo: storeNo, unitNo: unitNo, unitName: unitName, arrNumber : arrNumber },
 					dataType : "json",
-					success : function(result) {
-						alert("완료되었습니다.");
-						$("#unitManagerModal").modal("hide");
+					success : function(map) {
+						var unitList = map.unitInfo; // map으로 가져온 리스트 담아줌
+						
+						if(map.result == 0) {
+							for (var i = 0; i < unitList.length; i++) {	
+								if(unitList[i] == unitList[0]) {
+									renderUnitList(0, unitList[i]);
+								}
+								else {
+									renderUnitList(unitList[i].unitNo, unitList[i]);
+								}
+							}
+							
+							alert("추가가 완료되었습니다.");
+						}
+						else if(map.result == 1) { // 수정 시 리스트에서 수정된 정보로 변경해줌
+							$("#unitNo_" + unitList[0].unitNo + '_td').empty(); // 추가 구성 품목 td 비워주기
+							$("#unitNo_" + unitList[0].unitNo + '_td').prev().empty(); // 구성 이름 td 비워주기
+							$("#unitNo_" + unitList[0].unitNo + '_td').prev().prepend(unitList[0].unitName); // 단위 모달에서의 단위 이름을 수정된 이름으로 변경
+							$("#unitInfo_" + unitNo).children('p').text(unitList[0].unitName); // 메뉴 정보페이지에서의 단위 이름을 수정된 이름으로 변경
+							
+							for(var i = 0; i < unitList.length; i++) { // 추가 구성 품목 td를 수정한 구성 품목으로 채워줌
+								var str = '';
+							
+								str += unitList[i].categoryName + ': ' + unitList[i].menuName + '<br>';
+								$("#unitNo_" + unitList[0].unitNo + '_td').prepend(str);
+							}
+							
+							alert("수정이 완료되었습니다.");
+						}
+						
+						$("#unitManagerModal").modal("hide"); // 모달 닫기
 					},
 					error : function(XHR, status, error) {
 						console.error(status + " : " + error);
@@ -1280,6 +1326,50 @@
 			}
 		}
 	});
+	
+	function renderUnitList(unitNo, unitList) {				
+		var str = '';
+		
+		if(unitNo != unitList.unitNo) {	
+			str += '<tr id="unitNo_' + unitList.unitNo + '">';
+			
+					/* 체크 박스 */
+			str += '	<td><input type="radio" id="check_' + unitList.unitNo;
+			str += '" value="' + unitList.unitNo + '" name="selectUnit_check"></td>';
+			
+					/* 단위 이름 (세트, 박스 등) */
+			str += '	<td>' + unitList.unitName + '</td>';
+			str += '	<td id="unitNo_' + unitList.unitNo + '_td">';
+			
+					/* 구성 출력 */
+			str += unitList.categoryName + ': ' + unitList.menuName + '<br>';
+			str += '	</td>';
+			str += '	<td>';
+			
+					/* 수정 / 적용 버튼 */
+			str += '		<div class="adminMenu-unitListBtnContainer">';
+			str += '			<input type="hidden" id="btn_unit_' + unitList.unitNo;
+			str += ' "value="' + unitList.unitNo + '">';
+			str += '			<a href="#"';
+			str += '				class="btn btn-secondary btn-icon-split adminMenu-unitListModify">';
+			str += '				<span class="text">수정</span>';
+			str += '			</a><a href="#"';
+			str += '				class="btn btn-success btn-icon-split adminMenu-unitListSelect">';
+			str += '				<span class="text">적용</span>';
+			str += '			</a>';
+			str += '		</div>';
+			str += '	</td>';
+			str += '</tr>';
+			
+			$(".unitListModal-tbody").append(str);
+			unitNo = unitList.unitNo;
+			
+		}
+		else if(unitNo == unitList.unitNo) {
+			str += unitList.categoryName + ': ' + unitList.menuName + '<br>';
+			$("#unitNo_" + unitNo + '_td').prepend(str);
+		}
+	}
 	
 	// 단위 삭제
 	$("#adminMenu-unitDel").on("click", function() {
@@ -1297,7 +1387,8 @@
 				dataType : "json",
 				success : function(result) {
 					alert("삭제가 완료되었습니다.");
-					$("#unitNo_" + unitNo).remove(); // 해당 단위를 화면에서 삭제
+					$("#unitNo_" + unitNo).remove(); // 해당 단위를 모달 화면에서 삭제
+					$("#unitInfo_" + unitNo).remove(); // 해당 단위를 메뉴 정보 화면에서 삭제
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);

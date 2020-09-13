@@ -99,9 +99,9 @@ public class AdminMenuDao {
 		return sqlSession.insert("adminMenu.unitInsert", unitMap);
 	}
 	
-	// Dao 단위 모달 - 가장 최근에 생긴 세트 넘버 가져옴
+	// Dao 단위 모달 - 가장 최근에 생긴 유닛 넘버 가져옴
 	public int getUnitNo(int storeNo) {
-		System.out.println("dao(adminMenu) - 가장 최근에 생긴 세트 넘버 가져옴");
+		System.out.println("dao(adminMenu) - 가장 최근에 생긴 유닛 넘버 가져옴");
 		
 		Map<String, Object> map = sqlSession.selectOne("adminMenu.getUnitNo", storeNo);
 		

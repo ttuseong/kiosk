@@ -1,6 +1,8 @@
 package com.javaex.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,7 +56,6 @@ public class AdminMenuController {
 	public MenuVo adminMenuInfo(@RequestParam("menuNo") int menuNo) {
 		
 		MenuVo menuVo = adminMenuService.getMenuInfo(menuNo);
-		System.out.println(menuVo.toString());
 		
 		return menuVo;
 	}
@@ -66,6 +67,8 @@ public class AdminMenuController {
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo) {
 		
+			System.out.println(unitNo);
+			
 		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo);
 	}
 	
@@ -73,7 +76,7 @@ public class AdminMenuController {
 	@ResponseBody
 	@RequestMapping("/adminUpdateMenu")
 	public MenuVo adminUpdateMenu(@RequestBody MenuVo menuVo) {
-		
+
 		MenuVo updateMenuInfo = adminMenuService.menuUpdate(menuVo);
 		
 		// 업데이트 한 메뉴 정보 보내기
@@ -93,7 +96,6 @@ public class AdminMenuController {
 	public List<MenuVo> getUnitBasicInfo(@RequestParam("storeNo") int storeNo) {
 
 		List<MenuVo> getUnitList = adminMenuService.getUnitBasicInfo(storeNo);
-		System.out.println(getUnitList.toString());
 		
 		return getUnitList;
 	}
@@ -114,7 +116,6 @@ public class AdminMenuController {
 	public List<UnitModalVo> adminUnitInfo(@RequestParam("unitNo") int unitNo) {
 
 		List<UnitModalVo> unitInfoList = adminMenuService.adminUnitInfoList(unitNo);
-		System.out.println(unitInfoList.toString());
 
 		return unitInfoList;
 	}
@@ -122,12 +123,16 @@ public class AdminMenuController {
 	// 단위 모달 - 단위 추가/수정
 	@ResponseBody
 	@RequestMapping("/unitInsert")
-	public int adminUnitAdd(@RequestParam("storeNo") int storeNo,
-							@RequestParam("unitNo") int unitNo,
-							@RequestParam("unitName") String unitName,
-							@RequestParam(value="arrNumber[]") List<Integer> arrNumber) {
+	public Map<String, Object> adminUnitAdd(@RequestParam("storeNo") int storeNo,
+											@RequestParam("unitNo") int unitNo,
+											@RequestParam("unitName") String unitName,
+											@RequestParam(value="arrNumber[]") List<Integer> arrNumber) {
 
-		return adminMenuService.unitInsert(storeNo, unitNo, unitName, arrNumber);
+		Map<String, Object> map = adminMenuService.unitInsert(storeNo, unitNo, unitName, arrNumber);
+		map.put("result", map.get("result"));
+		map.put("unitInfo", map.get("getUnitInfo"));
+		
+		return map;
 	}
 	
 	// 단위 모달 - 단위 삭제

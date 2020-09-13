@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,6 +81,7 @@ public class AdminMenuService {
 	public MenuVo menuUpdate(MenuVo menuVo) {
 		
 		adminMenuDao.menuUpdate(menuVo); // 메뉴 업데이트
+		System.out.println("service : " + menuVo.toString());
 		
 		// 업데이트 한 메뉴 정보 담기
 		MenuVo updateMenuInfo = adminMenuDao.getMenuInfo(menuVo.getMenuNo());
@@ -116,17 +118,15 @@ public class AdminMenuService {
 	}
 
 	// Service 단위 모달 - 단위 추가/수정
-	public int unitInsert(int storeNo, int unitNo, String unitName, List<Integer> arrNumber) {
+	public Map<String, Object> unitInsert(int storeNo, int unitNo, String unitName, List<Integer> arrNumber) {
+		
+		Map<String, Object> unitInsert = new HashMap<String, Object>();
+		int result = 0; // 추가/수정 판단을 위함 (판단에 따라 ajax 처리 방식이 달라짐)
 		
 		if(unitNo == 0) { // 단위 번호가 0일 경우 단위 추가
 			System.out.println("단위 추가");
 			adminMenuDao.unitInsert(storeNo, unitName); // 단위생성
-			int getUnitNo = adminMenuDao.getUnitNo(storeNo); // 생성 된 단위의 no 받아옴
-			
-			// 배열을 모두 돌며 생성된 단위에 메뉴 insert
-			for(int i = 0; i < arrNumber.size(); i++) {
-				adminMenuDao.unitComponentInsert(arrNumber.get(i), getUnitNo);
-			}
+			unitNo = adminMenuDao.getUnitNo(storeNo); // 생성 된 단위의 no 받아옴
 		}
 		else if(unitNo > 0) { // 단위 번호가 있을 경우 단위 수정
 			System.out.println("단위 수정");
@@ -136,14 +136,19 @@ public class AdminMenuService {
 			}
 			
 			adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
-			
-			// 배열을 모두 돌며 메뉴 insert
-			for(int i = 0; i < arrNumber.size(); i++) {
-				adminMenuDao.unitComponentInsert(arrNumber.get(i), unitNo);
-			}
+			result = 1; // result가 1일 경우 수정임
+		}
+
+		// 배열을 모두 돌며 생성된 단위에 메뉴 insert
+		for(int i = 0; i < arrNumber.size(); i++) {
+			adminMenuDao.unitComponentInsert(arrNumber.get(i), unitNo);
 		}
 		
-		return 0;
+		List<UnitModalVo> getUnitInfo = adminMenuDao.selectByUnitNo(unitNo);
+		unitInsert.put("getUnitInfo", getUnitInfo);
+		unitInsert.put("result", result);
+		
+		return unitInsert;
 	}
 
 	// Service 단위 모달 - 단위 삭제
