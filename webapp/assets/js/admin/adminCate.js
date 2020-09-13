@@ -241,14 +241,19 @@ $("#tooltipTextHover").hover(function(){
 
 $(".tooltipImgHover").hover(function(){
 	var thisHover = $(this);
-	$(".tooltipImgHover").css("display", "none");
-	$(".adminCate-delete").css("display", "none");
 	thisHover.next().css("opacity", "1");
 }, function(){
 	var thisHover = $(this);
-	$(".tooltipImgHover").css("display", "inline-block");
-	$(".adminCate-delete").css("display", "inline-block");
 	thisHover.next().css("opacity", "0");
 });
 
+$("input[name=cateimgCheck]").change(function(){
+	if ( $(this).prop('checked') ) { 
+		$("#cate-menuImgInput").css("display", "inline-block");
+	} else { 
+		$("#cate-menuImgInput").css("display", "none");
+	}
+
+
+});
 

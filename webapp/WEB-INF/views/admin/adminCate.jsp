@@ -36,6 +36,9 @@
 <link
 	href="${pageContext.request.contextPath}/assets/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCate.css">
+
 	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCateTool.css">
 
@@ -137,6 +140,15 @@
 													id="cate-private" name="cate-openStatus" value="0" > 
 												<label class="custom-control-label" for="cate-private" style="margin-right: 20px;">비공개</label>
 											</div>
+											
+											<div id="admin-cate-insertImg">
+												<input type="checkbox" name="cateimgCheck">
+												<label>이미지 넣기</label>
+											</div>
+
+											<input id="cate-menuImgInput" name="file" type="file"/>
+		
+											
 										</div>
 										<!-- End of form-group -->
 										
@@ -167,7 +179,7 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" width="100%"cellspacing="0">
+								<table class="table table-bordered admin-cate-table" width="100%"cellspacing="0">
 									<div class="admin-search dataTables_filter">
 										<form action="${pageContext.request.contextPath}/admin/adminCate" method="get">	
 											<label>Search:</label>

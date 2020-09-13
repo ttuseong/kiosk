@@ -832,19 +832,7 @@
 		imgData.append("isChange", isChange);
 		imgData.append("menuDesc", $("#menuDesc").val());
 		imgData.append("unitNo", unitNo);
-		
-		var val = imgData.values();
-		
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		console.log(val.next());
-		
+
      	// 메뉴 정보 묶어주기
 		var menuVo = { 
 			menuNo: menuNo,
