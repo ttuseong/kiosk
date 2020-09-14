@@ -9,6 +9,11 @@
 	text-align: center;
 }
 
+.adminCate-title{
+	position: absolute;
+	z-index: 2;
+}
+
 #admin-cate-insertImg{
 	margin-right: 10px;
 }

@@ -241,9 +241,17 @@ $("#tooltipTextHover").hover(function(){
 
 $(".tooltipImgHover").hover(function(){
 	var thisHover = $(this);
+	
+	$(".adminCate-delete").css("z-index", "0");
+	$(".adminCate-title").css("z-index", "0");
+	
 	thisHover.next().css("opacity", "1");
 }, function(){
 	var thisHover = $(this);
+	
+	$(".adminCate-delete").css("z-index", "2");
+	$(".adminCate-title").css("z-index", "2");
+	
 	thisHover.next().css("opacity", "0");
 });
 
@@ -253,7 +261,5 @@ $("input[name=cateimgCheck]").change(function(){
 	} else { 
 		$("#cate-menuImgInput").css("display", "none");
 	}
-
-
 });
 
