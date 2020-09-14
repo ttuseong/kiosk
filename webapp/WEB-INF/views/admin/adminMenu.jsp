@@ -446,7 +446,7 @@
 <script type="text/javascript">	
 	/* 페이지가 로드되는 순간 불러와야 할 정보들 */
 	$(document).ready(function(){	
-		var storeNo = 2;
+		var storeNo = 1;
 		getUnitBasicInfo(storeNo) // 관리자 단에서 뿌려질 단위 정보
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
@@ -996,7 +996,7 @@
 
 		renderUnitAdd(0); // 단위 추가 html 그리기
 		
-		var storeNo = 2;
+		var storeNo = 1;
 	
 		renderCateList(storeNo, ".unitAddDropdownCateList"); // 카테고리 리스트 출력
 		
@@ -1079,7 +1079,7 @@
 		$(".numberOfUnit").val("1"); // 단위 개수 초기화
 		$(".unitNo").val(unitNo);
 		
-		var storeNo = 2;
+		var storeNo = 1;
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminUnitInfoList",
@@ -1241,7 +1241,7 @@
 		$(".numberOfUnit").val(parseInt($(".numberOfUnit").val()) + 1);// 단위 개수 카운트
 		var numberOfUnit = $(".numberOfUnit").val();
 
-		var storeNo = 2;
+		var storeNo = 1;
 
 		renderUnitAdd(1); // 단위 추가 html 그리기
 		renderCateList(storeNo, ".unitManagerModal-unitComponent:last-child div:first-child div .unitManagerModalCateList"); // 카테고리 리스트 받아옴
@@ -1267,7 +1267,7 @@
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
 		console.log("구성 추가/수정 모달 - 확인 버튼 클릭");
 		
-		var storeNo = 2;
+		var storeNo = 1;
 		var unitNo = $(".unitNo").val();
 		var unitName = $("#unitManager-unitNameInput").val(); // 단위 이름 받아오기          
 		var numberOfUnit = $(".unitManagerModal-unitComponent").length; // 추가 된 구성들의 개수 구하기
