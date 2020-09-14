@@ -114,14 +114,13 @@
 							<h6 class="m-0 font-weight-bold text-primary">카테고리 추가 및 수정</h6>
 						</div>
 						<div class="card-body">
-							<form action="" method="" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+							<form action="" method="post" id="cateImgUpload" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100" enctype="multipart/form-data">
 								<div class="input-group">
 									<p id="adminCate-Category">카테고리</p>
 									<input type="text"
-										
 										class="form-control adminCate-addCateForm border-0 small"
 										placeholder="카테고리를 입력하세요." aria-label="addCate"
-										aria-describedby="basic-addon2">
+										aria-describedby="basic-addon2" name="title">
 									
 										
 									<div class="form-groupAndBtn">	
@@ -142,7 +141,7 @@
 											</div>
 											
 											<div id="admin-cate-insertImg">
-												<input type="checkbox" name="cateimgCheck">
+												<input type="checkbox" name="cateimgCheck" value="1">
 												<label>이미지 넣기</label>
 											</div>
 

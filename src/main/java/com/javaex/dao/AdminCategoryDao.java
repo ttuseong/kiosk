@@ -31,15 +31,13 @@ public class AdminCategoryDao {
 	
 	
 	// 카테고리 추가 
-	public CategoryVo selectCateUpdate(String categoryName) {
-		System.out.println(categoryName);
-		CategoryVo categoryVo = sqlSession.selectOne("adminCategory.selectCateUpdate", categoryName);
-
-		return categoryVo;
+	public int selectCateUpdate(CategoryVo categoryVo) {
+		return sqlSession.selectOne("adminCategory.selectCateUpdate", categoryVo);
 	}
 
 	// 카테고리 추가  --확인버튼 누르면 카테고리 추가
 	public int insertCateAdd(CategoryVo categoryVo) {
+		System.out.println("엥");
 		return sqlSession.insert("adminCategory.insertCateAdd", categoryVo);
 	}
 

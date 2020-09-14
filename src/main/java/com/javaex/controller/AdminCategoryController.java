@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.AdminCategoryService;
 import com.javaex.vo.CategoryVo;
@@ -42,11 +43,10 @@ public class AdminCategoryController {
 	//카테고리 추가  --카테고리 값 가져오기
 	@ResponseBody
 	@RequestMapping("/adminCateUpdate")
-	public boolean adminCateUpdate(@RequestParam ("cateName") String categoryName) {
+	public int adminCateUpdate(@ModelAttribute CategoryVo categoryVo) {
 		System.out.println("adminCateUpdate");
-		System.out.println(categoryName);
 		
-		boolean result = adminCategoryService.adminCateUpdate(categoryName);
+		int result = adminCategoryService.adminCateUpdate(categoryVo);
 
 		return result;
 	}
@@ -54,17 +54,14 @@ public class AdminCategoryController {
 	//카테고리 추가 --확인버튼 누르면 카테고리 추가
 	@ResponseBody
 	@RequestMapping("/adminCateAdd")
-	public CategoryVo adminCateAdd(@ModelAttribute CategoryVo categoryVo) {
+	public CategoryVo adminCateAdd(@RequestParam("title") String categoryName, @RequestParam("cate-openStatus") int publicYN,
+			@RequestParam(value="cateimgCheck", defaultValue="0") int cateimgCheck,
+			@RequestParam("file") MultipartFile file) {
 		System.out.println("adminCateAdd");
 		
-		//로그인 개발하고 수정할것!!!!
-		//세션에 있는  storeNo를 추가해준다
-		categoryVo.setStoreNo(1);
-		
-		
-		System.out.println(categoryVo.toString());
-		CategoryVo cateVo = adminCategoryService.adminCateAdd(categoryVo);
+		CategoryVo cateVo = adminCategoryService.adminCateAdd(categoryName, publicYN, cateimgCheck, file);
 		System.out.println("넘어왔따");
+		 
 		
 		return cateVo;
 	}
@@ -86,10 +83,12 @@ public class AdminCategoryController {
 	  //카테고리 수정
 	  @ResponseBody
 	  @RequestMapping("/titleClickUpdate")
-	  public int titleClickUpdate(@ModelAttribute CategoryVo categoryVo) {
+	  public int titleClickUpdate(@RequestParam("title") String categoryName, @RequestParam("cate-openStatus") int publicYN,
+				@RequestParam(value="cateimgCheck", defaultValue="0") int cateimgCheck,
+				@RequestParam("file") MultipartFile file, @RequestParam("cateNo") int categoryNo) {
 		  System.out.println("titleClickUpdate-컨트롤러");
 		  
-		  int categoryUpdate = adminCategoryService.titleClickUpdate(categoryVo);
+		  int categoryUpdate = adminCategoryService.titleClickUpdate(categoryName, publicYN, cateimgCheck, categoryNo, file);
 		  
 		  return categoryUpdate;
 	  }

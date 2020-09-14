@@ -1,11 +1,17 @@
 package com.javaex.service;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.dao.AdminCategoryDao;
 import com.javaex.vo.CategoryVo;
@@ -58,21 +64,48 @@ public class AdminCategoryService {
 	
 	
 	// 카테고리 추가 --카테고리 값 가져오기
-	public boolean adminCateUpdate(String categoryName) {
-		CategoryVo categoryVo = adminCategoryDao.selectCateUpdate(categoryName);
-		boolean result = true;
-
-		if (categoryVo == null) {
-			result = true;
-		} else {
-			result = false;
-		}
-		return result;
+	public int adminCateUpdate(CategoryVo categoryVo) {
+		
+		return adminCategoryDao.selectCateUpdate(categoryVo);
+		
 	}
 
 	// 카테고리 추가  --확인버튼 누르면 카테고리 추가
-	public CategoryVo adminCateAdd(CategoryVo categoryVo) {
-		adminCategoryDao.insertCateAdd(categoryVo);
+	public CategoryVo adminCateAdd(String categoryName, int publicYN, int cateimgCheck, MultipartFile file) {
+		CategoryVo categoryVo;
+		if(cateimgCheck == 1) {
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+			
+			categoryVo = new CategoryVo(categoryName, publicYN, saveName);
+			
+			try {
+				byte[] fileData = file.getBytes();
+				
+				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+				BufferedOutputStream bout = new BufferedOutputStream(out);
+				
+				bout.write(fileData);
+				bout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			categoryVo = new CategoryVo(categoryName, publicYN, "");
+		}
+		
+		//일단 KFC만
+		categoryVo.setStoreNo(1);
+		
+		System.out.println(categoryVo.toString());
+		
+		int a = adminCategoryDao.insertCateAdd(categoryVo);
+		
+		System.out.println(a);
+		
+		System.out.println(categoryVo.toString());
 
 		int categoryNo = categoryVo.getCategoryNo();
 		
@@ -80,12 +113,6 @@ public class AdminCategoryService {
 
 		return cateVo;
 	}
-	
-	
-	
-	
-	
-	
 
 	  //카테고리 삭제 
 	 public int adminCateDel(int categoryNo) {
@@ -109,10 +136,34 @@ public class AdminCategoryService {
 	 }
 	  
 	 //카테고리 수정
-	 public int titleClickUpdate(CategoryVo categoryVo) {
+	 public int titleClickUpdate(String categoryName, int publicYN, int cateimgCheck, int categoryNo, MultipartFile file) {
 		System.out.println("서비스 -카테고리 타이틀 클릭"); 
-		 
 		
+		CategoryVo categoryVo;
+		if(cateimgCheck == 1) {
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+			
+			categoryVo = new CategoryVo(categoryName, publicYN, saveName, categoryNo);
+			
+			try {
+				byte[] fileData = file.getBytes();
+				
+				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+				BufferedOutputStream bout = new BufferedOutputStream(out);
+				
+				bout.write(fileData);
+				bout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			categoryVo = new CategoryVo(categoryName, publicYN, "", categoryNo);
+		}
+		
+		categoryVo.setStoreNo(1);
 		
 		return adminCategoryDao.titleUpdate(categoryVo);
 	 }

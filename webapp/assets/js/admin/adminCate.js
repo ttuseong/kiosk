@@ -4,129 +4,113 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 /* 카테고리 추가 및 수정 */
 $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 	event.preventDefault();
-	console.log("클릭");
-
+	
+	var title = $("input[name=title]").val();
+	
+	if(title == ""){
+		alert("카테고리 이름을 입력하세요");
+		return;
+	}
+	
+	var form = $("#cateImgUpload")[0];
+	var formData = new FormData(form);
 	var cateNo = $(".input-group").data('hiddenCateNo');
+	
 	console.log(cateNo);
 	
-	var adminCateName = $(".adminCate-addCateForm").val();
-	console.log(adminCateName);
-	
-	var adminCateInfo ={
-			cateName:adminCateName
-	};
-	
-	//타이틀값, 공개 비공개 값 읽어오기
-	var cateTitle = $(".adminCate-addCateForm").val();
-	console.log(cateTitle);
-	
-	var adminCatePublicYn = $('input[name=cate-openStatus]:checked').val();
-	console.log(adminCatePublicYn);
-	
-	var cateNameAndPublicYn = {
-			categoryName:cateTitle,
-			publicYN: adminCatePublicYn
-	};
-	
 	if(cateNo == undefined){
-		console.log("카테고리 추가");
 		$.ajax({
 			url : url+"/admin/adminCateUpdate",
 			type: "post",
-			data : adminCateInfo,
+			data : {"categoryName": title},
 			dataType : "json",
 			success : function(result){
 				console.log(result);
 				/*성공시 처리해야 될 코드 작성 
 				확인버튼 눌렀을시 타이틀이 중복되었을경우 alert창 뜨기*/
 				
-				if(result == true) {
-					alert("사용 가능합니다.")
+				if(result == 0) {
+					alert("사용 가능합니다.");
+					//중복되지 않았을 경우 리스트에 추가하기
+					$.ajax({
+						url : url+"/admin/adminCateAdd",
+						type: "post",
+						processData : false,
+             			contentType : false,
+						data : formData,
+						dataType : "json",
+						success : function(cateVo){
+							console.log(cateVo);
+							render(cateVo);
+		
+							for(var i=0; i<cateVo.length; i++){
+								render(cateVo[i]);
+							}
+						},
+						error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+						}
+						
+					});
 				}else {
-					alert("중복된 타이틀입니다. 사용할 수 없습니다.")
+					alert("중복된 타이틀입니다. 사용할 수 없습니다.");
 					return;
 				}
-				//중복되지 않았을 경우 리스트에 추가하기
-				$.ajax({
-					
-					url : url+"/admin/adminCateAdd",
-					
-					type: "post",
-					data : cateNameAndPublicYn,
-					dataType : "json",
-					success : function(cateVo){
-						console.log(cateVo);
-						render(cateVo);
-	
-						for(var i=0; i<cateVo.length; i++){
-							render(cateVo[i]);
-						}
-					},
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-					}
-					
-				});
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}		
 		});
 	} else{
-		console.log("카테고리 업데이트");
-			
-		var titleClickUpdate = {
-			categoryName:cateTitle,
-			publicYN:adminCatePublicYn,
-			categoryNo:cateNo
-		}
-		
+		formData.append("cateNo", cateNo);
 		$.ajax({
 			url : url+"/admin/adminCateUpdate",
 			type: "post",
-			data : adminCateInfo,
+			data : {"categoryName": title, 
+					"categoryNo": cateNo},
 			dataType : "json",
 			success : function(result){
 				console.log(result);
 				/*성공시 처리해야 될 코드 작성 
 				확인버튼 눌렀을시 타이틀이 중복되었을경우 alert창 뜨기*/
 				
-				if(result == true) {
-					alert("사용 가능합니다.")
+				if(result == 0) {
+					alert("사용 가능합니다.");
+						$.ajax({
+					
+						url : url+"/admin/titleClickUpdate",
+								
+						type: "post",
+						processData : false,
+             			contentType : false,
+						data : formData,
+						dataType : "json",
+						success : function(categoryUpdate){
+							console.log(categoryUpdate);
+									
+							if(categoryUpdate==1){
+								console.log("완료");
+								alert('수정이 완료되었습니다');
+								window.location.reload();
+							}else{
+								console.log("완료");
+								alert('수정에 실패하였습니다');
+								}
+						},	
+						error : function(XHR, status, error) {
+							console.error(status + " : " + error);
+						}	
+					});
 				}else {
-					alert("중복된 타이틀입니다. 사용할 수 없습니다.")
+					alert("중복된 타이틀입니다. 사용할 수 없습니다.");
 					return;
 				}
 				//중복되지 않았을 경우 리스트에 추가하기
-				$.ajax({
-				
-					url : url+"/admin/titleClickUpdate",
-							
-					type: "post",
-					data : titleClickUpdate,
-					dataType : "json",
-					success : function(categoryUpdate){
-						console.log(categoryUpdate);
-								
-						if(categoryUpdate==1){
-							console.log("완료");
-							alert('수정이 완료되었습니다');
-							window.location.reload();
-						}else{
-							console.log("완료");
-							alert('수정에 실패하였습니다');
-							}
-					},	
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-					}	
-				});
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}	
 		});
-				
 	}
 });
 
@@ -139,7 +123,7 @@ function render(cateVo){
 	str += "			<td>"+ cateVo.categoryNo +"</td>";
 	str += "			<td><a href='#' class='adminCate-title'>"+ cateVo.categoryName+"</a></td>";
 	if(cateVo.publicYN==1){
-		str += "	<td>공개</td>";
+		str += "			<td>공개</td>";
 		str += "			<td></td>";
 	}
 	if(cateVo.publicYN==0){
@@ -147,7 +131,12 @@ function render(cateVo){
 		str += "			<td>비공개</td>";
 	}
 	str += "			<td><a href='#' class='adminCate-delete'>X</a></td>";
-	str += "			<td><i class='fa fa-question-circle'></i></td>";
+	str += "			<td>";
+	str += "				<div class='adminnCate-tooltipPicture'>";
+	str += "					<i class='far fa-image fa-lg tooltipImgHover'></i>";
+	str += '					<span class="tooltip-img"><img alt="미리보기 이미지" src="'+url+'/kfc/${cateVo.categoryImg}"></span>';
+	str += "				</div>";
+	str += "			</td>";
 	str +="			</tr>";
 	
 	$("tbody").prepend(str);

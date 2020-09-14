@@ -12,6 +12,19 @@ public class CategoryVo {
    
    
    public CategoryVo() {}
+   
+   public CategoryVo(String categoryName, int publicYN, String categoryImg, int categoryNo) {
+	   this.categoryName = categoryName;
+	   this.publicYN = publicYN;
+	   this.categoryImg = categoryImg;
+	   this.categoryNo = categoryNo;
+   }
+
+   public CategoryVo(String categoryName, int publicYN, String categoryImg) {
+	   this.categoryName = categoryName;
+	   this.publicYN = publicYN;
+	   this.categoryImg = categoryImg;
+   }
 
    public CategoryVo(int categoryNo, String categoryName, int publicYN, String categoryImg, int storeNo, int isSet,
          int cnt) {
