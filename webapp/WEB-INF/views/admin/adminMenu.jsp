@@ -485,11 +485,12 @@
 		});
 	}
 	
+	// 화면에서 단위 정보 출력하는 함수
 	function renderUnitInfo(unitList) {
 		var str = '';
 		
 		str += '<div class="adminMenu-unitBasicInfo" id="unitInfo_' + unitList.unitNo + '">';
-		str += '	<input type="radio" id="unitInfo_check_' + unitList.unitNo + '" name="unitBasicInfo"';
+		str += '	<input type="checkbox" id="unitInfo_check_' + unitList.unitNo + '" name="unitBasicInfo"';
 		str += '		value="' + unitList.unitNo + '" style="margin-left: 0 !important;">';
 		str += '	<p class="normal">' + unitList.unitName + '</p>';
 		str += '</div';
@@ -896,6 +897,23 @@
 				return true;
 			}
 		}
+	}
+
+	// 체크박스 중복 방지
+	$(".adminMenu-basicInfo").on("click", "input:checkbox[name=unitBasicInfo]", function() {
+		 console.log("체크박스 클릭");
+		 NoMultiChk($(this).val());
+	});
+	
+	// 체크박스 중복 방지
+	function NoMultiChk(chk){
+	    var obj = document.getElementsByName("unitBasicInfo");
+	    
+	    for(var i=0; i < obj.length; i++){
+	        if(obj[i].value != chk){
+	            obj[i].checked = false;
+	        }
+	    }
 	}
 	
 	/* 메뉴 추가 함수 */
