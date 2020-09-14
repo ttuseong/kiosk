@@ -1436,7 +1436,8 @@
 		console.log("적용 버튼 클릭");
 
 		var unitNo = $(this).prev().prev().val(); // 적용 버튼을 누른 단위의 번호 가져옴
-		$('input:radio[id="unitInfo_check_' + unitNo + '"]').prop("checked", true); // 메뉴 정보 페이지에서 선택되게 함
+		$('input:checkbox[name=unitBasicInfo]').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
+		$('input:checkbox[id="unitInfo_check_' + unitNo + '"]').prop("checked", true); // 적용한 단위를 메뉴 정보 페이지에서 선택되게 함
 		$('input:radio[id="check_' + unitNo + '"]').prop("checked", true); // 모달에서 선택되게 함
 		
 	});
