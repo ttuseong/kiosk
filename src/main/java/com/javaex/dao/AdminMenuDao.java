@@ -55,6 +55,11 @@ public class AdminMenuDao {
 		
 		return sqlSession.update("adminMenu.menuUpdate", menuVo);
 	}
+	
+	public int selectUseDefault(int menuNo) {
+		System.out.println("dao(adminMenu) - 디폴트 메뉴 확인");
+		return sqlSession.selectOne("adminMenu.selectDefaultCount", menuNo);
+	}
 
 	// Dao 메뉴 삭제
 	public int delMenu(int menuNo) {

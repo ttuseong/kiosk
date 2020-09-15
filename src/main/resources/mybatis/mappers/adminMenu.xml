@@ -82,6 +82,18 @@
 		]]>
 	</update>
 	
+	<!-- 디폴트 메뉴 카운트 -->
+	<select id="selectDefaultCount" parameterType="int" resultType="int">
+		<![CDATA[
+			SELECT
+			    count(unitNo)
+			FROM
+			    defaultmenu
+			where
+			    menuNo = #{menuNo}
+		]]>
+	</select>
+	
 	<!-- 메뉴 삭제 -->
 	<delete id="delMenu" parameterType="int">
 		<![CDATA[

@@ -121,6 +121,12 @@ public class AdminMenuService {
 	// Service 메뉴 삭제
 	public int delMenu(int menuNo) {
 		
+		int useDefault = adminMenuDao.selectUseDefault(menuNo);
+		
+		if(useDefault > 0) {
+			return -1;
+		}
+		
 		return adminMenuDao.delMenu(menuNo);
 	}	
 

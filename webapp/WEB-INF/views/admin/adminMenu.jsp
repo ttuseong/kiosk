@@ -785,13 +785,19 @@
 					data : { menuNo : menuNo },
 					dataType : "json",
 					success : function(cnt) { /*성공시 처리해야될 코드 작성*/
-						$("html").scrollTop(0); // 화면 최상단으로 이동
-						alert("삭제가 완료되었습니다.");
-						$("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-						$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
+						if(cnt == -1){
+							alert("추가 구성 품목으로 사용중입니다");
+							return;
+						} else{
+							$("html").scrollTop(0); // 화면 최상단으로 이동
+							alert("삭제가 완료되었습니다.");
+							$("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+							$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
+							
+							// 인풋박스 모두 비워주기
+							resetInput();
+						}
 						
-						// 인풋박스 모두 비워주기
-						resetInput();
 					},
 					error : function(XHR, status, error) {
 						console.error(status + " : " + error);
