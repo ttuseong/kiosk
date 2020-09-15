@@ -50,6 +50,19 @@ public class MenuVo {
 		this.unitNo = unitNo;
 	}
 
+	public MenuVo(int categoryNo, String menuName, String menuDesc, int menuPrice, String menuImg, int isSpecial,
+			int isChange, int unitNo, int menuNo) {
+		this.categoryNo = categoryNo;
+		this.menuName = menuName;
+		this.menuDesc = menuDesc;
+		this.menuPrice = menuPrice;
+		this.menuImg = menuImg;
+		this.isSpecial = isSpecial;
+		this.isChange = isChange;
+		this.unitNo = unitNo;
+		this.menuNo = menuNo;
+	}
+	
 	public MenuVo(int menuNo, int categoryNo, String categoryName, String menuName, String menuDesc, int menuPrice,
 			String menuImg, int isSet, int defaultNo, int unitNo, String unitName) {
 		this.menuNo = menuNo;

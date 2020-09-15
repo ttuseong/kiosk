@@ -59,7 +59,7 @@
 			#{unitNo})
 		</if>
 	</insert>
-	
+
 	<!-- 메뉴 수정 -->
 	<update id="menuUpdate" parameterType="com.javaex.vo.MenuVo">
 		<![CDATA[
@@ -68,8 +68,16 @@
 			    menudesc = #{menuDesc},
 			    menuprice = #{menuPrice},
 			   	isSpecial = #{isSpecial},
-			   	isChange = #{isChange},
-			   	unitNo = #{unitNo}
+			   	isChange = #{isChange}
+		]]>
+		<if test="unitNo != 0">
+				, unitNo = #{unitNo}
+		</if>
+			
+		<if test="menuImg != ''">
+				, menuImg = #{menuImg}
+		</if>
+		<![CDATA[
 			where menuNo = #{menuNo}
 		]]>
 	</update>

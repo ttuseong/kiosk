@@ -140,12 +140,12 @@
 										<div class="dropdown adminMenu-basicInfoDropdown"
 											id="dropdownCateName">
 											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownMenu1" data-toggle="dropdown"
+												id="dropdownCate" data-toggle="dropdown"
 												aria-expanded="true">
 												카테고리를 선택하세요. <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu adminDropdownCateList" id="adminDropdownCateList" role="menu"
-												aria-labelledby="dropdownMenu1">
+												aria-labelledby="dropdownCate">
 												<!-- 카테고리 리스트 출력 할 자리 -->
 											</ul>
 										</div>
@@ -158,12 +158,12 @@
 										<div class="dropdown adminMenu-basicInfoDropdown"
 											id="adminDropdownMenuName">
 											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownMenu1" data-toggle="dropdown"
+												id="dropdownMenu" data-toggle="dropdown"
 												aria-expanded="true" style="margin-right: 0;">
 												메뉴를 선택하세요. <span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu adminDropdownMenuList" id="adminDropdownMenuList" role="menu"
-												aria-labelledby="dropdownMenu1">
+												aria-labelledby="dropdownMenu">
 
 												<li role="presentation"><a role="menuitem"
 													tabindex="-1">카테고리 먼저 선택하세요.</a></li>
@@ -363,11 +363,11 @@
 								<!-- 카테고리 드롭다운 -->
 								<div class="dropdown unitManagerModal-basicInfoDropdown">
 									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+										id="dropdownCate" data-toggle="dropdown" aria-expanded="true">
 										카테고리를 선택하세요. <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" role="menu"
-										aria-labelledby="dropdownMenu1">
+										aria-labelledby="dropdownCate">
 										<!-- 카테고리 리스트 들어갈 자리 -->
 									</ul>
 								</div>
@@ -378,12 +378,12 @@
 							<div class="unitManagerModal-menuDropdown">
 								<div class="dropdown unitManagerModal-basicInfoDropdown">
 									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true"
+										id="dropdownMenu" data-toggle="dropdown" aria-expanded="true"
 										style="margin-right: 0;">
 										메뉴를 선택하세요. <span class="caret"></span>
 									</button>
 									<ul class="dropdown-menu" role="menu"
-										aria-labelledby="dropdownMenu1">
+										aria-labelledby="dropdownMenu">
 										<!-- 메뉴 리스트 들어갈 자리 -->
 									</ul>
 								</div>
@@ -669,6 +669,7 @@
 		$("#menuPrice").val("");
 		$("#menuCalorie").val("");
 		$("#menuDesc").val("");
+		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/assets/images/icon1.png");
 
 		$("input[type=checkbox]").prop("checked", false); // 체크박스 모두 해제
 	}
@@ -716,7 +717,7 @@
 		$("#menuPrice").val(menuVo.menuPrice);
 		/* $("#menuCalorie").val(menuVo.menuCalorie); */
 		$("#menuDesc").val(menuVo.menuDesc);
-
+		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/kfc/"+menuVo.menuImg);
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
 		
 		// isSpecial => 1 : 프로모션 / 2 : 추천 / 4 : 신메뉴
@@ -844,19 +845,9 @@
 		imgData.append("menuDesc", $("#menuDesc").val());
 		imgData.append("unitNo", unitNo);
 
-     	// 메뉴 정보 묶어주기
-		var menuVo = { 
-			menuNo: menuNo,
-			categoryNo: cateNo,
-			menuName: $("#menuName").val(), 
-			menuPrice: $("#menuPrice").val(), 
-			/* menuCalorie: $("#menuCalorie").val(),  */
-			menuDesc: $("#menuDesc").val(),
-			isSpecial: isSpecial,
-			isChange: isChange,
-			unitNo: unitNo
-		};
-	
+		if(menuNo != 0){
+			imgData.append("menuNo", menuNo);
+		}
      
 		if(menuNo == 0 && cateNo == 0) { // 메뉴 추가 시 카테고리를 선택하지 않은 경우 경고창 띄움
 			alert("카테고리를 선택하세요.");
@@ -874,7 +865,7 @@
 				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuAdd(imgData);
 			}
 			else { // 메뉴 수정
-				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(menuVo);			
+				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val());			
 			} 
 		}
 
@@ -923,7 +914,7 @@
 			enctype: 'multipart/form-data',
 			processData:false,
 			contentType: false,
-			data : imgData, /* json 형식으로 변형 */
+			data : imgData,
 			dataType : "json",
 			
 			success : function(result) { /*성공시 처리해야될 코드 작성*/
@@ -941,15 +932,27 @@
 	}
 	
 	/* 메뉴 수정 함수 */
-	function menuModify(menuVo) {
+	function menuModify(imgData, menuName) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminUpdateMenu",
 			type : "post",
-			contentType: "application/json",
-			data : JSON.stringify(menuVo), /* json 형식으로 변형 */
+			enctype: 'multipart/form-data',
+			processData:false,
+			contentType: false,
+			data : imgData,
 			dataType : "json",
 			
 			success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
+				var temp = $("#dropdownMenu").text();
+				$("#dropdownMenu").text(menuName);
+				var liChildren = $("#adminDropdownMenuList").children();
+				
+				for(var i = 2; i < liChildren.length; i++){
+					if(liChildren.eq(i).children().eq(0).text() == temp){
+						liChildren.eq(i).children().eq(0).text(menuName);
+						break;
+					}
+				}
 				
 				alert("수정이 완료되었습니다."); // 알림창
 				$('html').scrollTop(0); // 페이지 상단으로 이동
@@ -1034,11 +1037,11 @@
 		str += '		<div class="dropdown unitManagerModal-basicInfoDropdown" id="unitAddDropdownCateName">';
 		str += '			<input type="hidden" id="selectCateNo_1" value="">';
 		str += '			<button class="btn btn-default dropdown-toggle" type="button"';
-		str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">';
+		str += '				id="dropdownCate" data-toggle="dropdown" aria-expanded="true">';
 		str += '				카테고리를 선택하세요. <span class="caret"></span>';
 		str += '			</button>';
 		str += '			<ul class="dropdown-menu unitAddDropdownCateList unitManagerModalCateList" role="menu"';
-		str += '				aria-labelledby="dropdownMenu1">';
+		str += '				aria-labelledby="dropdownCate">';
 		str += '				<!-- 카테고리 리스트 들어갈 자리 -->';
 		str += '			</ul>';
 		str += '		</div>';
@@ -1050,11 +1053,11 @@
 		str += '		<div class="dropdown unitManagerModal-basicInfoDropdown" id="unitAddDropdownMenuName">';
 		str += '			<input type="hidden" id="selectMenuNo_1" value="">';
 		str += '			<button class="btn btn-default dropdown-toggle" type="button"';
-		str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">';
+		str += '				id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">';
 		str += '				메뉴를 선택하세요. <span class="caret"></span>';
 		str += '			</button>';
 		str += '			<ul class="dropdown-menu unitAddDropdownMenuList unitManagerModalMenuList" role="menu"';
-		str += '				aria-labelledby="dropdownMenu1">';
+		str += '				aria-labelledby="dropdownMenu">';
 		str += '					<li role="presentation"><a role="menuitem"';
 		str += '					tabindex="-1">카테고리 먼저 선택하세요.</a></li>';
 		str += '			</ul>';
@@ -1120,11 +1123,11 @@
 					str += '			<input type="hidden" id="cateNo_' + (i + 1) + '" value="' + adminUnitInfoList[i].categoryNo + '">';
 					str += '			<input type="hidden" id="selectCateNo_' + (i + 1) + '" value="' + adminUnitInfoList[i].categoryNo + '">';
 					str += '			<button class="btn btn-default dropdown-toggle" type="button"';
-					str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">';
+					str += '				id="dropdownCate" data-toggle="dropdown" aria-expanded="true">';
 					str += 					adminUnitInfoList[i].categoryName + ' <span class="caret"></span>';
 					str += '			</button>';
 					str += '			<ul class="dropdown-menu unitManagerModal-dropdownCate unitManagerModalCateList" role="menu"';
-					str += '				aria-labelledby="dropdownMenu1">';
+					str += '				aria-labelledby="dropdownCate">';
 					str += '				<!-- 카테고리 리스트 들어갈 자리 -->';
 					str += '			</ul>';
 					str += '		</div>';
@@ -1137,11 +1140,11 @@
 					str += '			<input type="hidden" id="menuNo" value="' + adminUnitInfoList[i].menuNo + '">';
 					str += '			<input type="hidden" id="selectMenuNo_' + (i + 1) + '" value="' + adminUnitInfoList[i].menuNo + '">';
 					str += '			<button class="btn btn-default dropdown-toggle" type="button"';
-					str += '				id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">';
+					str += '				id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">';
 					str += 					adminUnitInfoList[i].menuName + ' <span class="caret"></span>';
 					str += '			</button>';
 					str += '			<ul class="dropdown-menu unitManagerModal-dropdownMenu unitManagerModalMenuList" id="unitModifyMenuList_' + i + '" role="menu"';
-					str += '				aria-labelledby="dropdownMenu1">';
+					str += '				aria-labelledby="dropdownMenu">';
 					str += '				<!-- 메뉴 리스트 들어갈 자리 -->';
 					str += '			</ul>';
 					str += '		</div>';

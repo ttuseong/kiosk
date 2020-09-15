@@ -80,7 +80,34 @@ public class AdminMenuService {
 	}
 	
 	// Service 메뉴 수정
-	public MenuVo menuUpdate(MenuVo menuVo) {
+	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo) {
+		MenuVo menuVo;
+		System.out.println(unitNo);
+		if(!file.getOriginalFilename().equals("")) {
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo, menuNo);
+			
+			try {
+				byte[] fileData = file.getBytes();
+				
+				/* 윈도우에서 사용 */
+				/* OutputStream out = new FileOutputStream("C:\\test\\"+saveName); */
+				
+				/* 리눅스에서 사용 */
+				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+				BufferedOutputStream bout = new BufferedOutputStream(out);
+				
+				bout.write(fileData);
+				bout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "", isSpecial, isChange, unitNo, menuNo);
+		}
+		
 		
 		adminMenuDao.menuUpdate(menuVo); // 메뉴 업데이트
 		System.out.println("service : " + menuVo.toString());
