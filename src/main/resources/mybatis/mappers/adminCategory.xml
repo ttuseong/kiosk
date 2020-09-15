@@ -137,6 +137,11 @@
 		update category
 		set categoryName = #{categoryName},
     		publicYn = #{publicYN}
+    	]]>
+    	<if test="categoryImg != ''">
+    		, categoryImg = #{categoryImg}
+    	</if>
+    	<![CDATA[
 		where 
     		categoryNo = #{categoryNo}
 		]]>
