@@ -212,7 +212,7 @@
 
 											<c:forEach items="${resultMap.cateList}" var="cList" varStatus="status">
 												<tr data-no="${cList.categoryNo }">
-													<td>${cList.categoryNo}</td>
+													<td>${cList.rn}</td>
 													<td><a href="#" class="adminCate-title">${cList.categoryName}</a></td>
 													<td>
 														<c:if test="${cList.publicYN == 1}">공개</c:if>

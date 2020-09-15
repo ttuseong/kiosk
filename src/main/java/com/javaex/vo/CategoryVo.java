@@ -8,6 +8,7 @@ public class CategoryVo {
    private int storeNo;
    private int isSet;
    private int cnt;
+   private int rn;
 
    
    
@@ -27,7 +28,7 @@ public class CategoryVo {
    }
 
    public CategoryVo(int categoryNo, String categoryName, int publicYN, String categoryImg, int storeNo, int isSet,
-         int cnt) {
+         int cnt, int rn) {
       this.categoryNo = categoryNo;
       this.categoryName = categoryName;
       this.publicYN = publicYN;
@@ -35,9 +36,20 @@ public class CategoryVo {
       this.storeNo = storeNo;
       this.isSet = isSet;
       this.cnt = cnt;
+      this.rn = rn;
    }
 
-   public int getCnt() {
+   
+
+	public int getRn() {
+	  return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
+
+	public int getCnt() {
       return cnt;
    }
 
@@ -93,12 +105,16 @@ public class CategoryVo {
       this.isSet = isSet;
    }
 
-   @Override
-   public String toString() {
-      return "CategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
-            + ", categoryImg=" + categoryImg + ", storeNo=" + storeNo + ", isSet=" + isSet + ", cnt=" + cnt + "]";
-   }
+@Override
+public String toString() {
+	return "CategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
+			+ ", categoryImg=" + categoryImg + ", storeNo=" + storeNo + ", isSet=" + isSet + ", cnt=" + cnt + ", rn="
+			+ rn + "]";
+}
 
+	
+
+   
     
    
 }

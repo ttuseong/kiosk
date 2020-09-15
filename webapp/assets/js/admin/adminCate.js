@@ -41,6 +41,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 						dataType : "json",
 						success : function(cateVo){
 							console.log(cateVo);
+							addRownum();
 							render(cateVo);
 		
 							for(var i=0; i<cateVo.length; i++){
@@ -87,7 +88,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 						dataType : "json",
 						success : function(categoryUpdate){
 							console.log(categoryUpdate);
-									
+								
 							if(categoryUpdate==1){
 								console.log("완료");
 								alert('수정이 완료되었습니다');
@@ -114,13 +115,22 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 	}
 });
 
+function addRownum(){
+	var target = $(".admin-cate-table tbody").children();
+	
+	for(var i = 0; i < target.length; i++){
+		var rownnumVal = target.eq(i).children().eq(0).text();
+		target.eq(i).children().eq(0).text(Number(rownnumVal)+1);
+	}
+};
+
 
 function render(cateVo){
 	
 	var str = "";
 	
 	str += "		<tr data-no="+ cateVo.categoryNo+">";
-	str += "			<td>"+ cateVo.categoryNo +"</td>";
+	str += "			<td>"+ 1 +"</td>";
 	str += "			<td><a href='#' class='adminCate-title'>"+ cateVo.categoryName+"</a></td>";
 	if(cateVo.publicYN==1){
 		str += "			<td>공개</td>";
