@@ -900,18 +900,20 @@
 	}
 
 	// 체크박스 중복 방지
-	$(".adminMenu-basicInfo").on("click", "input:checkbox[name=unitBasicInfo]", function() {
+	// 추가구성의 checkbox는 동적 요소이기 때문에 위임이 필요.
+	$(".adminMenu-basicInfo").on("click", "input:checkbox[name=unitBasicInfo]", function() { // name이 unitBasicInfo인 checkbox만 클릭이벤트를 받아서 실행.
 		 console.log("체크박스 클릭");
-		 NoMultiChk($(this).val());
+		 NoMultiChk($(this).val()); // 클릭 된 체크박스의 value값을 받아서 중복방지 함수 실행 (value에는 단위의 넘버가 들어가있음)
 	});
-	
+		
 	// 체크박스 중복 방지
-	function NoMultiChk(chk){
-	    var obj = document.getElementsByName("unitBasicInfo");
+	function NoMultiChk(chk){ // 단위 넘버를 매개변수로 받아서 실행
+	    // name으로 요소를 검색할 때는 요소가 여러개일 수 있기 때문에 Element뒤에 s가 붙음 (getElementByID와 헷갈릴 수 있으니 주의)
+	    var obj = document.getElementsByName("unitBasicInfo"); // name이 unitBasicInfo인 checkbox element들을 담아줌
 	    
-	    for(var i=0; i < obj.length; i++){
-	        if(obj[i].value != chk){
-	            obj[i].checked = false;
+	    for(var i=0; i < obj.length; i++){ // 리스트의 개수만큼 반복
+	        if(obj[i].value != chk){ // getElementsByName는 리스트 형태로 담기기 때문에 object[n] 형태로 사용해야 함
+	            obj[i].checked = false; // element들의 value 값이 체크 된 element의 값과 다를 경우 체크 해제해 줌
 	        }
 	    }
 	}
@@ -1439,7 +1441,7 @@
 		$('input:checkbox[name=unitBasicInfo]').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
 		$('input:checkbox[id="unitInfo_check_' + unitNo + '"]').prop("checked", true); // 적용한 단위를 메뉴 정보 페이지에서 선택되게 함
 		$('input:radio[id="check_' + unitNo + '"]').prop("checked", true); // 모달에서 선택되게 함
-		
+		$("#unitListModal").modal("hide"); // 모달 닫기
 	});
 	
 	// 2차 때 할 것

@@ -77,6 +77,7 @@ public class AdminMenuController {
 	@RequestMapping("/adminUpdateMenu")
 	public MenuVo adminUpdateMenu(@RequestBody MenuVo menuVo) {
 
+		System.out.println(menuVo.toString());
 		MenuVo updateMenuInfo = adminMenuService.menuUpdate(menuVo);
 		
 		// 업데이트 한 메뉴 정보 보내기
