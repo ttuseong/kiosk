@@ -671,7 +671,6 @@
 		$("#menuDesc").val("");
 
 		$("input[type=checkbox]").prop("checked", false); // 체크박스 모두 해제
-		$("input[type=radio]").prop("checked", false); // 체크박스 모두 해제
 	}
 	
 	/* 메뉴 정보 받아오기 (특정 메뉴 선택시 해당 메뉴에 대한 정보 받아옴 - 메뉴이름, 가격, 이미지 등) */
@@ -719,7 +718,6 @@
 		$("#menuDesc").val(menuVo.menuDesc);
 
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
-		$("input[type=radio]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
 		
 		// isSpecial => 1 : 프로모션 / 2 : 추천 / 4 : 신메뉴
 		switch (menuVo.isSpecial){
@@ -760,7 +758,7 @@
 
 		// 추가 구성 체크
 		if(menuVo.unitNo != null && menuVo.unitNo != 0) {
-			$('input:radio[id="unitInfo_check_' + menuVo.unitNo + '"]').prop("checked", true); 
+			$('input:checkbox[id="unitInfo_check_' + menuVo.unitNo + '"]').prop("checked", true); 
 		}
 	}
 
@@ -1412,27 +1410,28 @@
 		console.log(unitNo);
 
 		if (window.confirm("삭제하시겠습니까?")) {
-			// 확인 버튼을 누른 경우
-			$.ajax({
-				url : "${pageContext.request.contextPath}/admin/unitDel",
-				type : "post",
-				data : { unitNo: unitNo },
-				dataType : "json",
-				success : function(result) {
-					alert("삭제가 완료되었습니다.");
-					$("#unitNo_" + unitNo).remove(); // 해당 단위를 모달 화면에서 삭제
-					$("#unitInfo_" + unitNo).remove(); // 해당 단위를 메뉴 정보 화면에서 삭제
-				},
-				error : function(XHR, status, error) {
-					console.error(status + " : " + error);
-				}
-			});
+			unitDel(unitNo);
 		}
-		else {
-			// 취소버튼을 누른 경우
-		}
+		else { /* 취소버튼을 누른 경우 */ }
 	});
 	
+	// 단위 삭제 함수
+	function unitDel(unitNo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/unitDel",
+			type : "post",
+			data : { unitNo: unitNo },
+			dataType : "json",
+			success : function(result) {
+				alert("삭제가 완료되었습니다.");
+				$("#unitNo_" + unitNo).remove(); // 해당 단위를 모달 화면에서 삭제
+				$("#unitInfo_" + unitNo).remove(); // 해당 단위를 메뉴 정보 화면에서 삭제
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
 	// 단위 모달 - 적용 버튼 클릭
 	$("#unitListModal-body").on("click", ".adminMenu-unitListSelect", function() {
 		console.log("적용 버튼 클릭");

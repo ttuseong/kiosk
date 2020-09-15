@@ -160,6 +160,24 @@
 		]]>
 	</update>
 	
+	<!-- 현재 해당 단위를 사용하고 있는 메뉴의 개수를 구하는 쿼리 -->
+	<select id="countUnit" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*)
+			from menu
+			where unitNo = #{unitNo}
+		]]>
+	</select>
+	
+	<!-- 단위 삭제 시, 해당 단위를 사용하고 있는 메뉴가 있을 경우 단위 넘버를 null값으로 초기화해주는 쿼리 -->
+	<update id="updateUnitNo" parameterType="map">
+		<![CDATA[
+			update menu
+			set unitNo = null
+			where unitNo = #{unitNo}
+		]]>
+	</update>
+	
 	<!-- 단위의 구성 품목 삭제 -->
 	<delete id="delUnitComponent" parameterType="int">
 		<![CDATA[

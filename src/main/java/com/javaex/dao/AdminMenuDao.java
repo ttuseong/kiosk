@@ -131,7 +131,21 @@ public class AdminMenuDao {
 		unitMap.put("unitNo", unitNo);
 		unitMap.put("unitName", unitName);
 		
-		return sqlSession.update("updateUnitName", unitMap);
+		return sqlSession.update("adminMenu.updateUnitName", unitMap);
+	}
+	
+	// Dao 단위 모달 - 현재 해당 단위를 사용하고 있는 메뉴의 개수 구하기
+	public int countUnit(int unitNo) {
+		System.out.println("dao(adminMenu) - 현재 해당 단위를 사용하고 있는 메뉴의 개수 구하기");
+		
+		return sqlSession.selectOne("adminMenu.countUnit", unitNo);
+	}
+	
+	// Dao 단위 모달 - 단위 넘버를 null값으로 초기화
+	public int updateUnitNo(int unitNo) {
+		System.out.println("dao(adminMenu) - 단위 넘버를 null값으로 초기화");
+		
+		return sqlSession.update("adminMenu.updateUnitNo", unitNo);
 	}
 	
 	// Dao 단위 모달 - 단위의 구성 품목 삭제

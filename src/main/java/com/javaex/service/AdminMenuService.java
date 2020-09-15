@@ -154,9 +154,18 @@ public class AdminMenuService {
 	// Service 단위 모달 - 단위 삭제
 	public int delUnit(int unitNo) {
 
-		adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
-		adminMenuDao.delUnit(unitNo); // 단위 삭제
+		int countUnit = adminMenuDao.countUnit(unitNo);
+		int result = 0;
+		System.out.println(countUnit);
 		
-		return 0;
+		if(countUnit == 0) { // 해당 단위를 사용 중인 메뉴가 없을 경우
+			adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
+			adminMenuDao.delUnit(unitNo); // 단위 삭제
+		}
+		else {
+			result = 1;
+		}
+		
+		return result;
 	}
 }
