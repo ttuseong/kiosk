@@ -836,7 +836,6 @@
 		var form = $("#menuImgInput");
 		var imgData = new FormData(form[0]);
 		
-		imgData.append("menuNo", menuNo);
 		imgData.append("categoryNo", cateNo);
 		imgData.append("menuName", $("#menuName").val());
 		imgData.append("menuPrice", Number($("#menuPrice").val()));

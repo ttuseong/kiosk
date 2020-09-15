@@ -48,31 +48,33 @@ public class AdminMenuService {
 	
 	// Service 메뉴 추가
 	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo) {
+		MenuVo menuVo;
 		
-		String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-		
-		String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-		
-		MenuVo menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo);
-		
-		System.out.println(menuVo.toString());
-		
-		try {
-			byte[] fileData = file.getBytes();
+		if(!file.getOriginalFilename().equals("")) {
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo);
 			
-			/* 윈도우에서 사용 */
-			/* OutputStream out = new FileOutputStream("C:\\test\\"+saveName); */
-			
-			/* 리눅스에서 사용 */
-			OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
-			BufferedOutputStream bout = new BufferedOutputStream(out);
-			
-			bout.write(fileData);
-			bout.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				byte[] fileData = file.getBytes();
+				
+				/* 윈도우에서 사용 */
+				/* OutputStream out = new FileOutputStream("C:\\test\\"+saveName); */
+				
+				/* 리눅스에서 사용 */
+				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+				BufferedOutputStream bout = new BufferedOutputStream(out);
+				
+				bout.write(fileData);
+				bout.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "icon1.png", isSpecial, isChange, unitNo);
 		}
+		
 		
 		return adminMenuDao.menuInsert(menuVo);
 	}
