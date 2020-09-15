@@ -93,6 +93,13 @@ public class AdminMenuDao {
 		return sqlSession.selectList("adminMenu.selectByUnitNo", unitNo);
 	}
 	
+	// Dao 단위 모달 - 단위 이름 조회
+	public String getUnitName(int unitNo) {
+		System.out.println("dao(adminMenu) - 단위 이름 조회");
+		
+		return sqlSession.selectOne("adminMenu.getUnitName", unitNo);
+	}
+	
 	// Dao 단위 모달 - 단위 생성
 	public int unitInsert(int storeNo, String unitName) {
 		System.out.println("dao(adminMenu) - 단위 생성");

@@ -80,7 +80,7 @@ public class AdminMenuController {
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo, @RequestParam("menuNo") int menuNo) {
 
 		MenuVo updateMenuInfo = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo);
-		
+
 		// 업데이트 한 메뉴 정보 보내기
 		return updateMenuInfo;
 	}
@@ -129,19 +129,29 @@ public class AdminMenuController {
 											@RequestParam("unitNo") int unitNo,
 											@RequestParam("unitName") String unitName,
 											@RequestParam(value="arrNumber[]") List<Integer> arrNumber) {
-
+		
 		Map<String, Object> map = adminMenuService.unitInsert(storeNo, unitNo, unitName, arrNumber);
 		map.put("result", map.get("result"));
 		map.put("unitInfo", map.get("getUnitInfo"));
 		
 		return map;
 	}
+
+	// 단위 모달 - 해당 단위를 사용 중인 메뉴의 개수 세기
+	@ResponseBody
+	@RequestMapping("/countUnit")
+	public List<String> countUnit(@RequestParam(value="unitNo[]") List<Integer> unitNo) {
+
+		System.out.println(unitNo);
+		return adminMenuService.countUnit(unitNo);
+	}
 	
 	// 단위 모달 - 단위 삭제
 	@ResponseBody
 	@RequestMapping("/unitDel")
-	public int adminUnitAdd(@RequestParam("unitNo") int unitNo) {
+	public int adminUnitAdd(@RequestParam("delDecision") int delDecision,
+							@RequestParam(value="unitNo[]") List<Integer> unitNo) {
 
-		return adminMenuService.delUnit(unitNo);
+		return adminMenuService.delUnit(delDecision, unitNo);
 	}
 }

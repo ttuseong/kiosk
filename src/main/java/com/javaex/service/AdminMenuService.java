@@ -185,22 +185,38 @@ public class AdminMenuService {
 		
 		return unitInsert;
 	}
+	
+	// Service 단위 모달 - 해당 단위를 사용중인 메뉴의 개수 세기
+	public List<String> countUnit(List<Integer> unitNo) {
 
+		int countUnit = 0;
+		List<String> unitName = new ArrayList<String>();
+		
+		for(int i = 0; i < unitNo.size(); i++) {
+			countUnit = adminMenuDao.countUnit(unitNo.get(i));
+
+			if(countUnit > 0) { // 사용중인 메뉴가 있을 경우 1 리턴
+				unitName.add(adminMenuDao.getUnitName(unitNo.get(i)));
+			}
+		}
+		
+		System.out.println(unitName.toString());
+		
+		return unitName;
+	}
+	
 	// Service 단위 모달 - 단위 삭제
-	public int delUnit(int unitNo) {
+	public int delUnit(int delDecision, List<Integer> unitNo) {
+		
+		for(int i = 0; i < unitNo.size(); i++) {
+			if(delDecision > 0) {
+				adminMenuDao.updateUnitNo(unitNo.get(i)); // 해당 단위를 사용하고 있는 메뉴가 있을 경우 단위 넘버를 null값으로 초기화
+			}
 
-		int countUnit = adminMenuDao.countUnit(unitNo);
-		int result = 0;
-		System.out.println(countUnit);
-		
-		if(countUnit == 0) { // 해당 단위를 사용 중인 메뉴가 없을 경우
-			adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
-			adminMenuDao.delUnit(unitNo); // 단위 삭제
+			adminMenuDao.delUnitComponent(unitNo.get(i)); // 해당 단위의 데이터 모두 삭제해 줌
+			adminMenuDao.delUnit(unitNo.get(i)); // 단위 삭제
 		}
-		else {
-			result = 1;
-		}
-		
-		return result;
+			
+		return 0;
 	}
 }

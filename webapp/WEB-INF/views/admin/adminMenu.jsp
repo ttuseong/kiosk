@@ -197,7 +197,7 @@
 								<div class="menuInfo-menuDetails">
 									<p style="margin-right: 20px;">참고사항</p>
 									<input type="checkbox" class="isSpecial" id="promotionMenu" name="isSpecial" value="1" style="margin-left: 0 !important;">
-									<p class="normal">프로모션</p>
+									<p class="normal">프로모션/할인</p>
 									<input type="checkbox" class="isSpecial" id="recommendMenu" name="isSpecial" value="2">
 									<p class="normal">추천메뉴</p>
 									<input type="checkbox" class="isSpecial" id="newMenu" name="isSpecial" value="4">
@@ -302,7 +302,7 @@
 					<table class="unitListModal-unitList">
 						<thead>
 							<tr>
-								<th></th>
+								<th><input type="checkbox" id="all_unit_checked"></th>
 								<th>이름</th>
 								<th>추가 구성</th>
 								<th>관리</th>
@@ -546,7 +546,7 @@
 						str += '<tr id="unitNo_' + unitList[i].unitNo + '">';
 						
 								/* 체크 박스 */
-						str += '	<td><input type="radio" id="check_' + unitList[i].unitNo;
+						str += '	<td><input type="checkbox" id="check_' + unitList[i].unitNo;
 						str += '" value="' + unitList[i].unitNo + '" name="selectUnit_check"></td>';
 						
 								/* 단위 이름 (세트, 박스 등) */
@@ -805,9 +805,6 @@
 				});
 			}
 		}
-		else {
-			// 취소버튼을 누른 경우
-		}
 	});
 
 	/* 메뉴 수정 & 추가 */
@@ -985,9 +982,8 @@
 		// 메뉴 정보 페이지에서 선택 된 구성이 모달에서도 선택되도록 함
 		var unitNo = $("input[id^='unitInfo_check_']:checked").val(); // 현재 메뉴 정보페이지에서 선택된 단위 번호 받아옴
 		if(unitNo != null) { // 단위가 선택된 경우
-			$('input:radio[id="check_' + unitNo + '"]').prop("checked", true); // 해당 단위를 모달에서도 선택되게 함
+			$('input:checkbox[id="check_' + unitNo + '"]').prop("checked", true); // 해당 단위를 모달에서도 선택되게 함
 		}
-		
 	});
 	
 	// 추가 구성 리스트 모달 닫기
@@ -1373,7 +1369,7 @@
 			str += '<tr id="unitNo_' + unitList.unitNo + '">';
 			
 					/* 체크 박스 */
-			str += '	<td><input type="radio" id="check_' + unitList.unitNo;
+			str += '	<td><input type="checkbox" id="check_' + unitList.unitNo;
 			str += '" value="' + unitList.unitNo + '" name="selectUnit_check"></td>';
 			
 					/* 단위 이름 (세트, 박스 등) */
@@ -1414,26 +1410,63 @@
 	$("#adminMenu-unitDel").on("click", function() {
 		console.log("삭제 버튼 클릭");
 		
-		var unitNo = $("input[id^='check_']:checked").val();
-		console.log(unitNo);
-
-		if (window.confirm("삭제하시겠습니까?")) {
-			unitDel(unitNo);
+		var unitNo = new Array();
+		var unitName = '';
+		
+		$("input[id^='check_']:checked").each(function() {
+			unitName += "\n[" + $(this).parent().next().text() + "]"; 
+			unitNo.push($(this).val()); 
+		});
+		
+		if(unitNo == '') {
+			alert("단위를 선택하세요.")
 		}
-		else { /* 취소버튼을 누른 경우 */ }
+		else {
+			if (window.confirm("선택하신" + unitName + "\n단위를 삭제하시겠습니까?")) { // 단위를 삭제 할 경우
+				$.ajax({ // 현재 해당 단위를 사용 중인 메뉴가 있는지 검사
+					url : "${pageContext.request.contextPath}/admin/countUnit",
+					type : "post",
+					data : { unitNo: unitNo },
+					dataType : "json",
+					success : function(result) {
+						unitName = '';
+						
+						if(result.length == 0) { // 현재 해당 단위를 사용중인 메뉴가 없을 경우
+							console.log("삭제가 완료되었습니다.");
+							unitDel(0, unitNo); // 메뉴 삭제
+						}
+						else { // 현재 해당 단위를 사용중인 메뉴가 있을 경우 경고창으로 한 번 더 묻기
+							for(var i = 0; i < result.length; i++) {
+								unitName += "[" + result[i] + "] ";
+							}
+						
+							if (window.confirm(unitName + "\n단위를 사용중인 메뉴가 있습니다. 정말 삭제하시겠습니까?")) {
+								unitDel(1, unitNo); // 메뉴 삭제
+							}
+						}
+					},
+					error : function(XHR, status, error) {
+						console.error(status + " : " + error);
+					}
+				});
+			}
+		}
 	});
 	
 	// 단위 삭제 함수
-	function unitDel(unitNo) {
+	function unitDel(delDecision, unitNo) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/unitDel",
 			type : "post",
-			data : { unitNo: unitNo },
+			data : { delDecision: delDecision, unitNo: unitNo },
 			dataType : "json",
 			success : function(result) {
+				for(var i = 0; i < unitNo.length; i++) {
+					$("#unitNo_" + unitNo[i]).remove(); // 해당 단위를 모달 화면에서 삭제
+					$("#unitInfo_" + unitNo[i]).remove(); // 해당 단위를 메뉴 정보 화면에서 삭제
+				}
+				
 				alert("삭제가 완료되었습니다.");
-				$("#unitNo_" + unitNo).remove(); // 해당 단위를 모달 화면에서 삭제
-				$("#unitInfo_" + unitNo).remove(); // 해당 단위를 메뉴 정보 화면에서 삭제
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -1447,18 +1480,22 @@
 		var unitNo = $(this).prev().prev().val(); // 적용 버튼을 누른 단위의 번호 가져옴
 		$('input:checkbox[name=unitBasicInfo]').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
 		$('input:checkbox[id="unitInfo_check_' + unitNo + '"]').prop("checked", true); // 적용한 단위를 메뉴 정보 페이지에서 선택되게 함
-		$('input:radio[id="check_' + unitNo + '"]').prop("checked", true); // 모달에서 선택되게 함
+		$('input:checkbox[id="check_' + unitNo + '"]').prop("checked", true); // 모달에서 선택되게 함
 		$("#unitListModal").modal("hide"); // 모달 닫기
 	});
 	
-	// 2차 때 할 것
+	// 단위 모달 - 전체 체크 박스 선택 및 해제
 	$("#all_unit_checked").on("click", function() {
 		console.log("모든 단위 체크");
-
-		$("input[type=checkbox]").prop("checked", true); // 체크박스 모두 체크
 		
+		if($("#all_unit_checked").is(":checked")) {
+			$("input[type=checkbox]").prop("checked", true); // 체크박스 모두 체크
+		}
+		else {
+			$("input[type=checkbox]").prop("checked", false); // 체크박스 모두 해제
+		}
 	});
-
+	
 	/* 구성 추가/수정 모달 닫기 */
 	$(".unitManagerModal-close, .unitManager-cancle").on("click", function() {
 		$("#unitManagerModal").modal("hide");

@@ -148,6 +148,15 @@
 		]]>
 	</select>
 	
+	<!-- 단위 이름 조회 -->
+	<select id="getUnitName" parameterType="int" resultType="String">
+		<![CDATA[
+			select  unitname
+			from 	setunit
+			where unitno = #{unitNo}
+		]]>
+	</select>
+	
 	<!-- 단위 생성 -->
 	<insert id="unitInsert" parameterType="map">
 		<![CDATA[
