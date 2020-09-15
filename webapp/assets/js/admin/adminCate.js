@@ -12,7 +12,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 		return;
 	}
 	
-	var form = $("#cateImgUpload")[0];
+	var form = $("#cateImgUpload")[0]; //form태그에있는 모든name값을 다 가져왔음
 	var formData = new FormData(form);
 	var cateNo = $(".input-group").data('hiddenCateNo');
 	
@@ -208,31 +208,40 @@ $(".table-bordered").on("click", ".adminCate-delete", function(){
 	console.log(categoryNo);
 	/*var categoryNo = $("#");*/
 	
-	$.ajax({
-		url : url+"/admin/adminCateDel",
-		type: "post",
-		data : {categoryNo : categoryNo},
-		dataType : "json",
-		success : function(cnt){
-			console.log(cnt);
-			/*성공시 처리해야 될 코드 작성 */
-			if(cnt==0){
-				console.log("실패");
-				alert('카테고리에 값이 남아있습니다.');
-			}
-			else{
-				console.log("넌 그냥 삭제");
-				$('[data-no=' + categoryNo + ']').remove();
-			}
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}	
-	});
+	if (window.confirm("삭제하시겠습니까?")) {
+		console.log("확인");
+		$.ajax({
+			url : url+"/admin/adminCateDel",
+			type: "post",
+			data : {categoryNo : categoryNo},
+			dataType : "json",
+			success : function(cnt){
+				console.log(cnt);
+				/*성공시 처리해야 될 코드 작성 */
+				if(cnt==0){
+					console.log("실패");
+					alert('카테고리에 값이 남아있습니다.');
+				}
+				else{
+					console.log("넌 그냥 삭제");
+					$('[data-no=' + categoryNo + ']').remove();
+					window.location.reload();
+				}
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}	
+		});
+	}
+	else{/*취소버튼을 누른 경우*/
+		console.log("취소");
+	}
+	
+	
 
 });
 
-$("#tooltipTextHover").hover(function(){
+$("#tooltipTextHover").hover(function(){ //마우스에 툴팁이 가까이 가면 hover가 실행 if/else문 같이씀
 	$(".tooltip-text").css("opacity", "1");
 }, function(){
 	$(".tooltip-text").css("opacity", "0");
@@ -241,10 +250,10 @@ $("#tooltipTextHover").hover(function(){
 $(".tooltipImgHover").hover(function(){
 	var thisHover = $(this);
 	
-	$(".adminCate-delete").css("z-index", "0");
-	$(".adminCate-title").css("z-index", "0");
+	$(".adminCate-delete").css("z-index", "0"); //z-index는 사진을 보여주는 우선순위 숫자가 클수록 사용자입장에 가까워진다 사진미리보기를 할경우 delete와 title의 기능을 구현하는게 아니라 사진미리보기를 해야하기 때문에 써줌 파워포인트의 사진겹치기를 생각하면 편해...
+	$(".adminCate-title").css("z-index", "0"); 
 	
-	thisHover.next().css("opacity", "1");
+	thisHover.next().css("opacity", "1"); //this같은 경우는 사진아이콘이고 thisHover는 사진아이콘을 마우스에 가까이 댔을때 보여줘야하는 이미지임 근데 httml상으로 this다음에 thisHover가 있기 때문에 next를 써야한다1
 }, function(){
 	var thisHover = $(this);
 	

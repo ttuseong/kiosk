@@ -74,16 +74,16 @@ public class AdminCategoryService {
 	public CategoryVo adminCateAdd(String categoryName, int publicYN, int cateimgCheck, MultipartFile file) {
 		CategoryVo categoryVo;
 		if(cateimgCheck == 1) {
-			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); //첫번째는 확장자만 뽑아오기 
 			
-			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
+			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;//파일이름 안겹치게 랜덤으로해야함
 			
 			categoryVo = new CategoryVo(categoryName, publicYN, saveName);
 			
 			try {
 				byte[] fileData = file.getBytes();
 				
-				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName); //saveName으로 이름 저장할것
 				BufferedOutputStream bout = new BufferedOutputStream(out);
 				
 				bout.write(fileData);
@@ -145,9 +145,9 @@ public class AdminCategoryService {
 			
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 			
-			categoryVo = new CategoryVo(categoryName, publicYN, saveName, categoryNo);
+			categoryVo = new CategoryVo(categoryName, publicYN, saveName, categoryNo); //카테고리가 null이 아닐경운 if문이 돈다 xml:"titleUpdate"
 			
-			try {
+			try {  //try catch 파일 예외처리
 				byte[] fileData = file.getBytes();
 				
 				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
@@ -160,7 +160,7 @@ public class AdminCategoryService {
 				e.printStackTrace();
 			}
 		} else {
-			categoryVo = new CategoryVo(categoryName, publicYN, "", categoryNo);
+			categoryVo = new CategoryVo(categoryName, publicYN, "", categoryNo); //카테고리가 null일 경우는 if문이 안돈다
 		}
 		
 		categoryVo.setStoreNo(1);
