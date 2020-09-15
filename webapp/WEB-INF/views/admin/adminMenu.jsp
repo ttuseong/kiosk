@@ -814,7 +814,7 @@
 		var cateNo = $("#selectCateNo").val();
 		var unitNo = $("input[id^='unitInfo_check_']:checked").val();
 		if(unitNo == null) {
-			unitNo = 0;
+			unitNo = "";
 		}
 		
 		// menuVo의 isSpecial 값을 위한 부분
