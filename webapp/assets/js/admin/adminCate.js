@@ -18,6 +18,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 	
 	console.log(cateNo);
 	
+	
 	if(cateNo == undefined){
 		$.ajax({
 			url : url+"/admin/adminCateUpdate",
@@ -93,6 +94,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 								console.log("완료");
 								alert('수정이 완료되었습니다');
 								window.location.reload();
+
 							}else{
 								console.log("완료");
 								alert('수정에 실패하였습니다');
@@ -115,6 +117,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 	}
 });
 
+/*한줄이 추가될 경우 원래번호에 1을 추가해준다 1번이었던 아이는 2번이 되도록 아래 render에는 무조건 추가되는 아이가 1이되게함*/
 function addRownum(){
 	var target = $(".admin-cate-table tbody").children();
 	
@@ -123,6 +126,15 @@ function addRownum(){
 		target.eq(i).children().eq(0).text(Number(rownnumVal)+1);
 	}
 };
+
+
+$(".tooltipImgHover").mouseenter(function(){
+	
+	  });
+	  $(".tooltipImgHover").mouseleave(function(){
+	  });
+
+
 
 
 function render(cateVo){
@@ -196,6 +208,7 @@ $(".adminCate-title").on("click", function(){
 
 
 /*카테고리 x버튼 누르면 삭제하기 메뉴가 있으면 삭제가 되면 안된다.. --삭제기능..*/
+/*ajax에서 발현되는 현상 동적으로 화면이 생길경우 클릭이 안된다. 그래서 기존에 있었던 애로(table-bordered)로 클릭이벤트를 잡은후 원래 클릭하려고했던 아이를 잡는다(adminCate-delete)*/
 $(".table-bordered").on("click", ".adminCate-delete", function(){
 	event.preventDefault();
 	console.log("클릭");
@@ -247,7 +260,26 @@ $("#tooltipTextHover").hover(function(){ //마우스에 툴팁이 가까이 가�
 	$(".tooltip-text").css("opacity", "0");
 });
 
-$(".tooltipImgHover").hover(function(){
+$(".table-bordered").on("mouseover", ".tooltipImgHover", function () {
+var thisHover = $(this);
+	
+	$(".adminCate-delete").css("z-index", "0"); //z-index는 사진을 보여주는 우선순위 숫자가 클수록 사용자입장에 가까워진다 사진미리보기를 할경우 delete와 title의 기능을 구현하는게 아니라 사진미리보기를 해야하기 때문에 써줌 파워포인트의 사진겹치기를 생각하면 편해...
+	$(".adminCate-title").css("z-index", "0"); 
+	
+	thisHover.next().css("opacity", "1");
+});
+
+$(".table-bordered").on("mouseleave", ".tooltipImgHover", function () {
+	var thisHover = $(this);
+	
+	$(".adminCate-delete").css("z-index", "2");
+	$(".adminCate-title").css("z-index", "2");
+	
+	thisHover.next().css("opacity", "0");
+	});
+
+
+/*$(".tooltipImgHover").on("hover", function(){
 	var thisHover = $(this);
 	
 	$(".adminCate-delete").css("z-index", "0"); //z-index는 사진을 보여주는 우선순위 숫자가 클수록 사용자입장에 가까워진다 사진미리보기를 할경우 delete와 title의 기능을 구현하는게 아니라 사진미리보기를 해야하기 때문에 써줌 파워포인트의 사진겹치기를 생각하면 편해...
@@ -263,6 +295,7 @@ $(".tooltipImgHover").hover(function(){
 	thisHover.next().css("opacity", "0");
 });
 
+*/
 $("input[name=cateimgCheck]").change(function(){
 	if ( $(this).prop('checked') ) { 
 		$("#cate-menuImgInput").css("display", "inline-block");
