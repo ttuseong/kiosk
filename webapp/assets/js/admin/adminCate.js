@@ -42,8 +42,9 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 						dataType : "json",
 						success : function(cateVo){
 							console.log(cateVo);
-							addRownum();
-							render(cateVo);
+							//addRownum();
+							//render(cateVo);
+							window.location.reload();
 		
 							for(var i=0; i<cateVo.length; i++){
 								render(cateVo[i]);
@@ -237,7 +238,7 @@ $(".table-bordered").on("click", ".adminCate-delete", function(){
 				}
 				else{
 					console.log("넌 그냥 삭제");
-					$('[data-no=' + categoryNo + ']').remove();
+					//$('[data-no=' + categoryNo + ']').remove();
 					window.location.reload();
 				}
 			},

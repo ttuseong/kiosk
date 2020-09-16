@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>관리자페이지 - 카테고리</title>
+<title>관리자페이지 - 토핑</title>
 
 <!-- Custom fonts for this template -->
 <link
@@ -113,118 +113,38 @@
 
 					<!-- Page Heading -->
 					<h1 class="h3 mb-2 text-gray-800"
-						style="padding: 1.5rem 0 1.2rem 0 !important;">Toping
-						Information</h1>
+						style="padding: 1.5rem 0 1.2rem 0 !important;">Toping Information</h1>
 
-					<!-- 메뉴 기본 정보 -->
+					<!-- 토핑 추가 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">토핑 기본 정보</h6>
+							<h6 class="m-0 font-weight-bold text-primary">토핑 추가 및 수정</h6>
 						</div>
-						<div class="card-body adminMenu-basicInfo">
-
-							<div class="menuInfo-menuCateAndImg">
-								<!-- 메뉴 이미지 -->
-								<img
-									src="${pageContext.request.contextPath}/assets/images/icon1.png"
-									class="menuInfo-menuImg img-rounded"> <input
-									id="menuInfo-menuImgInput" type="file" style="margin: auto;" />
-							</div>
-							<!-- 메뉴 이미지 끝 -->
-
-							<!-- 기본 메뉴 정보 -->
-							<div class="menuInfo-basicInfoContainer">
-
-								<div class="adminMenu-dropdownContainer">
-									<!-- 드롭다운 -->
-
-									<div class="adminMenu-cateDropdown">
-										<!-- 카테고리 드롭다운 -->
-										<p>카테고리</p>
-										<div class="dropdown adminMenu-basicInfoDropdown">
-											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownMenu1" data-toggle="dropdown"
-												aria-expanded="true">
-												카테고리를 선택하세요. <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" role="menu"
-												aria-labelledby="dropdownMenu1">
-												<li role="presentation"><a role="menuitem"
-													tabindex="-1" href="#">햄버거</a></li>
-												<li role="presentation"><a role="menuitem"
-													tabindex="-1" href="#">음료</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- 카테고리 드롭다운 끝 -->
-
-									<!-- 메뉴 드롭다운 -->
-									<div class="adminMenu-menuDropdown">
-										<p>메뉴</p>
-										<div class="dropdown adminMenu-basicInfoDropdown">
-											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownMenu1" data-toggle="dropdown"
-												aria-expanded="true" style="margin-right: 0;">
-												메뉴를 선택하세요. <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" role="menu"
-												aria-labelledby="dropdownMenu1">
-												<li role="presentation"><a role="menuitem"
-													tabindex="-1" href="#">불고기버거</a></li>
-												<li role="presentation"><a role="menuitem"
-													tabindex="-1" href="#">새우버거</a></li>
-											</ul>
-										</div>
-									</div>
-									<!-- 메뉴 드롭다운 끝 -->
-								</div>
-								<!-- 드롭다운 끝 -->
-
-
-								<div class="menuInfo-basicInfo"
-									style="margin-top: 18px !important;">
-
-									<p>메뉴이름</p>
-									<input type="text" style="width: 150px;" placeholder="메뉴이름">
+						<div class="card-body">
+							<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+					            <div class="input-groupTopping">
+					            	<p>토핑</p>
+									<input type="text" class="form-control adminTopping-addForm border-0 small" placeholder="이름을 입력하세요." aria-label="addCate" aria-describedby="basic-addon2">
+									
 									<p>가격</p>
-									<input type="text" placeholder="가격">
+									<input type="text" class="form-control adminTopping-addFormD border-0 small" placeholder="가격" aria-label="addCate" aria-describedby="basic-addon2" style="width: 100px!important;">
+									
+									<p>칼로리</p>
+									<input type="text" class="form-control adminTopping-addFormD border-0 small" placeholder="칼로리" aria-label="addCate" aria-describedby="basic-addon2" style="width: 100px!important;">        
+	
+					            	<p><input type="checkbox" id="adminToppingP">이미지 넣기</p>
+								  	
 
-									<div style="display: inline-block !important;"
-										class="adminMenu-calorie">
-										<p>칼로리</p>
-										<input type="text" placeholder="칼로리">
-									</div>
-
-								</div>
-
-								<!-- 메뉴 참고사항 -->
-								<div class="menuInfo-menuDetails">
-									<p style="margin-right: 20px;">참고사항</p>
-									<p class="normal">프로모션</p>
-									<input type="checkbox">
-									<p class="normal">추천메뉴</p>
-									<input type="checkbox">
-									<p class="normal">신메뉴</p>
-									<input type="checkbox">
-								</div>
-
-								<!-- 메뉴 설명 -->
-								<div class="menuInfo-menuDescription">
-									<p>메뉴설명</p>
-									<textarea placeholder="메뉴 설명"></textarea>
-								</div>
-							</div>
-
-							<div class="adminCate-submitBtn">
-								<a href="#" class="btn btn-success btn-icon-split adminToping">
-									<span class="text">확인</span>
-								</a>
-							</div>
-						</div><!-- end of card body  -->
+									<a href="#" class="btn btn-success btn-icon-split" style="height: 38px!important;">
+					                    <span class="text">확인</span>
+				                   </a>
+								   
+					            </div>
+					          </form>
+						</div>
 					</div>
-					<!-- 메뉴 기본 정보 끝 -->
 
-					<!-- 카테고리 정보 -->
+					<!-- 토핑 정보 -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-success">토핑 목록</h6>

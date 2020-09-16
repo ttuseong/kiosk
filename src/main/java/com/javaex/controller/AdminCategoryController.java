@@ -51,22 +51,22 @@ public class AdminCategoryController {
 		return result;
 	}
 	
-	//카테고리 추가 --확인버튼 누르면 카테고리 추가
+	//카테고리 추가 --확인버튼 누르면 카테고리 추가 이미지넣을때 ajax에서 변경되는 부분이있기때문에 model로 받았을경우 매칭되지않은 값들에대한 오류가 생김 그래서 requestParam으로 넣어준것
 	@ResponseBody
 	@RequestMapping("/adminCateAdd")
 	public CategoryVo adminCateAdd(@RequestParam("title") String categoryName, @RequestParam("cate-openStatus") int publicYN,
 			@RequestParam(value="cateimgCheck", defaultValue="0") int cateimgCheck,
 			@RequestParam("file") MultipartFile file) {
 		System.out.println("adminCateAdd");
+
 		
+		//추가할때 한줄 읽어오기
 		CategoryVo cateVo = adminCategoryService.adminCateAdd(categoryName, publicYN, cateimgCheck, file);
 		System.out.println("넘어왔따");
 		 
-		
 		return cateVo;
 	}
 	
-
 	
 	  //카테고리 삭제 --게시글이 있냐없냐를 판단
 	  @ResponseBody

@@ -80,3 +80,32 @@ tbody > tr > td:nth-child(2) > a {
 	height: 38px !important;
 	margin-top: 40px !important;
 }
+
+.adminTopping-addForm {
+    min-width: 200px!important;
+    border-radius: 5px!important;
+    background-color: #f1f2f5!important;
+}
+
+.adminTopping-addFormD {
+    border-radius: 5px!important;
+    background-color: #f1f2f5!important;
+}
+
+.input-groupTopping > p {
+	margin: auto;
+    margin-right: 10px;
+ 	margin-left: 10px;
+ 	display: inline-block;
+}
+
+#adminToppingP {
+	margin: auto;
+	margin-right: 10px;
+}
+
+
+.btn-success {
+	margin: auto;
+	margin-left: 10px;
+}
