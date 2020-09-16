@@ -49,4 +49,10 @@ public class ApiLotteriaController {
 	public Map<String, Object> side(@RequestBody int pg){
 		return lotteriaService.side(pg);
 	}
+	
+	@RequestMapping("/selectCommboMenu")
+	@ResponseBody
+	public List<LotteriaVo> selectCommboMenu(@RequestBody int menuNo){
+		return lotteriaService.selectCommboMenu(menuNo);
+	}
 }

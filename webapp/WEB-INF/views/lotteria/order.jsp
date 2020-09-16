@@ -111,7 +111,7 @@
 	</div>
 
 		<!-- 사이드메뉴모달 -->
-		<div class="modal fade" id="side">
+		<div data-unitno="0" class="modal fade" id="side" >
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -172,7 +172,7 @@
 					<!-- modal-header -->
 
 					<div class="modal-body" id="modalName-body">
-						<div class="modalName-container">
+						<div class="modalName-container commboModal">
 							<div class="modalName-onlyBurger">
 								<div class="modalName-select" id="modalName-onlyBurger" data-dismiss="modal">
 									<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-onlyBurgerImg"></p>
@@ -182,7 +182,7 @@
 							</div>
 
 							<div class="modalName-setMenu">
-								<div class="modalName-select" id="modalName-setMenu">
+								<div class="modalName-select" id="setMenu">
 									<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="modalName-setMenuImg"></p>
 									<p>세트</p>
 								</div>
@@ -197,8 +197,57 @@
 			<!-- /.modal-dialog -->
 		</div>
 		<!-- /.modal -->
-		
-		<!-- 토핑추가모달 -->
+
+	<!-- 단품, 세트,콤보 선택 모달 -->
+	<div class="modal fade" id="commbo">
+		<div class="modal-dialog" id="commbo-align">
+			<div class="modal-content" id="commbo-content">
+				<div class="modal-header" id="commbo-header">
+					<h4 class="modal-title" id="commbo-headerTitle">콤보 드시겠어요?</h4>
+					<div class="modalName-closeBtnDiv">
+						<!-- 취소버튼 -->
+						<div class="icon-cancel modalName-closeBtn" data-dismiss="modal"></div>
+					</div>
+				</div>
+				<!-- modal-header -->
+
+				<div class="modal-body" id="commbo-body">
+					<div class="modalName-container commboModal">
+						<div class="commbo-onlyBurger">
+							<div class="modalName-select" id="commbo-onlyBurger" data-dismiss="modal">
+								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png"id="commbo-onlyBurgerImg"></p>
+								<p>버거만</p>
+							</div>
+							<p id="commbo-singlePrice"></p>
+						</div>
+						
+						<div class="commbo-setMenu">
+							<div class="modalName-select" id="commbo-commbo">
+								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="commbo-commboMenuImg"></p>
+								<p>콤보</p>
+							</div>
+							<p id="commbo-setPrice"></p>
+						</div>
+
+						<div class="modalName-setMenu">
+							<div class="modalName-select" id="commbo-setMenu">
+								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="commbo-setMenuImg"></p>
+								<p>세트</p>
+							</div>
+							<p id="commbo-setPrice"></p>
+						</div>
+
+					</div>
+				</div>
+				<!-- modal-body -->
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+
+	<!-- 토핑추가모달 -->
 		<div class="modal" id="topping">
 			<div class="modal-dialog" id="modalName-align">
 				<div class="modal-content" id="modalName-content">

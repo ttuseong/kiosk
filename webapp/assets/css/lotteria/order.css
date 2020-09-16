@@ -158,7 +158,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 /* 단품, 세트 선택  */
 #modalName-body {position: relative;width:584px; height: 200px;}
 #modalName-body-topping {position: relative;width:584px; height: 200px;}
-.modalName-container {position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);margin-top: 10px;}
+.modalName-container {position: absolute;top: 40%;left: 50%;transform: translate(-50%, -50%);margin-top: 10px;height: 160px;}
 
 .modalName-container div {text-align: center; display: inline-block;}
 
@@ -169,7 +169,7 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .modalName-container div p {font-size: 20px;font-weight: bold;}
 #modalName-Price {color: red;}
 .modalName-select {border: solid 2px #ffa33c;border-radius: 10px;width: 120px;height: 120px;padding: 6px;margin: 0px 10px 15px 10px;}
-.modalName-container {height: 160px;}
+
 
 .helpIcon {
 	width: 40px;
@@ -232,3 +232,18 @@ html ul.modal-tabs li.active, html ul.modal-tabs li.active a:hover {
 .pageDot{width:15px;height:15px;background-color:gray;border-radius: 15px;display: inline-block;}
 .dotDiv{bottom: 0%;position: absolute;bottom: 0%;width: 100%;text-align: center;}
 .pageActive{background-color:red;}
+
+
+/* 콤보모달 */
+.commboModal{width: 100%;text-align: center;}
+#commbo-align{top: 40%;transform:translateY(-50%);}
+#commbo-content {position: relative;border: solid 8px rgba(255, 255, 255, 0.5);border-radius: 10px;}
+#commbo-header {position: relative;background-color: #d7f9fd;border: none;}
+#commbo-headerTitle {font-weight: bold;font-size: 25px;text-align: center;}
+
+
+.modalName-closeBtnDiv {height: 35px;width: 35px;border-radius: 7px;border: solid 2px #24a3f7;background-color: #d7f9fd;position: absolute;top: 50%;right: 15px;transform: translateY(-50%);}
+.modalName-closeBtn {position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);font-size: 35px;color: #24a3f7;}
+#commbo-body {position: relative;width:584px; height: 200px;}
+#commbo-Price {color: red;}
+.modalName-select {border: solid 2px #ffa33c;border-radius: 10px;width: 120px;height: 120px;padding: 6px;margin: 0px 10px 15px 10px;}

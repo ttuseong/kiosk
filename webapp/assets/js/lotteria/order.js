@@ -14,11 +14,8 @@ var selectMenu = {}
 
 $(document).ready(function() {
 	
-	
 	/*총주문내역이 쿠키에 있을 경우 cookieRender 호출*/
-	if($.cookie("selectList") != null ) {
-		cookieParsing();
-	}
+	if($.cookie("selectList") != null ) cookieParsing();
 		
 	if(params != ""){
 		
@@ -76,7 +73,7 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	/*모달 탭*/
+	/*사이드모달 탭*/
 	$(".modal-tab_content").hide(); 
 	$("ul.modal-tabs li:first").addClass("active").show(); 
 	$(".modal-tab_content:first").show(); 
@@ -92,8 +89,43 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	/*단품,세트,콤보 선택 모달창의 단품선택시*/
+	$(".commbo-onlyBurger").on("click",function(){
+		var menuName = thisMenu.children().eq(1).children().eq(0).text();
+		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
+		
+		render(menuName, menuPrice);
+	})
+	
+	/*단품,세트,콤보 선택 모달창의 세트선택시*/
+	$("#commbo-setMenu").on("click",function(){
+		$("#side").data("unitno",3);
+		
+		$("ul.modal-tabs li").removeClass("active");
+		$(".modal-tab_content").hide(); 
+		$("ul.modal-tabs li:first").addClass("active").show();
+		$(".modal-tab_content:first").show();
+		
+		$("#commbo").modal("hide");
+		side(1);
+	})
+	
+	$("#commbo-commbo").on("click",function(){
+		$("#side").data("unitno",4);
+		
+		$("ul.modal-tabs li").removeClass("active");
+		$(".modal-tab_content").hide(); 
+		$("ul.modal-tabs li:first").addClass("active").show();
+		$(".modal-tab_content:first").show();
+		
+		$("#commbo").modal("hide");
+		side(1);
+	})
+	
 	/*세트클릭했을경우*/
-	$("#modalName-setMenu").on("click", function(){
+	$("#setMenu").on("click", function(){
+		$("#side").data("unitno",3)
+		
 		$("ul.modal-tabs li").removeClass("active");
 		$(".modal-tab_content").hide(); 
 		$("ul.modal-tabs li:first").addClass("active").show();
@@ -103,7 +135,7 @@ $(document).ready(function() {
 		side(1);
 	});
 	
-	/*세트메뉴에 디저트를 클릭했을때*/
+	/*사이드모달에 디저트탭을 클릭했을때*/
 	$("#modal-tab1").on("click",".set_dessert", function(){
 		/*모달페이지 초기화*/
 		$(".modalDotDiv").data("page",1);
@@ -117,11 +149,10 @@ $(document).ready(function() {
 		$("ul.modal-tabs li:last").addClass("active").show();
 		$("#modal-tab1").hide();
 		
-		side(1);
 		$("#modal-tab2").addClass("active").show();
 	});
 	
-	/*세트메뉴에 드링크를 클릭했을때*/
+	/*사이드모달에 드링크메뉴를 클릭했을때*/
 	$("#modal-tab2").on("click",".set_drink", function(){
 		/*모달페이지 초기화*/
 		$(".modalDotDiv").data("page",1);
@@ -129,9 +160,14 @@ $(document).ready(function() {
 		var drinkNo = $(this).data("no");
 		var drinkPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
 		
+		console.log("사이드모달 탭2클릭시 드링크 가격: "+drinkPrice);
+		
 		$('#side').modal("hide");
-		setMenu(menuNo,drinkNo, drinkPrice);
-		side(1);
+		var unitNo = $("#side").data("unitno");
+		
+		if(unitNo == 4)commboMenu(menuNo,drinkNo, drinkPrice);
+		else setMenu(menuNo,drinkNo, drinkPrice);
+		
 	});
 	
 	$("#toppingContents").on("click",".toppingDiv", function(){
@@ -217,8 +253,6 @@ function sidePageUp(){
 
 /*세트메뉴 선택시 사이드메뉴 리스트*/
 function side(pg){
-	$("#side").modal();
-	
 	$.ajax({
 		url : url+"/api/side",		
 		type : "post",
@@ -229,9 +263,6 @@ function side(pg){
 			$("#modal-tab1").empty();
 			$("#modal-tab2").empty();
 			$(".modalDotDiv").empty();
-			
-			var dessertPg = side.dessertPg.pageCount;
-			var drinkPg = side.drinkPg.pageCount;
 			
 			for( var y = 0 ; y < side.dessert.length; y++){
 				sideRender(side.dessert[y], 1);
@@ -249,6 +280,8 @@ function side(pg){
 					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
 				}
 			}
+			
+			$("#side").modal();
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -256,8 +289,8 @@ function side(pg){
 	}); 
 }
 
+/*사이드모달 그리기*/
 function sideRender(side, sideType){
-	
 	var str = "";
 	str += "<div class='modal-float margin_battom16px' data-no='"+side.menuNo+"'>";
 		str += "<div class='width110px'>";
@@ -276,6 +309,7 @@ function sideRender(side, sideType){
 		$("#modal-tab2").append(str);
 		$("#modal-tab2").children().addClass("set_drink");
 	}
+	
 }
 
 
@@ -304,10 +338,10 @@ function setOrSingle(menuNo, menuName, menuPrice){
 		contentType : "application/json",
 		data : JSON.stringify(menuNo),
 		success : function(count){
-			if(count <= 0){
+			if(count == 0){
 				/*단품제품일경우*/
 				render(menuName, menuPrice);
-			}else{
+			}else if(count == 1){
 				$.ajax({
 					url : url+"/api/selectMenu",		
 					type : "post",
@@ -328,13 +362,40 @@ function setOrSingle(menuNo, menuName, menuPrice){
 						console.error(status + " : " + error);
 					}
 				}); 
+			}else{
+				$("#commbo").modal();
 			}
+			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
 		}
 	});
 };
+
+function commboMenu(menuNo, drinkNo, drinkPrice){
+	console.log("menuNo: "+menuNo);
+	console.log("drinkNo: "+drinkNo);
+	console.log("drinkPrice: "+drinkPrice);
+	
+	$.ajax({
+		url : url+"/api/selectCommboMenu",		
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(menuNo),
+		dataType : "json",
+		success : function(selectMenu){
+			console.log("콤보메뉴 펑션의 선택된 메뉴 가격: "+selectMenu[0].menuPrice);
+			var price = selectMenu[0].menuPrice +  Number(dessertPrice) + Number(drinkPrice);
+			
+			render(selectMenu[0].menuName, price);
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	}); 
+	
+}
 
 function setMenu(menuNo, drinkNo, drinkPrice){
 	$.ajax({
@@ -385,8 +446,8 @@ function render(menuName, menuPrice){
 		str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menuPrice+"'>";
 		str1 += "<input type='hidden' name='number"+i+"' value='1' id='ea"+i+"'>";
 		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>";
-			str1+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menuPrice +")'></button>";
-		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menuPrice+")'></button>";
+			str1+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' onClick='btnUp("+i +","+menuPrice +")'></button>";
+		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' onClick='btnDown("+i+","+menuPrice+")'></button>";
 		str1 += "</div>";
 		
 		var selectMenuNo = Number(thisMenu.data("menuno"));
@@ -544,7 +605,6 @@ function cookieParsing(){
 	
 	for(var ii = 0; ii < menuList.length-1; ii++){
 		menuList[ii] = menuList[ii].replace("{","");//특정문자 치환
-		//console.log(menuList[ii]);
 		cookieRender(menuList[ii]);
 	}
 }
@@ -561,7 +621,6 @@ function cookieRender(menuList){
 		menu[zz] = menu[zz].replace(/"/g, "");
 		menu[zz] = menu[zz].replace(":", "");
 		
-		console.log(menu[3]);
 		var str1="";
 		str1 += "<input type='hidden' name='menuName"+i+"' value='"+menu[1]+"'>";
 		str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menu[3]+"'>";

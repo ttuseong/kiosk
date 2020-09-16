@@ -39,6 +39,20 @@ public class LotteriaService {
 		return lotteriaDao.selectMenu(menuNo);
 	}
 	
+	public List<LotteriaVo>selectCommboMenu(int menuNo){
+		
+		System.out.println("콤보메뉴 서비스단." + menuNo);
+		
+		List<LotteriaVo> commboMenuList =lotteriaDao.selectCommboMenu(menuNo);
+		System.out.println("콤보메뉴 서비스단 리스트 가져옴");
+		
+		for(LotteriaVo vo: commboMenuList) {
+			System.out.println(vo.toString());
+		}
+		
+		return commboMenuList;
+	}
+	
 	public int menuCategoryNo(int menuNo) {
 		return lotteriaDao.menuCategoryNo(menuNo);
 	}
@@ -56,7 +70,6 @@ public class LotteriaService {
 		Map<String, Object> side = new HashMap<String, Object>();
 		
 		Paging drinkPg = new Paging(16,5,categoryMenuCount(29), pg, 29);
-		
 		Paging dessertPg = new Paging(16,5,categoryMenuCount(28), pg, 28);
 		
 		side.put("dessert",lotteriaDao.dessertList(dessertPg));
