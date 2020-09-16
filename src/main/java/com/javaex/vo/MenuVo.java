@@ -14,6 +14,7 @@ public class MenuVo {
 	private int defaultNo;
 	private int unitNo;
 	private String unitName;
+	private String composition;
 	
 	public int getIsSpecial() {
 		return isSpecial;
@@ -165,12 +166,22 @@ public class MenuVo {
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
 	}
+	
+	public String getComposition() {
+		return composition;
+	}
+
+	public void setComposition(String composition) {
+		this.composition = composition;
+	}
 
 	@Override
 	public String toString() {
 		return "MenuVo [menuNo=" + menuNo + ", categoryNo=" + categoryNo + ", categoryName=" + categoryName
 				+ ", menuName=" + menuName + ", menuDesc=" + menuDesc + ", menuPrice=" + menuPrice + ", menuImg="
 				+ menuImg + ", isSpecial=" + isSpecial + ", isChange=" + isChange + ", isSet=" + isSet + ", defaultNo="
-				+ defaultNo + ", unitNo=" + unitNo + ", unitName=" + unitName + "]";
+				+ defaultNo + ", unitNo=" + unitNo + ", unitName=" + unitName + ", composition=" + composition + "]";
 	}
+
+	
 }

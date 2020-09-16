@@ -28,6 +28,10 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectMenu", menuVo);
 	}
 	
+	public List<String> selectDefaultCategoryName(int unitNo){
+		return sqlSession.selectList("kfc.selectDefaultCategoryName", unitNo);
+	}
+	
 	public List<MenuVo> selectDefaultMenuList(int unitNo){
 		return sqlSession.selectList("kfc.selectDefaultMenuList", unitNo);
 	}
