@@ -37,7 +37,24 @@ public class KFCService {
 	
 	public List<MenuVo> selectMenu(MenuVo menuVo) {
 
-		return kfcDao.selectMenu(menuVo);
+		List<MenuVo> list = kfcDao.selectMenu(menuVo); 
+		
+		System.out.println(list.toString());
+		
+		for(int i = 0; i < list.size(); i++) {
+			list.get(i).setComposition(list.get(0).getMenuName());
+			if(list.get(i).getUnitNo() != 0) {
+				List<String> categoryNameList = kfcDao.selectDefaultCategoryName(list.get(i).getUnitNo());
+				System.out.println(categoryNameList.toString() + "+" + categoryNameList.size() + "+" +list.get(i).getUnitNo());
+				for(int j = 0; j < categoryNameList.size(); j++) {
+					System.out.println(categoryNameList.get(j));
+					list.get(i).setComposition(list.get(i).getComposition() + "+" + categoryNameList.get(j)+" 변경");
+					System.out.println(list.get(i).getComposition());
+				}
+			}
+		}
+		
+		return list;
 	}
 	
 	public List<MenuVo> changeList(MenuVo menuVo){

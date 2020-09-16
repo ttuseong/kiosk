@@ -55,6 +55,26 @@
 		]]>
 	</select>
 	
+	<select id="selectDefaultCategoryName" resultType="String" parameterType="int">
+		<![CDATA[
+			SELECT
+			    c.categoryname
+			FROM
+			    setUnit su,
+			    defaultMenu dm,
+			    menu m,
+			    category c
+			where
+			    su.unitNo = #{unitNo}
+			and
+			    su.unitno = dm.unitno
+			and
+			    dm.menuNo = m.menuNo
+			and
+			    m.categoryNo = c.categoryNo
+		]]>
+	</select>
+	
 	<select id="selectToppingList" resultType="com.javaex.vo.MenuVo">
 		<![CDATA[
 			SELECT

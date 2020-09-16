@@ -183,7 +183,7 @@ function OnselectMode(menuVo){
    str += '      <div class="selectModeCompose">';
    str += '         <p>구성</p>';
    str += '      </div>';
-   str += '      <p class="selectModeMenuGroup">' + menuVo.menuName + '</p>';
+   str += '      <p class="selectModeMenuGroup">' + menuVo.composition + '</p>';
    str += '       <p class="selectModePrice"> ' + menuVo.menuPrice + '</p>';
    str += '    </div>';
    str += '    <img class="selectModeBoxImg" alt=""';
