@@ -70,7 +70,7 @@
 				<!-- 페이징 div -->
 			</div>
 			<!--Content-->
-			<form action="${pageContext.request.contextPath }/lotteria/orderList" method="get">
+			<form action="${pageContext.request.contextPath }/lotteria/orderList" method="post">
 				<table class="table-center">
 					<colgroup>
 						<col width="33%">
