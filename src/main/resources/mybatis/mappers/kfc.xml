@@ -23,17 +23,23 @@
 	<select id="selectMenuList" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
-				menuNo,
+			    menuNo,
 			    menuName,
 			    menuDesc,
 			    menuPrice,
-			    menuImg
+			    menuImg,
+			    discount
 			FROM
 			    menu
 			where
 			    categoryNo = #{categoryNo}
 			and
 			    unitNo is null
+			and
+			    menuNo not in (SELECT
+				                    setNo
+				                FROM
+				                    useMenu)
 		]]>
 	</select>
 	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.MenuVo">
@@ -44,7 +50,8 @@
 				menuDesc,
 				menuPrice,
 				menuImg,
-				unitNo
+				unitNo,
+				discount
 			FROM
 			    menu
 			where

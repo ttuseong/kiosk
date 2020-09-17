@@ -184,7 +184,13 @@ function OnselectMode(menuVo){
    str += '         <p>구성</p>';
    str += '      </div>';
    str += '      <p class="selectModeMenuGroup">' + menuVo.composition + '</p>';
-   str += '       <p class="selectModePrice"> ' + menuVo.menuPrice + '</p>';
+   if(menuVo.discount != 0){
+		str += '       <p class="selectModePrice"> ' + menuVo.discount + '</p>';
+   }
+   else{
+		str += '       <p class="selectModePrice"> ' + menuVo.menuPrice + '</p>';
+   }
+   
    str += '    </div>';
    str += '    <img class="selectModeBoxImg" alt=""';
    str += '      src="' + url +'/kfc/' + menuVo.menuImg + '">';
@@ -214,9 +220,23 @@ $("#selectedModecompleted").on("click", function(){
 	   burgerCount = 1;
 	   $("#selectMode").modal("hide");
 	   
-	   if(selectedMode == -2){
-	      
-	   }
+		var modes = $("#selectModeMainContent").children();
+		var count = 0;
+		for(var i = 0; i < modes.length; i++){
+			if(modes.eq(i).data("mode") != 0){
+				break;
+			}
+			count++;
+		}
+	   if(count == modes.length){
+		  	burgerCount = 1;
+
+		  	totalPrice = burgerPrice;
+			
+		  	orderComplate();
+			
+			countAllMenulList();
+	   } 
 	   else{
 	      inittoppingArr();
 	   }

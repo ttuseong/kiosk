@@ -82,12 +82,18 @@ function addMenuAjax(){
 }
 
 function addMenuList(menuVo){
+	console.log(menuVo);
 	str = "";
 	str += ' <div class="menu" data-no="'+menuVo.menuNo+'">';
 	str += ' 	<img class="menuImg" alt="메뉴 이미지" src="'+url+'/kfc/'+ menuVo.menuImg +'">';
 	str += '	<div class="menuContent">';
 	str += '		<p>'+menuVo.menuName+'</p>';
-	str += '		<p>'+menuVo.menuPrice+'</p>';
+	if(menuVo.discount == 0){
+		str += '	<p>'+menuVo.menuPrice+'</p>';	
+	}
+	else{
+		str += '	<p>'+menuVo.discount	+'</p>'	
+	}
 	str += '	</div>';
 	str += ' </div>';
 		
