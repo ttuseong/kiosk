@@ -72,7 +72,7 @@
 				 menu m  
 			where um.setNo(+) = m.menuNo 
 			and um.menuNo=#{menuNo}
-			and unitNo=3
+			and unitNo!=5
 		]]>
 	</select>
 	
@@ -95,7 +95,7 @@
 		]]>
 	</select>
 	
-	<select id="dessertList" resultType="com.javaex.vo.LotteriaVo">
+	<select id="side" resultType="com.javaex.vo.LotteriaVo">
 		<![CDATA[
 			select menuNo, 
 				   categoryNo, 
@@ -116,34 +116,7 @@
 				   			  menuPrice, 
 				   			  menuImg  
 						from menu 
-						where categoryNo=28 
-						order by menuNo asc))
-           	where rn >= #{writing_Start} and rn <= #{writing_End}
-		]]>
-	</select>
-	
-	<select id="drinkList" resultType="com.javaex.vo.LotteriaVo">
-		<![CDATA[
-			select menuNo, 
-				   categoryNo, 
-				   menuName, 
-				   menuPrice, 
-				   menuImg  
-            from(select rownum rn,
-                   		menuNo,
-                   		categoryNo,
-                   		menuName,
-                   		menuDesc,
-                   		menuPrice,
-                   		menuImg
-            	  from(select menuNo, 
-				   			  categoryNo, 
-				   			  menuName, 
-				   			  menuDesc, 
-				   			  menuPrice, 
-				   			  menuImg  
-						from menu 
-						where categoryNo=29 
+						where categoryNo=#{categoryNo} 
 						order by menuNo asc))
            	where rn >= #{writing_Start} and rn <= #{writing_End}
 		]]>

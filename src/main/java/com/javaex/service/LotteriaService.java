@@ -40,17 +40,7 @@ public class LotteriaService {
 	}
 	
 	public List<LotteriaVo>selectCommboMenu(int menuNo){
-		
-		System.out.println("콤보메뉴 서비스단." + menuNo);
-		
-		List<LotteriaVo> commboMenuList =lotteriaDao.selectCommboMenu(menuNo);
-		System.out.println("콤보메뉴 서비스단 리스트 가져옴");
-		
-		for(LotteriaVo vo: commboMenuList) {
-			System.out.println(vo.toString());
-		}
-		
-		return commboMenuList;
+		return lotteriaDao.selectCommboMenu(menuNo);
 	}
 	
 	public int menuCategoryNo(int menuNo) {
@@ -65,17 +55,25 @@ public class LotteriaService {
 		return lotteriaDao.toppingList(menuNo);
 	}
 	
-
 	public Map<String, Object> side(int pg){
 		Map<String, Object> side = new HashMap<String, Object>();
 		
 		Paging drinkPg = new Paging(16,5,categoryMenuCount(29), pg, 29);
 		Paging dessertPg = new Paging(16,5,categoryMenuCount(28), pg, 28);
+		Paging selectDrink1 = new Paging(16,5,categoryMenuCount(378),pg,378);
+		Paging selectDrink2 = new Paging(16,5,categoryMenuCount(379),pg,379);
+		Paging ckPackDs = new Paging(16,5,categoryMenuCount(382),pg,382);
+		Paging ckPackSs = new Paging(16,5,categoryMenuCount(383),pg,383);
 		
-		side.put("dessert",lotteriaDao.dessertList(dessertPg));
-		side.put("drink",lotteriaDao.drinkList(drinkPg));
+		side.put("dessert",lotteriaDao.side(dessertPg));
+		side.put("drink",lotteriaDao.side(drinkPg));
 		side.put("dessertPg", dessertPg);
 		side.put("drinkPg", drinkPg);
+		side.put("selectDrink1", lotteriaDao.side(selectDrink1));
+		side.put("selectDrink2", lotteriaDao.side(selectDrink2));
+		side.put("ckPackDs", lotteriaDao.side(ckPackDs));
+		side.put("ckPackSs", lotteriaDao.side(ckPackSs));
+		
 		return side;
 	}
 

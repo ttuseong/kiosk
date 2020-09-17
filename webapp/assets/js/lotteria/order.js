@@ -38,7 +38,12 @@ $(document).ready(function() {
 		menuNo = thisMenu.data("menuno");
 		var menuName = thisMenu.children().eq(1).children().eq(0).text();
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
-		setOrSingle(menuNo, menuName,menuPrice);
+		
+		if(menuNo==331 || menuNo==332){
+			side(1);
+		}else{
+			setOrSingle(menuNo, menuName,menuPrice);
+		}
 	});	
 	
 	/*세트제품이 있지만 단품을 클릭했을 경우*/
@@ -156,11 +161,8 @@ $(document).ready(function() {
 	$("#modal-tab2").on("click",".set_drink", function(){
 		/*모달페이지 초기화*/
 		$(".modalDotDiv").data("page",1);
-		
 		var drinkNo = $(this).data("no");
 		var drinkPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
-		
-		console.log("사이드모달 탭2클릭시 드링크 가격: "+drinkPrice);
 		
 		$('#side').modal("hide");
 		var unitNo = $("#side").data("unitno");
@@ -253,40 +255,62 @@ function sidePageUp(){
 
 /*세트메뉴 선택시 사이드메뉴 리스트*/
 function side(pg){
-	$.ajax({
-		url : url+"/api/side",		
-		type : "post",
-		dataType : "json",
-		contentType : "application/json",
-		data : JSON.stringify(pg),
-		success : function(side){
-			$("#modal-tab1").empty();
-			$("#modal-tab2").empty();
-			$(".modalDotDiv").empty();
-			
-			for( var y = 0 ; y < side.dessert.length; y++){
-				sideRender(side.dessert[y], 1);
-			};
-			for( var y = 0 ; y < side.drink.length; y++){
-				sideRender(side.drink[y], 2);
-			};
-			
-			if($("ul.modal-tabs li.active").text() == "세트_디저트"){
-				for(var y =1; y <= side.dessertPg.page_Count; y++){
-					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
+	
+	menuNo = thisMenu.data("menuno");
+	
+		$.ajax({
+			url : url+"/api/side",		
+			type : "post",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(pg),
+			success : function(side){
+				$("#modal-tab1").empty();
+				$("#modal-tab2").empty();
+				$(".modalDotDiv").empty();
+				
+				if(menuNo==331){
+					for( var y = 0 ; y < side.selectDrink1.length; y++){
+						sideRender(side.selectDrink1[y], 1);
+					};
+					for( var y = 0 ; y < side.selectDrink2.length; y++){
+						sideRender(side.selectDrink2[y], 2);
+					};
+				}else if($(".tabs li.tab-11").attr("class") == "tab-11 active"){
+					for( var y = 0 ; y < side.ckPackDs.length; y++){
+						sideRender(side.ckPackDs[y], 1);
+					};
+					for( var y = 0 ; y < side.ckPackSs.length; y++){
+						sideRender(side.ckPackSs[y], 2);
+					};
+				}else{
+					
+					for( var y = 0 ; y < side.dessert.length; y++){
+						sideRender(side.dessert[y], 1);
+					};
+					for( var y = 0 ; y < side.drink.length; y++){
+						sideRender(side.drink[y], 2);
+					};
+					
+					if($("ul.modal-tabs li.active").text() == "세트_디저트"){
+						for(var y =1; y <= side.dessertPg.page_Count; y++){
+							$(".modalDotDiv").append("<div class='modalPageDot '></div>");
+						}
+					}else if($("ul.modal-tabs li.active").text() == "세트_드링크"){
+						for(var y =1; y <= side.drinkPg.page_Count; y++){
+							$(".modalDotDiv").append("<div class='modalPageDot '></div>");
+						}
+					}
 				}
-			}else if($("ul.modal-tabs li.active").text() == "세트_드링크"){
-				for(var y =1; y <= side.drinkPg.page_Count; y++){
-					$(".modalDotDiv").append("<div class='modalPageDot '></div>");
-				}
+				
+				$("#side").modal();
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
 			}
-			
-			$("#side").modal();
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	}); 
+		});
+	
+	
 }
 
 /*사이드모달 그리기*/
@@ -329,6 +353,38 @@ function toppingOk(numberI){
 	$("#topping").modal("hide");
 }
 
+function menuSelect(menuNo,menuPrice){
+	$.ajax({
+		url : url+"/api/selectMenu",		
+		type : "post",
+		contentType : "application/json",
+		data : JSON.stringify(menuNo),
+		dataType : "json",
+		success : function(selectMenu){
+
+			setNo = selectMenu[0].menuNo;
+			setName = selectMenu[0].menuName;
+			setPrice = selectMenu[0].menuPrice;
+			
+			if(selectMenu.length == 2){
+				$("#commbo-commboPrice").text(selectMenu[0].menuPrice);//콤보가격 출력
+				$("#commbo-singlePrice").text(menuPrice);//단품가격 출력
+				$("#commbo-setPrice").text(selectMenu[1].menuPrice);//세트 가격출력
+				$("#commbo").modal();
+			}else{
+				$("#modalName-setPrice").text(selectMenu[0].menuPrice);
+				$("#modalName-singlePrice").text(menuPrice);
+				$("#setAndSingle").modal();
+			}
+			
+			
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}
+
 function setOrSingle(menuNo, menuName, menuPrice){
 	/*세트제품이 있는지 확인*/
 	$.ajax({
@@ -342,30 +398,18 @@ function setOrSingle(menuNo, menuName, menuPrice){
 				/*단품제품일경우*/
 				render(menuName, menuPrice);
 			}else if(count == 1){
-				$.ajax({
-					url : url+"/api/selectMenu",		
-					type : "post",
-					contentType : "application/json",
-					data : JSON.stringify(menuNo),
-					dataType : "json",
-					success : function(selectMenu){
-						$("#modalName-setPrice").text(selectMenu[0].menuPrice);
-						$("#modalName-singlePrice").text(menuPrice);
-						
-						setNo = selectMenu[0].menuNo;
-						setName = selectMenu[0].menuName;
-						setPrice = selectMenu[0].menuPrice;
-						
-						$("#setAndSingle").modal();
-					},
-					error : function(XHR, status, error) {
-						console.error(status + " : " + error);
-					}
-				}); 
+				if($(".tabs li.tab-11").attr("class") == "tab-11 active"){
+					/*디저트_치킨탭의 세트일경우*/
+					side(1);
+				}else{
+					/*디저트_치킨탭의 세트가 아닐경우*/
+					menuSelect(menuNo,menuPrice);
+				}
 			}else{
-				$("#commbo").modal();
+				/*콤보일경우*/
+				menuSelect(menuNo, menuPrice);
+				//$("#commbo").modal();
 			}
-			
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -374,10 +418,7 @@ function setOrSingle(menuNo, menuName, menuPrice){
 };
 
 function commboMenu(menuNo, drinkNo, drinkPrice){
-	console.log("menuNo: "+menuNo);
-	console.log("drinkNo: "+drinkNo);
-	console.log("drinkPrice: "+drinkPrice);
-	
+
 	$.ajax({
 		url : url+"/api/selectCommboMenu",		
 		type : "post",
@@ -385,7 +426,6 @@ function commboMenu(menuNo, drinkNo, drinkPrice){
 		data : JSON.stringify(menuNo),
 		dataType : "json",
 		success : function(selectMenu){
-			console.log("콤보메뉴 펑션의 선택된 메뉴 가격: "+selectMenu[0].menuPrice);
 			var price = selectMenu[0].menuPrice +  Number(dessertPrice) + Number(drinkPrice);
 			
 			render(selectMenu[0].menuName, price);
@@ -398,6 +438,7 @@ function commboMenu(menuNo, drinkNo, drinkPrice){
 }
 
 function setMenu(menuNo, drinkNo, drinkPrice){
+	
 	$.ajax({
 		url : url+"/api/selectMenu",		
 		type : "post",
@@ -405,6 +446,7 @@ function setMenu(menuNo, drinkNo, drinkPrice){
 		data : JSON.stringify(menuNo),
 		dataType : "json",
 		success : function(selectMenu){
+			
 			var price = selectMenu[0].menuPrice +  Number(dessertPrice) + Number(drinkPrice);
 			
 			render(selectMenu[0].menuName, price);
@@ -483,17 +525,12 @@ function render(menuName, menuPrice){
 
 					result();
 					i+=1;
-					
 				}
-				
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
 			}
 		}); 
-		
-		
-		
 };
 
 function btnUp(i, menuPrice){

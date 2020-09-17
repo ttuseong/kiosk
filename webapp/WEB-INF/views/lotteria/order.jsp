@@ -226,7 +226,7 @@
 								<p><img src="${pageContext.request.contextPath}/assets/images/icon1.png" id="commbo-commboMenuImg"></p>
 								<p>콤보</p>
 							</div>
-							<p id="commbo-setPrice"></p>
+							<p id="commbo-commboPrice"></p>
 						</div>
 
 						<div class="modalName-setMenu">

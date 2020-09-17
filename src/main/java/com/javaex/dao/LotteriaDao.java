@@ -33,20 +33,11 @@ public class LotteriaDao {
 	}
 	
 	public List<LotteriaVo>selectCommboMenu(int menuNo){
-		System.out.println("콤보메뉴 다오 시작");
-		
-		List<LotteriaVo> commbo =sqlSession.selectList("lotteria.selectCommboMenu", menuNo); 
-		
-		System.out.println("콤보메뉴 다우 끝");
-		return commbo;
+		return sqlSession.selectList("lotteria.selectCommboMenu", menuNo);
 	}
 	
-	public List<LotteriaVo> dessertList(Paging pgVo){
-		return sqlSession.selectList("lotteria.dessertList",pgVo);
-	}
-	
-	public List<LotteriaVo> drinkList(Paging pgVo){
-		return sqlSession.selectList("lotteria.drinkList", pgVo);
+	public List<LotteriaVo> side(Paging pgVo){
+		return sqlSession.selectList("lotteria.side",pgVo);
 	}
 	
 	public int menuCategoryNo(int menuNo) {
@@ -60,5 +51,9 @@ public class LotteriaDao {
 	public List<LotteriaToppingVo> toppingList(int menuNo){
 		return sqlSession.selectList("lotteria.toppingList", menuNo);
 	}
+	
+	
+	
+	
 
 }
