@@ -118,10 +118,12 @@ public class AdminCategoryService {
 	 public int adminCateDel(int categoryNo) {
 		 System.out.println("서비스-카테고리 삭제하기" + categoryNo); 
 		 //X버튼 누르면 메뉴의 갯수를 세주는 ajax.
-		  
+		 
+		 //return 1이라는게 삭제를 성공했을시에 성공한 갯수가 return되기때문에 1로 넣었음
 		 int cnt = adminCategoryDao.selectMenuCount(categoryNo);
 		 System.out.println(cnt);
-		  
+		 
+		 //카운트를 다오에서 받아온값 1이상일 경우 아직 메뉴에 값이있다
 		  if(cnt>=1) {
 		  	System.out.println("삭제 alert창 띄어주기");
 		  	return 0;
@@ -134,6 +136,7 @@ public class AdminCategoryService {
 		  }
 
 	 }
+	
 	  
 	 //카테고리 수정
 	 public int titleClickUpdate(String categoryName, int publicYN, int cateimgCheck, int categoryNo, MultipartFile file) {
