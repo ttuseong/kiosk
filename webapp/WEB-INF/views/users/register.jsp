@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Register</title>
+  <title>키오스크 회원가입</title>
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -19,6 +19,9 @@
 
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
+  
+  <!-- 자바스크립트 -->
+  <script type="text/javascript" src="/kiosk/assets/js/users/register.js"></script>
 
 </head>
 
@@ -53,21 +56,10 @@
                     <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="비밀번호를 한번 더 입력하세요">
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  	회원가입하기
-                </a>
-                <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                  <i class="fab fa-google fa-fw"></i> Register with Google
-                </a>
-                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                </a>
+                <a href="login.html" class="btn btn-primary btn-user btn-block">회원가입하기</a>
+                
               </form>
               <hr>
-              <div class="text-center">
-                <a class="small" href="${pageContext.request.contextPath}/users/forgotPassword">비밀번호를 잊어버리셨습니까?</a>
-              </div>
               <div class="text-center">
                 <a class="small" href="${pageContext.request.contextPath}/users/login">이미 회원이십니까? 로그인 하기</a>
               </div>

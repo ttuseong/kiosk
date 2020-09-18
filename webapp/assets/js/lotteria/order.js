@@ -269,7 +269,7 @@ function side(pg){
 				$("#modal-tab2").empty();
 				$(".modalDotDiv").empty();
 				
-				if(menuNo==331){
+				if(menuNo==331|| menuNo == 332){
 					for( var y = 0 ; y < side.selectDrink1.length; y++){
 						sideRender(side.selectDrink1[y], 1);
 					};

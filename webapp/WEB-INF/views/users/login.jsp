@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>키오스크 관리자 로그인</title>
 
   <!-- Custom fonts for this template-->
   <link href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -48,27 +48,9 @@
                     <div class="form-group">
                       <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요">
                     </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">로그인 상태 유지</label>
-                      </div>
-                    </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
-                      	로그인하기
-                    </a>
-                    <hr>
-                    <a href="index.html" class="btn btn-google btn-user btn-block">
-                      <i class="fab fa-google fa-fw"></i> Login with Google
-                    </a>
-                    <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                      <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                    </a>
+                    <a href="index.html" class="btn btn-primary btn-user btn-block">로그인하기</a>
+                    
                   </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="${pageContext.request.contextPath}/users/forgotPassword">비밀번호를 잊어버리셨습니까?</a>
-                  </div>
                   <div class="text-center">
                     <a class="small" href="${pageContext.request.contextPath}/users/register">회원가입을 하시겠습니까?</a>
                   </div>
