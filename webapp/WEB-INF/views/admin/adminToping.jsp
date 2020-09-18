@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -42,7 +44,7 @@
 	href="${pageContext.request.contextPath}/assets/css/admin/admin.css"
 	rel="stylesheet" type="text/css">
 	
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCateTool.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCateTool.css"> <!-- 토핑툴 -->
 
 </head>
 
@@ -121,21 +123,19 @@
 							<h6 class="m-0 font-weight-bold text-primary">토핑 추가 및 수정</h6>
 						</div>
 						<div class="card-body">
-							<form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100">
+							<form action="" method="post" id="toppingImgUpload" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100" enctype="multipart/form-data">
 					            <div class="input-groupTopping">
 					            	<p>토핑</p>
-									<input type="text" class="form-control adminTopping-addForm border-0 small" placeholder="이름을 입력하세요." aria-label="addCate" aria-describedby="basic-addon2">
+									<input type="text" class="form-control adminTopping-addForm border-0 small" placeholder="이름을 입력하세요." aria-label="addCate" aria-describedby="basic-addon2" name="toppingName">
 									
 									<p>가격</p>
-									<input type="text" class="form-control adminTopping-addFormD border-0 small" placeholder="가격" aria-label="addCate" aria-describedby="basic-addon2" style="width: 100px!important;">
-									
-									<p>칼로리</p>
-									<input type="text" class="form-control adminTopping-addFormD border-0 small" placeholder="칼로리" aria-label="addCate" aria-describedby="basic-addon2" style="width: 100px!important;">        
+									<input type="number" class="form-control adminTopping-addFormD border-0 small" placeholder="ex) 300" aria-label="addCate" aria-describedby="basic-addon2" name="toppingPrice" style="width: 100px!important;">       
 	
-					            	<p><input type="checkbox" id="adminToppingP">이미지 넣기</p>
-								  	
+					            	<p>이미지 넣기</p>
+								  	<input id="topping-menuImgInput" name="file" type="file" style="width:200px;"/>
+		
 
-									<a href="#" class="btn btn-success btn-icon-split" style="height: 38px!important;">
+									<a href="#" class="adminTopping-btn btn btn-success btn-icon-split" style="height: 38px!important;">
 					                    <span class="text">확인</span>
 				                   </a>
 								   
@@ -160,13 +160,14 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered adminToping-table"
-									id="dataTable" width="100%" cellspacing="0">
+									width="100%" cellspacing="0">
 									<thead>
 										<tr>
 											<th>No</th>
 											<th>Name</th>
 											<th>Price</th>
 											<th>Delete</th>
+											<th>사진미리보기</th>
 										</tr>
 									</thead>
 									<tfoot>
@@ -175,43 +176,20 @@
 											<th>Name</th>
 											<th>Price</th>
 											<th>Delete</th>
+											<th>사진미리보기</th>
 										</tr>
 									</tfoot>
 									<tbody>
-										<tr>
-											<td>01</td>
-											<td><a href="#">양상추</a></td>
-											<td>300</td>
-											<td><a href="#">X</a></td>
-										</tr>
-
-										<tr>
-											<td>02</td>
-											<td><a href="#">토마토</a></td>
-											<td>300</td>
-											<td><a href="#">X</a></td>
-										</tr>
-
-										<tr>
-											<td>03</td>
-											<td><a href="#">패티</a></td>
-											<td>700</td>
-											<td><a href="#">X</a></td>
-										</tr>
-
-										<tr>
-											<td>04</td>
-											<td><a href="#">치즈</a></td>
-											<td>300</td>
-											<td><a href="#">X</a></td>
-										</tr>
-
-										<tr>
-											<td>05</td>
-											<td><a href="#">양파</a></td>
-											<td>300</td>
-											<td><a href="#">X</a></td>
-										</tr>
+										<c:forEach items="${toppingList}" var="tList" varStatus="status">
+											<tr data-no="${tList.toppingNo }">
+												<td>${tList.toppingNo}</td>
+												<td><a href="#">${tList.toppingName}</a></td>
+												<td>${tList.toppingPrice}</td>
+												<td><a href="#">X</a></td>
+												<td>${tList.toppingImg}</td>
+											</tr>
+										</c:forEach>
+										
 									</tbody>
 								</table>
 							</div>
@@ -268,7 +246,11 @@
 	<!-- Page level custom scripts -->
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/demo/datatables-demo.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/assets/js/admin/adminToping.js"></script>
 
+	<sript></sript>
 </body>
 
 </html>

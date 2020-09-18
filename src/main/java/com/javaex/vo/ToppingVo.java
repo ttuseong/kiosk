@@ -2,17 +2,23 @@ package com.javaex.vo;
 
 public class ToppingVo {
 	private int toppingNo;
-	private int sotreNo;
+	private int storeNo;
 	private String toppingName;
 	private int toppingPrice;
 	private String toppingImg;
 	
 	public ToppingVo() {}
 	
-	public ToppingVo(int toppingNo, int sotreNo, String toppingName, int toppingPrice, String toppingImg) {
+	public ToppingVo(String toppingName, int toppingPrice, String toppingImg) {
+		this.toppingName = toppingName;
+		this.toppingPrice = toppingPrice;
+		this.toppingImg = toppingImg;
+	}
+	
+	public ToppingVo(int toppingNo, int storeNo, String toppingName, int toppingPrice, String toppingImg) {
 		super();
 		this.toppingNo = toppingNo;
-		this.sotreNo = sotreNo;
+		this.storeNo = storeNo;
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
 		this.toppingImg = toppingImg;
@@ -26,12 +32,12 @@ public class ToppingVo {
 		this.toppingNo = toppingNo;
 	}
 
-	public int getSotreNo() {
-		return sotreNo;
+	public int getStoreNo() {
+		return storeNo;
 	}
 
-	public void setSotreNo(int sotreNo) {
-		this.sotreNo = sotreNo;
+	public void setStoreNo(int storeNo) {
+		this.storeNo = storeNo;
 	}
 
 	public String getToppingName() {
@@ -60,7 +66,7 @@ public class ToppingVo {
 
 	@Override
 	public String toString() {
-		return "ToppingVo [toppingNo=" + toppingNo + ", sotreNo=" + sotreNo + ", toppingName=" + toppingName
+		return "ToppingVo [toppingNo=" + toppingNo + ", storeNo=" + storeNo + ", toppingName=" + toppingName
 				+ ", toppingPrice=" + toppingPrice + ", toppingImg=" + toppingImg + "]";
 	}
 }

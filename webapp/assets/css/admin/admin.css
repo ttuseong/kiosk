@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-tr > th:nth-child(3), th:nth-child(4), th:nth-child(5){
+tr > th:nth-child(3), th:nth-child(4), th:nth-child(5) {
 	width: 80px!important;
     padding-left: 30px!important;
 	text-align:center!important;
@@ -42,11 +42,12 @@ tbody > tr > td:nth-child(2) > a {
 /* 토핑 정보 페이지 리스트 테이블 */
 /* no열 크기 */
 .adminToping-table > thead > tr > th:first-child {
-	width: 150px!important;
+	width: 100px!important;
 }
 
 /* name열 텍스트 정렬 */
 .adminToping-table > thead > tr > th:nth-child(2) {
+	width: 200px!important;
 	padding-left: 26px!important;
 	text-align: center!important;
 }
@@ -74,6 +75,26 @@ tbody > tr > td:nth-child(2) > a {
 	text-align: right!important;
 }
 
+/* kcal열 텍스트 정렬 */
+.adminToping-table > thead > tr > th:nth-child(4) {
+	text-align: right!important;
+    padding-right: 40px!important;
+}
+
+/* delete열 텍스트 정렬 */
+.adminToping-table > thead > tr > th:nth-child(5) {
+	text-align: right!important;
+    padding-right: 40px!important;
+}
+
+/* 사진열 텍스트 정렬 */
+.adminToping-table > thead > tr > th:nth-child(6) {
+	width: 100px!important;
+	text-align: right!important;
+    padding-right: 40px!important;
+}
+
+/* 토핑 css */
 /* 확인 버튼 */
 .adminToping {
 	width: 100px !important;
@@ -97,11 +118,6 @@ tbody > tr > td:nth-child(2) > a {
     margin-right: 10px;
  	margin-left: 10px;
  	display: inline-block;
-}
-
-#adminToppingP {
-	margin: auto;
-	margin-right: 10px;
 }
 
 

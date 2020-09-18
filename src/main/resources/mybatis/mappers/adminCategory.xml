@@ -43,7 +43,7 @@
 		]]>
 	</select>
 	
-	<!-- 페이지 categoryNo 값 가져오기 -->
+	<!-- 중복방지를 위해 categoryNo 값 가져오기 -->
 	<select id="selectAdminCateCount" parameterType="map" resultType="int">
 		<![CDATA[
 			SELECT
@@ -60,7 +60,7 @@
 		
 	</select>
 	
-	<!-- 카테고리 추가 -->
+	<!-- 카테고리 추가 if문은 update할때 필요함 (publicYn)-->
 	<select id="selectCateUpdate" parameterType="com.javaex.vo.CategoryVo" resultType="int">
 		<![CDATA[
 			 SELECT 

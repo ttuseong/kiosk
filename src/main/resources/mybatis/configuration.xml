@@ -7,7 +7,12 @@
     <mapper resource="mybatis/mappers/lotteria.xml" />
     <mapper resource="mybatis/mappers/kfc.xml" />
     <mapper resource="mybatis/mappers/adminMenu.xml" />
+
     <mapper resource="mybatis/mappers/adminCategory.xml"/>
     <mapper resource="mybatis/mappers/user.xml"/>
+
+
+    <mapper resource="mybatis/mappers/adminToping.xml" />
+
     </mappers>
 </configuration>
