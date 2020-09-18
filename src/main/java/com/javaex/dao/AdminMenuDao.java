@@ -1,5 +1,6 @@
 package com.javaex.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +43,42 @@ public class AdminMenuDao {
 		return sqlSession.selectOne("adminMenu.getMenuInfo", menuNo);
 	}
 	
+	// Dao 연관메뉴 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단)
+	public int getUseMenuCnt(int menuNo) {
+		System.out.println("dao(adminMenu) - 연관메뉴 개수 세기");
+		
+		return sqlSession.selectOne("adminMenu.getUseMenuCnt", menuNo);
+	}
+	
+	// Dao 해당 메뉴를 연관메뉴로 사용중인 메뉴 no 받아오기
+	public List<Integer> selectByUseMenu(int useMenu) {
+		System.out.println("dao(adminMenu) - 해당 메뉴를 연관메뉴로 쓰고 있는 메뉴 no 받아오기");
+		
+		List<Integer> selectByUseMenu = new ArrayList<Integer>();
+		
+		return selectByUseMenu;
+	}
+	
+	
 	// Dao 메뉴 추가
 	public int menuInsert(MenuVo menuVo) {
 		System.out.println("dao(adminMenu) - 메뉴 추가");
+
+		sqlSession.insert("adminMenu.menuInsert", menuVo);
+		int getMenuNo = menuVo.getMenuNo();
 		
-		return sqlSession.insert("adminMenu.menuInsert", menuVo);
+		return getMenuNo;
+	}
+	
+	// Dao 연관 메뉴 추가 
+	public int useInsert(int menuNo, int useMenu) {
+		System.out.println("dao(adminMenu) - 연관 메뉴 추가");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("menuNo", useMenu); // 연관 된 메뉴 (ex : 치킨 단품)
+		map.put("setNo", menuNo); // 현재 선택 된 메뉴 (ex : 치킨 3조각, 5조각)
+		
+		return sqlSession.insert("adminMenu.useInsert", map);
 	}
 	
 	// Dao 메뉴 수정
@@ -59,6 +91,17 @@ public class AdminMenuDao {
 	public int selectUseDefault(int menuNo) {
 		System.out.println("dao(adminMenu) - 디폴트 메뉴 확인");
 		return sqlSession.selectOne("adminMenu.selectDefaultCount", menuNo);
+	}	
+
+	// Dao 연관 메뉴 수정
+	public int useMenuUpdate(int menuNo, int useMenu) {
+		System.out.println("dao(adminMenu) - 연관 메뉴 수정");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("useMenu", useMenu); // 연관 된 메뉴 (ex : 치킨 단품)
+		map.put("menuNo", menuNo); // 현재 선택 된 메뉴 (ex : 치킨 3조각, 5조각)
+		
+		return sqlSession.update("adminMenu.useMenuUpdate", map);
 	}
 
 	// Dao 메뉴 삭제
@@ -66,6 +109,13 @@ public class AdminMenuDao {
 		System.out.println("dao(adminMenu) - 메뉴 삭제");
 
 		return sqlSession.delete("adminMenu.delMenu", menuNo);
+	}
+
+	// Dao 연관 메뉴 삭제
+	public int delUseMenu(int menuNo) {
+		System.out.println("dao(adminMenu) - 연관 메뉴 삭제");
+
+		return sqlSession.delete("adminMenu.delUseMenu", menuNo);
 	}
 	
 	// 해당 매장의 단위 넘버와 이름 가져오기

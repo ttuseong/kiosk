@@ -47,7 +47,7 @@ public class AdminMenuService {
 	}
 	
 	// Service 메뉴 추가
-	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo) {
+	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int useMenu) {
 		MenuVo menuVo;
 		
 		if(!file.getOriginalFilename().equals("")) {
@@ -75,14 +75,20 @@ public class AdminMenuService {
 			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "icon1.png", isSpecial, isChange, unitNo);
 		}
 		
+		if(useMenu != 0) { // useMenu를 선택한 경우
+			int menuNo = adminMenuDao.menuInsert(menuVo); // 메뉴 인서트 후 인서트 한 메뉴 넘버 받아오기
+			adminMenuDao.useInsert(menuNo, useMenu); // 연관메뉴 인서트
+		}
+		else { // useMenu를 선택하지 않은 경우
+			 adminMenuDao.menuInsert(menuVo); // 메뉴만 인서트
+		}
 		
-		return adminMenuDao.menuInsert(menuVo);
+		return 1;
 	}
 	
 	// Service 메뉴 수정
-	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo) {
+	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo, int useMenu) {
 		MenuVo menuVo;
-		System.out.println(unitNo);
 		if(!file.getOriginalFilename().equals("")) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
@@ -107,13 +113,23 @@ public class AdminMenuService {
 		} else {
 			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "", isSpecial, isChange, unitNo, menuNo);
 		}
-		
-		
+
+		int useMenuCnt = adminMenuDao.getUseMenuCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
+
+		if(useMenuCnt == 0) { // 해당 메뉴에 연관 메뉴가 없었던 상태였다면
+			adminMenuDao.useInsert(menuNo, useMenu);
+		}
+		else { // 기존에 연관 메뉴가 있었던 상태라면
+			if(useMenu == 0) { // useMenu를 선택하지 않은 경우
+				adminMenuDao.delUseMenu(menuNo); // 연관 메뉴 삭제
+			}
+			else { // 새로운 useMenu를 선택한 경우
+				adminMenuDao.useMenuUpdate(menuNo, useMenu); // 연관 메뉴 업데이트
+			}
+		}
+
 		adminMenuDao.menuUpdate(menuVo); // 메뉴 업데이트
-		System.out.println("service : " + menuVo.toString());
-		
-		// 업데이트 한 메뉴 정보 담기
-		MenuVo updateMenuInfo = adminMenuDao.getMenuInfo(menuVo.getMenuNo());
+		MenuVo updateMenuInfo = adminMenuDao.getMenuInfo(menuVo.getMenuNo()); // 업데이트 한 메뉴 정보 담기
 		
 		return updateMenuInfo;
 	}
@@ -189,18 +205,15 @@ public class AdminMenuService {
 	// Service 단위 모달 - 해당 단위를 사용중인 메뉴의 개수 세기
 	public List<String> countUnit(List<Integer> unitNo) {
 
-		int countUnit = 0;
 		List<String> unitName = new ArrayList<String>();
 		
-		for(int i = 0; i < unitNo.size(); i++) {
-			countUnit = adminMenuDao.countUnit(unitNo.get(i));
+		for(int i = 0; i < unitNo.size(); i++) { // 선택 된 단위 개수만큼 반복
+			int countUnit = adminMenuDao.countUnit(unitNo.get(i)); // 해당 단위를 사용중인 메뉴가 있는 지 검색
 
-			if(countUnit > 0) { // 사용중인 메뉴가 있을 경우 1 리턴
-				unitName.add(adminMenuDao.getUnitName(unitNo.get(i)));
+			if(countUnit > 0) { // 사용중인 메뉴가 있을 경우 countUnit에 1이 리턴되어 옴
+				unitName.add(adminMenuDao.getUnitName(unitNo.get(i))); // 사용중인 단위 이름을 리스트에 담아줌
 			}
 		}
-		
-		System.out.println(unitName.toString());
 		
 		return unitName;
 	}
@@ -208,9 +221,9 @@ public class AdminMenuService {
 	// Service 단위 모달 - 단위 삭제
 	public int delUnit(int delDecision, List<Integer> unitNo) {
 		
-		for(int i = 0; i < unitNo.size(); i++) {
-			if(delDecision > 0) {
-				adminMenuDao.updateUnitNo(unitNo.get(i)); // 해당 단위를 사용하고 있는 메뉴가 있을 경우 단위 넘버를 null값으로 초기화
+		for(int i = 0; i < unitNo.size(); i++) { // 선택 된 단위 개수만큼 반복
+			if(delDecision > 0) { // 해당 단위를 사용하고 있는 메뉴가 있을 경우
+				adminMenuDao.updateUnitNo(unitNo.get(i)); // 해당 단위를 사용중인 메뉴들의 단위 넘버를 null값으로 초기화
 			}
 
 			adminMenuDao.delUnitComponent(unitNo.get(i)); // 해당 단위의 데이터 모두 삭제해 줌

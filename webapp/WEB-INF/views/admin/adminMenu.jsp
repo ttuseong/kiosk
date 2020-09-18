@@ -202,6 +202,8 @@
 									<p class="normal">추천메뉴</p>
 									<input type="checkbox" class="isSpecial" id="newMenu" name="isSpecial" value="4">
 									<p class="normal">신메뉴</p>
+									<input type="checkbox" class="isSpecial" id="useMenu" value="">
+									<p class="normal">관련메뉴</p>
 								</div>
 
 								<!-- 추가구성 -->
@@ -289,11 +291,11 @@
 
 	<!-- 추가 구성 목록 모달 -->
 	<div class="modal" id="unitListModal">
-		<div class="modal-dialog" id="unitListModal-dialog">
+		<div class="modal-dialog">
 			<div class="modal-content" id="unitListModal-content">
-				<div class="modal-header" id="unitListModal-header">
-					<p class="modal-title" id="unitListModal-title">추가구성 목록</p>
-					<i class="fas fa-times unitListModal-close"></i>
+				<div class="modal-header adminModal-header">
+					<p class="modal-title adminModal-title">추가구성 목록</p>
+					<i class="fas fa-times adminModal-close" id="unitListModal-close"></i>
 				</div>
 
 				<!-- 모달 바디 -->
@@ -317,8 +319,8 @@
 				</div>
 				<!-- 모달 바디 끝 -->
 
-				<div class="modal-footer" id="unitListModal-footer">
-					<div class="adminMenu-footerBtnContainer">
+				<div class="modal-footer adminModal-footer" id="unitListModal-footer">
+					<div class="adminModal-footerBtnContainer">
 						<a href="#"
 							class="btn btn-secondary btn-icon-split adminMenu-unitDel" id="adminMenu-unitDel"> <span
 							class="text">선택 구성 삭제</span>
@@ -340,15 +342,15 @@
 	<div class="modal" id="unitManagerModal">
 		<div class="modal-dialog" id="unitManagerModal-dialog">
 			<div class="modal-content" id="unitManagerModal-content">
-				<div class="modal-header" id="unitManagerModal-header">
-					<p class="modal-title" id="unitManagerModal-title">구성 추가/수정</p>
-					<i class="fas fa-times unitManagerModal-close"></i>
+				<div class="modal-header adminModal-header">
+					<p class="modal-title adminModal-title">구성 추가/수정</p>
+					<i class="fas fa-times adminModal-close" id="unitManagerModal-close"></i>
 					<!-- 클로즈 버튼 -->
 				</div>
 
 				<!-- 모달 바디 -->
-				<div class="modal-body" id="unitManagerModal-body">
-					<div class="unitManagerModal-inputAndDropDownContainer">
+				<div class="modal-body unitManagerModal-body adminModal-body">
+					<div class="unitManagerModal-inputAndDropDownContainer adminModal-inputAndDropDownContainer">
 						<div class="unitManagerModal-unitName">
 							<!-- 추가 구성 이름 -->
 							<p>이름</p>
@@ -406,8 +408,8 @@
 				<!-- 모달 바디 끝 -->
 
 				<!-- 모달 푸터 -->
-				<div class="modal-footer" id="unitManagerModal-footer">
-					<div class="adminMenu-footerBtnContainer">
+				<div class="modal-footer adminModal-footer" id="unitManagerModal-footer">
+					<div class="adminModal-footerBtnContainer">
 						<a href="#"
 							class="btn btn-secondary btn-icon-split adminMenu-unitDel unitManager-cancle">
 							<span class="text">취소</span>
@@ -429,6 +431,66 @@
 	<!-- /.modal -->
 	<!-- 구성 추가 / 수정 모달 끝 -->
 
+	<!-- 연관메뉴 모달 -->
+	<div class="modal" id="useMenuModal">
+		<div class="modal-dialog adminModal-dialog">
+			<div class="modal-content adminModal-content" id="useMenuModal-content">
+				<div class="modal-header adminModal-header">
+					<p class="modal-title adminModal-title">관련 된 메뉴</p>
+					<i class="fas fa-times adminModal-close" id="useMenuModal-close"></i>
+					<!-- 클로즈 버튼 -->
+				</div>
+
+				<!-- 모달 바디 -->
+				<div class="modal-body adminModal-body" style="padding-bottom: 25px;">
+					<div class="adminModal-inputAndDropDownContainer">
+						<div class="adminModal-unitComponent" id="">
+							<!-- 메뉴 드롭다운 -->
+							<div class="unitManagerModal-menuDropdown">
+								<div class="dropdown unitManagerModal-basicInfoDropdown useMenuModal-basicInfoDropdown">
+									<input type="hidden" id="selectMenuNo_" value="">
+									<button class="btn btn-default dropdown-toggle" type="button"
+										id="dropdownMenu" data-toggle="dropdown" aria-expanded="true"
+										style="margin-right: 0; width: 250px;">
+										메뉴를 선택하세요. <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" id="useMenuModal-menuDropdownUl" role="menu"
+										aria-labelledby="dropdownMenu">
+										<!-- 메뉴리스트 들어갈 자리 -->
+									</ul>
+								</div>
+							</div>
+							<!-- 메뉴 드롭다운 끝 -->
+						</div>
+						<!-- 메뉴 드롭다운 끝 -->	
+						
+					</div>
+					<!-- end of test -->
+				</div>
+				<!-- 모달 바디 끝 -->
+
+				<!-- 모달 푸터 -->
+				<div class="modal-footer adminModal-footer" id="useMenuModal-footer">
+					<div class="adminModal-footerBtnContainer" id="useMenuModal-footerBtnContainer">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split useMenuModal-cancle">
+							<span class="text">취소</span>
+						</a><a href="#"
+							class="btn btn-success btn-icon-split useMenuModal-submit">
+							<span class="text">확인</span>
+						</a>
+					</div>
+				</div>
+				<!-- 모달 푸터 끝 -->
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- 연관메뉴 모달 끝 -->
+	
 	<!-- Bootstrap core JavaScript-->
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
@@ -619,7 +681,7 @@
 					$("#adminDropdownMenuList").prepend(str);
 				}
 				else { // 메뉴가 하나라도 있을 경우 메뉴 리스트 출력
-					
+				
 					for (var i = 0; i < menuList.length; i++) {
 						menuListRender(menuList[i], $("#adminDropdownMenuList"));
 					}
@@ -643,6 +705,7 @@
 
 	// 메뉴 리스트 html 그리기 함수
 	function menuListRender(menuList, selector) {
+		
 		var str = '';
 
 		str += '<li role="presentation" id="menuNo_' + menuList.menuNo + '"';
@@ -700,7 +763,7 @@
 				data : { menuNo : menuNo },
 				dataType : "json",
 				success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
-					
+					console.log(menuVo);
 					menuInfo(menuVo); // 메뉴 정보 인풋에 출력
 				
 				},
@@ -719,6 +782,7 @@
 		$("#menuDesc").val(menuVo.menuDesc);
 		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/kfc/"+menuVo.menuImg);
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
+		$('#useMenu').val(""); // 연관메뉴 value 초기화
 		
 		// isSpecial => 1 : 프로모션 / 2 : 추천 / 4 : 신메뉴
 		switch (menuVo.isSpecial){
@@ -753,13 +817,22 @@
 		        break;    
 		}
 		
+		// 변경 가능한 메뉴
 		if(menuVo.isChange == 1) {
 			$('input:checkbox[id="isChange"]').prop("checked", true); 
 		}
 
-		// 추가 구성 체크
+		// 추가 구성
 		if(menuVo.unitNo != null && menuVo.unitNo != 0) {
 			$('input:checkbox[id="unitInfo_check_' + menuVo.unitNo + '"]').prop("checked", true); 
+		}
+		
+		console.log(menuVo.useMenu);
+
+		// 연관메뉴
+		if(menuVo.useMenu != null && menuVo.useMenu != 0) {
+			$('input:checkbox[id="useMenu"]').prop("checked", true); // 연관메뉴 체크
+			$('#useMenu').val(menuVo.useMenu); // 연관메뉴 value에 usemenu 넘버 넘겨주기
 		}
 	}
 
@@ -784,15 +857,15 @@
 					type : "post",
 					data : { menuNo : menuNo },
 					dataType : "json",
-					success : function(cnt) { /*성공시 처리해야될 코드 작성*/
-						if(cnt == -1){
+					success : function(result) { /*성공시 처리해야될 코드 작성*/
+						if(result == -1){
 							alert("추가 구성 품목으로 사용중입니다");
 							return;
 						} else{
 							$("html").scrollTop(0); // 화면 최상단으로 이동
 							alert("삭제가 완료되었습니다.");
-							$("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-							$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
+							// $("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+							// $("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
 							
 							// 인풋박스 모두 비워주기
 							resetInput();
@@ -821,11 +894,11 @@
 		
 		// menuVo의 isSpecial 값을 위한 부분
 		var isSpecial = 0; // 아무 것도 체크되지 않은 상태에서는 0임
-		var check_count = document.getElementsByClassName("isSpecial").length; // 체크박스 개수 알아옴
+		var check_count = document.getElementsByName("isSpecial").length; // 체크박스 개수 알아옴
 		
         for (var i = 0; i < check_count; i++) { // 체크박스 개수만큼 반복
-            if (document.getElementsByClassName("isSpecial")[i].checked == true) {  // 체크 된 박스일 경우
-            	var checked_isSpecial = document.getElementsByClassName("isSpecial")[i].value; // 체크 된 박스의 value 값 가져옴
+            if (document.getElementsByName("isSpecial")[i].checked == true) {  // 체크 된 박스일 경우
+            	var checked_isSpecial = document.getElementsByName("isSpecial")[i].value; // 체크 된 박스의 value 값 가져옴
             	isSpecial += parseInt(checked_isSpecial); // 체크 된 값 더해줌
             }
         }
@@ -847,6 +920,7 @@
 		imgData.append("isChange", isChange);
 		imgData.append("menuDesc", $("#menuDesc").val());
 		imgData.append("unitNo", unitNo);
+		imgData.append("useMenu", $("#useMenu").val());
 
 		if(menuNo != 0){
 			imgData.append("menuNo", menuNo);
@@ -987,7 +1061,7 @@
 	});
 	
 	// 추가 구성 리스트 모달 닫기
-	$(".unitListModal-close").on("click", function() {
+	$("#unitListModal-close").on("click", function() {
 		$("#unitListModal").modal("hide");
 	});
 	
@@ -1176,7 +1250,7 @@
 
 					$(".unitManagerModal-inputAndDropDownContainer").append(str);
 
-					renderMenuList($("#cateNo_" + (i + 1)).val(), $("#unitModifyMenuList_" + i)); // 드롭다운의 카테고리 리스트 뿌리기
+					getMenuList($("#cateNo_" + (i + 1)).val(), $("#unitModifyMenuList_" + i)); // 드롭다운의 카테고리 리스트 뿌리기
 				}
 
 				renderCateList(storeNo,".unitManagerModal-dropdownCate"); // 드롭다운의 카테고리 리스트 뿌리기
@@ -1211,11 +1285,11 @@
 		selector.children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
 		selector.children('input[id^="selectMenuNo_"]').val(""); // 메뉴 넘버 초기화
 		
-		renderMenuList(cateNo, selector.children('ul'));
+		getMenuList(cateNo, selector.children('ul'));
 	});
 	
 	// 단위 모달 - 메뉴 리스트 받아오기 함수
-	function renderMenuList(cateNo, selector) {
+	function getMenuList(cateNo, selector) {
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminMenuList",
 			type : "post",
@@ -1227,7 +1301,7 @@
 						
 					str += '<li role="presentation" id="menuNo_0" value="0"><a role="menuitem" tabindex="-1">메뉴가 없습니다.</a></li>';
 
-					$(".unitAddDropdownMenuList").prepend(str);
+					selector.prepend(str);
 				}
 				else { // 메뉴가 하나라도 있을 경우 메뉴 리스트 출력
 					for (var i = 0; i < menuList.length; i++) {
@@ -1243,7 +1317,7 @@
 	}
 
 	// 메뉴 리스트에서 메뉴 선택 시
-	$(".unitManagerModal-inputAndDropDownContainer").on("click", ".unitManagerModalMenuList>li", function() {
+	$(".adminModal-inputAndDropDownContainer").on("click", "li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
 
 		var id = $(this).attr('id'); // 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
@@ -1410,36 +1484,36 @@
 	$("#adminMenu-unitDel").on("click", function() {
 		console.log("삭제 버튼 클릭");
 		
-		var unitNo = new Array();
-		var unitName = '';
+		var unitNo = new Array(); // 선택된 unitNo을 담아 줄 배열
+		var unitName = ''; // 삭제 전 선택 된 unitName을 출력해주기 위해서 string 형태의 변수를 선언 - 이 곳에 선택 된 unitName을 담아줄 것임
 		
-		$("input[id^='check_']:checked").each(function() {
-			unitName += "\n[" + $(this).parent().next().text() + "]"; 
-			unitNo.push($(this).val()); 
+		$("input[id^='check_']:checked").each(function() { // id가 [ check_ ]로 시작하는 input 태그 중 체크 된 요소를 반복하여 찾음
+			unitName += "\n[" + $(this).parent().next().text() + "]"; // unitName 담기
+			unitNo.push($(this).val()); // unitNo 담기 (배열이기 때문에 .push() 사용)
 		});
 		
-		if(unitNo == '') {
+		if(unitNo == '') { // 단위를 선택하지 않은 상태로 삭제 버튼 클릭시 알림창 띄움
 			alert("단위를 선택하세요.")
 		}
-		else {
-			if (window.confirm("선택하신" + unitName + "\n단위를 삭제하시겠습니까?")) { // 단위를 삭제 할 경우
+		else { // 단위를 삭제 할 경우
+			if (window.confirm("선택하신" + unitName + "\n단위를 삭제하시겠습니까?")) { // 선택 된 UnitName을 출력하여 다시 한 번 확인시켜 줌
 				$.ajax({ // 현재 해당 단위를 사용 중인 메뉴가 있는지 검사
 					url : "${pageContext.request.contextPath}/admin/countUnit",
 					type : "post",
 					data : { unitNo: unitNo },
 					dataType : "json",
-					success : function(result) {
+					success : function(result) { // result = 현재 사용중인 단위 이름들이 리스트 형태로 넘어옴
 						unitName = '';
 						
 						if(result.length == 0) { // 현재 해당 단위를 사용중인 메뉴가 없을 경우
-							console.log("삭제가 완료되었습니다.");
 							unitDel(0, unitNo); // 메뉴 삭제
 						}
 						else { // 현재 해당 단위를 사용중인 메뉴가 있을 경우 경고창으로 한 번 더 묻기
 							for(var i = 0; i < result.length; i++) {
-								unitName += "[" + result[i] + "] ";
+								unitName += "[" + result[i] + "] "; // 사용중인 unitName 담아주기
 							}
 						
+							// 사용중인 UnitName을 출력하여 정말 삭제할 것인지 확인
 							if (window.confirm(unitName + "\n단위를 사용중인 메뉴가 있습니다. 정말 삭제하시겠습니까?")) {
 								unitDel(1, unitNo); // 메뉴 삭제
 							}
@@ -1454,14 +1528,14 @@
 	});
 	
 	// 단위 삭제 함수
-	function unitDel(delDecision, unitNo) {
+	function unitDel(delDecision, unitNo) { // 해당 단위를 사용중인 메뉴가 없을 경우 delDecision = 0, 있을 경우 delDecision = 1
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/unitDel",
 			type : "post",
 			data : { delDecision: delDecision, unitNo: unitNo },
 			dataType : "json",
 			success : function(result) {
-				for(var i = 0; i < unitNo.length; i++) {
+				for(var i = 0; i < unitNo.length; i++) { // 선택한 단위의 개수만큼 반복
 					$("#unitNo_" + unitNo[i]).remove(); // 해당 단위를 모달 화면에서 삭제
 					$("#unitInfo_" + unitNo[i]).remove(); // 해당 단위를 메뉴 정보 화면에서 삭제
 				}
@@ -1497,8 +1571,46 @@
 	});
 	
 	/* 구성 추가/수정 모달 닫기 */
-	$(".unitManagerModal-close, .unitManager-cancle").on("click", function() {
+	$("#unitManagerModal-close, .unitManager-cancle").on("click", function() {
 		$("#unitManagerModal").modal("hide");
+	});
+	
+	/* 연관 메뉴 모달 열기 */
+	$("#useMenu").on("click", function() {
+		console.log("연관 메뉴 모달 열기");
+		$("#useMenuModal-menuDropdownUl").children('li').remove(); // 메뉴 리스트 먼저 모두 비워주기
+		$("#useMenuModal-menuDropdownUl").prev().text("메뉴를 선택해주세요."); // 메뉴 리스트 먼저 모두 비워주기
+		
+		if($("#useMenu").is(":checked")) { // 연관메뉴 체크박스가 체크 된 경우
+			$("#useMenuModal").modal();
+			var cateNo = $("#selectCateNo").val(); // 선택한 카테고리 값 받아오기
+			if(cateNo == 0) { // 카테고리가 선택되지 않은 경우 [카테고리를 먼저 선택하세요.] 출력
+				var str = '';
+			
+				str += '<li role="presentation"><a role="menuitem"';
+				str += '	tabindex="-1">카테고리를 선택하세요.</a></li>';
+				
+				$("#useMenuModal-menuDropdownUl").prepend(str);
+			}
+			else { // 카테고리가 선택 된 경우
+				getMenuList(cateNo, $("#useMenuModal-menuDropdownUl")); // 해당 카테고리에 속해있는 메뉴 리스트 뿌려주기 
+			}
+		}
+		else { // 체크 해제 하면 체크박스 value 초기화
+			$("#useMenu").val(""); 
+		}
+	});	
+	
+	// 확인 버튼
+	$(".useMenuModal-submit").on("click", function() {
+		var menuNo = $(".useMenuModal-basicInfoDropdown").children('input').val(); // 모달에서 선택 된 메뉴 넘버 가져오기
+		$("#useMenu").val(menuNo); // 메뉴 정보 페이지의 연관메뉴 체크박스 value 값에 메뉴 넘버 넘겨줌
+		$("#useMenuModal").modal("hide"); // 모달 닫기
+	});
+
+	// 취소&닫기 버튼
+	$("#useMenuModal-close, .useMenuModal-cancle").on("click", function() {
+		$("#useMenuModal").modal("hide");
 	});
 	
 </script>

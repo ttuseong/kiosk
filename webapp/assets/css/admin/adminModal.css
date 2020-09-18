@@ -17,8 +17,7 @@
 }
 
 /* / 모달 헤더 / */
-#unitListModal-header,
-#unitManagerModal-header {
+.adminModal-header {
     min-height: 50px;
     border: none;
     text-align: center;
@@ -26,8 +25,7 @@
 }
 
 /* 헤더 클로즈 버튼 */
-.unitListModal-close,
-.unitManagerModal-close {
+.adminModal-close {
 	color: white;
 	font-size: 20px;
 	text-align: right;
@@ -35,8 +33,7 @@
 }
 
 /* / 모달 제목의 폰트 / */
-#unitListModal-title,
-#unitManagerModal-title {
+.adminModal-title {
     color: white;
     font-size: 17px;
 	font-weight: bold;
@@ -85,25 +82,14 @@
 	text-align: left!important;
 }
 
-/* / 모달 푸터 / */
-#unitListModal-footer {
-    position: relative;
-    
-    height: 75px;
-    padding: 0px;
-	border: none;
-    text-align: center;
-}
-
 /* 수정/적용 버튼 */
-.adminMenu-unitListBtnContainer, .adminMenu-footerBtnContainer {
+.adminMenu-unitListBtnContainer, .adminModal-footerBtnContainer {
 	width: 100%;
     text-align: center;
     margin: auto;
 }
 
-.adminMenu-unitListBtnContainer > .adminMenu-unitListModify,
-.adminMenu-unitListBtnContainer > .adminMenu-unitListSelect{
+.adminMenu-unitListBtnContainer > .btn{
 	width: 55px!important;
     height: 33px!important;
     margin: 0 3px;
@@ -111,29 +97,33 @@
 }
 
 /* 삭제 / 목록 추가 버튼 */
-.adminMenu-footerBtnContainer > .adminMenu-unitDel,
-.adminMenu-footerBtnContainer > .adminMenu-unitAdd{
+.adminModal-footerBtnContainer > .btn{
 	width: 120px!important;
     height: 33px!important;
     margin: 0 3px;
     font-size: 15px;
 }
 
-/* 버튼 색상 */
-.adminMenu-unitListBtnContainer > .adminMenu-unitListSelect,
-.adminMenu-footerBtnContainer > .adminMenu-unitAdd {
-	background-color: white;
-    color: #1cc88a;
+#isConnectModal-footerBtnContainer > .btn {
+	width: 80px!important;
 }
 
-.adminMenu-footerBtnContainer > .adminMenu-unitDel,
-.adminMenu-unitListBtnContainer > .adminMenu-unitListModify {
-	background-color: white;
-    color: #858796;
+/* 확인 버튼 배경 및 폰트 색상 */
+.adminMenu-unitListBtnContainer > .adminMenu-unitListSelect,
+.adminModal-footerBtnContainer > .btn:last-child {
+	background-color: white!important;
+    color: #1cc88a!important;
+}
+
+/* 취소 버튼 배경 및 폰트 색상 */
+.adminMenu-unitListBtnContainer > .adminMenu-unitListModify,
+.adminModal-footerBtnContainer > .btn:first-child {
+	background-color: white!important;
+    color: #858796!important;
 }
 
 /* 푸터 버튼 정렬 */
-.adminMenu-footerBtnContainer {
+.adminModal-footerBtnContainer {
     position: absolute;
     top: 0;
 }
@@ -149,7 +139,7 @@
 }
 
 /* 모달 바디 */
-#unitManagerModal-body {
+.adminModal-body {
 	width: 100%;
 	min-height: 100%;
 	padding: 40px;
@@ -176,7 +166,7 @@
 }
 
 /* 인풋 박스 네임 (이름, 추가구성 등) */
-#unitManagerModal-body > div > div > p {
+.adminModal-body > div > div > p {
     width: 85px;
     margin: 0 15px 0 0;
     font-weight: bold;
@@ -184,19 +174,19 @@
     font-size: 16px;
 }
 
-#unitManagerModal-body > div > div {
+.unitManagerModal-body > div > div {
     width: 600px;
 	margin-bottom: 15px;
     text-align: left;
 }
 
-#unitManagerModal-body > div > div:nth-child(n+3) {
+.adminModal-body > div > div:nth-child(n+3) {
     margin-left: 104px!important;
     width: auto!important;
 }
 
 
-#unitManagerModal-body > div > div:last-child {
+.adminModal-body > div > div:last-child {
 	margin-bottom: 0px!important;
 }
 
@@ -238,9 +228,8 @@
 	height: 30px;
 }
 
-
 /* / 모달 푸터 / */
-#unitManagerModal-footer {
+.adminModal-footer {
     position: relative;
     
     height: 75px;
@@ -249,6 +238,16 @@
     text-align: center;
 }
 
-.adminMenu-footerBtnContainer > button {
+.adminModal-footerBtnContainer > button {
     width: 90px!important;
+}
+
+/* 연관 모달 */
+/* 드롭다운 */
+.isConnectModal-basicInfoDropdown > button {
+	width: 250px;
+}
+
+.isConnectModal-basicInfoDropdown > ul > li {
+	width: 247px;
 }

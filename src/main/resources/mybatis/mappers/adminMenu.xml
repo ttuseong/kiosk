@@ -18,13 +18,7 @@
 		<![CDATA[
 			select  menuno,
 			        categoryno,
-			        menuname,
-			        menudesc,
-			        menuprice,
-			        menuimg,
-			        isspecial,
-			        ischange,
-			       	unitno
+			        menuname
 			from menu
 			where categoryno =  #{categoryNo}
 		]]>
@@ -33,31 +27,52 @@
 	<!-- 메뉴 정보 불러오기 -->
 	<select id="getMenuInfo" parameterType="int" resultType="com.javaex.vo.MenuVo">
 		<![CDATA[
-			select  menuno,
-			        categoryno,
-			        menuname,
-			        menudesc,
-			        menuprice,
-			        menuimg,
-			        isspecial,
-			        ischange,
-			       	unitno
-			from menu
-			where menuno = #{menuNo}
+			select  m.menuno,
+			        m.categoryno,
+			        m.menuname,
+			        m.menudesc,
+			        m.menuprice,
+			        m.menuimg,
+			        m.isspecial,
+			        m.ischange,
+			        m.unitno,
+			        u.menuno as usemenu
+			from menu m left outer join usemenu u on m.menuno = u.setno
+			where m.menuno = #{menuNo}
 		]]>
 	</select>
 	
+	<!-- 연관메뉴 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단) -->
+	<select id="getUseMenuCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(menuno)
+			from usemenu
+			where setno = #{menuNo}
+		]]>
+	</select>
 	<!-- 메뉴 추가 -->
 	<insert id="menuInsert" parameterType="com.javaex.vo.MenuVo">
+		<selectKey resultType="int" keyProperty="menuNo" order="BEFORE">
+	        select menu_seq.nextval
+			from dual
+	    </selectKey>
+	    
 		<![CDATA[
-			insert into menu values(menu_seq.nextval, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, #{menuImg}, #{isSpecial}, #{isChange}, 
+			insert into menu values(#{menuNo}, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, #{menuImg}, #{isSpecial}, #{isChange}, 
 		]]>
 		<if test="unitNo == 0">
-			null)
+			null, 0)
 		</if>
 		<if test="unitNo != 0">
-			#{unitNo})
+			#{unitNo}, 0)
 		</if>
+	</insert>
+	
+	<!-- 연관 메뉴 추가 -->
+	<insert id="useInsert" parameterType="map">
+		<![CDATA[
+			insert into usemenu values(#{menuNo}, #{setNo}) 
+		]]>
 	</insert>
 
 	<!-- 메뉴 수정 -->
@@ -82,6 +97,15 @@
 		]]>
 	</update>
 	
+	<!-- 연관 메뉴 수정 -->
+	<update id="useMenuUpdate" parameterType="map">
+		<![CDATA[
+			update usemenu
+			set menuno = #{useMenu}
+			where setNo = #{menuNo}
+		]]>
+	</update>
+	
 	<!-- 디폴트 메뉴 카운트 -->
 	<select id="selectDefaultCount" parameterType="int" resultType="int">
 		<![CDATA[
@@ -99,6 +123,14 @@
 		<![CDATA[
 			delete from menu
 			where menuNo = #{menuNo}
+		]]>
+	</delete>
+	
+	<!-- 연관 메뉴 삭제 -->
+	<delete id="delUseMenu" parameterType="int">
+		<![CDATA[
+			delete from usemenu
+			where setNo = #{menuNo}
 		]]>
 	</delete>
 	

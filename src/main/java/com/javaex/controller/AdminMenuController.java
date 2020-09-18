@@ -65,11 +65,10 @@ public class AdminMenuController {
 	@RequestMapping("/adminAddeMenu")
 	public int adminAddeMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
-			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo) {
+			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo,
+			@RequestParam(value="useMenu", defaultValue="0") int useMenu) {
 		
-			System.out.println(unitNo);
-			
-		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo);
+		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, useMenu);
 	}
 	
 	// 메뉴 수정
@@ -77,10 +76,11 @@ public class AdminMenuController {
 	@RequestMapping("/adminUpdateMenu")
 	public MenuVo adminUpdateMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
-			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo, @RequestParam("menuNo") int menuNo) {
+			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo, @RequestParam("menuNo") int menuNo,
+			@RequestParam(value="useMenu", defaultValue="0") int useMenu) {
 
-		MenuVo updateMenuInfo = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo);
-
+		MenuVo updateMenuInfo = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo, useMenu);
+	
 		// 업데이트 한 메뉴 정보 보내기
 		return updateMenuInfo;
 	}
