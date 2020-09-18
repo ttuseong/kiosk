@@ -853,22 +853,25 @@
 			}
 			else {
 				$.ajax({
-					url : "${pageContext.request.contextPath}/admin/adminDelMenu",
+					url : "${pageContext.request.contextPath}/admin/getUseMenuInfo",
 					type : "post",
 					data : { menuNo : menuNo },
 					dataType : "json",
-					success : function(result) { /*성공시 처리해야될 코드 작성*/
-						if(result == -1){
-							alert("추가 구성 품목으로 사용중입니다");
-							return;
+					success : function(useMenuList) { /*성공시 처리해야될 코드 작성*/
+						var str = '';
+					
+						if(useMenuList.length > 0){
+							for(var i = 0; i < useMenuList.length; i++){
+								str += '[' + useMenuList[i] + ']\n';
+							}
+							if(window.confirm("해당 메뉴를 추가 구성품으로 사용중인\n" + str + "메뉴의 연관메뉴도 삭제됩니다.\n\n삭제하시겠습니까?")) {
+								delMenu(1, menuNo);
+							}
+							else {
+								$("html").scrollTop(0); // 화면 최상단으로 이동
+							}
 						} else{
-							$("html").scrollTop(0); // 화면 최상단으로 이동
-							alert("삭제가 완료되었습니다.");
-							// $("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
-							// $("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
-							
-							// 인풋박스 모두 비워주기
-							resetInput();
+							delMenu(0, menuNo);
 						}
 						
 					},
@@ -879,6 +882,34 @@
 			}
 		}
 	});
+	
+	// 메뉴 삭제 함수
+	function delMenu(delDecision, menuNo) {
+		$.ajax({
+			url : "${pageContext.request.contextPath}/admin/adminDelMenu",
+			type : "post",
+			data : { delDecision: delDecision, menuNo : menuNo },
+			dataType : "json",
+			success : function(result) { /*성공시 처리해야될 코드 작성*/
+				if(result == -1){
+					alert("추가 구성 품목으로 사용중입니다");
+					return;
+				} else{
+					$("html").scrollTop(0); // 화면 최상단으로 이동
+					alert("삭제가 완료되었습니다.");
+					$("#adminDropdownMenuName").children('button').text("메뉴를 선택하세요."); // 메뉴 드롭다운 타이틀 초기화
+					$("#menuNo_" + menuNo).remove();  // 해당 메뉴 리스트에서 삭제
+					
+					// 인풋박스 모두 비워주기
+					resetInput();
+				}
+				
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+	}
 
 	/* 메뉴 수정 & 추가 */
 	$(".adminMenu-menuSubmitBtn").on("click", function() {

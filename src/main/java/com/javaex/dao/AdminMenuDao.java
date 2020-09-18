@@ -50,15 +50,14 @@ public class AdminMenuDao {
 		return sqlSession.selectOne("adminMenu.getUseMenuCnt", menuNo);
 	}
 	
-	// Dao 해당 메뉴를 연관메뉴로 사용중인 메뉴 no 받아오기
-	public List<Integer> selectByUseMenu(int useMenu) {
-		System.out.println("dao(adminMenu) - 해당 메뉴를 연관메뉴로 쓰고 있는 메뉴 no 받아오기");
+	// Dao 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
+	public List<MenuVo> getUseMenuInfo(int menuNo) {
+		System.out.println("dao(adminMenu) - 해당 메뉴를 연관메뉴로 쓰고 있는 메뉴넘버와 이름 받아오기");
 		
-		List<Integer> selectByUseMenu = new ArrayList<Integer>();
+		List<MenuVo> useMenuList = sqlSession.selectList("adminMenu.getUseMenuInfo", menuNo);
 		
-		return selectByUseMenu;
+		return useMenuList;
 	}
-	
 	
 	// Dao 메뉴 추가
 	public int menuInsert(MenuVo menuVo) {
@@ -110,12 +109,16 @@ public class AdminMenuDao {
 
 		return sqlSession.delete("adminMenu.delMenu", menuNo);
 	}
-
-	// Dao 연관 메뉴 삭제
-	public int delUseMenu(int menuNo) {
+	
+	// Dao 해당 메뉴를 연관 메뉴로 사용하고 있는 메뉴의 연관메뉴 삭제
+	public int delUseMenu(String column, int menuNo) {
 		System.out.println("dao(adminMenu) - 연관 메뉴 삭제");
-
-		return sqlSession.delete("adminMenu.delUseMenu", menuNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("column", column);
+		map.put("menuNo", menuNo);
+		
+		return sqlSession.delete("adminMenu.delUseMenu", map);
 	}
 	
 	// 해당 매장의 단위 넘버와 이름 가져오기
