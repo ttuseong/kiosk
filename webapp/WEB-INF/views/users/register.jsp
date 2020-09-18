@@ -21,6 +21,7 @@
   <link href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
   
   <!-- 자바스크립트 -->
+  <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
   <script type="text/javascript" src="/kiosk/assets/js/users/register.js"></script>
 
 </head>
@@ -39,25 +40,17 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
               </div>
-              <form class="user">
+              <form class="user" action="${pageContext.request.contextPath}/users/registerComplete" method ="get">
                 <div class="form-group row">
                 	<div class="col-sm-12">
-                    	<input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="이름을 입력하세요">
+                    	<input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="아이디를 입력하세요"name="userId">
                 	</div>
                 </div>
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="이메일 주소를 입력하세요">
+                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요"name="userPW">
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요">
-                  </div>
-                  <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="비밀번호를 한번 더 입력하세요">
-                  </div>
-                </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">회원가입하기</a>
-                
+                <button type = "submit" class = "btn btn-primary btn-user btn-block" style="color:white;"> 회원가입하기 </button>
+               
               </form>
               <hr>
               <div class="text-center">

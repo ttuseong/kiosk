@@ -19,6 +19,10 @@
 
   <!-- Custom styles for this template-->
   <link href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
+  
+  <!-- 자바스크립트 -->
+  <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="/kiosk/assets/js/users/login.js"></script>
 
 </head>
 
@@ -39,17 +43,16 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">환영합니다!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">키오스크 관리자 로그인</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" action="${pageContext.request.contextPath}/users/loginComplete" method="post">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="이메일을 입력하세요...">
+                      <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="아이디를 입력하세요."name = "userId">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요" name = "userPw">
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">로그인하기</a>
-                    
+                    <button type="submit" class="btn btn-primary btn-user btn-block">로그인하기</button>
                   </form>
                   <div class="text-center">
                     <a class="small" href="${pageContext.request.contextPath}/users/register">회원가입을 하시겠습니까?</a>
