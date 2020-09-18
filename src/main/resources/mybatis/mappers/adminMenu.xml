@@ -50,6 +50,17 @@
 			where setno = #{menuNo}
 		]]>
 	</select>
+	
+	<!-- 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기 -->
+	<select id="getUseMenuInfo" parameterType="int" resultType="String">
+		<![CDATA[
+			select m.menuName    
+			from useMenu u, menu m
+			where u.setNo = m.menuNo
+			and u.menuNo = #{menuNo}
+		]]>
+	</select>
+	
 	<!-- 메뉴 추가 -->
 	<insert id="menuInsert" parameterType="com.javaex.vo.MenuVo">
 		<selectKey resultType="int" keyProperty="menuNo" order="BEFORE">
@@ -127,11 +138,16 @@
 	</delete>
 	
 	<!-- 연관 메뉴 삭제 -->
-	<delete id="delUseMenu" parameterType="int">
+	<delete id="delUseMenu" parameterType="map">
 		<![CDATA[
 			delete from usemenu
-			where setNo = #{menuNo}
 		]]>
+		<if test="column == 'menuNo'">
+			where menuNo = #{menuNo}
+		</if>
+		<if test="column == 'setNo'">
+			where setNo = #{menuNo}
+		</if>
 	</delete>
 	
 	<!-- 해당 매장의 단위 정보와 이름 가져옴 -->

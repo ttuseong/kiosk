@@ -121,7 +121,7 @@ public class AdminMenuService {
 		}
 		else { // 기존에 연관 메뉴가 있었던 상태라면
 			if(useMenu == 0) { // useMenu를 선택하지 않은 경우
-				adminMenuDao.delUseMenu(menuNo); // 연관 메뉴 삭제
+				adminMenuDao.delUseMenu("setNo", menuNo); // 연관 메뉴 삭제
 			}
 			else { // 새로운 useMenu를 선택한 경우
 				adminMenuDao.useMenuUpdate(menuNo, useMenu); // 연관 메뉴 업데이트
@@ -133,14 +133,30 @@ public class AdminMenuService {
 		
 		return updateMenuInfo;
 	}
+
+	// Service 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
+	public List<MenuVo> getUseMenuInfo(int menuNo) {
+		List<MenuVo> useMenuList = adminMenuDao.getUseMenuInfo(menuNo);
+		
+		return useMenuList;
+	}
 	
 	// Service 메뉴 삭제
-	public int delMenu(int menuNo) {
+	public int delMenu(int delDecision, int menuNo) {
+		System.out.println(delDecision + ", " + menuNo);
 		
 		int useDefault = adminMenuDao.selectUseDefault(menuNo);
+		int useMenuCnt = adminMenuDao.getUseMenuCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
 		
 		if(useDefault > 0) {
 			return -1;
+		}
+		else if(useMenuCnt == 1) { // 해당 메뉴가 연관 메뉴를 사용하고 있다면
+			adminMenuDao.delUseMenu("setNo", menuNo); // 연관 메뉴 삭제
+		}
+
+		if(delDecision == 1){ // 현재 연관메뉴로 사용중인 메뉴일 경우
+			adminMenuDao.delUseMenu("menuNo", menuNo); // 연관 메뉴 삭제
 		}
 		
 		return adminMenuDao.delMenu(menuNo);

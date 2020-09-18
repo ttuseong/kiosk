@@ -84,12 +84,19 @@ public class AdminMenuController {
 		// 업데이트 한 메뉴 정보 보내기
 		return updateMenuInfo;
 	}
+
+	// 메뉴 삭제 시 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
+	@ResponseBody
+	@RequestMapping("/getUseMenuInfo")
+	public List<MenuVo> getUseMenuInfo(@RequestParam("menuNo") int menuNo) {
+		return adminMenuService.getUseMenuInfo(menuNo);
+	}
 	
 	// 메뉴 삭제
 	@ResponseBody
 	@RequestMapping("/adminDelMenu")
-	public int adminDelMenu(@RequestParam("menuNo") int menuNo) {
-		return adminMenuService.delMenu(menuNo);
+	public int adminDelMenu(@RequestParam("delDecision") int delDecision, @RequestParam("menuNo") int menuNo) {
+		return adminMenuService.delMenu(delDecision, menuNo);
 	}
 	
 	// 해당 매장의 단위 넘버와 이름 가져오기 
