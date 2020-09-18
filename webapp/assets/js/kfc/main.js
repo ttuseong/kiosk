@@ -11,6 +11,11 @@ $(document).ready(function(){
 	defaultMenuList();
 });
 
+$(window).bind("beforeunload", function (e){
+	console.log("종료 테스트");
+	return "진행된 내용은 저장되지 않습니다.";
+});
+
 function categoryMarginInit(){
 	var categoryLength = $("#category").children("ul").children("li").size();
 	

@@ -53,8 +53,6 @@
 		</div>
 	</div>
 
-
-
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->

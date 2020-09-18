@@ -1,0 +1,53 @@
+.shareContent > *{
+	display: inline-block;
+}
+
+.shareContent > p{
+	width: 51px;
+	margin-right: 25px;
+	text-align: center;
+}
+
+.shareContent:last-child > p {
+	display: block;
+	text-align:left;
+	width: 100%;
+}
+
+.shareContent:last-child > div{
+	display: block;
+	text-align: center;
+}
+
+.ShareDropdown{
+	width: 140px;
+}
+
+.ShareDropdown > div{
+	position: relative;
+}
+
+.ShareDropdown > div > p{
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.ShareDropdown > div > span{
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform : translateY(-50%);
+}
+
+.sharePhoneNumber{
+	width: 75px;
+}
+
+.shareLevel{
+	margin: 0 20px 0 5px !important;
+}
+
+#shareModalCompleated{
+	color: white;
+	background-color: #1CC88A;
+}
