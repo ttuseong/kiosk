@@ -8,9 +8,9 @@
 <!-- id="modalName(임의지정)" => 모달 사용 용도에 따라 아이디를 부여해주세요! -->
 <div class="modal" id="surveyModal">
 	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body">
-	    		<div class="menu-container">
+		<div class="modal-content" id="serveyContent">
+			<div class="modal-body" id="serveyBody">
+	    		<div class="servey-container">
 	    			<div class="shareContent">
 	    				<p>휴대전화</p>
 	    				<input type="text" class="sharePhoneNumber">
@@ -83,8 +83,8 @@
 	    			</div>
             	</div>
 			</div>
-	      	<div class="modal-footer">
-	        	<button type="button" class="btn btnComplete" id="shareModalCompleated">완료</button>
+	      	<div class="modal-footer" id="serveyfooter">
+	        	<button type="button" class="btn" id="shareModalCompleated">완료</button>
 	    	</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

@@ -1,9 +1,41 @@
+/* 공통 모달 값 초기화 */
+#serveyContent{
+	width: auto;
+	min-height: 0;
+}
+
+#serveyBody{
+	min-height: 0;
+	padding: 20px;
+	text-align: left;
+	height: auto;
+}
+
+#serveyfooter{
+	padding: 15px;
+	text-align: right;
+	border-top: 1px solid #e5e5e5;
+	height: auto;
+}
+
+#shareModalCompleated{
+	width: auto;
+	height: auto;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+
+
+.shareContent{
+	margin-bottom: 20px;
+}
 .shareContent > *{
 	display: inline-block;
 }
 
 .shareContent > p{
-	width: 51px;
+	width: 60px;
 	margin-right: 25px;
 	text-align: center;
 }
@@ -12,6 +44,7 @@
 	display: block;
 	text-align:left;
 	width: 100%;
+	margin-bottom: 20px;
 }
 
 .shareContent:last-child > div{
@@ -43,7 +76,7 @@
 	width: 75px;
 }
 
-.shareLevel{
+.shareContent input[type="radio"]{
 	margin: 0 20px 0 5px !important;
 }
 

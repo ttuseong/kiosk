@@ -492,23 +492,13 @@ body{
   left: -1000px;
 }
 
-/* 모달 */
-.modal-content { /* 모달 전체 */
-	border-radius: 0px;
-	width: 750px;
-	min-height: 900px;
-}
+
 .modal-header { /* 모달 헤더 */
 	height: 15%;
 	/* border: none; */
     padding: 50px;
     border-top: 10px solid red;
     text-align: center;
-}
-
-.modal-title { /* 모달 제목의 폰트 */
-    font-weight: bold;
-    font-size: xx-large;
 }
 
 .img-responsive { /* 이미지 크기 */
@@ -542,12 +532,6 @@ body{
 	text-align: center;
 }
 
-.btn {  /* 취소, 완료 버튼 */
-	width: 220px;
-	height: 60px;
-	font-size: large;
-    font-weight: bold;
-}
 
 
 
