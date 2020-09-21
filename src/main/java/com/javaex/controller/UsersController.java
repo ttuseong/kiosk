@@ -55,5 +55,11 @@ public class UsersController {
 			return "redirect:/users/loginForm?result=fail";
 		}
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 
 }
