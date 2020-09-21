@@ -40,7 +40,7 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">회원가입</h1>
               </div>
-              <form class="user" action="${pageContext.request.contextPath}/users/registerComplete" method ="get">
+              <form class="user" action="${pageContext.request.contextPath}/users/register" method ="get">
                 <div class="form-group row">
                 	<div class="col-sm-12">
                     	<input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="아이디를 입력하세요"name="userId">
@@ -54,7 +54,7 @@
               </form>
               <hr>
               <div class="text-center">
-                <a class="small" href="${pageContext.request.contextPath}/users/login">이미 회원이십니까? 로그인 하기</a>
+                <a class="small" href="${pageContext.request.contextPath}/users/loginForm">이미 회원이십니까? 로그인 하기</a>
               </div>
             </div>
           </div>

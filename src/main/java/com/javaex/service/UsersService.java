@@ -12,11 +12,14 @@ public class UsersService {
 	@Autowired
 	UsersDao userDao;
 	
-	public void registerComplete(UserVo userVo){
-		userDao.registerComplete(userVo);
+	public void register(UserVo userVo){
+		userDao.register(userVo);
 	}
-	public int loginComplete(UserVo userVo) {
+	public int loginCheck(UserVo userVo) {
 		return userDao.loginCheck(userVo); 
+	}
+	public UserVo login(UserVo userVo) {
+		return userDao.login(userVo);
 	}
 	
 }

@@ -17,7 +17,7 @@
 		
 		<div class="main-headerAdminLogin">
 			<!-- 관리자가 로그인 하지 않은 경우 -->
-			<a href="${pageContext.request.contextPath}/users/login">관리자로그인</a>
+			<a href="${pageContext.request.contextPath}/users/loginForm">관리자로그인</a>
 			
 			<!-- 관리자가 로그인 한 경우
 			<a href="#">관리자페이지</a>

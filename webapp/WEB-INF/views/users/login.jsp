@@ -45,7 +45,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">키오스크 관리자 로그인</h1>
                   </div>
-                  <form class="user" action="${pageContext.request.contextPath}/users/loginComplete" method="post">
+                  <form class="user" action="${pageContext.request.contextPath}/users/login" method="post">
                     <div class="form-group">
                       <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="아이디를 입력하세요."name = "userId">
                     </div>
@@ -55,7 +55,7 @@
                     <button type="submit" class="btn btn-primary btn-user btn-block">로그인하기</button>
                   </form>
                   <div class="text-center">
-                    <a class="small" href="${pageContext.request.contextPath}/users/register">회원가입을 하시겠습니까?</a>
+                    <a class="small" href="${pageContext.request.contextPath}/users/registerForm">회원가입을 하시겠습니까?</a>
                   </div>
                 </div>
               </div>

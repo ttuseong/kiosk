@@ -12,11 +12,13 @@ public class UsersDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public void registerComplete(UserVo userVo) {
-		sqlSession.insert("user.registerComplete", userVo);
+	public void register(UserVo userVo) {
+		sqlSession.insert("user.register", userVo);
 	}
-	
 	public int loginCheck(UserVo userVo) {
 		return sqlSession.selectOne("user.loginCheck", userVo); 
+	}
+	public UserVo login(UserVo userVo) {
+		return sqlSession.selectOne("user.login", userVo);
 	}
 }

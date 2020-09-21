@@ -1,6 +1,6 @@
 package com.javaex.controller;
 
-import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,14 +20,14 @@ public class UsersController {
 	UsersService userService;
 	
 	//로그인 페이지
-	@RequestMapping("/login")
-	public String login() {
+	@RequestMapping("/loginForm")
+	public String loginFrom() {
 		return "/users/login";
 	}
 	
 	//회원가입 페이지
-	@RequestMapping("/register")
-	public String register() {
+	@RequestMapping("/registerFrom")
+	public String registerFrom() {
 		return "/users/register";
 	}
 	
@@ -38,15 +38,24 @@ public class UsersController {
 	}
 	
 	//회원가입후 로그인 페이지 리다이렉트.
-	@RequestMapping("/registerComplete")
-	public String registerComplete(@ModelAttribute UserVo userVo) {
-		userService.registerComplete(userVo);
+	@RequestMapping("/register")
+	public String register(@ModelAttribute UserVo userVo) {
+		userService.register(userVo);
 		return "redirect:/users/login";
 	}
 	
-	@RequestMapping("/loginComplete")
-	public String loginComplete(@ModelAttribute UserVo userVo, Session session) {
-		userService.loginComplete(userVo);
+	@RequestMapping("/login")
+	public String loginComplete(@ModelAttribute UserVo userVo, HttpSession session) {
+		UserVo authUser= userService.login(userVo);
+		
+		System.out.println(authUser.getUserId());
+		
+		if(authUser != null) {
+			System.out.println("로그인 성공");
+			return "redirect:/";
+		}else {
+			System.out.println("로그인 실패");
+		}
 		return "";
 	}
 
