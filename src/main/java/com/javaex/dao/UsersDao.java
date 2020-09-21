@@ -15,9 +15,6 @@ public class UsersDao {
 	public void register(UserVo userVo) {
 		sqlSession.insert("user.register", userVo);
 	}
-	public int loginCheck(UserVo userVo) {
-		return sqlSession.selectOne("user.loginCheck", userVo); 
-	}
 	public UserVo login(UserVo userVo) {
 		return sqlSession.selectOne("user.login", userVo);
 	}

@@ -8,12 +8,6 @@
 		]]>
 	</insert>
 	
-	<select id="loginCheck" parameterType="com.javaex.vo.UserVo" resultType="int">
-		<![CDATA[
-			select count(*) from users where userId = #{userId} and userPw = #{userPw}
-		]]>
-	</select>
-	
 	<select id="login" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select userNo, userId from users where userId=#{userId} and userPw=#{userPw}

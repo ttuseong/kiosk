@@ -15,9 +15,6 @@ public class UsersService {
 	public void register(UserVo userVo){
 		userDao.register(userVo);
 	}
-	public int loginCheck(UserVo userVo) {
-		return userDao.loginCheck(userVo); 
-	}
 	public UserVo login(UserVo userVo) {
 		return userDao.login(userVo);
 	}
