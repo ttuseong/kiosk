@@ -16,26 +16,16 @@
 <title>관리자페이지 - 메뉴정보</title>
 
 <!-- Custom fonts for this template-->
-<link
-	href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link
-	href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css"
-	rel="stylesheet">
+<link href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
 
 <!-- 기타 css 및 부트스트랩 -->
-<link
-	href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css" rel="stylesheet" type="text/css">
 
-<link
-	href="${pageContext.request.contextPath}/assets/css/admin/adminModal.css"
-	rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/admin/adminModal.css" rel="stylesheet" type="text/css">
 
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/admin/adminMenu.js"></script> --%>
 
@@ -51,46 +41,31 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul
-			class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion"
-			id="accordionSidebar">
+		<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="adminMenu">
-				<div class="sidebar-brand-text mx-3">Admin</div>
-			</a>
+			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="adminMenu"> <div class="sidebar-brand-text mx-3">Admin</div></a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item active"><a class="nav-link" href="adminMenu">
-					<i class="fas fa-fw fa-info-circle"></i> <span>메뉴 정보</span>
-			</a></li>
+			<li class="nav-item active"><a class="nav-link" href="adminMenu"><i class="fas fa-fw fa-info-circle"></i><span>메뉴 정보</span></a></li>
 
 			<!-- Nav Item - Menu Info -->
-			<li class="nav-item"><a class="nav-link" href="adminToping">
-					<i class="fas fa-fw fa-hamburger"></i> <span>토핑 정보</span>
-			</a></li>
+			<li class="nav-item"><a class="nav-link" href="adminToping"><i class="fas fa-fw fa-hamburger"></i><span>토핑 정보</span></a></li>
 
 			<!-- Nav Item - Category -->
-			<li class="nav-item"><a class="nav-link" href="adminCate"> <i
-					class="fas fa-fw fa-folder"></i> <span>키오스크 카테고리</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="adminCate"> <i class="fas fa-fw fa-folder"></i><span>키오스크 카테고리</span></a></li>
 
 			<!-- Nav Item - Stats -->
-			<li class="nav-item"><a class="nav-link" href="adminStats">
-					<i class="fas fa-fw fa-chart-area"></i> <span>통계</span>
-			</a></li>
+			<li class="nav-item"><a class="nav-link" href="adminStats"> <i class="fas fa-fw fa-chart-area"></i><span>통계</span></a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
 			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
+			<div class="text-center d-none d-md-inline"><button class="rounded-circle border-0" id="sidebarToggle"></button></div>
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -105,9 +80,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"
-						style="padding: 1.5rem 0 1.2rem 0 !important;">Menu
-						Information</h1>
+					<h1 class="h3 mb-2 text-gray-800" style="padding: 1.5rem 0 1.2rem 0 !important;">Menu Information</h1>
 
 					<!-- 메뉴 기본 정보 -->
 					<div class="card shadow mb-4">
@@ -118,11 +91,8 @@
 							<div class="menuInfo-menuCateAndImg">
 								<form id="menuImgInput" method="post" enctype="multipart/form-data">
 									<!-- 메뉴 이미지 -->
-										<img
-										src="${pageContext.request.contextPath}/assets/images/icon1.png"
-										class="menuInfo-menuImg img-rounded">
-										 <input
-										id="menuInfo-menuImgInput" name="file" type="file" style="margin: auto;" />
+										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="menuInfo-menuImg img-rounded">
+										 <input id="menuInfo-menuImgInput" name="file" type="file" style="margin: auto;" />
 								</form>	
 							</div>
 							
@@ -137,15 +107,9 @@
 									<div class="adminMenu-cateDropdown">
 										<!-- 카테고리 드롭다운 -->
 										<p>카테고리</p>
-										<div class="dropdown adminMenu-basicInfoDropdown"
-											id="dropdownCateName">
-											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownCate" data-toggle="dropdown"
-												aria-expanded="true">
-												카테고리를 선택하세요. <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu adminDropdownCateList" id="adminDropdownCateList" role="menu"
-												aria-labelledby="dropdownCate">
+										<div class="dropdown adminMenu-basicInfoDropdown" id="dropdownCateName">
+											<button class="btn btn-default dropdown-toggle" type="button" id="dropdownCate" data-toggle="dropdown" aria-expanded="true"> 카테고리를 선택하세요. <span class="caret"></span> </button>
+											<ul class="dropdown-menu adminDropdownCateList" id="adminDropdownCateList" role="menu" aria-labelledby="dropdownCate">
 												<!-- 카테고리 리스트 출력 할 자리 -->
 											</ul>
 										</div>
@@ -155,18 +119,11 @@
 									<!-- 메뉴 드롭다운 -->
 									<div class="adminMenu-menuDropdown">
 										<p>메뉴</p>
-										<div class="dropdown adminMenu-basicInfoDropdown"
-											id="adminDropdownMenuName">
-											<button class="btn btn-default dropdown-toggle" type="button"
-												id="dropdownMenu" data-toggle="dropdown"
-												aria-expanded="true" style="margin-right: 0;">
-												메뉴를 선택하세요. <span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu adminDropdownMenuList" id="adminDropdownMenuList" role="menu"
-												aria-labelledby="dropdownMenu">
+										<div class="dropdown adminMenu-basicInfoDropdown" id="adminDropdownMenuName">
+											<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;"> 메뉴를 선택하세요. <span class="caret"></span></button>
+											<ul class="dropdown-menu adminDropdownMenuList" id="adminDropdownMenuList" role="menu" aria-labelledby="dropdownMenu">
 
-												<li role="presentation"><a role="menuitem"
-													tabindex="-1">카테고리 먼저 선택하세요.</a></li>
+												<li role="presentation"><a role="menuitem" tabindex="-1">카테고리 먼저 선택하세요.</a></li>
 
 											</ul>
 										</div>
@@ -176,17 +133,14 @@
 								<!-- 드롭다운 끝 -->
 
 
-								<div class="menuInfo-basicInfo"
-									style="margin-top: 18px !important;">
+								<div class="menuInfo-basicInfo" style="margin-top: 18px !important;">
 
 									<p>메뉴이름</p>
-									<input type="text" style="width: 150px;" placeholder="메뉴이름"
-										id="menuName">
+									<input type="text" style="width: 150px;" placeholder="메뉴이름" id="menuName">
 									<p>가격</p>
 									<input type="text" placeholder="가격" id="menuPrice">
 
-									<div style="display: inline-block !important;"
-										class="adminMenu-calorie">
+									<div style="display: inline-block !important;" class="adminMenu-calorie">
 										<p>칼로리</p>
 										<input type="text" placeholder="칼로리" id="menuCalorie">
 									</div>
@@ -197,12 +151,16 @@
 								<div class="menuInfo-menuDetails">
 									<p style="margin-right: 20px;">참고사항</p>
 									<input type="checkbox" class="isSpecial" id="promotionMenu" name="isSpecial" value="1" style="margin-left: 0 !important;">
+									
 									<p class="normal">프로모션/할인</p>
 									<input type="checkbox" class="isSpecial" id="recommendMenu" name="isSpecial" value="2">
+									
 									<p class="normal">추천메뉴</p>
 									<input type="checkbox" class="isSpecial" id="newMenu" name="isSpecial" value="4">
+									
 									<p class="normal">신메뉴</p>
 									<input type="checkbox" class="isSpecial" id="useMenu" value="">
+									
 									<p class="normal">관련메뉴</p>
 								</div>
 
@@ -214,9 +172,7 @@
 
 									<!-- 버튼자리 -->
 									<div class="adminMenu-unitListBtn">
-										<a href="#"
-											class="btn btn-light btn-icon-split adminUnitListBtn"> <span
-											class="text">추가 / 목록</span>
+										<a href="#" class="btn btn-light btn-icon-split adminUnitListBtn"> <span class="text">추가 / 목록</span>
 										</a>
 									</div>
 
@@ -252,15 +208,9 @@
 					<div class="adminMenu-btnContainer">
 						<input type="hidden" id="selectMenuNo" value="">
 						<input type="hidden" id="selectCateNo" value="">
-						<a href="#"
-							class="btn btn-secondary btn-icon-split adminMenu-menuDelBtn">
-							<span class="text">삭제</span>
-						</a> <a href="#"
-							class="btn btn-success btn-icon-split adminMenu-menuSubmitBtn">
-							<span class="text">확인</span>
-						</a>
+						<a href="#" class="btn btn-secondary btn-icon-split adminMenu-menuDelBtn"> <span class="text">삭제</span></a> 
+						<a href="#" class="btn btn-success btn-icon-split adminMenu-menuSubmitBtn"> <span class="text">확인</span></a>
 					</div>
-
 
 				</div>
 				<!-- /.container-fluid -->
@@ -285,9 +235,7 @@
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
+	<a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i></a>
 
 	<!-- 추가 구성 목록 모달 -->
 	<div class="modal" id="unitListModal">
@@ -321,13 +269,8 @@
 
 				<div class="modal-footer adminModal-footer" id="unitListModal-footer">
 					<div class="adminModal-footerBtnContainer">
-						<a href="#"
-							class="btn btn-secondary btn-icon-split adminMenu-unitDel" id="adminMenu-unitDel"> <span
-							class="text">선택 구성 삭제</span>
-						</a><a href="#"
-							class="btn btn-success btn-icon-split adminMenu-unitAdd" id="adminMenu-unitAdd"> <span
-							class="text">구성 목록 추가</span>
-						</a>
+						<a href="#" class="btn btn-secondary btn-icon-split adminMenu-unitDel" id="adminMenu-unitDel"> <span class="text">선택 구성 삭제</span></a>
+						<a href="#" class="btn btn-success btn-icon-split adminMenu-unitAdd" id="adminMenu-unitAdd"> <span class="text">구성 목록 추가</span></a>
 					</div>
 				</div>
 			</div>
@@ -364,12 +307,8 @@
 							<div class="unitManagerModal-cateDropdown">
 								<!-- 카테고리 드롭다운 -->
 								<div class="dropdown unitManagerModal-basicInfoDropdown">
-									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownCate" data-toggle="dropdown" aria-expanded="true">
-										카테고리를 선택하세요. <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu"
-										aria-labelledby="dropdownCate">
+									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownCate" data-toggle="dropdown" aria-expanded="true">카테고리를 선택하세요. <span class="caret"></span> </button>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownCate">
 										<!-- 카테고리 리스트 들어갈 자리 -->
 									</ul>
 								</div>
@@ -379,13 +318,8 @@
 							<!-- 메뉴 드롭다운 -->
 							<div class="unitManagerModal-menuDropdown">
 								<div class="dropdown unitManagerModal-basicInfoDropdown">
-									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu" data-toggle="dropdown" aria-expanded="true"
-										style="margin-right: 0;">
-										메뉴를 선택하세요. <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" role="menu"
-										aria-labelledby="dropdownMenu">
+									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0;">메뉴를 선택하세요.<span class="caret"></span></button>
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 										<!-- 메뉴 리스트 들어갈 자리 -->
 									</ul>
 								</div>
@@ -394,9 +328,7 @@
 							
 							<!-- 구성 추가 버튼 -->
 							<div class="unitManagerModal-btnContainer">
-								<a href="#" class="btn btn-success btn-circle unitAddBtn"
-									style="margin: auto;"> <i class="fas fa-plus"></i>
-								</a>
+								<a href="#" class="btn btn-success btn-circle unitAddBtn" style="margin: auto;"> <i class="fas fa-plus"></i></a>
 							</div>
 							<!-- 구성 추가 버튼 끝 -->
 						</div>
@@ -410,11 +342,8 @@
 				<!-- 모달 푸터 -->
 				<div class="modal-footer adminModal-footer" id="unitManagerModal-footer">
 					<div class="adminModal-footerBtnContainer">
-						<a href="#"
-							class="btn btn-secondary btn-icon-split adminMenu-unitDel unitManager-cancle">
-							<span class="text">취소</span>
-						</a><a href="#"
-							class="btn btn-success btn-icon-split adminMenu-unitAdd unitAdd-submit unitModify-submit">
+						<a href="#" class="btn btn-secondary btn-icon-split adminMenu-unitDel unitManager-cancle"> <span class="text">취소</span></a>
+						<a href="#" class="btn btn-success btn-icon-split adminMenu-unitAdd unitAdd-submit unitModify-submit">
 							<input type="hidden" class="numberOfUnit" value="1">
 							<input type="hidden" class="unitNo" value="0">
 							<span class="text">확인</span>
@@ -449,13 +378,8 @@
 							<div class="unitManagerModal-menuDropdown">
 								<div class="dropdown unitManagerModal-basicInfoDropdown useMenuModal-basicInfoDropdown">
 									<input type="hidden" id="selectMenuNo_" value="">
-									<button class="btn btn-default dropdown-toggle" type="button"
-										id="dropdownMenu" data-toggle="dropdown" aria-expanded="true"
-										style="margin-right: 0; width: 250px;">
-										메뉴를 선택하세요. <span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu" id="useMenuModal-menuDropdownUl" role="menu"
-										aria-labelledby="dropdownMenu">
+									<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" style="margin-right: 0; width: 250px;"> 메뉴를 선택하세요. <span class="caret"></span></button>
+									<ul class="dropdown-menu" id="useMenuModal-menuDropdownUl" role="menu" aria-labelledby="dropdownMenu">
 										<!-- 메뉴리스트 들어갈 자리 -->
 									</ul>
 								</div>
@@ -472,13 +396,8 @@
 				<!-- 모달 푸터 -->
 				<div class="modal-footer adminModal-footer" id="useMenuModal-footer">
 					<div class="adminModal-footerBtnContainer" id="useMenuModal-footerBtnContainer">
-						<a href="#"
-							class="btn btn-secondary btn-icon-split useMenuModal-cancle">
-							<span class="text">취소</span>
-						</a><a href="#"
-							class="btn btn-success btn-icon-split useMenuModal-submit">
-							<span class="text">확인</span>
-						</a>
+						<a href="#" class="btn btn-secondary btn-icon-split useMenuModal-cancle"> <span class="text">취소</span></a>
+						<a href="#" class="btn btn-success btn-icon-split useMenuModal-submit"><span class="text">확인</span></a>
 					</div>
 				</div>
 				<!-- 모달 푸터 끝 -->
@@ -492,23 +411,22 @@
 	<!-- 연관메뉴 모달 끝 -->
 	
 	<!-- Bootstrap core JavaScript-->
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
-	<script
-		src="${pageContext.request.contextPath}/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
+	<script src="${pageContext.request.contextPath}/assets/js/admin/sb-admin-2.min.js"></script>
 </body>
+
 <script type="text/javascript">	
 	/* 페이지가 로드되는 순간 불러와야 할 정보들 */
-	$(document).ready(function(){	
-		var storeNo = 1;
+	$(document).ready(function(){
+		var storeNo = ${authUser.userNo};
+		
+		//var storeNo = 1;
 		getUnitBasicInfo(storeNo) // 관리자 단에서 뿌려질 단위 정보
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
@@ -1123,7 +1041,7 @@
 
 		renderUnitAdd(0); // 단위 추가 html 그리기
 		
-		var storeNo = 1;
+		var storeNo = ${authUser.userNo};
 	
 		renderCateList(storeNo, ".unitAddDropdownCateList"); // 카테고리 리스트 출력
 		
@@ -1206,7 +1124,7 @@
 		$(".numberOfUnit").val("1"); // 단위 개수 초기화
 		$(".unitNo").val(unitNo);
 		
-		var storeNo = 1;
+		var storeNo = ${authUser.userNo};
 		
 		$.ajax({
 			url : "${pageContext.request.contextPath}/admin/adminUnitInfoList",
@@ -1368,7 +1286,7 @@
 		$(".numberOfUnit").val(parseInt($(".numberOfUnit").val()) + 1);// 단위 개수 카운트
 		var numberOfUnit = $(".numberOfUnit").val();
 
-		var storeNo = 1;
+		var storeNo = ${authUser.userNo};
 
 		renderUnitAdd(1); // 단위 추가 html 그리기
 		renderCateList(storeNo, ".unitManagerModal-unitComponent:last-child div:first-child div .unitManagerModalCateList"); // 카테고리 리스트 받아옴
@@ -1394,7 +1312,7 @@
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
 		console.log("구성 추가/수정 모달 - 확인 버튼 클릭");
 		
-		var storeNo = 1;
+		var storeNo = ${authUser.userNo};
 		var unitNo = $(".unitNo").val();
 		var unitName = $("#unitManager-unitNameInput").val(); // 단위 이름 받아오기          
 		var numberOfUnit = $(".unitManagerModal-unitComponent").length; // 추가 된 구성들의 개수 구하기

@@ -54,6 +54,7 @@
               </form>
               <hr>
               <div class="text-center">
+              
                 <a class="small" href="${pageContext.request.contextPath}/users/loginForm">이미 회원이십니까? 로그인 하기</a>
               </div>
             </div>

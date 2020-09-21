@@ -23,8 +23,8 @@
 
 			<!-- 관리자가 로그인 한 경우 -->
 			<c:if test="${!empty sessionScope.authUser.userNo }">
-				<a href="#">관리자페이지</a>
-				<a href="${pageContext.request.contextPath}/users/logout">로그아웃</a>
+				<a href="${pageContext.request.contextPath}/admin/adminMenu">관리자페이지</a>
+				&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/users/logout">로그아웃</a>
 			</c:if>
 			
 		</div>

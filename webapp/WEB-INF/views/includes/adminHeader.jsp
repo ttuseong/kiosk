@@ -11,10 +11,12 @@
 				<img src="${pageContext.request.contextPath}/assets/images/icon1.png">
 			</a>
 		</div>
-	
-		<div class="main-headerAdminLogin">
-			<a href="${pageContext.request.contextPath}/admin/adminMenu">관리자페이지</a>
-			<a href="#">로그아웃</a>
-		</div>
+		
+		<c:if test="${!empty sessionScope.authUser.userNo }">
+			<div class="main-headerAdminLogin">
+				<a href="${pageContext.request.contextPath}/admin/adminMenu">관리자페이지</a>
+				&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/users/logout">로그아웃</a>
+			</div>
+		</c:if>
 	</div>
 	
