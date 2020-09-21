@@ -410,6 +410,56 @@
 	<!-- /.modal -->
 	<!-- 연관메뉴 모달 끝 -->
 	
+	<!-- 프로모션/할인 모달 -->
+	<div class="modal" id="promotionModal">
+		<div class="modal-dialog adminModal-dialog">
+			<div class="modal-content adminModal-content" id="promotionModal-content">
+				<div class="modal-header adminModal-header">
+					<p class="modal-title adminModal-title">프로모션/할인</p>
+					<i class="fas fa-times adminModal-close" id="promotionModal-close"></i>
+					<!-- 클로즈 버튼 -->
+				</div>
+
+				<!-- 모달 바디 -->
+				<div class="modal-body adminModal-body">
+					<div class="promotionModal-containerInBody">
+						<!-- 프로모션 -->
+						<div class="promotionModal-promotionContainer">
+							<img src="${pageContext.request.contextPath}/assets/images/admin/promotion.png">
+							<p>프로모션 구성품목 등록</p>
+						</div>
+						
+						<!-- 세일 -->
+						<div class="promotionModal-saleContainer">
+							<img src="${pageContext.request.contextPath}/assets/images/admin/sale.png">
+							<p>할인률 등록</p>
+						</div>
+					</div>
+				</div>
+				<!-- 모달 바디 끝 -->
+
+				<!-- 모달 푸터 -->
+				<div class="modal-footer adminModal-footer" id="promotionModal-footer">
+					<div class="adminModal-footerBtnContainer" id="promotionModal-footerBtnContainer">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split promotionModal-cancle">
+							<span class="text">취소</span>
+						</a><a href="#"
+							class="btn btn-success btn-icon-split promotionModal-submit">
+							<span class="text">확인</span>
+						</a>
+					</div>
+				</div>
+				<!-- 모달 푸터 끝 -->
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- 프로모션/할인 모달 끝 -->
+	
 	<!-- Bootstrap core JavaScript-->
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -430,6 +480,7 @@
 		getUnitBasicInfo(storeNo) // 관리자 단에서 뿌려질 단위 정보
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
+		$("#promotionModal").modal(); // 모달 열기
 	});	
 
 	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
@@ -1557,10 +1608,34 @@
 		$("#useMenuModal").modal("hide"); // 모달 닫기
 	});
 
-	// 취소&닫기 버튼
+	// 연관메뉴 모달 취소&닫기 버튼
 	$("#useMenuModal-close, .useMenuModal-cancle").on("click", function() {
+		if($("#useMenu").val() == 0) {
+			$('#useMenu').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
+		}
 		$("#useMenuModal").modal("hide");
 	});
 	
+	/* 프로모션/할인 모달 열기 */
+	$("#promotionMenu").on("click", function() {
+		console.log("프로모션 모달 열기");
+		
+		if($("#promotionMenu").is(":checked")) { // 프로모션/할인 체크박스가 체크 된 경우
+			$("#promotionModal").modal(); // 모달 열기
+		}
+		else { // 체크 해제 하면 체크박스 value 초기화
+			$("#promotionMenu").val(1); 
+		}
+	});
+	
+	// 프로모션 모달 취소&닫기 버튼
+	$("#promotionModal-close, .promotionModal-cancle").on("click", function() {
+		$("#promotionModal").modal("hide");
+
+		if($("#promotionMenu").val() == 1) {
+			console.log("테스트");
+			$('#promotionMenu').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
+		}
+	});
 </script>
 </html>

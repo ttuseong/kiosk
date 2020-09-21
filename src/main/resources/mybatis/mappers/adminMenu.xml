@@ -10,6 +10,7 @@
 			        categoryname
 			from category
 			where storeno = #{storeNo}
+			order by categoryname desc
 		]]>
 	</select>
 	
@@ -21,6 +22,7 @@
 			        menuname
 			from menu
 			where categoryno =  #{categoryNo}
+			order by menuname desc
 		]]>
 	</select>
 
