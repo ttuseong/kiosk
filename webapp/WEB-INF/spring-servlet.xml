@@ -59,6 +59,14 @@
 		<property name="defaultEncoding" value="utf-8" />
 
 	</bean>
+	
+	<!-- admin 인터셉터 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/**" />
+			<bean id="interceptor" class="com.javaex.util.Interceptor" ></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 
 	<!-- url매핑 -->
