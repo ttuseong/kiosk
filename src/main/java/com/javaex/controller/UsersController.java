@@ -47,16 +47,13 @@ public class UsersController {
 	@RequestMapping("/login")
 	public String loginComplete(@ModelAttribute UserVo userVo, HttpSession session) {
 		UserVo authUser= userService.login(userVo);
-		
-		System.out.println(authUser.getUserId());
-		
+		System.out.println(userVo.toString());
 		if(authUser != null) {
-			System.out.println("로그인 성공");
+			session.setAttribute("authUser", authUser);
 			return "redirect:/";
 		}else {
-			System.out.println("로그인 실패");
+			return "redirect:/users/loginForm?result=fail";
 		}
-		return "";
 	}
 
 }

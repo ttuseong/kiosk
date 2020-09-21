@@ -17,12 +17,16 @@
 		
 		<div class="main-headerAdminLogin">
 			<!-- 관리자가 로그인 하지 않은 경우 -->
-			<a href="${pageContext.request.contextPath}/users/loginForm">관리자로그인</a>
+			<c:if test="${empty sessionScope.authUser.userNo }">
+				<a href="${pageContext.request.contextPath}/users/loginForm">관리자로그인</a>
+			</c:if>
+
+			<!-- 관리자가 로그인 한 경우 -->
+			<c:if test="${!empty sessionScope.authUser.userNo }">
+				<a href="#">관리자페이지</a>
+				<a href="#">로그아웃</a>
+			</c:if>
 			
-			<!-- 관리자가 로그인 한 경우
-			<a href="#">관리자페이지</a>
-			<a href="#">로그아웃</a>
-			-->
 		</div>
 	</div>
 
