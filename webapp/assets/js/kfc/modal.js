@@ -892,3 +892,8 @@ $(".paySelectDown").on("click", function(){
 		target.animate({top : "-75px"});
 	}
 });
+
+$("#paymentmodalComplete").on("click", function(){
+	$("#paymentmodal").modal("hide");
+	$("#surveyModal").modal();
+});

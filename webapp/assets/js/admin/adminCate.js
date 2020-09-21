@@ -11,8 +11,9 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 		alert("카테고리 이름을 입력하세요");
 		return;
 	}
+	//
+	var form = $("#cateImgUpload")[0]; //form태그에있는 value랑 모든name값을 다 가져왔음
 	
-	var form = $("#cateImgUpload")[0]; //form태그에있는 모든name값을 다 가져왔음
 	var formData = new FormData(form);
 	var cateNo = $(".input-group").data('hiddenCateNo');
 	
@@ -26,8 +27,8 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 			data : {"categoryName": title},
 			dataType : "json",
 			success : function(result){
-				console.log(result);
-				/*성공시 처리해야 될 코드 작성 
+				console.log();
+				/*성공시 처리해야 될 코result드 작성 
 				확인버튼 눌렀을시 타이틀이 중복되었을경우 alert창 뜨기*/
 				
 				if(result == 0) {
@@ -47,7 +48,7 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 							window.location.reload();
 		
 							for(var i=0; i<cateVo.length; i++){
-								render(cateVo[i]);
+								//render(cateVo[i]);
 							}
 						},
 						error : function(XHR, status, error) {
@@ -119,14 +120,14 @@ $("#adminCate-insert").on("click", ".adminCate-btn",function(){
 });
 
 /*한줄이 추가될 경우 원래번호에 1을 추가해준다 1번이었던 아이는 2번이 되도록 아래 render에는 무조건 추가되는 아이가 1이되게함*/
-function addRownum(){
+/*function addRownum(){
 	var target = $(".admin-cate-table tbody").children();
 	
 	for(var i = 0; i < target.length; i++){
 		var rownnumVal = target.eq(i).children().eq(0).text();
 		target.eq(i).children().eq(0).text(Number(rownnumVal)+1);
 	}
-};
+};*/
 
 
 $(".tooltipImgHover").mouseenter(function(){
@@ -138,7 +139,7 @@ $(".tooltipImgHover").mouseenter(function(){
 
 
 
-function render(cateVo){
+/*function render(cateVo){
 	
 	var str = "";
 	
@@ -163,7 +164,7 @@ function render(cateVo){
 	str +="			</tr>";
 	
 	$("tbody").prepend(str);
-}
+}*/
 
 
 /*타이틀을 누르면 수정가능한 인풋박스 띄우기*/

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminToping">
+
+	<!-- 토핑 리스트 -->
+	<select id="selectTopingList" resultType="com.javaex.vo.ToppingVo">
+		<![CDATA[
+			SELECT  
+					toppingno,
+        			toppingname,
+        			toppingprice,
+        			toppingimg
+			FROM 
+					topping
+			WHERE 
+					storeno=1
+			ORDER BY 
+					toppingno desc		
+		]]>
+	</select>
+	
+	<!-- 토핑 추가하기 -->
+	<!-- selectKey 기능추가 확인버튼 누르면 토핑추가 -->
+	<insert id="adminToppingInsert" parameterType="com.javaex.vo.ToppingVo">
+		<selectKey keyProperty="toppingNo" resultType="int" order="BEFORE">
+			select TOPPING_SEQ.nextval FROM dual
+		</selectKey>
+			<![CDATA[
+				INSERT INTO
+						topping
+				VALUES( #{toppingNo},
+						#{storeNo},
+						#{toppingName},
+						#{toppingPrice},
+						#{toppingImg})
+			]]>
+	</insert>
+	<!-- 토핑 목록에 추가하기 -->
+	<select id="selectToppingOne" parameterType="int" resultType="com.javaex.vo.ToppingVo">
+		<![CDATA[
+			SELECT  
+					toppingno,
+       				toppingname,
+       				toppingprice,
+       				toppingimg
+			FROM 	
+					topping
+			WHERE
+    				toppingno=#{toppingNo}
+		]]>
+	</select>
+	
+	<!-- 토핑 중복 갯수세기 -->
+	<select id="selectToppingCount" parameterType="String" resultType="int">
+		<![CDATA[
+			SELECT
+					count(toppingno)
+			FROM 
+					topping
+			WHERE 
+					toppingname=#{toppingName}
+			AND 
+					storeno=1
+		]]>
+	</select>
+	
+</mapper>

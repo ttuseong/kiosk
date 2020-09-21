@@ -40,7 +40,7 @@ public class AdminCategoryController {
 
 	
 	
-	//카테고리 추가  --카테고리 값 가져오기
+	//카테고리 추가  --카테고리 이름값 가져오기 count값만 가지고왔다가 ajax로뿌려줌
 	@ResponseBody
 	@RequestMapping("/adminCateUpdate")
 	public int adminCateUpdate(@ModelAttribute CategoryVo categoryVo) {
@@ -82,7 +82,7 @@ public class AdminCategoryController {
 	  
 	  //카테고리 수정
 	  @ResponseBody
-	  @RequestMapping("/titleClickUpdate")
+	  @RequestMapping("/titleClickUpdate") //진짜 업데이트하는애고
 	  public int titleClickUpdate(@RequestParam("title") String categoryName, @RequestParam("cate-openStatus") int publicYN,
 				@RequestParam(value="cateimgCheck", defaultValue="0") int cateimgCheck,
 				@RequestParam("file") MultipartFile file, @RequestParam("cateNo") int categoryNo) {

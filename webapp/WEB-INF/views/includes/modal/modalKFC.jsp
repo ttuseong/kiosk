@@ -347,7 +347,7 @@
           </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btnCancle" data-dismiss="modal">취소</button>
-	        <button type="button" class="btn btnComplete">확인</button>
+	        <button type="button" class="btn btnComplete" id="paymentmodalComplete">확인</button>
 	      </div>
 	    </div><!-- /.modal-content -->
 	  </div><!-- /.modal-dialog -->

@@ -131,6 +131,10 @@
 		<!-- 모달 -->
 		<jsp:include page="/WEB-INF/views/includes/modal/modalKFC.jsp" />
 		<!-- 모달 -->
+		
+		<!-- 모달 -->
+		<jsp:include page="/WEB-INF/views/includes/modal/shareModal.jsp" />
+		<!-- 모달 -->
 	</div>
 
 	<!-- 풋터 -->
@@ -145,6 +149,10 @@
 
 
 <script type="text/javascript">	
+$( document ).ready(function() {
+    $("#surveyModal").modal();
+});
+
 </script>
 
 

@@ -53,9 +53,17 @@
 		</div>
 	</div>
 
+	<!-- 모달 -->
+		<jsp:include page="/WEB-INF/views/includes/modal/shareModal.jsp" />
+	<!-- 모달 -->
+
+
 	<!-- 풋터 -->
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->
 
 </body>
+<script type="text/javascript">
+	$("#surveyModal").modal();
+</script>
 </html>
