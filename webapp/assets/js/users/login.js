@@ -2,6 +2,8 @@ var url= window.location.pathname.substring(0,window.location.pathname.indexOf("
 
 $(document).ready(function() {
 	
+	loginFail();
+	
 	$(".btn").on("click", function(){
 		var id = $("#exampleInputEmail").val();
 		var pw = $("#exampleInputPassword").val();
@@ -21,51 +23,21 @@ function dataCheck(id,pw){
 		return 1;
 	}
 };
-/*
 
-function idCheck(id, pw){
-	$.ajax({
-		url : url+"/usersApi/idCheck",		
-		type : "post",
-		contentType : "application/json",
-		data : JSON.stringify(id),
-		dataType : "json",
-		success : function(idCheck){
-			
-			if(idCheck == 0){
-				alert("없는 아이디입니다. 아이디를 확인해주세요.");
-				
-			}else{
-				pwCheck(id, pw);
-			}
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
-		}
-	});
-};
-
-function pwCheck(id, pw){
+function loginFail(){
+	var params = location.search.substr(location.search.indexOf("?") + 1);
+	var temp,result;
 	
-	var user = {userId: id, userPw: pw};
-	
-	$.ajax({
-		url : url+"/usersApi/pwCheck",		
-		type : "post",
-		contentType : "application/json",
-		data : JSON.stringify(user),
-		dataType : "json",
-		success : function(idCheck){
-			if(idCheck== 1){
-				console.log("체크 완료");
-				
-			}else{
-				alert("비밀번호가 맞지 않습니다. 비밀번호를 확인해주세요.");
-				event.preventDefault();
-			}
-		},
-		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
+	if(params != ""){
+		params = params.split("&");
+		for (var z = 0; z < params.length; z++) {
+			temp = params[z].split("=");
+			if ([temp[0]] == "result") { result = temp[1]; }
 		}
-	});
-};*/
+	}
+	
+	if(result != null){
+		alert("로그인에 실패하였습니다. 다시 시도해주세요.");
+	}
+	
+}

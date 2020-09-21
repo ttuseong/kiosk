@@ -26,7 +26,7 @@ public class UsersController {
 	}
 	
 	//회원가입 페이지
-	@RequestMapping("/registerFrom")
+	@RequestMapping("/registerForm")
 	public String registerFrom() {
 		return "/users/register";
 	}
