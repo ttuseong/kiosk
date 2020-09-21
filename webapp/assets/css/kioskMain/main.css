@@ -2,5 +2,5 @@
 
 body a:hover{ text-decoration: none; }
 .brandDiv{border: 3px solid #A3D0C3;width: 20%;height: 300px;display: inline-block;margin: 15px;background-color: white;border-radius: 10px;}
-.brandImg{width: 100%;height: 75px;margin-top: 40px;padding-top: 5px;background-color: #A3D0C3;}
-.brandText{text-align:center;background-color: #A3D0C3;margin-top: 50px;padding: 5px;height: 50px;}
+.brandImg{width: 100%;height: 75px;margin-top: 40px;padding-top: 5px;}
+.brandText{text-align:center;margin-top: 50px;padding: 5px;height: 50px;}
