@@ -65,3 +65,21 @@ $(".dropdown").on("click", "li",function(){
 		});	
 	}
 });
+
+
+//강제 종료했을 경우 진행중이던 곳 저장
+function forceStop(endPoint){
+	$.ajax({		
+		url : url+"/share/addFailData",		
+		type : "post",
+		//contentType : "application/json",
+		data : {endPoint : endPoint},
+		dataType : "json",
+		success : function(guestVo){
+				
+		},
+		error : function(XHR, status, error) {
+			console.error(status + " : " + error);
+		}
+	});
+}

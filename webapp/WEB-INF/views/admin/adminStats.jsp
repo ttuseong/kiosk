@@ -25,6 +25,9 @@
 <link
 	href="${pageContext.request.contextPath}/assets/css/admin/sb-admin-2.min.css"
 	rel="stylesheet">
+	
+<link href="${pageContext.request.contextPath}/assets/css/admin/menuStats.css"
+		rel="stylesheet">
 
 </head>
 
@@ -100,35 +103,54 @@
 
 						<div class="col-xl-8 col-lg-7">
 
-							<!-- Area Chart -->
+							<!-- 월별 성공률 -->
 							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-success">Area Chart</h6>
+								<div class="card-header py-3" id="yearHeader">
+									<h6 class="m-0 font-weight-bold text-success">월별 성공률</h6>
+									<div class="dropdown">
+										<button class="btn btn-default dropdown-toggle" type="button"
+											data-toggle="dropdown" aria-expanded="true" id="yearBtn">
+											<div>
+												<p id="yearText"></p>
+												<span class="caret"></span>
+											</div>
+										</button>
+										<ul class="dropdown-menu" id="yearDropdown" role="menu" aria-labelledby="test">
+											
+										</ul>
+									</div>
 								</div>
 								<div class="card-body">
 									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
+										<canvas id="monthlySuccessRate"></canvas>
 									</div>
 									<hr>
-									Styling for the area chart can be found in the
-									<code>/js/demo/chart-area-demo.js</code>
-									file.
 								</div>
 							</div>
 
-							<!-- Bar Chart -->
+							<!-- 실패 지점 관련 그래프 -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-success">Bar Chart</h6>
+									<h6 class="m-0 font-weight-bold text-success">사용자가 포기하는 구간</h6>
 								</div>
 								<div class="card-body">
 									<div class="chart-bar">
-										<canvas id="myBarChart"></canvas>
+										<canvas id="failDataChart"></canvas>
 									</div>
 									<hr>
-									Styling for the bar chart can be found in the
-									<code>/js/demo/chart-bar-demo.js</code>
-									file.
+								</div>
+							</div>
+							
+							<!-- 매장 난이도 순위 -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-success">사용자가 투표한 키오스크 난이도 순위</h6>
+								</div>
+								<div class="card-body">
+									<div class="chart-bar">
+										<canvas id="storeRankChart"></canvas>
+									</div>
+									<hr>
 								</div>
 							</div>
 
@@ -139,7 +161,7 @@
 							<div class="card shadow mb-4">
 								<!-- Card Header - Dropdown -->
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-success">Donut Chart</h6>
+									<h6 class="m-0 font-weight-bold text-success">전체 성공률</h6>
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
@@ -147,9 +169,6 @@
 										<canvas id="myPieChart"></canvas>
 									</div>
 									<hr>
-									Styling for the donut chart can be found in the
-									<code>/js/demo/chart-pie-demo.js</code>
-									file.
 								</div>
 							</div>
 						</div>
@@ -206,7 +225,7 @@
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/demo/chart-pie-demo.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/assets/js/admin/demo/chart-bar-demo.js"></script>
+		src="${pageContext.request.contextPath}/assets/js/admin/adminChartBar.js"></script>
 
 </body>
 

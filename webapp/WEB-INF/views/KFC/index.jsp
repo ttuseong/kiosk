@@ -146,16 +146,4 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/kfc/modal.js"></script>
 
 
-
-
-<script type="text/javascript">	
-$( document ).ready(function() {
-    $("#surveyModal").modal();
-});
-
-</script>
-
-
-
-
 </html>

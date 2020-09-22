@@ -1,1 +1,46 @@
 @charset "UTF-8";
+
+#yearHeader{
+	position: relative;
+}
+
+#yearHeader > *{
+	display: inline-block;
+}
+
+.dropdown{
+	position: static;	
+}
+
+#yearBtn{
+	width: 140px;
+	position: absolute;
+	top: 50%;
+	right: 20px;
+	transform: translateY(-50%);
+	border: 1px solid #ccc;
+}
+
+#yearBtn > div{
+	position: relative;
+}
+
+#yearBtn > div > p{
+	display: inline-block;
+	margin-bottom: 0;
+}
+
+.dropdown-toggle::after{
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform : translateY(-50%);
+}
+
+#yearDropdown > li{
+	text-align: center;
+}
+
+#yearDropdown > li > a{
+	color: black;
+}

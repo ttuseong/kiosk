@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="statistics">
+	<insert id="insertFailData" parameterType="String">
+		<![CDATA[
+			insert into statistics
+			values(seq_statistics.nextval, 1, #{endPoint}, '쉬움', sysdate)
+		]]>
+	</insert>
+	
+	<select id="selectDataList" resultType="com.javaex.vo.StatsVo">
+		<![CDATA[
+			SELECT
+			    endpoint,
+			    count(endpoint) count
+			FROM
+			    statistics
+			where
+    			endpoint != 'clear'
+			GROUP by endpoint
+			order by count asc, endpoint asc
+		]]>
+	</select>
+	
+	<select id="selectStoreRankList" resultType="com.javaex.vo.StatsVo">
+		<![CDATA[
+			SELECT
+			    data.percentage,
+			    s.storename
+			FROM
+			    (SELECT
+			            levels,
+			            storeNo,
+			            ROUND((RATIO_TO_REPORT(count(levels)) OVER(PARTITION by storeNo) * 100),2) percentage
+			        FROM
+			            statistics
+			        group by levels, storeNo) data,
+			        store s
+			where
+			    data.storeNo = s.storeNo
+			and
+			    levels='쉬움'
+			order by percentage asc
+		]]>
+	</select>
+	
+	<select id="selectYearList" resultType="int">
+		<![CDATA[
+			SELECT
+			    to_char(challengedate, 'yyyy') year
+			FROM
+			    statistics
+			GROUP BY to_char(challengedate, 'yyyy')
+			order by year desc
+		]]>
+	</select>
+	
+	<select id="selectMonthlySuccessRateList" resultType="com.javaex.vo.StatsVo" parameterType="int">
+		<![CDATA[
+			SELECT
+			    percentage,
+			    month
+			FROM
+			    (SELECT
+			            to_char(challengedate, 'YYYY') year,
+			            storeNo,
+			            endPoint,
+			            ROUND((RATIO_TO_REPORT(count(endPoint)) OVER(PARTITION by to_char(challengedate, 'MM'), to_char(challengedate, 'YYYY')) * 100),2) percentage,
+			            to_char(challengedate, 'MM') month
+			        FROM
+			            statistics
+			        GROUP BY to_char(challengedate, 'MM'), endPoint, storeNo, to_char(challengedate, 'YYYY')
+			        order by to_char(challengedate, 'MM') asc)
+			where
+			    storeNo = 1
+			and
+			    endPoint = 'clear'
+			and
+			    year = #{year}
+		]]>
+	</select>
+	<select id="selectSuccessRate" resultType="float">
+		<![CDATA[
+			SELECT
+			    percentage
+			FROM
+			    (SELECT
+			            storeNo,
+			            endPoint,
+			            ROUND((RATIO_TO_REPORT(count(endPoint)) OVER(PARTITION BY storeNo) * 100),2) percentage
+			        FROM
+			            statistics
+			        group by endPoint, storeNo)
+			where
+			    endPoint = 'clear'
+			and
+			    storeNo = 1
+		]]>
+	</select>
+</mapper>
