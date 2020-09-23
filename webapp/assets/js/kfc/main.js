@@ -12,7 +12,7 @@ $(document).ready(function(){
 });
 
 $(window).bind("beforeunload", function (e){
-	forceStop(modalCanclePoint.pop()[1]);
+	//forceStop(modalCanclePoint.pop()[1]);
 	return "진행된 내용은 저장되지 않습니다.";
 });
 

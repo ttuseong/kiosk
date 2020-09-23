@@ -1,86 +1,69 @@
 /* 공통 모달 값 초기화 */
+#surveyModal > div:last-child{
+	width: 960px;
+}
+
 #serveyContent{
 	width: auto;
 	min-height: 0;
+	border: 0;
+	border-radius: 30px;
+	box-shadow: none;
+	background-color: transparent;
 }
 
 #serveyBody{
 	min-height: 0;
-	padding: 20px;
+	padding: 0;
 	text-align: left;
 	height: auto;
+	font-size: 0;
 }
 
-#serveyfooter{
-	padding: 15px;
-	text-align: right;
-	border-top: 1px solid #e5e5e5;
-	height: auto;
-}
-
-#shareModalCompleated{
-	width: auto;
-	height: auto;
-	font-size: 14px;
-	font-weight: normal;
-}
-
-
-
-.shareContent{
-	margin-bottom: 20px;
-}
-.shareContent > *{
+#serveyBody > div{
 	display: inline-block;
+	filter: brightness(50%); 
 }
 
-.shareContent > p{
-	width: 60px;
-	margin-right: 25px;
+#serveyHeader{
+	border: none;
+	padding: 0;
+	min-height: 0;
+	background-color: wheat;
+	border-radius: 18px;
+}
+
+.serveyHidden{
+	display: none;
+}
+
+.serveyActive{
+	display: inline;
+}
+
+.serveyDefaultImg{
+	
+}
+
+.serveryText{
+	font-size: 30px;
 	text-align: center;
+	padding: 10px 0;
+	background-color: white;
 }
 
-.shareContent:last-child > p {
-	display: block;
-	text-align:left;
-	width: 100%;
-	margin-bottom: 20px;
+#serveyHappy > img{
+	border-top-left-radius: 30px;
 }
 
-.shareContent:last-child > div{
-	display: block;
-	text-align: center;
+#serveyHappy > .serveryText{
+	border-bottom-left-radius: 30px;
 }
 
-.ShareDropdown{
-	width: 140px;
+#serveyStuffy > img{
+	border-top-right-radius: 30px;
 }
 
-.ShareDropdown > div{
-	position: relative;
-}
-
-.ShareDropdown > div > p{
-	display: inline-block;
-	margin-bottom: 0;
-}
-
-.ShareDropdown > div > span{
-	position: absolute;
-	right: 0;
-	top: 50%;
-	transform : translateY(-50%);
-}
-
-.sharePhoneNumber{
-	width: 75px;
-}
-
-.shareContent input[type="radio"]{
-	margin: 0 20px 0 5px !important;
-}
-
-#shareModalCompleated{
-	color: white;
-	background-color: #1CC88A;
+#serveyStuffy > .serveryText{
+	border-bottom-right-radius: 30px;
 }
