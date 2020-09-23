@@ -13,4 +13,8 @@ public class StatisticsService {
 	public void addFailData(String endPoint) {
 		statisticsDao.insertFailData(endPoint);
 	}
+	
+	public void addServeyData(String levels) {
+		statisticsDao.insertServeyData(levels);
+	}
 }

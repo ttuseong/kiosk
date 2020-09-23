@@ -20,7 +20,7 @@
 	font-size: 0;
 }
 
-#serveyBody > div{
+.serveyImgContainer{
 	display: inline-block;
 	filter: brightness(50%); 
 }
@@ -41,29 +41,27 @@
 	display: inline;
 }
 
-.serveyDefaultImg{
-	
-}
-
 .serveryText{
+	display:block;
+	width:480px;
 	font-size: 30px;
 	text-align: center;
 	padding: 10px 0;
 	background-color: white;
 }
 
-#serveyHappy > img{
+.serveyImgContainer:nth-child(1) > img{
 	border-top-left-radius: 30px;
 }
 
-#serveyHappy > .serveryText{
+.serveyImgContainer:nth-child(1) > .serveryText{
 	border-bottom-left-radius: 30px;
 }
 
-#serveyStuffy > img{
+.serveyImgContainer:nth-child(2) > img{
 	border-top-right-radius: 30px;
 }
 
-#serveyStuffy > .serveryText{
+.serveyImgContainer:nth-child(2) > .serveryText{
 	border-bottom-right-radius: 30px;
 }

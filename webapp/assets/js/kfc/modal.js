@@ -900,5 +900,5 @@ $(".paySelectDown").on("click", function(){
 $("#paymentmodalComplete").on("click", function(){
 	$("#paymentmodal").modal("hide");
 	forceStop("clear");
-	/*$("#surveyModal").modal();*/
+	$("#surveyModal").modal();
 });

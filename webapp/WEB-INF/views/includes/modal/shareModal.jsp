@@ -13,16 +13,16 @@
 	        	<h4 class="modal-title" id="serveyTitle">주문을 완료했습니다! 해보니깐 어떤가요?</h4>
 	      	</div>
 			<div class="modal-body" id="serveyBody">
-				<div class="serveyImgContainer" id="serveyHappy">
+				<a href="/kiosk/share/addServeyData?levels=쉬움" class="serveyImgContainer">
 					<img class="serveyHidden" src="${pageContext.request.contextPath}/assets/images/shareModal/happy.gif">
 					<img class="serveyDefaultImg" src="${pageContext.request.contextPath}/assets/images/shareModal/happy.png">
-					<p class="serveryText">쉽다</p>
-				</div>
-				<div class="serveyImgContainer" id="serveyStuffy">
+					<span class="serveryText">쉽다</span>
+				</a>
+				<a href="/kiosk/share/addServeyData?levels=어려움" class="serveyImgContainer">
 					<img class="serveyHidden" src="${pageContext.request.contextPath}/assets/images/shareModal/stuffy.gif">
 					<img class="serveyDefaultImg" src="${pageContext.request.contextPath}/assets/images/shareModal/stuffy.png">
-					<p class="serveryText">어렵다</p>
-				</div>
+					<span class="serveryText">어렵다</span>
+				</a>
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

@@ -20,4 +20,11 @@ public class ShareController {
 		System.out.println(endPoint);
 		statisticsService.addFailData(endPoint);
 	}
+	
+	@RequestMapping("/addServeyData")
+	public String addServeyData(@RequestParam("levels") String levels) {
+		System.out.println(levels);
+		statisticsService.addServeyData(levels);
+		return "redirect:/";
+	}
 }

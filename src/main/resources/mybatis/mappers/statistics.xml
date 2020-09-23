@@ -98,4 +98,11 @@
 			    storeNo = 1
 		]]>
 	</select>
+	
+	<select id="insertServeyData" parameterType="String">
+		<![CDATA[
+			INSERT into statistics
+			values(seq_statistics.nextval, 1, 'clear', #{levels}, sysdate)
+		]]>
+	</select>
 </mapper>

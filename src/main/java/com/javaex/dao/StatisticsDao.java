@@ -13,4 +13,8 @@ public class StatisticsDao {
 		System.out.println(endPoint);
 		sqlSession.insert("statistics.insertFailData", endPoint);
 	}
+	
+	public void insertServeyData(String levels) {
+		sqlSession.insert("statistics.insertServeyData",levels);
+	}
 }

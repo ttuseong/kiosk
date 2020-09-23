@@ -8,7 +8,7 @@ function forceStop(endPoint){
 		//contentType : "application/json",
 		data : {endPoint : endPoint},
 		dataType : "json",
-		success : function(guestVo){
+		success : function(){
 				
 		},
 		error : function(XHR, status, error) {
@@ -17,10 +17,7 @@ function forceStop(endPoint){
 	});
 }
 
-console.log("테스트1");
-
 $(".serveyImgContainer").hover(function(){
-	console.log("test");
 	$(this).css("filter", "brightness(100%)");
 	$(this).children().eq(1).addClass("serveyHidden");
 	$(this).children().eq(0).removeClass("serveyHidden");
@@ -28,5 +25,8 @@ $(".serveyImgContainer").hover(function(){
 	$(this).css("filter", "brightness(50%)");
 	$(this).children().eq(0).addClass("serveyHidden");
 	$(this).children().eq(1).removeClass("serveyHidden");
-	
+});
+
+$(".serveyImgContainer").on("click", function(){
+	$(window).unbind('beforeunload');
 });
