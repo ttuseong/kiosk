@@ -138,6 +138,7 @@
 									<input type="text" style="width: 150px;" placeholder="메뉴이름" id="menuName">
 									<p>가격</p>
 									<input type="text" placeholder="가격" id="menuPrice">
+									<input type="hidden" id="originalPrice">
 
 									<div style="display: inline-block !important;" class="adminMenu-calorie">
 										<p>칼로리</p>
@@ -149,17 +150,18 @@
 								<!-- 메뉴 참고사항 -->
 								<div class="menuInfo-menuDetails">
 									<p style="margin-right: 20px;">참고사항</p>
+									
 									<input type="checkbox" class="isSpecial" id="promotionMenu" name="isSpecial" value="1" style="margin-left: 0 !important;">
+									<p class="normal"><a class="promotionMenuTag">프로모션/할인</a></p>
+									<input type="hidden" id="discount" value=""> <!-- 할인가 -->
 									
-									<p class="normal">프로모션/할인</p>
 									<input type="checkbox" class="isSpecial" id="recommendMenu" name="isSpecial" value="2">
-									
 									<p class="normal">추천메뉴</p>
+									
 									<input type="checkbox" class="isSpecial" id="newMenu" name="isSpecial" value="4">
-									
 									<p class="normal">신메뉴</p>
-									<input type="checkbox" class="isSpecial" id="useMenu" value="">
 									
+									<input type="checkbox" class="isSpecial" id="useMenu" value="">
 									<p class="normal">관련메뉴</p>
 								</div>
 
@@ -410,6 +412,105 @@
 	<!-- 연관메뉴 모달 끝 -->
 	
 	<!-- 프로모션/할인 모달 -->
+	<div class="modal" id="isSpecial-promotionModal">
+		<div class="modal-dialog adminModal-dialog">
+			<div class="modal-content adminModal-content" id="isSpecial-promotionModal-content">
+				<div class="modal-header adminModal-header">
+					<p class="modal-title adminModal-title">프로모션/할인</p>
+					<i class="fas fa-times adminModal-close" id="isSpecial-promotionModal-close"></i>
+					<!-- 클로즈 버튼 -->
+				</div>
+
+				<!-- 모달 바디 -->
+				<div class="modal-body adminModal-body">
+					<div class="isSpecial-promotionModal-containerInBody">
+						<!-- 프로모션 -->
+						<div class="isSpecial-promotionModal-promotionContainer">
+							<img src="${pageContext.request.contextPath}/assets/images/admin/promotion.png">
+							<p>행사 구성품목 등록</p>
+						</div>
+						
+						<!-- 세일 -->
+						<div class="isSpecial-promotionModal-saleContainer">
+							<img src="${pageContext.request.contextPath}/assets/images/admin/sale.png">
+							<p>할인율 등록</p>
+						</div>
+					</div>
+				</div>
+				<!-- 모달 바디 끝 -->
+
+				<!-- 모달 푸터 -->
+				<div class="modal-footer adminModal-footer" id="isSpecial-promotionModal-footer">
+					<div class="adminModal-footerBtnContainer" id="isSpecial-promotionModal-footerBtnContainer">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split isSpecial-promotionModal-cancle">
+							<span class="text">취소</span>
+						</a><a href="#"
+							class="btn btn-success btn-icon-split isSpecial-promotionModal-submit">
+							<span class="text">확인</span>
+						</a>
+					</div>
+				</div>
+				<!-- 모달 푸터 끝 -->
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- 프로모션/할인 모달 끝 -->
+	
+	
+	<!-- 할인 모달 -->
+	<div class="modal" id="saleModal">
+		<div class="modal-dialog adminModal-dialog">
+			<div class="modal-content adminModal-content" id="saleModal-content">
+				<div class="modal-header adminModal-header">
+					<p class="modal-title adminModal-title">프로모션/할인</p>
+					<i class="fas fa-times adminModal-close" id="saleModal-close"></i>
+					<!-- 클로즈 버튼 -->
+				</div>
+
+				<!-- 모달 바디 -->
+				<div class="modal-body adminModal-body">
+					<div class="saleModal-containerInBody">
+						<div class="discountRate">
+							<input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="할인율" id="discountRate">
+							<i class="fas fa-percentage"></i>
+						</div>
+						<br>
+						<div class="discountedPrice" style="margin: 0!important;">
+							<input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="할인가" id="discountedPrice">
+							<p class="won">원</p>
+						</div>
+					</div>
+				</div>
+				<!-- 모달 바디 끝 -->
+
+				<!-- 모달 푸터 -->
+				<div class="modal-footer adminModal-footer" id="saleModal-footer">
+					<div class="adminModal-footerBtnContainer" id="saleModal-footerBtnContainer">
+						<a href="#"
+							class="btn btn-secondary btn-icon-split saleModal-cancle">
+							<span class="text">취소</span>
+						</a><a href="#"
+							class="btn btn-success btn-icon-split saleModal-submit">
+							<span class="text">확인</span>
+						</a>
+					</div>
+				</div>
+				<!-- 모달 푸터 끝 -->
+
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- 할인 모달 끝 -->
+	
+	<!-- 프로모션 모달 -->
 	<div class="modal" id="promotionModal">
 		<div class="modal-dialog adminModal-dialog">
 			<div class="modal-content adminModal-content" id="promotionModal-content">
@@ -425,13 +526,13 @@
 						<!-- 프로모션 -->
 						<div class="promotionModal-promotionContainer">
 							<img src="${pageContext.request.contextPath}/assets/images/admin/promotion.png">
-							<p>프로모션 구성품목 등록</p>
+							<p>행사 구성품목 등록</p>
 						</div>
 						
 						<!-- 세일 -->
 						<div class="promotionModal-saleContainer">
 							<img src="${pageContext.request.contextPath}/assets/images/admin/sale.png">
-							<p>할인률 등록</p>
+							<p>할인율 등록</p>
 						</div>
 					</div>
 				</div>
@@ -457,7 +558,7 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-	<!-- 프로모션/할인 모달 끝 -->
+	<!-- 프로모션 모달 끝 -->
 	
 	<!-- Bootstrap core JavaScript-->
 	<script src="${pageContext.request.contextPath}/assets/vendor/jquery/jquery.min.js"></script>
@@ -479,7 +580,6 @@
 		getUnitBasicInfo(storeNo) // 관리자 단에서 뿌려질 단위 정보
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
-		$("#promotionModal").modal(); // 모달 열기
 	});	
 
 	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
@@ -692,6 +792,7 @@
 		$("#selectMenuNo").val(""); // 페이지 하단의 메뉴 넘버 초기화
 		$(".adminMenu-menuSubmitBtn").children('span').text("확인"); // 하단 버튼이 [확인]으로 변경
 		resetInput(); // 인풋박스 모두 비워주기
+		initializationDiscount(); // 할인 관련된 부분 초기화
 	}
 	
 	// 인풋박스를 모두 비워주는 함수
@@ -744,13 +845,18 @@
 	
 	// 메뉴 정보 받아서 인풋에 출력해주는 함수
 	function menuInfo(menuVo) {
+		// 초기화가 필요한 정보들 먼저 초기화
+		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
+		$('#useMenu').val(""); // 연관메뉴 value 초기화		
+		initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+		
+		// 정보 삽입
 		$("#menuName").val(menuVo.menuName);
-		$("#menuPrice").val(menuVo.menuPrice);
+		$("#menuPrice, #originalPrice").val(menuVo.menuPrice);
 		/* $("#menuCalorie").val(menuVo.menuCalorie); */
 		$("#menuDesc").val(menuVo.menuDesc);
 		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/kfc/"+menuVo.menuImg);
-		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
-		$('#useMenu').val(""); // 연관메뉴 value 초기화
+		$("#discount").val(menuVo.discount); // 메뉴 정보 페이지에서의 할인가
 		
 		// isSpecial => 1 : 프로모션 / 2 : 추천 / 4 : 신메뉴
 		switch (menuVo.isSpecial){
@@ -784,6 +890,21 @@
 				$('input:checkbox[name="isSpecial"]').prop("checked", true); 
 		        break;    
 		}
+
+		// 할인
+		if(menuVo.discount > 0) { // discount에 값이 있을 경우
+			var discountRate = discountRateFunction(menuVo.discount, menuVo.menuPrice);
+			$("#discountedPrice").val(menuVo.discount); // 모달에서의 할인가
+			$("#discountRate").val(discountRate); // 모달에서의 할인율
+			
+			$("#discountedPrice, #discountRate").css("padding-top", "6px");
+		}
+
+		// 연관메뉴
+		if(menuVo.useMenu != null && menuVo.useMenu != 0) {
+			$('input:checkbox[id="useMenu"]').prop("checked", true); // 연관메뉴 체크
+			$('#useMenu').val(menuVo.useMenu); // 연관메뉴 value에 usemenu 넘버 넘겨주기
+		}	
 		
 		// 변경 가능한 메뉴
 		if(menuVo.isChange == 1) {
@@ -793,14 +914,6 @@
 		// 추가 구성
 		if(menuVo.unitNo != null && menuVo.unitNo != 0) {
 			$('input:checkbox[id="unitInfo_check_' + menuVo.unitNo + '"]').prop("checked", true); 
-		}
-		
-		console.log(menuVo.useMenu);
-
-		// 연관메뉴
-		if(menuVo.useMenu != null && menuVo.useMenu != 0) {
-			$('input:checkbox[id="useMenu"]').prop("checked", true); // 연관메뉴 체크
-			$('#useMenu').val(menuVo.useMenu); // 연관메뉴 value에 usemenu 넘버 넘겨주기
 		}
 	}
 
@@ -887,9 +1000,10 @@
 		var menuNo = $("#selectMenuNo").val();
 		var cateNo = $("#selectCateNo").val();
 		var unitNo = $("input[id^='unitInfo_check_']:checked").val();
-		if(unitNo == null) {
-			unitNo = "";
-		}
+		if(unitNo == null) { unitNo = ""; }
+		var originalPrice = Number($("#originalPrice").val());
+		var menuPrice = Number($("#menuPrice").val());
+		var discount = Number($("#discount").val());
 		
 		// menuVo의 isSpecial 값을 위한 부분
 		var isSpecial = 0; // 아무 것도 체크되지 않은 상태에서는 0임
@@ -914,12 +1028,13 @@
 		
 		imgData.append("categoryNo", cateNo);
 		imgData.append("menuName", $("#menuName").val());
-		imgData.append("menuPrice", Number($("#menuPrice").val()));
+		imgData.append("menuPrice", menuPrice);
 		imgData.append("isSpecial", isSpecial);
 		imgData.append("isChange", isChange);
 		imgData.append("menuDesc", $("#menuDesc").val());
 		imgData.append("unitNo", unitNo);
 		imgData.append("useMenu", $("#useMenu").val());
+		imgData.append("discount", discount);
 
 		if(menuNo != 0){
 			imgData.append("menuNo", menuNo);
@@ -941,7 +1056,14 @@
 				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuAdd(imgData);
 			}
 			else { // 메뉴 수정
-				txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val());			
+				if(originalPrice != menuPrice && discount != null) {
+					if (window.confirm("메뉴 가격이 변동 되었습니다. 할인율 수정없이 등록하시겠습니까?")) {
+						txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val());	
+					}
+				}
+				else {
+					txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val());	
+				}
 			} 
 		}
 
@@ -1620,21 +1742,156 @@
 		console.log("프로모션 모달 열기");
 		
 		if($("#promotionMenu").is(":checked")) { // 프로모션/할인 체크박스가 체크 된 경우
-			$("#promotionModal").modal(); // 모달 열기
+			$("#isSpecial-promotionModal").modal(); // 모달 열기
 		}
-		else { // 체크 해제 하면 체크박스 value 초기화
-			$("#promotionMenu").val(1); 
+		else {
+			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+			$('#promotionMenu').prop("checked", false); // 체크박스 해제
 		}
+	});
+
+	$(".promotionMenuTag").on("click", function() {
+		console.log("프로모션 모달 열기");
+
+		$("#isSpecial-promotionModal").modal(); // 모달 열기
+	});
+	
+	// 프로모션 모달 확인 버튼
+	$(".isSpecial-promotionModal-submit").on("click", function() {
+		$("#isSpecial-promotionModal").modal("hide");
+
+		// 등록한 할인 정보 메뉴정보페이지에 삽입
+		$("#discount").val($("#discountedPrice").val());
+		
+		$('#promotionMenu').prop("checked", true); // 체크박크 체크
 	});
 	
 	// 프로모션 모달 취소&닫기 버튼
-	$("#promotionModal-close, .promotionModal-cancle").on("click", function() {
-		$("#promotionModal").modal("hide");
-
-		if($("#promotionMenu").val() == 1) {
-			console.log("테스트");
-			$('#promotionMenu').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
+	$("#isSpecial-promotionModal-close, .isSpecial-promotionModal-cancle").on("click", function() {
+		$("#isSpecial-promotionModal").modal("hide");
+		
+		var discount = $("#discount").val();
+		
+		if(discount == null) { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
+			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+			$('#promotionMenu').prop("checked", false); // 체크박스 해제
+		}
+		else if(discount != null){ // 기존에 값이 있는 경우의 취소 => 수정을 취소하겠다는 소리
+			$("#discountedPrice").val(discount); // discount 기존 값으로 바꿔줌
+			console.log(discount, $("#menuPrice").val());
+			InsertDiscountRate($("#menuPrice").val()); // 할인율 구해서 삽입 
 		}
 	});
+	
+	// 프로모션/할인 모달 hover
+	$(".isSpecial-promotionModal-promotionContainer, .isSpecial-promotionModal-saleContainer").hover(function() {
+		$(this).css("color", "#1cc88a"); // 폰트 컬러 변경
+		$(".isSpecial-promotionModal-containerInBody").children().children('img').css("-webkit-filter", "grayscale(100%)"); // 전체 이미지 컬러 흑백화
+		$(this).children('img').css("filter", "brightness(100%)"); // 선택된 이미지만 본래 컬러로 변경
+	}, function(){ // hover 해제 시
+		$(this).css("color", "#858796"); // 폰트 컬러 흑백으로 변경
+		$(".isSpecial-promotionModal-containerInBody").children().children('img').css("filter", "brightness(100%)"); // 이미지 본래 컬러로 변경
+	});
+	
+	// 프로모션 버튼 클릭 시
+	$(".isSpecial-promotionModal-promotionContainer").on("click", function() {
+		console.log("프로모션 클릭");
+	});
+
+	// 할인 버튼 클릭 시
+	$(".isSpecial-promotionModal-saleContainer").on("click", function() {
+		console.log("할인 클릭");
+
+		if($("#menuPrice").val() == 0) {
+			alert("메뉴 가격이 등록 된 경우에만 할인율 등록이 가능합니다.");
+		}
+		else {
+			$("#saleModal").modal(); // 할인 모달 열기
+		}
+	});
+	
+	// 인풋박스의 텍스트 입력 실시간 감지
+	$("#discountRate, #discountedPrice, #menuPrice").on("propertychange change keyup paste input", function(){
+		var selector = $(this); // 현재 입력 된 인풋박스
+		var menuPrice = Number($("#menuPrice").val()); // 원가
+
+		if(selector.attr('id') == "menuPrice" && $("#discount").val() > 0) { // 메뉴 정보 페이지에서의 인풋 박스가 입력 된 경우
+			if($("#discount").val() != null) { // 현재 할인율이 있는 메뉴라면
+				InsertDiscountedPrice(menuPrice); // 할인가 구해서 모달에 삽입
+				$("#discount").val($("#discountedPrice").val()); // 화면의 할인가 변경
+			}
+		}
+		else { // 할인 모달에서의 인풋 박스가 입력 된 경우
+			if(selector.attr('id') == "discountRate") { // 할인율에 값이 입력 된 경우
+				selector.css("padding-top", "6px"); // padding-top: 6px 부여 (placeholder와 입력 글꼴이 다르기 때문에 수직 가운데 정렬을 위해서 이 부분이 들어가줘야 함)
+				InsertDiscountedPrice(menuPrice); // 할인가 구해서 삽입
+				var discountRate = $("#discountRate").val();
+				
+				if(discountRate == "") { // input 박스가 빌 경우 paddint-top값 초기화
+					selector.css("padding-top", "0px");
+				}
+				else if(discountRate >= 100) { // 100 이상의 값을 넣으려는 경우 100으로 고정
+					selector.val(100);
+				}
+			}
+			else if(selector.attr('id') == "discountedPrice") { // 할인가에 값이 입력된 경우
+				selector.css("padding-top", "6px"); // padding-top: 6px 부여 (placeholder와 입력 글꼴이 다르기 때문에 수직 가운데 정렬을 위해서 이 부분이 들어가줘야 함)
+				InsertDiscountRate(menuPrice); // 할인율 구해서 삽입
+				var discountedPrice = $("#discountedPrice").val();
+
+				if(discountedPrice == "") { // input 박스가 빌 경우 paddint-top값 초기화
+					selector.css("padding-top", "1px");
+				}
+				else if(discountedPrice >= menuPrice) { // 할인가가 원가보다 높을 경우
+					selector.val(menuPrice); // 인풋박스에 원가 삽입
+				}
+			}
+		}
+	});
+	
+	// 할인가 구해서 삽입
+	function InsertDiscountedPrice(menuPrice) {
+		console.log($("#discountRate").val());
+		var discountRate = Number($("#discountRate").val()); // 할인율
+		var discountedPrice = discountedPriceFunction(discountRate, menuPrice); // 할인가 구하기
+		$("#discountedPrice").val(discountedPrice.toFixed(0)); // 기존 할인가 input에 삽입, .toFixed(0) => 소수점을 0자리까지만 표기
+	}
+
+	// 할인가 구하기
+	function discountedPriceFunction(discountRate, menuPrice) {
+		return (1 - (discountRate/100)) * menuPrice;
+	}
+	
+	// 할인율 구해서 삽입
+	function InsertDiscountRate(menuPrice) {
+		var discountedPrice = Number($("#discountedPrice").val()); // 할인가
+		var discountRate = discountRateFunction(discountedPrice, menuPrice); // 할인율 구하기
+		$("#discountRate").val(discountRate.toFixed(0)); // 기존 할인율 input에 삽입, .toFixed(0) => 소수점을 0자리까지만 표기
+	}
+	
+	// 할인율 구하기
+	function discountRateFunction(discountedPrice, menuPrice) {
+		return (1 - (discountedPrice/menuPrice)) * 100;
+	}
+	
+	// 할인과 관련 된 부분 초기화
+	function initializationDiscount(){
+		$("#discount").val(""); // 메뉴 정보 페이지 할인가 초기화
+		$("#discountRate").val(""); // 모달 할인율 초기화
+		$("#discountedPrice").val(""); // 모달 할인가 초기화
+	}
+	
+	// 확인 버튼 클릭 시
+	$(".saleModal-submit").on("click", function() {
+		console.log("할인 모달 확인 버튼 클릭");
+
+		$("#saleModal").modal("hide");
+	});
+	
+	// 할인 모달 취소&닫기 버튼
+	$("#saleModal-close, .saleModal-cancle").on("click", function() {
+		$("#saleModal").modal("hide");
+	});
+	
 </script>
 </html>

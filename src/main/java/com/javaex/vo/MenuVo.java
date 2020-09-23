@@ -54,7 +54,20 @@ public class MenuVo {
 	}
 
 	public MenuVo(int categoryNo, String menuName, String menuDesc, int menuPrice, String menuImg, int isSpecial,
-			int isChange, int unitNo, int menuNo) {
+			int isChange, int unitNo, int discount) {
+		this.categoryNo = categoryNo;
+		this.menuName = menuName;
+		this.menuDesc = menuDesc;
+		this.menuPrice = menuPrice;
+		this.menuImg = menuImg;
+		this.isSpecial = isSpecial;
+		this.isChange = isChange;
+		this.unitNo = unitNo;
+		this.discount = discount;
+	}
+
+	public MenuVo(int categoryNo, String menuName, String menuDesc, int menuPrice, String menuImg, int isSpecial,
+			int isChange, int unitNo, int menuNo, int discount) {
 		this.categoryNo = categoryNo;
 		this.menuName = menuName;
 		this.menuDesc = menuDesc;
@@ -64,10 +77,11 @@ public class MenuVo {
 		this.isChange = isChange;
 		this.unitNo = unitNo;
 		this.menuNo = menuNo;
+		this.discount = discount;
 	}
 	
 	public MenuVo(int menuNo, int categoryNo, String categoryName, String menuName, String menuDesc, int menuPrice,
-			String menuImg, int isSet, int defaultNo, int unitNo, String unitName, int useMenu) {
+			String menuImg, int isSet, int defaultNo, int unitNo, String unitName, int useMenu, int discount) {
 		this.menuNo = menuNo;
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
@@ -80,6 +94,7 @@ public class MenuVo {
 		this.unitNo = unitNo;
 		this.unitName = unitName;
 		this.useMenu = useMenu;
+		this.discount = discount;
 	}
 
 	public int getUseMenu() {

@@ -3,7 +3,7 @@
 	left: -5.5%;
 }
 
-#unitManagerModal {    
+#unitManagerModal {   
     left: -7%;
     top: 1.25%;
 }
@@ -257,18 +257,77 @@
 }
 
 /* 프로모션/할인 */
-.promotionModal-containerInBody > div {
+.isSpecial-promotionModal-containerInBody > div {
 	display: inline-block;
 	min-width: 200px;
 }
 
+
 /* 프로모션/할인 이미지 */
-.promotionModal-containerInBody > div > img {
-	width: 170px;
-	height: 170px;	
+.isSpecial-promotionModal-containerInBody > div > img {
+	width: 150px;
+	height: 150px;	
+	/* -webkit-filter: grayscale(100%); */
 }
 
-.promotionModal-containerInBody > div > p {
+.isSpecial-promotionModal-containerInBody > div > p {
 	width: 200px!important;
 	margin: 0px!important;
+}
+
+/* 할인 모달 */
+#unitManagerModal {
+    top: 1.25%!important;
+}
+
+.saleModal-content {
+	border: none;
+	box-shadow: 0px 0px 7px grey!important;
+}
+
+.saleModal-containerInBody > div{
+	position: relative;
+	margin: 0!important;
+}
+
+.saleModal-containerInBody > div > input {
+	width: 250px;
+    height: 45px;
+    line-height: 45px;
+    vertical-align: middle;
+    padding-right: 50px;
+    
+    border: solid 1px #efeef0;
+    border-radius: 10px;
+    background-color: #efeef0;
+    color: #1cc88a!important;
+    
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: right;
+}
+
+.saleModal-containerInBody > div > input::placeholder {
+    color: #d1d1d2;
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.fa-percentage, .won {
+	color: #1cc88a;
+    font-size: 25px!important;
+    
+    position: absolute!important;
+    top: 50%!important;
+    right: 25%!important;
+    transform: translateY(-50%);
+}
+
+.won {
+    width: 20px!important;
+    margin: 0!important;
+    padding-top: 1px;
+    text-align: right!important;
+    font-family: 'Noto Sans KR', sans-serif;
 }

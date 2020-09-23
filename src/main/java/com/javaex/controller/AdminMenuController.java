@@ -54,6 +54,7 @@ public class AdminMenuController {
 	public MenuVo adminMenuInfo(@RequestParam("menuNo") int menuNo) {
 		
 		MenuVo menuVo = adminMenuService.getMenuInfo(menuNo);
+		System.out.println(menuVo.toString());
 		
 		return menuVo;
 	}
@@ -64,9 +65,10 @@ public class AdminMenuController {
 	public int adminAddeMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo,
-			@RequestParam(value="useMenu", defaultValue="0") int useMenu) {
+			@RequestParam(value="useMenu", defaultValue="0") int useMenu, @RequestParam(value="discount", defaultValue="0") int discount) {
 		
-		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, useMenu);
+			System.out.println("controller discount : " + discount);
+		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, useMenu, discount);
 	}
 	
 	// 메뉴 수정
@@ -75,9 +77,9 @@ public class AdminMenuController {
 	public MenuVo adminUpdateMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo, @RequestParam("menuNo") int menuNo,
-			@RequestParam(value="useMenu", defaultValue="0") int useMenu) {
+			@RequestParam(value="useMenu", defaultValue="0") int useMenu, @RequestParam(value="discount", defaultValue="0") int discount) {
 
-		MenuVo updateMenuInfo = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo, useMenu);
+		MenuVo updateMenuInfo = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo, useMenu, discount);
 	
 		// 업데이트 한 메뉴 정보 보내기
 		return updateMenuInfo;

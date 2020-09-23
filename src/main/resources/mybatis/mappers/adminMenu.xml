@@ -38,6 +38,7 @@
 			        m.isspecial,
 			        m.ischange,
 			        m.unitno,
+        			m.discount,
 			        u.menuno as usemenu
 			from menu m left outer join usemenu u on m.menuno = u.setno
 			where m.menuno = #{menuNo}
@@ -74,11 +75,14 @@
 			insert into menu values(#{menuNo}, #{categoryNo}, #{menuName}, #{menuDesc}, #{menuPrice}, #{menuImg}, #{isSpecial}, #{isChange}, 
 		]]>
 		<if test="unitNo == 0">
-			null, 0)
+			null,
 		</if>
 		<if test="unitNo != 0">
-			#{unitNo}, 0)
+			#{unitNo},
 		</if>
+		<![CDATA[
+			#{discount})
+		]]>
 	</insert>
 	
 	<!-- 연관 메뉴 추가 -->
@@ -96,7 +100,8 @@
 			    menudesc = #{menuDesc},
 			    menuprice = #{menuPrice},
 			   	isSpecial = #{isSpecial},
-			   	isChange = #{isChange}
+			   	isChange = #{isChange},
+			   	discount = #{discount}
 		]]>
 		<if test="unitNo != 0">
 				, unitNo = #{unitNo}

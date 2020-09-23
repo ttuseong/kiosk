@@ -62,7 +62,7 @@ public class AdminMenuDao {
 	// Dao 메뉴 추가
 	public int menuInsert(MenuVo menuVo) {
 		System.out.println("dao(adminMenu) - 메뉴 추가");
-
+		System.out.println(menuVo.toString());
 		sqlSession.insert("adminMenu.menuInsert", menuVo);
 		int getMenuNo = menuVo.getMenuNo();
 		

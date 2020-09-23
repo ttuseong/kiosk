@@ -7,7 +7,7 @@
 	
 	<div class="main-headerContainer admin-headerContainer">
 		<div class="main-mainLogo">
-			<a href="#">
+			<a href="${pageContext.request.contextPath}/">
 				<img src="${pageContext.request.contextPath}/assets/images/icon1.png">
 			</a>
 		</div>

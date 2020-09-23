@@ -47,13 +47,14 @@ public class AdminMenuService {
 	}
 	
 	// Service 메뉴 추가
-	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int useMenu) {
+	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int useMenu, int discount) {
 		MenuVo menuVo;
+		System.out.println("service discount:" + discount);
 		
 		if(!file.getOriginalFilename().equals("")) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo);
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo, discount);
 			
 			try {
 				byte[] fileData = file.getBytes();
@@ -72,7 +73,8 @@ public class AdminMenuService {
 				e.printStackTrace();
 			}
 		} else {
-			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "icon1.png", isSpecial, isChange, unitNo);
+			
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "icon1.png", isSpecial, isChange, unitNo, discount);
 		}
 		
 		if(useMenu != 0) { // useMenu를 선택한 경우
@@ -87,12 +89,12 @@ public class AdminMenuService {
 	}
 	
 	// Service 메뉴 수정
-	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo, int useMenu) {
+	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo, int useMenu, int discount) {
 		MenuVo menuVo;
 		if(!file.getOriginalFilename().equals("")) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
-			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo, menuNo);
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, saveName, isSpecial, isChange, unitNo, menuNo, discount);
 			
 			try {
 				byte[] fileData = file.getBytes();
@@ -111,15 +113,17 @@ public class AdminMenuService {
 				e.printStackTrace();
 			}
 		} else {
-			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "", isSpecial, isChange, unitNo, menuNo);
+			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "", isSpecial, isChange, unitNo, menuNo, discount);
 		}
 
 		int useMenuCnt = adminMenuDao.getUseMenuCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
+		System.out.println("service 연관 메뉴 유무 받기: " + useMenuCnt);
 
-		if(useMenuCnt == 0) { // 해당 메뉴에 연관 메뉴가 없었던 상태였다면
+		if(useMenuCnt == 0 && useMenu != 0) { // 해당 메뉴에 연관 메뉴가 없었던 상태였으나 새로 연관메뉴를 선택했다면
 			adminMenuDao.useInsert(menuNo, useMenu);
 		}
-		else { // 기존에 연관 메뉴가 있었던 상태라면
+		
+		if(useMenuCnt > 0) { // 기존에 연관 메뉴가 있었던 상태라면
 			if(useMenu == 0) { // useMenu를 선택하지 않은 경우
 				adminMenuDao.delUseMenu("setNo", menuNo); // 연관 메뉴 삭제
 			}
@@ -128,8 +132,9 @@ public class AdminMenuService {
 			}
 		}
 
-		adminMenuDao.menuUpdate(menuVo); // 메뉴 업데이트
+		adminMenuDao.menuUpdate(menuVo); // 메뉴 수정
 		MenuVo updateMenuInfo = adminMenuDao.getMenuInfo(menuVo.getMenuNo()); // 업데이트 한 메뉴 정보 담기
+		System.out.println(updateMenuInfo.toString());
 		
 		return updateMenuInfo;
 	}
