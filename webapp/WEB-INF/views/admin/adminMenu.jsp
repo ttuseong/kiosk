@@ -1813,17 +1813,19 @@
 	// 인풋박스의 텍스트 입력 실시간 감지
 	$("#discountRate, #discountedPrice, #menuPrice").on("propertychange change keyup paste input", function(){
 		var selector = $(this); // 현재 입력 된 인풋박스
+		var id = selector.attr('id');
 		var menuPrice = Number($("#menuPrice").val()); // 원가
 
-		if(selector.attr('id') == "menuPrice" && $("#discount").val() > 0) { // 메뉴 정보 페이지에서의 인풋 박스가 입력 된 경우
+		if(id == "menuPrice" && $("#discount").val() > 0) { // 메뉴 정보 페이지에서의 인풋 박스가 입력 된 경우
 			if($("#discount").val() != null) { // 현재 할인율이 있는 메뉴라면
 				InsertDiscountedPrice(menuPrice); // 할인가 구해서 모달에 삽입
 				$("#discount").val($("#discountedPrice").val()); // 화면의 할인가 변경
 			}
 		}
-		else { // 할인 모달에서의 인풋 박스가 입력 된 경우
-			if(selector.attr('id') == "discountRate") { // 할인율에 값이 입력 된 경우
-				selector.css("padding-top", "6px"); // padding-top: 6px 부여 (placeholder와 입력 글꼴이 다르기 때문에 수직 가운데 정렬을 위해서 이 부분이 들어가줘야 함)
+		else if(id == "discountRate" || id == "discountedPrice"){ // 할인 모달에서의 인풋 박스가 입력 된 경우
+			$("#discountRate, #discountedPrice").css("padding-top", "6px"); // padding-top: 6px 부여 (placeholder와 입력 글꼴이 다르기 때문에 수직 가운데 정렬을 위해서 이 부분이 들어가줘야 함)
+		
+			if(id == "discountRate") { // 할인율에 값이 입력 된 경우
 				InsertDiscountedPrice(menuPrice); // 할인가 구해서 삽입
 				var discountRate = $("#discountRate").val();
 				
@@ -1834,8 +1836,7 @@
 					selector.val(100);
 				}
 			}
-			else if(selector.attr('id') == "discountedPrice") { // 할인가에 값이 입력된 경우
-				selector.css("padding-top", "6px"); // padding-top: 6px 부여 (placeholder와 입력 글꼴이 다르기 때문에 수직 가운데 정렬을 위해서 이 부분이 들어가줘야 함)
+			else if(id == "discountedPrice") { // 할인가에 값이 입력된 경우
 				InsertDiscountRate(menuPrice); // 할인율 구해서 삽입
 				var discountedPrice = $("#discountedPrice").val();
 
@@ -1881,15 +1882,9 @@
 		$("#discountedPrice").val(""); // 모달 할인가 초기화
 	}
 	
-	// 확인 버튼 클릭 시
-	$(".saleModal-submit").on("click", function() {
-		console.log("할인 모달 확인 버튼 클릭");
+	// 할인 모달 확인&취소&닫기 버튼
+	$(".saleModal-submit, #saleModal-close, .saleModal-cancle").on("click", function() {
 
-		$("#saleModal").modal("hide");
-	});
-	
-	// 할인 모달 취소&닫기 버튼
-	$("#saleModal-close, .saleModal-cancle").on("click", function() {
 		$("#saleModal").modal("hide");
 	});
 	
