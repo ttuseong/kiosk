@@ -49,17 +49,6 @@ public class AdminCategoryDao {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//카테고리 삭제 -- 첫번째 ajax alert창 띄우기
 	public int selectMenuCount(int categoryNo) {
 		System.out.println("다오- 카테고리 alert창 뜨게하기");
@@ -82,8 +71,6 @@ public class AdminCategoryDao {
 	//카테고리 수정
 	public int titleUpdate(CategoryVo categoryVo) {
 		System.out.println("다오 - 카테고리 수정 불러오기");
-		
-		
 		
 		return sqlSession.update("adminCategory.titleUpdate", categoryVo);
 	}

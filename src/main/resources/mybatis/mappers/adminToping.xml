@@ -4,7 +4,7 @@
 <mapper namespace="adminToping">
 
 	<!-- 토핑 리스트 -->
-	<select id="selectTopingList" resultType="com.javaex.vo.ToppingVo">
+	<select id="selectTopingList" parameterType="map" resultType="com.javaex.vo.ToppingVo">
 		<![CDATA[
 			SELECT  
 					toppingno,
@@ -15,6 +15,13 @@
 					topping
 			WHERE 
 					storeno=1
+		]]>		
+				     <if test="toppingName neq null">
+					 AND
+			         		toppingname like'%'||#{toppingName}||'%'
+			      	</if>
+		<![CDATA[			 
+					 
 			ORDER BY 
 					toppingno desc		
 		]]>
@@ -52,17 +59,53 @@
 	</select>
 	
 	<!-- 토핑 중복 갯수세기 -->
-	<select id="selectToppingCount" parameterType="String" resultType="int">
+	<select id="selectToppingCount" parameterType="map" resultType="int">
 		<![CDATA[
 			SELECT
 					count(toppingno)
 			FROM 
 					topping
 			WHERE 
-					toppingname=#{toppingName}
+					toppingname= #{toppingName}
 			AND 
 					storeno=1
 		]]>
+		<if test="toppingNo != 0">
+			 AND
+			 		toppingNo != #{toppingNo}
+		</if>
 	</select>
+	
+	<!-- 토핑 삭제하기 -->
+	<delete id="deleteTopping" parameterType="int">
+		<![CDATA[
+			DELETE FROM 
+					topping
+			WHERE 
+					toppingno = #{toppingNo}
+			AND 		
+					storeno = 1
+		]]>
+	</delete>
+	
+	<!-- 토핑 수정하기 -->
+	<update id="updateTopping" parameterType="com.javaex.vo.ToppingVo">
+		<![CDATA[
+			UPDATE 
+					topping
+			SET 
+					toppingname = #{toppingName},  
+    				toppingprice = #{toppingPrice}
+    		]]>
+    		<if test="toppingImg != ''">
+    			, toppingImg = #{toppingImg}
+    		</if>
+    		<![CDATA[		
+			WHERE
+   					toppingno = #{toppingNo}
+		]]>
+	</update>
+	
+
 	
 </mapper>

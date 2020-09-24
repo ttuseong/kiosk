@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,10 @@ public class AdminToppingDao {
 	SqlSession sqlSession;
 	
 	//토핑 리스트 다오
-	public List<ToppingVo> adminToppingSelectList(){
+	public List<ToppingVo> adminToppingSelectList(Map<String, Object> map){
 		System.out.println("과연 너가 넘어왔을까");
-		List<ToppingVo> toppingList = sqlSession.selectList("adminToping.selectTopingList");
+		
+		List<ToppingVo> toppingList = sqlSession.selectList("adminToping.selectTopingList", map);
 		
 		//System.out.println(toppingList.toString());
 		return toppingList;
@@ -36,8 +38,22 @@ public class AdminToppingDao {
 	}
 	
 	//토핑이름 중복 방지 
-	public int selectToppingNameCheck(String toppingName) {
-		
-		return sqlSession.selectOne("adminToping.selectToppingCount", toppingName);
+	public int selectToppingNameCheck(Map<String, Object> map) {
+		return sqlSession.selectOne("adminToping.selectToppingCount", map);
 	}
+	
+	//토핑 삭제하기 다오
+	public int deleteTopping(int toppingNo) {
+		
+		return sqlSession.delete("adminToping.deleteTopping", toppingNo);
+	}
+	
+	//토핑 수정하기 다오
+	public int adminToppingUpdate(ToppingVo toppingVo) {
+		System.out.println("토핑수정하기다오");
+		System.out.println(toppingVo.toString());
+		return sqlSession.update("adminToping.updateTopping", toppingVo);
+	}
+	
+
 }

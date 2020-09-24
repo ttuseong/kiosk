@@ -112,8 +112,8 @@ a{
 /* adminToping 툴팁 */
 
 .adminCate-tooltip-topping {
-	position: absolute;
-	top: 5%;
+position: absolute;
+	top: 5.5%;
 	right: 1%;
 	transform: translate(-50%, -50%);
 }

@@ -122,7 +122,18 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered adminToping-table"width="100%" cellspacing="0">
+
+								<table class="table table-bordered adminToping-table" width="100%" cellspacing="0">
+									<div class="admin-search dataTables_filter">
+										<form action="/kiosk/admin/adminToping" method="get">	
+											<label>Search:</label>
+											<input name="searchToppingTitle" type="search" class="form-control-search" id="findSearch" placeholder="토핑 찾기" aria-controls="dataTable">
+											<div class="adminCate-submitBtn" style="display: inline;">
+		                                		<button type="submit"  class="btn btn-success btn-icon-split" id="adminCate-search">확인</button>
+		                             		</div>
+	                             		</form>
+									</div>
+
 									<thead>
 										<tr>
 											<th>No</th>
@@ -143,17 +154,24 @@
 									</tfoot>
 									<tbody>
 										<c:forEach items="${toppingList}" var="tList" varStatus="status">
-											<tr data-no="${tList.toppingNo }">
+											<tr data-toppingno="${tList.toppingNo }">
 												<td>${tList.toppingNo}</td>
-												<td><a href="#">${tList.toppingName}</a></td>
+												<td><a href="#" class="toppingTitle">${tList.toppingName}</a></td>
 												<td>${tList.toppingPrice}</td>
-												<td><a href="#">X</a></td>
+												<td><a href="#" class="toppingDeleteBtn">X</a></td>
 												<td>${tList.toppingImg}</td>
 											</tr>
 										</c:forEach>
 										
 									</tbody>
 								</table>
+								<ul class="pagination admin-paging">
+									<li class=""><a href="#" class="admin-pageLink admin-pagePrevious">Previous</a></li>
+									<li class=""><a href="#" class="admin-pageLink admin-pageActive">1</a></li>
+									<li class=""><a href="#" class="admin-pageLink">2</a></li>
+									<li class=""><a href="#" class="admin-pageLink">3</a></li>
+									<li class=""><a href="#" class="admin-pageLink admin-next">next</a></li>
+								</ul>
 							</div>
 						</div>
 					</div>

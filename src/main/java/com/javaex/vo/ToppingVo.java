@@ -9,9 +9,21 @@ public class ToppingVo {
 	
 	public ToppingVo() {}
 	
+
 	public ToppingVo(String toppingName, int toppingPrice, String toppingImg) {
+		super();
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
+		this.toppingImg = toppingImg;
+	}
+
+
+
+
+	public ToppingVo(String toppingName, int toppingPrice, int toppingNo, String toppingImg) {
+		this.toppingName = toppingName;
+		this.toppingPrice = toppingPrice;
+		this.toppingNo = toppingNo;
 		this.toppingImg = toppingImg;
 	}
 	
@@ -23,6 +35,8 @@ public class ToppingVo {
 		this.toppingPrice = toppingPrice;
 		this.toppingImg = toppingImg;
 	}
+	
+	
 
 	public int getToppingNo() {
 		return toppingNo;
@@ -64,9 +78,15 @@ public class ToppingVo {
 		this.toppingImg = toppingImg;
 	}
 
+
 	@Override
 	public String toString() {
 		return "ToppingVo [toppingNo=" + toppingNo + ", storeNo=" + storeNo + ", toppingName=" + toppingName
 				+ ", toppingPrice=" + toppingPrice + ", toppingImg=" + toppingImg + "]";
 	}
+	
+
+
+
+	
 }

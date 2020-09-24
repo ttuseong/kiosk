@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+tr > th:first-child {
+	width: 150px!important;
+    padding-left: 30px!important;
+	text-align:center!important;
+}
+
+tr > th:nth-child(2){
+    padding-left: 30px!important;
+	text-align:center!important;
+}
+
 tr > th:nth-child(3), th:nth-child(4), th:nth-child(5) {
 	width: 80px!important;
     padding-left: 30px!important;
@@ -17,7 +28,7 @@ tbody > tr > td:nth-child(2) > a {
 }
 
 .adminCate-addCateForm {
-    min-width: 300px!important;
+    min-width: 250px!important;
     border-radius: 5px!important;
     background-color: #f1f2f5!important;
 }
@@ -39,60 +50,6 @@ tbody > tr > td:nth-child(2) > a {
 	}
 }
 
-/* 토핑 정보 페이지 리스트 테이블 */
-/* no열 크기 */
-.adminToping-table > thead > tr > th:first-child {
-	width: 100px!important;
-}
-
-/* name열 텍스트 정렬 */
-.adminToping-table > thead > tr > th:nth-child(2) {
-	width: 200px!important;
-	padding-left: 26px!important;
-	text-align: center!important;
-}
-
-.adminToping-table > tfoot > tr > th:nth-child(2) {
-	text-align: center!important;
-}
-
-.adminToping-table > tbody > tr > td:nth-child(2) {
-	text-align: center!important;
-}
-
-/* price열 텍스트 정렬 */
-.adminToping-table > thead > tr > th:nth-child(3) {
-	text-align: right!important;
-    padding-right: 40px!important;
-}
-
-.adminToping-table > tfoot > tr > th:nth-child(3) {
-	text-align: right!important;
-    padding-right: 40px;
-}
-
-.adminToping-table > tbody > tr > td:nth-child(3) {
-	text-align: right!important;
-}
-
-/* kcal열 텍스트 정렬 */
-.adminToping-table > thead > tr > th:nth-child(4) {
-	text-align: right!important;
-    padding-right: 40px!important;
-}
-
-/* delete열 텍스트 정렬 */
-.adminToping-table > thead > tr > th:nth-child(5) {
-	text-align: right!important;
-    padding-right: 40px!important;
-}
-
-/* 사진열 텍스트 정렬 */
-.adminToping-table > thead > tr > th:nth-child(6) {
-	width: 100px!important;
-	text-align: right!important;
-    padding-right: 40px!important;
-}
 
 /* 토핑 css */
 /* 확인 버튼 */
