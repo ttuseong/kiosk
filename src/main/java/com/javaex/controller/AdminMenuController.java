@@ -65,9 +65,10 @@ public class AdminMenuController {
 	public int adminAddeMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo,
-			@RequestParam(value="useMenu", defaultValue="0") int useMenu, @RequestParam(value="discount", defaultValue="0") int discount) {
+			@RequestParam(value="useMenu", defaultValue="0") int useMenu, @RequestParam(value="discount", defaultValue="0") int discount,
+			@RequestParam(value="promotion", defaultValue="0") String promotion) {
 		
-			System.out.println("controller discount : " + discount);
+			System.out.println("controller promotion : " + promotion);
 		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, useMenu, discount);
 	}
 	

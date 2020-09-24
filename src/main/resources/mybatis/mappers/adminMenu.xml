@@ -10,7 +10,7 @@
 			        categoryname
 			from category
 			where storeno = #{storeNo}
-			order by categoryname desc
+			order by categoryname asc
 		]]>
 	</select>
 	

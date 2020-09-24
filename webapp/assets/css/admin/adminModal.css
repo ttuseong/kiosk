@@ -128,7 +128,6 @@
     top: 0;
 }
 
-
 /* 구성 추가/수정 모달 */
 /* / 모달 전체 / */
 #unitManagerModal-content {
@@ -139,7 +138,7 @@
 }
 
 /* 모달 바디 */
-.adminModal-body {
+.adminModal-body, .promotionModal-body {
 	width: 100%;
 	min-height: 100%;
 	padding: 40px;
@@ -184,7 +183,6 @@
     margin-left: 104px!important;
     width: auto!important;
 }
-
 
 .adminModal-body > div > div:last-child {
 	margin-bottom: 0px!important;
@@ -276,11 +274,13 @@
 }
 
 /* 할인 모달 */
-#unitManagerModal {
+#saleModal {
     top: 1.25%!important;
+    left: -1.65%;
 }
 
-.saleModal-content {
+#saleModal-content {
+	width: 550px;
 	border: none;
 	box-shadow: 0px 0px 7px grey!important;
 }
@@ -330,4 +330,16 @@
     padding-top: 1px;
     text-align: right!important;
     font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 프로모션 모달 */
+#promotionModal {
+	left: -7%;
+    top: 1.25%!important;
+}
+
+#promotionModal-content {
+	width: 700px;
+	border: none;
+	box-shadow: 0px 0px 7px grey!important;
 }
