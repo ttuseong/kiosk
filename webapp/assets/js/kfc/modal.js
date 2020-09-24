@@ -146,7 +146,7 @@ function selectMenu(data, price){
 	            OnselectMode(menuList[i]);
 	         }
 	         
-			 modalCanclePoint.push(["selectMode", "세트 선택 모달"]);
+			 modalCanclePoint.push(["selectMode", "세트 선택"]);
 	         $("#selectMode").modal();	
 		}
 		else{

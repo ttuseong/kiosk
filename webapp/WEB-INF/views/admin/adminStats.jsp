@@ -128,34 +128,10 @@
 								</div>
 							</div>
 
-							<!-- 실패 지점 관련 그래프 -->
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-success">사용자가 포기하는 구간</h6>
-								</div>
-								<div class="card-body">
-									<div class="chart-bar">
-										<canvas id="failDataChart"></canvas>
-									</div>
-									<hr>
-								</div>
-							</div>
-							
-							<!-- 매장 난이도 순위 -->
-							<div class="card shadow mb-4">
-								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-success">사용자가 투표한 키오스크 난이도 순위</h6>
-								</div>
-								<div class="card-body">
-									<div class="chart-bar">
-										<canvas id="storeRankChart"></canvas>
-									</div>
-									<hr>
-								</div>
-							</div>
+
 
 						</div>
-
+						
 						<!-- Donut Chart -->
 						<div class="col-xl-4 col-lg-5">
 							<div class="card shadow mb-4">
@@ -167,6 +143,35 @@
 								<div class="card-body">
 									<div class="chart-pie pt-4">
 										<canvas id="myPieChart"></canvas>
+									</div>
+									<hr>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-xl-6 col-lg-6">
+														<!-- 실패 지점 관련 그래프 -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-success">사용자가 포기하는 구간</h6>
+								</div>
+								<div class="card-body">
+									<div class="chart-bar">
+										<canvas id="failDataChart"></canvas>
+									</div>
+									<hr>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6 col-lg-6">	
+							<!-- 매장 난이도 순위 -->
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-success">사용자가 투표한 키오스크 난이도 순위</h6>
+								</div>
+								<div class="card-body">
+									<div class="chart-bar">
+										<canvas id="storeRankChart"></canvas>
 									</div>
 									<hr>
 								</div>
@@ -219,11 +224,6 @@
 	<script
 		src="${pageContext.request.contextPath}/assets/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script
-		src="${pageContext.request.contextPath}/assets/js/admin/demo/chart-area-demo.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/assets/js/admin/demo/chart-pie-demo.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/admin/adminChartBar.js"></script>
 

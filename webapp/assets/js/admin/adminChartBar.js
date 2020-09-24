@@ -31,7 +31,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 // Bar Chart Example
 var ctx = document.getElementById("failDataChart");
-var myBarChart;myLineChart;
+var myBarChart;
 
 
 $(document).ready(function(){
@@ -68,7 +68,7 @@ function getStatsData(){
 			  data: {
 			    labels: labelList,
 			    datasets: [{
-			      label: "사용자",
+			      label: "포기한 사용자 수",
 			      backgroundColor: "#1cc88a",
 			      hoverBackgroundColor: "#17a673",
 			      borderColor: "#1cc88a",
@@ -136,7 +136,7 @@ function getStatsData(){
 			      callbacks: {
 			        label: function(tooltipItem, chart) {
 			          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-			          return datasetLabel + ':' + number_format(tooltipItem.yLabel);
+			          return datasetLabel + ' : ' + number_format(tooltipItem.yLabel) + '명';
 			        }
 			      }
 			    },
@@ -159,7 +159,7 @@ function getStatsData(){
 			  data: {
 			    labels: labelList,
 			    datasets: [{
-			      label: "사용자",
+			      label: "주문을 성공한 사용자들이 쉽다고 투표한 비율",
 			      backgroundColor: "#1cc88a",
 			      hoverBackgroundColor: "#17a673",
 			      borderColor: "#1cc88a",
@@ -227,7 +227,7 @@ function getStatsData(){
 			      callbacks: {
 			        label: function(tooltipItem, chart) {
 			          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-			          return datasetLabel + ':' + number_format(tooltipItem.yLabel);
+			          return datasetLabel + ' : ' + number_format(tooltipItem.yLabel) + '%';
 			        }
 			      }
 			    },
@@ -239,7 +239,7 @@ function getStatsData(){
 			dataList=[];
 			
 			for(var i = 0; i < statsList.monthlySuccessRate.length; i++){
-				labelList.push(statsList.monthlySuccessRate[i].month);
+				labelList.push(statsList.monthlySuccessRate[i].month+'월');
 				dataList.push(statsList.monthlySuccessRate[i].percentage);
 			}
 			ctx = document.getElementById("monthlySuccessRate");
@@ -248,7 +248,7 @@ function getStatsData(){
 			  data: {
 			    labels: labelList,
 			    datasets: [{
-			      label: "Earnings",
+			      label: "성공률",
 			      lineTension: 0.3,
 			      backgroundColor: "rgba(28, 200, 138, 0.1)",
 			      borderColor: "rgba(28, 200, 138, 1)",
@@ -326,7 +326,7 @@ function getStatsData(){
 			      callbacks: {
 			        label: function(tooltipItem, chart) {
 			          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-			          return datasetLabel + ':'+ number_format(tooltipItem.yLabel);
+			          return datasetLabel + ' : '+ number_format(tooltipItem.yLabel)+'%';
 			        }
 			      }
 			    }
@@ -356,6 +356,7 @@ function getStatsData(){
 			      yPadding: 15,
 			      displayColors: false,
 			      caretPadding: 10,
+				  
 			    },
 			    legend: {
 			      display: false
@@ -483,7 +484,7 @@ $("#yearDropdown").on("click", "li", function(){
 			      callbacks: {
 			        label: function(tooltipItem, chart) {
 			          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-			          return datasetLabel + ':'+ number_format(tooltipItem.yLabel);
+			          return datasetLabel + ':'+ number_format(tooltipItem.yLabel) + '%';
 			        }
 			      }
 			    }
