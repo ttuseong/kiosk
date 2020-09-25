@@ -1,6 +1,8 @@
 var url= window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
-
+var modalCanclePoint =[];
 $(document).ready(function() {
+	modalCanclePoint.push(["장소 선택전 결제"]);
+	
 	$("#cancel").on("click",function(){
 		$("#modalName01").modal();
 	});
@@ -27,6 +29,8 @@ $(document).ready(function() {
 			console.log("이미 선택된 놈들입니다.")
 		}
 		else{
+			modalCanclePoint.push(["장소 선택후 결제"]);
+			console.log(modalCanclePoint);
 			$(".subtitle").addClass("gray");
 			select.addClass("selectOption");
 			select.siblings().addClass("selectDisable");
@@ -88,9 +92,5 @@ function orderPrice(){
 	$(".orderPrice").text(priceHap);
 }
 
-function complete(){
-	confirm("카드를 투입구에 넣어주시면 주문이 끝납니다. 롯데리아 키오스크 처음 화면으로 이동하겠습니다.")
-	window.location = url+"/lotteria/index";
-}
 
 

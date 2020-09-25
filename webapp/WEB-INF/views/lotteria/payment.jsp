@@ -33,7 +33,7 @@
 		<div class="color-pink">원하시는 결제방법을 선택해주세요</div>
 		
 		<div class="row border-bottom">
-			<a href="${pageContext.request.contextPath}/lotteria/order">
+			<a class="nextBtn" href="${pageContext.request.contextPath}/lotteria/order">
 				<div class="col-md-6">
 					<div>
 						<img src="${pageContext.request.contextPath}/assets/images/lotteria/card.jpg" width="100%">
@@ -53,7 +53,7 @@
 
 		<div class="row padding10px">
 			<div class="col-md-6 border-right">
-				<a href="${pageContext.request.contextPath}/lotteria/order">
+				<a class="nextBtn" href="${pageContext.request.contextPath}/lotteria/order">
 					<div>
 						<img src="${pageContext.request.contextPath}/assets/images/lotteria/pay.jpg" style="height: 300px;">
 					</div>
@@ -67,7 +67,7 @@
 			</div>
 			
 			<div class="col-md-6">
-				<a href="${pageContext.request.contextPath}/lotteria/order">
+				<a class="nextBtn" href="${pageContext.request.contextPath}/lotteria/order">
 					<div style="width:100%;">
 						<img src="${pageContext.request.contextPath}/assets/images/lotteria/cash.jpg" width="100%">
 					</div>
@@ -108,4 +108,6 @@
 
 
 </body>
+<script type="text/javascript" src="/kiosk/assets/js/lotteria/share.js"></script>
+<script type="text/javascript" src="/kiosk/assets/js/share/shareModal.js"></script>
 </html>

@@ -13,7 +13,7 @@
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript" src="/kiosk/assets/js/lotteria/index.js"></script>
+
 
 <!-- 쿠키 플러그인 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
@@ -26,7 +26,7 @@
 	<!-- 헤더 -->
 	
 	<div class="container width800height1200">
-		<a href="${pageContext.request.contextPath}/lotteria/payment"><img src="${pageContext.request.contextPath}/assets/images/lotteria/lotteria_main.png" width="700px"style = "height:855px;"></a>
+		<a class="nextBtn" href="${pageContext.request.contextPath}/lotteria/payment"><img src="${pageContext.request.contextPath}/assets/images/lotteria/lotteria_main.png" width="700px"style = "height:855px;"></a>
 	</div>
 	
 	<!-- 풋터 -->
@@ -34,4 +34,7 @@
 	<!-- 풋터 -->
 
 </body>
+	<script type="text/javascript" src="/kiosk/assets/js/lotteria/share.js"></script>
+	<script type="text/javascript" src="/kiosk/assets/js/share/shareModal.js"></script>
+	<script type="text/javascript" src="/kiosk/assets/js/lotteria/index.js"></script>
 </html>

@@ -12,7 +12,12 @@
 	background-color: transparent;
 }
 
-#serveyBody{
+#serveyTitle{
+	font-weight: bold;
+	font-size: xx-large;
+}
+
+#serveyBody{	
 	min-height: 0;
 	padding: 0;
 	text-align: left;
@@ -26,6 +31,7 @@
 }
 
 #serveyHeader{
+	text-align:center;
 	border: none;
 	padding: 0;
 	min-height: 0;

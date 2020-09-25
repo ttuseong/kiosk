@@ -103,7 +103,7 @@
 					</div>
 					<div class="col-md-4 margin-top10px">
 						<%-- <button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'">결제하기</button> --%>
-						<input type="submit" class="btn-backColor" value="결제하기">
+						<input type="submit" id="paymentBtn" class="btn-backColor" value="결제하기">
 					</div>
 				</div>
 			</form>
@@ -283,4 +283,6 @@
 	<jsp:include page="/WEB-INF/views/includes/footer.jsp" />
 	<!-- 풋터 -->
 </body>
+	<script type="text/javascript" src="/kiosk/assets/js/lotteria/share.js"></script>
+	<script type="text/javascript" src="/kiosk/assets/js/share/shareModal.js"></script>
 </html>

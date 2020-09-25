@@ -2,7 +2,7 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 
 //모달이 취소할 때 이동할 지점
 var modalCanclePoint= new Array();
-modalCanclePoint.push(["", "주문전 메인"]);
+modalCanclePoint.push(["주문전 메인", ""]);
 
 //메뉴의 고유 번호
 var menuNo;
@@ -81,7 +81,7 @@ function initSideArr(unitNo){
          }
          computeAllPrice();
          hamburgerBoxSideMenuInputDefault();
-		 modalCanclePoint.push(["hamburgerBoxSideMenu", "사이드 변경"]);
+		 modalCanclePoint.push(["사이드 변경", "hamburgerBoxSideMenu"]);
          $("#hamburgerBoxSideMenu").modal();
       },
       error : function(XHR, status, error) {
@@ -108,9 +108,9 @@ function computeAllPrice(){
 //모달을 취소할 경우 이벤트 처리
 $(".btnCancle").on("click", function(){
 	if(modalCanclePoint[0] != undefined){
-		$("#"+modalCanclePoint.pop()[0]).modal("hide");
+		$("#"+modalCanclePoint.pop()[1]).modal("hide");
 		console.log(modalCanclePoint[modalCanclePoint.length-1]);
-		$("#"+modalCanclePoint[modalCanclePoint.length-1])[0].modal();
+		$("#"+modalCanclePoint[modalCanclePoint.length-1])[1].modal();
 	}
 });
 
@@ -146,7 +146,7 @@ function selectMenu(data, price){
 	            OnselectMode(menuList[i]);
 	         }
 	         
-			 modalCanclePoint.push(["selectMode", "세트 선택"]);
+			 modalCanclePoint.push(["세트 선택", "selectMode"]);
 	         $("#selectMode").modal();	
 		}
 		else{
@@ -160,7 +160,7 @@ function selectMenu(data, price){
 			orderComplate();
 			
 			countAllMenulList();
-			modalCanclePoint.push(["", "주문후 메인"])
+			modalCanclePoint.push(["주문후 메인", ""])
 			
 		}
          
@@ -230,7 +230,7 @@ $("#selectedModecompleted").on("click", function(){
 			count++;
 		}
 	   if(count == modes.length){
-			modalCanclePoint.push(["", "주문후 메인"]);
+			modalCanclePoint.push(["주문후 메인", ""]);
 		  	burgerCount = 1;
 
 		  	totalPrice = burgerPrice;
@@ -596,7 +596,7 @@ $("#hamburgerBoxSideMenuComplete").on("click", function(){
    
 	modalCanclePoint = [];
 
-	modalCanclePoint.push(["", "주문후 메인"]);
+	modalCanclePoint.push(["주문후 메인", ""]);
 	
    $("#hamburgerBoxSideMenu").modal('hide');
 });
@@ -622,7 +622,7 @@ $("#orderBtn").on("click", function(){
 	modalCanclePoint = [];
 	
 	if(menuLenght > 0){
-		modalCanclePoint.push(["placeSelect", "장소 선택"]);
+		modalCanclePoint.push(["장소 선택", "placeSelect"]);
    		$("#placeSelect").modal();
 	} else{
 		alert("메뉴를 선택해주세요");
@@ -641,7 +641,7 @@ $(".placeSelectBodyContentContiner").on("click", function(){
             addRecommenDationMenu(mList[i]);
          }
 
-		 modalCanclePoint.push(["recommend", "추천 메뉴"]);
+		 modalCanclePoint.push(["추천 메뉴", "recommend"]);
          $("#recommend").modal();
          
       },
@@ -730,7 +730,7 @@ $("#recommendCompleteBtn").on("click", function(){
    sum();
 
    $("#recommend").modal("hide");
-   modalCanclePoint.push(["MyOrderListModal", "주문 목록"]);
+   modalCanclePoint.push(["주문 목록", "MyOrderListModal"]);
    $("#MyOrderListModal").modal();
    
    myOrderListSlideSetting();
@@ -782,7 +782,7 @@ function sum(){
 
 $("#myOrderComplete").on("click", function(){
 	$("#MyOrderListModal").modal("hide");
-	modalCanclePoint.push(["paySelect", "결제 방법 선택"]);
+	modalCanclePoint.push(["결제 방법 선택", "paySelect"]);
 	$("#paySelect").modal();
 });
 
@@ -797,7 +797,7 @@ $(".payMethod").on("click", function(){
 	$("#paymentmodalContent").attr("src", url+"/assets/images/" +no+".png");
 	
 	$("#paySelect").modal("hide");
-	modalCanclePoint.push(["paymentDetails", "결제 정보 확인"]);
+	modalCanclePoint.push(["결제 정보 확인", "paymentDetails"]);
 	$("#paymentDetails").modal();
 });
 
@@ -874,7 +874,7 @@ $("#orderList-pagingUp").on("click",function(){
 });
 
 $("#payComplate").on("click", function(){
-	modalCanclePoint.push(["paymentmodal", "결제"]);
+	modalCanclePoint.push(["결제", "paymentmodal"]);
 	$("#paymentDetails").modal("hide");
 	$("#paymentmodal").modal();
 });

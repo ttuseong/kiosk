@@ -12,7 +12,21 @@ var params = location.search.substr(location.search.indexOf("?") + 1);
 
 var selectMenu = {}
 
+var modalCanclePoint =[];
 $(document).ready(function() {
+	
+	console.log($.cookie("modalCanclePoint"));
+	if($.cookie("modalCanclePoint") != null){
+		var str = $.cookie("modalCanclePoint").split(",");
+		
+		for(var i=0; i < str.length; i++){
+			modalCanclePoint.push([str[i]]);	
+		}
+		console.log(modalCanclePoint);
+	} else{
+		modalCanclePoint.push(["주문전 메인"]);
+		console.log(modalCanclePoint);	
+	}
 	
 	/*총주문내역이 쿠키에 있을 경우 cookieRender 호출*/
 	if($.cookie("selectList") != null ) cookieParsing();
@@ -53,6 +67,7 @@ $(document).ready(function() {
 		var menuName = thisMenu.children().eq(1).children().eq(0).text();
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
 		
+		modalCanclePoint.push(["주문후 메인"])
 		render(menuName, menuPrice);
 	})
 	
@@ -63,6 +78,7 @@ $(document).ready(function() {
 	
 	$("ul.tabs li").click(function() {
 		cookieCheck();
+		isEnd = true;
 		
 		pg = 1;
 		$("ul.tabs li").removeClass("active"); 
@@ -167,6 +183,9 @@ $(document).ready(function() {
 		$('#side').modal("hide");
 		var unitNo = $("#side").data("unitno");
 		
+		modalCanclePoint.push(["주문후 메인"]);
+		console.log(modalCanclePoint);
+		
 		if(unitNo == 4)commboMenu(menuNo,drinkNo, drinkPrice);
 		else setMenu(menuNo,drinkNo, drinkPrice);
 		
@@ -196,10 +215,15 @@ $(document).ready(function() {
 		var total = Number(toppingPrice) + Number(toppingTotalPrice); 
 		$(".toppingPrice").text(total);
 	});
+	
+	$("#paymentBtn").on("click", function(){
+		isEnd = true;
+	});
 
 });
 
 function cookieCheck(){
+	$.cookie("modalCanclePoint", modalCanclePoint);
 	/*총주문내역이 있을경우*/
 	if(($(".tr-center").next().children().eq(0).text()) != ""){
 		/*총주문내역 쿠키에 저장*/
@@ -227,6 +251,7 @@ function cookieCheck(){
 		}
 	}else{
 		$.removeCookie('selectList');
+		$.removeCookie('modalCanclePoint');
 	}
 }
 
@@ -303,6 +328,8 @@ function side(pg){
 					}
 				}
 				
+				modalCanclePoint.push(["사이드 선택"]);
+				console.log(modalCanclePoint);
 				$("#side").modal();
 			},
 			error : function(XHR, status, error) {
@@ -377,6 +404,8 @@ function menuSelect(menuNo,menuPrice){
 				$("#setAndSingle").modal();
 			}
 			
+			modalCanclePoint.push(["단품/세트/콤보 선택"]);
+			console.log(modalCanclePoint);
 			
 		},
 		error : function(XHR, status, error) {
@@ -396,6 +425,8 @@ function setOrSingle(menuNo, menuName, menuPrice){
 		success : function(count){
 			if(count == 0){
 				/*단품제품일경우*/
+				modalCanclePoint.push(["주문후 메인"]);
+				console.log(modalCanclePoint);
 				render(menuName, menuPrice);
 			}else if(count == 1){
 				if($(".tabs li.tab-11").attr("class") == "tab-11 active"){
@@ -476,6 +507,8 @@ function result(){
 /*세트매뉴의 디저트와 드링크가 있지만 선택하지 않고 그냥 선택완료번튼을 클릭할경우*/
 function dessertAndDrink(){
 	$('#side').modal("hide");
+	modalCanclePoint.push(["주문후 메인"]);
+	console.log(modalCanclePoint);
 	render(setName, setPrice);
 };
 
@@ -625,6 +658,7 @@ function toppingModal(numberI){
 function pageDown(){
 	if(pg > 1){
 		cookieCheck();
+		isEnd=true;
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)-1);
 	}
 }
@@ -632,6 +666,7 @@ function pageDown(){
 function pageUp(pageEnd){
 	if(pg < pageEnd){
 		cookieCheck();
+		isEnd=true;
 		location.href=url+"/lotteria/order?categoryNo="+categoryNo+"&pg="+(Number(pg)+1);
 	}
 }
@@ -695,4 +730,7 @@ function cookieRender(menuList){
 		result();
 		i+=1;
 	}
+	
+	
 }
+

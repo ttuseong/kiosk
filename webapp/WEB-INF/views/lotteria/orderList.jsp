@@ -11,7 +11,7 @@
 <link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/lotteria/orderList.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/fontello/css/fontello.css" rel="stylesheet" type="text/css">
-
+<link href="/kiosk/assets/css/share/modal.css" rel="stylesheet" type="text/css">
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
@@ -198,7 +198,7 @@
 				<button type="button" class="btn1" id="cancel">취소하기</button>
 			</div>
 			<div class="col-md-4 margin-top10px">
-				<button type="button" class="btn2" onclick="complete()">주문완료</button>
+				<button type="button" class="btn2" onclick="lotteriaClear()">주문완료</button>
 			</div>
 		</div>
 	</div>
@@ -289,8 +289,13 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
-
+	
+	<!-- 설문 모달 -->
+	<jsp:include page="/WEB-INF/views/includes/modal/shareModal.jsp" />
+	<!-- 헤더 -->
+	
 </body>
-
+<script type="text/javascript" src="/kiosk/assets/js/lotteria/share.js"></script>
+<script type="text/javascript" src="/kiosk/assets/js/share/shareModal.js"></script>
 
 </html>

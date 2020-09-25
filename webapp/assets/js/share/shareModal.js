@@ -1,4 +1,9 @@
 var url = window.location.pathname.substring(0,window.location.pathname.indexOf("/",2));
+var isEnd
+
+$(document).ready(function(){
+	isEnd = false;
+});
 
 //강제 종료했을 경우 진행중이던 곳 저장
 function forceStop(endPoint){
@@ -27,6 +32,21 @@ $(".serveyImgContainer").hover(function(){
 	$(this).children().eq(1).removeClass("serveyHidden");
 });
 
+$(window).bind("beforeunload", function (e){
+	console.log(isEnd);
+	if(isEnd){
+		$(window).unbind('beforeunload');	
+	} else{
+		;
+		if($("script[src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js']").length == 1){
+			$.removeCookie('selectList');
+			$.removeCookie('modalCanclePoint');
+		}
+		//forceStop(modalCanclePoint.pop()[0]);
+		return "진행된 내용은 저장되지 않습니다.";
+	}
+});
+
 $(".serveyImgContainer").on("click", function(){
-	$(window).unbind('beforeunload');
+	isEnd=true;
 });

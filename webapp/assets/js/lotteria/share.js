@@ -1,0 +1,3 @@
+function lotteriaClear(){
+	$("#surveyModal").modal();
+}
