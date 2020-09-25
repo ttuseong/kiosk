@@ -1,5 +1,7 @@
 package com.javaex.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +18,15 @@ public class ShareController {
 	
 	@ResponseBody
 	@RequestMapping("/addFailData")
-	public void addFailData(@RequestParam(value ="endPoint", required=false) String endPoint) {
+	public void addFailData(@RequestParam(value ="endPoint", required=false) String endPoint, HttpSession httpSession) {
 		System.out.println(endPoint);
-		statisticsService.addFailData(endPoint);
+		statisticsService.addFailData(endPoint, (int)httpSession.getAttribute("no"));
 	}
 	
 	@RequestMapping("/addServeyData")
-	public String addServeyData(@RequestParam("levels") String levels) {
+	public String addServeyData(@RequestParam("levels") String levels, HttpSession httpSession) {
 		System.out.println(levels);
-		statisticsService.addServeyData(levels);
+		statisticsService.addServeyData((int)httpSession.getAttribute("no"), levels);
 		return "redirect:/";
 	}
 }

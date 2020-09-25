@@ -42,7 +42,7 @@ $(window).bind("beforeunload", function (e){
 			$.removeCookie('selectList');
 			$.removeCookie('modalCanclePoint');
 		}
-		//forceStop(modalCanclePoint.pop()[0]);
+		forceStop(modalCanclePoint.pop()[0]);
 		return "진행된 내용은 저장되지 않습니다.";
 	}
 });

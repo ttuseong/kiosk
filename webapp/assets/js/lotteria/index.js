@@ -1,6 +1,7 @@
+var modalCanclePoint = []
 $(document).ready(function() {
 	$.removeCookie('selectList');
-	modalCanclePoint=["광고"];
+	modalCanclePoint.push(["광고"]);
 	console.log(modalCanclePoint);
 	
 	$(".nextBtn").on("click", function(){

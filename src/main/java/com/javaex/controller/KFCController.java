@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +24,13 @@ public class KFCController {
 	KFCService kfcService;
 	
 	@RequestMapping("/index")
-	public String index(Model model) {				
+	public String index(Model model, HttpSession httpSession, @RequestParam("no")int no) {				
 		List<CategoryVo> list = kfcService.cateList();
-		
+		System.out.println("no" + no);
 		System.out.println(list.toString());
 
+		httpSession.setAttribute("no", no);
+		
 		model.addAttribute("list", list);
 		
 		return "/KFC/index";

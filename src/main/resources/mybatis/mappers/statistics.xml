@@ -2,24 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="statistics">
-	<insert id="insertFailData" parameterType="String">
+	<insert id="insertFailData" parameterType="com.javaex.vo.StatsVo">
 		<![CDATA[
 			insert into statistics
-			values(seq_statistics.nextval, 1, #{endPoint}, '쉬움', sysdate)
+			values(seq_statistics.nextval, #{storeNo}, #{endPoint}, '', sysdate)
 		]]>
 	</insert>
 	
-	<select id="selectDataList" resultType="com.javaex.vo.StatsVo">
+	<select id="selectDataList" resultType="com.javaex.vo.StatsVo" parameterType="map">
 		<![CDATA[
 			SELECT
-			    endpoint,
-			    count(endpoint) count
+			    st.endpoint,
+			    count(st.endpoint) count
 			FROM
-			    statistics
+			    statistics st,
+			    store s
 			where
-    			endpoint != 'clear'
-			GROUP by endpoint
-			order by count asc, endpoint asc
+			    s.storeNo = st.storeNo
+			and
+			    st.endpoint != 'clear'
+			and
+			    s.userNo = #{userNo}
+			GROUP by st.endpoint
+			order by count asc, st.endpoint asc
 		]]>
 	</select>
 	
@@ -45,18 +50,23 @@
 		]]>
 	</select>
 	
-	<select id="selectYearList" resultType="int">
+	<select id="selectYearList" resultType="int" parameterType="map">
 		<![CDATA[
 			SELECT
 			    to_char(challengedate, 'yyyy') year
 			FROM
-			    statistics
+			    statistics st,
+			    store s
+			where
+			    st.storeNo = s.storeNo
+			and
+			    s.userNo = ${userNo}
 			GROUP BY to_char(challengedate, 'yyyy')
 			order by year desc
 		]]>
 	</select>
 	
-	<select id="selectMonthlySuccessRateList" resultType="com.javaex.vo.StatsVo" parameterType="int">
+	<select id="selectMonthlySuccessRateList" resultType="com.javaex.vo.StatsVo" parameterType="com.javaex.vo.StatsVo">
 		<![CDATA[
 			SELECT
 			    percentage,
@@ -64,23 +74,25 @@
 			FROM
 			    (SELECT
 			            to_char(challengedate, 'YYYY') year,
-			            storeNo,
 			            endPoint,
 			            ROUND((RATIO_TO_REPORT(count(endPoint)) OVER(PARTITION by to_char(challengedate, 'MM'), to_char(challengedate, 'YYYY')) * 100),2) percentage,
 			            to_char(challengedate, 'MM') month
 			        FROM
-			            statistics
-			        GROUP BY to_char(challengedate, 'MM'), endPoint, storeNo, to_char(challengedate, 'YYYY')
+			            statistics st,
+			            store s
+			        where
+			            st.storeNo = s.storeNo
+			        and
+			            s.userNo = ${userNo}
+			        GROUP BY to_char(challengedate, 'MM'), endPoint, to_char(challengedate, 'YYYY')
 			        order by to_char(challengedate, 'MM') asc)
 			where
-			    storeNo = 1
-			and
 			    endPoint = 'clear'
 			and
-			    year = #{year}
+			    year = ${year}
 		]]>
 	</select>
-	<select id="selectSuccessRate" resultType="float">
+	<select id="selectSuccessRate" resultType="float" parameterType="map">
 		<![CDATA[
 			SELECT
 			    percentage
@@ -91,18 +103,21 @@
 			            ROUND((RATIO_TO_REPORT(count(endPoint)) OVER(PARTITION BY storeNo) * 100),2) percentage
 			        FROM
 			            statistics
-			        group by endPoint, storeNo)
+			        group by endPoint, storeNo) target,
+			    store s
 			where
-			    endPoint = 'clear'
+			    target.storeNo = s.storeNo
 			and
-			    storeNo = 1
+			    target.endPoint = 'clear'
+			and
+			    s.userNo = ${userNo}
 		]]>
 	</select>
 	
-	<select id="insertServeyData" parameterType="String">
+	<select id="insertServeyData" parameterType="com.javaex.vo.StatsVo">
 		<![CDATA[
 			INSERT into statistics
-			values(seq_statistics.nextval, 1, 'clear', #{levels}, sysdate)
+			values(seq_statistics.nextval, #{storeNo}, 'clear', #{levels}, sysdate)
 		]]>
 	</select>
 </mapper>

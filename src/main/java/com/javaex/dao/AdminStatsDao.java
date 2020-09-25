@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,24 +14,24 @@ public class AdminStatsDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<StatsVo> selectFailDataList() {
-		return sqlSession.selectList("statistics.selectDataList");
+	public List<StatsVo> selectFailDataList(Map<String, Integer> map) {
+		return sqlSession.selectList("statistics.selectDataList", map);
 	}
 	
 	public List<StatsVo> selectStoreRankList(){
 		return sqlSession.selectList("statistics.selectStoreRankList");
 	}
 	
-	public List<Integer> selectYearList(){
-		return sqlSession.selectList("statistics.selectYearList");
+	public List<Integer> selectYearList(Map<String, Integer> map){
+		return sqlSession.selectList("statistics.selectYearList", map);
 	}
 	
-	public List<StatsVo> selectMonthlySuccessRate(int year){
-		return sqlSession.selectList("statistics.selectMonthlySuccessRateList", year);
+	public List<StatsVo> selectMonthlySuccessRate(StatsVo vo){
+		return sqlSession.selectList("statistics.selectMonthlySuccessRateList", vo);
 	}
 	
-	public float selectSuccessRate() {
-		return sqlSession.selectOne("statistics.selectSuccessRate");
+	public float selectSuccessRate(Map<String, Integer> map) {
+		return sqlSession.selectOne("statistics.selectSuccessRate", map);
 	}
 }
 		

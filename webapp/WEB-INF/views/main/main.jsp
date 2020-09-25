@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib  uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,31 +26,19 @@
 
 	<div class="container">
 		<div>
-			<div class="brandDiv">
-				<a href="${pageContext.request.contextPath}/KFC/index">
-					<div class="brandImg">
-						<img src="${pageContext.request.contextPath}/assets/images/kfclogo.png" width=" 100%">
-					</div>
-					
-					<div class="brandText">
-						<p style="font-size:30px;">kfc</p>
-					</div>
-				</a>
-			</div>
-			
-			<div class="brandDiv">
-				<a href="${pageContext.request.contextPath}/lotteria/index">
-					<div class="brandImg">
-						<img src="${pageContext.request.contextPath}/assets/images/lotteria/lotteriaLogo.gif" width=" 100%">
-					</div>
-					
-					<div class="brandText">
-						<p style="font-size:30px;">롯데리아</p>
-					</div>
-				</a>
-			</div>
-			
-			
+			<c:forEach items="${list}" var="vo">
+				<div class="brandDiv">
+					<a href="${pageContext.request.contextPath}/${vo.storeName }/index?no=${vo.storeNo }">
+						<div class="brandImg">
+							<img src="${pageContext.request.contextPath}/${vo.storeName }/${vo.storeName } width=" 100%">
+						</div>
+						
+						<div class="brandText">
+							<p style="font-size:30px;">${vo.storeName }</p>
+						</div>
+					</a>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 
