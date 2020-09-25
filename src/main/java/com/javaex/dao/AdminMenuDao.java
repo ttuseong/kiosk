@@ -43,6 +43,16 @@ public class AdminMenuDao {
 		return sqlSession.selectOne("adminMenu.getMenuInfo", menuNo);
 	}
 	
+	// Dao 프로모션 구성품목(menuNo, cateNo) 가져오기
+	public List<Object> getPromotionInfo(int menuNo) {
+		System.out.println("dao(adminMenu) - 프로모션 구성품목(menuNo, cateNo) 가져오기");
+		
+		List<Object> pList =  sqlSession.selectList("adminMenu.getPromotionInfo", menuNo);
+		
+		return pList;
+	}
+	
+	
 	// Dao 연관메뉴 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단)
 	public int getUseMenuCnt(int menuNo) {
 		System.out.println("dao(adminMenu) - 연관메뉴 개수 세기");

@@ -45,6 +45,18 @@
 		]]>
 	</select>
 	
+	<!-- 프로모션 구성품목 메뉴와 카테고리 넘버 가져오기 -->
+	<select id="getPromotionInfo" parameterType="int" resultType="map">
+		<![CDATA[
+			select  m.menuno as menu_no,
+			        m.categoryno as cate_no
+			from menu m,(select setno
+	                     from usemenu
+	                     where menuNo = #{menuNo}) u
+			where m.menuno = u.setno
+		]]>
+	</select>
+	
 	<!-- 연관메뉴 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단) -->
 	<select id="getUseMenuCnt" parameterType="int" resultType="int">
 		<![CDATA[

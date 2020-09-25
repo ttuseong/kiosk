@@ -1,5 +1,8 @@
 package com.javaex.vo;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MenuVo {
 	private int menuNo;
 	private int categoryNo;
@@ -17,7 +20,16 @@ public class MenuVo {
 	private String composition;
 	private int discount;
 	private int useMenu;
+	private List<Object> promotion;
 	
+	public List<Object> getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(List<Object> list) {
+		this.promotion = list;
+	}
+
 	public int getIsSpecial() {
 		return isSpecial;
 	}
@@ -81,7 +93,7 @@ public class MenuVo {
 	}
 	
 	public MenuVo(int menuNo, int categoryNo, String categoryName, String menuName, String menuDesc, int menuPrice,
-			String menuImg, int isSet, int defaultNo, int unitNo, String unitName, int useMenu, int discount) {
+			String menuImg, int isSet, int defaultNo, int unitNo, String unitName, int useMenu, int discount, List<Object> promotion) {
 		this.menuNo = menuNo;
 		this.categoryNo = categoryNo;
 		this.categoryName = categoryName;
@@ -95,6 +107,7 @@ public class MenuVo {
 		this.unitName = unitName;
 		this.useMenu = useMenu;
 		this.discount = discount;
+		this.promotion = promotion;
 	}
 
 	public int getUseMenu() {
@@ -215,15 +228,6 @@ public class MenuVo {
 				+ ", menuName=" + menuName + ", menuDesc=" + menuDesc + ", menuPrice=" + menuPrice + ", menuImg="
 				+ menuImg + ", isSpecial=" + isSpecial + ", isChange=" + isChange + ", isSet=" + isSet + ", defaultNo="
 				+ defaultNo + ", unitNo=" + unitNo + ", unitName=" + unitName + ", composition=" + composition
-				+ ", discount=" + discount + ", useMenu=" + useMenu + ", getIsSpecial()=" + getIsSpecial()
-				+ ", getIsChange()=" + getIsChange() + ", getUseMenu()=" + getUseMenu() + ", getMenuNo()=" + getMenuNo()
-				+ ", getCategoryNo()=" + getCategoryNo() + ", getCategoryName()=" + getCategoryName()
-				+ ", getMenuName()=" + getMenuName() + ", getMenuDesc()=" + getMenuDesc() + ", getMenuPrice()="
-				+ getMenuPrice() + ", getMenuImg()=" + getMenuImg() + ", getIsSet()=" + getIsSet() + ", getDefaultNo()="
-				+ getDefaultNo() + ", getUnitNo()=" + getUnitNo() + ", getUnitName()=" + getUnitName()
-				+ ", getComposition()=" + getComposition() + ", getDiscount()=" + getDiscount() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", discount=" + discount + ", useMenu=" + useMenu + ", promotion=" + promotion + "]";
 	}
-
-	
 }

@@ -40,16 +40,22 @@ public class AdminMenuService {
 	}
 	
 	// Service 메뉴 정보
-	public MenuVo getMenuInfo(int menuNo) {
+	public MenuVo getMenuInfo(int menuNo) {		
 		MenuVo menuVo = adminMenuDao.getMenuInfo(menuNo);
+		
+		int useMenuCnt = adminMenuDao.getUseMenuCnt(menuNo); // 프로모션 구성품목 유무 받기(return 값이 0이면 구성품 없음, 0 이상이면 구성품 있음)
+		if(useMenuCnt > 0) { // 구성품이 있을 경우
+			menuVo.setPromotion(adminMenuDao.getPromotionInfo(menuNo));
+		}
+		System.out.println(menuVo.toString());
 		
 		return menuVo;
 	}
 	
 	// Service 메뉴 추가
-	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int useMenu, int discount) {
+	public int addMenu(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int useMenu, int discount, String promotion) {
 		MenuVo menuVo;
-		System.out.println("service discount:" + discount);
+		String promotionComponents[]; // 프로모션 구성품목 메뉴 넘버 담아줄 배열
 		
 		if(!file.getOriginalFilename().equals("")) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
@@ -77,20 +83,32 @@ public class AdminMenuService {
 			menuVo = new MenuVo(categoryNo, menuName, menuDesc, menuPrice, "icon1.png", isSpecial, isChange, unitNo, discount);
 		}
 		
+		int menuNo = adminMenuDao.menuInsert(menuVo); // 메뉴 인서트 후 인서트 한 메뉴 넘버 받아오기
+		
 		if(useMenu != 0) { // useMenu를 선택한 경우
-			int menuNo = adminMenuDao.menuInsert(menuVo); // 메뉴 인서트 후 인서트 한 메뉴 넘버 받아오기
 			adminMenuDao.useInsert(menuNo, useMenu); // 연관메뉴 인서트
 		}
 		else { // useMenu를 선택하지 않은 경우
 			 adminMenuDao.menuInsert(menuVo); // 메뉴만 인서트
+		}
+
+		if(promotion != "0") { // 프로모션 구성품목을 삽입한 경우			
+			promotionComponents = promotion.split(","); // split() : 지정한 문자를 기준으로 문자열을 잘라 배열로 반환하는 함수
+	        
+	        for(int i = 0 ; i < promotionComponents.length ; i++)
+	        {
+				adminMenuDao.useInsert(Integer.parseInt(promotionComponents[i]), menuNo); // 연관메뉴 인서트
+	        }
 		}
 		
 		return 1;
 	}
 	
 	// Service 메뉴 수정
-	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo, int useMenu, int discount) {
+	public MenuVo menuUpdate(MultipartFile file, int categoryNo, String menuName, String menuDesc, int isSpecial, int menuPrice, int isChange, int unitNo, int menuNo, int useMenu, int discount, String promotion) {
 		MenuVo menuVo;
+		System.out.println("menuModify service promotion:" + promotion);
+		
 		if(!file.getOriginalFilename().equals("")) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;

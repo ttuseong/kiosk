@@ -825,7 +825,6 @@
 				success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
 					console.log(menuVo);
 					menuInfo(menuVo); // 메뉴 정보 인풋에 출력
-				
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
@@ -840,11 +839,12 @@
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
 		$('#useMenu').val(""); // 연관메뉴 value 초기화		
 		initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+		$('#promotion').val(""); // 연관메뉴 value 초기화		
 		
 		// 정보 삽입
+		/* $("#menuCalorie").val(menuVo.menuCalorie); */
 		$("#menuName").val(menuVo.menuName);
 		$("#menuPrice, #originalPrice").val(menuVo.menuPrice);
-		/* $("#menuCalorie").val(menuVo.menuCalorie); */
 		$("#menuDesc").val(menuVo.menuDesc);
 		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/kfc/"+menuVo.menuImg);
 		$("#discount").val(menuVo.discount); // 메뉴 정보 페이지에서의 할인가
@@ -880,6 +880,16 @@
 		    case 7 : // 7일 경우 전체 체크해 줌
 				$('input:checkbox[name="isSpecial"]').prop("checked", true); 
 		        break;    
+		}
+		
+	
+		// 프로모션
+		if(menuVo.promotion != null) { // 프로모션 구성품목이 있을 경우
+			var array = new Array(); // 프로모션 구성품목 메뉴넘버 담아줄 배열
+			for(var i = 0; i < menuVo.promotion.length; i++) { // 구성품의 수만큼 반복
+				array[i] = menuVo.promotion[i].MENU_NO; // 배열에 구성품 메뉴 넘버 담기
+			}
+			$("#promotion").val(array); // 화면의 promotion value값에 배열 담기
 		}
 
 		// 할인
@@ -1198,16 +1208,8 @@
 	
 	/* 구성 추가 모달 열기 */
 	$("#adminMenu-unitAdd").on("click", function() {
-		$(".unitManagerModal-unitComponent").remove(); // 구성 추가/수정 모달을 함께 쓰기 때문에 중복 출력되지 않도록 모달이 열릴 때마다 비워줌
-		$("#unitManager-unitNameInput").val(""); // 단위 이름 인풋박스 비우기
-		$(".numberOfUnit").val("1"); // 단위 개수 초기화
 		$(".unitNo").val(0); // 단위를 추가하는 경우에는 유닛 넘버가 아직 없는 상태이기 때문에 유닛 넘버 초기화 해 줌
-
-		renderUnitAdd(0); // 단위 추가 html 그리기
-		
-		var storeNo = ${authUser.userNo};
-	
-		renderCateList(storeNo, ".unitAddDropdownCateList"); // 카테고리 리스트 출력
+		initializationUnit(); // 추가 구성 초기화 및 카테고리 드롭다운 리스트 불러오기
 		
 		$("#unitManagerModal").modal();
 	});
@@ -1741,6 +1743,7 @@
 		}
 		else {
 			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+			$("#promotion").val(""); // 프로모션 초기화
 			$('#promotionMenu').prop("checked", false); // 체크박스 해제
 		}
 	});
@@ -1800,19 +1803,30 @@
 	// 프로모션 버튼 클릭 시
 	$(".isSpecial-promotionModal-promotionContainer").on("click", function() {
 		console.log("프로모션 클릭");
+		console.log($("#promotion").val());
+		
+		
+		if($("#promotionmotion").val() == null) { // 프로모션이 없을 경우			
+			initializationUnit();
+		}
+		else { // 프로모션 있을 경우
+			console.log("프로모션 있음");
+		}
+		
+		$("#promotionModal").modal(); // 모달 열기
+	});
+	
+	// 추가구성 드롭다운 초기화
+	function initializationUnit() {
+		var storeNo = ${authUser.userNo};
 
 		$(".unitManagerModal-unitComponent").remove(); // 구성 추가/수정 모달을 함께 쓰기 때문에 중복 출력되지 않도록 모달이 열릴 때마다 비워줌
 		$("#unitManager-unitNameInput").val(""); // 단위 이름 인풋박스 비우기
 		$(".numberOfUnit").val("1"); // 단위 개수 초기화
 
 		renderUnitAdd(0); // 단위 추가 html 그리기
-		
-		var storeNo = ${authUser.userNo};
-	
 		renderCateList(storeNo, ".unitAddDropdownCateList"); // 카테고리 리스트 출력
-		
-		$("#promotionModal").modal(); // 모달 열기
-	});
+	}
 	
 	// 프로모션 모달 확인/취소/닫기 버튼 클릭
 	$(".promotionModal-submit, .promotionModal-cancle, #promotionModal-close").on("click", function() {
