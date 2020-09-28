@@ -51,7 +51,7 @@
 			FROM
 					category
 			WHERE
-					storeno=#{storeNo}
+					storeno = #{storeNo}
 		]]>		
 					 <if test="searchTerm neq null">
 					 AND

@@ -1,7 +1,6 @@
 package com.javaex.controller;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.AdminToppingService;
-
 import com.javaex.vo.ToppingVo;
 
 @Controller
@@ -22,16 +20,20 @@ public class AdminTopingController {
 	@Autowired
 	AdminToppingService adminToppingService;
 	
-	// 토핑 리스트
+	// 토핑 리스트 + 서치 페이징
 	@RequestMapping("/adminToping")
-	public String adminTopping(Model model, @RequestParam(value="searchToppingTitle", required=false) String toppingName) {
+	public String adminTopping(Model model, @RequestParam(value="searchToppingTitle", required=false) String toppingName,
+			@RequestParam(value="crtPage", defaultValue = "1") int crtPage) {
 		System.out.println("토핑 리스트 컨트롤러");
-		System.out.println(toppingName);
+		//System.out.println(toppingName);
 		
-		List<ToppingVo> toppingList = adminToppingService.adminToppingList(toppingName);
+		//List<ToppingVo> toppingList = adminToppingService.adminToppingList(toppingName); 리스트,서치까진 리스트로 해결
+		
+		Map<String, Object> tMap = adminToppingService.adminToppingList(toppingName, crtPage);
 		
 		
-		model.addAttribute("toppingList", toppingList);
+		model.addAttribute("tMap", tMap);
+		System.out.println(tMap.toString());
 			
 		return "/admin/adminToping";
 	}

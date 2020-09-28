@@ -19,10 +19,16 @@ public class AdminToppingDao {
 	public List<ToppingVo> adminToppingSelectList(Map<String, Object> map){
 		System.out.println("과연 너가 넘어왔을까");
 		
-		List<ToppingVo> toppingList = sqlSession.selectList("adminToping.selectTopingList", map);
+		List<ToppingVo> tMap = sqlSession.selectList("adminToping.selectTopingList", map);
 		
 		//System.out.println(toppingList.toString());
-		return toppingList;
+		return tMap;
+	}
+	
+	//페이지 toppingNo 값 가져오기
+	public int selectToppingCount(Map<String, Object> map) {
+		
+		return sqlSession.selectOne("adminToping.selectToppingCount", map);
 	}
 	
 	//토핑 추가하기 다오 --확인버튼 누르면 토핑 추가
@@ -39,7 +45,7 @@ public class AdminToppingDao {
 	
 	//토핑이름 중복 방지 
 	public int selectToppingNameCheck(Map<String, Object> map) {
-		return sqlSession.selectOne("adminToping.selectToppingCount", map);
+		return sqlSession.selectOne("adminToping.selectToppingNameCheck", map);
 	}
 	
 	//토핑 삭제하기 다오

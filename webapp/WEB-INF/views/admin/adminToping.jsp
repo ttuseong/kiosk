@@ -29,7 +29,7 @@
 <link href="${pageContext.request.contextPath}/assets/css/admin/menuInfo.css" rel="stylesheet" type="text/css">
 <link href="${pageContext.request.contextPath}/assets/css/admin/admin.css" rel="stylesheet" type="text/css">
 	
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuCateTool.css"> <!-- 토핑툴 -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin/menuToppingTool.css"> <!-- 토핑툴 -->
 
 </head>
 
@@ -116,7 +116,7 @@
 							<h6 class="m-0 font-weight-bold text-success">토핑 목록</h6>
 							<!-- 토핑 툴팁 -->
 							<div class="adminCate-tooltip-topping">
-								<i class="fa fa-question-circle"></i>
+								<i class="fa fa-question-circle" id="toppingQuestionTool"></i>
 								<span class="tooltip-text">토핑 이름을 클릭하시면<br>토핑 수정이 가능합니다.</span>
 							</div>
 						</div>
@@ -127,9 +127,9 @@
 									<div class="admin-search dataTables_filter">
 										<form action="/kiosk/admin/adminToping" method="get">	
 											<label>Search:</label>
-											<input name="searchToppingTitle" type="search" class="form-control-search" id="findSearch" placeholder="토핑 찾기" aria-controls="dataTable">
+											<input name="searchToppingTitle" type="search" class="form-control-search" onSubmit="return loginCheck();" id="findSearch" placeholder="토핑 찾기" aria-controls="dataTable">
 											<div class="adminCate-submitBtn" style="display: inline;">
-		                                		<button type="submit"  class="btn btn-success btn-icon-split" id="adminCate-search">확인</button>
+		                                		<button type="submit"  class="btn btn-success btn-icon-split" id="adminTopping-search">확인</button>
 		                             		</div>
 	                             		</form>
 									</div>
@@ -153,24 +153,53 @@
 										</tr>
 									</tfoot>
 									<tbody>
-										<c:forEach items="${toppingList}" var="tList" varStatus="status">
+										<c:if test="${fn:length(tMap.toppingList) == 0}">
+											<td></td>
+											<td style="text-align:center">검색결과가 없습니다.</td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</c:if>
+										
+											<c:forEach items="${tMap.toppingList}" var="tList" varStatus="status">
 											<tr data-toppingno="${tList.toppingNo }">
-												<td>${tList.toppingNo}</td>
+												<td>${tList.rn}</td>
 												<td><a href="#" class="toppingTitle">${tList.toppingName}</a></td>
 												<td>${tList.toppingPrice}</td>
 												<td><a href="#" class="toppingDeleteBtn">X</a></td>
-												<td>${tList.toppingImg}</td>
+												<td>
+													<div class="adminnCate-tooltipPicture">
+														<i class="far fa-image fa-lg tooltipImgHover"></i>
+														<span class="tooltip-img"><img alt="미리보기 이미지" src="${pageContext.request.contextPath}/kfc/${tList.toppingImg}"></span>
+													</div>
+												</td>
 											</tr>
-										</c:forEach>
+											</c:forEach>
+										
+										
+									
 										
 									</tbody>
 								</table>
 								<ul class="pagination admin-paging">
-									<li class=""><a href="#" class="admin-pageLink admin-pagePrevious">Previous</a></li>
-									<li class=""><a href="#" class="admin-pageLink admin-pageActive">1</a></li>
-									<li class=""><a href="#" class="admin-pageLink">2</a></li>
-									<li class=""><a href="#" class="admin-pageLink">3</a></li>
-									<li class=""><a href="#" class="admin-pageLink admin-next">next</a></li>
+									<li class=""><a
+									  <c:if test="${tMap.prev == true}">
+										href="${pageContext.request.contextPath}/admin/adminToping?searchToppingTitle=${tMap.searchToppingTitle}&crtPage=${tMap.crtPage-1}"
+									  </c:if>	 
+										class="admin-pageLink admin-pagePrevious">Previous</a></li>
+									<c:forEach begin="${tMap.startPageBtnNo }" end ="${tMap.endPageBtnNo}" step="1" var="page"> 
+                                        <c:if test="${tMap.crtPage == page}">
+									   		<li class=""><a href="${pageContext.request.contextPath}/admin/adminToping?searchToppingTitle=${tMap.searchTopping}&crtPage=${page}" class="admin-pageLink admin-pageActive">${page}</a></li>
+                                        </c:if>
+                                        <c:if test="${tMap.crtPage != page}">
+                                        	<li class=""><a href="${pageContext.request.contextPath}/admin/adminToping?searchToppingTitle=${tMap.searchTopping}&crtPage=${page}" class="admin-pageLink">${page}</a></li>
+                                        </c:if>
+                                    </c:forEach>
+									<li class=""><a
+                                    <c:if test="${tMap.next == true }">
+                                    	href="${pageContext.request.contextPath}/admin/adminToping?searchToppingTitle=${tMap.searchToppingTitle}&crtPage=${tMap.crtPage+1}" 
+                                    </c:if>
+                                    class="admin-pageLink admin-next">next</a></li>
 								</ul>
 							</div>
 						</div>

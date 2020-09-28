@@ -4,7 +4,7 @@ var url = window.location.pathname.substring(0,window.location.pathname.indexOf(
 
 $(".toppingDeleteBtn").on("click", function(){
 	event.preventDefault();
-	console.log("그걸왜지금말해");
+	console.log("토핑삭제하기");
 	
 	var toppingDelete = $(this);
 
@@ -56,6 +56,7 @@ $(".toppingTitle").on("click", function(){
 	
 	$(".input-groupTopping").data('hiddenToppingNo', toppingNo);
 	console.log($(".input-groupTopping").data('hiddenToppingNo'));
+	
 
 });
 /*토핑 추가하기, 수정하기 */
@@ -97,7 +98,7 @@ $(".text").on("click", function(){
 			success : function(toVo){
 				console.log(toVo);
 				if(toVo.toppingNo == 0){
-					alert("뭐하는짓이야");
+					alert("이름이 중복되어 추가할 수 없습니다.");
 					return;
 				}
 				else{
@@ -147,7 +148,29 @@ $(".text").on("click", function(){
 	
 });
 
+/* 토핑 툴팁 텍스트 */
+$("#toppingQuestionTool").hover(function(){ //마우스에 툴팁이 가까이 가면 hover가 실행 if/else문 같이씀
+	$(".tooltip-text").css("opacity", "1");
+}, function(){
+	$(".tooltip-text").css("opacity", "0");
+});
 
-/* 토핑 검색하기 */
+/* 토핑 사진 미리보기*/
+$(".adminToping-table").on("mouseover", ".tooltipImgHover", function(){
+	var hoverImg = $(this);
+	$(".toppingTitle").css("z-index", "0");
+	$(".toppingDeleteBtn").css("z-index", "0");
+ 
+	hoverImg.next().css("opacity", "1");
+});
+
+$(".adminToping-table").on("mouseleave", ".tooltipImgHover", function(){
+	var hoverImg = $(this);
+	$(".toppingTitle").css("z-index", "2");
+	$(".toppingDeleteBtn").css("z-index", "2");
+ 
+	hoverImg.next().css("opacity", "0");
+
+});
 
 

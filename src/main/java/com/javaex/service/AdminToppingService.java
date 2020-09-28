@@ -21,16 +21,96 @@ public class AdminToppingService {
 	@Autowired
 	AdminToppingDao adminToppingDao;
 
-	// 토핑 리스트 서비스
-	public List<ToppingVo> adminToppingList(String toppingName) {
-		Map<String, Object> map = new HashMap<String, Object>();
+	// 토핑 리스트 서비스 + 서치
+	/*
+	 * public List<ToppingVo> adminToppingList(String toppingName) { Map<String,
+	 * Object> map = new HashMap<String, Object>();
+	 * 
+	 * map.put("toppingName", toppingName);
+	 * 
+	 * List<ToppingVo> toppingList = adminToppingDao.adminToppingSelectList(map);
+	 * 
+	 * return toppingList; }
+	 */
+	
+	//토핑 리스트 서치, 페이징
+	 public Map<String, Object> adminToppingList(String toppingName, int crtPage) { 
+		 
+		 System.out.println("토핑 페이징 서비스");
+		 //전체 글 갯수		 
+		 int totalCount = totalCountByName(1, toppingName); //전체게시물수/페이지당 게시물 수
+
+		//한 페이지당 글갯수
+		int listCnt = 5;
 		
-		map.put("toppingName", toppingName);
+		int totalPage = (int)Math.ceil((totalCount/(float)listCnt));
+		 	 
+		 //시작글번호 startRnum
+		 int startRnum = (crtPage-1)* listCnt+1;
+		 //endRnum 
+		 int endRnum = startRnum + 4;
+		 
+		 System.out.println("crtPage:" + crtPage);
+		 System.out.println("startRnum:" + startRnum);
+		 System.out.println("endRnum:" + endRnum);
+		 
+		 Map<String, Object> map = new HashMap<String, Object>();
 		
-		List<ToppingVo> toppingList = adminToppingDao.adminToppingSelectList(map);
+         map.put("toppingName", toppingName);
+         map.put("totalCount", totalCount);
+         map.put("startRnum", startRnum);
+         map.put("endRnum", endRnum);
+				 
+         List<ToppingVo> toppingList = adminToppingDao.adminToppingSelectList(map);
+		 
+		 //페이지당 버튼갯수
+		 int pageBtnCount = 5;
+		 
+		 //마지막 버튼
+		 int endPageBtnNo = (int)Math.ceil(crtPage/(double)pageBtnCount)*pageBtnCount; //5
+		 
+		//시작 버튼 번호
+		int startPageBtnNo = endPageBtnNo - (pageBtnCount-1);//1
+			
+		boolean next = false;
+		//다음 화살표 유무 next
+		if(crtPage < totalPage) {
+			next = true;	
+		}
 		
-		return toppingList;
+		if(endPageBtnNo*listCnt > totalCount) {
+			endPageBtnNo = (int)Math.ceil(totalCount/(double)listCnt);
+		}
+			
+		//이전 화살표 유무 prev
+		boolean prev = false;
+		if(crtPage != 1) {
+			prev = true;
+		}
+		 
+		 Map<String,Object> tMap = new HashMap<String, Object>();
+		 tMap.put("crtPage", crtPage);
+		 tMap.put("toppingList", toppingList);
+		 tMap.put("prev", prev);
+		 tMap.put("startPageBtnNo", startPageBtnNo);
+		 tMap.put("endPageBtnNo", endPageBtnNo);
+		 tMap.put("next", next);
+		 tMap.put("searchTopping", toppingName);
+		 
+		 return tMap; 
 	}
+	 
+	 
+	 //페이징 -storeno를 읽고 toppingNo의 count를 세어줄것
+	 public int totalCountByName(int storeNo, String toppingName) {
+		 
+		 Map<String, Object> map = new HashMap<String, Object>();
+		 map.put("storeNo", storeNo);
+		 map.put("toppingName", toppingName); //서치이름을 찾을때
+		 
+		 return adminToppingDao.selectToppingCount(map);
+	 }
+	
 	
 	//토핑 추가하기 서비스
 	public ToppingVo adminToppingAdd(String toppingName, int toppingPrice, MultipartFile file) {

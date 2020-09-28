@@ -6,26 +6,61 @@
 	<!-- 토핑 리스트 -->
 	<select id="selectTopingList" parameterType="map" resultType="com.javaex.vo.ToppingVo">
 		<![CDATA[
-			SELECT  
-					toppingno,
+			SELECT 
+					rn,
+        			toppingno,
         			toppingname,
         			toppingprice,
         			toppingimg
 			FROM 
-					topping
-			WHERE 
-					storeno=1
+			        (SELECT 
+			        		rownum rn,
+			                toppingno,
+			                toppingname,
+			                toppingprice,
+			                toppingimg
+        			 FROM 
+        					(SELECT    
+        							toppingno,
+                        			toppingname, 
+                        			toppingprice,
+                        			toppingimg
+                			 FROM 
+                			 		topping
+                			 WHERE 
+                			 		storeno = 1
 		]]>		
 				     <if test="toppingName neq null">
-					 AND
-			         		toppingname like'%'||#{toppingName}||'%'
-			      	</if>
-		<![CDATA[			 
-					 
-			ORDER BY 
-					toppingno desc		
+					  		 AND
+			         				toppingname like'%'||#{toppingName}||'%'
+			      	 </if>
+		<![CDATA[			 	 
+							ORDER BY 
+									toppingno desc))
+		WHERE
+				rn >= #{startRnum}
+		AND
+				rn <= #{endRnum}		
 		]]>
 	</select>
+	
+	<!-- storeNo 마다 게시글이 다르므로 각 게시글의 총 갯수 가져오기 -->
+	<select id="selectToppingCount" parameterType="map" resultType="int">
+		<![CDATA[
+			SELECT 
+					count(toppingno)
+			FROM
+			 		topping
+			WHERE 	
+					storeno = #{storeNo}
+		]]>
+				<if test="toppingName neq null">
+					 AND
+			         	 toppingname like'%'||#{toppingName}||'%'
+			    </if>	
+	</select>
+	
+	
 	
 	<!-- 토핑 추가하기 -->
 	<!-- selectKey 기능추가 확인버튼 누르면 토핑추가 -->
@@ -59,7 +94,7 @@
 	</select>
 	
 	<!-- 토핑 중복 갯수세기 -->
-	<select id="selectToppingCount" parameterType="map" resultType="int">
+	<select id="selectToppingNameCheck" parameterType="map" resultType="int">
 		<![CDATA[
 			SELECT
 					count(toppingno)

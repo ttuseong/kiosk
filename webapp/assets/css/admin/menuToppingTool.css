@@ -9,21 +9,21 @@ body {
 	font-family: 'Source Sans Pro', sans-serif;
 }
 
-/* adminCate 카테고리 툴팁 */
+/* adminToping 툴팁 */
 
-.adminCate-tooltip {
-	position: absolute;
+.adminCate-tooltip-topping {
+position: absolute;
 	top: 5.5%;
 	right: 1%;
 	transform: translate(-50%, -50%);
-	
 }
 
-.adminCate-tooltip i {
-	
+.adminCate-tooltip-topping i {
 	color: #1cc88a;
 	font-size: 25px;
 }
+
+/* 툴팁 텍스트 */
 
 .tooltip-text {
 	opacity: 0;
@@ -46,36 +46,12 @@ a{
 	text-decoration: none !important;
 }
 
-/* adminCate 사진미리보기 툴팁*/
-
-.tooltip-img {
-	opacity: 0;
-	background-color: rgba(0,0,0,0.5);
-	color: white;	
-	position: absolute;
-	z-index:1;
-	right: 50%;
-	top:-35px;
-	transform:translateX(50%);
+/* 토핑 페이징 찾기,페이징,이전,다음, 페이징 동작*/
+.admin-paging{
+	justify-content: flex-end;
 }
 
-.tooltip-img > img{
-	position: relative;
-	z-index: 1;
-}
-
-.tooltipImgHover{
-	position: relative;
-	z-index: 2;
-}
-
-.adminCate-delete{
-	position: relative;
-	z-index: 2;
-}
-
-
-#adminCate-search{
+#adminTopping-search{
 	height: 30px !important;
 	width: 50px;
 	line-height: 30px;
@@ -109,5 +85,29 @@ a{
 	border-color: #1cc88a;
 }
 
+/* adminTopping 사진미리보기 툴팁 */
+.tooltip-img {
+	opacity: 0;
+	background-color: rgba(0,0,0,0.5);
+	color: white;	
+	position: absolute;
+	z-index:1;
+	right: 50%;
+	top:-35px;
+	transform:translateX(50%);
+}
 
+.tooltip-img > img{
+	position: relative;
+	z-index: 1;
+}
 
+.tooltipImgHover{
+	position: relative;
+	z-index: 2;
+}
+
+.toppingDeleteBtn{
+	position: relative;
+	z-index: 2;
+}
