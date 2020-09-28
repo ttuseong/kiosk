@@ -31,8 +31,8 @@ public class AdminCategoryDao {
 	
 	
 	// 카테고리 추가 
-	public int selectCateUpdate(CategoryVo categoryVo) {
-		return sqlSession.selectOne("adminCategory.selectCateUpdate", categoryVo);
+	public int selectCateUpdate(Map<String, Object> map) {
+		return sqlSession.selectOne("adminCategory.selectCateUpdate", map);
 	}
 
 	// 카테고리 추가  --확인버튼 누르면 카테고리 추가

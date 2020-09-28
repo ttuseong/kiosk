@@ -80,7 +80,12 @@
 				INSERT INTO
 						topping
 				VALUES( #{toppingNo},
-						#{storeNo},
+						(select
+    							storeno
+						 from
+    							store
+						 where
+    							userno = #{userNo}),
 						#{toppingName},
 						#{toppingPrice},
 						#{toppingImg})

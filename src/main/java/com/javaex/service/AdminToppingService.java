@@ -155,7 +155,6 @@ public class AdminToppingService {
 				}
 			}
 			System.out.println("여긴 오시나요");
-			//toppingVo.setStoreNo(1); //우선 kfc만 넣어주기
 			
 			System.out.println(toppingVo.toString());
 			

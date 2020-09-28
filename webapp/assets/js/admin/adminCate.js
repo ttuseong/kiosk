@@ -217,6 +217,7 @@ $(".table-bordered").on("click", ".adminCate-delete", function(){
 	var cateDelete = $(this);
 	
 	console.log(cateDelete);
+
 	var categoryNo = cateDelete.parent().parent().data("no"); //data값 no를 가져온 이유는 최상위 값만 삭제하면 그 안에있던 데이터도 같이 삭제되기때문에(ex폴더)
 	console.log($('[data-no=' + categoryNo + ']'));
 	console.log(cateDelete.parent().parent());

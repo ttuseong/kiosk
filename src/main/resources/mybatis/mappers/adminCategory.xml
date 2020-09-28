@@ -65,16 +65,20 @@
 	</select>
 	
 	<!-- 카테고리 추가 if문은 update할때 필요함 (publicYn)-->
-	<select id="selectCateUpdate" parameterType="com.javaex.vo.CategoryVo" resultType="int">
+	<select id="selectCateUpdate" parameterType="map" resultType="int">
 		<![CDATA[
 			 SELECT 
-			 		count(categoryNo)
+			 		count(c.categoryNo)
 			 FROM 
-			 		category
+			 		users u, store s, category c
 			 WHERE 
+			 		u.userno = s.userno
+			 AND
+			 		s.storeno = c.storeno
+			 AND
 			 		categoryname = #{categoryName}
 			 AND
-			 		storeno=1
+			 		u.userno = #{userNo}
 		]]>
 		<if test="categoryNo != 0">
 			 AND
@@ -92,7 +96,12 @@
 				INSERT INTO
 						category
 				VALUES( #{categoryNo},
-						#{storeNo},
+						(SELECT
+    							storeno
+						 FROM
+    							store
+						 WHERE
+    							userno = #{userNo}),
 						#{categoryName},
 						#{publicYN},
 						#{categoryImg})
@@ -138,8 +147,10 @@
 	<!-- 카테고리 수정 -->
 	<select id="titleUpdate" parameterType="com.javaex.vo.CategoryVo">
 		<![CDATA[
-		update category
-		set categoryName = #{categoryName},
+		UPDATE 
+				category
+		SET 
+			categoryName = #{categoryName},
     		publicYn = #{publicYN}
     	]]>
     	<if test="categoryImg != ''">

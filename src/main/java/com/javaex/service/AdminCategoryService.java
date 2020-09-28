@@ -65,15 +65,22 @@ public class AdminCategoryService {
 	
 	
 	// 카테고리 추가 --카테고리 값 가져오기
-	public int adminCateUpdate(CategoryVo categoryVo) {
+	public int adminCateUpdate(String categoryName, int categoryNo, int userNo) {
 		
-		return adminCategoryDao.selectCateUpdate(categoryVo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("categoryName", categoryName);
+		map.put("categoryNo", categoryNo);
+		map.put("userNo", userNo);
+		
+		return adminCategoryDao.selectCateUpdate(map);
 		
 	}
 
 	// 카테고리 추가  --확인버튼 누르면 카테고리 추가
 	public CategoryVo adminCateAdd(String categoryName, int publicYN, int cateimgCheck, MultipartFile file, int userNo) {
 		CategoryVo categoryVo;
+		CategoryVo cateVo;
 		if(cateimgCheck == 1) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); //첫번째는 확장자만 뽑아오기 
 			
@@ -94,11 +101,9 @@ public class AdminCategoryService {
 				e.printStackTrace();
 			}
 		} else {
-			categoryVo = new CategoryVo(categoryName, publicYN, "", userNo);
+			categoryVo = new CategoryVo(categoryName, publicYN, "icon1.png", userNo);
 		}
-		
-		//일단 KFC만
-		//categoryVo.setStoreNo(1);
+
 		
 		System.out.println(categoryVo.toString());
 		
@@ -110,7 +115,7 @@ public class AdminCategoryService {
 
 		int categoryNo = categoryVo.getCategoryNo();
 		
-		CategoryVo cateVo = adminCategoryDao.selectCateOne(categoryNo);
+		cateVo = adminCategoryDao.selectCateOne(categoryNo);
 
 		return cateVo;
 	}
@@ -140,7 +145,7 @@ public class AdminCategoryService {
 	
 	  
 	 //카테고리 수정
-	 public int titleClickUpdate(String categoryName, int publicYN, int cateimgCheck, int categoryNo, MultipartFile file) {
+	 public int titleClickUpdate(String categoryName, int publicYN, int cateimgCheck, MultipartFile file, int categoryNo, int userNo) {
 		System.out.println("서비스 -카테고리 타이틀 클릭"); 
 		
 		CategoryVo categoryVo;
@@ -149,7 +154,7 @@ public class AdminCategoryService {
 			
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;
 			
-			categoryVo = new CategoryVo(categoryName, publicYN, saveName, categoryNo); //카테고리가 null이 아닐경운 if문이 돈다 xml:"titleUpdate"
+			categoryVo = new CategoryVo(categoryName, publicYN, saveName, categoryNo, userNo); //카테고리가 null이 아닐경운 if문이 돈다 xml:"titleUpdate"
 			
 			try {  //try catch 파일 예외처리
 				byte[] fileData = file.getBytes();
@@ -164,10 +169,9 @@ public class AdminCategoryService {
 				e.printStackTrace();
 			}
 		} else {
-			categoryVo = new CategoryVo(categoryName, publicYN, "", categoryNo); //카테고리가 null일 경우는 if문이 안돈다
+			categoryVo = new CategoryVo(categoryName, publicYN, "", categoryNo, userNo); //카테고리가 null일 경우는 if문이 안돈다
 		}
 		
-		categoryVo.setStoreNo(1);
 		
 		return adminCategoryDao.titleUpdate(categoryVo);
 	 }

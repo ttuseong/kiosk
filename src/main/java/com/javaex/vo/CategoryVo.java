@@ -12,19 +12,33 @@ public class CategoryVo {
    private int userNo;
 
    
-   
    public CategoryVo() {}
    
-   public CategoryVo(String categoryName, int publicYN, String categoryImg, int categoryNo) {
+   public CategoryVo(String categoryName, int publicYN, String categoryImg, int categoryNo, int userNo) {
 	   this.categoryName = categoryName;
 	   this.publicYN = publicYN;
 	   this.categoryImg = categoryImg;
 	   this.categoryNo = categoryNo;
+	   this.userNo = userNo;
    }
    
 
+   public CategoryVo(String categoryName, int publicYN, String categoryImg, int userNo) {
+	super();
+	this.categoryName = categoryName;
+	this.publicYN = publicYN;
+	this.categoryImg = categoryImg;
+	this.userNo = userNo;
+}
 
-public CategoryVo(String categoryName, int publicYN, String categoryImg) {
+public CategoryVo(int categoryNo, String categoryName, int userNo) {
+		super();
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
+		this.userNo = userNo;
+}
+
+   public CategoryVo(String categoryName, int publicYN, String categoryImg) {
 	   this.categoryName = categoryName;
 	   this.publicYN = publicYN;
 	   this.categoryImg = categoryImg;
@@ -41,8 +55,8 @@ public CategoryVo(String categoryName, int publicYN, String categoryImg) {
       this.cnt = cnt;
       this.rn = rn;
    }
+ 
 
-   
 
 	public int getRn() {
 	  return rn;
