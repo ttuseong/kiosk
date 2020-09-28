@@ -83,6 +83,7 @@ function initSideArr(unitNo){
          hamburgerBoxSideMenuInputDefault();
 		 modalCanclePoint.push(["사이드 변경", "hamburgerBoxSideMenu"]);
          $("#hamburgerBoxSideMenu").modal();
+		 tooltipTimer(2, 1);
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
@@ -108,9 +109,15 @@ function computeAllPrice(){
 //모달을 취소할 경우 이벤트 처리
 $(".btnCancle").on("click", function(){
 	if(modalCanclePoint[0] != undefined){
+		tooltipTimerStop(0);
 		$("#"+modalCanclePoint.pop()[1]).modal("hide");
+		tooltipIndex.pop();
+		console.log(tooltipIndex);
 		console.log(modalCanclePoint[modalCanclePoint.length-1]);
-		$("#"+modalCanclePoint[modalCanclePoint.length-1])[1].modal();
+		$("#"+modalCanclePoint[modalCanclePoint.length-1][1]).modal();
+		console.log(tooltipIndex);
+		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
+		
 	}
 });
 
@@ -135,6 +142,7 @@ function selectMenu(data, price){
       data : data,
       success : function(menuList){
 	     console.log(menuList.length);
+		tooltipTimerStop(0);
 		if(menuList.length > 1){
 			$("#selectModeMainContent").empty();
          
@@ -147,7 +155,8 @@ function selectMenu(data, price){
 	         }
 	         
 			 modalCanclePoint.push(["세트 선택", "selectMode"]);
-	         $("#selectMode").modal();	
+	         $("#selectMode").modal();
+			 tooltipTimer(1, 1);	
 		}
 		else{
 			//단위가 없는 메뉴 처리
@@ -160,15 +169,15 @@ function selectMenu(data, price){
 			orderComplate();
 			
 			countAllMenulList();
-			modalCanclePoint.push(["주문후 메인", ""])
+			modalCanclePoint.push(["주문후 메인", ""]);
 			
+			tooltipTimer(0, 0);	
 		}
-         
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
       }
-   });
+   });	
 }
 
 // 단품/세트/박스 모달을 띄울 때 해당 메뉴에 대한 정보로 리뉴얼하는 함수
@@ -217,6 +226,7 @@ $("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
 
 // 모달 교체 시점1
 $("#selectedModecompleted").on("click", function(){
+	tooltipTimerStop(0);
 	if(selectedMode >= 0){
 	   burgerCount = 1;
 	   $("#selectMode").modal("hide");
@@ -238,12 +248,14 @@ $("#selectedModecompleted").on("click", function(){
 		  	orderComplate();
 			
 			countAllMenulList();
+			tooltipTimer(0, 0);
 	   } 
 	   else{
 	      inittoppingArr();
 	   }
 	} else{
 		alert("단위를 선택해주세요");
+		tooltipTimer(1, 0);
 	}
   
 })
@@ -293,6 +305,8 @@ function addBurgerBoxContent(menuVo, i){
 
 // 모달 교체 시점2-1 토핑을 변경할 경우
 $("#hamburgerBoxBodyContainer").on("click", ".hamburgerBoxButton", function(){
+   tooltipTimerStop(0);
+
    var thisBtn = $(this);
    var no = thisBtn.data("no");
    sideIndex = thisBtn.data("index");   
@@ -338,7 +352,9 @@ function changeList(data){
          	}
             $("#hamburgerBoxSideMenu").modal("hide");
             $("#sideChange").modal();
+			
          }
+		 tooltipTimer(3, 1);
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
@@ -367,6 +383,8 @@ function addBurgerToppingContent(toppingVo, i){
 $("#bugerToppingCompleted").on("click", function(){
    var str="";
    var arr=[];
+
+   tooltipTimerStop(1);
    
    for(var i=0; i<toppingArr.length; i++){
       if(toppingArr[i][3] != 0){
@@ -388,6 +406,7 @@ $("#bugerToppingCompleted").on("click", function(){
    $("#selectedBurgurTopping").html(str);
    $("#bugerTopping").modal("hide");
    $("#hamburgerBoxSideMenu").modal();
+   tooltipTimer(2, 0);
 });
 
 /*클릭을 통한 가격 증가 이벤트*/
@@ -545,7 +564,7 @@ $("#sideChangeContents").on("click", ".menuSetSecond", function(){
 
 $("#sideChangeComplete").on("click", function(){
    
-   
+   tooltipTimerStop(1);
    var childrenLength = $("#sideChangeContents > div").size();
    
    for(var i = 0; i < childrenLength; i++){
@@ -565,9 +584,11 @@ $("#sideChangeComplete").on("click", function(){
    
    $("#sideChange").modal("hide");
    $("#hamburgerBoxSideMenu").modal();
+   tooltipTimer(2, 0);
 });
 
 $("#hamburgerBoxSideMenuComplete").on("click", function(){
+   tooltipTimerStop(0);
    var burgurChangeList = "-";
 
    var menuName = burgerName.split(" ");
@@ -599,6 +620,7 @@ $("#hamburgerBoxSideMenuComplete").on("click", function(){
 	modalCanclePoint.push(["주문후 메인", ""]);
 	
    $("#hamburgerBoxSideMenu").modal('hide');
+   tooltipTimer(0, 1);
 });
 
 /* 추천 메뉴 모달 */
@@ -618,20 +640,24 @@ $('#recommend-body').on("click", ".recommendation",function(){
 
 /*주문버튼-->장소선택 모달-->추천 메뉴 모달*/
 $("#orderBtn").on("click", function(){
+	tooltipTimerStop(0);
 	var menuLenght = $("#menuTableContents").children().size();
-	modalCanclePoint = [];
 	
 	if(menuLenght > 0){
 		modalCanclePoint.push(["장소 선택", "placeSelect"]);
    		$("#placeSelect").modal();
+		tooltipTimer(4, 1);
 	} else{
 		alert("메뉴를 선택해주세요");
+		tooltipTimer(0);
 	}
 	
 });
 
 $(".placeSelectBodyContentContiner").on("click", function(){
    $("#placeSelect").modal("hide");
+   tooltipTimerStop(0);
+
    $.ajax({
       url : url+"/KFC/recommenDationMenu",      
       type : "post",
@@ -643,6 +669,7 @@ $(".placeSelectBodyContentContiner").on("click", function(){
 
 		 modalCanclePoint.push(["추천 메뉴", "recommend"]);
          $("#recommend").modal();
+		 tooltipTimer(5, 1);
          
       },
       error : function(XHR, status, error) {
@@ -675,6 +702,8 @@ var myOrderListModalLastMove;
 
 $("#recommendCompleteBtn").on("click", function(){
   	console.log("test");
+	tooltipTimerStop(0);
+
    var text=[];
    var price=[];
    var count=[];
@@ -732,6 +761,7 @@ $("#recommendCompleteBtn").on("click", function(){
    $("#recommend").modal("hide");
    modalCanclePoint.push(["주문 목록", "MyOrderListModal"]);
    $("#MyOrderListModal").modal();
+   tooltipTimer(6, 1);
    
    myOrderListSlideSetting();
 });
@@ -781,12 +811,15 @@ function sum(){
 }
 
 $("#myOrderComplete").on("click", function(){
+	tooltipTimerStop(0);
 	$("#MyOrderListModal").modal("hide");
 	modalCanclePoint.push(["결제 방법 선택", "paySelect"]);
 	$("#paySelect").modal();
+	tooltipTimer(7, 1);
 });
 
 $(".payMethod").on("click", function(){
+	tooltipTimerStop(0);
 	var thisSelect = $(this);
 	
 	var no=thisSelect.data("no");
@@ -799,6 +832,8 @@ $(".payMethod").on("click", function(){
 	$("#paySelect").modal("hide");
 	modalCanclePoint.push(["결제 정보 확인", "paymentDetails"]);
 	$("#paymentDetails").modal();
+	
+	tooltipTimer(8, 1);	
 });
 
 function myOrderListSlideSetting(){
@@ -874,9 +909,11 @@ $("#orderList-pagingUp").on("click",function(){
 });
 
 $("#payComplate").on("click", function(){
+	tooltipTimerStop(0);
 	modalCanclePoint.push(["결제", "paymentmodal"]);
 	$("#paymentDetails").modal("hide");
 	$("#paymentmodal").modal();
+	tooltipTimer(9, 1);
 });
 
 
@@ -898,6 +935,7 @@ $(".paySelectDown").on("click", function(){
 });
 
 $("#paymentmodalComplete").on("click", function(){
+	tooltipTimerStop(0);
 	$("#paymentmodal").modal("hide");
 	forceStop("clear");
 	$("#surveyModal").modal();

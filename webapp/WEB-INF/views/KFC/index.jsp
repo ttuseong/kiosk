@@ -21,10 +21,58 @@
 
 </head>
 <body>
-
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
+	<div id="tooltipContainer">
+		<span class="tooltip-text">
+			주문전<br>
+			- 카테고리와 메뉴르를 클릭하여 원하시는 메뉴를 주문합니다<br><br>
+			주문후<br>
+			- 주문 버튼을 클릭해주세요
+		</span>
+		<span class="tooltip-text">
+			세트 구성<br>
+			 - 보이시는 구성 중 원하시는 것을 클릭한 후 완료 버튼을 클릭하세요
+		</span>
+		<span class="tooltip-text">
+			사이드 변경 선택<br>
+			 - 사이드나 토핑 변경을 원하시면 해당되는 변경버튼을 클릭하고<br>
+			  &nbsp;&nbsp;&nbsp;아닌경우 완료버튼을 클릭하세요
+		</span>
+		<span class="tooltip-text">
+			토핑 변경<br>
+			 - 원하시는 토핑을 플러스와 마이너스 버튼을 이용하여<br>
+			 &nbsp;&nbsp;&nbsp;갯수를 설정하고 완료버튼을 클릭하세요<br>
+			사이드 변경<br>
+			 - 원하시는 메뉴를 클릭한 후 완료버튼을 클릭하세요
+		</span>
+		<span class="tooltip-text">
+			장소 선택<br>
+			 - 희망하는 장소를 클릭하세요
+		</span>
+		<span class="tooltip-text">
+			추천 메뉴<br>
+			 - 추가로 원하시는 메뉴가 있는 경우 메뉴를 클릭하고 완료버튼을 눌러주세요
+		</span>
+		<span class="tooltip-text">
+			주문 리스트<br>
+			 - 주문 내역을 확인한 후 결제 버튼을 클릭해주세요
+		</span>
+		<span class="tooltip-text">
+			결제 수단<br>
+			 - 원하시는 결제 수단을 클릭해주세요
+		</span>
+		<span class="tooltip-text">
+			확인<br>
+			 - 결제 방법 및 금액을 확인한 후 결제 버튼을 클릭하세요
+		</span>
+		<span class="tooltip-text">
+			결제<br>
+			 - 결제 방법을 숙지하신 후 확인 버튼을 클릭하세요<br>
+			  ※실제 메장에서는 화면에 나타난 설명대로 결제를 진행해야 결제가 완료됩니다.
+		</span>
+	</div>
 	<div id="kfc">
 		<section id="FKCHeader">
 			<h1>

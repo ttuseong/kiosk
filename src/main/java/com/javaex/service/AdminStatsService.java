@@ -7,7 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.javaex.dao.AdminStatsDao;
+import com.javaex.dao.AdminStatsDao;	
 import com.javaex.vo.StatsVo;
 
 @Service

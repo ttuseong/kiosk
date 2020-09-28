@@ -6,10 +6,32 @@ var curPos = 0;
 //선택한 메뉴를 뽑아올 때 사용
 var categoryNo;
 
+//툴팁에 사용되는 변수들
+var tooltipVal;
+var tooltipIndex = [];
+
 $(document).ready(function(){
 	categoryMarginInit();
 	defaultMenuList();
 });
+
+function tooltipTimer(index, check){
+	if(check == 1){
+		tooltipIndex.push(index);
+	}
+	console.log(tooltipIndex);
+	tooltipVal = setTimeout(function(){ $(".tooltip-text").eq(index).css("display", "block"); }, 3000);
+}
+
+function tooltipTimerStop(check){
+	$(".tooltip-text").eq(tooltipIndex[tooltipIndex.length-1]).css("display", "none");
+	
+	if(check == 1){
+		tooltipIndex.pop();
+	}
+	
+	clearTimeout(tooltipVal);
+}
 
 function categoryMarginInit(){
 	var categoryLength = $("#category").children("ul").children("li").size();
@@ -28,6 +50,7 @@ function defaultMenuList(){
 
 $(".menuLink").on("click", function(){
 	event.preventDefault();
+	tooltipTimerStop(0);
 	var thismenuLink = $(this);
 	categoryNo = thismenuLink.data("no");
 	
@@ -74,6 +97,8 @@ function addMenuAjax(){
 		if(endPoint > 1){
 			$("#btnRight").addClass("btnActive");
 		}
+		
+		tooltipTimer(0, 1);
       },
       error : function(XHR, status, error) {
          console.error(status + " : " + error);
