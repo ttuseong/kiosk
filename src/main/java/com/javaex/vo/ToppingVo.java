@@ -7,25 +7,40 @@ public class ToppingVo {
 	private int toppingPrice;
 	private String toppingImg;
 	private int rn;
+	private int userNo;
 	
 	public ToppingVo() {}
 	
 
+	public ToppingVo(String toppingName, int toppingPrice, String toppingImg, int userNo) {
+		super();
+		this.toppingName = toppingName;
+		this.toppingPrice = toppingPrice;
+		this.toppingImg = toppingImg;
+		this.userNo = userNo;
+	}
+	
 	public ToppingVo(String toppingName, int toppingPrice, String toppingImg) {
 		super();
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
 		this.toppingImg = toppingImg;
+		
 	}
-
-
-
 
 	public ToppingVo(String toppingName, int toppingPrice, int toppingNo, String toppingImg) {
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
 		this.toppingNo = toppingNo;
 		this.toppingImg = toppingImg;
+	}
+	
+	public ToppingVo(String toppingName, int toppingPrice, int toppingNo, String toppingImg, int userNo) {
+		this.toppingName = toppingName;
+		this.toppingPrice = toppingPrice;
+		this.toppingNo = toppingNo;
+		this.toppingImg = toppingImg;
+		this.userNo = userNo;
 	}
 	
 	public ToppingVo(int rn, int toppingNo, int storeNo, String toppingName, int toppingPrice, 

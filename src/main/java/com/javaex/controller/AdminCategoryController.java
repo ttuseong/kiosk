@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javaex.service.AdminCategoryService;
 import com.javaex.vo.CategoryVo;
+import com.javaex.vo.UserVo;
 
 
 @Controller
@@ -25,10 +28,14 @@ public class AdminCategoryController {
 	// 카테고리 kfc 리스트, 서치
 	@RequestMapping("/adminCate")
 	public String adminCate(Model model, @RequestParam(value="searchTerm", required=false) String searchTerm,
-			 @RequestParam(value="point", defaultValue = "1") int point) {
+			 @RequestParam(value="point", defaultValue = "1") int point, HttpSession session) {
 		System.out.println(searchTerm + "***********************************************************");
 		//List<CategoryVo> cateList = adminCategoryService.adminCateList(searchTerm, point);
-		Map<String, Object> resultMap = adminCategoryService.adminCateList(searchTerm, point);
+		UserVo userVo = (UserVo)session.getAttribute("authUser");
+		
+	
+		
+		Map<String, Object> resultMap = adminCategoryService.adminCateList(searchTerm, point, userVo.getUserNo());
 
 		
 		model.addAttribute("resultMap", resultMap);
@@ -56,12 +63,14 @@ public class AdminCategoryController {
 	@RequestMapping("/adminCateAdd")
 	public CategoryVo adminCateAdd(@RequestParam("title") String categoryName, @RequestParam("cate-openStatus") int publicYN,
 			@RequestParam(value="cateimgCheck", defaultValue="0") int cateimgCheck,
-			@RequestParam("file") MultipartFile file) {
+			@RequestParam("file") MultipartFile file, HttpSession session) {
 		System.out.println("adminCateAdd");
 
+		//세션
+		UserVo userVo = (UserVo)session.getAttribute("authUser");
 		
 		//추가할때 한줄 읽어오기
-		CategoryVo cateVo = adminCategoryService.adminCateAdd(categoryName, publicYN, cateimgCheck, file);
+		CategoryVo cateVo = adminCategoryService.adminCateAdd(categoryName, publicYN, cateimgCheck, file, userVo.getUserNo());
 		System.out.println("넘어왔따");
 		 
 		return cateVo;

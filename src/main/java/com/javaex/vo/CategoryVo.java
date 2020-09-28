@@ -9,6 +9,7 @@ public class CategoryVo {
    private int isSet;
    private int cnt;
    private int rn;
+   private int userNo;
 
    
    
@@ -20,8 +21,10 @@ public class CategoryVo {
 	   this.categoryImg = categoryImg;
 	   this.categoryNo = categoryNo;
    }
+   
 
-   public CategoryVo(String categoryName, int publicYN, String categoryImg) {
+
+public CategoryVo(String categoryName, int publicYN, String categoryImg) {
 	   this.categoryName = categoryName;
 	   this.publicYN = publicYN;
 	   this.categoryImg = categoryImg;

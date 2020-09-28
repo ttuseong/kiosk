@@ -20,14 +20,18 @@
 	            		categoryImg
 	        	 FROM
 						 (SELECT  
-				        		categoryNo,
-				        		categoryName,
-				        		publicYN,
-				        		categoryImg
+				        		c.categoryNo,
+				        		c.categoryName,
+				        		c.publicYN,
+				        		c.categoryImg
 						 FROM 
-				        		category
-						 WHERE 
-				        		storeno=1
+				        		users u, store s, category c
+						WHERE 
+				        		u.userno = s.userno
+                         AND    
+                         		s.storeno = c.storeno
+                         AND    
+                         		u.userno = #{userNo}
 		]]>		
 				        <if test="searchTerm neq null">
 						 AND

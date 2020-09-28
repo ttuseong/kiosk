@@ -22,7 +22,7 @@ public class AdminCategoryService {
 	AdminCategoryDao adminCategoryDao;
 
 	// 카테고리 리스트, 서치, 페이징
-	public Map<String, Object> adminCateList(String searchTerm, int point) {
+	public Map<String, Object> adminCateList(String searchTerm, int point, int userNo) {
 
 		int totalCount = adminCateCount(1, searchTerm); //괄호에 스토어 넘버가 들어가면 됨 KFC=1 롯데리아=2
         System.out.println(totalCount);
@@ -36,6 +36,7 @@ public class AdminCategoryService {
           map.put("totalCount", totalCount);
           map.put("startPoint", startPoint);
           map.put("endPoint", endPoint);
+          map.put("userNo", userNo);
           
 
         System.out.println(map.get("searchTerm"));
@@ -71,14 +72,14 @@ public class AdminCategoryService {
 	}
 
 	// 카테고리 추가  --확인버튼 누르면 카테고리 추가
-	public CategoryVo adminCateAdd(String categoryName, int publicYN, int cateimgCheck, MultipartFile file) {
+	public CategoryVo adminCateAdd(String categoryName, int publicYN, int cateimgCheck, MultipartFile file, int userNo) {
 		CategoryVo categoryVo;
 		if(cateimgCheck == 1) {
 			String exName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")); //첫번째는 확장자만 뽑아오기 
 			
 			String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;//파일이름 안겹치게 랜덤으로해야함
 			
-			categoryVo = new CategoryVo(categoryName, publicYN, saveName);
+			categoryVo = new CategoryVo(categoryName, publicYN, saveName, userNo);
 			
 			try {
 				byte[] fileData = file.getBytes();
@@ -93,11 +94,11 @@ public class AdminCategoryService {
 				e.printStackTrace();
 			}
 		} else {
-			categoryVo = new CategoryVo(categoryName, publicYN, "");
+			categoryVo = new CategoryVo(categoryName, publicYN, "", userNo);
 		}
 		
 		//일단 KFC만
-		categoryVo.setStoreNo(1);
+		//categoryVo.setStoreNo(1);
 		
 		System.out.println(categoryVo.toString());
 		

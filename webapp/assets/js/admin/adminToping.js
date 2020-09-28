@@ -49,7 +49,7 @@ $(".toppingTitle").on("click", function(){
 	$(".text").text("수정"); //확인버튼을 수정버튼으로 바꿔주기
 
 	var toppingPrice = toppingTitleClick.parent().next().text();
-	var toppingNo = toppingTitleClick.parent().prev().text();
+	var toppingNo = toppingTitleClick.parent().parent().data("toppingno");
 	
 	$(".adminTopping-addForm").val(toppingTitleClick.text()); //타이틀 값 넣어주기
 	$(".adminTopping-addFormD").val(toppingPrice);
@@ -155,21 +155,26 @@ $("#toppingQuestionTool").hover(function(){ //마우스에 툴팁이 가까이 �
 	$(".tooltip-text").css("opacity", "0");
 });
 
+
+if(jQuery("#displayDiv").css("display") == "none") {
+
+    jQuery("#displayDiv").css("display", "block");
+}
+
+출처: https://wickedmagic.tistory.com/487 [사악미소의 현대마법의 공방]
+
+
 /* 토핑 사진 미리보기*/
 $(".adminToping-table").on("mouseover", ".tooltipImgHover", function(){
 	var hoverImg = $(this);
-	$(".toppingTitle").css("z-index", "0");
-	$(".toppingDeleteBtn").css("z-index", "0");
- 
-	hoverImg.next().css("opacity", "1");
+
+	hoverImg.next().css("display", "block");
 });
 
 $(".adminToping-table").on("mouseleave", ".tooltipImgHover", function(){
 	var hoverImg = $(this);
-	$(".toppingTitle").css("z-index", "2");
-	$(".toppingDeleteBtn").css("z-index", "2");
- 
-	hoverImg.next().css("opacity", "0");
+	
+	hoverImg.next().css("display", "none");
 
 });
 

@@ -34,11 +34,11 @@ public class AdminToppingService {
 	 */
 	
 	//토핑 리스트 서치, 페이징
-	 public Map<String, Object> adminToppingList(String toppingName, int crtPage) { 
+	 public Map<String, Object> adminToppingList(String toppingName, int crtPage, int userNo) { 
 		 
 		 System.out.println("토핑 페이징 서비스");
 		 //전체 글 갯수		 
-		 int totalCount = totalCountByName(1, toppingName); //전체게시물수/페이지당 게시물 수
+		 int totalCount = totalCountByName(1, toppingName, userNo); //전체게시물수/페이지당 게시물 수
 
 		//한 페이지당 글갯수
 		int listCnt = 5;
@@ -60,6 +60,7 @@ public class AdminToppingService {
          map.put("totalCount", totalCount);
          map.put("startRnum", startRnum);
          map.put("endRnum", endRnum);
+         map.put("userNo", userNo);
 				 
          List<ToppingVo> toppingList = adminToppingDao.adminToppingSelectList(map);
 		 
@@ -102,23 +103,24 @@ public class AdminToppingService {
 	 
 	 
 	 //페이징 -storeno를 읽고 toppingNo의 count를 세어줄것
-	 public int totalCountByName(int storeNo, String toppingName) {
+	 public int totalCountByName(int storeNo, String toppingName, int userNo) {
 		 
 		 Map<String, Object> map = new HashMap<String, Object>();
 		 map.put("storeNo", storeNo);
 		 map.put("toppingName", toppingName); //서치이름을 찾을때
+		 map.put("userNo", userNo);
 		 
 		 return adminToppingDao.selectToppingCount(map);
 	 }
 	
 	
 	//토핑 추가하기 서비스
-	public ToppingVo adminToppingAdd(String toppingName, int toppingPrice, MultipartFile file) {
+	public ToppingVo adminToppingAdd(String toppingName, int toppingPrice, MultipartFile file, int userNo) {
 		ToppingVo toppingVo;
 		ToppingVo toVo;
 		
 		//중복방지 호출
-		if(toppingNameCheck(toppingName, 0) == 0) { //추가해줄때 no를 0으로 일단 받아온다.
+		if(toppingNameCheck(toppingName, 0, userNo) == 0) { //추가해줄때 no를 0으로 일단 받아온다.
 			
 			//이미지 넣어주기
 			//카테고리같은 경우 파일에 값이 있는지 없는지 확인할때 카테고리에 이미지를 안넣어주는 경우 default값을 넣어줬어 1이면 값이있고 0이면 값이없음으로
@@ -128,7 +130,7 @@ public class AdminToppingService {
 			if(file.getOriginalFilename().equals("")) { //equals을 넣은경우는 문자열""=(icon1.png)은 길이가 정해져있지않으니까 equals로 값을 비교한다
 				//3. 없는 경우
 				System.out.println("여긴 오시나요");
-				toppingVo = new ToppingVo(toppingName, toppingPrice, "icon1.png"); //생성자를 호출할거야 3개에 맞는 생성자 만들어주기 없으면  생성자를 안만들어주면 일일이 set을 통해 값을 넣어줘야함
+				toppingVo = new ToppingVo(toppingName, toppingPrice, "icon1.png", userNo); //생성자를 호출할거야 3개에 맞는 생성자 만들어주기 없으면  생성자를 안만들어주면 일일이 set을 통해 값을 넣어줘야함
 			}else{
 				System.out.println("사기치지마");
 				//2. 있는 경우
@@ -137,7 +139,7 @@ public class AdminToppingService {
 				//exName 확장자 확장자는 이름이랑 같이붙어잇어 ex)재학.jpg 
 				String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;//파일이름 안겹치게 랜덤으로해야함
 				//확장자를 뽑아왓으니 새로운 이름을 만들자 시간/랜덤이름/확장자
-				toppingVo = new ToppingVo(toppingName, toppingPrice, saveName);
+				toppingVo = new ToppingVo(toppingName, toppingPrice, saveName, userNo);
 				//생성자를 넣어주는 이유는 뽑아온값을 미리 넣어주려고
 				try {
 					byte[] fileData = file.getBytes();
@@ -153,7 +155,7 @@ public class AdminToppingService {
 				}
 			}
 			System.out.println("여긴 오시나요");
-			toppingVo.setStoreNo(1); //우선 kfc만 넣어주기
+			//toppingVo.setStoreNo(1); //우선 kfc만 넣어주기
 			
 			System.out.println(toppingVo.toString());
 			
@@ -176,12 +178,13 @@ public class AdminToppingService {
 	}
 	
 	//중복체크를 하기위한 서비스
-	public int toppingNameCheck(String toppingName, int toppingNo) {
+	public int toppingNameCheck(String toppingName, int toppingNo, int userNo) {
 		System.out.println("토핑 중복체크 서비스");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
         map.put("toppingName", toppingName);
         map.put("toppingNo", toppingNo);
+        map.put("userNo", userNo);
 		
 		return adminToppingDao.selectToppingNameCheck(map);
 	}
@@ -195,13 +198,13 @@ public class AdminToppingService {
 	}
 	
 	//토핑 타이틀 누르면 값 읽어오고 수정하기
-	public int adminToppingUpdate(String toppingName, int toppingPrice, int toppingNo, MultipartFile file) {
+	public int adminToppingUpdate(String toppingName, int toppingPrice, int toppingNo, MultipartFile file, int userNo) {
 		System.out.println("토핑 수정 서비스");
 		ToppingVo toppingVo;
 		int result;
 		
 		//중복방지 호출
-		if(toppingNameCheck(toppingName,toppingNo) == 0) {
+		if(toppingNameCheck(toppingName,toppingNo, userNo) == 0) {
 			
 			if(file.getOriginalFilename().equals("")) { //equals을 넣은경우는 문자열""=(icon1.png)은 길이가 정해져있지않으니까 equals로 값을 비교한다
 				//3. 없는 경우
@@ -231,7 +234,7 @@ public class AdminToppingService {
 				}
 			}
 			System.out.println("토핑 수정하기");
-			toppingVo.setStoreNo(1); //우선 kfc만 넣어주기
+			//toppingVo.setStoreNo(1); //우선 kfc만 넣어주기
 			
 			System.out.println(toppingVo.toString());
 			

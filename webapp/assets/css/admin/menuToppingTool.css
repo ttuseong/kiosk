@@ -87,7 +87,7 @@ a{
 
 /* adminTopping 사진미리보기 툴팁 */
 .tooltip-img {
-	opacity: 0;
+	display: none;
 	background-color: rgba(0,0,0,0.5);
 	color: white;	
 	position: absolute;

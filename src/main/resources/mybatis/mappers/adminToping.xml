@@ -26,9 +26,13 @@
                         			toppingprice,
                         			toppingimg
                 			 FROM 
-                			 		topping
-                			 WHERE 
-                			 		storeno = 1
+                			 		users u, store s, topping t
+                			  WHERE 
+            						u.userno = s.userno
+     						  AND    
+     						  		s.storeno = t.storeno
+      						  AND    
+      						  		u.userno = #{userNo}
 		]]>		
 				     <if test="toppingName neq null">
 					  		 AND
@@ -48,11 +52,15 @@
 	<select id="selectToppingCount" parameterType="map" resultType="int">
 		<![CDATA[
 			SELECT 
-					count(toppingno)
+					count(t.toppingno)
 			FROM
-			 		topping
-			WHERE 	
-					storeno = #{storeNo}
+			 		users u, store s, topping t
+			WHERE
+                    u.userno = s.userno
+            AND     
+                    s.storeno = t.storeno
+            AND  	
+            		u.userno = #{userNo}
 		]]>
 				<if test="toppingName neq null">
 					 AND
@@ -97,13 +105,17 @@
 	<select id="selectToppingNameCheck" parameterType="map" resultType="int">
 		<![CDATA[
 			SELECT
-					count(toppingno)
+					count(t.toppingno)
 			FROM 
-					topping
+					users u, store s, topping t
 			WHERE 
+					u.userno = s.userno
+			AND		
+					s.storeno = t.storeno
+			AND		
 					toppingname= #{toppingName}
 			AND 
-					storeno=1
+					u.userno = #{userNo}
 		]]>
 		<if test="toppingNo != 0">
 			 AND
@@ -112,14 +124,12 @@
 	</select>
 	
 	<!-- 토핑 삭제하기 -->
-	<delete id="deleteTopping" parameterType="int">
+	<delete id="deleteTopping" parameterType="map">
 		<![CDATA[
 			DELETE FROM 
 					topping
 			WHERE 
 					toppingno = #{toppingNo}
-			AND 		
-					storeno = 1
 		]]>
 	</delete>
 	
