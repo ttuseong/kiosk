@@ -1,6 +1,5 @@
 package com.javaex.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,12 +51,18 @@ public class AdminMenuDao {
 		return pList;
 	}
 	
-	
 	// Dao 연관메뉴 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단)
 	public int getUseMenuCnt(int menuNo) {
 		System.out.println("dao(adminMenu) - 연관메뉴 개수 세기");
 		
 		return sqlSession.selectOne("adminMenu.getUseMenuCnt", menuNo);
+	}
+	
+	// Dao 프로모션 구성품 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단)
+	public int getPromotionCnt(int menuNo) {
+		System.out.println("dao(adminMenu) - 프로모션 구성품 개수 세기");
+		
+		return sqlSession.selectOne("adminMenu.getPromotionCnt", menuNo);
 	}
 	
 	// Dao 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기

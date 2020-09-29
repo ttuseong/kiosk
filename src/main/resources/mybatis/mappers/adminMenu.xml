@@ -66,6 +66,15 @@
 		]]>
 	</select>
 	
+	<!-- 프로모션 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단) -->
+	<select id="getPromotionCnt" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(setno)
+			from usemenu
+			where menuno = #{menuNo}
+		]]>
+	</select>
+	
 	<!-- 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기 -->
 	<select id="getUseMenuInfo" parameterType="int" resultType="String">
 		<![CDATA[
