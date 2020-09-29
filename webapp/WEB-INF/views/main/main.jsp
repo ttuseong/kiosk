@@ -11,6 +11,7 @@
 <!-- css -->
 <link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/kioskMain/main.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/fontello/css/fontello.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
