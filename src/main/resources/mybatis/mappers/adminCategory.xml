@@ -26,7 +26,7 @@
 				        		c.categoryImg
 						 FROM 
 				        		users u, store s, category c
-						WHERE 
+						 WHERE 
 				        		u.userno = s.userno
                          AND    
                          		s.storeno = c.storeno
@@ -145,7 +145,7 @@
 	</delete>
 	
 	<!-- 카테고리 수정 -->
-	<select id="titleUpdate" parameterType="com.javaex.vo.CategoryVo">
+	<update id="titleUpdate" parameterType="com.javaex.vo.CategoryVo">
 		<![CDATA[
 		UPDATE 
 				category
@@ -160,5 +160,5 @@
 		where 
     		categoryNo = #{categoryNo}
 		]]>
-	</select>
+	</update>
 </mapper>

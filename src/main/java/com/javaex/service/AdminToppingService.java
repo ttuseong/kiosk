@@ -36,9 +36,9 @@ public class AdminToppingService {
 	//토핑 리스트 서치, 페이징
 	 public Map<String, Object> adminToppingList(String toppingName, int crtPage, int userNo) { 
 		 
-		 System.out.println("토핑 페이징 서비스");
+		System.out.println("토핑 페이징 서비스");
 		 //전체 글 갯수		 
-		 int totalCount = totalCountByName(1, toppingName, userNo); //전체게시물수/페이지당 게시물 수
+		int totalCount = totalCountByName(1, toppingName, userNo); //전체게시물수/페이지당 게시물 수
 
 		//한 페이지당 글갯수
 		int listCnt = 5;
@@ -144,8 +144,10 @@ public class AdminToppingService {
 				try {
 					byte[] fileData = file.getBytes();
 					
-					OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName); //경로 그리고 saveName으로 이름 저장할것
+					OutputStream out = new FileOutputStream("C:/test/"+saveName); //경로 그리고 saveName으로 이름 저장할것
 					BufferedOutputStream bout = new BufferedOutputStream(out);
+					
+					
 					//저장준비
 					bout.write(fileData);//실제저장
 					bout.close();//저장완료후 이제 닫아준다
@@ -217,12 +219,12 @@ public class AdminToppingService {
 				//exName 확장자 확장자는 이름이랑 같이붙어잇어 ex)재학.jpg 
 				String saveName = System.currentTimeMillis() + UUID.randomUUID().toString() + exName;//파일이름 안겹치게 랜덤으로해야함
 				//확장자를 뽑아왓으니 새로운 이름을 만들자 시간/랜덤이름/확장자
-				toppingVo = new ToppingVo(toppingName, toppingPrice, saveName);
+				toppingVo = new ToppingVo(toppingName, toppingPrice, toppingNo, saveName, userNo);
 				//생성자를 넣어주는 이유는 뽑아온값을 미리 넣어주려고
 				try {
 					byte[] fileData = file.getBytes();
 					
-					OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName); //경로 그리고 saveName으로 이름 저장할것 경로가 이상한건지 아니면 뭐때문인지 아직몰라... 일단 리눅스에 오류가 떴을거임..(war파일생성은 완료)
+					OutputStream out = new FileOutputStream("C:/test/"+saveName); //경로 그리고 saveName으로 이름 저장할것 경로가 이상한건지 아니면 뭐때문인지 아직몰라... 일단 리눅스에 오류가 떴을거임..(war파일생성은 완료)
 					BufferedOutputStream bout = new BufferedOutputStream(out);
 					//저장준비
 					bout.write(fileData);//실제저장

@@ -50,7 +50,7 @@ a{
 
 .tooltip-img {
 	opacity: 0;
-	background-color: rgba(0,0,0,0.5);
+	background-color: white;
 	color: white;	
 	position: absolute;
 	z-index:1;
@@ -59,7 +59,11 @@ a{
 	transform:translateX(50%);
 }
 
+
 .tooltip-img > img{
+	color: black;
+	width: 450px;
+	height: 300px;
 	position: relative;
 	z-index: 1;
 }

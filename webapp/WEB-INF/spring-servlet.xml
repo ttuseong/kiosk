@@ -71,6 +71,6 @@
 
 	<!-- url매핑 -->
 	<mvc:resources mapping="/lotteria/**" location="file:/kiosk/lotteria/" />
-	<mvc:resources mapping="/kfc/**" location="file:/kiosk/kfc/" />
+	<mvc:resources mapping="/kfc/**" location="file:C:/test/" />
 
 </beans>

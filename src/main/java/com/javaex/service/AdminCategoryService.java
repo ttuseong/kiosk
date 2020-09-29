@@ -91,7 +91,7 @@ public class AdminCategoryService {
 			try {
 				byte[] fileData = file.getBytes();
 				
-				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName); //saveName으로 이름 저장할것
+				OutputStream out = new FileOutputStream("C:/test/"+saveName); //saveName으로 이름 저장할것
 				BufferedOutputStream bout = new BufferedOutputStream(out);
 				
 				bout.write(fileData);
@@ -159,7 +159,7 @@ public class AdminCategoryService {
 			try {  //try catch 파일 예외처리
 				byte[] fileData = file.getBytes();
 				
-				OutputStream out = new FileOutputStream("/kiosk/kfc/"+saveName);
+				OutputStream out = new FileOutputStream("C:/test/"+saveName);
 				BufferedOutputStream bout = new BufferedOutputStream(out);
 				
 				bout.write(fileData);
