@@ -35,7 +35,7 @@
             <div class="placeSelectBodyContiner">
                <div class="placeSelectBodyContentContiner">
                   <div class="placeSelectBodyContent">
-                     <img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+                     <img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/kfc/store.png">
                      <h5>매장식사</h5>
                      <p>EAT IN</p>
                   </div>
@@ -43,7 +43,7 @@
                </div>
                <div class="placeSelectBodyContentContiner">
                   <div class="placeSelectBodyContent">
-                     <img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/assets/images/icon1.png">
+                     <img alt="매장 식사 아이콘" src="${pageContext.request.contextPath}/kfc/package.png">
                      <h5>포장주문</h5>
                      <p>TO GO</p>
                   </div>
@@ -73,34 +73,34 @@
             <div id="select-container">
                <div id="selectCardGroup">
                   <div id="credit" class="payMethod" data-no="0">
-                     <div class="icon-credit-card"></div>
+                     <img class="selectRectangle" alt="" src="${pageContext.request.contextPath}/assets/images/card.png">
                      <p>신용카드</p>
                   </div>
                   <div id="prepaidcard" class="payMethod" data-no="1">
-                     <div class="icon-credit-card"></div>
+                     <img class="selectRectangle kfcCard" alt="" src="${pageContext.request.contextPath}/assets/images/KFCcard.png">
                      <p>KFC 선불카드</p>
                   </div>
                </div>
                <div id="selectPayCodeContainer">
                		<div id="selectPayCodeContents">
 	                  <div class="payCodeContianer payMethod" data-no="2">
-	                     <div class="icon-credit-card"></div>
+	                     <img class="selectCircle" alt="" src="${pageContext.request.contextPath}/assets/images/kakao.png">
 	                     <p>카카오 페이</p>
 	                  </div>
 	                  <div class="payCodeContianer payMethod" data-no="3">
-	                     <div class="icon-credit-card"></div>
+	                     <img class="selectCircle" alt="" src="${pageContext.request.contextPath}/assets/images/zero.jpg">
 	                     <p>제로페이</p>
 	                  </div>
 	                  <div class="payCodeContianer payMethod" data-no="4">
-	                     <div class="icon-credit-card"></div>
+	                     <img class="selectCircle" alt="" src="${pageContext.request.contextPath}/assets/images/ok.jpg">
 	                     <p>OK 캐쉬백</p>
 	                  </div>
 	                  <div class="payCodeContianer payMethod" data-no="5">
-	                     <div class="icon-credit-card"></div>
+	                     <img class="selectCircle" alt="" src="${pageContext.request.contextPath}/assets/images/paybook.png">
 	                     <p>BC 페이북 QR</p>
 	                  </div>
 	                  <div class="payCodeContianer payMethod" data-no="6">
-	                     <div class="icon-credit-card"></div>
+	                     <img class="selectCircle" alt="" src="${pageContext.request.contextPath}/assets/images/lpay.png">
 	                     <p>L.pay</p>
 	                  </div>
 	               </div>
@@ -165,9 +165,9 @@
       <div class="modal-content" id="paymentDetailsContent">
          <div class="modal-header" id="paymentDetailsHeader">
          	<div id="payment-header">
-         		<div class="icon-credit-card">
-	               <p>아이콘</p>
-	            </div>
+         		<div>
+         			<img alt="" src="">
+         		</div>
 	            <p id="paymentTitle"></p>
          	</div>
          </div>

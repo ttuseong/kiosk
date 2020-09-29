@@ -824,9 +824,17 @@ $(".payMethod").on("click", function(){
 	
 	var no=thisSelect.data("no");
 	
+	var targetClass = thisSelect.children("img").attr("class");
+	
+	if(no == 0){
+		$("#payment-header").children("div").children("img").attr("src", url+"/assets/images/cardR.png");
+	} else{
+		$("#payment-header").children("div").children("img").attr("src", thisSelect.children().eq(0).attr("src"));
+	}
+	
 	$("#paymentDetailsMoney").text(totalPrice);
 	$("#paymentTitle").text(thisSelect.children().eq(1).text());
-	
+	$("#payment-header").children("div").children("img").attr("class", targetClass);
 	$("#paymentmodalContent").attr("src", url+"/assets/images/" +no+".png");
 	
 	$("#paySelect").modal("hide");

@@ -1709,12 +1709,17 @@
 	border-radius: 5px;
 } 
 	
-#selectCardGroup div div{
-	font-size: 60px;
+.selectRectangle{
+	width:100px;
 	position: absolute;
 	top: 50%;
 	left: 15%;
 	transform: translate(-50%, -50%);
+}
+
+.kfcCard{
+	border: 4px solid white;
+	border-radius: 10px;
 }
 
 #selectCardGroup div p{
@@ -1751,8 +1756,6 @@
 
 #selectPayCodeContents *{
 	display:inline-flex;
-	align-items: center;
-	justify-content: center;
 }
 
 .payCodeContianer{
@@ -1764,15 +1767,14 @@
 	position: relative;
 }
 
-.payCodeContianer div{
+.selectCircle{
 	position: absolute;
 	top:50%;
 	left: 20%;
 	transform: translate(-50%, -50%);
-	border: 1px solid black;
 	border-radius: 100%;
-	width: 40px;
-	height: 40px;
+	width: 60px;
+	height: 60px;
 }
 
 .payCodeContianer p{
@@ -1823,3 +1825,6 @@
 	height: 700px;
 }
  
+#payment-header > div > img{
+	left:35%;
+}

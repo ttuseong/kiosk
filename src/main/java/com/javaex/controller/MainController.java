@@ -23,6 +23,7 @@ public class MainController {
 		System.out.println(list.toString());
 		
 		model.addAttribute("list", list);
+		model.addAttribute("check", true);
 		
 		return "/main/main";
 	}
