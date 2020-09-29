@@ -76,7 +76,7 @@
 	<div id="kfc">
 		<section id="FKCHeader">
 			<h1>
-				<a href="#">KFC</a>
+				<a>KFC</a>
 			</h1>
 			<nav class="spot">
 				<ul>

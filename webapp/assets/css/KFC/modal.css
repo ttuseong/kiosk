@@ -1828,3 +1828,9 @@
 #payment-header > div > img{
 	left:35%;
 }
+
+/* 호버처리 */
+.selectModeBodyContainer, .paySelectUp, .paySelectDown, .icon-plus, .icon-minus, .placeSelectBodyContentContiner,
+.recommendation, #orderList-pagingUp, #orderList-pagingDown, .payMethod:hover {
+	cursor: pointer;
+}

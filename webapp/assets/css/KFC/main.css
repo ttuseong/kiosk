@@ -728,3 +728,8 @@ body{
 	font-weight: bold;
 	color: red;
 }
+
+/* 호버처리 */
+.menu, #scrollUp, #scrollDown, #allCancelBtn, #cuponBtn, #orderBtn:hover {
+	cursor: pointer;	
+}
