@@ -784,6 +784,7 @@
 		$(".adminMenu-menuSubmitBtn").children('span').text("확인"); // 하단 버튼이 [확인]으로 변경
 		resetInput(); // 인풋박스 모두 비워주기
 		initializationDiscount(); // 할인 관련된 부분 초기화
+		$("#promotion").val(""); // 프로모션 초기화
 	}
 	
 	// 인풋박스를 모두 비워주는 함수
@@ -800,6 +801,7 @@
 	/* 메뉴 정보 받아오기 (특정 메뉴 선택시 해당 메뉴에 대한 정보 받아옴 - 메뉴이름, 가격, 이미지 등) */
 	$(".adminDropdownMenuList").on("click", "li", function() {
 		event.preventDefault(); // 본래 html 안에 있는 태그의 기능을 사용하지 않음 (a 태그 사용 중지를 위함)
+		$("#promotion").val(""); // 프로모션 초기화
 
 		var id = $(this).attr('id'); // 메뉴 드롭다운 li의 아이디값 받아오기 - 메뉴 넘버 알아오기 위함
 		var menuNo = document.getElementById(id).value; // li의 value값(메뉴 넘버) 받아오기
@@ -839,7 +841,6 @@
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
 		$('#useMenu').val(""); // 연관메뉴 value 초기화		
 		initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
-		$('#promotion').val(""); // 연관메뉴 value 초기화		
 		
 		// 정보 삽입
 		/* $("#menuCalorie").val(menuVo.menuCalorie); */
@@ -935,12 +936,18 @@
 			}
 			else {
 				$.ajax({
-					url : "${pageContext.request.contextPath}/admin/getUseMenuInfo",
+					url : "${pageContext.request.contextPath}/admin/getDelMenuInfo",
 					type : "post",
 					data : { menuNo : menuNo },
 					dataType : "json",
-					success : function(useMenuList) { /*성공시 처리해야될 코드 작성*/
+					success : function(delMenuInfo) { /*성공시 처리해야될 코드 작성*/
+						console.log(delMenuInfo.length + ", " + delMenuInfo);
 						var str = '';
+						
+						if(delMenuInfo.useMenuList.length > 0) {
+							console.log("연관메뉴 있음");
+						}
+						/* var str = '';
 					
 						if(useMenuList.length > 0){
 							for(var i = 0; i < useMenuList.length; i++){
@@ -954,7 +961,7 @@
 							}
 						} else{
 							delMenu(0, menuNo);
-						}
+						} */
 						
 					},
 					error : function(XHR, status, error) {

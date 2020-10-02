@@ -43,12 +43,12 @@ public class AdminMenuDao {
 	}
 	
 	// Dao 프로모션 구성품목(menuNo, cateNo) 가져오기
-	public List<Object> getPromotionInfo(int menuNo) {
+	public List<Object> getPromotionComponentsInfo(int menuNo) {
 		System.out.println("dao(adminMenu) - 프로모션 구성품목(menuNo, cateNo) 가져오기");
 		
-		List<Object> pList =  sqlSession.selectList("adminMenu.getPromotionInfo", menuNo);
+		List<Object> componentsList =  sqlSession.selectList("adminMenu.getPromotionComponentsInfo", menuNo);
 		
-		return pList;
+		return componentsList;
 	}
 	
 	// Dao 연관메뉴 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단)
@@ -59,10 +59,10 @@ public class AdminMenuDao {
 	}
 	
 	// Dao 프로모션 구성품 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단)
-	public int getPromotionCnt(int menuNo) {
+	public int getPromotionComponentsCnt(int menuNo) {
 		System.out.println("dao(adminMenu) - 프로모션 구성품 개수 세기");
 		
-		return sqlSession.selectOne("adminMenu.getPromotionCnt", menuNo);
+		return sqlSession.selectOne("adminMenu.getPromotionComponentsCnt", menuNo);
 	}
 	
 	// Dao 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
@@ -72,6 +72,15 @@ public class AdminMenuDao {
 		List<MenuVo> useMenuList = sqlSession.selectList("adminMenu.getUseMenuInfo", menuNo);
 		
 		return useMenuList;
+	}
+	
+	// Dao 해당 메뉴를 프로모션 구성품으로 사용중인 메뉴이름 받아오기
+	public List<MenuVo> getPromotionComponentsUseMenu(int menuNo) {
+		System.out.println("dao(adminMenu) - 해당 메뉴를 프로모션 구성품으로 사용중인 메뉴이름 받아오기");
+		
+		List<MenuVo> promotionUseList = sqlSession.selectList("adminMenu.getPromotionComponentsUseMenu", menuNo);
+		
+		return promotionUseList;
 	}
 	
 	// Dao 메뉴 추가
@@ -93,6 +102,17 @@ public class AdminMenuDao {
 		map.put("setNo", menuNo); // 현재 선택 된 메뉴 (ex : 치킨 3조각, 5조각)
 		
 		return sqlSession.insert("adminMenu.useInsert", map);
+	}
+	
+	// Dao 프로모션 구성품 추가 
+	public int promotionComponentsInsert(int menuNo, int promotionNo) {
+		System.out.println("dao(adminMenu) - 프로모션 구성품 추가");
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("menuNo", menuNo); // 현재 선택 된 메뉴
+		map.put("promotionNo", promotionNo); // 프로모션 구성품
+		
+		return sqlSession.insert("adminMenu.promotionComponentsInsert", map);
 	}
 	
 	// Dao 메뉴 수정
@@ -126,14 +146,27 @@ public class AdminMenuDao {
 	}
 	
 	// Dao 해당 메뉴를 연관 메뉴로 사용하고 있는 메뉴의 연관메뉴 삭제
-	public int delUseMenu(String column, int menuNo) {
+	public int delUseMenu(String column, int menuNo, int setNo) {
 		System.out.println("dao(adminMenu) - 연관 메뉴 삭제");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("column", column);
 		map.put("menuNo", menuNo);
+		map.put("setNo", setNo);
 		
 		return sqlSession.delete("adminMenu.delUseMenu", map);
+	}
+	
+	// Dao 프로모션 구성품 삭제
+	public int delPromotionComponents(String column, int menuNo, int promotionNo) {
+		System.out.println("dao(adminMenu) - 연관 메뉴 삭제");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("column", column);
+		map.put("menuNo", menuNo);
+		map.put("promotionNo", promotionNo);
+		
+		return sqlSession.delete("adminMenu.delPromotionComponents", map);
 	}
 	
 	// 해당 매장의 단위 넘버와 이름 가져오기

@@ -43,9 +43,9 @@ public class AdminMenuService {
 	public MenuVo getMenuInfo(int menuNo) {		
 		MenuVo menuVo = adminMenuDao.getMenuInfo(menuNo);
 		
-		int useMenuCnt = adminMenuDao.getPromotionCnt(menuNo); // 프로모션 구성품목 유무 받기(return 값이 0이면 구성품 없음, 0 이상이면 구성품 있음)
-		if(useMenuCnt > 0) { // 구성품이 있을 경우
-			menuVo.setPromotion(adminMenuDao.getPromotionInfo(menuNo));
+		int componentsCnt = adminMenuDao.getPromotionComponentsCnt(menuNo); // 프로모션 구성품목 유무 받기(return 값이 0이면 구성품 없음, 0 이상이면 구성품 있음)
+		if(componentsCnt > 0) { // 구성품이 있을 경우
+			menuVo.setPromotion(adminMenuDao.getPromotionComponentsInfo(menuNo));
 		}
 		
 		return menuVo;
@@ -94,7 +94,7 @@ public class AdminMenuService {
 	        
 	        for(int i = 0 ; i < promotionComponents.length ; i++)
 	        {
-				adminMenuDao.useInsert(Integer.parseInt(promotionComponents[i]), menuNo); // 연관메뉴 인서트
+				adminMenuDao.promotionComponentsInsert(menuNo, Integer.parseInt(promotionComponents[i])); // 구성품 인서트
 	        }
 		}
 		
@@ -140,13 +140,37 @@ public class AdminMenuService {
 		
 		if(useMenuCnt > 0) { // 기존에 연관 메뉴가 있었던 상태라면
 			if(useMenu == 0) { // useMenu를 선택하지 않은 경우
-				adminMenuDao.delUseMenu("setNo", menuNo); // 연관 메뉴 삭제
+				adminMenuDao.delUseMenu("setNo", menuNo, 0); // 연관 메뉴 삭제
 			}
 			else { // 새로운 useMenu를 선택한 경우
 				adminMenuDao.useMenuUpdate(menuNo, useMenu); // 연관 메뉴 업데이트
 			}
 		}
 
+		String promotionComponents[]; // 프로모션 구성품목 메뉴 넘버 담아줄 배열
+		int componentsCnt = adminMenuDao.getPromotionComponentsCnt(menuNo); // 구성품 유무 받기
+		
+		if(componentsCnt == 0 && !promotion.equals("0")) { // 해당 메뉴에 프로모션 구성품이 없었던 상태였으나 새로 구성품을 선택했다면
+			promotionComponents = promotion.split(","); // split() : 지정한 문자를 기준으로 문자열을 잘라 배열로 반환하는 함수
+	        
+	        for(int i = 0 ; i < promotionComponents.length ; i++)
+	        {
+				adminMenuDao.promotionComponentsInsert(menuNo, Integer.parseInt(promotionComponents[i])); // 구성품 인서트
+	        }
+		}
+		
+		if(componentsCnt > 0) { // 기존에 구성품이 있었던 상태였다면
+			adminMenuDao.delPromotionComponents("menuNo", menuNo, 0); // 프로모션 구성품 먼저 삭제
+			if(!promotion.equals("0")) {
+				promotionComponents = promotion.split(","); // split() : 지정한 문자를 기준으로 문자열을 잘라 배열로 반환하는 함수
+		        
+		        for(int i = 0 ; i < promotionComponents.length ; i++)
+		        {
+					adminMenuDao.promotionComponentsInsert(menuNo, Integer.parseInt(promotionComponents[i])); // 구성품 인서트
+		        }
+			}
+		}
+		
 		adminMenuDao.menuUpdate(menuVo); // 메뉴 수정
 		MenuVo updateMenuInfo = adminMenuDao.getMenuInfo(menuVo.getMenuNo()); // 업데이트 한 메뉴 정보 담기
 		System.out.println(updateMenuInfo.toString());
@@ -154,11 +178,19 @@ public class AdminMenuService {
 		return updateMenuInfo;
 	}
 
-	// Service 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
-	public List<MenuVo> getUseMenuInfo(int menuNo) {
+	// Service 해당 메뉴를 연관메뉴/프로모션 구성품으로 사용중인 메뉴넘버와 이름 받아오기
+	public Map<String, Object> getDelMenuUseInfo(int menuNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
 		List<MenuVo> useMenuList = adminMenuDao.getUseMenuInfo(menuNo);
+		List<MenuVo> componentsList = adminMenuDao.getPromotionComponentsUseMenu(menuNo);
 		
-		return useMenuList;
+		map.put("useMenuList", useMenuList);
+		map.put("componentsList", componentsList);
+		
+		System.out.println("useMenuList : " + useMenuList);
+		System.out.println("promotionList : " + componentsList);
+		
+		return map;
 	}
 	
 	// Service 메뉴 삭제
@@ -167,16 +199,18 @@ public class AdminMenuService {
 		
 		int useDefault = adminMenuDao.selectUseDefault(menuNo);
 		int useMenuCnt = adminMenuDao.getUseMenuCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
+		int componentsCnt = adminMenuDao.getPromotionComponentsCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
 		
-		if(useDefault > 0) {
+		if(useDefault > 0) { // 단위 테이블에서 추가 구성 품목으로 사용중인 메뉴의 경우 -1을 반환하여 단위에서 사용되는 메뉴임을 알림
 			return -1;
 		}
-		else if(useMenuCnt == 1) { // 해당 메뉴가 연관 메뉴를 사용하고 있다면
-			adminMenuDao.delUseMenu("setNo", menuNo); // 연관 메뉴 삭제
-		}
-
-		if(delDecision == 1){ // 현재 연관메뉴로 사용중인 메뉴일 경우
-			adminMenuDao.delUseMenu("menuNo", menuNo); // 연관 메뉴 삭제
+		else if(useMenuCnt > 1 || componentsCnt > 0) { // 연관 메뉴를 사용하고 있거나 프로모션 구성품이 있는 메뉴의 경우
+			if(useMenuCnt > 1) {
+				adminMenuDao.delUseMenu("setNo", menuNo, 0); // 메뉴 삭제 전 연관 메뉴 먼저 삭제
+			}
+			else if(componentsCnt > 0){
+				adminMenuDao.delPromotionComponents("menuNo", menuNo, 0); // 메뉴 삭제 전 프로모션 구성품 먼저 삭제
+			}
 		}
 		
 		return adminMenuDao.delMenu(menuNo);
@@ -221,7 +255,6 @@ public class AdminMenuService {
 				// 단위 이름 업데이트
 				adminMenuDao.unitNameModify(unitNo, unitName);
 			}
-			
 			adminMenuDao.delUnitComponent(unitNo); // 해당 단위의 데이터 모두 삭제해 줌
 			result = 1; // result가 1일 경우 수정임
 		}
@@ -261,7 +294,6 @@ public class AdminMenuService {
 			if(delDecision > 0) { // 해당 단위를 사용하고 있는 메뉴가 있을 경우
 				adminMenuDao.updateUnitNo(unitNo.get(i)); // 해당 단위를 사용중인 메뉴들의 단위 넘버를 null값으로 초기화
 			}
-
 			adminMenuDao.delUnitComponent(unitNo.get(i)); // 해당 단위의 데이터 모두 삭제해 줌
 			adminMenuDao.delUnit(unitNo.get(i)); // 단위 삭제
 		}

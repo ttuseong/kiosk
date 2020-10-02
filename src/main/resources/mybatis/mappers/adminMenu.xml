@@ -46,14 +46,14 @@
 	</select>
 	
 	<!-- 프로모션 구성품목 메뉴와 카테고리 넘버 가져오기 -->
-	<select id="getPromotionInfo" parameterType="int" resultType="map">
+	<select id="getPromotionComponentsInfo" parameterType="int" resultType="map">
 		<![CDATA[
 			select  m.menuno as menu_no,
 			        m.categoryno as cate_no
-			from menu m,(select setno
-	                     from usemenu
+			from menu m,(select promotionno
+	                     from promotionmenu
 	                     where menuNo = #{menuNo}) u
-			where m.menuno = u.setno
+			where m.menuno = u.promotionno
 		]]>
 	</select>
 	
@@ -67,21 +67,34 @@
 	</select>
 	
 	<!-- 프로모션 개수 세기 (메뉴 추가 및 삭제에서 연관 메뉴 유무 판단) -->
-	<select id="getPromotionCnt" parameterType="int" resultType="int">
+	<select id="getPromotionComponentsCnt" parameterType="int" resultType="int">
 		<![CDATA[
-			select count(setno)
-			from usemenu
+			select count(promotionno)
+			from promotionmenu
 			where menuno = #{menuNo}
 		]]>
 	</select>
 	
-	<!-- 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기 -->
+	<!-- 해당 메뉴를 연관메뉴로 사용중인 메뉴이름과 메뉴 넘버 받아오기 -->
 	<select id="getUseMenuInfo" parameterType="int" resultType="String">
 		<![CDATA[
-			select m.menuName    
+			select  m.menuno,
+					m.menuname  
 			from useMenu u, menu m
 			where u.setNo = m.menuNo
 			and u.menuNo = #{menuNo}
+		]]>
+	</select>
+	
+	<!-- 해당 메뉴를 프로모션 구성품으로 사용중인 메뉴이름과 메뉴 넘버 받아오기 -->
+	<select id="getPromotionComponentsUseMenu" parameterType="int" resultType="String">
+		<![CDATA[
+			select  m.menuno,
+					m.menuname
+			from menu m, ( select menuno
+			                from promotionmenu
+			                where promotionno = #{promotionNo}) u
+			where m.menuno = u.menuno
 		]]>
 	</select>
 	
@@ -110,6 +123,13 @@
 	<insert id="useInsert" parameterType="map">
 		<![CDATA[
 			insert into usemenu values(#{menuNo}, #{setNo}) 
+		]]>
+	</insert>
+	
+	<!-- 프로모션 구성품 추가 -->
+	<insert id="promotionComponentsInsert" parameterType="map">
+		<![CDATA[
+			insert into promotionmenu values(#{menuNo}, #{promotionNo}) 
 		]]>
 	</insert>
 
@@ -172,9 +192,24 @@
 		]]>
 		<if test="column == 'menuNo'">
 			where menuNo = #{menuNo}
+			and setNo = #{setNo}
 		</if>
 		<if test="column == 'setNo'">
-			where setNo = #{menuNo}
+			and menuNo = #{menuNo}
+		</if>
+	</delete>
+	
+	<!-- 프로모션 구성품 삭제 -->
+	<delete id="delPromotionComponents" parameterType="map">
+		<![CDATA[
+			delete from promotionmenu
+		]]>
+		<if test="column == 'menuNo'">
+			where menuNo = #{menuNo}
+		</if>
+		<if test="column == 'promotionNo'">
+			where promotionNo = #{promotionNo}
+			and menuNo = #{menuNo}
 		</if>
 	</delete>
 	
