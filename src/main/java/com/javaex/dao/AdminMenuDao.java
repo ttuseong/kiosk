@@ -66,19 +66,20 @@ public class AdminMenuDao {
 	}
 	
 	// Dao 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
-	public List<MenuVo> getUseMenuInfo(int menuNo) {
+	public List<Map<String, Object>> getUseMenuInfo(int menuNo) {
 		System.out.println("dao(adminMenu) - 해당 메뉴를 연관메뉴로 쓰고 있는 메뉴넘버와 이름 받아오기");
 		
-		List<MenuVo> useMenuList = sqlSession.selectList("adminMenu.getUseMenuInfo", menuNo);
+		List<Map<String, Object>> useMenuList = sqlSession.selectList("adminMenu.getUseMenuInfo", menuNo);
 		
 		return useMenuList;
 	}
 	
 	// Dao 해당 메뉴를 프로모션 구성품으로 사용중인 메뉴이름 받아오기
-	public List<MenuVo> getPromotionComponentsUseMenu(int menuNo) {
+	public List<Map<String, Object>> getPromotionComponentsUseMenu(int menuNo) {
 		System.out.println("dao(adminMenu) - 해당 메뉴를 프로모션 구성품으로 사용중인 메뉴이름 받아오기");
 		
-		List<MenuVo> promotionUseList = sqlSession.selectList("adminMenu.getPromotionComponentsUseMenu", menuNo);
+		List<Map<String, Object>> promotionUseList = sqlSession.selectList("adminMenu.getPromotionComponentsUseMenu", menuNo);
+		System.out.println(promotionUseList);
 		
 		return promotionUseList;
 	}
@@ -138,6 +139,13 @@ public class AdminMenuDao {
 		return sqlSession.update("adminMenu.useMenuUpdate", map);
 	}
 
+	// Dao 메뉴 삭제 시 해당 메뉴를 프로모션 구성품으로 갖고 있는 메뉴의 프로모션 체크 해제를 위한 업데이트 쿼리
+	public int isSpecialUpdate(int menuNo) {
+		System.out.println("dao(adminMenu) - 프로모션 초기화");
+
+		return sqlSession.update("adminMenu.isSpecialUpdate", menuNo);
+	}
+
 	// Dao 메뉴 삭제
 	public int delMenu(int menuNo) {
 		System.out.println("dao(adminMenu) - 메뉴 삭제");
@@ -146,25 +154,23 @@ public class AdminMenuDao {
 	}
 	
 	// Dao 해당 메뉴를 연관 메뉴로 사용하고 있는 메뉴의 연관메뉴 삭제
-	public int delUseMenu(String column, int menuNo, int setNo) {
+	public int delUseMenu(String del, int menuNo) {
 		System.out.println("dao(adminMenu) - 연관 메뉴 삭제");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("column", column);
-		map.put("menuNo", menuNo);
-		map.put("setNo", setNo);
+		map.put("del", del); // 삭제 판단
+		map.put("menuNo", menuNo); // 해당 메뉴의 number
 		
 		return sqlSession.delete("adminMenu.delUseMenu", map);
 	}
 	
 	// Dao 프로모션 구성품 삭제
-	public int delPromotionComponents(String column, int menuNo, int promotionNo) {
+	public int delPromotionComponents(String del, int menuNo) {
 		System.out.println("dao(adminMenu) - 연관 메뉴 삭제");
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("column", column);
-		map.put("menuNo", menuNo);
-		map.put("promotionNo", promotionNo);
+		map.put("del", del); // 삭제 판단
+		map.put("menuNo", menuNo); // 해당 메뉴의 number
 		
 		return sqlSession.delete("adminMenu.delPromotionComponents", map);
 	}

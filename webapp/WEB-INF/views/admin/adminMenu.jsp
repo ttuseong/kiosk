@@ -163,7 +163,7 @@
 									<p class="normal">신메뉴</p>
 									
 									<input type="checkbox" class="isSpecial" id="useMenu" value="">
-									<p class="normal">관련메뉴</p>
+									<p class="normal"><a class="useMenuTag">관련메뉴</a></p>
 								</div>
 
 								<!-- 추가구성 -->
@@ -862,7 +862,7 @@
 		        
 		    case 3 : // 3일 경우 프로모션, 추천메뉴 체크박스 체크해 줌
 				$('input:checkbox[id="promotionMenu"]').prop("checked", true); 
-				$('input:checkbox[id="newMenu"]').prop("checked", true); 
+				$('input:checkbox[id="recommendMenu"]').prop("checked", true); 
 		        break;
 		        
 		    case 4 : // 4일 경우 신메뉴 체크박스 체크해 줌
@@ -875,6 +875,7 @@
 		        break;
 		        
 		    case 6 : // 6일 경우 추천메뉴, 신메뉴 체크박스 체크해 줌
+				$('input:checkbox[id="recommendMenu"]').prop("checked", true); 
 				$('input:checkbox[id="newMenu"]').prop("checked", true); 
 		        break;
 		        
@@ -926,43 +927,68 @@
 		var menuNo = $("#selectMenuNo").val(); // 메뉴 넘버 받아오기
 		console.log("삭제 버튼 클릭", menuNo);
 		
-		if (window.confirm("삭제하시겠습니까?")) { // 알림창 띄우기
-			// 확인 버튼을 누른 경우
-			if(menuNo == '') { // menuNo이 null일 경우 아직 메뉴가 선택되지 않은 상태임
-				alert("메뉴를 선택하세요.");
-			}	
-			else if(menuNo == 0) { // menuNo이 0일 경우 새로 등록중인 메뉴임
-				alert("등록되어 있지 않은 메뉴 정보입니다.");
-			}
-			else {
+		// 확인 버튼을 누른 경우
+		if(menuNo == '') { // menuNo이 null일 경우 아직 메뉴가 선택되지 않은 상태임
+			alert("메뉴를 선택하세요.");
+		}	
+		else if(menuNo == 0) { // menuNo이 0일 경우 새로 등록중인 메뉴임
+			alert("등록되어 있지 않은 메뉴 정보입니다.");
+		}
+		else {
+			if (window.confirm("삭제하시겠습니까?")) { // 알림창 띄우기
 				$.ajax({
-					url : "${pageContext.request.contextPath}/admin/getDelMenuInfo",
+					url : "${pageContext.request.contextPath}/admin/getDelMenuUseInfo",
 					type : "post",
 					data : { menuNo : menuNo },
 					dataType : "json",
-					success : function(delMenuInfo) { /*성공시 처리해야될 코드 작성*/
-						console.log(delMenuInfo.length + ", " + delMenuInfo);
-						var str = '';
+					success : function(delMenuUseInfo) { /*성공시 처리해야될 코드 작성*/
+						var setMenu = delMenuUseInfo.setMenu;
+						var promotionUseMenu = delMenuUseInfo.promotionUseMenu;
+						var str01 = '';
+						var str02 = '';
+
+						console.log("setMenu.length : " + setMenu.length + " / promotionUseMenu.length : " + promotionUseMenu.length);
 						
-						if(delMenuInfo.useMenuList.length > 0) {
-							console.log("연관메뉴 있음");
-						}
-						/* var str = '';
-					
-						if(useMenuList.length > 0){
-							for(var i = 0; i < useMenuList.length; i++){
-								str += '[' + useMenuList[i] + ']\n';
+						if(setMenu.length > 0) {
+							for(var i = 0; i < setMenu.length; i++){
+								str01 += '[' + setMenu[i].MENUNAME + '] ';
 							}
-							if(window.confirm("해당 메뉴를 추가 구성품으로 사용중인\n" + str + "메뉴의 연관메뉴도 삭제됩니다.\n\n삭제하시겠습니까?")) {
-								delMenu(1, menuNo);
+						}
+						if(promotionUseMenu.length > 0) {
+							for(var i = 0; i < promotionUseMenu.length; i++){
+								str02 += '[' + promotionUseMenu[i].MENUNAME + '] ';
+							}
+						}
+						
+						if(str01 != '' && str02 != '') {
+							if(window.confirm(str01 + "\n메뉴가 해당 메뉴를 연관 메뉴로 사용중입니다.\n\n삭제하시겠습니까?")) {
+								if(window.confirm(str02 + "\n메뉴가 해당 메뉴를 프로모션 구성품으로 사용중입니다.\n\n삭제하시겠습니까?")) {
+									delMenu(1, menuNo);
+								}
+								else {
+									$("html").scrollTop(0); // 화면 최상단으로 이동
+								}
+							}
+						}
+						else if(str01 != '' && str02 == '') {
+							if(window.confirm(str01 + "\n메뉴가 해당 메뉴를 연관 메뉴로 사용중입니다.\n\n삭제하시겠습니까?")) {
+								delMenu(2, menuNo);
 							}
 							else {
 								$("html").scrollTop(0); // 화면 최상단으로 이동
 							}
-						} else{
+						}
+						else if(str01 == '' && str02 != '') {
+							if(window.confirm(str02 + "\n메뉴가 해당 메뉴를 프로모션 구성품으로 사용중입니다.\n\n삭제하시겠습니까?")) {
+								delMenu(3, menuNo);
+							}
+							else {
+								$("html").scrollTop(0); // 화면 최상단으로 이동
+							}
+						}
+						else {
 							delMenu(0, menuNo);
-						} */
-						
+						}
 					},
 					error : function(XHR, status, error) {
 						console.error(status + " : " + error);
@@ -980,8 +1006,8 @@
 			data : { delDecision: delDecision, menuNo : menuNo },
 			dataType : "json",
 			success : function(result) { /*성공시 처리해야될 코드 작성*/
-				if(result == -1){
-					alert("추가 구성 품목으로 사용중입니다");
+				if(result == -1){ // 단위에서 사용되는 메뉴
+					alert("추가 구성 품목으로 사용중입니다"); 
 					return;
 				} else{
 					$("html").scrollTop(0); // 화면 최상단으로 이동
@@ -1181,7 +1207,7 @@
 
 	/* 추가 구성 리스트 모달 열기 */
 	$(".adminUnitListBtn").on("click", function() {
-		$("#unitListModal").modal();
+		$("#unitListModal").modal({backdrop: 'static'}); // 모달 열기
 
 		// 메뉴 정보 페이지에서 선택 된 구성이 모달에서도 선택되도록 함
 		var unitNo = $("input[id^='unitInfo_check_']:checked").val(); // 현재 메뉴 정보페이지에서 선택된 단위 번호 받아옴
@@ -1218,7 +1244,7 @@
 		$(".unitNo").val(0); // 단위를 추가하는 경우에는 유닛 넘버가 아직 없는 상태이기 때문에 유닛 넘버 초기화 해 줌
 		initializationUnit(); // 추가 구성 초기화 및 카테고리 드롭다운 리스트 불러오기
 		
-		$("#unitManagerModal").modal();
+		$("#unitManagerModal").modal({backdrop: 'static'}); // 모달 열기
 	});
 	
 	// 단위 추가 - html 그리기
@@ -1378,7 +1404,7 @@
 				renderCateList(storeNo,".unitManagerModal-dropdownCate"); // 드롭다운의 카테고리 리스트 뿌리기
 				$(".numberOfUnit").val(adminUnitInfoList.length); // 단위 개수를 세어주는 인풋에 현재 있는 리스트의 개수 넣어주기
 
-				$("#unitManagerModal").modal(); // 모달 열기
+				$("#unitManagerModal").modal({backdrop: 'static'}); // 모달 열기 // 모달 열기
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -1701,13 +1727,12 @@
 	});
 	
 	/* 연관 메뉴 모달 열기 */
-	$("#useMenu").on("click", function() {
+	$("#useMenu, .useMenuTag").on("click", function() {
 		console.log("연관 메뉴 모달 열기");
 		$("#useMenuModal-menuDropdownUl").children('li').remove(); // 메뉴 리스트 먼저 모두 비워주기
 		$("#useMenuModal-menuDropdownUl").prev().text("메뉴를 선택해주세요."); // 메뉴 리스트 먼저 모두 비워주기
 		
-		if($("#useMenu").is(":checked")) { // 연관메뉴 체크박스가 체크 된 경우
-			$("#useMenuModal").modal();
+		if($("#useMenu").is(":checked") || $(this).attr('class') == 'useMenuTag') { // 연관메뉴 체크박스가 체크 된 경우이거나 연관메뉴 텍스트 클릭 시
 			var cateNo = $("#selectCateNo").val(); // 선택한 카테고리 값 받아오기
 			if(cateNo == 0) { // 카테고리가 선택되지 않은 경우 [카테고리를 먼저 선택하세요.] 출력
 				var str = '';
@@ -1720,12 +1745,14 @@
 			else { // 카테고리가 선택 된 경우
 				getMenuList(cateNo, $("#useMenuModal-menuDropdownUl")); // 해당 카테고리에 속해있는 메뉴 리스트 뿌려주기 
 			}
+			$("#useMenuModal").modal({backdrop: 'static'}); // 모달 열기
 		}
 		else { // 체크 해제 하면 체크박스 value 초기화
 			$("#useMenu").val(""); 
 		}
+
 	});	
-	
+
 	// 확인 버튼
 	$(".useMenuModal-submit").on("click", function() {
 		var menuNo = $(".useMenuModal-basicInfoDropdown").children('input').val(); // 모달에서 선택 된 메뉴 넘버 가져오기
@@ -1746,7 +1773,7 @@
 		console.log("프로모션 모달 열기");
 		
 		if($("#promotionMenu").is(":checked")) { // 프로모션/할인 체크박스가 체크 된 경우
-			$("#isSpecial-promotionModal").modal(); // 모달 열기
+			$("#isSpecial-promotionModal").modal({backdrop: 'static'}); // 모달 열기
 		}
 		else {
 			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
@@ -1758,7 +1785,7 @@
 	$(".promotionMenuTag").on("click", function() {
 		console.log("프로모션/할인 모달 열기");
 
-		$("#isSpecial-promotionModal").modal(); // 모달 열기
+		$("#isSpecial-promotionModal").modal({backdrop: 'static'}); // 모달 열기
 	});
 	
 	// 프로모션/할인 모달 확인 버튼
@@ -1785,15 +1812,17 @@
 		$("#isSpecial-promotionModal").modal("hide");
 		
 		var discount = $("#discount").val();
+		var promotion = $("#promotion").val();
 		
-		if(discount == null) { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
+		if(discount == 0 || promotion == 0) { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
 			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+			$("#promotion").val(""); // 프로모션
 			$('#promotionMenu').prop("checked", false); // 체크박스 해제
 		}
-		else if(discount != null){ // 기존에 값이 있는 경우의 취소 => 수정을 취소하겠다는 소리
+		else if(discount != 0 || promotion != 0){ // 기존에 값이 있는 경우의 취소 => 수정을 취소하겠다는 소리
 			$("#discountedPrice").val(discount); // discount 기존 값으로 바꿔줌
-			console.log(discount, $("#menuPrice").val());
 			InsertDiscountRate($("#menuPrice").val()); // 할인율 구해서 삽입 
+			$("#promotion").val(promotion); // 프로모션을 기존 값으로 바꿔줌
 		}
 	});
 	
@@ -1820,7 +1849,7 @@
 			console.log("프로모션 있음");
 		}
 		
-		$("#promotionModal").modal(); // 모달 열기
+		$("#promotionModal").modal({backdrop: 'static'}); // 모달 열기
 	});
 	
 	// 추가구성 드롭다운 초기화
@@ -1850,7 +1879,7 @@
 			alert("메뉴 가격이 입력 된 경우에만 할인율 등록이 가능합니다.");
 		}
 		else {
-			$("#saleModal").modal(); // 할인 모달 열기
+			$("#saleModal").modal({backdrop: 'static'}); // 모달 열기
 		}
 	});
 	

@@ -89,14 +89,14 @@ public class AdminMenuController {
 		return updateMenuInfo;
 	}
 
-	// 메뉴 삭제 시 해당 메뉴를 연관메뉴로 사용중인 메뉴넘버와 이름 받아오기
+	// 메뉴 삭제 시 해당 메뉴를 연관메뉴 혹은 프로모션 구성품으로 '사용중'인 메뉴넘버와 이름 받아오기
 	@ResponseBody
 	@RequestMapping("/getDelMenuUseInfo")
 	public Map<String, Object> getDelMenuInfo(@RequestParam("menuNo") int menuNo) {
 		Map<String, Object> map = adminMenuService.getDelMenuUseInfo(menuNo);
 
-		map.put("useMenuList", map.get("useMenuList"));
-		map.put("promotionList", map.get("promotionList"));
+		map.put("setMenu", map.get("setMenu"));
+		map.put("promotionUseMenu", map.get("promotionUseMenu"));
 		
 		return map;
 	}
