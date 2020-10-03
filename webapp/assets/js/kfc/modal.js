@@ -738,7 +738,7 @@ $("#recommendCompleteBtn").on("click", function(){
 					count.push(lastSplitText[1].substring(0, 1)*menuCount);
 				}
 				
-				price.push(0);
+				price.push(-1);
 			}
 		}
    }
@@ -771,7 +771,7 @@ function addOrderList(textArr, priceArr, countArr){
    $(".orderList-table").empty();
    for(var i=0; i < textArr.length; i++) {
 	  
-	  if(priceArr[i] == 0){
+	  if(priceArr[i] == -1){
 		str += '<tr ' + 'class="subText"' + '>';
 		str += '   <td id="orderlist-menuName" class="subTextTd">' + textArr[i] + '</td>';
 		str += '   <td id="orderlist-menuCnt" class="noCount"> ' + countArr[i] + ' </td>';
