@@ -18,14 +18,14 @@ import com.javaex.vo.MenuVo;
 import com.javaex.vo.ToppingVo;
 
 @Controller
-@RequestMapping("/KFC")
+@RequestMapping("/kfc")
 public class KFCController {
 	@Autowired
 	KFCService kfcService;
 	
 	@RequestMapping("/index")
 	public String index(Model model, HttpSession httpSession, @RequestParam("no")int no) {				
-		List<CategoryVo> list = kfcService.cateList();
+		List<CategoryVo> list = kfcService.cateList(no);
 		System.out.println("no" + no);
 		System.out.println(list.toString());
 

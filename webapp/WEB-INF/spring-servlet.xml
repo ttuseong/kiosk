@@ -70,7 +70,7 @@
 
 
 	<!-- url매핑 -->
-	<mvc:resources mapping="/lotteria/**" location="file:/kiosk/lotteria/" />
-	<mvc:resources mapping="/kfc/**" location="file:C:/test/" />
+	<mvc:resources mapping="/lotteria/**" location="file:/backup/kiosk/lotteria/" />
+	<mvc:resources mapping="/kfc/**" location="file:/backup/kiosk/kfc/" />
 
 </beans>

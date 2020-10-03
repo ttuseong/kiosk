@@ -59,7 +59,7 @@ $(".menuLink").on("click", function(){
 
 function addMenuAjax(){
 	$.ajax({
-      url : url+"/KFC/menuList",      
+      url : url+"/kfc/menuList",      
       type : "post",
       data :{categoryNo : categoryNo},
       success : function(menuList){

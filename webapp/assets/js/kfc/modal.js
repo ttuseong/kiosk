@@ -42,7 +42,7 @@ var defaultPrice=0;
 /*금액 합산을 위해 미리 초기화를 하는 작업*/
 function inittoppingArr(){
    $.ajax({
-      url : url+"/KFC/initTopping",      
+      url : url+"/kfc/initTopping",      
       type : "post",
       success : function(toppingList){
          toppingArr = new Array(toppingList.length);
@@ -64,7 +64,7 @@ function inittoppingArr(){
 
 function initSideArr(unitNo){
    $.ajax({
-      url : url+"/KFC/initSide",      
+      url : url+"/kfc/initSide",      
       type : "post",
       data :{unitNo : unitNo},
       success : function(sideList){
@@ -137,7 +137,7 @@ $("#menuSectionContent").on("click",".menu", function(){
 //단품/세트/박스 모달 띄우는 함수
 function selectMenu(data, price){
    $.ajax({
-      url : url+"/KFC/selectMenu",      
+      url : url+"/kfc/selectMenu",      
       type : "post",
       data : data,
       success : function(menuList){
@@ -323,7 +323,7 @@ $("#hamburgerBoxBodyContainer").on("click", ".hamburgerBoxButton", function(){
 /*토핑 추가*/
 function changeList(data){
    $.ajax({
-      url : url+"/KFC/changeList",      
+      url : url+"/kfc/changeList",      
       type : "post",
       data:data,
       success : function(list){
@@ -659,7 +659,7 @@ $(".placeSelectBodyContentContiner").on("click", function(){
    tooltipTimerStop(0);
 
    $.ajax({
-      url : url+"/KFC/recommenDationMenu",      
+      url : url+"/kfc/recommenDationMenu",      
       type : "post",
       success : function(mList){
          $("#recommend-body").empty();
@@ -835,7 +835,7 @@ $(".payMethod").on("click", function(){
 	$("#paymentDetailsMoney").text(totalPrice);
 	$("#paymentTitle").text(thisSelect.children().eq(1).text());
 	$("#payment-header").children("div").children("img").attr("class", targetClass);
-	$("#paymentmodalContent").attr("src", url+"/assets/images/" +no+".png");
+	$("#paymentmodalContent").attr("src", url+"/assets/images/kfcPayment/" +no+".png");
 	
 	$("#paySelect").modal("hide");
 	modalCanclePoint.push(["결제 정보 확인", "paymentDetails"]);

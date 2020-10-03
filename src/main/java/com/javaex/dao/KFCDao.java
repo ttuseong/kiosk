@@ -16,8 +16,8 @@ public class KFCDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<CategoryVo> selectCateList() {
-		return sqlSession.selectList("kfc.selectCateList");
+	public List<CategoryVo> selectCateList(int storeNo) {
+		return sqlSession.selectList("kfc.selectCateList", storeNo);
 	}
 	
 	public List<MenuVo> selectMenuList(int categoryNo){

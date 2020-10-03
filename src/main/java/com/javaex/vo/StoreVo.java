@@ -3,16 +3,16 @@ package com.javaex.vo;
 public class StoreVo {
 	private int storeNo;
 	private String storeName;
-	private String sotreLogo;
+	private String storeLogo;
 	
 	
 	
 	public StoreVo() {}
 
-	public StoreVo(int storeNo, String storeName, String sotreLogo) {
+	public StoreVo(int storeNo, String storeName, String storeLogo) {
 		this.storeNo = storeNo;
 		this.storeName = storeName;
-		this.sotreLogo = sotreLogo;
+		this.storeLogo = storeLogo;
 	}
 
 	public int getStoreNo() {
@@ -31,16 +31,18 @@ public class StoreVo {
 		this.storeName = storeName;
 	}
 
-	public String getSotreLogo() {
-		return sotreLogo;
+	public String getStoreLogo() {
+		return storeLogo;
 	}
 
-	public void setSotreLogo(String sotreLogo) {
-		this.sotreLogo = sotreLogo;
+	public void setStoreLogo(String storeLogo) {
+		this.storeLogo = storeLogo;
 	}
 
 	@Override
 	public String toString() {
-		return "StoreVo [storeNo=" + storeNo + ", storeName=" + storeName + ", sotreLogo=" + sotreLogo + "]";
+		return "StoreVo [storeNo=" + storeNo + ", storeName=" + storeName + ", storeLogo=" + storeLogo + "]";
 	}
+
+	
 }

@@ -31,7 +31,7 @@
 				<div class="brandDiv">
 					<a href="${pageContext.request.contextPath}/${vo.storeName }/index?no=${vo.storeNo }">
 						<div class="brandImg">
-							<img src="${pageContext.request.contextPath}/${vo.storeName }/${vo.storeName } width=" 100%">
+							<img src="${pageContext.request.contextPath}/${vo.storeName }/${vo.storeLogo }" style="width:100%">
 						</div>
 						
 						<div class="brandText">

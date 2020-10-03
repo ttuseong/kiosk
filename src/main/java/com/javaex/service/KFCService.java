@@ -17,8 +17,8 @@ public class KFCService {
 	@Autowired
 	KFCDao kfcDao;
 	
-	public List<CategoryVo> cateList() {
-		List<CategoryVo> cateList = kfcDao.selectCateList();
+	public List<CategoryVo> cateList(int no) {
+		List<CategoryVo> cateList = kfcDao.selectCateList(no);
 	
 		return cateList;
 	}
