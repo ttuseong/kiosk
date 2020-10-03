@@ -1749,6 +1749,7 @@
 		}
 		else { // 체크 해제 하면 체크박스 value 초기화
 			$("#useMenu").val(""); 
+			$(".useMenuModal-basicInfoDropdown").children('input').val("");
 		}
 
 	});	
@@ -1757,13 +1758,20 @@
 	$(".useMenuModal-submit").on("click", function() {
 		var menuNo = $(".useMenuModal-basicInfoDropdown").children('input').val(); // 모달에서 선택 된 메뉴 넘버 가져오기
 		$("#useMenu").val(menuNo); // 메뉴 정보 페이지의 연관메뉴 체크박스 value 값에 메뉴 넘버 넘겨줌
+		console.log(menuNo);
+		if(menuNo == 0) {
+			$('#useMenu').prop("checked", false); // 체크박스
+		}
+		else {
+			$('#useMenu').prop("checked", true); // 체크박스
+		}
 		$("#useMenuModal").modal("hide"); // 모달 닫기
 	});
 
 	// 연관메뉴 모달 취소&닫기 버튼
 	$("#useMenuModal-close, .useMenuModal-cancle").on("click", function() {
 		if($("#useMenu").val() == 0) {
-			$('#useMenu').prop("checked", false); // 먼저 메뉴 정보 페이지의 단위 체크박스 모두 해제해 줌
+			$('#useMenu').prop("checked", false); // 체크박스
 		}
 		$("#useMenuModal").modal("hide");
 	});

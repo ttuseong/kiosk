@@ -188,6 +188,8 @@ public class AdminMenuService {
 		int useMenuCnt = adminMenuDao.getUseMenuCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
 		int componentsCnt = adminMenuDao.getPromotionComponentsCnt(menuNo); // 연관 메뉴 유무 받기(return 값이 0이면 연관메뉴 없음, 0 이상이면 연관메뉴 있음)
 		List<Map<String, Object>> promotionComponentsUseMenu = adminMenuDao.getPromotionComponentsUseMenu(menuNo);
+		int promotionComponentsUseMenuNo = 0;
+		int promotionComponentsCnt = 0;
 		
 		if(useDefault > 0) { // 단위 테이블에서 추가 구성 품목으로 사용중인 메뉴의 경우 -1을 반환하여 단위에서 사용되는 메뉴임을 알림
 			return -1;
@@ -206,7 +208,13 @@ public class AdminMenuService {
 			adminMenuDao.delUseMenu("menu", menuNo); // 해당 메뉴를 연관 메뉴로 사용 중인 메뉴의 연관 메뉴 삭제
 			adminMenuDao.delPromotionComponents("delComponents", menuNo); // 해당 메뉴를 프로모션 구성품으로 사용 중인 메뉴의 구성품에서 삭제
 			for(int i = 0; i < promotionComponentsUseMenu.size(); i++) {
-				adminMenuDao.isSpecialUpdate(Integer.parseInt(promotionComponentsUseMenu.get(i).get("MENUNO").toString()));
+				// parseInt() 함수는 매개변수로 String 형만 받기 때문에 Object를 String으로 형변환 한 후 입력해야 함
+				// Object를 String으로 변환할 땐 toString() 함수를 사용함
+				promotionComponentsUseMenuNo = Integer.parseInt(promotionComponentsUseMenu.get(i).get("MENUNO").toString());
+				promotionComponentsCnt = adminMenuDao.getPromotionComponentsCnt(promotionComponentsUseMenuNo);
+				if(promotionComponentsCnt == 1) {
+					adminMenuDao.isSpecialUpdate(promotionComponentsUseMenuNo);
+				}
 			}
 		}
 		else if(delDecision == 2) { // 해당 메뉴를 연관메뉴로 사용 중인 메뉴가 있는 경우
@@ -217,7 +225,13 @@ public class AdminMenuService {
 			System.out.println("프로모션만 있음");
 			adminMenuDao.delPromotionComponents("delComponents", menuNo); // 해당 메뉴를 프로모션 구성품으로 사용 중인 메뉴의 구성품에서 삭제
 			for(int i = 0; i < promotionComponentsUseMenu.size(); i++) {
-				adminMenuDao.isSpecialUpdate(Integer.parseInt(promotionComponentsUseMenu.get(i).get("MENUNO").toString()));
+				// parseInt() 함수는 매개변수로 String 형만 받기 때문에 Object를 String으로 형변환 한 후 입력해야 함
+				// Object를 String으로 변환할 땐 toString() 함수를 사용함
+				promotionComponentsUseMenuNo = Integer.parseInt(promotionComponentsUseMenu.get(i).get("MENUNO").toString());
+				promotionComponentsCnt = adminMenuDao.getPromotionComponentsCnt(promotionComponentsUseMenuNo);
+				if(promotionComponentsCnt == 0) {
+					adminMenuDao.isSpecialUpdate(promotionComponentsUseMenuNo);
+				}
 			}
 		}
 		
