@@ -6,7 +6,7 @@ public class CategoryVo {
    private int publicYN;
    private String categoryImg;
    private int storeNo;
-   private int isSet;
+   private int highlight;
    private int cnt;
    private int rn;
    private int userNo;
@@ -44,19 +44,19 @@ public CategoryVo(int categoryNo, String categoryName, int userNo) {
 	   this.categoryImg = categoryImg;
    }
 
-   public CategoryVo(int categoryNo, String categoryName, int publicYN, String categoryImg, int storeNo, int isSet,
-         int cnt, int rn) {
-      this.categoryNo = categoryNo;
-      this.categoryName = categoryName;
-      this.publicYN = publicYN;
-      this.categoryImg = categoryImg;
-      this.storeNo = storeNo;
-      this.isSet = isSet;
-      this.cnt = cnt;
-      this.rn = rn;
-   }
- 
-
+	public CategoryVo(int categoryNo, String categoryName, int publicYN, String categoryImg, int storeNo, int highlight,
+		int cnt, int rn, int userNo) {
+		super();
+		this.categoryNo = categoryNo;
+		this.categoryName = categoryName;
+		this.publicYN = publicYN;
+		this.categoryImg = categoryImg;
+		this.storeNo = storeNo;
+		this.highlight = highlight;
+		this.cnt = cnt;
+		this.rn = rn;
+		this.userNo = userNo;
+	}
 
 	public int getRn() {
 	  return rn;
@@ -114,24 +114,19 @@ public CategoryVo(int categoryNo, String categoryName, int userNo) {
       this.categoryImg = categoryImg;
    }
 
-   public int getIsSet() {
-      return isSet;
-   }
-
-   public void setIsSet(int isSet) {
-      this.isSet = isSet;
-   }
-
-@Override
-public String toString() {
-	return "CategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
-			+ ", categoryImg=" + categoryImg + ", storeNo=" + storeNo + ", isSet=" + isSet + ", cnt=" + cnt + ", rn="
-			+ rn + "]";
-}
-
+	public int getHighlight() {
+		return highlight;
+	}
 	
-
-   
-    
+	public void setHighlight(int highlight) {
+		this.highlight = highlight;
+	}
+	
+	@Override
+	public String toString() {
+		return "CategoryVo [categoryNo=" + categoryNo + ", categoryName=" + categoryName + ", publicYN=" + publicYN
+				+ ", categoryImg=" + categoryImg + ", storeNo=" + storeNo + ", highlight=" + highlight + ", cnt=" + cnt
+				+ ", rn=" + rn + ", userNo=" + userNo + "]";
+	}
    
 }

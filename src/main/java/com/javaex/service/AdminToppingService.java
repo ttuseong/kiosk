@@ -144,7 +144,7 @@ public class AdminToppingService {
 				try {
 					byte[] fileData = file.getBytes();
 					
-					OutputStream out = new FileOutputStream("C:/test/"+saveName); //경로 그리고 saveName으로 이름 저장할것
+					OutputStream out = new FileOutputStream("/backup/kiosk/kfc/"+saveName); //경로 그리고 saveName으로 이름 저장할것
 					BufferedOutputStream bout = new BufferedOutputStream(out);
 					
 					
@@ -224,7 +224,7 @@ public class AdminToppingService {
 				try {
 					byte[] fileData = file.getBytes();
 					
-					OutputStream out = new FileOutputStream("C:/test/"+saveName); //경로 그리고 saveName으로 이름 저장할것 경로가 이상한건지 아니면 뭐때문인지 아직몰라... 일단 리눅스에 오류가 떴을거임..(war파일생성은 완료)
+					OutputStream out = new FileOutputStream("/backup/kiosk/kfc/"+saveName); //경로 그리고 saveName으로 이름 저장할것 경로가 이상한건지 아니면 뭐때문인지 아직몰라... 일단 리눅스에 오류가 떴을거임..(war파일생성은 완료)
 					BufferedOutputStream bout = new BufferedOutputStream(out);
 					//저장준비
 					bout.write(fileData);//실제저장

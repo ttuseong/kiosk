@@ -93,7 +93,7 @@
 				<ul>
 				<c:forEach items="${list }" var="cateVo">
 					<c:choose>
-						<c:when test="${cateVo.isSet==1 }">
+						<c:when test="${cateVo.highlight==1 }">
 							<li class="categoryColorRed">
 						</c:when>
 						<c:otherwise>

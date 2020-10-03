@@ -85,16 +85,19 @@ body{
 }
 
 .categoryColorRed{
-  background-color: rgb(204,55,46);
-  color: white;
+  background-color: #c50023;
+}
+
+.categoryColorRed>a{
+	color: white;
 }
 
 .categoryColorWhite{
   background-color: rgb(170, 203, 195);
 }
 
-.categoryColorWhite > p{
-	color: red;	
+.categoryColorWhite > a{
+	color: #c50023;
 }
 
 .currentSelect{
