@@ -783,7 +783,7 @@ function addOrderList(textArr, priceArr, countArr){
 		str += '   <td id="orderlist-menuCnt"> ' + countArr[i] + ' </td>';
 	  }	
 
-	  if(priceArr[i] != 0)
+	  if(priceArr[i] != -1)
       	str += ' <td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
       	str += '</tr>';
       }
