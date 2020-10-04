@@ -38,9 +38,14 @@
 			    unitNo is null
 			and
 			    menuNo not in (SELECT
-				                    setNo
-				                FROM
-				                    useMenu)
+			                        setNo
+			                    FROM
+			                        useMenu)
+			and
+			    menuNo not in (select
+			                        menuNo
+			                    from
+			                        promotionMenu)
 		]]>
 	</select>
 	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.MenuVo">
