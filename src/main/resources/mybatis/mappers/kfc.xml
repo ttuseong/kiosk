@@ -48,6 +48,41 @@
 			                        promotionMenu)
 		]]>
 	</select>
+	
+	<select id="selectHighlightMenuList" resultType="com.javaex.vo.MenuVo" parameterType="map">
+		<if test="highlight == 1">
+			SELECT
+			    m.menuno,
+			    m.menuName,
+			    m.menuDesc,
+			    m.menuPrice,
+			    m.menuImg,
+			    m.discount
+			FROM
+			    menu m,
+			    promotionmenu pm
+			where
+			    m.menuNo = pm.menuNo
+			GROUP BY m.menuno, m.menuname, m.menuDesc, m.menuPrice, m.menuImg,m.discount
+		</if>
+		<if test="highlight == 2">
+			SELECT
+			    menuNo,
+			    menuName,
+			    menuDesc,
+			    menuPrice,
+			    menuImg,
+			    discount
+			FROM
+			    menu
+			where
+			    isSpecial = 4
+			or
+			    isSpecial = 6
+		</if>
+	
+	</select>
+	
 	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.MenuVo">
 		<![CDATA[
 			SELECT

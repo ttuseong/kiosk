@@ -93,14 +93,14 @@
 				<ul>
 				<c:forEach items="${list }" var="cateVo">
 					<c:choose>
-						<c:when test="${cateVo.highlight==1 }">
-							<li class="categoryColorRed">
+						<c:when test="${cateVo.highlight>=1 }">
+							<li class="categoryColorRed categoryItem">
 						</c:when>
 						<c:otherwise>
-							<li class="categoryColorWhite">
+							<li class="categoryColorWhite categoryItem">
 						</c:otherwise>
 					</c:choose>
-						<a href="#" data-no="${cateVo.categoryNo}" class="menuLink">
+						<a href="#" data-no="${cateVo.categoryNo}" data-highlight="${cateVo.highlight}" class="menuLink">
 							<img class="categoryImg" alt="매장행사 이미지" src="${pageContext.request.contextPath}/kfc/${cateVo.categoryImg}">
 							<p>${cateVo.categoryName }</p>
 						</a>

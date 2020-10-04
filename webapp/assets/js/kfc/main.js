@@ -5,13 +5,14 @@ var curPos = 0;
 //선택한 카테고리의 번호
 //선택한 메뉴를 뽑아올 때 사용
 var categoryNo;
+var highlight;
 
 //툴팁에 사용되는 변수들
 var tooltipVal;
 var tooltipIndex = [];
 
 $(document).ready(function(){
-	categoryMarginInit();
+	categoryListInit();
 	defaultMenuList();
 });
 
@@ -33,18 +34,19 @@ function tooltipTimerStop(check){
 	clearTimeout(tooltipVal);
 }
 
-function categoryMarginInit(){
-	var categoryLength = $("#category").children("ul").children("li").size();
+function categoryListInit(){
+	var length = $(".categoryItem").length;
 	
-	for(var i = 1; i <= categoryLength; i++){
-		if(i%6 == 0 && i != 0){
-			$("#category").children("ul").children().eq(i-1).css("margin-right", 0);
-		}
-	}
+	var width = (Number($("#category").css("width").split("px")[0]) - ((length-1)*5))/length;
+
+	$(".categoryItem").css("width", width);
 }
 
 function defaultMenuList(){
-	categoryNo = $(".categoryColorWhite:first-child").children(".menuLink").data("no");
+	categoryNo = $("#category").children("ul").children().eq(0).children(".menuLink").data("no");
+	highlight = $("#category").children("ul").children().eq(0).children(".menuLink").data("highlight");
+	
+	console.log(categoryNo, highlight);
 	addMenuAjax();
 }
 
@@ -53,7 +55,7 @@ $(".menuLink").on("click", function(){
 	tooltipTimerStop(0);
 	var thismenuLink = $(this);
 	categoryNo = thismenuLink.data("no");
-	
+	highlight = thismenuLink.data("highlight");
 	addMenuAjax();
 });
 
@@ -61,7 +63,7 @@ function addMenuAjax(){
 	$.ajax({
       url : url+"/kfc/menuList",      
       type : "post",
-      data :{categoryNo : categoryNo},
+      data :{categoryNo : categoryNo, highlight : highlight},
       success : function(menuList){
 		$("#menuSectionContent > div").remove();
 		$("#pageCircleGroup>li").remove();

@@ -38,9 +38,9 @@ public class KFCController {
 	
 	@ResponseBody
 	@RequestMapping("menuList")
-	public List<MenuVo> menuList(@RequestParam("categoryNo") int categoryNo) {
-		System.out.println(categoryNo);
-		List<MenuVo> list = kfcService.menuList(categoryNo);
+	public List<MenuVo> menuList(@RequestParam("categoryNo") int categoryNo, @RequestParam("highlight") int highlight) {
+		System.out.println(categoryNo + ", " + highlight);
+		List<MenuVo> list = kfcService.menuList(categoryNo, highlight);
 		System.out.println(list.toString());
 		return list;
 	}

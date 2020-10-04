@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,12 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectCateList", storeNo);
 	}
 	
-	public List<MenuVo> selectMenuList(int categoryNo){
+	public List<MenuVo> selectBasicMenuList(int categoryNo){
 		return sqlSession.selectList("kfc.selectMenuList", categoryNo);
+	}
+	
+	public List<MenuVo> selectHighlightMenuList(Map<String, Integer> map){
+		return sqlSession.selectList("kfc.selectHighlightMenuList", map);
 	}
 	
 	public List<MenuVo> selectMenu(MenuVo menuVo) {

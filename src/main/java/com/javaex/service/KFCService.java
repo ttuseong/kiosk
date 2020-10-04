@@ -31,8 +31,14 @@ public class KFCService {
 		return kfcDao.selectDefaultMenuList(unitNo);
 	}
 
-	public List<MenuVo> menuList(int categoryNo) {
-		return kfcDao.selectMenuList(categoryNo);
+	public List<MenuVo> menuList(int categoryNo, int highlight) {
+		if(highlight == 0) {
+			return kfcDao.selectBasicMenuList(categoryNo);
+		} else {
+			Map<String, Integer> map = new HashMap<String, Integer>();
+			map.put("highlight", highlight);
+			return kfcDao.selectHighlightMenuList(map);
+		}
 	}
 	
 	public List<MenuVo> selectMenu(MenuVo menuVo) {
