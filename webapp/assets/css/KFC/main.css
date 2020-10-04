@@ -122,7 +122,59 @@ body{
 }
 
 /* 메뉴 영역 */
+/* 하이라이트 메뉴 */
+.highlightMenu{
+	height: 33%;
+	padding: 5px;
+    background: linear-gradient(to top, #FFEBCD, white);
+}
 
+.highlightMenu > img{
+	width:128px;
+	height: 100%;
+	float: left;
+	margin-right: 10px;
+	margin-left: 30px;
+}
+
+.highlightName{
+	font-size: 30px;
+	margin-bottom:10px;
+}
+
+.highlightMenu > div > div{
+	width: 70%;
+	display: inline-block;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+.highlightConfig{
+	font-size: 20px;
+	display: inline-block;
+	border: 1px solid red;
+	background-color: red;
+	color: white;
+	border-radius: 15%;
+	width: 45px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.highlightPrice{
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 20px;
+	color: red;
+}
+
+.highlightItem{
+	font-size: 15px;
+}
+
+/* 일반 메뉴 */
 #menuSection{
   height: 358px;
   font-size: 0;

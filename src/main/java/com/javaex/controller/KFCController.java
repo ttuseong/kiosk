@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,11 +39,11 @@ public class KFCController {
 	
 	@ResponseBody
 	@RequestMapping("menuList")
-	public List<MenuVo> menuList(@RequestParam("categoryNo") int categoryNo, @RequestParam("highlight") int highlight) {
+	public Map<String, Object> menuList(@RequestParam("categoryNo") int categoryNo, @RequestParam("highlight") int highlight) {
 		System.out.println(categoryNo + ", " + highlight);
-		List<MenuVo> list = kfcService.menuList(categoryNo, highlight);
-		System.out.println(list.toString());
-		return list;
+		Map<String, Object> map = kfcService.menuList(categoryNo, highlight);
+		System.out.println(map.toString());
+		return map;
 	}
 	
 	@ResponseBody

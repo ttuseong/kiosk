@@ -134,6 +134,19 @@ $("#menuSectionContent").on("click",".menu", function(){
    
 })
 
+//행사메뉴 클릭
+$("#menuSectionContent").on("click",".highlightMenu", function(){
+   selectedMode = -1;
+   var thisMenu = $(this);
+   var name = thisMenu.children("div").children().eq(0).text();
+   var price = thisMenu.children("div").children().eq(1).children().eq(1).text();
+
+   var data = {categoryNo : categoryNo, menuName : name};
+
+   selectMenu(data, price);
+   
+})
+
 //단품/세트/박스 모달 띄우는 함수
 function selectMenu(data, price){
    $.ajax({

@@ -31,14 +31,22 @@ public class KFCService {
 		return kfcDao.selectDefaultMenuList(unitNo);
 	}
 
-	public List<MenuVo> menuList(int categoryNo, int highlight) {
+	public Map<String, Object> menuList(int categoryNo, int highlight) {
+		Map<String, Object>resultMap = new HashMap<String, Object>();
+		resultMap.put("highlight", highlight);
+		List<MenuVo> list;
+		
 		if(highlight == 0) {
-			return kfcDao.selectBasicMenuList(categoryNo);
+			list = kfcDao.selectBasicMenuList(categoryNo);
 		} else {
-			Map<String, Integer> map = new HashMap<String, Integer>();
+			Map<String, Integer>map = new HashMap<String, Integer>();
 			map.put("highlight", highlight);
-			return kfcDao.selectHighlightMenuList(map);
+			list = kfcDao.selectHighlightMenuList(map);	
 		}
+		
+		resultMap.put("list", list);
+		
+		return resultMap;
 	}
 	
 	public List<MenuVo> selectMenu(MenuVo menuVo) {

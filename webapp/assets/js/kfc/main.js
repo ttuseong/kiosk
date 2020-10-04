@@ -64,15 +64,24 @@ function addMenuAjax(){
       url : url+"/kfc/menuList",      
       type : "post",
       data :{categoryNo : categoryNo, highlight : highlight},
-      success : function(menuList){
+      success : function(map){
 		$("#menuSectionContent > div").remove();
 		$("#pageCircleGroup>li").remove();
 		
-		for(var i = 0; i < menuList.length; i++){
-			if(i%9 == 0){
-				$("#menuSectionContent").append('<div></div>');		
+		if(map.highlight==1){
+			for(var i = 0; i < map.list.length; i++){
+				if(i%3 == 0){
+					$("#menuSectionContent").append('<div></div>');	
+				}
+				addHighlight(map.list[i]);
 			}
-			addMenuList(menuList[i]);
+		}else{
+			for(var i = 0; i < map.list.length; i++){
+				if(i%9 == 0){
+					$("#menuSectionContent").append('<div></div>');		
+				}
+				addMenuList(map.list[i]);
+			}
 		}
 		
 		if(endPoint != 0 && curPoint < endPoint){
@@ -106,6 +115,26 @@ function addMenuAjax(){
          console.error(status + " : " + error);
       }
    });
+}
+
+function addHighlight(menuVo){
+	console.log(menuVo);
+	str="";
+	
+	str += ' <div class="highlightMenu">';
+	str += '		<img alt="메뉴 이미지"';
+	str += '			src="'+url+'/assets/images/icon1.png">';
+	str += '		<div>';
+	str += '			<p class="highlightName">'+menuVo.menuName+'</p>';
+	str += '			<div>';
+	str += '				<div class="highlightConfig">구성</div>';
+	str += '				<p class="highlightPrice">'+menuVo.menuPrice+'</p>';
+	str += '			</div>';
+	str += '			<p class="highlightItem">구성품</p>';
+	str += '		</div>';
+	str += '	</div>';
+	
+	$("#menuSectionContent > div:last-child").append(str);
 }
 
 function addMenuList(menuVo){
