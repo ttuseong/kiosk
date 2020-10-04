@@ -104,7 +104,7 @@
     							userno = #{userNo}),
 						#{categoryName},
 						#{publicYN},
-						#{categoryImg})
+						#{categoryImg}, 0)
 			]]>
 	</insert>
 	
