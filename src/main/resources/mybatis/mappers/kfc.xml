@@ -110,21 +110,22 @@
 	</select>
 	<select id="selectRecommenDationMenuList" resultType="com.javaex.vo.MenuVo">
 		<![CDATA[
-			select  m.menuimg,
-        			m.menuname,
-        			m.menuprice
+			select  
+			    m.menuimg,
+			    m.menuname,
+			    m.menuprice
 			from
-    				menu m,
-    				store s,
-    				category c
+			    menu m,
+			    store s,
+			    category c
 			where 
-					s.storename='kfc'
+			    s.storename='kfc'
 			and 
-    				s.storeno=c.storeno
+			    s.storeno=c.storeno
 			and
-    				c.categoryno=m.categoryno
+			    c.categoryno=m.categoryno
 			and
-    				m.isspecial=1
+			    (m.isspecial=2 or m.isspecial=3 or m.isspecial=6 or m.isspecial=7)
 		]]>
 	</select>
 	<select id="selectBasicSide" resultType="com.javaex.vo.MenuVo" parameterType="int">
