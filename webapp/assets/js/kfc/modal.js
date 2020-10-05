@@ -82,7 +82,7 @@ function initSideArr(unitNo){
          computeAllPrice();
          hamburgerBoxSideMenuInputDefault();
 		 modalCanclePoint.push(["사이드 변경", "hamburgerBoxSideMenu"]);
-         $("#hamburgerBoxSideMenu").modal();
+         $("#hamburgerBoxSideMenu").modal({backdrop: 'static'});
 		 tooltipTimer(2, 1);
       },
       error : function(XHR, status, error) {
@@ -114,7 +114,7 @@ $(".btnCancle").on("click", function(){
 		tooltipIndex.pop();
 		console.log(tooltipIndex);
 		console.log(modalCanclePoint[modalCanclePoint.length-1]);
-		$("#"+modalCanclePoint[modalCanclePoint.length-1][1]).modal();
+		$("#"+modalCanclePoint[modalCanclePoint.length-1][1]).modal({backdrop: 'static'});
 		console.log(tooltipIndex);
 		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
 		
@@ -168,7 +168,7 @@ function selectMenu(data, price){
 	         }
 	         
 			 modalCanclePoint.push(["세트 선택", "selectMode"]);
-	         $("#selectMode").modal();
+	         $("#selectMode").modal({backdrop: 'static'});
 			 tooltipTimer(1, 1);	
 		}
 		else{
@@ -346,7 +346,7 @@ function changeList(data){
                addBurgerToppingContent(list[i], i);
             }
             $("#hamburgerBoxSideMenu").modal("hide");
-            $("#bugerTopping").modal();
+            $("#bugerTopping").modal({backdrop: 'static'});
          }
          else{
             $("#sideChangeContents").empty();
@@ -364,7 +364,7 @@ function changeList(data){
                $("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
          	}
             $("#hamburgerBoxSideMenu").modal("hide");
-            $("#sideChange").modal();
+            $("#sideChange").modal({backdrop: 'static'});
 			
          }
 		 tooltipTimer(3, 1);
@@ -418,7 +418,7 @@ $("#bugerToppingCompleted").on("click", function(){
 
    $("#selectedBurgurTopping").html(str);
    $("#bugerTopping").modal("hide");
-   $("#hamburgerBoxSideMenu").modal();
+   $("#hamburgerBoxSideMenu").modal({backdrop: 'static'});
    tooltipTimer(2, 0);
 });
 
@@ -596,7 +596,7 @@ $("#sideChangeComplete").on("click", function(){
    }
    
    $("#sideChange").modal("hide");
-   $("#hamburgerBoxSideMenu").modal();
+   $("#hamburgerBoxSideMenu").modal({backdrop: 'static'});
    tooltipTimer(2, 0);
 });
 
@@ -658,7 +658,7 @@ $("#orderBtn").on("click", function(){
 	
 	if(menuLenght > 0){
 		modalCanclePoint.push(["장소 선택", "placeSelect"]);
-   		$("#placeSelect").modal();
+   		$("#placeSelect").modal({backdrop: 'static'});
 		tooltipTimer(4, 1);
 	} else{
 		alert("메뉴를 선택해주세요");
@@ -681,7 +681,7 @@ $(".placeSelectBodyContentContiner").on("click", function(){
          }
 
 		 modalCanclePoint.push(["추천 메뉴", "recommend"]);
-         $("#recommend").modal();
+         $("#recommend").modal({backdrop: 'static'});
 		 tooltipTimer(5, 1);
          
       },
@@ -773,7 +773,7 @@ $("#recommendCompleteBtn").on("click", function(){
 
    $("#recommend").modal("hide");
    modalCanclePoint.push(["주문 목록", "MyOrderListModal"]);
-   $("#MyOrderListModal").modal();
+   $("#MyOrderListModal").modal({backdrop: 'static'});
    tooltipTimer(6, 1);
    
    myOrderListSlideSetting();
@@ -827,7 +827,7 @@ $("#myOrderComplete").on("click", function(){
 	tooltipTimerStop(0);
 	$("#MyOrderListModal").modal("hide");
 	modalCanclePoint.push(["결제 방법 선택", "paySelect"]);
-	$("#paySelect").modal();
+	$("#paySelect").modal({backdrop: 'static'});
 	tooltipTimer(7, 1);
 });
 
@@ -852,7 +852,7 @@ $(".payMethod").on("click", function(){
 	
 	$("#paySelect").modal("hide");
 	modalCanclePoint.push(["결제 정보 확인", "paymentDetails"]);
-	$("#paymentDetails").modal();
+	$("#paymentDetails").modal({backdrop: 'static'});
 	
 	tooltipTimer(8, 1);	
 });
@@ -933,7 +933,7 @@ $("#payComplate").on("click", function(){
 	tooltipTimerStop(0);
 	modalCanclePoint.push(["결제", "paymentmodal"]);
 	$("#paymentDetails").modal("hide");
-	$("#paymentmodal").modal();
+	$("#paymentmodal").modal({backdrop: 'static'});
 	tooltipTimer(9, 1);
 });
 
@@ -959,5 +959,5 @@ $("#paymentmodalComplete").on("click", function(){
 	tooltipTimerStop(0);
 	$("#paymentmodal").modal("hide");
 	forceStop("clear");
-	$("#surveyModal").modal();
+	$("#surveyModal").modal({backdrop: 'static'});
 });
