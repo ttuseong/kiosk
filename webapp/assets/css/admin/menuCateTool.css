@@ -50,7 +50,7 @@ a{
 
 .tooltip-img {
 	opacity: 0;
-	background-color: white;
+	background-color: #c3bbbb;
 	color: white;	
 	position: absolute;
 	z-index:1;

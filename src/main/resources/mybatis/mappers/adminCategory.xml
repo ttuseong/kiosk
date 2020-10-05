@@ -10,20 +10,23 @@
     			categoryNo,
    				categoryName,
    				publicYN,
-   				categoryImg
+   				categoryImg,
+   				highlight
 		FROM
 				(SELECT
 	            		ROWNUM rn,
 	            		categoryNo,
 	            		categoryName,
 	            		publicYN,
-	            		categoryImg
+	            		categoryImg,
+	            		highlight
 	        	 FROM
 						 (SELECT  
 				        		c.categoryNo,
 				        		c.categoryName,
 				        		c.publicYN,
-				        		c.categoryImg
+				        		c.categoryImg,
+				        		c.highlight
 						 FROM 
 				        		users u, store s, category c
 						 WHERE 

@@ -220,7 +220,14 @@
 													<td>
 														<c:if test="${cList.publicYN == 0}">비공개</c:if>
 													</td>
-													<td><a href="#" class="adminCate-delete">X</a></td>
+													<c:choose>
+														<c:when test="${cList.highlight == 0}">
+															<td><a href="#" class="adminCate-delete">X</a></td>
+														</c:when>
+														<c:otherwise>
+															<td><a href="#" class="adminCate-delete"></a></td>
+														</c:otherwise>
+													</c:choose>
 													<td>
 														<div class="adminnCate-tooltipPicture">
 															<i class="far fa-image fa-lg tooltipImgHover"></i>

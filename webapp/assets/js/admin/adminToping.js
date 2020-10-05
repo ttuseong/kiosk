@@ -137,7 +137,7 @@ $(".text").on("click", function(){
 					window.location.reload();
 				}else {
 					console.log("수정 안됐어");
-					alert("수정에 실패하였습니다.");
+					alert("이름이 중복되어 수정에 실패하였습니다.");
 				}
 			},
 			error : function(XHR, status, error) {
