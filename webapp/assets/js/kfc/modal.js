@@ -93,7 +93,7 @@ function initSideArr(unitNo){
 
 /*토핑 및 버거 수에 따른 금액 합산*/
 function computeAllPrice(){
-   totalPrice = Number(burgerPrice);
+   totalPrice = removeComma(burgerPrice);
    
    for(var i=0; i<toppingArr.length; i++){
       totalPrice += (toppingArr[i][2]*toppingArr[i][3]);
@@ -211,7 +211,7 @@ function OnselectMode(menuVo){
 		str += '       <p class="selectModePrice"> ' + menuVo.discount + '</p>';
    }
    else{
-		str += '       <p class="selectModePrice"> ' + menuVo.menuPrice + '</p>';
+		str += '       <p class="selectModePrice"> ' + numberWithCommas(menuVo.menuPrice) + '</p>';
    }
    
    str += '    </div>';
@@ -278,7 +278,7 @@ function hamburgerBoxSideMenuInputDefault(){
    $(".hamburgerBoxLabel").text(burgerName);
    $(".burgerBoxDesc").text(burgerConfig);
    $(".burgertotalCount").text(burgerCount);
-   $(".burgerBoxPrice").text(totalPrice);
+   $(".burgerBoxPrice").text(numberWithCommas(totalPrice));
    $(".img-hamburgerBoxFix").attr("src", burgerImg);
 
 }
@@ -428,7 +428,7 @@ $(".icon-plus").on("click", function(){
    computeAllPrice();
 	
    $(".burgertotalCount").text(burgerCount);
-   $(".burgerBoxPrice").text(totalPrice);
+   $(".burgerBoxPrice").text(numberWithCommas(totalPrice));
 });
 
 $(".icon-minus").on("click", function(){
@@ -440,7 +440,7 @@ $(".icon-minus").on("click", function(){
    burgerCount--;
    computeAllPrice();
    $(".burgertotalCount").text(burgerCount);
-   $(".burgerBoxPrice").text(totalPrice);
+   $(".burgerBoxPrice").text(numberWithCommas(totalPrice));
 });
 
 $("#bugerToppingContiner").on("click", ".icon-minus",function(){
@@ -457,7 +457,7 @@ $("#bugerToppingContiner").on("click", ".icon-minus",function(){
       }
    }
    computeAllPrice();
-   $(".burgerBoxPrice").text(totalPrice);
+   $(".burgerBoxPrice").text(numberWithCommas(totalPrice));
    
 });
 
@@ -473,7 +473,7 @@ $("#bugerToppingContiner").on("click", ".icon-plus",function(){
       }
    }
    computeAllPrice();
-   $(".burgerBoxPrice").text(totalPrice);
+   $(".burgerBoxPrice").text(numberWithCommas(totalPrice));
 });
 
 /*사이드 변경 모달에 컨텐츠 추가하는 함수*/
@@ -510,7 +510,7 @@ function addSideMenu(sideList){
             str += '      <p class="menuPrice"></p>';
          }
          else{
-            str += '      <p class="menuPrice">' + '+' + addPrice + '</p>';
+            str += '      <p class="menuPrice">' + '+' + numberWithCommas(addPrice) + '</p>';
          }
          str += '      </div>';
          str += '      <div class="icon-check ' + classStatus + '"></div>';
@@ -572,7 +572,7 @@ $("#sideChangeContents").on("click", ".menuSetSecond", function(){
    sideArr[sideIndex][2] = curClick.children().eq(1).children(".menuPrice").text().slice(1);
    computeAllPrice();
    
-   $(".burgerBoxPrice").text(totalPrice);
+   $(".burgerBoxPrice").text(numberWithCommas(totalPrice));
 });
 
 $("#sideChangeComplete").on("click", function(){
@@ -699,7 +699,7 @@ function addRecommenDationMenu(menuVo){
    str += '    src="' + url + '/kfc/'+menuVo.menuImg+'"';
    str += '   class="img-responsive-recommend">';
    str += '   <p class="menuName">' +  menuVo.menuName +  '</p><br>';
-   str += '   <p class="menuPrice">' + menuVo.menuPrice +  '</p><br>';
+   str += '   <p class="menuPrice">' + numberWithCommas(menuVo.menuPrice) +  '</p><br>';
    str += '   <p class="menuCount">';
    str += '   </div>';                  
    str += '   <div class="icon-check recommend-hidden"></div>';      
@@ -727,7 +727,7 @@ $("#recommendCompleteBtn").on("click", function(){
 		var menuText = $("#menuTableContents>div").eq(i).children().eq(0).children(".textarea").children().eq(0).text();
 		text.push(menuText);
 		
-		var menuPrice = $("#menuTableContents>div").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text();
+		var menuPrice = removeComma($("#menuTableContents>div").eq(i).children().eq(2).children().eq(0).children().eq(0).children().eq(0).text());
 		price.push(menuPrice);
 		
 		var menuCount = $("#menuTableContents>div").eq(i).children().eq(1).children().eq(0).children().eq(1).text();
@@ -763,7 +763,7 @@ $("#recommendCompleteBtn").on("click", function(){
       
       if(currentDiv.children().eq(1).hasClass("recommend-check")){
          text.push(currentDiv.children().eq(0).children('.menuName').text());
-         price.push(currentDiv.children().eq(0).children('.menuPrice').text());
+         price.push(removeComma(currentDiv.children().eq(0).children('.menuPrice').text()));
 		 count.push(1);
       }
    }
@@ -797,7 +797,7 @@ function addOrderList(textArr, priceArr, countArr){
 	  }	
 
 	  if(priceArr[i] != -1)
-      	str += ' <td id="orderlist-menuPrice"> ' + priceArr[i] +' </td>';
+      	str += ' <td id="orderlist-menuPrice"> ' + numberWithCommas(priceArr[i]) +' </td>';
       	str += '</tr>';
       }
 
@@ -811,16 +811,16 @@ function sum(){
    var totalPay = 0;
    
    for(var i = 0; i < length; i++){
- 	  if(!tbody.eq(i).children().eq(1).hasClass("noCount")){		 var currentCount = 
+ 	  if(!tbody.eq(i).children().eq(1).hasClass("noCount")){
          count += Number(tbody.eq(i).children().eq(1).text());
-         totalPay += Number(tbody.eq(i).children().eq(2).text());
+         totalPay += removeComma(tbody.eq(i).children().eq(2).text());
       }
    }
 
-   totalPrice = totalPay
+   totalPrice = totalPay;
    
    $(".order-totalMenu > p").text(count);
-   $(".order-totalPrice > p").text(totalPay);
+   $(".order-totalPrice > p").text(numberWithCommas(totalPay));
 }
 
 $("#myOrderComplete").on("click", function(){
@@ -845,7 +845,7 @@ $(".payMethod").on("click", function(){
 		$("#payment-header").children("div").children("img").attr("src", thisSelect.children().eq(0).attr("src"));
 	}
 	
-	$("#paymentDetailsMoney").text(totalPrice);
+	$("#paymentDetailsMoney").text(numberWithCommas(totalPrice));
 	$("#paymentTitle").text(thisSelect.children().eq(1).text());
 	$("#payment-header").children("div").children("img").attr("class", targetClass);
 	$("#paymentmodalContent").attr("src", url+"/assets/images/kfcPayment/" +no+".png");

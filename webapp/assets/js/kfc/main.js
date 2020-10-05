@@ -16,6 +16,16 @@ $(document).ready(function(){
 	defaultMenuList();
 });
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function removeComma(str){
+	var n = parseInt(str.replace(/,/g,""));
+
+	return n;
+}
+
 function tooltipTimer(index, check){
 	if(check == 1){
 		tooltipIndex.push(index);
@@ -128,7 +138,7 @@ function addHighlight(menuVo){
 	str += '			<p class="highlightName">'+menuVo.menuName+'</p>';
 	str += '			<div>';
 	str += '				<div class="highlightConfig">구성</div>';
-	str += '				<p class="highlightPrice">'+menuVo.menuPrice+'</p>';
+	str += '				<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
 	str += '			</div>';
 	str += '			<p class="highlightItem">구성품</p>';
 	str += '		</div>';
@@ -145,7 +155,7 @@ function addMenuList(menuVo){
 	str += '	<div class="menuContent">';
 	str += '		<p>'+menuVo.menuName+'</p>';
 	if(menuVo.discount == 0){
-		str += '	<p>'+menuVo.menuPrice+'</p>';	
+		str += '	<p>'+numberWithCommas(menuVo.menuPrice)+'</p>';	
 	}
 	else{
 		str += '	<p>'+menuVo.discount	+'</p>'	
@@ -229,7 +239,7 @@ function orderComplate(subText){
 	str += ' 	<div>';
 	str += ' 		<div class="price">';
 	str += '			<div class="pricePos">';
-	str += '				<p>'+totalPrice+'</p>;';
+	str += '				<p>'+ numberWithCommas(totalPrice) +'</p>;';
 	
 	str += '			</div>';
 	str += '				<div class="icon-cancel"></div>';
@@ -251,11 +261,11 @@ function mainPageTotal(){
 	
 	for(var i=0; i<length; i++){
 		mainTotalCount += Number(trGroup.eq(i).find(".count").children().eq(1).text());
-		mainTotalPrice += Number(trGroup.eq(i).find(".pricePos").children().eq(0).text());
+		mainTotalPrice += removeComma(trGroup.eq(i).find(".pricePos").children().eq(0).text());
 	}
 	
 	$("#orderLeft").children().eq(0).children().eq(1).text(mainTotalCount);
-	$("#orderLeft").children().eq(1).children().eq(1).text(mainTotalPrice);
+	$("#orderLeft").children().eq(1).children().eq(1).text(numberWithCommas(mainTotalPrice));
 }
 
 
@@ -307,7 +317,7 @@ $("#menuTable").on("click", ".icon-cancel", function(){
 $("#menuTable").on("click", ".icon-plus", function(){
 	var count = $(this).prev().text();
 	
-	var price = $(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text();
+	var price = removeComma($(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text());
 	
 	price = price/count;
 	
@@ -315,7 +325,7 @@ $("#menuTable").on("click", ".icon-plus", function(){
 	
 	
 	$(this).prev().text(count);
-	$(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text(price);
+	$(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text(numberWithCommas(price));
 	
 	mainPageTotal();
 });
@@ -327,7 +337,7 @@ $("#menuTable").on("click", ".icon-minus", function(){
 		return;
 	}
 	
-	var price = $(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text();
+	var price = removeComma($(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text());
 	
 	price = price/count;
 	
@@ -335,7 +345,7 @@ $("#menuTable").on("click", ".icon-minus", function(){
 	
 	
 	$(this).next().text(count);
-	$(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text(price);
+	$(this).parent().parent().next().children(".price").children(".pricePos").children().eq(0).text(numberWithCommas(price));
 
 	mainPageTotal();
 });
