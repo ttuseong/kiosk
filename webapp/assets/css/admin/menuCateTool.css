@@ -13,7 +13,7 @@ body {
 
 .adminCate-tooltip {
 	position: absolute;
-	top: 5.5%;
+	top: 30px;
 	right: 1%;
 	transform: translate(-50%, -50%);
 	
