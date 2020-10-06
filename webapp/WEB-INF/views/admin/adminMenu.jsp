@@ -74,7 +74,7 @@
 
 			<!-- Main Content -->
 			<div id="content">
-
+								
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
 
@@ -92,7 +92,7 @@
 									<!-- 메뉴 이미지 -->
 										<img src="${pageContext.request.contextPath}/assets/images/icon1.png" class="menuInfo-menuImg img-rounded">
 										 <input id="menuInfo-menuImgInput" name="file" type="file" style="margin: auto;" />
-								</form>	
+								</form>
 							</div>
 							
 							<!-- 메뉴 이미지 끝 -->
@@ -567,12 +567,43 @@
 	$(document).ready(function(){
 		var storeNo = ${authUser.userNo};
 		
-		//var storeNo = 1;
 		getUnitBasicInfo(storeNo) // 관리자 단에서 뿌려질 단위 정보
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
 	});	
 
+	
+	// drag&drop
+	$("#content").on("dragenter", function(e) { //드래그 요소가 들어왔을떄
+		console.log($(this).addClass('drag-over'));
+		$(this).addClass('drag-over');
+	}).on("dragleave", function(e) { //드래그 요소가 나갔을때
+		console.log($(this).removeClass('drag-over'));
+		$(this).removeClass('drag-over');
+	}).on("dragover", function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	}).on('drop', function(e) { //드래그한 항목을 떨어뜨렸을때
+		e.preventDefault();
+		console.log($(this).removeClass('drag-over'));
+		$(this).removeClass('drag-over');
+		
+	 var files = e.originalEvent.dataTransfer.files; //드래그&드랍 항목
+	 
+	 for(var i = 0; i < files.length; i++) {
+		var file = files[i];
+		preview(file); // 이미지 미리보기
+	 }
+	});
+	
+	function preview(file) {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			$(".menuInfo-menuImg").attr("src", e.target.result);
+		};
+		reader.readAsDataURL(file);
+	}
+	
 	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
 	function readURL(input){
 		if(input.files && input.files[0]){
