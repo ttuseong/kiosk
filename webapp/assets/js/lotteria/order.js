@@ -495,8 +495,11 @@ function result(){
 	var price = 0;
 	
 	for(var v = 1; v <=i; v++){
-		number += Number($(".menuNumber"+v).children().eq(0).text());
+		// number += Number($(".menuNumber"+v).children().eq(0).text());
 		price += Number($(".menuPrice"+v).children().eq(0).text());
+	}
+	for(var z = 1; z <=5; z++){
+		number += Number($(".menuNumber"+z).text());
 	}
 	
 	$("#maximum").text(number);
