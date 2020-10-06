@@ -14,6 +14,10 @@ var selectMenu = {}
 
 var modalCanclePoint =[];
 $(document).ready(function() {
+
+	$("#paymentBtn").on("click",function(){
+		paymentBtnCheck();
+	});
 	
 	console.log($.cookie("modalCanclePoint"));
 	if($.cookie("modalCanclePoint") != null){
@@ -221,6 +225,14 @@ $(document).ready(function() {
 	});
 
 });
+
+function paymentBtnCheck(){
+	if(($(".tr-center").next().children().eq(0).text()) == ""){
+		alert("주문내역 없습니다. 주문할 메뉴를 선택해 주세요.");
+		event.preventDefault();
+	}
+}
+
 
 function cookieCheck(){
 	$.cookie("modalCanclePoint", modalCanclePoint);

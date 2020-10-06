@@ -102,7 +102,6 @@
 						<button type="button" class="btn-radius12px"onclick="location.href='${pageContext.request.contextPath}/lotteria/payment'">취소하기</button>
 					</div>
 					<div class="col-md-4 margin-top10px">
-						<%-- <button type="button" class="btn-backColor" onclick="location.href='${pageContext.request.contextPath}/lotteria/orderList'">결제하기</button> --%>
 						<input type="submit" id="paymentBtn" class="btn-backColor" value="결제하기">
 					</div>
 				</div>
