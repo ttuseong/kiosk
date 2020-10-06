@@ -115,7 +115,7 @@
 			#{unitNo},
 		</if>
 		<![CDATA[
-			#{discount})
+			#{discount}, '-', '-')
 		]]>
 	</insert>
 	

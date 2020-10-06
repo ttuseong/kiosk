@@ -563,6 +563,8 @@
 </body>
 
 <script type="text/javascript">	
+
+	var file;
 	/* 페이지가 로드되는 순간 불러와야 할 정보들 */
 	$(document).ready(function(){
 		var storeNo = ${authUser.userNo};
@@ -571,7 +573,6 @@
 		getCateList(storeNo); // 카테고리 리스트
 		getUnitList(storeNo); // 단위 모달에서 뿌려질 단위 정보
 	});	
-
 	
 	// drag&drop
 	$("#content").on("dragenter", function(e) { //드래그 요소가 들어왔을떄
@@ -588,12 +589,14 @@
 		console.log($(this).removeClass('drag-over'));
 		$(this).removeClass('drag-over');
 		
-	 var files = e.originalEvent.dataTransfer.files; //드래그&드랍 항목
+		var files = e.originalEvent.dataTransfer.files; //드래그&드랍 항목
 	 
-	 for(var i = 0; i < files.length; i++) {
-		var file = files[i];
-		preview(file); // 이미지 미리보기
-	 }
+		for(var i = 0; i < files.length; i++) {
+			console.log(file);
+			file = files[i];
+			console.log(file);
+			preview(file); // 이미지 미리보기
+		}
 	});
 	
 	function preview(file) {
@@ -602,7 +605,7 @@
 			$(".menuInfo-menuImg").attr("src", e.target.result);
 		};
 		reader.readAsDataURL(file);
-	}
+	} 
 	
 	//파일 업로드를 통해 이미지를 올릴 경우 이미지를 미리 보여주는 코드
 	function readURL(input){
@@ -1089,7 +1092,14 @@
 		}
 		
 		var form = $("#menuImgInput");
-		var imgData = new FormData(form[0]);
+		
+		if(file == undefined){
+			var imgData = new FormData(form[0]);
+		} else{
+			var imgData = new FormData();
+			imgData.append("file", file);
+		}
+		
 		
 		imgData.append("categoryNo", cateNo);
 		imgData.append("menuName", $("#menuName").val());
@@ -1236,10 +1246,12 @@
 		}
 	});
 
-	/* 추가 구성 리스트 모달 열기 */
+	/* 단위 모달 열기 */
 	$(".adminUnitListBtn").on("click", function() {
 		$("#unitListModal").modal({backdrop: 'static'}); // 모달 열기
-
+		$("#all_unit_checked").prop("checked", false); // 체크박스 모두 해제
+		$("input[id^=check_]").prop("checked", false); // 체크박스 모두 해제
+		
 		// 메뉴 정보 페이지에서 선택 된 구성이 모달에서도 선택되도록 함
 		var unitNo = $("input[id^='unitInfo_check_']:checked").val(); // 현재 메뉴 정보페이지에서 선택된 단위 번호 받아옴
 		if(unitNo != null) { // 단위가 선택된 경우
@@ -1247,7 +1259,7 @@
 		}
 	});
 	
-	// 추가 구성 리스트 모달 닫기
+	// 단위 모달 닫기
 	$("#unitListModal-close").on("click", function() {
 		$("#unitListModal").modal("hide");
 	});
@@ -1745,10 +1757,10 @@
 		console.log("모든 단위 체크");
 		
 		if($("#all_unit_checked").is(":checked")) {
-			$("input[type=checkbox]").prop("checked", true); // 체크박스 모두 체크
+			$("input[id^=check_]").prop("checked", true); // 체크박스 모두 체크
 		}
 		else {
-			$("input[type=checkbox]").prop("checked", false); // 체크박스 모두 해제
+			$("input[id^=check_]").prop("checked", false); // 체크박스 모두 해제
 		}
 	});
 	
@@ -1842,8 +1854,11 @@
 		}
 		
 		$("#promotion").val(arrNumber); // 화면의 promotion 인풋에 menuNo 배열 담기
-		
 		$('#promotionMenu').prop("checked", true); // 체크박크 체크
+		
+		if($("#discountedPrice").val() == "" && arrNumber.includes("") == true) {
+			$('#promotionMenu').prop("checked", false); // 체크박크 체크 해제
+		}
 	});
 	
 	// 프로모션/할인 모달 취소&닫기 버튼
@@ -1852,16 +1867,25 @@
 		
 		var discount = $("#discount").val();
 		var promotion = $("#promotion").val();
+		console.log(discount + ", " + promotion);
 		
-		if(discount == 0 || promotion == 0) { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
-			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
-			$("#promotion").val(""); // 프로모션
+		if(discount == "" || promotion == "") { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
+			if(discount == "") {
+				initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
+			}
+			else if(promotion == "") {
+				$("#promotion").val(""); // 메뉴 정보 페이지의 프로모션 값 초기화
+			}
 			$('#promotionMenu').prop("checked", false); // 체크박스 해제
 		}
-		else if(discount != 0 || promotion != 0){ // 기존에 값이 있는 경우의 취소 => 수정을 취소하겠다는 소리
-			$("#discountedPrice").val(discount); // discount 기존 값으로 바꿔줌
-			InsertDiscountRate($("#menuPrice").val()); // 할인율 구해서 삽입 
-			$("#promotion").val(promotion); // 프로모션을 기존 값으로 바꿔줌
+		else if(discount != "" || promotion != ""){ // 기존에 값이 있는 경우의 취소 => 수정을 취소하겠다는 소리
+			if(discount != ""){
+				$("#discountedPrice").val(discount); // discount 기존 값으로 바꿔줌
+				InsertDiscountRate($("#menuPrice").val()); // 할인율 구해서 삽입 
+			}
+			else if(promotion != "") {
+				$("#promotion").val(promotion); // 프로모션을 기존 값으로 바꿔줌
+			}
 		}
 	});
 	
@@ -1879,7 +1903,6 @@
 	$(".isSpecial-promotionModal-promotionContainer").on("click", function() {
 		console.log("프로모션 클릭");
 		console.log($("#promotion").val());
-		
 		
 		if($("#promotionmotion").val() == null) { // 프로모션이 없을 경우			
 			initializationUnit();
