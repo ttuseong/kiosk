@@ -500,6 +500,7 @@ function result(){
 	}
 	for(var z = 1; z <=5; z++){
 		number += Number($(".menuNumber"+z).text());
+		console.log(number);
 	}
 	
 	$("#maximum").text(number);
@@ -701,7 +702,7 @@ function cookieRender(menuList){
 		str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menu[3]+"'>";
 		str1 += "<input type='hidden' name='number"+i+"' value='"+menu[2]+"' id='ea"+i+"'>";
 		
-		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>"; 
+		str1 += "<div class='number"+i+" number'>"+menu[2]+"</div><div class='up-downDiv'>"; 
 		str1	+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' id='up' onClick='btnUp("+i +","+menu[3] +")'></button>";
 		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' id='down' onClick='btnDown("+i+","+menu[3]+")'></button>";
 		str1 += "</div>";
