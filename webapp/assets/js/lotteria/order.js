@@ -208,6 +208,7 @@ $(document).ready(function() {
 		
 	});
 	
+	/* 토핑메뉴가 클릭되었을때 */
 	$("#toppingContents").on("click",".toppingDiv", function(){
 		
 		var thisTopping = $(this);
@@ -677,6 +678,7 @@ function toppingModal(numberI){
 		dataType : "json",
 		success : function(toppingList){
 			for(var z = 0; z < toppingList.length; z++){
+				console.log(toppingList[z].toppingImg);
 				str = "";
 				str += "<div class='toppingDiv relative' data-toppingno='"+toppingList[z].toppingNo+"'>";
 					str += "<img src='"+url+"/lotteria/"+toppingList[z].toppingImg+"'>";
