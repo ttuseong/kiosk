@@ -12,6 +12,7 @@
 <link href="/kiosk/assets/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/lotteria/order.css" rel="stylesheet"type="text/css">
 <link href="/kiosk/assets/css/fontello/css/fontello.css"rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/share/share.css" rel="stylesheet" type="text/css">
 
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
@@ -28,6 +29,24 @@
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
+	
+	<div id="tooltipContainer">
+		<span class="tooltip-text"> 
+		주문전<br>
+		 - 카테고리와 메뉴를 자유롭게 클릭해주세요<br>
+		 주문후<br>
+		 - 결제를 진행하기 위해 결제하기 버튼을 클릭해주세요
+		</span> 
+		<span class="tooltip-text"> 
+		세트 선택<br>
+		 - 원하시는 세트 종류를 클릭해주세요
+		</span> 
+		<span class="tooltip-text"> 
+		사이드 변경<br>
+		 - 기본 구성품으로 주문을 원하시면 주문 완료 버튼을 눌러주세요<br>
+    	사이드 변경을 희망하면 원하시는 사이드를 클릭해주세요
+		</span> 
+	</div>
 
 	<div class="container width800height1200">
 

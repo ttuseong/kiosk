@@ -12,6 +12,7 @@
 <link href="/kiosk/assets/css/lotteria/orderList.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/fontello/css/fontello.css" rel="stylesheet" type="text/css">
 <link href="/kiosk/assets/css/share/modal.css" rel="stylesheet" type="text/css">
+<link href="/kiosk/assets/css/share/share.css" rel="stylesheet" type="text/css">
 <!-- 자바스크립트 -->
 <script type="text/javascript" src="/kiosk/assets/js/jquery/jquery-1.12.4.js"></script>
 <script type="text/javascript" src="/kiosk/assets/bootstrap/js/bootstrap.js"></script>
@@ -23,6 +24,11 @@
 	<!-- 헤더 -->
 	<jsp:include page="/WEB-INF/views/includes/header.jsp" />
 	<!-- 헤더 -->
+	
+	<span class="tooltip-text"> 
+		결제<br>
+ 		- 선택하신 메뉴와 금액을 확인한 후 식사 장소를 선택하신 후에 주문완료 버튼을 클릭하세요
+	</span> 
 	
 	<div class="container width800height1200">
 

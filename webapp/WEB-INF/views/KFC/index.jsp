@@ -23,6 +23,7 @@
 	rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/fontello/css/fontello.css">
+	<link href="/kiosk/assets/css/share/share.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/jquery/jquery-1.12.4.js"></script>

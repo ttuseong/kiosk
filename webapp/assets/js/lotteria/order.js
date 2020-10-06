@@ -58,6 +58,8 @@ $(document).ready(function() {
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
 		
 		if(menuNo==331 || menuNo==332){
+			tooltipTimerStop(0);
+			tooltipTimer(2,1);
 			side(1);
 		}else{
 			setOrSingle(menuNo, menuName,menuPrice);
@@ -70,6 +72,9 @@ $(document).ready(function() {
 		
 		var menuName = thisMenu.children().eq(1).children().eq(0).text();
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
+		
+		tooltipTimerStop(0);
+		tooltipTimer(0,0);
 		
 		modalCanclePoint.push(["주문후 메인"])
 		render(menuName, menuPrice);
@@ -156,6 +161,10 @@ $(document).ready(function() {
 		$("ul.modal-tabs li:first").addClass("active").show();
 		$(".modal-tab_content:first").show();
 		
+		tooltipTimerStop(1);
+		tooltipTimer(2,1);
+		
+		console.log(tooltipIndex);
 		$("#setAndSingle").modal("hide");
 		side(1);
 	});
@@ -193,6 +202,10 @@ $(document).ready(function() {
 		if(unitNo == 4)commboMenu(menuNo,drinkNo, drinkPrice);
 		else setMenu(menuNo,drinkNo, drinkPrice);
 		
+		tooltipTimerStop(1);
+	
+		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
+		
 	});
 	
 	$("#toppingContents").on("click",".toppingDiv", function(){
@@ -223,6 +236,12 @@ $(document).ready(function() {
 	$("#paymentBtn").on("click", function(){
 		isEnd = true;
 	});
+	
+	$(".modalFooter-btn1").on("click", function(){
+		tooltipTimerStop(1);
+		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
+		
+	})
 
 });
 
@@ -343,6 +362,8 @@ function side(pg){
 				modalCanclePoint.push(["사이드 선택"]);
 				console.log(modalCanclePoint);
 				$("#side").modal();
+				tooltipTimerStop(1);
+				tooltipTimer(2,1);
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
@@ -416,6 +437,9 @@ function menuSelect(menuNo,menuPrice){
 				$("#setAndSingle").modal();
 			}
 			
+			tooltipTimerStop(0);
+			tooltipTimer(1,1);
+			
 			modalCanclePoint.push(["단품/세트/콤보 선택"]);
 			console.log(modalCanclePoint);
 			
@@ -440,10 +464,14 @@ function setOrSingle(menuNo, menuName, menuPrice){
 				modalCanclePoint.push(["주문후 메인"]);
 				console.log(modalCanclePoint);
 				render(menuName, menuPrice);
+				tooltipTimerStop(1);
+				tooltipTimer(0,1);
 			}else if(count == 1){
 				if($(".tabs li.tab-11").attr("class") == "tab-11 active"){
 					/*디저트_치킨탭의 세트일경우*/
 					side(1);
+					tooltipTimerStop(1);
+					tooltipTimer(0,1);
 				}else{
 					/*디저트_치킨탭의 세트가 아닐경우*/
 					menuSelect(menuNo,menuPrice);
@@ -746,7 +774,6 @@ function cookieRender(menuList){
 		result();
 		i+=1;
 	}
-	
 	
 }
 

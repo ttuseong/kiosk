@@ -3,6 +3,7 @@ var isEnd
 
 $(document).ready(function(){
 	isEnd = false;
+	tooltipTimer(0, 1);
 });
 
 //강제 종료했을 경우 진행중이던 곳 저장
@@ -50,3 +51,25 @@ $(window).bind("beforeunload", function (e){
 $(".serveyImgContainer").on("click", function(){
 	isEnd=true;
 });
+
+//툴팁에 사용되는 변수들
+var tooltipVal;
+var tooltipIndex = [];
+
+function tooltipTimer(index, check){
+	if(check == 1){
+		tooltipIndex.push(index);
+	}
+	console.log(tooltipIndex);
+	tooltipVal = setTimeout(function(){ $(".tooltip-text").eq(index).css("display", "block"); }, 3000);
+}
+
+function tooltipTimerStop(check){
+	$(".tooltip-text").eq(tooltipIndex[tooltipIndex.length-1]).css("display", "none");
+	
+	if(check == 1){
+		tooltipIndex.pop();
+	}
+	
+	clearTimeout(tooltipVal);
+}
