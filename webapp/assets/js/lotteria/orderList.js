@@ -21,29 +21,36 @@ $(document).ready(function() {
 	
 	$("#selectPackage").on("click",".img-inline_block",function(){
 		var select = $(this);
-		
-		select.children().eq(1).addClass("glyphicon glyphicon-ok");
-		select.children().eq(1).addClass("check");
-		
-		if(select.hasClass("selectDisable") || select.hasClass("selectOption")){
-			console.log("이미 선택된 놈들입니다.")
+		var checkClass = $(".selectOption").children().eq(1).attr("class");
+
+		console.log(checkClass);
+		if(!checkClass){
+			select.children().eq(1).addClass("glyphicon glyphicon-ok");
+			select.children().eq(1).addClass("check");
+			
+			if(select.hasClass("selectDisable") || select.hasClass("selectOption")){
+				//console.log("이미 선택된 놈들입니다.")
+			}
+			else{
+				modalCanclePoint.push(["장소 선택후 결제"]);
+				//console.log(modalCanclePoint);
+				$(".subtitle").addClass("gray");
+				select.addClass("selectOption");
+				select.siblings().addClass("selectDisable");
+			}
+
 		}
-		else{
-			modalCanclePoint.push(["장소 선택후 결제"]);
-			console.log(modalCanclePoint);
-			$(".subtitle").addClass("gray");
-			select.addClass("selectOption");
-			select.siblings().addClass("selectDisable");
-		}
+
+		
 	});
 	
 	$("#discount").on("click",".img-inline_block",function(){
 		var select = $(this);
 		if($("#discount").hasClass("selectDisable")){
-			console.log("클릭할 수 없습니다");
+			// console.log("클릭할 수 없습니다");
 		}
 		else if(select.hasClass("selectDisable") || select.hasClass("selectOption")){
-			console.log("이미 선택된 놈들입니다.");
+			//console.log("이미 선택된 놈들입니다.");
 		}
 		else{
 			select.addClass("selectOption");
@@ -55,10 +62,10 @@ $(document).ready(function() {
 	$("#payment").on("click",".img-inline_block",function(){
 		var select = $(this);
 		if($("#payment").hasClass("selectDisable")){
-			console.log("클릭할 수 없습니다");
+			//console.log("클릭할 수 없습니다");
 		}
 		else if(select.hasClass("selectDisable") || select.hasClass("selectOption")){
-			console.log("이미 선택된 놈들입니다.")
+			//console.log("이미 선택된 놈들입니다.")
 		}	
 		else{
 			select.addClass("selectOption");
