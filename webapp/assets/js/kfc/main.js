@@ -131,7 +131,20 @@ function addMenuAjax(){
 
 function addHighlight(menuVo, promotionMenuList){
 	console.log(menuVo.discount);
-	str="";
+	
+	var desc = "";
+	
+	for(var i = 0; i < promotionMenuList.length; i++){
+			if(menuVo.menuNo == promotionMenuList[i].menuNo){
+				console.log(promotionMenuList[i]);
+				if(desc != ""){
+					desc += ' + ';
+				}
+				desc += promotionMenuList[i].menuName;
+			}
+		}
+	
+	var str="";
 	
 	str += ' <div class="highlightMenu">';
 	str += '		<img alt="메뉴 이미지"';
@@ -144,16 +157,7 @@ function addHighlight(menuVo, promotionMenuList){
 		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
 		str += '		</div>';
 		str += '		<p class="highlightItem">';
-		console.log(promotionMenuList);
-		for(var i = 0; i < promotionMenuList.length; i++){
-			if(menuVo.menuNo == promotionMenuList[i].menuNo){
-				console.log(promotionMenuList[i]);
-				if(i != 0){
-					str += ' + ';
-				}
-				str += promotionMenuList[i].menuName;
-			}
-		}
+		str += 				desc;
 		str += '		</p>';
 	} else{
 		str += '		<div>';
