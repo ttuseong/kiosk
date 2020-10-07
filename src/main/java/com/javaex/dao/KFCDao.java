@@ -45,8 +45,8 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectSetMenus", menuNo);
 	}
 	
-	public List<MenuVo> selectToppingList(){
-		return sqlSession.selectList("kfc.selectToppingList");
+	public List<MenuVo> selectToppingList(int menuNo){
+		return sqlSession.selectList("kfc.selectToppingList", menuNo);
 	}
 	
 	public List<ToppingVo> selectToppingbasicInfo(){

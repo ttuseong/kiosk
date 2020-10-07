@@ -123,17 +123,23 @@
 		]]>
 	</select>
 	
-	<select id="selectToppingList" resultType="com.javaex.vo.MenuVo">
+	<select id="selectToppingList" resultType="com.javaex.vo.MenuVo" parameterType="int">
 		<![CDATA[
 			SELECT
-				toppingNo menuNo,
-			    toppingname menuName,
-			    toppingprice menuPrice,
-			    toppingimg menuImg
+			    t.toppingNo menuNo,
+			    t.toppingname menuName,
+			    t.toppingprice menuPrice,
+			    t.toppingimg menuImg
 			FROM
-			    topping
+			    menu m,
+			    useTopping ut,
+			    topping t
 			where
-			    storeNo=1
+			    m.menuNo = ut.menuNo
+			and
+			    m.menuNo = #{menuNo}
+			and
+			    t.toppingNo = ut.toppingNo
 		]]>
 	</select>
 	<select id="selectToppingbasicInfo" resultType="com.javaex.vo.ToppingVo">

@@ -8,9 +8,10 @@ public class ToppingVo {
 	private String toppingImg;
 	private int rn;
 	private int userNo;
-	
-	public ToppingVo() {}
-	
+	private int checkNo;
+
+	public ToppingVo() {
+	}
 
 	public ToppingVo(String toppingName, int toppingPrice, String toppingImg, int userNo) {
 		super();
@@ -19,13 +20,13 @@ public class ToppingVo {
 		this.toppingImg = toppingImg;
 		this.userNo = userNo;
 	}
-	
+
 	public ToppingVo(String toppingName, int toppingPrice, String toppingImg) {
 		super();
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
 		this.toppingImg = toppingImg;
-		
+
 	}
 
 	public ToppingVo(String toppingName, int toppingPrice, int toppingNo, String toppingImg) {
@@ -34,7 +35,7 @@ public class ToppingVo {
 		this.toppingNo = toppingNo;
 		this.toppingImg = toppingImg;
 	}
-	
+
 	public ToppingVo(String toppingName, int toppingPrice, int toppingNo, String toppingImg, int userNo) {
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
@@ -42,19 +43,18 @@ public class ToppingVo {
 		this.toppingImg = toppingImg;
 		this.userNo = userNo;
 	}
-	
-	public ToppingVo(int rn, int toppingNo, int storeNo, String toppingName, int toppingPrice, 
-			String toppingImg) {
-		
+
+	public ToppingVo(int rn, int toppingNo, int storeNo, String toppingName, int toppingPrice, String toppingImg) {
+
 		this.rn = rn;
 		this.toppingNo = toppingNo;
 		this.storeNo = storeNo;
 		this.toppingName = toppingName;
 		this.toppingPrice = toppingPrice;
 		this.toppingImg = toppingImg;
-		
+
 	}
-	
+
 	public int getRn() {
 		return rn;
 	}
@@ -103,13 +103,26 @@ public class ToppingVo {
 		this.toppingImg = toppingImg;
 	}
 
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+	public int getCheckNo() {
+		return checkNo;
+	}
+
+	public void setCheckNo(int checkNo) {
+		this.checkNo = checkNo;
+	}
 
 	@Override
 	public String toString() {
 		return "ToppingVo [toppingNo=" + toppingNo + ", storeNo=" + storeNo + ", toppingName=" + toppingName
-				+ ", toppingPrice=" + toppingPrice + ", toppingImg=" + toppingImg + ", rn=" + rn + "]";
+				+ ", toppingPrice=" + toppingPrice + ", toppingImg=" + toppingImg + ", rn=" + rn + ", userNo=" + userNo
+				+ ", checkNo=" + checkNo + "]";
 	}
-
-
-	
 }

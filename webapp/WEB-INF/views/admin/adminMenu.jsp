@@ -202,6 +202,29 @@
 							<h6 class="m-0 font-weight-bold text-primary">토핑 정보</h6>
 						</div>
 						<div class="card-body">
+							<table class="table table-bordered" id="useTopping" width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Used</th>
+										</tr>
+									</thead>
+									
+									<tbody>
+										<c:forEach items="${list }" var="toppingVo">
+											<tr>
+												<td>${toppingVo.rn }</td>
+												<td>${toppingVo.toppingName }</td>
+												<td>${toppingVo.toppingPrice }</td>
+												<td>
+													<input type="checkbox" class="toppingCheckBox" value="${toppingVo.toppingNo }">
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 							<!-- 토핑 정보를 넣으세다 -->
 						</div>
 					</div>
@@ -858,9 +881,9 @@
 				type : "post",
 				data : { menuNo : menuNo },
 				dataType : "json",
-				success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
-					console.log(menuVo);
-					menuInfo(menuVo); // 메뉴 정보 인풋에 출력
+				success : function(map) { /*성공시 처리해야될 코드 작성*/
+					console.log(map);
+					menuInfo(map); // 메뉴 정보 인풋에 출력
 				},
 				error : function(XHR, status, error) {
 					console.error(status + " : " + error);
@@ -869,8 +892,10 @@
 		}
 	});
 	
+	
+	var prevToppingList;
 	// 메뉴 정보 받아서 인풋에 출력해주는 함수
-	function menuInfo(menuVo) {
+	function menuInfo(map) {
 		// 초기화가 필요한 정보들 먼저 초기화
 		$("input[type=checkbox]").prop("checked", false); // 먼저 체크박스를 모두 해제해 줌
 		$('#useMenu').val(""); // 연관메뉴 value 초기화		
@@ -878,14 +903,14 @@
 		
 		// 정보 삽입
 		/* $("#menuCalorie").val(menuVo.menuCalorie); */
-		$("#menuName").val(menuVo.menuName);
-		$("#menuPrice, #originalPrice").val(menuVo.menuPrice);
-		$("#menuDesc").val(menuVo.menuDesc);
-		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/kfc/"+menuVo.menuImg);
-		$("#discount").val(menuVo.discount); // 메뉴 정보 페이지에서의 할인가
+		$("#menuName").val(map.menuVo.menuName);
+		$("#menuPrice, #originalPrice").val(map.menuVo.menuPrice);
+		$("#menuDesc").val(map.menuVo.menuDesc);
+		$(".menuInfo-menuImg").attr("src", "${pageContext.request.contextPath}/kfc/"+map.menuVo.menuImg);
+		$("#discount").val(map.menuVo.discount); // 메뉴 정보 페이지에서의 할인가
 		
 		// isSpecial => 1 : 프로모션 / 2 : 추천 / 4 : 신메뉴
-		switch (menuVo.isSpecial){
+		switch (map.menuVo.isSpecial){
 		    case 1 : // 1일 경우 프로모션 체크박스 체크해 줌
 				$('input:checkbox[id="promotionMenu"]').prop("checked", true); 
 		        break;
@@ -920,37 +945,45 @@
 		
 	
 		// 프로모션
-		if(menuVo.promotion != null) { // 프로모션 구성품목이 있을 경우
+		if(map.menuVo.promotion != null) { // 프로모션 구성품목이 있을 경우
 			var array = new Array(); // 프로모션 구성품목 메뉴넘버 담아줄 배열
-			for(var i = 0; i < menuVo.promotion.length; i++) { // 구성품의 수만큼 반복
-				array[i] = menuVo.promotion[i].MENU_NO; // 배열에 구성품 메뉴 넘버 담기
+			for(var i = 0; i < map.menuVo.promotion.length; i++) { // 구성품의 수만큼 반복
+				array[i] = map.menuVo.promotion[i].MENU_NO; // 배열에 구성품 메뉴 넘버 담기
 			}
 			$("#promotion").val(array); // 화면의 promotion value값에 배열 담기
 		}
 
 		// 할인
-		if(menuVo.discount > 0) { // discount에 값이 있을 경우
-			var discountRate = discountRateFunction(menuVo.discount, menuVo.menuPrice);
-			$("#discountedPrice").val(menuVo.discount); // 모달에서의 할인가
+		if(map.menuVo.discount > 0) { // discount에 값이 있을 경우
+			var discountRate = discountRateFunction(map.menuVo.discount, map.menuVo.menuPrice);
+			$("#discountedPrice").val(map.menuVo.discount); // 모달에서의 할인가
 			$("#discountRate").val(discountRate); // 모달에서의 할인율
 			
 			$("#discountedPrice, #discountRate").css("padding-top", "6px");
 		}
 
 		// 연관메뉴
-		if(menuVo.useMenu != null && menuVo.useMenu != 0) {
+		if(map.menuVo.useMenu != null && map.menuVo.useMenu != 0) {
 			$('input:checkbox[id="useMenu"]').prop("checked", true); // 연관메뉴 체크
-			$('#useMenu').val(menuVo.useMenu); // 연관메뉴 value에 usemenu 넘버 넘겨주기
+			$('#useMenu').val(map.menuVo.useMenu); // 연관메뉴 value에 usemenu 넘버 넘겨주기
 		}	
 		
 		// 변경 가능한 메뉴
-		if(menuVo.isChange == 1) {
+		if(map.menuVo.isChange == 1) {
 			$('input:checkbox[id="isChange"]').prop("checked", true); 
 		}
 
 		// 추가 구성
-		if(menuVo.unitNo != null && menuVo.unitNo != 0) {
-			$('input:checkbox[id="unitInfo_check_' + menuVo.unitNo + '"]').prop("checked", true); 
+		if(map.menuVo.unitNo != null && map.menuVo.unitNo != 0) {
+			$('input:checkbox[id="unitInfo_check_' + map.menuVo.unitNo + '"]').prop("checked", true); 
+		}
+		
+		prevToppingList = map.useToppingList;
+		for(var i=0; i < map.useToppingList.length; i++){
+			if(map.useToppingList[i] != null){
+				console.log($("#useTopping").children("tbody").children().eq(i).children().eq(3));
+				$(".toppingCheckBox").eq(i).prop("checked", true);;
+			}
 		}
 	}
 
@@ -1091,6 +1124,17 @@
 			isChange = parseInt(checked_isChange); // isChange 값 변경해 줌
 		}
 		
+		var toppingTable = $("#useTopping").children("tbody").children();
+		var useToppingList = [];
+		
+		for(var i = 0; i < toppingTable.length; i++){
+			if($(".toppingCheckBox").eq(i).is(":checked")){
+				useToppingList.push($(".toppingCheckBox").eq(i).val());
+			}
+		}
+		
+		console.log(useToppingList);
+		
 		var form = $("#menuImgInput");
 		
 		if(file == undefined){
@@ -1099,7 +1143,6 @@
 			var imgData = new FormData();
 			imgData.append("file", file);
 		}
-		
 		
 		imgData.append("categoryNo", cateNo);
 		imgData.append("menuName", $("#menuName").val());
@@ -1111,6 +1154,7 @@
 		imgData.append("useMenu", $("#useMenu").val());
 		imgData.append("discount", discount);
 		imgData.append("promotion", $("#promotion").val());
+		imgData.append("useToppingList", useToppingList);
 
 		if(menuNo != 0){
 			imgData.append("menuNo", menuNo);
@@ -1134,11 +1178,13 @@
 			else { // 메뉴 수정
 				if(originalPrice != menuPrice && discount != null) {
 					if (window.confirm("메뉴 가격이 변동 되었습니다. 할인율 수정없이 등록하시겠습니까?")) {
-						txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val());	
+						imgData.append("prevToppingList", prevToppingList);
+						txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val(), useToppingList);	
 					}
 				}
 				else {
-					txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val());	
+					imgData.append("prevToppingList", prevToppingList);
+					txtFieldCheck(txtInput) == true ? true : txtFieldCheck(txtarea) == true ? true : menuModify(imgData, $("#menuName").val(), useToppingList);	
 				}
 			} 
 		}
@@ -1216,7 +1262,7 @@
 			data : imgData,
 			dataType : "json",
 			
-			success : function(menuVo) { /*성공시 처리해야될 코드 작성*/
+			success : function(map) { /*성공시 처리해야될 코드 작성*/
 				var temp = $("#dropdownMenu").text();
 				$("#dropdownMenu").text(menuName);
 				var liChildren = $("#adminDropdownMenuList").children();
@@ -1230,8 +1276,7 @@
 				
 				alert("수정이 완료되었습니다."); // 알림창
 				$('html').scrollTop(0); // 페이지 상단으로 이동
-				menuInfo(menuVo); // 업데이트 한 메뉴 정보 인풋에 넣어주기
-				
+				menuInfo(map); // 업데이트 한 메뉴 정보 인풋에 넣어주기
 			},
 			error : function(XHR, status, error) {
 				console.error(status + " : " + error);
