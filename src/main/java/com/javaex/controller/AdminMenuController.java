@@ -1,8 +1,9 @@
 package com.javaex.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.javaex.service.AdminMenuService;
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
+import com.javaex.vo.ToppingVo;
 import com.javaex.vo.UnitModalVo;
+import com.javaex.vo.UserVo;
 
 @Controller
 @RequestMapping("/admin")
@@ -24,8 +27,14 @@ public class AdminMenuController {
 	private AdminMenuService adminMenuService;
 
 	@RequestMapping("/adminMenu")
-	public String adminMenu(Model model) {
+	public String adminMenu(Model model, HttpSession session) {
 		System.out.println("admin컨트롤러");
+		int no = ((UserVo)session.getAttribute("authUser")).getUserNo();
+		
+		List<ToppingVo> list = adminMenuService.getToppingList(no);
+		
+		model.addAttribute("list", list);
+		
 		return "/admin/adminMenu";
 	}
 	
@@ -52,11 +61,11 @@ public class AdminMenuController {
 	// 메뉴 정보
 	@ResponseBody
 	@RequestMapping("/adminMenuInfo")
-	public MenuVo adminMenuInfo(@RequestParam("menuNo") int menuNo) {
+	public Map<String, Object> adminMenuInfo(@RequestParam("menuNo") int menuNo, HttpSession session) {
+		int userNo = ((UserVo)session.getAttribute("authUser")).getUserNo();
+		Map<String, Object> map = adminMenuService.getMenuInfo(menuNo, userNo);
 		
-		MenuVo menuVo = adminMenuService.getMenuInfo(menuNo);
-		
-		return menuVo;
+		return map;
 	}
 	
 	// 메뉴 추가
@@ -66,27 +75,31 @@ public class AdminMenuController {
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo,
 			@RequestParam(value="useMenu", defaultValue="0") int useMenu, @RequestParam(value="discount", defaultValue="0") int discount,
-			@RequestParam(value="promotion", defaultValue="0") String promotion) {
-		
+			@RequestParam(value="promotion", defaultValue="0") String promotion, @RequestParam("useToppingList")List<Integer> useToppingList) {
+			
 			System.out.println("menuAdd controller promotion : " + promotion);
-		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, useMenu, discount, promotion);
+		 	return adminMenuService.addMenu(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, useMenu, discount, promotion, useToppingList);
 	}
 	
 	// 메뉴 수정
 	@ResponseBody
 	@RequestMapping("/adminUpdateMenu")
-	public MenuVo adminUpdateMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
+	public Map<String, Object> adminUpdateMenu(@RequestParam("file") MultipartFile file, @RequestParam("categoryNo") int categoryNo, @RequestParam("menuName") String menuName,
 			@RequestParam("menuDesc") String menuDesc, @RequestParam(value="isSpecial", defaultValue="0") int isSpecial, @RequestParam("menuPrice") int menuPrice,
 			@RequestParam(value="isChange", defaultValue="0") int isChange, @RequestParam(value="unitNo", defaultValue="0") int unitNo, @RequestParam("menuNo") int menuNo,
 			@RequestParam(value="useMenu", defaultValue="0") int useMenu, @RequestParam(value="discount", defaultValue="0") int discount,
-			@RequestParam(value="promotion", defaultValue="0") String promotion) {
+			@RequestParam(value="promotion", defaultValue="0") String promotion, @RequestParam("useToppingList")List<Integer> useToppingList, @RequestParam("prevToppingList")List<Integer> prevToppingList,
+			HttpSession session) {
 
 		System.out.println("menuModify controller promotion : " + promotion);
+
+		while (prevToppingList.remove(null));
 		
-		MenuVo updateMenuInfo = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo, useMenu, discount, promotion);
+		Map<String, Object> map = adminMenuService.menuUpdate(file, categoryNo, menuName, menuDesc, isSpecial, menuPrice, isChange, unitNo, menuNo, useMenu, discount, promotion, useToppingList, prevToppingList, ((UserVo)session.getAttribute("authUser")).getUserNo());
 	
+		
 		// 업데이트 한 메뉴 정보 보내기
-		return updateMenuInfo;
+		return map;
 	}
 
 	// 메뉴 삭제 시 해당 메뉴를 연관메뉴 혹은 프로모션 구성품으로 '사용중'인 메뉴넘버와 이름 받아오기

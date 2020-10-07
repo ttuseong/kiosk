@@ -10,12 +10,17 @@ import org.springframework.stereotype.Repository;
 
 import com.javaex.vo.CategoryVo;
 import com.javaex.vo.MenuVo;
+import com.javaex.vo.ToppingVo;
 import com.javaex.vo.UnitModalVo;
 
 @Repository
 public class AdminMenuDao {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	public List<ToppingVo> getToppingList(int no){
+		return sqlSession.selectList("adminMenu.getToppingList", no);
+	}
 	
 	// Dao 드롭다운 - 카테고리 리스트 불러오기
 	public List<CategoryVo> getCateList(int storeNo) {
@@ -114,6 +119,18 @@ public class AdminMenuDao {
 		map.put("promotionNo", promotionNo); // 프로모션 구성품
 		
 		return sqlSession.insert("adminMenu.promotionComponentsInsert", map);
+	}
+	
+	public List<Integer> getUseToppingList(Map<String, Integer> map){
+		return sqlSession.selectList("adminMenu.getUseToppingList", map);
+	}
+	
+	public void setUseTopping(Map<String, Object> map) {
+		sqlSession.insert("adminMenu.insertUseTopping", map);
+	}
+	
+	public void removeUseTopping(Map<String, Object> map) {
+		sqlSession.delete("adminMenu.deleteUseTopping", map);
 	}
 	
 	// Dao 메뉴 수정
