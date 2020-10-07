@@ -275,13 +275,17 @@ public class AdminMenuService {
 		List<Map<String, Object>> promotionComponentsUseMenu = adminMenuDao.getPromotionComponentsUseMenu(menuNo);
 		int promotionComponentsUseMenuNo = 0;
 		int promotionComponentsCnt = 0;
-
-		if (useDefault > 0) { // 단위 테이블에서 추가 구성 품목으로 사용중인 메뉴의 경우 -1을 반환하여 단위에서 사용되는 메뉴임을 알림
+		
+		if(useDefault > 0) { // 단위 테이블에서 추가 구성 품목으로 사용중인 메뉴의 경우 -1을 반환하여 단위에서 사용되는 메뉴임을 알림
 			return -1;
-		} else if (useMenuCnt > 1 || componentsCnt > 0) { // 연관 메뉴를 사용하고 있거나 프로모션 구성품이 있는 메뉴의 경우
-			if (useMenuCnt > 1) {
+		}
+		else if(useMenuCnt > 0 || componentsCnt > 0) { // 연관 메뉴를 사용하고 있거나 프로모션 구성품이 있는 메뉴의 경우
+			if(useMenuCnt > 0) {
+				System.out.println("연관메뉴 있음");
 				adminMenuDao.delUseMenu("set", menuNo); // 메뉴 삭제 전 연관 메뉴 먼저 삭제
-			} else if (componentsCnt > 0) {
+			}
+			if(componentsCnt > 0){
+				System.out.println("프로모션 있음");
 				adminMenuDao.delPromotionComponents("delPromotion", menuNo); // 메뉴 삭제 전 프로모션 구성품 먼저 삭제
 			}
 		}
