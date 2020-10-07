@@ -13,6 +13,12 @@
 			select userNo, userId from users where userId=#{userId} and userPw=#{userPw}
 		]]>
 	</select>
+	
+	<select id="adminCheck" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from users u, store s where u.userNo = s.storeNo and u.userNo = #{userNo}
+		]]>
+	</select>
 
 
 </mapper>

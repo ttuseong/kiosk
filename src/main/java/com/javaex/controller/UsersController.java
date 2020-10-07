@@ -61,5 +61,5 @@ public class UsersController {
 		session.invalidate();
 		return "redirect:/";
 	}
-
+	
 }

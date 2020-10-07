@@ -4,24 +4,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.javaex.service.UsersService;
+import com.javaex.vo.UserVo;
+
 public class Interceptor extends HandlerInterceptorAdapter{
 
+	@Autowired
+	UsersService userService;
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
 		
-		Object obj = session.getAttribute("authUser");
+		UserVo user = (UserVo)session.getAttribute("authUser");
 		
-		if(obj == null) {
+		if(user == null) {
 			response.sendRedirect("/kiosk/");
+			System.out.println("비로그인 접근자");
+		
 			return false;
-		}
-				
-		return true;
+		}else{
+			int adminCheck = userService.adminCheck(user.getUserNo());
+			
+			if(adminCheck <=0 ) {
+				System.out.println("로그인은 했으나 관리자 권한이 없는 접근자");
+				return false;
+			}else {
+				return true;
+			}
+		}		
 	}
 	
 	@Override

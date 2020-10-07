@@ -18,4 +18,7 @@ public class UsersDao {
 	public UserVo login(UserVo userVo) {
 		return sqlSession.selectOne("user.login", userVo);
 	}
+	public int adminCheck(int userNo) {
+		return sqlSession.selectOne("user.adminCheck", userNo);
+	}
 }
