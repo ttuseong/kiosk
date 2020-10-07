@@ -101,7 +101,7 @@ public class AdminMenuService {
 				/* OutputStream out = new FileOutputStream("C:\\test\\"+saveName); */
 
 				/* 리눅스에서 사용 */
-				OutputStream out = new FileOutputStream("/kiosk/kfc/" + saveName);
+				OutputStream out = new FileOutputStream("/backup/kiosk/kfc/" + saveName);
 				BufferedOutputStream bout = new BufferedOutputStream(out);
 
 				bout.write(fileData);
@@ -163,7 +163,7 @@ public class AdminMenuService {
 				/* OutputStream out = new FileOutputStream("C:\\test\\"+saveName); */
 
 				/* 리눅스에서 사용 */
-				OutputStream out = new FileOutputStream("/kiosk/kfc/" + saveName);
+				OutputStream out = new FileOutputStream("/backup/kiosk/kfc/" + saveName);
 				BufferedOutputStream bout = new BufferedOutputStream(out);
 
 				bout.write(fileData);
