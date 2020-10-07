@@ -1821,21 +1821,27 @@
 	
 	/* 프로모션/할인 모달 열기 */
 	$("#promotionMenu").on("click", function() {
-		console.log("프로모션 모달 열기");
+		console.log("프로모션 모달 열기");	
+		if($("#promotion").val() == "") { // 프로모션 없는 경우 프로모션 모달 초기화
+			initializationUnit();
+		}
 		
 		if($("#promotionMenu").is(":checked")) { // 프로모션/할인 체크박스가 체크 된 경우
 			$("#isSpecial-promotionModal").modal({backdrop: 'static'}); // 모달 열기
 		}
 		else {
 			initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
-			$("#promotion").val(""); // 프로모션 초기화
+			$("#promotion").val(""); // 메뉴 정보 페이지에서의 프로모션 값 초기화
 			$('#promotionMenu').prop("checked", false); // 체크박스 해제
 		}
 	});
 
 	$(".promotionMenuTag").on("click", function() {
 		console.log("프로모션/할인 모달 열기");
-
+		if($("#promotion").val() == "") { // 프로모션 없는 경우 프로모션 모달 초기화
+			initializationUnit();
+		}
+		
 		$("#isSpecial-promotionModal").modal({backdrop: 'static'}); // 모달 열기
 	});
 	
@@ -1850,13 +1856,13 @@
 		var arrNumber = new Array(); // menuNo을 담아줄 배열
 		
 		for(var i = 1; i <= numberOfUnit; i++) { // 구성품목 개수만큼 반복하여 menuNo 담아주기
-			arrNumber[i-1] = $("#promotionModal-body").find("#selectMenuNo_" + i).val();
+			arrNumber.push($("#promotionModal-body").find("#selectMenuNo_" + i).val());
 		}
 		
 		$("#promotion").val(arrNumber); // 화면의 promotion 인풋에 menuNo 배열 담기
 		$('#promotionMenu').prop("checked", true); // 체크박크 체크
 		
-		if($("#discountedPrice").val() == "" && arrNumber.includes("") == true) {
+		if($("#discount").val() == "" && $("#promotion").val() == "") {
 			$('#promotionMenu').prop("checked", false); // 체크박크 체크 해제
 		}
 	});
@@ -1867,9 +1873,8 @@
 		
 		var discount = $("#discount").val();
 		var promotion = $("#promotion").val();
-		console.log(discount + ", " + promotion);
 		
-		if(discount == "" || promotion == "") { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
+		if(discount == "" && promotion == "") { // 기존에 값이 없는 경우의 취소 => 등록 자체를 취소하겠다는 소리
 			if(discount == "") {
 				initializationDiscount(); // 할인과 관련 된 부분 초기화 (할인가, 할인율)
 			}
@@ -1886,6 +1891,7 @@
 			else if(promotion != "") {
 				$("#promotion").val(promotion); // 프로모션을 기존 값으로 바꿔줌
 			}
+			$('#promotionMenu').prop("checked", true); // 체크박스 체크
 		}
 	});
 	
@@ -1904,7 +1910,7 @@
 		console.log("프로모션 클릭");
 		console.log($("#promotion").val());
 		
-		if($("#promotionmotion").val() == null) { // 프로모션이 없을 경우			
+		if($("#promotion").val() == null) { // 프로모션이 없을 경우			
 			initializationUnit();
 		}
 		else { // 프로모션 있을 경우
