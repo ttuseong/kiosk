@@ -133,7 +133,7 @@ function addHighlight(menuVo){
 	
 	str += ' <div class="highlightMenu">';
 	str += '		<img alt="메뉴 이미지"';
-	str += '			src="'+url+'/assets/images/icon1.png">';
+	str += '			src="'+url+'/kfc/'+menuVo.menuImg+'">';
 	str += '		<div>';
 	str += '			<p class="highlightName">'+menuVo.menuName+'</p>';
 	str += '			<div>';
