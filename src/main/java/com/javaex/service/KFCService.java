@@ -46,12 +46,18 @@ public class KFCService {
 			
 			List<Integer> highlightMenuNoList = new ArrayList<Integer>();
 			
+			System.out.println(highlightMenuNoList.toString());
+			
 			for(int i = 0; i < list.size(); i++) {
 				if(list.get(i).getDiscount() == 0) {
 					highlightMenuNoList.add(list.get(i).getMenuNo());
 				}
 			}
+			
+			System.out.println(highlightMenuNoList.toString());
 			List<MenuVo> promotionMenuList = kfcDao.selectPromotionMenu(highlightMenuNoList);
+			
+			System.out.println(promotionMenuList.toString());
 			
 			resultMap.put("promotionMenuList", promotionMenuList);
 		}

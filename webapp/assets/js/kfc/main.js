@@ -158,7 +158,7 @@ function addHighlight(menuVo, promotionMenuList){
 	} else{
 		str += '		<div>';
 		str += '			<div></div>';
-		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
+		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.discount)+'</p>';
 		str += '		</div>';
 		str += '		<p class="highlightItem"></p>';
 	}

@@ -107,8 +107,8 @@
    	 			m.menuNo = pm.promotionno
 			and
 		]]>
-		<foreach collection="list" item="no" separator="OR">
-			(pm.menuNo = #{no})
+		<foreach collection="list" item="no" open="(" close=")" separator="OR">
+			pm.menuNo = #{no}
 		</foreach>
 		<![CDATA[
 			order by pm.menuno desc, m.categoryNo desc
