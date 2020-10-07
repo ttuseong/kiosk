@@ -74,7 +74,7 @@ public class KFCService {
 	public List<MenuVo> changeList(MenuVo menuVo){
 		List<MenuVo> list;
 		if(menuVo.getCategoryNo() == 0) {
-			list = kfcDao.selectToppingList();
+			list = kfcDao.selectToppingList(menuVo.getMenuNo());
 		}
 		else {
 			list = sideList(menuVo);

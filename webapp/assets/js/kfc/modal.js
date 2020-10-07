@@ -197,7 +197,7 @@ function selectMenu(data, price){
 function OnselectMode(menuVo){
    var str = "";
    
-   str += ' <div class="selectModeBodyContainer" data-mode="' + menuVo.unitNo + '">';
+   str += ' <div class="selectModeBodyContainer" data-mode="' + menuVo.unitNo + '" data-menuNo='+menuVo.menuNo+'>';
    str += '    <div class="icon-check selectModeCheckBox">';
    str += '       <p class="hidden">채크박스</p>';
    str += '    </div>';
@@ -233,6 +233,7 @@ $("#selectModeMainContent").on("click", ".selectModeBodyContainer", function(){
    burgerPrice = clickMode.children(".selectModeBodyContent").children(".selectModePrice").text();
    burgerImg = clickMode.children(".selectModeBoxImg").attr("src");
 
+   menuNo = clickMode.data("menuno");
    selectedMode = clickMode.data("mode");
 });
 
@@ -324,7 +325,7 @@ $("#hamburgerBoxBodyContainer").on("click", ".hamburgerBoxButton", function(){
    var no = thisBtn.data("no");
    sideIndex = thisBtn.data("index");   
 
-   var data = {categoryNo : no};
+   var data = {categoryNo : no, menuNo : menuNo};
 
    if(sideIndex != undefined){
 	  data.menuNo = sideArr[sideIndex][0];
