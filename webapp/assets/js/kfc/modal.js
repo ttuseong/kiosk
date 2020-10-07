@@ -359,7 +359,7 @@ function changeList(data){
             
             sideChangeEndPoint = Math.ceil(list.length/6.0);
             
-            $("#sideChangeContents").width(648*sideChangeEndPoint);
+            $("#sideChangeContents").width(680*sideChangeEndPoint);
             
             if(sideChangeEndPoint>1){
                $("#hamburgerBox-SideChangeBodyRightBtn").addClass("btnActive");
