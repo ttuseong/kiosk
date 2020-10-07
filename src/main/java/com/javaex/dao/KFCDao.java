@@ -29,6 +29,10 @@ public class KFCDao {
 		return sqlSession.selectList("kfc.selectHighlightMenuList", map);
 	}
 	
+	public List<MenuVo> selectPromotionMenu(List<Integer> list){
+		return sqlSession.selectList("kfc.selectPromotionMenu", list);
+	}
+	
 	public List<MenuVo> selectMenu(MenuVo menuVo) {
 		return sqlSession.selectList("kfc.selectMenu", menuVo);
 	}

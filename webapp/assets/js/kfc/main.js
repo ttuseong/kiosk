@@ -78,12 +78,14 @@ function addMenuAjax(){
 		$("#menuSectionContent > div").remove();
 		$("#pageCircleGroup>li").remove();
 		
+		console.log(map.list);
+		
 		if(map.highlight==1){
 			for(var i = 0; i < map.list.length; i++){
 				if(i%3 == 0){
 					$("#menuSectionContent").append('<div></div>');	
 				}
-				addHighlight(map.list[i]);
+				addHighlight(map.list[i], map.promotionMenuList);
 			}
 		}else{
 			for(var i = 0; i < map.list.length; i++){
@@ -127,8 +129,8 @@ function addMenuAjax(){
    });
 }
 
-function addHighlight(menuVo){
-	console.log(menuVo);
+function addHighlight(menuVo, promotionMenuList){
+	console.log(menuVo.discount);
 	str="";
 	
 	str += ' <div class="highlightMenu">';
@@ -141,10 +143,21 @@ function addHighlight(menuVo){
 		str += '			<div class="highlightConfig">구성</div>';
 		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
 		str += '		</div>';
-		str += '		<p class="highlightItem">구성품</p>';
+		str += '		<p class="highlightItem">';
+		console.log(promotionMenuList);
+		for(var i = 0; i < promotionMenuList.length; i++){
+			if(menuVo.menuNo == promotionMenuList[i].menuNo){
+				console.log(promotionMenuList[i]);
+				if(i != 0){
+					str += ' + ';
+				}
+				str += promotionMenuList[i].menuName;
+			}
+		}
+		str += '		</p>';
 	} else{
 		str += '		<div>';
-		str += '			<div class="highlightConfig"></div>';
+		str += '			<div></div>';
 		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
 		str += '		</div>';
 		str += '		<p class="highlightItem"></p>';

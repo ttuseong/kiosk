@@ -75,6 +75,7 @@
 			and
 			    (m.menuNo = pm.menuNo or m.discount != 0)
 			GROUP BY m.menuno, m.menuname, m.menuDesc, m.menuPrice, m.menuImg,m.discount
+			order by m.menuNo desc
 		</if>
 		<if test="highlight == 2">
 			SELECT
@@ -92,6 +93,26 @@
 			    isSpecial = 6
 		</if>
 	
+	</select>
+	
+	<select id="selectPromotionMenu" parameterType="list" resultType="com.javaex.vo.MenuVo">
+		<![CDATA[
+			SELECT
+			    pm.menuNo,
+			    m.menuName
+			FROM
+			    menu m,
+			    promotionMenu pm
+			where
+   	 			m.menuNo = pm.promotionno
+			and
+		]]>
+		<foreach collection="list" item="no" separator="OR">
+			(pm.menuNo = #{no})
+		</foreach>
+		<![CDATA[
+			order by pm.menuno desc, m.categoryNo desc
+		]]>
 	</select>
 	
 	<select id="selectMenu" resultType="com.javaex.vo.MenuVo" parameterType="com.javaex.vo.MenuVo">

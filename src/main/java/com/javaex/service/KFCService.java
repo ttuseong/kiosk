@@ -1,5 +1,6 @@
 package com.javaex.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,17 @@ public class KFCService {
 			Map<String, Integer>map = new HashMap<String, Integer>();
 			map.put("highlight", highlight);
 			list = kfcDao.selectHighlightMenuList(map);	
+			
+			List<Integer> highlightMenuNoList = new ArrayList<Integer>();
+			
+			for(int i = 0; i < list.size(); i++) {
+				if(list.get(i).getDiscount() == 0) {
+					highlightMenuNoList.add(list.get(i).getMenuNo());
+				}
+			}
+			List<MenuVo> promotionMenuList = kfcDao.selectPromotionMenu(highlightMenuNoList);
+			
+			resultMap.put("promotionMenuList", promotionMenuList);
 		}
 		
 		resultMap.put("list", list);
