@@ -40,8 +40,10 @@ public class UsersController {
 	//회원가입후 로그인 페이지 리다이렉트.
 	@RequestMapping("/register")
 	public String register(@ModelAttribute UserVo userVo) {
+		
+		System.out.println(userVo.toString());
 		userService.register(userVo);
-		return "redirect:/users/login";
+		return "redirect:/users/loginForm";
 	}
 	
 	@RequestMapping("/login")

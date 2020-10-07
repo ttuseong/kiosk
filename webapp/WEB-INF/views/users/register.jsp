@@ -47,7 +47,7 @@
                 	</div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요"name="userPW">
+                    <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="비밀번호를 입력하세요"name="userPw">
                 </div>
                 <button type = "submit" class = "btn btn-primary btn-user btn-block" style="color:white;"> 회원가입하기 </button>
                
