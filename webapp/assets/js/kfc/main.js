@@ -136,11 +136,19 @@ function addHighlight(menuVo){
 	str += '			src="'+url+'/kfc/'+menuVo.menuImg+'">';
 	str += '		<div>';
 	str += '			<p class="highlightName">'+menuVo.menuName+'</p>';
-	str += '			<div>';
-	str += '				<div class="highlightConfig">구성</div>';
-	str += '				<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
-	str += '			</div>';
-	str += '			<p class="highlightItem">구성품</p>';
+	if(menuVo.discount == 0){
+		str += '		<div>';
+		str += '			<div class="highlightConfig">구성</div>';
+		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
+		str += '		</div>';
+		str += '		<p class="highlightItem">구성품</p>';
+	} else{
+		str += '		<div>';
+		str += '			<div class="highlightConfig"></div>';
+		str += '			<p class="highlightPrice">'+numberWithCommas(menuVo.menuPrice)+'</p>';
+		str += '		</div>';
+		str += '		<p class="highlightItem"></p>';
+	}
 	str += '		</div>';
 	str += '	</div>';
 	

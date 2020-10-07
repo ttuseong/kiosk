@@ -59,10 +59,21 @@
 			    m.menuImg,
 			    m.discount
 			FROM
+			    users u,
+			    store s,
+			    category c,
 			    menu m,
 			    promotionmenu pm
 			where
-			    m.menuNo = pm.menuNo
+			    u.userNo = 1
+			and
+			    u.userNo = s.userNo
+			and
+			    s.storeNo = c.storeNo
+			and
+			    c.categoryNo = m.categoryNo
+			and
+			    (m.menuNo = pm.menuNo or m.discount != 0)
 			GROUP BY m.menuno, m.menuname, m.menuDesc, m.menuPrice, m.menuImg,m.discount
 		</if>
 		<if test="highlight == 2">
