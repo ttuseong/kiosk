@@ -19,17 +19,17 @@ $(document).ready(function() {
 		paymentBtnCheck();
 	});
 	
-	console.log($.cookie("modalCanclePoint"));
+	//console.log($.cookie("modalCanclePoint"));
 	if($.cookie("modalCanclePoint") != null){
 		var str = $.cookie("modalCanclePoint").split(",");
 		
 		for(var i=0; i < str.length; i++){
 			modalCanclePoint.push([str[i]]);	
 		}
-		console.log(modalCanclePoint);
+		//console.log(modalCanclePoint);
 	} else{
 		modalCanclePoint.push(["주문전 메인"]);
-		console.log(modalCanclePoint);	
+		//console.log(modalCanclePoint);	
 	}
 	
 	/*총주문내역이 쿠키에 있을 경우 cookieRender 호출*/
@@ -77,7 +77,7 @@ $(document).ready(function() {
 		tooltipTimer(0,0);
 		
 		modalCanclePoint.push(["주문후 메인"])
-		render(menuName, menuPrice);
+		render(menuName, menuPrice,5);
 	})
 	
 	/*페이지 탭*/
@@ -124,7 +124,7 @@ $(document).ready(function() {
 		var menuName = thisMenu.children().eq(1).children().eq(0).text();
 		var menuPrice = thisMenu.children().eq(1).children().eq(1).text();
 		
-		render(menuName, menuPrice);
+		render(menuName, menuPrice,5);
 	})
 	
 	/*단품,세트,콤보 선택 모달창의 세트선택시*/
@@ -164,7 +164,7 @@ $(document).ready(function() {
 		tooltipTimerStop(1);
 		tooltipTimer(2,1);
 		
-		console.log(tooltipIndex);
+		//console.log(tooltipIndex);
 		$("#setAndSingle").modal("hide");
 		side(1);
 	});
@@ -178,12 +178,15 @@ $(document).ready(function() {
 		menuNo = thisMenu.data("menuno");
 		dessertNo = $(this).data("no");
 		dessertPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
+		dessertName = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(0).text();
+		
 		
 		$("ul.modal-tabs li:first").removeClass("active");
 		$("ul.modal-tabs li:last").addClass("active").show();
 		$("#modal-tab1").hide();
 		
 		$("#modal-tab2").addClass("active").show();
+		render(dessertName, dessertPrice,1);
 	});
 	
 	/*사이드모달에 드링크메뉴를 클릭했을때*/
@@ -192,20 +195,23 @@ $(document).ready(function() {
 		$(".modalDotDiv").data("page",1);
 		var drinkNo = $(this).data("no");
 		var drinkPrice = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(1).text();
+		var drinkName = $(this).children().eq(0).children().eq(0).children().eq(1).children().eq(0).text();
 		
 		$('#side').modal("hide");
 		var unitNo = $("#side").data("unitno");
 		
 		modalCanclePoint.push(["주문후 메인"]);
-		console.log(modalCanclePoint);
+		//console.log(modalCanclePoint);
 		
 		if(unitNo == 4)commboMenu(menuNo,drinkNo, drinkPrice);
 		else setMenu(menuNo,drinkNo, drinkPrice);
+
+		render(drinkName, drinkPrice, 2);
 		
 		tooltipTimerStop(1);
 	
 		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
-		
+
 	});
 	
 	/* 토핑메뉴가 클릭되었을때 */
@@ -361,7 +367,7 @@ function side(pg){
 				}
 				
 				modalCanclePoint.push(["사이드 선택"]);
-				console.log(modalCanclePoint);
+				//console.log(modalCanclePoint);
 				$("#side").modal();
 				tooltipTimerStop(1);
 				tooltipTimer(2,1);
@@ -442,11 +448,11 @@ function menuSelect(menuNo,menuPrice){
 			tooltipTimer(1,1);
 			
 			modalCanclePoint.push(["단품/세트/콤보 선택"]);
-			console.log(modalCanclePoint);
+			//console.log(modalCanclePoint);
 			
 		},
 		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
+			//console.error(status + " : " + error);
 		}
 	});
 }
@@ -463,8 +469,8 @@ function setOrSingle(menuNo, menuName, menuPrice){
 			if(count == 0){
 				/*단품제품일경우*/
 				modalCanclePoint.push(["주문후 메인"]);
-				console.log(modalCanclePoint);
-				render(menuName, menuPrice);
+				//console.log(modalCanclePoint);
+				render(menuName, menuPrice,5);
 				tooltipTimerStop(1);
 				tooltipTimer(0,1);
 			}else if(count == 1){
@@ -474,7 +480,7 @@ function setOrSingle(menuNo, menuName, menuPrice){
 					tooltipTimerStop(1);
 					tooltipTimer(0,1);
 				}else{
-					/*디저트_치킨탭의 세트가 아닐경우*/
+					/*디저트_치킨탭의 세트가 아닐경우, 햄버거 세트*/
 					menuSelect(menuNo,menuPrice);
 				}
 			}else{
@@ -484,7 +490,7 @@ function setOrSingle(menuNo, menuName, menuPrice){
 			}
 		},
 		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
+			//console.error(status + " : " + error);
 		}
 	});
 };
@@ -500,7 +506,7 @@ function commboMenu(menuNo, drinkNo, drinkPrice){
 		success : function(selectMenu){
 			var price = selectMenu[0].menuPrice +  Number(dessertPrice) + Number(drinkPrice);
 			
-			render(selectMenu[0].menuName, price);
+			render(selectMenu[0].menuName, price,4);
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -521,10 +527,10 @@ function setMenu(menuNo, drinkNo, drinkPrice){
 			
 			var price = selectMenu[0].menuPrice +  Number(dessertPrice) + Number(drinkPrice);
 			
-			render(selectMenu[0].menuName, price);
+			render(selectMenu[0].menuName, price,3);
 		},
 		error : function(XHR, status, error) {
-			console.error(status + " : " + error);
+			//console.error(status + " : " + error);
 		}
 	}); 
 };
@@ -541,7 +547,6 @@ function result(){
 	}
 	for(var z = 1; z <=5; z++){
 		number += Number($(".menuNumber"+z).text());
-		console.log(number);
 	}
 	
 	$("#maximum").text(number);
@@ -553,63 +558,90 @@ function result(){
 function dessertAndDrink(){
 	$('#side').modal("hide");
 	modalCanclePoint.push(["주문후 메인"]);
-	console.log(modalCanclePoint);
-	render(setName, setPrice);
+	//console.log(modalCanclePoint);
+	render(setName, setPrice,3);
 };
 
 /*선택한메뉴 총주문내역에 출력*/
-function render(menuName, menuPrice){
+function render(menuName, menuPrice, unit){
+	/* unit이 1번일 경우 사이드메뉴의 디저트 메뉴, 2번일 경우 사이드메뉴의 드링크, 5번일경우 햄버거이지만 단품이고 그외에는 콤보나 세트 제품이다. */ 
+	console.log(menuName+", "+ menuPrice +","+ unit);
 	
-		var str1="";
-		
-		str1 += "<input type='hidden' name='menuName"+i+"' value='"+menuName+"'>";
-		str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menuPrice+"'>";
-		str1 += "<input type='hidden' name='number"+i+"' value='1' id='ea"+i+"'>";
-		str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>";
-			str1+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' onClick='btnUp("+i +","+menuPrice +")'></button>";
-		str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' onClick='btnDown("+i+","+menuPrice+")'></button>";
-		str1 += "</div>";
-		
-		var selectMenuNo = Number(thisMenu.data("menuno"));
-		
-		$.ajax({
-			url : url+"/api/menuCategoryNo",		
-			type : "post",
-			contentType : "application/json",
-			data : JSON.stringify(selectMenuNo),
-			dataType : "json",
-			success : function(categoryNo){
-				
-				if(categoryNo == 5){
-					var str2="";
-					str2 += "<div class='number' data-categoryno='5'>"+menuPrice+"</div>";
-					str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
-					str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
-					
-					$(".menuNameText"+i).text(menuName);
-					$(".menuNumber"+i).append(str1);
-					$(".menuPrice"+i).append(str2);
-					
-					result();
-					i+=1;
-				}else{
-					var str2="";
-					str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menuPrice+"</div>";
-					str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
-					
-					$(".menuNameText"+i).text(menuName);
-					$(".menuNumber"+i).append(str1);
-					$(".menuPrice"+i).append(str2);
+	
+		if(!(unit == 1 || unit == 2)){
+			var str1="";
+			
+			str1 += "<input type='hidden' name='menuName"+i+"' value='"+menuName+"'>";
+			str1 += "<input type='hidden' name='menuPrice"+i+"' value='"+menuPrice+"'>";
+			str1 += "<input type='hidden' name='number"+i+"' value='1' id='ea"+i+"'>";
+			str1 += "<div class='number"+i+" number'>1</div><div class='up-downDiv'>";
+				str1+= "<button type='button'class='glyphicon glyphicon-menu-up btn-up' onClick='btnUp("+i +","+menuPrice +")'></button>";
+			str1 += "<button type='button'class='glyphicon glyphicon-menu-down btn-down' onClick='btnDown("+i+","+menuPrice+")'></button>";
+			str1 += "</div>";
 
-					result();
-					i+=1;
+			var selectMenuNo = Number(thisMenu.data("menuno"));
+			
+			$.ajax({
+				url : url+"/api/menuCategoryNo",		
+				type : "post",
+				contentType : "application/json",
+				data : JSON.stringify(selectMenuNo),
+				dataType : "json",
+				success : function(categoryNo){
+					
+					if(categoryNo == 5){
+						var str2="";
+						str2 += "<div class='number' data-categoryno='5'>"+menuPrice+"</div>";
+						
+						if(unit == 5){
+							str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right height25px'>토핑추가</button>";
+							str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+						}else if(!(unit ==1 || unit == 2)){
+							str2 += "<button type='button' onClick='toppingModal("+i+")'class='margin-right5px'>토핑추가</button>";
+							str2 += "<button type='button' class='margin-right5px' onClick = 'sideModal()'>변경</button>";
+							str2 += "<button type='button' onClick='trDelete("+i+")' class='height25px'>삭제</button>";
+						}
+						$(".menuNameText"+i).text(menuName);
+						$(".menuNumber"+i).append(str1);
+						$(".menuPrice"+i).append(str2);
+						
+						result();
+						i+=1;
+					}else{
+						var str2="";
+						str2 += "<div class='number' data-categoryno='"+categoryNo+"' >"+menuPrice+"</div>";
+						str2 += "<button type='button' onClick='trDelete("+i+")'>삭제</button>";
+						
+						$(".menuNameText"+i).text(menuName);
+						$(".menuNumber"+i).append(str1);
+						$(".menuPrice"+i).append(str2);
+	
+						result();
+						i+=1;
+					}
+				},
+				error : function(XHR, status, error) {
+					console.error(status + " : " + error);
 				}
-			},
-			error : function(XHR, status, error) {
-				console.error(status + " : " + error);
-			}
-		}); 
+			}); 
+		}else{
+			var str1 = "";
+			str1 += "<input type='hidden' name='menuName"+(unit+i)+"' value='-"+menuName+"'>";
+			str1 += "<input type='hidden' name='menuPrice"+(unit+i)+"' value='"+menuPrice+"'>";
+			str1 += "<input type='hidden' name='number"+(unit+i)+"' value='1' id='ea"+i+"'>";
+
+			$(".menuNameText"+i).text(menuName);
+			$(".menuNumber"+i).append(str1);
+			$(".menuPrice"+i).append(str2);
+			i+=1;
+		}
+
+
 };
+
+function sideModal(){
+	$("#side").modal();
+}
 
 function btnUp(i, menuPrice){
 	var menuNumber = Number($(".number"+i).text());
@@ -678,7 +710,7 @@ function toppingModal(numberI){
 		dataType : "json",
 		success : function(toppingList){
 			for(var z = 0; z < toppingList.length; z++){
-				console.log(toppingList[z].toppingImg);
+				//console.log(toppingList[z].toppingImg);
 				str = "";
 				str += "<div class='toppingDiv relative' data-toppingno='"+toppingList[z].toppingNo+"'>";
 					str += "<img src='"+url+"/lotteria/"+toppingList[z].toppingImg+"'>";

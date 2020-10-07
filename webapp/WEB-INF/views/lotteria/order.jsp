@@ -173,7 +173,6 @@
 			</div>
 			<!-- /.modal-dialog -->
 		</div>
-	<!-- 토핑모달 -->
 
 		<!-- 단품, 세트 선택 모달 -->
 		<div class="modal fade" id="setAndSingle">
