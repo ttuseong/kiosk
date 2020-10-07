@@ -1,5 +1,7 @@
 package com.javaex.util;
 
+import java.util.logging.Logger;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,7 @@ import com.javaex.service.UsersService;
 import com.javaex.vo.UserVo;
 
 public class Interceptor extends HandlerInterceptorAdapter{
+	private final static Logger log = Logger.getGlobal();
 
 	@Autowired
 	UsersService userService;
@@ -24,15 +27,15 @@ public class Interceptor extends HandlerInterceptorAdapter{
 		UserVo user = (UserVo)session.getAttribute("authUser");
 		
 		if(user == null) {
+			log.info("비로그인 접근자");
 			response.sendRedirect("/kiosk/");
-			System.out.println("비로그인 접근자");
-		
 			return false;
 		}else{
 			int adminCheck = userService.adminCheck(user.getUserNo());
 			
-			if(adminCheck <=0 ) {
-				System.out.println("로그인은 했으나 관리자 권한이 없는 접근자");
+			if(adminCheck <= 0 ) {
+				log.info("로그인은 했으나 관리자 권한이 없는 접근자");
+				response.sendRedirect("/kiosk/");
 				return false;
 			}else {
 				return true;
