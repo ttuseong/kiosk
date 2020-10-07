@@ -26,7 +26,7 @@
 	<!-- 헤더 -->
 
 	<div class="container">
-		<div>
+		<div class="height750px">
 			<c:forEach items="${list}" var="vo">
 				<div class="brandDiv">
 					<a href="${pageContext.request.contextPath}/${vo.storeName }/index?no=${vo.storeNo }">
