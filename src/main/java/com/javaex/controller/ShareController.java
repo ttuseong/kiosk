@@ -18,9 +18,11 @@ public class ShareController {
 	
 	@ResponseBody
 	@RequestMapping("/addFailData")
-	public void addFailData(@RequestParam(value ="endPoint", required=false) String endPoint, HttpSession httpSession) {
+	public int addFailData(@RequestParam(value ="endPoint", required=false) String endPoint, HttpSession httpSession) {
 		System.out.println(endPoint);
 		statisticsService.addFailData(endPoint, (int)httpSession.getAttribute("no"));
+		
+		return 1;
 	}
 	
 	@RequestMapping("/addServeyData")

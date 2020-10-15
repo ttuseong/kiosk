@@ -15,7 +15,7 @@ function forceStop(endPoint){
 		data : {endPoint : endPoint},
 		dataType : "json",
 		success : function(){
-				
+				console.log("확인");
 		},
 		error : function(XHR, status, error) {
 			console.error(status + " : " + error);
@@ -38,7 +38,7 @@ $(window).bind("beforeunload", function (e){
 	if(isEnd){
 		$(window).unbind('beforeunload');	
 	} else{
-		;
+		
 		if($("script[src='https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js']").length == 1){
 			$.removeCookie('selectList');
 			$.removeCookie('modalCanclePoint');
