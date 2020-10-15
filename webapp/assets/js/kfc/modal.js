@@ -110,14 +110,12 @@ function computeAllPrice(){
 $(".btnCancle").on("click", function(){
 	if(modalCanclePoint[0] != undefined){
 		tooltipTimerStop(0);
-		$("#"+modalCanclePoint.pop()[1]).modal("hide");
-		tooltipIndex.pop();
-		console.log(tooltipIndex);
-		console.log(modalCanclePoint[modalCanclePoint.length-1]);
-		$("#"+modalCanclePoint[modalCanclePoint.length-1][1]).modal({backdrop: 'static'});
-		console.log(tooltipIndex);
-		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
 		
+		$("#"+modalCanclePoint.pop()[1]).modal("hide");
+		$("#"+modalCanclePoint[modalCanclePoint.length-1][1]).modal({backdrop: 'static'});
+
+		tooltipIndex.pop();	
+		tooltipTimer(tooltipIndex[tooltipIndex.length-1], 0);
 	}
 });
 
