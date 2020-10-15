@@ -203,14 +203,18 @@ ex) 양념치킨 3조각, 양념치킨 5조각을 만들려고 할 경우 양념
   
 ![강종1](https://user-images.githubusercontent.com/38309884/96106383-23d83080-0f16-11eb-8137-e577b6e65a22.PNG)
 ![강종2](https://user-images.githubusercontent.com/38309884/96106385-25095d80-0f16-11eb-9f6d-b99b895e9b33.PNG)
+  
   사용자가 종료한 시점을 알기 위해 종료에 대한 입력을 감지해야합니다
 
 
 ![강종 ajax](https://user-images.githubusercontent.com/38309884/96107765-c349f300-0f17-11eb-8f8e-6dc6934fe242.PNG)
 ![강종1변경](https://user-images.githubusercontent.com/38309884/96107779-c9d86a80-0f17-11eb-81f3-d5b2c33c1dd6.PNG)
+  
   종료 전에 ajax가 성공적으로 작동하는 지 확인해야하고, 종료한 지점을 알아야하기 때문에 리스트에 가장 마지막 값을 인자 값으로 넘겨줍니다  
 실제로 새로고침했을 때, 강제 종료를 시도했을 때 확인 버튼을 누른 후 콘솔에 확인이 입력된 후에 새로고침이나 종료가 이루어지는 것을 확인했습니다.
+  
 ![강종 저장](https://user-images.githubusercontent.com/38309884/96108371-74508d80-0f18-11eb-8c7c-76b2b2d1a025.PNG)
+  
   종료된 지점이 정확하게 저장됬는지 확인은 sqldeveloper를 통해 확인했습니다.
 ![쿠키내용추가](https://user-images.githubusercontent.com/38309884/96108561-af52c100-0f18-11eb-9a5c-2d45dd8b350c.PNG)
 
